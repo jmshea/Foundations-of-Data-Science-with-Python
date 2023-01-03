@@ -1,0 +1,4897 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="6.9. Chain Rules and Total Probability" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/06-conditional-prob/chain-rules-total-prob.html" />
+  
+<meta property="og:description" content="Chain rules and total probability use conditional probability to decompose the probability of an event. The goal is to express unknown probabilities of events in terms of probabilities that we alre..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="6.9. Chain Rules and Total Probability" />
+  
+    <title>6.9. Chain Rules and Total Probability &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/06-conditional-prob/chain-rules-total-prob.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.10. Review" href="review.html" />
+    <link rel="prev" title="6.8. Conditioning and (In)dependence" href="conditional-independence.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   6. Dependence and Independence
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/06-conditional-prob/chain-rules-total-prob.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/06-conditional-prob/chain-rules-total-prob.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-conditional-probability-to-decompose-events-part-1-chain-rules">
+   6.9.1. Using Conditional Probability to Decompose Events: Part 1 – Chain Rules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-conditional-probability-to-decompose-events-part-2-partitions-and-total-probability">
+   6.9.2. Using Conditional Probability to Decompose Events: Part 2 –  Partitions and Total Probability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   6.9.3. Terminology Review
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chain Rules and Total Probability</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-conditional-probability-to-decompose-events-part-1-chain-rules">
+   6.9.1. Using Conditional Probability to Decompose Events: Part 1 – Chain Rules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-conditional-probability-to-decompose-events-part-2-partitions-and-total-probability">
+   6.9.2. Using Conditional Probability to Decompose Events: Part 2 –  Partitions and Total Probability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   6.9.3. Terminology Review
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="chain-rules-and-total-probability">
+<h1><span class="section-number">6.9. </span>Chain Rules and Total Probability<a class="headerlink" href="#chain-rules-and-total-probability" title="Permalink to this heading">#</a></h1>
+<!-- Experiment in trying to set page HTML meta description
+```{eval-rst}
+.. meta::
+   :description lang=en: How to use chain rules and total probability to decompose the probability of some event in terms of other, known or knowable conditional probabilities. Includes simple examples and the famous Monty Hall Problem.
+```
+-->
+<p>Chain rules and total probability use conditional probability to decompose the probability of an event. The goal is to express unknown probabilities of events in terms of probabilities that we already know.</p>
+<section id="using-conditional-probability-to-decompose-events-part-1-chain-rules">
+<h2><span class="section-number">6.9.1. </span>Using Conditional Probability to Decompose Events: Part 1 – Chain Rules<a class="headerlink" href="#using-conditional-probability-to-decompose-events-part-1-chain-rules" title="Permalink to this heading">#</a></h2>
+<p>In working with probability, we often need to find probabilities of intersections of events, while only having knowledge of the probabilities of individual events and conditional probabilities of combinations of the events. Chain rules are often helpful in these cases:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-chain-rules">chain rules<a class="headerlink" href="#term-chain-rules" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">express the probability of an intersection of events in terms of a sequence of conditional probabilities involving those events</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>This is easiest to understand for the case of two events, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>. From the definition of conditional probability, we can write <span class="math notranslate nohighlight">\(P(A|B)\)</span> as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d560ed19-dbce-4cfb-942c-5378ca5838cd">
+<span class="eqno">(6.10)<a class="headerlink" href="#equation-d560ed19-dbce-4cfb-942c-5378ca5838cd" title="Permalink to this equation">#</a></span>\[\begin{align}
+  P(A|B)&amp;= \frac{P(A \cap B)}{P(B)}  \\
+  \Rightarrow P(A \cap B)&amp;= P(A|B)P(B), 
+\end{align}\]</div>
+<p>and we can write <span class="math notranslate nohighlight">\(P(B|A)\)</span> as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2a59da41-6e0c-4d18-ba41-c5f0c6624959">
+<span class="eqno">(6.11)<a class="headerlink" href="#equation-2a59da41-6e0c-4d18-ba41-c5f0c6624959" title="Permalink to this equation">#</a></span>\[\begin{align}
+  P(B|A)&amp;=\frac{P(A \cap B)}{P(A)}  \\
+  \Rightarrow P(A \cap B)&amp;= P(B|A)P(A).
+\end{align}\]</div>
+<p>After manipulating the expressions as shown, we get two <em>different</em> formula for expressing <span class="math notranslate nohighlight">\(P(A \cap B)\)</span>. These are <strong>chain rules</strong> for the probability of the intersection of two events. Such rules are often used when:</p>
+<ul class="simple">
+<li><p>Two events are dependent on each other, but the relation is simple if the outcome of one of the experiments is known.</p></li>
+<li><p>The events are at two different point in a system, such as the input and output of a system.</p></li>
+</ul>
+<p><strong>Example</strong></p>
+<p>A simple example of the former is in card games. Two cards are drawn (without replacement) from a deck of 52 cards (without jokers). What is the probability that they are both Aces? Let <span class="math notranslate nohighlight">\(A_i\)</span> be the event that the card on draw <span class="math notranslate nohighlight">\(i\)</span> is an Ace. Then the most natural way to apply the chain rule is to write</p>
+<div class="math notranslate nohighlight">
+\[
+P(A_1 \cap A_2) = P(A_2 | A_1) P(A_1).
+\]</div>
+<p>The probability of getting an Ace in draw 1 is 4/52=1/13 because there are 4 Aces in the deck of 52 cards.  The probability of getting an Ace on the second draw <em>given that the first draw was an Ace</em> is 3/51 = 1/17 because after the first draw, there are 3 Aces left in the remaining deck of 51 cards.  Thus,</p>
+<div class="math notranslate nohighlight">
+\[
+P(A_1 \cap A_2) = P(A_2 | A_1) P(A_1) = \left( \frac{1}{17} \right) \left( \frac{1}{13} \right) = \frac{1}{221}
+\]</div>
+<p>As a check, we can compare with a solution using combinatorics. There are</p>
+<div class="math notranslate nohighlight">
+\[
+\binom{4}{2} = 6
+\]</div>
+<p>ways to choose the two Aces from the four total Aces. There are</p>
+<div class="math notranslate nohighlight">
+\[
+\binom{52}{2} = \frac{ 52!}{50! 2!} = 1326
+\]</div>
+<p>ways to choose two cards from 52. So,</p>
+<div class="math notranslate nohighlight">
+\[
+P( A_1 \cap A_2) = \frac{6}{1326} = \frac{1}{221},
+\]</div>
+<p>which matches our answer using conditional probability.</p>
+<p>The solution using conditional probability is usually much more intuitive for learners who are new to probability, but being able to use both techniques is a powerful method for checking your work</p>
+<p><strong>Review Questions</strong></p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="pgIkUzRMgKda" data-shufflequestions="False"
+               data-shuffleanswers="True"
+               data-preserveresponses="false"
+               data-numquestions="1000000"> <style>:root {
+    --medium-slate-blue: #6f78ffff;
+    --orange-pantone: #f75c03ff;
+    --russian-violet: #392061ff;
+    --maximum-yellow-red: #ffc857ff;
+    --viridian-green: #119da4ff;
+    --incorrect-red: #c80202;
+    --correct-green: #009113;
+}
+
+.Quiz {
+    max-width: 600px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    line-height: 1.1;
+    font-size: 16pt;
+}
+
+.QuizCode {
+    font-size: 14pt;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.QuizCode>pre {
+    padding: 4px;
+}
+
+.Answer {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+}
+
+.Feedback {
+    font-size: 16pt;
+    text-align: center;
+    min-height: 2em;
+}
+
+.Input {
+    align: left;
+    font-size: 20pt;
+}
+
+.Input-text {
+    display: block;
+    margin: 10px;
+    color: inherit;
+    width: 140px;
+    background-color: #c0c0c0;
+    color: #fff;
+    padding: 5px;
+    padding-left: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: inherit;
+    line-height: 20pt;
+    border: none;
+    border-radius: 0.2rem;
+    transition: box-shadow 0.1s);
+}
+
+.Input-text:focus {
+    outline: none;
+    background-color: #c0c0c0;
+    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem #999999;
+}
+
+.MCButton {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.MCButton p {
+    color: inherit;
+}
+
+.MultipleChoiceQn {
+    padding: 10px;
+    background: var(--medium-slate-blue);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.ManyChoiceQn {
+    padding: 10px;
+    background: var(--orange-pantone);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.NumericQn {
+    padding: 10px;
+    background: var(--russian-violet);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.NumericQn p {
+    color: inherit;
+}
+
+.InpLabel {
+    line-height: 34px;
+    float: left;
+    margin-right: 10px;
+    color: #101010;
+    font-size: 15pt;
+}
+
+.incorrect {
+    color: var(--incorrect-red);
+}
+
+.correct {
+    color: var(--correct-green);
+}
+
+.correctButton {
+    /*
+    background: var(--correct-green);
+   */
+    animation: correct-anim 0.6s ease;
+    animation-fill-mode: forwards;
+    color: #fafafa;
+    box-shadow: inset 0px 0px 5px #555555;
+    outline: none;
+}
+
+.incorrectButton {
+    animation: incorrect-anim 0.8s ease;
+    animation-fill-mode: forwards;
+    color: #fafafa;
+    box-shadow: inset 0px 0px 5px #555555;
+    outline: none;
+}
+
+@keyframes incorrect-anim {
+    100% {
+        background-color: var(--incorrect-red);
+    }
+}
+
+@keyframes correct-anim {
+    100% {
+        background-color: var(--correct-green);
+    }
+}</style><script type="text/Javascript">var questionspgIkUzRMgKda=[
+    {
+        "question": "What is the probability of getting <b>two</b> consecutive face cards (J, Q, K) on two consecutive draws from a standard 52-card deck? Give your answer to 3 significant digits.",
+        "type": "numeric",
+        "precision": 4,
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.0498",
+                "correct": true,
+                "feedback": "Correct! The correct answer is \\( (11/51)(12/52) = 11/221 \\approx  0.0498\\)."
+            },
+            {
+                "type": "value",
+                "value": "0.0488",
+                "correct": false,
+                "feedback": "Incorrect. Be sure to update the denominator when you calculate the conditional probability."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule for the intersection of two events. When calculating the conditional probability, be sure to update both the numerator and denominator based on the conditioning (what happened on the first draw)."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "What is the probability of getting <b>three</b> consecutive face cards (J, Q, K) on three consecutive draws from a standard 52-card deck? Give your answer to 3 significant digits.",
+        "type": "numeric",
+        "precision": 5,
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.00995",
+                "correct": true,
+                "feedback": "Correct! The correct answer is \\( (10/50)(11/51)(12/52) = 11/1105 \\approx  0.00995\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule for the intersection of three events. When calculating the conditional probabilities, be sure to update both the numerator and denominator based on the conditioning (what happened on the first or second draw)."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": " A computer lab has 10 computers, 3 of which are malfunctioning. If you go into the lab and start trying computers until you find one that works, what is the probability that you have to try 3 or more computers? Give your answer to 2 significant digits.",
+        "type": "numeric",
+        "precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.067",
+                "correct": true,
+                "feedback": "Correct! The correct answer is \\( (2/9)(3/10) = 1/15 \\approx  0.067\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. The first step is to realize that you have to try 3 or more computers if the first two are defective. Thus the probability we are looking for is \\( P(D_1 \cap D_2)\\). Apply the chain rule."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    }
+
+]
+;
+    // Make a random ID
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+    }
+    return result.join('');
+}
+
+// Choose a random subset of an array. Can also be used to shuffle the array
+function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}
+
+function printResponses(responsesContainer) {
+    var responses=JSON.parse(responsesContainer.dataset.responses);
+    var stringResponses='<B>IMPORTANT!</B>To preserve this answer sequence for submission, when you have finalized your answers: <ol> <li> Copy the text in this cell below "Answer String"</li> <li> Double click on the cell directly below the Answer String, labeled "Replace Me"</li> <li> Select the whole "Replace Me" text</li> <li> Paste in your answer string and press shift-Enter.</li><li>Save the notebook using the save icon or File->Save Notebook menu item</li></ul><br><br><br><b>Answer String:</b><br> ';
+    console.log(responses);
+    responses.forEach((response, index) => {
+        if (response) {
+            console.log(index + ': ' + response);
+            stringResponses+= index + ': ' + response +"<BR>";
+        }
+    });
+    responsesContainer.innerHTML=stringResponses;
+}
+function check_mc() {
+    var id = this.id.split('-')[0];
+    //var response = this.id.split('-')[1];
+    //console.log(response);
+    //console.log("In check_mc(), id="+id);
+    //console.log(event.srcElement.id)           
+    //console.log(event.srcElement.dataset.correct)   
+    //console.log(event.srcElement.dataset.feedback)
+
+    var label = event.srcElement;
+    //console.log(label, label.nodeName);
+    var depth = 0;
+    while ((label.nodeName != "LABEL") && (depth < 20)) {
+        label = label.parentElement;
+        console.log(depth, label);
+        depth++;
+    }
+
+
+
+    var answers = label.parentElement.children;
+
+    //console.log(answers);
+
+
+    // Split behavior based on multiple choice vs many choice:
+    var fb = document.getElementById("fb" + id);
+
+
+
+
+    if (fb.dataset.numcorrect == 1) {
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            responses[qnum]= response;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        for (var i = 0; i < answers.length; i++) {
+            var child = answers[i];
+            //console.log(child);
+            child.className = "MCButton";
+        }
+
+
+
+        if (label.dataset.correct == "true") {
+            // console.log("Correct action");
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Correct!";
+            }
+            label.classList.add("correctButton");
+
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+
+        } else {
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Incorrect -- try again.";
+            }
+            //console.log("Error action");
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+    }
+    else {
+        var reset = false;
+        var feedback;
+         if (label.dataset.correct == "true") {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Correct!";
+            }
+            if (label.dataset.answered <= 0) {
+                if (fb.dataset.answeredcorrect < 0) {
+                    fb.dataset.answeredcorrect = 1;
+                    reset = true;
+                } else {
+                    fb.dataset.answeredcorrect++;
+                }
+                if (reset) {
+                    for (var i = 0; i < answers.length; i++) {
+                        var child = answers[i];
+                        child.className = "MCButton";
+                        child.dataset.answered = 0;
+                    }
+                }
+                label.classList.add("correctButton");
+                label.dataset.answered = 1;
+                fb.className = "Feedback";
+                fb.classList.add("correct");
+
+            }
+        } else {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Incorrect -- try again.";
+            }
+            if (fb.dataset.answeredcorrect > 0) {
+                fb.dataset.answeredcorrect = -1;
+                reset = true;
+            } else {
+                fb.dataset.answeredcorrect--;
+            }
+
+            if (reset) {
+                for (var i = 0; i < answers.length; i++) {
+                    var child = answers[i];
+                    child.className = "MCButton";
+                    child.dataset.answered = 0;
+                }
+            }
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            if (label.dataset.correct == "true") {
+                if (typeof(responses[qnum]) == "object"){
+                    if (!responses[qnum].includes(response))
+                        responses[qnum].push(response);
+                } else{
+                    responses[qnum]= [ response ];
+                }
+            } else {
+                responses[qnum]= response;
+            }
+            console.log(responses);
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End save responses stuff
+
+
+
+        var numcorrect = fb.dataset.numcorrect;
+        var answeredcorrect = fb.dataset.answeredcorrect;
+        if (answeredcorrect >= 0) {
+            fb.textContent = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
+        } else {
+            fb.textContent = feedback + " [" + 0 + "/" + numcorrect + "]";
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([fb]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+}
+
+function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
+    var shuffled;
+    if (shuffle_answers == "True") {
+        //console.log(shuffle_answers+" read as true");
+        shuffled = getRandomSubarray(qa.answers, qa.answers.length);
+    } else {
+        //console.log(shuffle_answers+" read as false");
+        shuffled = qa.answers;
+    }
+
+
+    var num_correct = 0;
+
+
+
+    shuffled.forEach((item, index, ans_array) => {
+        //console.log(answer);
+
+        // Make input element
+        var inp = document.createElement("input");
+        inp.type = "radio";
+        inp.id = "quizo" + id + index;
+        inp.style = "display:none;";
+        aDiv.append(inp);
+
+        //Make label for input element
+        var lab = document.createElement("label");
+        lab.className = "MCButton";
+        lab.id = id + '-' + index;
+        lab.onclick = check_mc;
+        var aSpan = document.createElement('span');
+        aSpan.classsName = "";
+        //qDiv.id="quizQn"+id+index;
+        if ("answer" in item) {
+            aSpan.innerHTML = jaxify(item.answer);
+            //aSpan.innerHTML=item.answer;
+        }
+        lab.append(aSpan);
+
+        // Create div for code inside question
+        var codeSpan;
+        if ("code" in item) {
+            codeSpan = document.createElement('span');
+            codeSpan.id = "code" + id + index;
+            codeSpan.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeSpan.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = item.code;
+            lab.append(codeSpan);
+            //console.log(codeSpan);
+        }
+
+        //lab.textContent=item.answer;
+
+        // Set the data attributes for the answer
+        lab.setAttribute('data-correct', item.correct);
+        if (item.correct) {
+            num_correct++;
+        }
+        if ("feedback" in item) {
+            lab.setAttribute('data-feedback', item.feedback);
+        }
+        lab.setAttribute('data-answered', 0);
+
+        aDiv.append(lab);
+
+    });
+
+    if (num_correct > 1) {
+        outerqDiv.className = "ManyChoiceQn";
+    } else {
+        outerqDiv.className = "MultipleChoiceQn";
+    }
+
+    return num_correct;
+
+}
+function check_numeric(ths, event) {
+
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+
+        var submission = ths.value;
+        if (submission.indexOf('/') != -1) {
+            sub_parts = submission.split('/');
+            //console.log(sub_parts);
+            submission = sub_parts[0] / sub_parts[1];
+        }
+        //console.log("Reader entered", submission);
+
+        if ("precision" in ths.dataset) {
+            precision = ths.dataset.precision;
+            // console.log("1:", submission)
+            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
+            // console.log("Rounded to ", submission, " precision=", precision  );
+        }
+
+
+        //console.log("In check_numeric(), id="+id);
+        //console.log(event.srcElement.id)           
+        //console.log(event.srcElement.dataset.feedback)
+
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.textContent = "Incorrect -- try again.";
+
+        answers = JSON.parse(ths.dataset.answers);
+        //console.log(answers);
+
+        var defaultFB = "";
+        var correct;
+        var done = false;
+        answers.every(answer => {
+            //console.log(answer.type);
+
+            correct = false;
+            // if (answer.type=="value"){
+            if ('value' in answer) {
+                if (submission == answer.value) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+                // } else if (answer.type=="range") {
+            } else if ('range' in answer) {
+                //console.log(answer.range);
+                if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+            } else if (answer.type == "default") {
+                defaultFB = answer.feedback;
+            }
+            if (done) {
+                return false; // Break out of loop if this has been marked correct
+            } else {
+                return true; // Keep looking for case that includes this as a correct answer
+            }
+        });
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+            //console.log("Default feedback", defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            console.log(submission);
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            //console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            if (submission == ths.value){
+                responses[qnum]= submission;
+            } else {
+                responses[qnum]= ths.value + "(" + submission +")";
+            }
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        return false;
+    }
+
+}
+
+function isValid(el, charC) {
+    //console.log("Input char: ", charC);
+    if (charC == 46) {
+        if (el.value.indexOf('.') === -1) {
+            return true;
+        } else if (el.value.indexOf('/') != -1) {
+            parts = el.value.split('/');
+            if (parts[1].indexOf('.') === -1) {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    } else if (charC == 47) {
+        if (el.value.indexOf('/') === -1) {
+            if ((el.value != "") && (el.value != ".")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else if (charC == 45) {
+        edex = el.value.indexOf('e');
+        if (edex == -1) {
+            edex = el.value.indexOf('E');
+        }
+
+        if (el.value == "") {
+            return true;
+        } else if (edex == (el.value.length - 1)) { // If just after e or E
+            return true;
+        } else {
+            return false;
+        }
+    } else if (charC == 101) { // "e"
+        if ((el.value.indexOf('e') === -1) && (el.value.indexOf('E') === -1) && (el.value.indexOf('/') == -1)) {
+            // Prev symbol must be digit or decimal point:
+            if (el.value.slice(-1).search(/\d/) >= 0) {
+                return true;
+            } else if (el.value.slice(-1).search(/\./) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        if (charC > 31 && (charC < 48 || charC > 57))
+            return false;
+    }
+    return true;
+}
+
+function numeric_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_numeric(this, evnt);
+    } else {
+        return isValid(this, charC);
+    }
+}
+
+
+
+
+
+function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
+
+
+
+    //console.log(answer);
+
+
+    outerqDiv.className = "NumericQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.textContent = "Type numeric answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    //inp.id="input-"+id;
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    if ("precision" in qa) {
+        inp.setAttribute('data-precision', qa.precision);
+    }
+    aDiv.append(inp);
+    //console.log(inp);
+
+    //inp.addEventListener("keypress", check_numeric);
+    //inp.addEventListener("keypress", numeric_keypress);
+    /*
+    inp.addEventListener("keypress", function(event) {
+        return numeric_keypress(this, event);
+    }
+                        );
+                        */
+    //inp.onkeypress="return numeric_keypress(this, event)";
+    inp.onkeypress = numeric_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    }
+    );
+
+
+}
+function jaxify(string) {
+    var mystring = string;
+
+    count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+
+function show_questions(json, mydiv) {
+    console.log('show_questions');
+    //var mydiv=document.getElementById(myid);
+    var shuffle_questions = mydiv.dataset.shufflequestions;
+    var num_questions = mydiv.dataset.numquestions;
+    var shuffle_answers = mydiv.dataset.shuffleanswers;
+
+    if (num_questions > json.length) {
+        num_questions = json.length;
+    }
+
+    var questions;
+    if ((num_questions < json.length) || (shuffle_questions == "True")) {
+        //console.log(num_questions+","+json.length);
+        questions = getRandomSubarray(json, num_questions);
+    } else {
+        questions = json;
+    }
+
+    //console.log("SQ: "+shuffle_questions+", NQ: " + num_questions + ", SA: ", shuffle_answers);
+
+    // Iterate over questions
+    questions.forEach((qa, index, array) => {
+        //console.log(qa.question); 
+
+        var id = makeid(8);
+        //console.log(id);
+
+
+        // Create Div to contain question and answers
+        var iDiv = document.createElement('div');
+        //iDiv.id = 'quizWrap' + id + index;
+        iDiv.id = 'quizWrap' + id;
+        iDiv.className = 'Quiz';
+        iDiv.setAttribute('data-qnum', index);
+        mydiv.appendChild(iDiv);
+        // iDiv.innerHTML=qa.question;
+
+        var outerqDiv = document.createElement('div');
+        outerqDiv.id = "OuterquizQn" + id + index;
+
+        iDiv.append(outerqDiv);
+
+        // Create div to contain question part
+        var qDiv = document.createElement('div');
+        qDiv.id = "quizQn" + id + index;
+        //qDiv.textContent=qa.question;
+        qDiv.innerHTML = jaxify(qa.question);
+
+        outerqDiv.append(qDiv);
+
+        // Create div for code inside question
+        var codeDiv;
+        if ("code" in qa) {
+            codeDiv = document.createElement('div');
+            codeDiv.id = "code" + id + index;
+            codeDiv.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeDiv.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = qa.code;
+            outerqDiv.append(codeDiv);
+            //console.log(codeDiv);
+        }
+
+
+        // Create div to contain answer part
+        var aDiv = document.createElement('div');
+        aDiv.id = "quizAns" + id + index;
+        aDiv.className = 'Answer';
+        iDiv.append(aDiv);
+
+        //console.log(qa.type);
+
+        var num_correct;
+        if (qa.type == "multiple_choice") {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+        } else if (qa.type == "many_choice") {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+        } else if (qa.type == "numeric") {
+            //console.log("numeric");
+            make_numeric(qa, outerqDiv, qDiv, aDiv, id);
+        }
+
+
+        //Make div for feedback
+        var fb = document.createElement("div");
+        fb.id = "fb" + id;
+        //fb.style="font-size: 20px;text-align:center;";
+        fb.className = "Feedback";
+        fb.setAttribute("data-answeredcorrect", 0);
+        fb.setAttribute("data-numcorrect", num_correct);
+        iDiv.append(fb);
+
+
+    });
+    var preserveResponses = mydiv.dataset.preserveresponses;
+    console.log(preserveResponses);
+    console.log(preserveResponses == "true");
+    if (preserveResponses == "true") {
+        console.log(preserveResponses);
+        // Create Div to contain record of answers
+        var iDiv = document.createElement('div');
+        iDiv.id = 'responses' + mydiv.id;
+        iDiv.className = 'JCResponses';
+        // Create a place to store responses as an empty array
+        iDiv.setAttribute('data-responses', '[]');
+
+        // Dummy Text
+        iDiv.innerHTML="<b>Select your answers and then follow the directions that will appear here.</b>"
+        //iDiv.className = 'Quiz';
+        mydiv.appendChild(iDiv);
+    }
+//console.log("At end of show_questions");
+    if (typeof MathJax != 'undefined') {
+        console.log("MathJax version", MathJax.version);
+        var version = MathJax.version;
+        setTimeout(function(){
+            var version = MathJax.version;
+            console.log('After sleep, MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            }
+        }, 500);
+if (typeof version == 'undefined') {
+        } else
+        {
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            } else {
+                console.log("MathJax not found");
+            }
+        }
+    }
+    return false;
+}
+
+        //console.log(element);
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/questions/chain-rules.json", {signal})
+        .then(response => response.json())
+        .then(json => show_questions(json, pgIkUzRMgKda))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        show_questions(questionspgIkUzRMgKda, pgIkUzRMgKda);
+        });
+        }
+        </script>
+</div></div>
+</div>
+<p><strong>Example</strong></p>
+<p>For the Magician’s Coin problem, what is the probability of getting the Fair coin and it coming up heads on the first flip? This is an example of a system where there is an input that affects the future outputs. In this case, the input is the choice of coin. When we have such problems, we usually will need to decompose them in terms of the probabilities of the input and the conditional probabilities of the output given the input. Let <span class="math notranslate nohighlight">\(H_i\)</span> denote the event that the coin comes up heads on flip <span class="math notranslate nohighlight">\(i\)</span>. Let <span class="math notranslate nohighlight">\(F\)</span> be the event that the fair coin was chosen.  We are looking for <span class="math notranslate nohighlight">\(P(F \cap H_1)\)</span>, which we can write as</p>
+<div class="math notranslate nohighlight">
+\[
+P(F \cap H_1) = P(H_1 | F) P(F).
+\]</div>
+<p>If there is one Fair coin and one two-headed coin, <span class="math notranslate nohighlight">\(P(F) =1/2\)</span>.  Given  that the coin is Fair, <span class="math notranslate nohighlight">\(P(H_1|F) = 1/2\)</span>. So,</p>
+<div class="math notranslate nohighlight">
+\[
+P(F \cap H_1) = \left( \frac 1 2  \right) \left( \frac 1 2  \right) = \frac 1 4.
+\]</div>
+<p>Note that it is generally <strong>not helpful to write the probability using the other form of the chain rule:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+P(F \cap H_1) = P(F| H_1) P(H_1).
+\]</div>
+<p>We do not know <span class="math notranslate nohighlight">\(P(H_1)\)</span> nor <span class="math notranslate nohighlight">\(P(F|H_1)\)</span>. Thus, although the expression is valid mathematically, it is not helpful in solving this problem because it depends on probabilities that cannot be easily inferred from the problem setup.</p>
+<p><strong>Review Questions</strong></p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="XWfGqhgsaVgg" data-shufflequestions="False"
+               data-shuffleanswers="True"
+               data-preserveresponses="false"
+               data-numquestions="1000000"> <style>:root {
+    --medium-slate-blue: #6f78ffff;
+    --orange-pantone: #f75c03ff;
+    --russian-violet: #392061ff;
+    --maximum-yellow-red: #ffc857ff;
+    --viridian-green: #119da4ff;
+    --incorrect-red: #c80202;
+    --correct-green: #009113;
+}
+
+.Quiz {
+    max-width: 600px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    line-height: 1.1;
+    font-size: 16pt;
+}
+
+.QuizCode {
+    font-size: 14pt;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.QuizCode>pre {
+    padding: 4px;
+}
+
+.Answer {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+}
+
+.Feedback {
+    font-size: 16pt;
+    text-align: center;
+    min-height: 2em;
+}
+
+.Input {
+    align: left;
+    font-size: 20pt;
+}
+
+.Input-text {
+    display: block;
+    margin: 10px;
+    color: inherit;
+    width: 140px;
+    background-color: #c0c0c0;
+    color: #fff;
+    padding: 5px;
+    padding-left: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: inherit;
+    line-height: 20pt;
+    border: none;
+    border-radius: 0.2rem;
+    transition: box-shadow 0.1s);
+}
+
+.Input-text:focus {
+    outline: none;
+    background-color: #c0c0c0;
+    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem #999999;
+}
+
+.MCButton {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.MCButton p {
+    color: inherit;
+}
+
+.MultipleChoiceQn {
+    padding: 10px;
+    background: var(--medium-slate-blue);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.ManyChoiceQn {
+    padding: 10px;
+    background: var(--orange-pantone);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.NumericQn {
+    padding: 10px;
+    background: var(--russian-violet);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.NumericQn p {
+    color: inherit;
+}
+
+.InpLabel {
+    line-height: 34px;
+    float: left;
+    margin-right: 10px;
+    color: #101010;
+    font-size: 15pt;
+}
+
+.incorrect {
+    color: var(--incorrect-red);
+}
+
+.correct {
+    color: var(--correct-green);
+}
+
+.correctButton {
+    /*
+    background: var(--correct-green);
+   */
+    animation: correct-anim 0.6s ease;
+    animation-fill-mode: forwards;
+    color: #fafafa;
+    box-shadow: inset 0px 0px 5px #555555;
+    outline: none;
+}
+
+.incorrectButton {
+    animation: incorrect-anim 0.8s ease;
+    animation-fill-mode: forwards;
+    color: #fafafa;
+    box-shadow: inset 0px 0px 5px #555555;
+    outline: none;
+}
+
+@keyframes incorrect-anim {
+    100% {
+        background-color: var(--incorrect-red);
+    }
+}
+
+@keyframes correct-anim {
+    100% {
+        background-color: var(--correct-green);
+    }
+}</style><script type="text/Javascript">var questionsXWfGqhgsaVgg=[
+    {
+        "question": "For the scenario where a magician has a fair coin and a two-headed coin, what is the probability that the magician chooses the Fair coin and gets heads on the first two flips?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.125",
+                "correct": true,
+                "feedback": "Correct! We can write \\( P(F \\cap H_1 \\cap H_2) = P(H_1 \\cap H_2 |F) P(F)\\) \\(= P(H_1|F)P(H_2|F)P(F) = (1/2)(1/2)(1/2) = 1/8\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule where you condition on the hidden state."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "Consider a scenario where the magician has a 4 fair coins and 1 two-headed coin. A coin is chosen at random and flipped twice. What is the probability that the magician chooses the Fair coin and gets heads on the first two flips?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.2",
+                "correct": true,
+                "feedback": "Correct! We can write \\( P(F \\cap H_1 \\cap H_2) = P(H_1 \\cap H_2 |F) P(F)\\) \\(= P(H_1|F)P(H_2|F)P(F) = (1/2)(1/2)(4/5) = 1/5\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule where you condition on the hidden state. Note that there are four fair coins out of the five total coins."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    }
+]
+;
+    // Make a random ID
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+    }
+    return result.join('');
+}
+
+// Choose a random subset of an array. Can also be used to shuffle the array
+function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}
+
+function printResponses(responsesContainer) {
+    var responses=JSON.parse(responsesContainer.dataset.responses);
+    var stringResponses='<B>IMPORTANT!</B>To preserve this answer sequence for submission, when you have finalized your answers: <ol> <li> Copy the text in this cell below "Answer String"</li> <li> Double click on the cell directly below the Answer String, labeled "Replace Me"</li> <li> Select the whole "Replace Me" text</li> <li> Paste in your answer string and press shift-Enter.</li><li>Save the notebook using the save icon or File->Save Notebook menu item</li></ul><br><br><br><b>Answer String:</b><br> ';
+    console.log(responses);
+    responses.forEach((response, index) => {
+        if (response) {
+            console.log(index + ': ' + response);
+            stringResponses+= index + ': ' + response +"<BR>";
+        }
+    });
+    responsesContainer.innerHTML=stringResponses;
+}
+function check_mc() {
+    var id = this.id.split('-')[0];
+    //var response = this.id.split('-')[1];
+    //console.log(response);
+    //console.log("In check_mc(), id="+id);
+    //console.log(event.srcElement.id)           
+    //console.log(event.srcElement.dataset.correct)   
+    //console.log(event.srcElement.dataset.feedback)
+
+    var label = event.srcElement;
+    //console.log(label, label.nodeName);
+    var depth = 0;
+    while ((label.nodeName != "LABEL") && (depth < 20)) {
+        label = label.parentElement;
+        console.log(depth, label);
+        depth++;
+    }
+
+
+
+    var answers = label.parentElement.children;
+
+    //console.log(answers);
+
+
+    // Split behavior based on multiple choice vs many choice:
+    var fb = document.getElementById("fb" + id);
+
+
+
+
+    if (fb.dataset.numcorrect == 1) {
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            responses[qnum]= response;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        for (var i = 0; i < answers.length; i++) {
+            var child = answers[i];
+            //console.log(child);
+            child.className = "MCButton";
+        }
+
+
+
+        if (label.dataset.correct == "true") {
+            // console.log("Correct action");
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Correct!";
+            }
+            label.classList.add("correctButton");
+
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+
+        } else {
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Incorrect -- try again.";
+            }
+            //console.log("Error action");
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+    }
+    else {
+        var reset = false;
+        var feedback;
+         if (label.dataset.correct == "true") {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Correct!";
+            }
+            if (label.dataset.answered <= 0) {
+                if (fb.dataset.answeredcorrect < 0) {
+                    fb.dataset.answeredcorrect = 1;
+                    reset = true;
+                } else {
+                    fb.dataset.answeredcorrect++;
+                }
+                if (reset) {
+                    for (var i = 0; i < answers.length; i++) {
+                        var child = answers[i];
+                        child.className = "MCButton";
+                        child.dataset.answered = 0;
+                    }
+                }
+                label.classList.add("correctButton");
+                label.dataset.answered = 1;
+                fb.className = "Feedback";
+                fb.classList.add("correct");
+
+            }
+        } else {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Incorrect -- try again.";
+            }
+            if (fb.dataset.answeredcorrect > 0) {
+                fb.dataset.answeredcorrect = -1;
+                reset = true;
+            } else {
+                fb.dataset.answeredcorrect--;
+            }
+
+            if (reset) {
+                for (var i = 0; i < answers.length; i++) {
+                    var child = answers[i];
+                    child.className = "MCButton";
+                    child.dataset.answered = 0;
+                }
+            }
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            if (label.dataset.correct == "true") {
+                if (typeof(responses[qnum]) == "object"){
+                    if (!responses[qnum].includes(response))
+                        responses[qnum].push(response);
+                } else{
+                    responses[qnum]= [ response ];
+                }
+            } else {
+                responses[qnum]= response;
+            }
+            console.log(responses);
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End save responses stuff
+
+
+
+        var numcorrect = fb.dataset.numcorrect;
+        var answeredcorrect = fb.dataset.answeredcorrect;
+        if (answeredcorrect >= 0) {
+            fb.textContent = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
+        } else {
+            fb.textContent = feedback + " [" + 0 + "/" + numcorrect + "]";
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([fb]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+}
+
+function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
+    var shuffled;
+    if (shuffle_answers == "True") {
+        //console.log(shuffle_answers+" read as true");
+        shuffled = getRandomSubarray(qa.answers, qa.answers.length);
+    } else {
+        //console.log(shuffle_answers+" read as false");
+        shuffled = qa.answers;
+    }
+
+
+    var num_correct = 0;
+
+
+
+    shuffled.forEach((item, index, ans_array) => {
+        //console.log(answer);
+
+        // Make input element
+        var inp = document.createElement("input");
+        inp.type = "radio";
+        inp.id = "quizo" + id + index;
+        inp.style = "display:none;";
+        aDiv.append(inp);
+
+        //Make label for input element
+        var lab = document.createElement("label");
+        lab.className = "MCButton";
+        lab.id = id + '-' + index;
+        lab.onclick = check_mc;
+        var aSpan = document.createElement('span');
+        aSpan.classsName = "";
+        //qDiv.id="quizQn"+id+index;
+        if ("answer" in item) {
+            aSpan.innerHTML = jaxify(item.answer);
+            //aSpan.innerHTML=item.answer;
+        }
+        lab.append(aSpan);
+
+        // Create div for code inside question
+        var codeSpan;
+        if ("code" in item) {
+            codeSpan = document.createElement('span');
+            codeSpan.id = "code" + id + index;
+            codeSpan.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeSpan.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = item.code;
+            lab.append(codeSpan);
+            //console.log(codeSpan);
+        }
+
+        //lab.textContent=item.answer;
+
+        // Set the data attributes for the answer
+        lab.setAttribute('data-correct', item.correct);
+        if (item.correct) {
+            num_correct++;
+        }
+        if ("feedback" in item) {
+            lab.setAttribute('data-feedback', item.feedback);
+        }
+        lab.setAttribute('data-answered', 0);
+
+        aDiv.append(lab);
+
+    });
+
+    if (num_correct > 1) {
+        outerqDiv.className = "ManyChoiceQn";
+    } else {
+        outerqDiv.className = "MultipleChoiceQn";
+    }
+
+    return num_correct;
+
+}
+function check_numeric(ths, event) {
+
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+
+        var submission = ths.value;
+        if (submission.indexOf('/') != -1) {
+            sub_parts = submission.split('/');
+            //console.log(sub_parts);
+            submission = sub_parts[0] / sub_parts[1];
+        }
+        //console.log("Reader entered", submission);
+
+        if ("precision" in ths.dataset) {
+            precision = ths.dataset.precision;
+            // console.log("1:", submission)
+            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
+            // console.log("Rounded to ", submission, " precision=", precision  );
+        }
+
+
+        //console.log("In check_numeric(), id="+id);
+        //console.log(event.srcElement.id)           
+        //console.log(event.srcElement.dataset.feedback)
+
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.textContent = "Incorrect -- try again.";
+
+        answers = JSON.parse(ths.dataset.answers);
+        //console.log(answers);
+
+        var defaultFB = "";
+        var correct;
+        var done = false;
+        answers.every(answer => {
+            //console.log(answer.type);
+
+            correct = false;
+            // if (answer.type=="value"){
+            if ('value' in answer) {
+                if (submission == answer.value) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+                // } else if (answer.type=="range") {
+            } else if ('range' in answer) {
+                //console.log(answer.range);
+                if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+            } else if (answer.type == "default") {
+                defaultFB = answer.feedback;
+            }
+            if (done) {
+                return false; // Break out of loop if this has been marked correct
+            } else {
+                return true; // Keep looking for case that includes this as a correct answer
+            }
+        });
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+            //console.log("Default feedback", defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            console.log(submission);
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            //console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            if (submission == ths.value){
+                responses[qnum]= submission;
+            } else {
+                responses[qnum]= ths.value + "(" + submission +")";
+            }
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        return false;
+    }
+
+}
+
+function isValid(el, charC) {
+    //console.log("Input char: ", charC);
+    if (charC == 46) {
+        if (el.value.indexOf('.') === -1) {
+            return true;
+        } else if (el.value.indexOf('/') != -1) {
+            parts = el.value.split('/');
+            if (parts[1].indexOf('.') === -1) {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    } else if (charC == 47) {
+        if (el.value.indexOf('/') === -1) {
+            if ((el.value != "") && (el.value != ".")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else if (charC == 45) {
+        edex = el.value.indexOf('e');
+        if (edex == -1) {
+            edex = el.value.indexOf('E');
+        }
+
+        if (el.value == "") {
+            return true;
+        } else if (edex == (el.value.length - 1)) { // If just after e or E
+            return true;
+        } else {
+            return false;
+        }
+    } else if (charC == 101) { // "e"
+        if ((el.value.indexOf('e') === -1) && (el.value.indexOf('E') === -1) && (el.value.indexOf('/') == -1)) {
+            // Prev symbol must be digit or decimal point:
+            if (el.value.slice(-1).search(/\d/) >= 0) {
+                return true;
+            } else if (el.value.slice(-1).search(/\./) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        if (charC > 31 && (charC < 48 || charC > 57))
+            return false;
+    }
+    return true;
+}
+
+function numeric_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_numeric(this, evnt);
+    } else {
+        return isValid(this, charC);
+    }
+}
+
+
+
+
+
+function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
+
+
+
+    //console.log(answer);
+
+
+    outerqDiv.className = "NumericQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.textContent = "Type numeric answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    //inp.id="input-"+id;
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    if ("precision" in qa) {
+        inp.setAttribute('data-precision', qa.precision);
+    }
+    aDiv.append(inp);
+    //console.log(inp);
+
+    //inp.addEventListener("keypress", check_numeric);
+    //inp.addEventListener("keypress", numeric_keypress);
+    /*
+    inp.addEventListener("keypress", function(event) {
+        return numeric_keypress(this, event);
+    }
+                        );
+                        */
+    //inp.onkeypress="return numeric_keypress(this, event)";
+    inp.onkeypress = numeric_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    }
+    );
+
+
+}
+function jaxify(string) {
+    var mystring = string;
+
+    count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+
+function show_questions(json, mydiv) {
+    console.log('show_questions');
+    //var mydiv=document.getElementById(myid);
+    var shuffle_questions = mydiv.dataset.shufflequestions;
+    var num_questions = mydiv.dataset.numquestions;
+    var shuffle_answers = mydiv.dataset.shuffleanswers;
+
+    if (num_questions > json.length) {
+        num_questions = json.length;
+    }
+
+    var questions;
+    if ((num_questions < json.length) || (shuffle_questions == "True")) {
+        //console.log(num_questions+","+json.length);
+        questions = getRandomSubarray(json, num_questions);
+    } else {
+        questions = json;
+    }
+
+    //console.log("SQ: "+shuffle_questions+", NQ: " + num_questions + ", SA: ", shuffle_answers);
+
+    // Iterate over questions
+    questions.forEach((qa, index, array) => {
+        //console.log(qa.question); 
+
+        var id = makeid(8);
+        //console.log(id);
+
+
+        // Create Div to contain question and answers
+        var iDiv = document.createElement('div');
+        //iDiv.id = 'quizWrap' + id + index;
+        iDiv.id = 'quizWrap' + id;
+        iDiv.className = 'Quiz';
+        iDiv.setAttribute('data-qnum', index);
+        mydiv.appendChild(iDiv);
+        // iDiv.innerHTML=qa.question;
+
+        var outerqDiv = document.createElement('div');
+        outerqDiv.id = "OuterquizQn" + id + index;
+
+        iDiv.append(outerqDiv);
+
+        // Create div to contain question part
+        var qDiv = document.createElement('div');
+        qDiv.id = "quizQn" + id + index;
+        //qDiv.textContent=qa.question;
+        qDiv.innerHTML = jaxify(qa.question);
+
+        outerqDiv.append(qDiv);
+
+        // Create div for code inside question
+        var codeDiv;
+        if ("code" in qa) {
+            codeDiv = document.createElement('div');
+            codeDiv.id = "code" + id + index;
+            codeDiv.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeDiv.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = qa.code;
+            outerqDiv.append(codeDiv);
+            //console.log(codeDiv);
+        }
+
+
+        // Create div to contain answer part
+        var aDiv = document.createElement('div');
+        aDiv.id = "quizAns" + id + index;
+        aDiv.className = 'Answer';
+        iDiv.append(aDiv);
+
+        //console.log(qa.type);
+
+        var num_correct;
+        if (qa.type == "multiple_choice") {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+        } else if (qa.type == "many_choice") {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+        } else if (qa.type == "numeric") {
+            //console.log("numeric");
+            make_numeric(qa, outerqDiv, qDiv, aDiv, id);
+        }
+
+
+        //Make div for feedback
+        var fb = document.createElement("div");
+        fb.id = "fb" + id;
+        //fb.style="font-size: 20px;text-align:center;";
+        fb.className = "Feedback";
+        fb.setAttribute("data-answeredcorrect", 0);
+        fb.setAttribute("data-numcorrect", num_correct);
+        iDiv.append(fb);
+
+
+    });
+    var preserveResponses = mydiv.dataset.preserveresponses;
+    console.log(preserveResponses);
+    console.log(preserveResponses == "true");
+    if (preserveResponses == "true") {
+        console.log(preserveResponses);
+        // Create Div to contain record of answers
+        var iDiv = document.createElement('div');
+        iDiv.id = 'responses' + mydiv.id;
+        iDiv.className = 'JCResponses';
+        // Create a place to store responses as an empty array
+        iDiv.setAttribute('data-responses', '[]');
+
+        // Dummy Text
+        iDiv.innerHTML="<b>Select your answers and then follow the directions that will appear here.</b>"
+        //iDiv.className = 'Quiz';
+        mydiv.appendChild(iDiv);
+    }
+//console.log("At end of show_questions");
+    if (typeof MathJax != 'undefined') {
+        console.log("MathJax version", MathJax.version);
+        var version = MathJax.version;
+        setTimeout(function(){
+            var version = MathJax.version;
+            console.log('After sleep, MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            }
+        }, 500);
+if (typeof version == 'undefined') {
+        } else
+        {
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            } else {
+                console.log("MathJax not found");
+            }
+        }
+    }
+    return false;
+}
+
+        //console.log(element);
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/questions/chain-rules2.json", {signal})
+        .then(response => response.json())
+        .then(json => show_questions(json, XWfGqhgsaVgg))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        show_questions(questionsXWfGqhgsaVgg, XWfGqhgsaVgg);
+        });
+        }
+        </script>
+</div></div>
+</div>
+<p>The chain rule can be easily generalized to more than two events. The easiest way is to write probabilities in terms of conditional probabilities that are expressed as fractions (as in the definition of probability), such that the denumenator of one fraction cancels with the numerator of the next fraction to make sure the expression is not changes when it is rewritten. This will make more sense with an example for rewriting the probability of the intersection of 3 events (<span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, and <span class="math notranslate nohighlight">\(C\)</span>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f954e644-0e00-4b94-81c8-5de3939454c3">
+<span class="eqno">(6.12)<a class="headerlink" href="#equation-f954e644-0e00-4b94-81c8-5de3939454c3" title="Permalink to this equation">#</a></span>\[\begin{align}
+  P(A \cap B \cap C) &amp;= \frac{P(A \cap B \cap C)} {}  \cdot
+  \frac{\hspace{4em} }{} \cdot \frac{ \hspace{3em}\mbox{    }}{} \\
+  &amp;\\
+  &amp;= \frac{P(A \cap B \cap C)} {P(B \cap C)}  \cdot
+  \frac{P(B \cap C)}{\mbox{   }} \cdot \frac{ \hspace{3em}\mbox{    }}{} \\
+    &amp;= \frac{P(A \cap B \cap C)} {P(B \cap C)}  \cdot
+  \frac{P(B \cap C)}{P(C)} \cdot \frac{ P(C) }{1} \\
+  &amp;= P(A|B \cap C)  P(B | C) P(C)
+\end{align}\]</div>
+<p>This decomposition assumes we know the probability of  <span class="math notranslate nohighlight">\(A\)</span> given that <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(C\)</span> have occurred and we know the probability of <span class="math notranslate nohighlight">\(B\)</span> given <span class="math notranslate nohighlight">\(C\)</span>. Such dependence occurs naturally in many systems, but the particular decomposition will depend on what we know about these probabilities. We could just have easily written</p>
+<div class="amsmath math notranslate nohighlight" id="equation-60b87724-40f5-4bcf-afa3-f996b3c506f0">
+<span class="eqno">(6.13)<a class="headerlink" href="#equation-60b87724-40f5-4bcf-afa3-f996b3c506f0" title="Permalink to this equation">#</a></span>\[\begin{align}
+  P(A \cap B \cap C) 
+  &amp;= P(C|A \cap B)  P(B | A) P(A)
+\end{align}\]</div>
+</section>
+<section id="using-conditional-probability-to-decompose-events-part-2-partitions-and-total-probability">
+<h2><span class="section-number">6.9.2. </span>Using Conditional Probability to Decompose Events: Part 2 –  Partitions and Total Probability<a class="headerlink" href="#using-conditional-probability-to-decompose-events-part-2-partitions-and-total-probability" title="Permalink to this heading">#</a></h2>
+<p>We previously introduced the concept of partitions in <a class="reference internal" href="../03-first-data/partitions.html"><span class="doc">Partitions</span></a> as a way to take a collection of data and break it into separate, disjoint groups. Now, we are ready to apply this concept to events, which are sets of outcomes. In particular, we will most often partition the sample space, <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-partition-of-the-sample-space">partition (of the sample space)<a class="headerlink" href="#term-partition-of-the-sample-space" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A collection of sets <span class="math notranslate nohighlight">\(A_1, A_2, \ldots\)</span> <em>partitions</em>
+the sample space <span class="math notranslate nohighlight">\(S\)</span> if and only if</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+S &amp;= \bigcup_i A_i,     \mbox{ and } 
+A_i \cap A_j = \emptyset, ~~~i \ne j. 
+\end{align*}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\left\{A_i \right\}\)</span> is also said to be a <em>partition</em> of <span class="math notranslate nohighlight">\(S\)</span>. For example, the collection of disjoint sets <span class="math notranslate nohighlight">\(A_0 A_1, \ldots, A_7\)</span> shown in <a class="reference internal" href="#sample-space-partition"><span class="std std-numref">Fig. 6.3</span></a> is a partition for <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<figure class="align-default" id="sample-space-partition">
+<a class="reference internal image-reference" href="../_images/sample-space-partition.png"><img alt="$A_0, A_1, \ldots, A_7$ are disjoint sets whose union is $S$." src="../_images/sample-space-partition.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Example partition of the sample space.</span><a class="headerlink" href="#sample-space-partition" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Now consider how we can use a partition <span class="math notranslate nohighlight">\(A_0, A_1, \ldots, A_{n-1}\)</span> of <span class="math notranslate nohighlight">\(S\)</span> to decompose any event <span class="math notranslate nohighlight">\(B \subseteq S\)</span>. In <a class="reference internal" href="#event-partition1"><span class="std std-numref">Fig. 6.4</span></a>, an example event <span class="math notranslate nohighlight">\(B\)</span> is shown on top of our example partition. Note that we do not require the <span class="math notranslate nohighlight">\(B\)</span> have a nonempty intersection with every partition event (i.e., in this example <span class="math notranslate nohighlight">\(B \cap A_0 = \emptyset\)</span>).</p>
+<figure class="align-default" id="event-partition1">
+<a class="reference internal image-reference" href="../_images/event-partition1.png"><img alt="Figure showing an event $B$ on top of a partition of the sample space, $A_0, A_1, \ldots, A_7$." src="../_images/event-partition1.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.4 </span><span class="caption-text">Example event <span class="math notranslate nohighlight">\(B\)</span> superimposed on partition <span class="math notranslate nohighlight">\(A_0, A_1, \ldots, A_7\)</span> of the sample space.</span><a class="headerlink" href="#event-partition1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Then we can use our partition to decompose <span class="math notranslate nohighlight">\(B\)</span> into smaller subsets as</p>
+<div class="math notranslate nohighlight">
+\[
+B_i = B \cap A_i, ~~ i = 0, 1, \ldots, n-1,
+\]</div>
+<p>as shown in <a class="reference internal" href="#event-partition2"><span class="std std-numref">Fig. 6.5</span></a>.</p>
+<figure class="align-default" id="event-partition2">
+<a class="reference internal image-reference" href="../_images/event-partition2.png"><img alt="Figure showing an event $B$ partitioned into subsets $B_0, B_1, \ldots B_7$ through intersection with $A_0, A_1, \ldots, A_7$." src="../_images/event-partition2.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.5 </span><span class="caption-text">Example event <span class="math notranslate nohighlight">\(B\)</span> superimposed on partition <span class="math notranslate nohighlight">\(A_0, A_1, \ldots, A_7\)</span> of the sample space.</span><a class="headerlink" href="#event-partition2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Note that <span class="math notranslate nohighlight">\(A_i \cap A_j = \emptyset\)</span> also implies that the set of events <span class="math notranslate nohighlight">\(\{B_j\}\)</span> are mutually exclusive. This should be intuitive from <a class="reference internal" href="#event-partition2"><span class="std std-ref">Example event B superimposed on partition A_0, A_1, \ldots, A_7 of the sample space.</span></a>, but a mathematical proof is included below:</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Click for proof that all events <span class="math notranslate nohighlight">\(B_j, ~B_k,~j \ne k\)</span> are mutually exclusive</p>
+<div class="math notranslate nohighlight">
+\[
+B_j \cap B_k = (B \cap A_j) \cap (B \cap A_k) = B \cap (A_j \cap A_k) = B \cap \emptyset =\emptyset.
+\]</div>
+</div>
+<p>Since the <span class="math notranslate nohighlight">\(\{A_i\}\)</span> cover the entire sample space, the union of the <span class="math notranslate nohighlight">\(\{ B_j\}\)</span> is equal to the original event <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Click for proof that the union of all events <span class="math notranslate nohighlight">\(B_j\)</span> is equal to <span class="math notranslate nohighlight">\(B\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\bigcup_j B_j = \bigcup_j \left(A_j \cap B\right )  = B \cap \left( \bigcup_j A_j \right) = B \cap S = B.
+\]</div>
+</div>
+<p>These two properties imply that <span class="math notranslate nohighlight">\(B_0, B_1, \ldots, B_{n-1}\)</span> are a partition for <span class="math notranslate nohighlight">\(B\)</span>. If we want to express the probability of <span class="math notranslate nohighlight">\(B\)</span>, we can write</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e41af04c-d834-4ba6-ab39-54852a9ce1a0">
+<span class="eqno">(6.14)<a class="headerlink" href="#equation-e41af04c-d834-4ba6-ab39-54852a9ce1a0" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(B) &amp; = P \left( \bigcup_i B_i \right) \\
+&amp; = \sum_i P \left(B_i \right) \\
+&amp;= \sum_i P\left( B \cap A_i\right)
+\end{align}\]</div>
+<p>Now suppose that we choose the partitioning events <span class="math notranslate nohighlight">\(\{A_i\}\)</span> such that:</p>
+<ul class="simple">
+<li><p>We know the probabilities <span class="math notranslate nohighlight">\(P(A_i)\)</span></p></li>
+<li><p>We know the conditional probabilities of the event <span class="math notranslate nohighlight">\(B\)</span> given that <span class="math notranslate nohighlight">\(A_i\)</span> occurred, <span class="math notranslate nohighlight">\(P(B|A_i)\)</span>.</p></li>
+</ul>
+<p>Applying chain rule, we can write <span class="math notranslate nohighlight">\(P(B \cap A_i) = P(B|A_i)P(A_i)\)</span> for each <span class="math notranslate nohighlight">\(i\)</span>. Putting this all together, we get the <em>Law of Total Probability</em>:</p>
+<!-- ````{card}
+Law of Total Probability
+^^^
+Given an event $B \subseteq S$ and a partition of $S$ denoted by 
+$A_1, A_2, \ldots$, 
+
+$$
+P(B) = \sum_i P(B|A_i)P(A_i).
+$$
+````
+-->
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-Law-of-Total-Probability">Law of Total Probability<a class="headerlink" href="#term-Law-of-Total-Probability" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">Given an event <span class="math notranslate nohighlight">\(B \subseteq S\)</span> and a partition of <span class="math notranslate nohighlight">\(S\)</span> denoted by
+<span class="math notranslate nohighlight">\(A_1, A_2, \ldots\)</span>,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(B) = \sum_i P(B|A_i)P(A_i).
+\end{align*}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<p>The law of total probability is often used in systems where there is either:</p>
+<ul class="simple">
+<li><p>random inputs and outputs, where the output is dependent on the input</p></li>
+<li><p>a <em>hidden state</em>, which is some random property of the system that is not directly observable.</p></li>
+</ul>
+<p>Note that these are not mutually exclusive. For the Magician’s coin, we can treat the choice of coin as the input to the system or as a hidden state. When the coin is flipped repeatedly, then it generally makes more sense to interpret the choice of coin as a hidden state because it is a property of the system that cannot be directly observed but that influences the outputs of the system.</p>
+<p>When applying chain rule in such problems, the Law of Total Probability will generally use conditioning on
+the different possibilities of the input or the hidden state.</p>
+<p><strong>Example: The Magician’s Coin</strong></p>
+<p>As before, a magician has a fair coin and a two-headed coin in her pocket. Let <span class="math notranslate nohighlight">\(H_i\)</span> denote the event that the outcome of flip <span class="math notranslate nohighlight">\(i\)</span> is heads. We can use total probability to answer more complicated questions regarding the probabilities of the outputs:</p>
+<p><strong>(a)</strong> <span class="math notranslate nohighlight">\(P(H_1)\)</span></p>
+<p>As mentioned above, we can condition on the hidden state, which is whether the coin is fair (<span class="math notranslate nohighlight">\(F\)</span>) or not (<span class="math notranslate nohighlight">\(\overline{F}\)</span>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One thing that is often confusing to learners of probability is determining what is actually a partition of <span class="math notranslate nohighlight">\(S\)</span>.  If you have a set of events that are both <em>mutually exclusive</em> and <em>one of those events must occur</em> (i.e., the events cover the sample space), then they are a partition.</p>
+<p>In this case, <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(\overline{F}\)</span> are complements, so they are mutually exclusive. Moreover, either the coin is fair (<span class="math notranslate nohighlight">\(F\)</span>) or it is not (<span class="math notranslate nohighlight">\(\overline{F}\)</span>), so one of these events must occur. Therefore the events <span class="math notranslate nohighlight">\(F, \overline{F}\)</span> partition <span class="math notranslate nohighlight">\(S\)</span>.</p>
+</div>
+<p>Applying the Law of Total Probability,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6fe6d166-368d-4b1e-84d7-508c537c5abe">
+<span class="eqno">(6.15)<a class="headerlink" href="#equation-6fe6d166-368d-4b1e-84d7-508c537c5abe" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(H_1) &amp;= P(H_1|F)P(F) + P(H_1| \overline{F}) P( \overline{F}) \\
+&amp;= \left( \frac 1 2 \right) \left( \frac 1 2 \right) + \biggl( 1\biggr) \left( \frac 1 2 \right) \\
+&amp;= \frac 3 4
+\end{align}\]</div>
+<p><strong>(b)</strong> <span class="math notranslate nohighlight">\(P(H_1 \cap H_2)\)</span></p>
+<p>We can use the same partition as above to write:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5d7d92d2-b3c4-434f-b1b1-ef9bafaa9aab">
+<span class="eqno">(6.16)<a class="headerlink" href="#equation-5d7d92d2-b3c4-434f-b1b1-ef9bafaa9aab" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(H_1 \cap H_2) &amp;= P(H_1 \cap H_2 |F)P(F) + P(H_1\cap H_2| \overline{F}) P( \overline{F}).
+\end{align}\]</div>
+<p>However, now we need to know the probabilities <span class="math notranslate nohighlight">\(P(H_1 \cap H_2 |F)\)</span> and <span class="math notranslate nohighlight">\(P(H_1\cap H_2| \overline{F})\)</span>. When the coin is fair the events <span class="math notranslate nohighlight">\(H_1\)</span> and <span class="math notranslate nohighlight">\(H_2\)</span> are conditionally independent, so <span class="math notranslate nohighlight">\(P(H_1 \cap H_2 |F) =
+P(H_1|F)P(H_2|F)\)</span>. When the coin is two-headed, it always comes up heads, so <span class="math notranslate nohighlight">\(P(H_1\cap H_2| \overline{F})=1\)</span>. Then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a2619a53-bcec-4455-8528-4f7216ba4d70">
+<span class="eqno">(6.17)<a class="headerlink" href="#equation-a2619a53-bcec-4455-8528-4f7216ba4d70" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(H_1 \cap H_2) &amp;= P(H_1|F)P( H_2 |F)P(F) + (1) P( \overline{F}) \\
+&amp;= \left( \frac 1 2 \right) \left( \frac 1 2 \right) \left( \frac 1 2 \right)
++\biggl( 1\biggr) \left( \frac 1 2 \right) \\
+&amp;= \frac 5 8.
+\end{align}\]</div>
+<p><strong>(c )</strong> <span class="math notranslate nohighlight">\(P(H_2 \vert H_1)\)</span></p>
+<p>By calculating this probability, we can assess whether getting heads on flip 2 is independent of getting heads on flip 1, and if now, how information about the value of the first flip changes the probabilities for the second flip.  We can directly apply the definition of conditional probability to calculate this from the answers to parts (a) and (b):</p>
+<div class="math notranslate nohighlight">
+\[
+P(H_2 \vert H_1) = \frac{ P(H_1 \cap H_2) } {P(H_1)} = \frac{5/8}{3/4} = \frac{5}{6}
+\]</div>
+<p>If we did not know <span class="math notranslate nohighlight">\(H_1\)</span>, then <span class="math notranslate nohighlight">\(P(H_2)= P(H_1)=3/4\)</span> (you should verify this using the Law of Total Probability with <span class="math notranslate nohighlight">\(H_1\)</span> as the hidden state). So knowing that heads occurred on the first flip increases the probability that heads will occur on the second flip.</p>
+<p>If this surprises you (again), then just recall that we can anticipate this if we take it to extremes. What if I told you that heads occurred on the first 1000 flips? Then you would surely think that the magician had chosen the two-headed coin and expect the probability of getting heads on the 1001th flip to be close to 1. Then if heads is  observed on one flip, we should expect the probability of getting heads on second flip to increase.</p>
+<p>In fact, after observing one heads, the probability of having chosen the two-headed coin should increase to more than 1/2. It does – but we will need some new tools that we will develop in Chapter 7 before we can calculate the new probability.</p>
+<p><strong>Review Questions</strong></p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="DGrSSVeWuZEe" data-shufflequestions="False"
+               data-shuffleanswers="True"
+               data-preserveresponses="false"
+               data-numquestions="1000000"> <style>:root {
+    --medium-slate-blue: #6f78ffff;
+    --orange-pantone: #f75c03ff;
+    --russian-violet: #392061ff;
+    --maximum-yellow-red: #ffc857ff;
+    --viridian-green: #119da4ff;
+    --incorrect-red: #c80202;
+    --correct-green: #009113;
+}
+
+.Quiz {
+    max-width: 600px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    line-height: 1.1;
+    font-size: 16pt;
+}
+
+.QuizCode {
+    font-size: 14pt;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.QuizCode>pre {
+    padding: 4px;
+}
+
+.Answer {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+}
+
+.Feedback {
+    font-size: 16pt;
+    text-align: center;
+    min-height: 2em;
+}
+
+.Input {
+    align: left;
+    font-size: 20pt;
+}
+
+.Input-text {
+    display: block;
+    margin: 10px;
+    color: inherit;
+    width: 140px;
+    background-color: #c0c0c0;
+    color: #fff;
+    padding: 5px;
+    padding-left: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: inherit;
+    line-height: 20pt;
+    border: none;
+    border-radius: 0.2rem;
+    transition: box-shadow 0.1s);
+}
+
+.Input-text:focus {
+    outline: none;
+    background-color: #c0c0c0;
+    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem #999999;
+}
+
+.MCButton {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.MCButton p {
+    color: inherit;
+}
+
+.MultipleChoiceQn {
+    padding: 10px;
+    background: var(--medium-slate-blue);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.ManyChoiceQn {
+    padding: 10px;
+    background: var(--orange-pantone);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.NumericQn {
+    padding: 10px;
+    background: var(--russian-violet);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.NumericQn p {
+    color: inherit;
+}
+
+.InpLabel {
+    line-height: 34px;
+    float: left;
+    margin-right: 10px;
+    color: #101010;
+    font-size: 15pt;
+}
+
+.incorrect {
+    color: var(--incorrect-red);
+}
+
+.correct {
+    color: var(--correct-green);
+}
+
+.correctButton {
+    /*
+    background: var(--correct-green);
+   */
+    animation: correct-anim 0.6s ease;
+    animation-fill-mode: forwards;
+    color: #fafafa;
+    box-shadow: inset 0px 0px 5px #555555;
+    outline: none;
+}
+
+.incorrectButton {
+    animation: incorrect-anim 0.8s ease;
+    animation-fill-mode: forwards;
+    color: #fafafa;
+    box-shadow: inset 0px 0px 5px #555555;
+    outline: none;
+}
+
+@keyframes incorrect-anim {
+    100% {
+        background-color: var(--incorrect-red);
+    }
+}
+
+@keyframes correct-anim {
+    100% {
+        background-color: var(--correct-green);
+    }
+}</style><script type="text/Javascript">var questionsDGrSSVeWuZEe=[
+    {
+        "question": "A magician has a fair coin and a two-headed coin. She chooses one at random and flips it three times.  what is the probability that all three outcomes are heads?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.5625",
+                "correct": true,
+                "feedback": "Correct! "
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use total probability, where you condition on both cases of the hidden state (whether the coin is fair)."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "A magician has a fair coin and a two-headed coin. She chooses one at random and flips it three times. If the first two outcomes are heads, what is the probability that third outcome will be heads?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.9",
+                "correct": true,
+                "feedback": "Correct!"
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the definition of conditional probability to rewrite this as the ratio of the probability of two different intersections of events, each of which you should already know at this point."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+{
+        "question": "A magician has 4 fair coins and 1 two-headed coin. She chooses one at random and flips it three times.  what is the probability that all three outcomes are heads?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.3",
+                "correct": true,
+                "feedback": "Correct! "
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use total probability, where you condition on both cases of the hidden state (whether the coin is fair)."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "A magician has 4 fair coins and 1 two-headed coin. She chooses one at random and flips it three times. If the first two outcomes are heads, what is the probability that third outcome will be heads?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.75",
+                "correct": true,
+                "feedback": "Correct!"
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the definition of conditional probability to rewrite this as the ratio of the probability of two different intersections of events, each of which can be found via total probability."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    }
+]
+;
+    // Make a random ID
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+    }
+    return result.join('');
+}
+
+// Choose a random subset of an array. Can also be used to shuffle the array
+function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}
+
+function printResponses(responsesContainer) {
+    var responses=JSON.parse(responsesContainer.dataset.responses);
+    var stringResponses='<B>IMPORTANT!</B>To preserve this answer sequence for submission, when you have finalized your answers: <ol> <li> Copy the text in this cell below "Answer String"</li> <li> Double click on the cell directly below the Answer String, labeled "Replace Me"</li> <li> Select the whole "Replace Me" text</li> <li> Paste in your answer string and press shift-Enter.</li><li>Save the notebook using the save icon or File->Save Notebook menu item</li></ul><br><br><br><b>Answer String:</b><br> ';
+    console.log(responses);
+    responses.forEach((response, index) => {
+        if (response) {
+            console.log(index + ': ' + response);
+            stringResponses+= index + ': ' + response +"<BR>";
+        }
+    });
+    responsesContainer.innerHTML=stringResponses;
+}
+function check_mc() {
+    var id = this.id.split('-')[0];
+    //var response = this.id.split('-')[1];
+    //console.log(response);
+    //console.log("In check_mc(), id="+id);
+    //console.log(event.srcElement.id)           
+    //console.log(event.srcElement.dataset.correct)   
+    //console.log(event.srcElement.dataset.feedback)
+
+    var label = event.srcElement;
+    //console.log(label, label.nodeName);
+    var depth = 0;
+    while ((label.nodeName != "LABEL") && (depth < 20)) {
+        label = label.parentElement;
+        console.log(depth, label);
+        depth++;
+    }
+
+
+
+    var answers = label.parentElement.children;
+
+    //console.log(answers);
+
+
+    // Split behavior based on multiple choice vs many choice:
+    var fb = document.getElementById("fb" + id);
+
+
+
+
+    if (fb.dataset.numcorrect == 1) {
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            responses[qnum]= response;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        for (var i = 0; i < answers.length; i++) {
+            var child = answers[i];
+            //console.log(child);
+            child.className = "MCButton";
+        }
+
+
+
+        if (label.dataset.correct == "true") {
+            // console.log("Correct action");
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Correct!";
+            }
+            label.classList.add("correctButton");
+
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+
+        } else {
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Incorrect -- try again.";
+            }
+            //console.log("Error action");
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+    }
+    else {
+        var reset = false;
+        var feedback;
+         if (label.dataset.correct == "true") {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Correct!";
+            }
+            if (label.dataset.answered <= 0) {
+                if (fb.dataset.answeredcorrect < 0) {
+                    fb.dataset.answeredcorrect = 1;
+                    reset = true;
+                } else {
+                    fb.dataset.answeredcorrect++;
+                }
+                if (reset) {
+                    for (var i = 0; i < answers.length; i++) {
+                        var child = answers[i];
+                        child.className = "MCButton";
+                        child.dataset.answered = 0;
+                    }
+                }
+                label.classList.add("correctButton");
+                label.dataset.answered = 1;
+                fb.className = "Feedback";
+                fb.classList.add("correct");
+
+            }
+        } else {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Incorrect -- try again.";
+            }
+            if (fb.dataset.answeredcorrect > 0) {
+                fb.dataset.answeredcorrect = -1;
+                reset = true;
+            } else {
+                fb.dataset.answeredcorrect--;
+            }
+
+            if (reset) {
+                for (var i = 0; i < answers.length; i++) {
+                    var child = answers[i];
+                    child.className = "MCButton";
+                    child.dataset.answered = 0;
+                }
+            }
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            if (label.dataset.correct == "true") {
+                if (typeof(responses[qnum]) == "object"){
+                    if (!responses[qnum].includes(response))
+                        responses[qnum].push(response);
+                } else{
+                    responses[qnum]= [ response ];
+                }
+            } else {
+                responses[qnum]= response;
+            }
+            console.log(responses);
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End save responses stuff
+
+
+
+        var numcorrect = fb.dataset.numcorrect;
+        var answeredcorrect = fb.dataset.answeredcorrect;
+        if (answeredcorrect >= 0) {
+            fb.textContent = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
+        } else {
+            fb.textContent = feedback + " [" + 0 + "/" + numcorrect + "]";
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([fb]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+}
+
+function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
+    var shuffled;
+    if (shuffle_answers == "True") {
+        //console.log(shuffle_answers+" read as true");
+        shuffled = getRandomSubarray(qa.answers, qa.answers.length);
+    } else {
+        //console.log(shuffle_answers+" read as false");
+        shuffled = qa.answers;
+    }
+
+
+    var num_correct = 0;
+
+
+
+    shuffled.forEach((item, index, ans_array) => {
+        //console.log(answer);
+
+        // Make input element
+        var inp = document.createElement("input");
+        inp.type = "radio";
+        inp.id = "quizo" + id + index;
+        inp.style = "display:none;";
+        aDiv.append(inp);
+
+        //Make label for input element
+        var lab = document.createElement("label");
+        lab.className = "MCButton";
+        lab.id = id + '-' + index;
+        lab.onclick = check_mc;
+        var aSpan = document.createElement('span');
+        aSpan.classsName = "";
+        //qDiv.id="quizQn"+id+index;
+        if ("answer" in item) {
+            aSpan.innerHTML = jaxify(item.answer);
+            //aSpan.innerHTML=item.answer;
+        }
+        lab.append(aSpan);
+
+        // Create div for code inside question
+        var codeSpan;
+        if ("code" in item) {
+            codeSpan = document.createElement('span');
+            codeSpan.id = "code" + id + index;
+            codeSpan.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeSpan.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = item.code;
+            lab.append(codeSpan);
+            //console.log(codeSpan);
+        }
+
+        //lab.textContent=item.answer;
+
+        // Set the data attributes for the answer
+        lab.setAttribute('data-correct', item.correct);
+        if (item.correct) {
+            num_correct++;
+        }
+        if ("feedback" in item) {
+            lab.setAttribute('data-feedback', item.feedback);
+        }
+        lab.setAttribute('data-answered', 0);
+
+        aDiv.append(lab);
+
+    });
+
+    if (num_correct > 1) {
+        outerqDiv.className = "ManyChoiceQn";
+    } else {
+        outerqDiv.className = "MultipleChoiceQn";
+    }
+
+    return num_correct;
+
+}
+function check_numeric(ths, event) {
+
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+
+        var submission = ths.value;
+        if (submission.indexOf('/') != -1) {
+            sub_parts = submission.split('/');
+            //console.log(sub_parts);
+            submission = sub_parts[0] / sub_parts[1];
+        }
+        //console.log("Reader entered", submission);
+
+        if ("precision" in ths.dataset) {
+            precision = ths.dataset.precision;
+            // console.log("1:", submission)
+            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
+            // console.log("Rounded to ", submission, " precision=", precision  );
+        }
+
+
+        //console.log("In check_numeric(), id="+id);
+        //console.log(event.srcElement.id)           
+        //console.log(event.srcElement.dataset.feedback)
+
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.textContent = "Incorrect -- try again.";
+
+        answers = JSON.parse(ths.dataset.answers);
+        //console.log(answers);
+
+        var defaultFB = "";
+        var correct;
+        var done = false;
+        answers.every(answer => {
+            //console.log(answer.type);
+
+            correct = false;
+            // if (answer.type=="value"){
+            if ('value' in answer) {
+                if (submission == answer.value) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+                // } else if (answer.type=="range") {
+            } else if ('range' in answer) {
+                //console.log(answer.range);
+                if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+            } else if (answer.type == "default") {
+                defaultFB = answer.feedback;
+            }
+            if (done) {
+                return false; // Break out of loop if this has been marked correct
+            } else {
+                return true; // Keep looking for case that includes this as a correct answer
+            }
+        });
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+            //console.log("Default feedback", defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            console.log(submission);
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            //console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            if (submission == ths.value){
+                responses[qnum]= submission;
+            } else {
+                responses[qnum]= ths.value + "(" + submission +")";
+            }
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        return false;
+    }
+
+}
+
+function isValid(el, charC) {
+    //console.log("Input char: ", charC);
+    if (charC == 46) {
+        if (el.value.indexOf('.') === -1) {
+            return true;
+        } else if (el.value.indexOf('/') != -1) {
+            parts = el.value.split('/');
+            if (parts[1].indexOf('.') === -1) {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    } else if (charC == 47) {
+        if (el.value.indexOf('/') === -1) {
+            if ((el.value != "") && (el.value != ".")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else if (charC == 45) {
+        edex = el.value.indexOf('e');
+        if (edex == -1) {
+            edex = el.value.indexOf('E');
+        }
+
+        if (el.value == "") {
+            return true;
+        } else if (edex == (el.value.length - 1)) { // If just after e or E
+            return true;
+        } else {
+            return false;
+        }
+    } else if (charC == 101) { // "e"
+        if ((el.value.indexOf('e') === -1) && (el.value.indexOf('E') === -1) && (el.value.indexOf('/') == -1)) {
+            // Prev symbol must be digit or decimal point:
+            if (el.value.slice(-1).search(/\d/) >= 0) {
+                return true;
+            } else if (el.value.slice(-1).search(/\./) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        if (charC > 31 && (charC < 48 || charC > 57))
+            return false;
+    }
+    return true;
+}
+
+function numeric_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_numeric(this, evnt);
+    } else {
+        return isValid(this, charC);
+    }
+}
+
+
+
+
+
+function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
+
+
+
+    //console.log(answer);
+
+
+    outerqDiv.className = "NumericQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.textContent = "Type numeric answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    //inp.id="input-"+id;
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    if ("precision" in qa) {
+        inp.setAttribute('data-precision', qa.precision);
+    }
+    aDiv.append(inp);
+    //console.log(inp);
+
+    //inp.addEventListener("keypress", check_numeric);
+    //inp.addEventListener("keypress", numeric_keypress);
+    /*
+    inp.addEventListener("keypress", function(event) {
+        return numeric_keypress(this, event);
+    }
+                        );
+                        */
+    //inp.onkeypress="return numeric_keypress(this, event)";
+    inp.onkeypress = numeric_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    }
+    );
+
+
+}
+function jaxify(string) {
+    var mystring = string;
+
+    count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+
+function show_questions(json, mydiv) {
+    console.log('show_questions');
+    //var mydiv=document.getElementById(myid);
+    var shuffle_questions = mydiv.dataset.shufflequestions;
+    var num_questions = mydiv.dataset.numquestions;
+    var shuffle_answers = mydiv.dataset.shuffleanswers;
+
+    if (num_questions > json.length) {
+        num_questions = json.length;
+    }
+
+    var questions;
+    if ((num_questions < json.length) || (shuffle_questions == "True")) {
+        //console.log(num_questions+","+json.length);
+        questions = getRandomSubarray(json, num_questions);
+    } else {
+        questions = json;
+    }
+
+    //console.log("SQ: "+shuffle_questions+", NQ: " + num_questions + ", SA: ", shuffle_answers);
+
+    // Iterate over questions
+    questions.forEach((qa, index, array) => {
+        //console.log(qa.question); 
+
+        var id = makeid(8);
+        //console.log(id);
+
+
+        // Create Div to contain question and answers
+        var iDiv = document.createElement('div');
+        //iDiv.id = 'quizWrap' + id + index;
+        iDiv.id = 'quizWrap' + id;
+        iDiv.className = 'Quiz';
+        iDiv.setAttribute('data-qnum', index);
+        mydiv.appendChild(iDiv);
+        // iDiv.innerHTML=qa.question;
+
+        var outerqDiv = document.createElement('div');
+        outerqDiv.id = "OuterquizQn" + id + index;
+
+        iDiv.append(outerqDiv);
+
+        // Create div to contain question part
+        var qDiv = document.createElement('div');
+        qDiv.id = "quizQn" + id + index;
+        //qDiv.textContent=qa.question;
+        qDiv.innerHTML = jaxify(qa.question);
+
+        outerqDiv.append(qDiv);
+
+        // Create div for code inside question
+        var codeDiv;
+        if ("code" in qa) {
+            codeDiv = document.createElement('div');
+            codeDiv.id = "code" + id + index;
+            codeDiv.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeDiv.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = qa.code;
+            outerqDiv.append(codeDiv);
+            //console.log(codeDiv);
+        }
+
+
+        // Create div to contain answer part
+        var aDiv = document.createElement('div');
+        aDiv.id = "quizAns" + id + index;
+        aDiv.className = 'Answer';
+        iDiv.append(aDiv);
+
+        //console.log(qa.type);
+
+        var num_correct;
+        if (qa.type == "multiple_choice") {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+        } else if (qa.type == "many_choice") {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+        } else if (qa.type == "numeric") {
+            //console.log("numeric");
+            make_numeric(qa, outerqDiv, qDiv, aDiv, id);
+        }
+
+
+        //Make div for feedback
+        var fb = document.createElement("div");
+        fb.id = "fb" + id;
+        //fb.style="font-size: 20px;text-align:center;";
+        fb.className = "Feedback";
+        fb.setAttribute("data-answeredcorrect", 0);
+        fb.setAttribute("data-numcorrect", num_correct);
+        iDiv.append(fb);
+
+
+    });
+    var preserveResponses = mydiv.dataset.preserveresponses;
+    console.log(preserveResponses);
+    console.log(preserveResponses == "true");
+    if (preserveResponses == "true") {
+        console.log(preserveResponses);
+        // Create Div to contain record of answers
+        var iDiv = document.createElement('div');
+        iDiv.id = 'responses' + mydiv.id;
+        iDiv.className = 'JCResponses';
+        // Create a place to store responses as an empty array
+        iDiv.setAttribute('data-responses', '[]');
+
+        // Dummy Text
+        iDiv.innerHTML="<b>Select your answers and then follow the directions that will appear here.</b>"
+        //iDiv.className = 'Quiz';
+        mydiv.appendChild(iDiv);
+    }
+//console.log("At end of show_questions");
+    if (typeof MathJax != 'undefined') {
+        console.log("MathJax version", MathJax.version);
+        var version = MathJax.version;
+        setTimeout(function(){
+            var version = MathJax.version;
+            console.log('After sleep, MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            }
+        }, 500);
+if (typeof version == 'undefined') {
+        } else
+        {
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            } else {
+                console.log("MathJax not found");
+            }
+        }
+    }
+    return false;
+}
+
+        //console.log(element);
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/questions/total-prob.json", {signal})
+        .then(response => response.json())
+        .then(json => show_questions(json, DGrSSVeWuZEe))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        show_questions(questionsDGrSSVeWuZEe, DGrSSVeWuZEe);
+        });
+        }
+        </script>
+</div></div>
+</div>
+<p><strong>Example: Two Random Selections</strong></p>
+<p>At the beginning of this Chapter, the following question was asked: A box contains 2 white balls and 1 black ball. I reach in the box and remove one ball. Without inspecting it, I place it in my pocket. I withdraw a second ball. What is the probability that the second ball is white?</p>
+<p>This is a question that stumps many learners of probability, but the answer turns out to be simple. Let <span class="math notranslate nohighlight">\(W_i\)</span> be the event that a white ball is chosen on draw <span class="math notranslate nohighlight">\(i\)</span>. We are asking about <span class="math notranslate nohighlight">\(W_2\)</span>. Then <span class="math notranslate nohighlight">\(P(W_2) = P(W_1) = 2/3\)</span>.  However, this is not intuitive because our brain tells us that the probabilities for the second draw must depend on what happened on the first draw – which is unknown in this case.</p>
+<p>We can formally show this using the Law of Total Probability. The conditioning event will be the unobserved result of the first draw. The partition is <span class="math notranslate nohighlight">\(W_1\)</span>, <span class="math notranslate nohighlight">\(\overline{W_1}\)</span>. Then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3ddb8d2c-c31b-40af-a76c-5019b0154ca5">
+<span class="eqno">(6.18)<a class="headerlink" href="#equation-3ddb8d2c-c31b-40af-a76c-5019b0154ca5" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(W_2) &amp;= P(W_2|W_1) P(W_1) + P(W_2 | \overline{W_1}) P(\overline{W_1})\\
+\end{align}\]</div>
+<p>If a white ball is drawn first (<span class="math notranslate nohighlight">\(W_1\)</span>), then there is one white ball and one black ball left, so <span class="math notranslate nohighlight">\(P(W_2|W_1) = 1/2\)</span>. If a black ball is drawn first (<span class="math notranslate nohighlight">\(\overline{W_1}\)</span>), then there are two white balls left, so <span class="math notranslate nohighlight">\(P(W_1| 
+\overline{W_1}) = 1\)</span>.  Then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-504547a3-e564-4e5c-a89d-f75e0c4adfb0">
+<span class="eqno">(6.19)<a class="headerlink" href="#equation-504547a3-e564-4e5c-a89d-f75e0c4adfb0" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(W_2) &amp;= \left( \frac 1 2 \right) \left( \frac 2 3 \right) + \biggl( 1 \biggr) 
+\left( \frac 1 3 \right) \\
+&amp;= \frac 2 3,
+\end{align}\]</div>
+<p>which is equal to <span class="math notranslate nohighlight">\(P(W_1)\)</span>.  We can use similar math to show that <span class="math notranslate nohighlight">\(P(W_3)=2/3\)</span>, also. In the absence of information about what happened on previous draws, the probability of getting a white ball is equal to the original proportion of white balls in the box.</p>
+<p><strong>Example: The Monty Hall Problem</strong></p>
+<p>You are on a game show, and you’re given the choice of three doors:</p>
+<ul class="simple">
+<li><p>Behind one door is a car</p></li>
+<li><p>Behind the other doors are goats</p></li>
+</ul>
+<p>You pick a door, and the host, who knows what’s behind the doors, opens another door, which he knows has a goat.</p>
+<p>The host then offers you the option to switch doors. Does it matter if you switch? If switching changes your probability of getting the prize, what is the new probability?</p>
+<p>Here is a simple solution. Let <span class="math notranslate nohighlight">\(W_i\)</span> be the event that you are winning on choice <span class="math notranslate nohighlight">\(i\)</span>. Let <span class="math notranslate nohighlight">\(S\)</span> be the event that you switch. We are interested in comparing <span class="math notranslate nohighlight">\(P(W_2|S)\)</span> with <span class="math notranslate nohighlight">\(P(W_2 | \overline{S})\)</span>.</p>
+<p>Consider <span class="math notranslate nohighlight">\(\overline{S}\)</span> first. Because there are two goats and the host always shows you a goat, the fact that he reveals a goat to you does not change the probability that you have selected the car. Thus <span class="math notranslate nohighlight">\(P(W_2|\overline{S}) = P(W_1) = 1/3\)</span>.</p>
+<p>Now consider <span class="math notranslate nohighlight">\(S\)</span>.  It may be tempting to think that either:</p>
+<ol class="simple">
+<li><p>Switching doesn’t matter because the host was always going to show you a goat, so your new choice is just as likely to be a car as it was before, or</p></li>
+<li><p>After the host reveals a goat, there is one goat and one car, so the probability of choosing the car when you switch is 1/2.</p></li>
+</ol>
+<p>Unfortunately, neither of these are correct! Let’s condition on what happens on choice 1:</p>
+<div class="math notranslate nohighlight">
+\[
+P(W_2|S) = P(W_2|S \cap W_1) P(W_1|S) + P(W_2|S \cap \overline{W_1} ) P(\overline{W_1}|S).
+\]</div>
+<p>The probability of winning on choice 1 does not depend on whether you switch after that choice, so <span class="math notranslate nohighlight">\(P(W_1|S) = P(W_1) = 1/3\)</span>, and <span class="math notranslate nohighlight">\(P(\overline{W_1}|S) = P(\overline{W_1})= 2/3\)</span>.</p>
+<p>Now, consider what happens on the second choice. There are two possibilities:</p>
+<ul class="simple">
+<li><p>If you are winning on the first choice (<span class="math notranslate nohighlight">\(W_1\)</span>), then the two doors you have not chosen both contain goats. The host reveals one of the goats, and you will switch to the other goat. Thus, <span class="math notranslate nohighlight">\(P(W_2|W_1) =0\)</span>.</p></li>
+<li><p>If you are not winning on the first choice (<span class="math notranslate nohighlight">\(\overline{W_1}\)</span>), then one of the doors you have not chosen has a goat and the other has the car. The host shows the goat that is not behind your door. Then if you switch, you will switch to the door with the car. Thus, <span class="math notranslate nohighlight">\(P(W_1 | \overline{W_1}) = 1\)</span>.</p></li>
+</ul>
+<p>Putting this all together,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-541ef91e-c370-474b-bbd6-f734aa7c105a">
+<span class="eqno">(6.20)<a class="headerlink" href="#equation-541ef91e-c370-474b-bbd6-f734aa7c105a" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(W_2|S) &amp;= P(W_2|S \cap W_1) P(W_1|S) + P(W_2|S \cap \overline{W_1} ) P(\overline{W_1}|S) \\
+&amp;= \biggl( 0 \biggr) \left( \frac 1 3 \right) 
++ \biggl( 1 \biggr) \left( \frac 2 3 \right) \\
+&amp;= \frac 2 3.
+\end{align}\]</div>
+<p>Why is the probability not 1/2 using the reasoning above about one car and one goat left? Because you do not randomly choose among the two doors. The host is revealing information when he reveals the goat because he cannot choose your door, and he cannot choose the door with the car. If you were to randomly choose between the two doors after the goat is revealed, the probability would be 1/2.</p>
+</section>
+<section id="terminology-review">
+<h2><span class="section-number">6.9.3. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg)  translateX(-10%);
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transform:  translateX(20px); 
+    transition: display 0s;
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 300px;
+	  width: 640px;
+}
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:20px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 600px;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 16pt;
+    left:442pt;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:20px;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+.flashcardtext{
+    color: var(--snow);
+    font-size: 20pt;
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+  }
+
+</style><script type="text/Javascript">
+/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+function flip(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 700, next);
+}
+
+function reenableNext(next) {
+    next.style.pointerEvents='auto';
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+
+}
+
+
+function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 600, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id) {
+    console.log(id);
+
+    var mydiv=document.getElementById(id);
+
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+
+    for (var i=0; i<2; i++) {
+
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    return flipper;
+}
+
+
+
+
+
+</script><script type="text/Javascript">
+
+    cardsvLAkUkcwvVDM=[
+    {
+        "front": "chain rules",
+        "back": "express the probability of an intersection of events in terms of a sequence of conditional probabilities involving those events"
+    },
+    {
+        "front": "partition (of the sample space)",
+        "back": " A collection of sets $A_1, A_2, \\ldots$ <i>partitions</i> the sample space $S$ if and only if \\begin{align*} S &= \\bigcup_i A_i,     \\mbox{ and } A_i \\cap A_j = \\emptyset, ~~~i \\ne j. \\end{align*}" 
+    },
+    {
+        "front": "Law of Total Probability",
+        "back": "Given an event $B \\subseteq S$ and a partition of $S$ denoted by $A_1, A_2, \\ldots$, \\begin{align*} P(B) = \\sum_i P(B|A_i)P(A_i).  \\end{align*}"
+    }
+]
+;
+
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/flashcards/chain-rules-total-prob.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("vLAkUkcwvVDM"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("vLAkUkcwvVDM");
+        });
+        }
+        </script>
+        <div style="height:40px"></div><div class="flip-container" id="vLAkUkcwvVDM" onclick="flip(this)"></div><div style="height:40px"></div><div class="next" id="vLAkUkcwvVDM-next" onclick="checkFlip('vLAkUkcwvVDM')"> </div> <div style="height:40px"></div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./06-conditional-prob"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="conditional-independence.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6.8. </span>Conditioning and (In)dependence</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="review.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6.10. </span>Review</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1688 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="12.1. Tabulating Categorical Data and Creating a Test Statistic" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-categorical-data/contingency-tables.html" />
+  
+<meta property="og:description" content="Let’s consider two health-related questions related to college students: Many states now permit the licensed use of medical marijuana. Marijuana has often been used recreationally by college studen..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="12.1. Tabulating Categorical Data and Creating a Test Statistic" />
+  
+    <title>12.1. Tabulating Categorical Data and Creating a Test Statistic &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-categorical-data/contingency-tables.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables" href="nhst.html" />
+    <link rel="prev" title="12. Categorical Data and Tests for Dependence" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/12-categorical-data/contingency-tables.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/12-categorical-data/contingency-tables.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tabulating Categorical Data and Creating a Test Statistic</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="tabulating-categorical-data-and-creating-a-test-statistic">
+<h1><span class="section-number">12.1. </span>Tabulating Categorical Data and Creating a Test Statistic<a class="headerlink" href="#tabulating-categorical-data-and-creating-a-test-statistic" title="Permalink to this heading">#</a></h1>
+<p>Let’s consider two health-related questions related to college students:</p>
+<ol class="simple">
+<li><p>Many states now permit the licensed use of medical marijuana. Marijuana has often been used recreationally by college students. Is the use marijuana for non-medical uses by college students dependent on students’ self-reported sex?</p></li>
+<li><p>Many college students exercise to stay healthy. Is college students’ exercise in the last 30 days dependent on students’ self-reported sex?</p></li>
+</ol>
+<p>We can answer these questions using data from the Behavioral Risk Factor Surveillance System (BRFSS) survey again. According to the Centers for Disease Control, this is “the largest continuously conducted health survey system in the world”. For more information, see the BRFSS web page at <a class="reference external" href="https://www.cdc.gov/brfss/">https://www.cdc.gov/brfss/</a>.</p>
+<p>We will limit the investigation in this section to people who reported that they live in college housing and that they were answering the survey on a cell phone. (The number of people who live in college housing and who answered via a landline was much smaller and uses some different questions.) The full data set is available here: <a class="reference external" href="https://www.cdc.gov/brfss/annual_data/2021/files/LLCP2021XPT.zip">https://www.cdc.gov/brfss/annual_data/2021/files/LLCP2021XPT.zip</a></p>
+<p>However, this is file is over 1 GB in size and uses only numbers to encode the responses. I have pre-processed this file to limit it to only the college cellphone respondents and to reinterpret several variables of interest as strings:</p>
+<ul class="simple">
+<li><p>The respondent’s sex is stored in the <code class="docutils literal notranslate"><span class="pre">SEXVAR</span></code> column in the original data as a 1 or 2. These have been mapped to the corresponding value of <code class="docutils literal notranslate"><span class="pre">male</span></code> and <code class="docutils literal notranslate"><span class="pre">female</span></code> and stored in a column called <code class="docutils literal notranslate"><span class="pre">sex</span></code>.</p></li>
+<li><p>The response to whether the respondent has exercised in the previous 30 days is stored in the <code class="docutils literal notranslate"><span class="pre">EXERANY2</span></code> column in the original data as a 1 or 2. These have been mapped to the corresponding values of <code class="docutils literal notranslate"><span class="pre">yes</span></code> or <code class="docutils literal notranslate"><span class="pre">no</span></code> and stored in a column called <code class="docutils literal notranslate"><span class="pre">exercised</span></code>. Rows with values of 9 in the original data (for people who refused to answer) were dropped.</p></li>
+<li><p>The response to the type of marijuana use (if any) in the last 30 days was encoded as a number in the <code class="docutils literal notranslate"><span class="pre">RSNMRJN2</span></code> column in the original data. Values of 1, corresponding to medical use only were assigned a value of <code class="docutils literal notranslate"><span class="pre">medical</span></code> in a new column <code class="docutils literal notranslate"><span class="pre">marijuana_use</span></code>. Values of 2, corresponding to non-medical use only were assigned a value of <code class="docutils literal notranslate"><span class="pre">nonmedical</span></code> in the column <code class="docutils literal notranslate"><span class="pre">marijuana_use</span></code>. Values of 3, corresponding to both medical and non-medical use, were assigned a value of <code class="docutils literal notranslate"><span class="pre">both</span></code> in the column <code class="docutils literal notranslate"><span class="pre">marijuana_use</span></code>.</p></li>
+</ul>
+<p>Let’s start by loading the dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/college.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">college</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+  
+<span class="n">college</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SEXVAR</th>
+      <th>EXERANY2</th>
+      <th>MARIJAN1</th>
+      <th>RSNMRJN2</th>
+      <th>sex</th>
+      <th>exercised</th>
+      <th>marijuana_use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3209</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>male</td>
+      <td>no</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3320</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>male</td>
+      <td>yes</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4163</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>male</td>
+      <td>yes</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4172</th>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>female</td>
+      <td>no</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4434</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>male</td>
+      <td>yes</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that there are many <code class="docutils literal notranslate"><span class="pre">NaN</span></code>  entries in columns corresponding to marijuana use because many students did not report using marijuana in the last 30 days. Let’s filter out those values for now, so that we can start working with those students who did report using marijuana:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">college2</span> <span class="o">=</span> <span class="n">college</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">college2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SEXVAR</th>
+      <th>EXERANY2</th>
+      <th>MARIJAN1</th>
+      <th>RSNMRJN2</th>
+      <th>sex</th>
+      <th>exercised</th>
+      <th>marijuana_use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8392</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>male</td>
+      <td>yes</td>
+      <td>nonmedical</td>
+    </tr>
+    <tr>
+      <th>44864</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>8.0</td>
+      <td>2.0</td>
+      <td>male</td>
+      <td>yes</td>
+      <td>nonmedical</td>
+    </tr>
+    <tr>
+      <th>49893</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>30.0</td>
+      <td>3.0</td>
+      <td>male</td>
+      <td>yes</td>
+      <td>both</td>
+    </tr>
+    <tr>
+      <th>50301</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>male</td>
+      <td>yes</td>
+      <td>nonmedical</td>
+    </tr>
+    <tr>
+      <th>51119</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>30.0</td>
+      <td>3.0</td>
+      <td>male</td>
+      <td>yes</td>
+      <td>both</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We wish to determine whether the categorical data in the <code class="docutils literal notranslate"><span class="pre">sex</span></code> and <code class="docutils literal notranslate"><span class="pre">marijuana_use</span></code> columns are dependent. The first step is to determine the absolute frequency of each combination of <code class="docutils literal notranslate"><span class="pre">sex</span></code> and <code class="docutils literal notranslate"><span class="pre">marijuana_use</span></code>. For instance, if we want to count the number of entries that are <code class="docutils literal notranslate"><span class="pre">male</span></code> and <code class="docutils literal notranslate"><span class="pre">medical</span></code>, we can use the <code class="docutils literal notranslate"><span class="pre">query()</span></code> method and then use <code class="docutils literal notranslate"><span class="pre">len()</span></code> to find the length of the resulting data frame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">college2</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;sex==&quot;male&quot; &amp; marijuana_use==&quot;medical&quot;&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could write for loops to iterate over the various combinations, but fortunately, Pandas provides a <em>much</em> easier way with the <code class="docutils literal notranslate"><span class="pre">pd.crosstab()</span></code> function, which cross-tabulates data. For our purposes, we can pass it two columns of the dataframe, and it will count the entries. The order in which the data is passed to <code class="docutils literal notranslate"><span class="pre">pd.crosstab()</span></code> matters in terms of how the table is constructed, and to a lesser extent how it is interpreted:</p>
+<ul class="simple">
+<li><p>The first argument will determine the rows of the table. When one of the categorical features represents population subgroups, it is usually mapped to the rows. For instance, for our data, our <code class="docutils literal notranslate"><span class="pre">sex</span></code> variable creates population subgroups <code class="docutils literal notranslate"><span class="pre">male</span></code> and <code class="docutils literal notranslate"><span class="pre">female</span></code>.</p></li>
+<li><p>The second argument determines the columns of the table.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">contingency</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">college2</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">],</span> <span class="n">college2</span><span class="p">[</span><span class="s1">&#39;marijuana_use&#39;</span><span class="p">])</span>
+<span class="n">contingency</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>marijuana_use</th>
+      <th>both</th>
+      <th>medical</th>
+      <th>nonmedical</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>6</td>
+      <td>2</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>12</td>
+      <td>3</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">NaN</span></code> entries are ignored by <code class="docutils literal notranslate"><span class="pre">pd.crosstab()</span></code> so we get the same result with the original data frame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">college</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">],</span> <span class="n">college</span><span class="p">[</span><span class="s1">&#39;marijuana_use&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>marijuana_use</th>
+      <th>both</th>
+      <th>medical</th>
+      <th>nonmedical</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>6</td>
+      <td>2</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>12</td>
+      <td>3</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The sums of the data in each row and column are called the <em>marginal sums</em>. We can ask <code class="docutils literal notranslate"><span class="pre">pd.crosstab()</span></code> to append the marginal sums by addin the <code class="docutils literal notranslate"><span class="pre">margins</span> <span class="pre">=</span> <span class="pre">True</span></code> keyword argument:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contingency2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">college2</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">],</span> <span class="n">college2</span><span class="p">[</span><span class="s1">&#39;marijuana_use&#39;</span><span class="p">],</span>
+                           <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">contingency2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>marijuana_use</th>
+      <th>both</th>
+      <th>medical</th>
+      <th>nonmedical</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>6</td>
+      <td>2</td>
+      <td>14</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>12</td>
+      <td>3</td>
+      <td>10</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>18</td>
+      <td>5</td>
+      <td>24</td>
+      <td>47</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that a larger number of male respondents reported using marijuana for both purposes, whereas a larger number of female respondents reported using it for only nonmedical use. Since the number of males and females differ, it is helpful to find the relative frequencies for each row by dividing by the row sums. For instance, the entry for <code class="docutils literal notranslate"><span class="pre">female</span></code>, <code class="docutils literal notranslate"><span class="pre">both</span></code> should be <span class="math notranslate nohighlight">\(6/22 \approx 0.273\)</span>.</p>
+<p>We can find all of the relative frequencies by row using <code class="docutils literal notranslate"><span class="pre">pd.crosstab()</span></code> and passing the keyword argument <code class="docutils literal notranslate"><span class="pre">normalize</span> <span class="pre">=</span> <span class="pre">index</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">college2</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">],</span> <span class="n">college2</span><span class="p">[</span><span class="s1">&#39;marijuana_use&#39;</span><span class="p">],</span>
+            <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>marijuana_use</th>
+      <th>both</th>
+      <th>medical</th>
+      <th>nonmedical</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>0.272727</td>
+      <td>0.090909</td>
+      <td>0.636364</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.480000</td>
+      <td>0.120000</td>
+      <td>0.400000</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>0.382979</td>
+      <td>0.106383</td>
+      <td>0.510638</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We see that for males, the relative frequency of <code class="docutils literal notranslate"><span class="pre">both</span></code> is higher then <code class="docutils literal notranslate"><span class="pre">medical</span></code> or <code class="docutils literal notranslate"><span class="pre">nonmedical</span></code>, whereas for females, <code class="docutils literal notranslate"><span class="pre">nonmedical</span></code> is higher than <code class="docutils literal notranslate"><span class="pre">medical</span></code> or <code class="docutils literal notranslate"><span class="pre">both</span></code>. However, we only have 47 entries in the table, so is there sufficient data for this difference to be significant enough to ensure that the sex and marijuana use are dependent?  To answer this question, we first need to generate a summary statistic for the table. Then we can either use resampling or analysis to determine the probability of seeing such a large value of the decision statistic.</p>
+<p>To create the decision statistic, let’s determine how much this table differs from the expected number of entries for each table cell if there were no dependence.  The <code class="docutils literal notranslate"><span class="pre">All</span></code> entry in the table is the probability of <code class="docutils literal notranslate"><span class="pre">medical</span></code> and <code class="docutils literal notranslate"><span class="pre">nonmedical_only</span></code> neglecting respondent sex. These are equal to the number of total entries in the corresponding column divided by the total number of entries in the table. For instance, the entry for <code class="docutils literal notranslate"><span class="pre">both</span></code> is <span class="math notranslate nohighlight">\(18/47 \approx 0.383\)</span>.</p>
+<p>If we want the expected number of entries in the <code class="docutils literal notranslate"><span class="pre">female</span></code>, <code class="docutils literal notranslate"><span class="pre">both</span></code> cell, then we can multiply the total number of females times the relative frequency of <code class="docutils literal notranslate"><span class="pre">both</span></code>, which yields <span class="math notranslate nohighlight">\(22\cdot 18/47 
+\approx 8.43\)</span>. If we repeat this for each cell, we find something interesting – the expected value for each cell if there is no dependence is equal to the marginal row sum times the marginal column sum, divided by the total number of entries.</p>
+<p>The expected contingency table is shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set these to variables to make the code below more concise</span>
+<span class="n">sex_sums</span> <span class="o">=</span> <span class="n">contingency2</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;All&#39;</span><span class="p">]</span>
+<span class="n">use_sums</span> <span class="o">=</span> <span class="n">contingency2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;All&#39;</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="c1"># Get a dataframe of the right size,</span>
+<span class="n">expected_contingency</span> <span class="o">=</span> <span class="n">contingency2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Loop over the rows and colums, but</span>
+<span class="c1"># ignore the sums </span>
+<span class="k">for</span> <span class="n">sex</span> <span class="ow">in</span> <span class="n">sex_sums</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">sex</span> <span class="o">!=</span> <span class="s1">&#39;All&#39;</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">use</span> <span class="ow">in</span> <span class="n">use_sums</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">use</span> <span class="o">!=</span> <span class="s1">&#39;All&#39;</span><span class="p">:</span>
+        <span class="n">expected_contingency</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sex</span><span class="p">,</span> <span class="n">use</span><span class="p">]</span> <span class="o">=</span> \
+          <span class="n">sex_sums</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sex</span><span class="p">]</span> <span class="o">*</span> <span class="n">use_sums</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">use</span><span class="p">]</span> \
+          <span class="o">/</span> <span class="n">sex_sums</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;All&#39;</span><span class="p">]</span>
+        
+<span class="n">expected_contingency</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>marijuana_use</th>
+      <th>both</th>
+      <th>medical</th>
+      <th>nonmedical</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>8.425532</td>
+      <td>2.340426</td>
+      <td>11.234043</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>9.574468</td>
+      <td>2.659574</td>
+      <td>12.765957</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>18.000000</td>
+      <td>5.000000</td>
+      <td>24.000000</td>
+      <td>47</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As usual, there are easier ways to do this using SciPy.stats. In fact SciPy.stats has a whole submodule called <code class="docutils literal notranslate"><span class="pre">contingency</span></code> that is dedicated to working with contingency tables. To get the expected contingency table, we can pass the contingency table to <code class="docutils literal notranslate"><span class="pre">stats.contingency.expected_freq()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">expected_contingency2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">contingency</span><span class="o">.</span><span class="n">expected_freq</span><span class="p">(</span><span class="n">contingency</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">expected_contingency2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 8.42553191  2.34042553 11.23404255]
+ [ 9.57446809  2.65957447 12.76595745]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can determine the difference between the observed contingency table and the expected contingency table, but subtracting the entries in each cell:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diffs</span> <span class="o">=</span> <span class="n">contingency2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">sex</span> <span class="ow">in</span> <span class="n">sex_sums</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">use</span> <span class="ow">in</span> <span class="n">use_sums</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="n">diffs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sex</span><span class="p">,</span> <span class="n">use</span><span class="p">]</span> <span class="o">=</span> \
+          <span class="n">expected_contingency</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sex</span><span class="p">,</span><span class="n">use</span><span class="p">]</span> <span class="o">-</span> \
+          <span class="n">contingency2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sex</span><span class="p">,</span><span class="n">use</span><span class="p">]</span>
+        
+<span class="n">diffs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>marijuana_use</th>
+      <th>both</th>
+      <th>medical</th>
+      <th>nonmedical</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>2.425532</td>
+      <td>0.340426</td>
+      <td>-2.765957</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>-2.425532</td>
+      <td>-0.340426</td>
+      <td>2.765957</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can also do this subtraction in NumPy using matrix subtraction as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ndiffs</span> <span class="o">=</span> <span class="n">contingency</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> \
+          <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">contingency</span><span class="o">.</span><span class="n">expected_freq</span><span class="p">(</span><span class="n">contingency</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ndiffs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-2.42553191 -0.34042553  2.76595745]
+ [ 2.42553191  0.34042553 -2.76595745]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that each row and column sums to zero, and this is always true for such a difference table. In fact, the absolute values of the cells can only take on 3 distinct values, and if two of those values are known, then the third is also fixed. Thus, we say that the number of degrees of freedom (dofs) for this table is 2. In general, if a table has <span class="math notranslate nohighlight">\(r\)</span> rows and <span class="math notranslate nohighlight">\(c\)</span> columns, the number of dofs is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+n_{dof} = (r-1)(c-1).
+\end{equation*}\]</div>
+<p>The next step is to convert the difference table to a summary statistic. The summary statistic should increase the more the observed table differs from the expect. We can’t use the sum of the differences, because it is always zero. We could use the sum of the squares of the differences, but in general tables, some cells may have much larger expected values than others, and bigger difference may also occur in such cells. Let <span class="math notranslate nohighlight">\(I\)</span> be the set of indices of all cells, and let <span class="math notranslate nohighlight">\(O_i\)</span> and <span class="math notranslate nohighlight">\(E_i\)</span> be the observed value and expected value, respectively, for cell <span class="math notranslate nohighlight">\(i\)</span>. Then the standard test statistic for contingency table is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+C = \sum_{i \in I}  \frac{\left(O_i - E_i\right)^2}{E_i}.
+\end{equation*}\]</div>
+<p>The statistic <span class="math notranslate nohighlight">\(C\)</span> is called the chi-squared statistic, also written <span class="math notranslate nohighlight">\(\chi^2\)</span>-statistic, because its distribution can be modeled as a chi-squared random variable when the number of entries in each cell is sufficiently large.</p>
+<p>For this example, the normalized squares of the differences are shown in the following matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm_sq_diffs</span> <span class="o">=</span> <span class="n">ndiffs</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">expected_contingency2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">norm_sq_diffs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.69825919 0.04951644 0.68101225]
+ [0.61446809 0.04357447 0.59929078]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>and the chi-squared statistic is the sum of these entries:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">norm_sq_diffs</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;C = </span><span class="si">{</span><span class="n">C</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C = 2.69
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the next section, we will carry out a null hypothesis test and determine if the observed difference is statistically significant.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./12-categorical-data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">12. </span>Categorical Data and Tests for Dependence</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="nhst.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12.2. </span>Null Hypothesis Significance Testing for Dependence in Contingency Tables</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

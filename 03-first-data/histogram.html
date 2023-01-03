@@ -1,0 +1,1896 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/03-first-data/histogram.html" />
+  
+<meta property="og:description" content="Now we return to our Covid data set and apply what we have learned about partitions and summary statistics to set up what we call binary comparisons: these are comparisons between two groups. As be..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data" />
+  
+    <title>3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/03-first-data/histogram.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.6. Binary Hypothesis Testing with Real Data" href="hypothesis-testing.html" />
+    <link rel="prev" title="3.4. Summary Statistics" href="summary-stats.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03-first-data/histogram.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/03-first-data/histogram.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partitioning-based-on-gdp">
+   3.5.1. Partitioning Based on GDP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partitioning-based-on-urban-index">
+   3.5.2. Partitioning Based on Urban Index
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-assignment">
+   3.5.3. Reading Assignment
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partitioning-based-on-gdp">
+   3.5.1. Partitioning Based on GDP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partitioning-based-on-urban-index">
+   3.5.2. Partitioning Based on Urban Index
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-assignment">
+   3.5.3. Reading Assignment
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="visualizing-multiple-data-sets-part-2-histograms-for-partitioned-data">
+<h1><span class="section-number">3.5. </span>Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data<a class="headerlink" href="#visualizing-multiple-data-sets-part-2-histograms-for-partitioned-data" title="Permalink to this heading">#</a></h1>
+<p>Now we return to our Covid data set and apply what we have learned about partitions and summary statistics to set up what we call binary comparisons: these are comparisons between two groups. As before, we begin by importing the data from the CSV file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/covid-merged.csv&quot;</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;cases&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the following subsections, we will partition the data based on normalized gdp and how urban the state’s population is. In each case, we will partition the data into two sets by comparing the metric being studied to the median value of that metric. Here, we have chosen median because it will result in the data set being partitioned into subsets that are approximately equal in size.</p>
+<section id="partitioning-based-on-gdp">
+<h2><span class="section-number">3.5.1. </span>Partitioning Based on GDP<a class="headerlink" href="#partitioning-based-on-gdp" title="Permalink to this heading">#</a></h2>
+<p>The gross domestic product (GDP) provides a measure of how affluent a state is. As we expect that GDP will increase along with population, we first add normalized GDP (in millions) per capita (in thousands) to our dataframe<a class="footnote-reference brackets" href="#per-capita" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;gdp_norm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;gdp&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will partition the data around the median of the normalized GDP, which is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_gdp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;gdp_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">m_gdp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>61.04737129841516
+</pre></div>
+</div>
+</div>
+</div>
+<p>To partition the data let’s first see what happens when a numerical column of a dataframe is compared to a value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;gdp_norm&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">m_gdp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state
+Alabama           False
+Alaska             True
+Arizona           False
+Arkansas          False
+California         True
+Colorado           True
+Connecticut        True
+Delaware           True
+Florida           False
+Georgia           False
+Hawaii             True
+Idaho             False
+Illinois           True
+Indiana           False
+Iowa               True
+Kansas             True
+Kentucky          False
+Louisiana         False
+Maine             False
+Maryland           True
+Massachusetts      True
+Michigan          False
+Minnesota          True
+Mississippi       False
+Missouri          False
+Montana           False
+Nebraska           True
+Nevada            False
+New Hampshire      True
+New Jersey         True
+New Mexico        False
+New York           True
+North Carolina    False
+North Dakota       True
+Ohio              False
+Oklahoma          False
+Oregon             True
+Pennsylvania       True
+Rhode Island      False
+South Carolina    False
+South Dakota       True
+Tennessee         False
+Texas              True
+Utah               True
+Vermont           False
+Virginia           True
+Washington         True
+West Virginia     False
+Wisconsin         False
+Wyoming            True
+Name: gdp_norm, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pandas returns a series that contains Boolean values indicating whether the comparison for the value at each index was true or false. We can use such a series to partition our dataframe if we pass it as the index (in square brackets) to the data frame. So, we can create a dataframe with states that have population higher than the median as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">higher_gdp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;gdp_norm&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">m_gdp</span><span class="p">]</span>
+<span class="n">higher_gdp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+      <th>cases_norm</th>
+      <th>gdp_norm</th>
+    </tr>
+    <tr>
+      <th>state</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alaska</th>
+      <td>353</td>
+      <td>731545</td>
+      <td>54674.7</td>
+      <td>66.02</td>
+      <td>0.482540</td>
+      <td>74.738670</td>
+    </tr>
+    <tr>
+      <th>California</th>
+      <td>50470</td>
+      <td>39512223</td>
+      <td>3205000.1</td>
+      <td>94.95</td>
+      <td>1.277326</td>
+      <td>81.114143</td>
+    </tr>
+    <tr>
+      <th>Colorado</th>
+      <td>15207</td>
+      <td>5758736</td>
+      <td>400863.4</td>
+      <td>86.15</td>
+      <td>2.640684</td>
+      <td>69.609616</td>
+    </tr>
+    <tr>
+      <th>Connecticut</th>
+      <td>27700</td>
+      <td>3565287</td>
+      <td>290703.0</td>
+      <td>87.99</td>
+      <td>7.769361</td>
+      <td>81.537054</td>
+    </tr>
+    <tr>
+      <th>Delaware</th>
+      <td>4734</td>
+      <td>973764</td>
+      <td>77879.4</td>
+      <td>83.30</td>
+      <td>4.861548</td>
+      <td>79.977695</td>
+    </tr>
+    <tr>
+      <th>Hawaii</th>
+      <td>609</td>
+      <td>1415872</td>
+      <td>97001.1</td>
+      <td>91.93</td>
+      <td>0.430124</td>
+      <td>68.509795</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>52918</td>
+      <td>12671821</td>
+      <td>893355.5</td>
+      <td>88.49</td>
+      <td>4.176038</td>
+      <td>70.499378</td>
+    </tr>
+    <tr>
+      <th>Iowa</th>
+      <td>7145</td>
+      <td>3155070</td>
+      <td>196247.4</td>
+      <td>64.02</td>
+      <td>2.264609</td>
+      <td>62.200648</td>
+    </tr>
+    <tr>
+      <th>Kansas</th>
+      <td>4305</td>
+      <td>2913314</td>
+      <td>178605.1</td>
+      <td>74.20</td>
+      <td>1.477699</td>
+      <td>61.306505</td>
+    </tr>
+    <tr>
+      <th>Maryland</th>
+      <td>21825</td>
+      <td>6045680</td>
+      <td>432997.8</td>
+      <td>87.20</td>
+      <td>3.610016</td>
+      <td>71.621025</td>
+    </tr>
+    <tr>
+      <th>Massachusetts</th>
+      <td>62205</td>
+      <td>6892503</td>
+      <td>603209.6</td>
+      <td>91.97</td>
+      <td>9.025023</td>
+      <td>87.516770</td>
+    </tr>
+    <tr>
+      <th>Minnesota</th>
+      <td>5136</td>
+      <td>5639632</td>
+      <td>389503.7</td>
+      <td>73.27</td>
+      <td>0.910698</td>
+      <td>69.065446</td>
+    </tr>
+    <tr>
+      <th>Nebraska</th>
+      <td>4332</td>
+      <td>1934408</td>
+      <td>133201.0</td>
+      <td>73.13</td>
+      <td>2.239445</td>
+      <td>68.858793</td>
+    </tr>
+    <tr>
+      <th>New Hampshire</th>
+      <td>2146</td>
+      <td>1359711</td>
+      <td>88014.8</td>
+      <td>60.30</td>
+      <td>1.578277</td>
+      <td>64.730520</td>
+    </tr>
+    <tr>
+      <th>New Jersey</th>
+      <td>118652</td>
+      <td>8882190</td>
+      <td>642967.7</td>
+      <td>94.68</td>
+      <td>13.358417</td>
+      <td>72.388420</td>
+    </tr>
+    <tr>
+      <th>New York</th>
+      <td>309696</td>
+      <td>19453561</td>
+      <td>1791566.8</td>
+      <td>87.87</td>
+      <td>15.919759</td>
+      <td>92.094542</td>
+    </tr>
+    <tr>
+      <th>North Dakota</th>
+      <td>1067</td>
+      <td>762062</td>
+      <td>57471.9</td>
+      <td>59.90</td>
+      <td>1.400149</td>
+      <td>75.416305</td>
+    </tr>
+    <tr>
+      <th>Oregon</th>
+      <td>2510</td>
+      <td>4217737</td>
+      <td>258692.6</td>
+      <td>81.03</td>
+      <td>0.595106</td>
+      <td>61.334455</td>
+    </tr>
+    <tr>
+      <th>Pennsylvania</th>
+      <td>48224</td>
+      <td>12801989</td>
+      <td>818448.6</td>
+      <td>78.66</td>
+      <td>3.766915</td>
+      <td>63.931363</td>
+    </tr>
+    <tr>
+      <th>South Dakota</th>
+      <td>2450</td>
+      <td>884659</td>
+      <td>56051.9</td>
+      <td>56.65</td>
+      <td>2.769429</td>
+      <td>63.359893</td>
+    </tr>
+    <tr>
+      <th>Texas</th>
+      <td>29072</td>
+      <td>28995881</td>
+      <td>1861581.9</td>
+      <td>84.70</td>
+      <td>1.002625</td>
+      <td>64.201598</td>
+    </tr>
+    <tr>
+      <th>Utah</th>
+      <td>4672</td>
+      <td>3205958</td>
+      <td>196639.4</td>
+      <td>90.58</td>
+      <td>1.457287</td>
+      <td>61.335613</td>
+    </tr>
+    <tr>
+      <th>Virginia</th>
+      <td>15846</td>
+      <td>8535519</td>
+      <td>566529.4</td>
+      <td>75.45</td>
+      <td>1.856478</td>
+      <td>66.373164</td>
+    </tr>
+    <tr>
+      <th>Washington</th>
+      <td>14814</td>
+      <td>7614893</td>
+      <td>624861.4</td>
+      <td>84.05</td>
+      <td>1.945398</td>
+      <td>82.057804</td>
+    </tr>
+    <tr>
+      <th>Wyoming</th>
+      <td>559</td>
+      <td>578759</td>
+      <td>40764.3</td>
+      <td>64.76</td>
+      <td>0.965860</td>
+      <td>70.433980</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note the exceptionally high normalized case rate for New York (15.92) and New Jersey (13.4).</p>
+<p>By changing the inequality to <span class="math notranslate nohighlight">\(\le\)</span>, we can create a dataframe with states at or below the median population:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lower_gdp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;gdp_norm&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">m_gdp</span><span class="p">]</span>
+<span class="n">lower_gdp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+      <th>cases_norm</th>
+      <th>gdp_norm</th>
+    </tr>
+    <tr>
+      <th>state</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alabama</th>
+      <td>7068</td>
+      <td>4903185</td>
+      <td>230750.1</td>
+      <td>59.04</td>
+      <td>1.441512</td>
+      <td>47.061267</td>
+    </tr>
+    <tr>
+      <th>Arizona</th>
+      <td>7648</td>
+      <td>7278717</td>
+      <td>379018.8</td>
+      <td>89.81</td>
+      <td>1.050735</td>
+      <td>52.072199</td>
+    </tr>
+    <tr>
+      <th>Arkansas</th>
+      <td>3281</td>
+      <td>3017804</td>
+      <td>132596.4</td>
+      <td>56.16</td>
+      <td>1.087214</td>
+      <td>43.938042</td>
+    </tr>
+    <tr>
+      <th>Florida</th>
+      <td>33683</td>
+      <td>21477737</td>
+      <td>1126510.3</td>
+      <td>91.16</td>
+      <td>1.568275</td>
+      <td>52.450139</td>
+    </tr>
+    <tr>
+      <th>Georgia</th>
+      <td>25431</td>
+      <td>10617423</td>
+      <td>634137.5</td>
+      <td>75.07</td>
+      <td>2.395214</td>
+      <td>59.726122</td>
+    </tr>
+    <tr>
+      <th>Idaho</th>
+      <td>2016</td>
+      <td>1787065</td>
+      <td>85791.1</td>
+      <td>70.58</td>
+      <td>1.128107</td>
+      <td>48.006704</td>
+    </tr>
+    <tr>
+      <th>Indiana</th>
+      <td>18099</td>
+      <td>6732219</td>
+      <td>384871.7</td>
+      <td>72.44</td>
+      <td>2.688415</td>
+      <td>57.168624</td>
+    </tr>
+    <tr>
+      <th>Kentucky</th>
+      <td>4708</td>
+      <td>4467673</td>
+      <td>218426.1</td>
+      <td>58.38</td>
+      <td>1.053792</td>
+      <td>48.890351</td>
+    </tr>
+    <tr>
+      <th>Louisiana</th>
+      <td>28044</td>
+      <td>4648794</td>
+      <td>259079.3</td>
+      <td>73.19</td>
+      <td>6.032532</td>
+      <td>55.730432</td>
+    </tr>
+    <tr>
+      <th>Maine</th>
+      <td>1095</td>
+      <td>1344212</td>
+      <td>68984.9</td>
+      <td>38.66</td>
+      <td>0.814604</td>
+      <td>51.319955</td>
+    </tr>
+    <tr>
+      <th>Michigan</th>
+      <td>41348</td>
+      <td>9986857</td>
+      <td>543489.4</td>
+      <td>74.57</td>
+      <td>4.140242</td>
+      <td>54.420465</td>
+    </tr>
+    <tr>
+      <th>Mississippi</th>
+      <td>6815</td>
+      <td>2976149</td>
+      <td>117642.3</td>
+      <td>49.35</td>
+      <td>2.289872</td>
+      <td>39.528364</td>
+    </tr>
+    <tr>
+      <th>Missouri</th>
+      <td>7563</td>
+      <td>6137428</td>
+      <td>332659.7</td>
+      <td>70.44</td>
+      <td>1.232275</td>
+      <td>54.201809</td>
+    </tr>
+    <tr>
+      <th>Montana</th>
+      <td>452</td>
+      <td>1068778</td>
+      <td>54034.7</td>
+      <td>55.89</td>
+      <td>0.422913</td>
+      <td>50.557459</td>
+    </tr>
+    <tr>
+      <th>Nevada</th>
+      <td>5053</td>
+      <td>3080156</td>
+      <td>181751.6</td>
+      <td>94.20</td>
+      <td>1.640501</td>
+      <td>59.007271</td>
+    </tr>
+    <tr>
+      <th>New Mexico</th>
+      <td>3411</td>
+      <td>2096829</td>
+      <td>106914.4</td>
+      <td>77.43</td>
+      <td>1.626742</td>
+      <td>50.988612</td>
+    </tr>
+    <tr>
+      <th>North Carolina</th>
+      <td>10507</td>
+      <td>10488084</td>
+      <td>601787.9</td>
+      <td>66.09</td>
+      <td>1.001804</td>
+      <td>57.378249</td>
+    </tr>
+    <tr>
+      <th>Ohio</th>
+      <td>18027</td>
+      <td>11689100</td>
+      <td>703368.9</td>
+      <td>77.92</td>
+      <td>1.542206</td>
+      <td>60.173059</td>
+    </tr>
+    <tr>
+      <th>Oklahoma</th>
+      <td>3618</td>
+      <td>3956971</td>
+      <td>201604.3</td>
+      <td>66.24</td>
+      <td>0.914336</td>
+      <td>50.949148</td>
+    </tr>
+    <tr>
+      <th>Rhode Island</th>
+      <td>8621</td>
+      <td>1059361</td>
+      <td>62335.4</td>
+      <td>90.73</td>
+      <td>8.137925</td>
+      <td>58.842453</td>
+    </tr>
+    <tr>
+      <th>South Carolina</th>
+      <td>6095</td>
+      <td>5148714</td>
+      <td>251664.5</td>
+      <td>66.33</td>
+      <td>1.183791</td>
+      <td>48.879099</td>
+    </tr>
+    <tr>
+      <th>Tennessee</th>
+      <td>10506</td>
+      <td>6829174</td>
+      <td>380823.0</td>
+      <td>66.39</td>
+      <td>1.538400</td>
+      <td>55.764138</td>
+    </tr>
+    <tr>
+      <th>Vermont</th>
+      <td>866</td>
+      <td>623989</td>
+      <td>34320.2</td>
+      <td>38.90</td>
+      <td>1.387845</td>
+      <td>55.001290</td>
+    </tr>
+    <tr>
+      <th>West Virginia</th>
+      <td>1126</td>
+      <td>1792147</td>
+      <td>78480.5</td>
+      <td>48.72</td>
+      <td>0.628297</td>
+      <td>43.791330</td>
+    </tr>
+    <tr>
+      <th>Wisconsin</th>
+      <td>6973</td>
+      <td>5822434</td>
+      <td>353935.5</td>
+      <td>70.15</td>
+      <td>1.197609</td>
+      <td>60.788237</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As expected, the two dataframes have the same size:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">higher_gdp</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">lower_gdp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(25, 25)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s generate histograms for case data for both the higher GDP and lower GDP data sets. We plot them on the same axes to make it easier to compare them:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">higher_gdp</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;GDP/pop &gt; median&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">lower_gdp</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;GDP/pop &lt;= median&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Cases per population in thousands&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Count&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Count&#39;)
+</pre></div>
+</div>
+<img alt="../_images/histogram_18_1.png" src="../_images/histogram_18_1.png" />
+</div>
+</div>
+<p>An issue that arises when plotting histograms on the same axes is that it becomes hard to compare values when the histograms use different bins. For example, from about 0.5 to 1.8, the histogram for the higher GDP group has a single bar with 13 entries. On the other hand, the histogram for the lower GDP group has two bars, but together those two bars sum up to 19.</p>
+<p>To resolve this issue, lets just pass bins that span the region as the bins for each histogram:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mybins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mybins</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0,  2,  4,  6,  8, 10, 12, 14, 16])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">higher_gdp</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;GDP/pop &gt; median&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">mybins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">lower_gdp</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;GDP/pop &lt;= median&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">mybins</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Cases per population in thousands&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Count&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Count&#39;)
+</pre></div>
+</div>
+<img alt="../_images/histogram_21_1.png" src="../_images/histogram_21_1.png" />
+</div>
+</div>
+<p>The histogram shows that states with GDPs over the median have higher case counts in general (for instance, the larger bars in the range 2-5), as well as larger maximum values (above 8).  One reason for this might be that states with higher GDPs may have network effects, where more of the population interacts with a larger number of people. For instance, such states may have more of their population employed in office jobs and likely to travel for their work.</p>
+<p>When an effect is observed visually, we usually want to quantify that effect in some way and then test whether any observed difference is “real” (rather than just caused by randomness). Let’s compare the average of the normalized number of cases for these two different groups:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hgdp_mu</span> <span class="o">=</span> <span class="n">higher_gdp</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">lgdp_mu</span> <span class="o">=</span> <span class="n">lower_gdp</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">hgdp_mu</span><span class="p">,</span> <span class="n">lgdp_mu</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.511232264232122, 1.9258062634390536)
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is a substantial difference between the two average values. However, the average is more sensitive to extreme values, such as the large normalized case rates of New York and New Jersey. One way to deal with this is to use a statistic that is not as sensitive to extrema; for example, the median is such a statistic:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">higher_gdp</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">lower_gdp</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.9453983135416348, 1.3878449780364717)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong></p>
+<p>A new data frame can be created that excludes New York and New Jersey using the following command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;New Jersey&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using this reduced data set, partition the data around the median normalized GDP, plot the histograms for the normalized Covid rates of the two partitions, and find the average normalized Covid rates for the two partitions.</p>
+<p><strong>Exercise</strong></p>
+<p>Partition the data around the <strong>mean</strong> GDP. Plot the histograms and find the averages for this new grouping.</p>
+</section>
+<section id="partitioning-based-on-urban-index">
+<h2><span class="section-number">3.5.2. </span>Partitioning Based on Urban Index<a class="headerlink" href="#partitioning-based-on-urban-index" title="Permalink to this heading">#</a></h2>
+<p>Some of the networking effects mentioned in the previous section may be associated with populations living in large, urban areas. In this section, we partition the data based on the urban index, which is the percentage of the population that is living in an urban area.  As before, we start by finding the median urban index for the states:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_urban</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;urban&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">m_urban</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>73.735
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we use that median to partition the data and plot the histograms:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">higher_urban</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;urban&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">m_urban</span><span class="p">]</span>
+<span class="n">lower_urban</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;urban&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">m_urban</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">higher_urban</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Urban index &gt; median&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">mybins</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">lower_urban</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Urban index &lt;= median&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">mybins</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Cases per population in thousands&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Count&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Count&#39;)
+</pre></div>
+</div>
+<img alt="../_images/histogram_35_1.png" src="../_images/histogram_35_1.png" />
+</div>
+</div>
+<p>As with normalized GDP, a substantial difference in distribution of normalized number of Covid cases is seen for states that are more urban versus less urban. The average normalized case rates for these partitions are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">higher_urban</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">lower_urban</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.8908656178327066, 1.5461729098384682)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, a substantial difference in averages is observed.  Some additional tests are left as exercises for the reader:</p>
+<p><strong>Exercise</strong></p>
+<p>Compare the medians for these two groups.</p>
+<p><strong>Exercise</strong></p>
+<p>Remove New York and New Jersey from the data set and recreate the histograms and averages for the partitioned data set without those two states.</p>
+</section>
+<section id="reading-assignment">
+<h2><span class="section-number">3.5.3. </span>Reading Assignment<a class="headerlink" href="#reading-assignment" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://tinlizzie.org/histograms/">Exploring Histograms</a></p></li>
+</ul>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="per-capita" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Since both Covid cases and GDP are being normalized per capita, the normalization could actually be dropped. However, we keep it here to be consistent with the analysis of the effect of the urban index.</p>
+</aside>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./03-first-data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="summary-stats.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3.4. </span>Summary Statistics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="hypothesis-testing.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.6. </span>Binary Hypothesis Testing with Real Data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

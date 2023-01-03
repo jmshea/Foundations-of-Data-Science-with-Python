@@ -1,0 +1,2165 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="7.3. Optimal Decisions for Discrete Stochastic Systems" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/07-bayesian-methods/optimal-decisions.html" />
+  
+<meta property="og:description" content="We are ready to tackle our third example from this chapter’s introduction: Example: Binary Communication System In a binary communication system, 0s and 1s are transmitted over a noisy channel. If ..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="7.3. Optimal Decisions for Discrete Stochastic Systems" />
+  
+    <title>7.3. Optimal Decisions for Discrete Stochastic Systems &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/07-bayesian-methods/optimal-decisions.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.4. Bayesian Hypothesis Testing" href="bayesian-hypothesis-testing.html" />
+    <link rel="prev" title="7.2. Bayes’ Rule in Systems with Hidden State" href="bayes-hidden-state.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/07-bayesian-methods/optimal-decisions.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/07-bayesian-methods/optimal-decisions.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binary-communication-system">
+   7.3.1. Binary Communication System
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-problem-and-decision-rules">
+   7.3.2. Decision Problem and Decision Rules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimal-decisions-to-minimize-the-probability-of-error-the-map-rule">
+   7.3.3. Optimal Decisions to Minimize the Probability of Error: The MAP Rule
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   7.3.4. Terminology Review
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Optimal Decisions for Discrete Stochastic Systems</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binary-communication-system">
+   7.3.1. Binary Communication System
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-problem-and-decision-rules">
+   7.3.2. Decision Problem and Decision Rules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimal-decisions-to-minimize-the-probability-of-error-the-map-rule">
+   7.3.3. Optimal Decisions to Minimize the Probability of Error: The MAP Rule
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   7.3.4. Terminology Review
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="optimal-decisions-for-discrete-stochastic-systems">
+<h1><span class="section-number">7.3. </span>Optimal Decisions for Discrete Stochastic Systems<a class="headerlink" href="#optimal-decisions-for-discrete-stochastic-systems" title="Permalink to this heading">#</a></h1>
+<p>We are ready to tackle our third example from this chapter’s introduction:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">Example: Binary Communication System</p>
+</div>
+<div class="sd-card-body docutils">
+<p class="sd-card-text">In a binary communication system, 0s and 1s are transmitted over a noisy channel.</p>
+<p class="sd-card-text">If we know the probability that a given bit is a 0 and we know the probabilities associated with the noisy channel, what is the optimal decision given an observation at the output of the channel?</p>
+</div>
+</div>
+<p>Let’s start by considering one particular instantiation of this problem:</p>
+<span class="target" id="index-0"></span><section id="binary-communication-system">
+<span id="index-1"></span><h2><span class="section-number">7.3.1. </span>Binary Communication System<a class="headerlink" href="#binary-communication-system" title="Permalink to this heading">#</a></h2>
+<p>Suppose we are given a system with that has binary inputs and ternary outputs. Let’s use <span class="math notranslate nohighlight">\(A_0\)</span> and <span class="math notranslate nohighlight">\(A_1\)</span> to denote the input events and <span class="math notranslate nohighlight">\(B_0\)</span>, <span class="math notranslate nohighlight">\(B_1\)</span>, and <span class="math notranslate nohighlight">\(B_2\)</span> to denote the output events. The channel is completely specified by giving the likelihoods, <span class="math notranslate nohighlight">\(P(B_j|A_i)\)</span> for all <span class="math notranslate nohighlight">\(i \in \{0,1\}\)</span> and <span class="math notranslate nohighlight">\(j \in \{0,1,2\}\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(p_{ij} = P(B_j|A_i)\)</span>. Note the order of the <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.  This is the probability of transitioning from input <span class="math notranslate nohighlight">\(i\)</span> to output <span class="math notranslate nohighlight">\(j\)</span>, and these are also called <em>channel transition probabilities</em>. It is helpful to visualize the channel transition probabilities/likelihoods on a diagram, where we label the arrow connecting input event <span class="math notranslate nohighlight">\(A_i\)</span> with output event <span class="math notranslate nohighlight">\(B_j\)</span> by <span class="math notranslate nohighlight">\(p_{ij}\)</span>. An  example of such a diagram is shown in <a class="reference internal" href="#example2to3"><span class="std std-numref">Fig. 7.1</span></a>. For example, from this diagram, we can read that <span class="math notranslate nohighlight">\(p_{00}=5/8\)</span>, <span class="math notranslate nohighlight">\(p_{01}=1/4\)</span>, and <span class="math notranslate nohighlight">\(p_{12}=3/4\)</span>.</p>
+<figure class="align-default" id="example2to3">
+<a class="reference internal image-reference" href="../_images/example2to3.svg"><img alt="Channel diagram with two inputs ($A_0, A_1$) and three outputs ($B_0, B_1, B_2$). Probabilities are shown for each transition." src="../_images/example2to3.svg" width="400px" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7.1 </span><span class="caption-text">Example channel transition diagram for channel with two inputs and three outputs.</span><a class="headerlink" href="#example2to3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>It is convenient to collect the channel transition probabilities into an array, such that the <span class="math notranslate nohighlight">\((i,j)\)</span>th entry in the array is <span class="math notranslate nohighlight">\(p_{ij}\)</span>. Let’s import numpy and create an array with these channel transition probabilities:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">P</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">5</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.625 0.25  0.125]
+ [0.125 0.125 0.75 ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the probabilities with the same conditioning should add to 1. In other words,</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j \in \{0,1,2\} }  P(B_j|A_i) = 1, ~~~ i=0,1.
+\]</div>
+<p>In the diagram, this corresponds to the transition probabilities that emerge from the same input. In the matrix <span class="math notranslate nohighlight">\(\mathbf{P},\)</span> this corresponds to all of the entries in a row. We can tell NumPy to sum the array across the column by using the <code class="docutils literal notranslate"><span class="pre">np.sum</span></code> function and passing the <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> argument to tell it to sum across the second axis (the columns):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the probabilities for a particular <span class="math notranslate nohighlight">\(B_j\)</span> (i.e., merging into a particular output) do not necessarily sum to 1.</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i \in \{0,1\} }  P(B_j|A_i) = ?, ~~~ j=0,1,2.
+\]</div>
+<p>This corresponds to the column sums of the matrix <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>, and we can get these column sums by using the <code class="docutils literal notranslate"><span class="pre">np.sum</span></code> function and passing the <code class="docutils literal notranslate"><span class="pre">axis=0</span></code> argument to tell numpy to sum across axis 0 (the rows):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.75 , 0.375, 0.875])
+</pre></div>
+</div>
+</div>
+</div>
+<span class="target" id="index-2"></span></section>
+<section id="decision-problem-and-decision-rules">
+<span id="index-3"></span><h2><span class="section-number">7.3.2. </span>Decision Problem and Decision Rules<a class="headerlink" href="#decision-problem-and-decision-rules" title="Permalink to this heading">#</a></h2>
+<p>The <em>decision problem</em> for the binary communication systems is concisely described as follows: given the observed output, determine which input was sent.  A <em>decision rule</em> tells how to choose an input given an observed output. In general, a decision rule may result in a randomized choice for the input,  but in this class, we will only consider deterministic decision rules.</p>
+<p>We can turn this into an <em>optimal decision problem</em> if we specify criteria to be optimized. Here are two common criteria:</p>
+<ol class="simple">
+<li><p>Maximize the likelihood of the input</p></li>
+<li><p>Choose the input that minimizes the probability of error</p></li>
+</ol>
+<span class="target" id="index-4"></span><p id="index-5">The optimum decision under criterion 1 is called the <em>maximum likelihood (ML)</em> decision. In this problem, the likelihoods are of the form <span class="math notranslate nohighlight">\(P(B_j|A_i)\)</span>. Let <span class="math notranslate nohighlight">\(\hat{A}_i\)</span> denote the event that the receiver decides that input was <span class="math notranslate nohighlight">\(i\)</span>. Then the ML decision rule given <span class="math notranslate nohighlight">\(B_j\)</span> is observed is</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{A}_i, \mbox{ where } i = \arg \max_{i \in \{0,1\}} P(B_j|A_i).
+\]</div>
+<p>The values of <span class="math notranslate nohighlight">\(P(B_j|A_i)\)</span> are given in <a class="reference internal" href="#example2to3"><span class="std std-numref">Fig. 7.1</span></a>.  For each output, the ML rule selects the input that has the largest likelihood, which corresponds to the arrow with the largest probability merging into that output in <a class="reference internal" href="#example2to3"><span class="std std-numref">Fig. 7.1</span></a>. Similarly, the ML decision corresponds to the row number with the largest probability for each column of the transition probability matrix, <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. To get the index of the largest value in each column, we can use the <code class="docutils literal notranslate"><span class="pre">np.argmax</span></code> function and pass the <code class="docutils literal notranslate"><span class="pre">axis=0</span></code> keyword parameter to tell NumPy to maximize over the rows. (Note that <code class="docutils literal notranslate"><span class="pre">np.max</span></code> would return the maximum value, whereas <code class="docutils literal notranslate"><span class="pre">np.argmax</span></code> returns the index of the maximum value.)</p>
+<p>Thus, the ML decisions are as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 1])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Given <span class="math notranslate nohighlight">\(B_0\)</span> is received decide <span class="math notranslate nohighlight">\(A_0\)</span></p>
+<p>Given <span class="math notranslate nohighlight">\(B_1\)</span> is received, decide <span class="math notranslate nohighlight">\(A_0\)</span></p>
+<p>Given <span class="math notranslate nohighlight">\(B_2\)</span> is received, decide <span class="math notranslate nohighlight">\(A_1\)</span></p>
+<p>Unfortunately, the ML solution does not necessarily minimize the probability of error. For instance, suppose that we know that 0 is sent with probability 1; i.e., <span class="math notranslate nohighlight">\(P(A_0)=1\)</span>. Then the ML rule will make an error whenever <span class="math notranslate nohighlight">\(B_2\)</span> is received. Let’s use total probability to calculate the probability of each <span class="math notranslate nohighlight">\(B_j\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+P(B_j) = \sum_{i \in \{0,1\}} P(B_j|A_i) P(A_i)
+\]</div>
+<p>We start by setting up a NumPy vector to hold the <em>a priori</em> probabilities:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\left[ P(A_0), P(A_1) \right].
+\]</div>
+<p>Then we use a nested for loop to calculate <span class="math notranslate nohighlight">\(P(B_j)\)</span> for each <span class="math notranslate nohighlight">\(j\)</span> and within the loop for each <span class="math notranslate nohighlight">\(j\)</span> we use a for loop to  carry out the sum for each <span class="math notranslate nohighlight">\(i\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aprioris</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">pBj</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">pBj</span><span class="o">+=</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">aprioris</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P(B</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">pBj</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P(B0) = 0.625
+P(B1) = 0.25
+P(B2) = 0.125
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(E\)</span> be the event that an error occurs (i.e., the decision differs from the transmitted symbol). Then for this simple example, <span class="math notranslate nohighlight">\(P(E) =  P(B_2) = 0.125\)</span>. We know that it is suboptimal, because we could just use the decision rule “Always decide <span class="math notranslate nohighlight">\(A_0\)</span>” and get error probability 0.</p>
+<p>We can guess that there must be some value <span class="math notranslate nohighlight">\(q_0\)</span> such that:</p>
+<ul class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(P(A_0)&lt;q_0\)</span>, the ML rule performs better, and</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(P(A_0)&gt;q_0\)</span>, always deciding <span class="math notranslate nohighlight">\(A_0\)</span> performs better.</p></li>
+</ul>
+<span class="target" id="index-6"></span><p id="index-7">Let’s build a simulation to test this. First, we will see how to efficiently generate the events <span class="math notranslate nohighlight">\(A_0\)</span> and <span class="math notranslate nohighlight">\(A_1\)</span> given any probabilities <span class="math notranslate nohighlight">\(P(A_0)\)</span> and <span class="math notranslate nohighlight">\(P(A_1)\)</span> such that <span class="math notranslate nohighlight">\(P(A_0)+P(A_1) = 1\)</span>. We will again use NumPy’s <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code> function, but we will now pass it the probability information as a keyword parameter. Take a look at the help for <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>npr.choice
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Docstring:</span>
+choice(a, size=None, replace=True, p=None)
+
+Generates a random sample from a given 1-D array
+
+.. versionadded:: 1.7.0
+
+.. note::
+    New code should use the ``choice`` method of a ``default_rng()``
+    instance instead; please see the :ref:`random-quick-start`.
+
+Parameters
+----------
+a : 1-D array-like or int
+    If an ndarray, a random sample is generated from its elements.
+    If an int, the random sample is generated as if it were ``np.arange(a)``
+size : int or tuple of ints, optional
+    Output shape.  If the given shape is, e.g., ``(m, n, k)``, then
+    ``m * n * k`` samples are drawn.  Default is None, in which case a
+    single value is returned.
+replace : boolean, optional
+    Whether the sample is with or without replacement. Default is True,
+    meaning that a value of ``a`` can be selected multiple times.
+p : 1-D array-like, optional
+    The probabilities associated with each entry in a.
+    If not given, the sample assumes a uniform distribution over all
+    entries in ``a``.
+
+Returns
+-------
+samples : single item or ndarray
+    The generated random samples
+
+Raises
+------
+ValueError
+    If a is an int and less than zero, if a or p are not 1-dimensional,
+    if a is an array-like of size 0, if p is not a vector of
+    probabilities, if a and p have different lengths, or if
+    replace=False and the sample size is greater than the population
+    size
+
+See Also
+--------
+randint, shuffle, permutation
+Generator.choice: which should be used in new code
+
+Notes
+-----
+Setting user-specified probabilities through ``p`` uses a more general but less
+efficient sampler than the default. The general sampler produces a different sample
+than the optimized sampler even if each element of ``p`` is 1 / len(a).
+
+Sampling random rows from a 2-D array is not possible with this function,
+but is possible with `Generator.choice` through its ``axis`` keyword.
+
+Examples
+--------
+Generate a uniform random sample from np.arange(5) of size 3:
+
+&gt;&gt;&gt; np.random.choice(5, 3)
+array([0, 3, 4]) # random
+&gt;&gt;&gt; #This is equivalent to np.random.randint(0,5,3)
+
+Generate a non-uniform random sample from np.arange(5) of size 3:
+
+&gt;&gt;&gt; np.random.choice(5, 3, p=[0.1, 0, 0.3, 0.6, 0])
+array([3, 3, 0]) # random
+
+Generate a uniform random sample from np.arange(5) of size 3 without
+replacement:
+
+&gt;&gt;&gt; np.random.choice(5, 3, replace=False)
+array([3,1,0]) # random
+&gt;&gt;&gt; #This is equivalent to np.random.permutation(np.arange(5))[:3]
+
+Generate a non-uniform random sample from np.arange(5) of size
+3 without replacement:
+
+&gt;&gt;&gt; np.random.choice(5, 3, replace=False, p=[0.1, 0, 0.3, 0.6, 0])
+array([2, 3, 0]) # random
+
+Any of the above can be repeated with an arbitrary array-like
+instead of just integers. For instance:
+
+&gt;&gt;&gt; aa_milne_arr = [&#39;pooh&#39;, &#39;rabbit&#39;, &#39;piglet&#39;, &#39;Christopher&#39;]
+&gt;&gt;&gt; np.random.choice(aa_milne_arr, 5, p=[0.5, 0.1, 0.1, 0.3])
+array([&#39;pooh&#39;, &#39;pooh&#39;, &#39;pooh&#39;, &#39;Christopher&#39;, &#39;piglet&#39;], # random
+      dtype=&#39;&lt;U11&#39;)
+<span class=" -Color -Color-Red">Type:</span>      builtin_function_or_method
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, if we want to output a 0 with probability <span class="math notranslate nohighlight">\(P(A_0)=0.75\)</span> and a 1 with probability <span class="math notranslate nohighlight">\(P(A_1)=0.25\)</span>, we can simulate 1000 such events as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_values</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.75</span><span class="p">,</span><span class="mf">0.25</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can check that we are achieving the desired probabilities by comparing the relative frequencies to the probabilities we passed as arguments:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sim_values</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.769
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sim_values</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.231
+</pre></div>
+</div>
+</div>
+</div>
+<p>The relative frequencies of 0.763, 0.237 are close to the probabilities 0.75, 0.25. Some variation is expected, since we only simulated 1000 events.</p>
+<p>Now we are ready to build a function to carry out the simulation. I am going to introduced one new Python concept here: we can pass a function as an argument to another function. This will allow us to create one simulation and test it for multiple different decision rules.  Let’s name the parameter for our decision_rule. Then the following code will simulate the error probability when passed a function for the decision rule that returns either 0 or 1 (corresponding to <span class="math notranslate nohighlight">\(A_0\)</span> or <span class="math notranslate nohighlight">\(A_1\)</span>) when passed an integer 0, 1, or 2, representing one of the outputs (<span class="math notranslate nohighlight">\(B_0, B_1, B_2\)</span>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sim2to3</span> <span class="p">(</span><span class="n">decision_rule</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">,</span> <span class="n">num_sims</span> <span class="o">=</span> <span class="mi">100_000</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="c1"># Create all the input events at the same time:</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">num_sims</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">PA0</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">PA0</span><span class="p">])</span>
+    
+    <span class="c1"># Create an array to determine the channel outputs</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_sims</span><span class="p">)</span>
+    
+    <span class="c1"># Create an array to store the decisions</span>
+    <span class="n">decisions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_sims</span><span class="p">)</span>
+    
+    <span class="c1"># There are more efficient ways of doing this using NumPy, but</span>
+    <span class="c1"># individually determining each output for each input should make </span>
+    <span class="c1"># this easier to understand for most learners</span>
+    <span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+        <span class="n">input_bit</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="n">sim</span><span class="p">]</span>
+        <span class="c1"># Choose observation according to transition probabilities for given input bit:</span>
+        <span class="n">observation</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">p</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">input_bit</span><span class="p">])</span>
+        
+        <span class="c1"># Now pass this observation to the decision rule function:</span>
+        <span class="n">decisions</span><span class="p">[</span><span class="n">sim</span><span class="p">]</span> <span class="o">=</span> <span class="n">decision_rule</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">)</span>
+        
+    
+    <span class="c1"># Finally, calculate the error probability. An error occurs</span>
+    <span class="c1"># whenever the decision is not equal to the true input</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">inputs</span> <span class="o">!=</span> <span class="n">decisions</span><span class="p">)</span>
+    
+    <span class="n">error_prob</span> <span class="o">=</span> <span class="n">errors</span><span class="o">/</span><span class="n">num_sims</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span> <span class="sa">f</span><span class="s1">&#39;The error probability is approximately </span><span class="si">{</span><span class="n">error_prob</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">error_prob</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s create and test our decision rule functions. The easiest one is to always decide 0:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">always_decide0</span> <span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This should decision rule should result in zero errors when <span class="math notranslate nohighlight">\(P(A_0)=1\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim2to3</span><span class="p">(</span><span class="n">always_decide0</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The error probability is approximately 0.00
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The error probability should increase as <span class="math notranslate nohighlight">\(P(A_0)\)</span> decreases:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim2to3</span><span class="p">(</span><span class="n">always_decide0</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The error probability is approximately 0.20
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2013
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s implement out ML decision rule as a function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ML</span> <span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">P</span><span class="p">[:,</span><span class="n">observation</span><span class="p">])</span> <span class="c1">#Here I selected the  column and then did argmax, but the other way also works</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s try this for a few values of <span class="math notranslate nohighlight">\(P(A_0)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim2to3</span><span class="p">(</span><span class="n">ML</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The error probability is approximately 0.13
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.12501
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim2to3</span><span class="p">(</span><span class="n">ML</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The error probability is approximately 0.15
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.15029
+</pre></div>
+</div>
+</div>
+</div>
+<p>The ML rule does worse than the “always decide <span class="math notranslate nohighlight">\(A_0\)</span>” rule for <span class="math notranslate nohighlight">\(P(A_0)=1\)</span>, as expected. The ML rule performs better when <span class="math notranslate nohighlight">\(P(A_0)=0.8\)</span>.</p>
+<p>Let’s create one more decision rule function: always decide <span class="math notranslate nohighlight">\(A_1\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">always_decide1</span> <span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s generate a plot comparing the error probabilities of these decision rules as a function of <span class="math notranslate nohighlight">\(P(A_0)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">input_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">)</span>
+
+<span class="n">pe_always0</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pe_always1</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pe_ML</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">PA0</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">input_probs</span><span class="p">):</span>
+    <span class="n">pe_always0</span> <span class="o">+=</span> <span class="p">[</span><span class="n">sim2to3</span><span class="p">(</span><span class="n">always_decide0</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">)]</span>
+    <span class="n">pe_always1</span> <span class="o">+=</span> <span class="p">[</span><span class="n">sim2to3</span><span class="p">(</span><span class="n">always_decide1</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">)]</span>
+    <span class="n">pe_ML</span> <span class="o">+=</span> <span class="p">[</span><span class="n">sim2to3</span><span class="p">(</span><span class="n">ML</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">)]</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">input_probs</span><span class="p">,</span> <span class="n">pe_always0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Always decide 0&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">input_probs</span><span class="p">,</span> <span class="n">pe_always1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Always decide 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">input_probs</span><span class="p">,</span> <span class="n">pe_ML</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ML&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$P(A_0)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Error probability&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████████████████████████████████████████████████████████████████████████████████████████| 21/21 [03:47&lt;00:00, 10.85s/it]
+</pre></div>
+</div>
+<img alt="../_images/optimal-decisions_37_1.png" src="../_images/optimal-decisions_37_1.png" />
+</div>
+</div>
+<p>From the figure, we can see that each of these three different decision rules minimize the probability of error over some specific range of <span class="math notranslate nohighlight">\(P(A_0)\)</span>. For low <span class="math notranslate nohighlight">\(P(A_0)\)</span>, it is best to always decide <span class="math notranslate nohighlight">\(A_1\)</span>. For medium <span class="math notranslate nohighlight">\(P(A_0)\)</span> (in the range <span class="math notranslate nohighlight">\(0.2 &lt; P(A_0) &lt; 0.85\)</span>), it appears that it is best to apply the ML rule, and for larger <span class="math notranslate nohighlight">\(P(A_0)\)</span>, it is best to always decide <span class="math notranslate nohighlight">\(A_0\)</span>. And other decision rules are possible. We need a principled way to determine the optimum decision rule to minimize the error probability.</p>
+<span class="target" id="index-8"></span><span class="target" id="index-9"></span><span class="target" id="index-10"></span><span class="target" id="index-11"></span><span class="target" id="index-12"></span></section>
+<section id="optimal-decisions-to-minimize-the-probability-of-error-the-map-rule">
+<span id="index-13"></span><h2><span class="section-number">7.3.3. </span>Optimal Decisions to Minimize the Probability of Error: The MAP Rule<a class="headerlink" href="#optimal-decisions-to-minimize-the-probability-of-error-the-map-rule" title="Permalink to this heading">#</a></h2>
+<p>As before, let <span class="math notranslate nohighlight">\(\hat{A}_i\)</span> denote the event that the decision is <span class="math notranslate nohighlight">\(i\)</span>. Then an error occurs if the decision is different than the actual input event. Let <span class="math notranslate nohighlight">\(E\)</span> denote the error event, so</p>
+<div class="math notranslate nohighlight">
+\[
+E = \left(\hat{A}_0 \cap A_1\right) \cup \left(\hat{A}_1 \cap A_0\right).
+\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(\left(\hat{A}_0 \cap A_1\right)\)</span> and <span class="math notranslate nohighlight">\(\left(\hat{A}_1 \cap A_0\right)\)</span> are mutually exclusive (since <span class="math notranslate nohighlight">\(A_0\)</span> and <span class="math notranslate nohighlight">\(A_1\)</span> are complementary events$. Thus</p>
+<div class="math notranslate nohighlight">
+\[
+P(E) = P\left(\hat{A}_0 \cap A_1\right) + P \left(\hat{A}_1 \cap A_0\right).
+\]</div>
+<p>We can minimize the error probability if we minimize the error probability given the observation, <span class="math notranslate nohighlight">\(B_j\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+P\left(E|B_j\right) = P\left(\hat{A}_0 \cap A_1 \left \vert B_j \right. \right) + P \left(\hat{A}_1 \cap A_0 \left \vert B_j \right. \right).
+\]</div>
+<p>In general, we can make a decision rule that is probabilistic, meaning that given <span class="math notranslate nohighlight">\(B_j\)</span>, we choose <span class="math notranslate nohighlight">\(\hat{A}_0\)</span> with
+some probability and <span class="math notranslate nohighlight">\(\hat{A}_1\)</span> with some probability. However, that turns out to not be necessary: the optimum decision rule is deterministic. Thus, only one of the two terms in the summation will be retained; i.e., given <span class="math notranslate nohighlight">\(B_j\)</span> only one of <span class="math notranslate nohighlight">\(\hat{A}_0\)</span> and <span class="math notranslate nohighlight">\(\hat{A_1}\)</span> will be occur. If given <span class="math notranslate nohighlight">\(B_j\)</span>, we always decide the most likely input was 0, then <span class="math notranslate nohighlight">\(\hat{A}_0\)</span> occurs, and <span class="math notranslate nohighlight">\(P(E) = P\left(A_1 \left \vert B_j \right. \right)\)</span>; conversely, if given <span class="math notranslate nohighlight">\(B_j\)</span>, we always decide the most likely input was 1, then <span class="math notranslate nohighlight">\(\hat{A}_1\)</span> occurs, and <span class="math notranslate nohighlight">\(P(E)=P \left( A_0 \left \vert B_j \right. \right).\)</span></p>
+<p>Since, we wish to minimize the <span class="math notranslate nohighlight">\(P(E)\)</span>, the decision rule given <span class="math notranslate nohighlight">\(B_j\)</span> is received should be:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{A}_0\)</span> if <span class="math notranslate nohighlight">\(P\left(A_1 \left \vert B_j \right. \right) &lt; P \left( A_0 \left \vert B_j \right. \right)\)</span>, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{A}_1\)</span> if <span class="math notranslate nohighlight">\(P\left(A_1 \left \vert B_j \right. \right) &gt; P \left( A_0 \left \vert B_j \right. \right)\)</span>, and</p></li>
+<li><p>either <span class="math notranslate nohighlight">\(\hat{A}_0\)</span> or <span class="math notranslate nohighlight">\(\hat{A}_1\)</span> if <span class="math notranslate nohighlight">\(P\left(A_1 \left \vert B_j \right. \right) = P \left( A_0 \left \vert B_j \right. \right)\)</span>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although we didn’t prove that the optimal decision rule is deterministic, it is not hard to see that any probabilistic decision rule would have an error probability that is  a linear combination of the probabilities <span class="math notranslate nohighlight">\(P\left(A_1 \left \vert B_j \right. \right)\)</span> and  <span class="math notranslate nohighlight">\(P \left( A_0 \left \vert B_j \right. \right)\)</span>. The minimum value of a line on a closed interval is at one of the end points (i.e., one of the decisions has probability 1 and the other has probability 0), so the decision rule that minimizes the error probability is deterministic.</p>
+</div>
+<p>The decision rule that minimizes the error probability can be summarized as “choose the input that maximizes the <em>a posteriori</em> probability given the observation <span class="math notranslate nohighlight">\(B_j\)</span>. Mathematically, the minimum error probability rule is</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{A}_i \mbox{where} j = \arg \max_{i \in \{0,1\} } P \left( A_i \left \vert B_j \right. \right)
+\]</div>
+<p>Since we are choosing the input that maximizes the <em>a posteriori</em> probability (APP), we call this a <em>maximum a posteriori (MAP)</em> decision rule. We also use the following notation when the decision rule is between two possible inputs:</p>
+<div class="math notranslate nohighlight" id="equation-binary-map">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-binary-map" title="Permalink to this equation">#</a></span>\[
+P\left(A_0 \left \vert B_j \right. \right) 
+\underset{1}{\overset{0}{\gtrless}}
+ P \left( A_1 \left \vert B_j \right. \right).
+ \]</div>
+<p>As in <a class="reference internal" href="bayes-rule.html"><span class="doc">Bayes’ Rule</span></a>, the APPs are not given in the problem formulation, but we can find the APPs from the likelihoods and the <em>a priori</em> probabilities:</p>
+<div class="math notranslate nohighlight">
+\[
+P(A_i|B_j) = \frac{P(B_j|A_i)P(A_i)}{\sum_i P(B_j|A_i)P(A_i)}.
+\]</div>
+<p>If only the MAP decision is needed, then <a class="reference internal" href="#equation-binary-map">(7.2)</a> can be simplified:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4a08eaa1-8374-4621-b150-ccaab26c6d11">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-4a08eaa1-8374-4621-b150-ccaab26c6d11" title="Permalink to this equation">#</a></span>\[\begin{align}
+P\left(A_0 \left \vert B_j \right. \right)  &amp; \underset{1}{\overset{0}{\gtrless}}  P \left( A_1 \left \vert B_j \right. \right)\\
+\frac{P(B_j|A_0)P(A_0)}{\sum_i P(B_j|A_i)P(A_i)} &amp; \underset{1}{\overset{0}{\gtrless}}
+\frac{P(B_j|A_1)P(A_1)}{\sum_i P(B_j|A_i)P(A_i)} \\
+{P(B_j|A_0)P(A_0)} &amp; \underset{1}{\overset{0}{\gtrless}}
+{P(B_j|A_1)P(A_1)}.
+\end{align}\]</div>
+<p>The APPs can be computed by implementing Bayes’ rule in Python as follows for <span class="math notranslate nohighlight">\(P(A_0) = 1/5\)</span> and <span class="math notranslate nohighlight">\(P(A_1)=4/5\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aprioris</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="o">/</span><span class="mi">5</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">pBj</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">pBj</span><span class="o">+=</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">aprioris</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P(B</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">pBj</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P(A</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">|B</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">aprioris</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">pBj</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P(B0) = 0.225
+P(A0|B0) = 0.5555555555555556
+P(A1|B0) = 0.4444444444444445
+
+P(B1) = 0.15000000000000002
+P(A0|B1) = 0.3333333333333333
+P(A1|B1) = 0.6666666666666666
+
+P(B2) = 0.6250000000000001
+P(A0|B2) = 0.039999999999999994
+P(A1|B2) = 0.96
+</pre></div>
+</div>
+</div>
+</div>
+<p>The MAP rule for these <em>a priori</em> probabilities is <strong>not any of the three rules previously introduced</strong>! Let’s create a MAP decision rule function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">MAP</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">):</span>
+    <span class="c1"># Take the $j$th column and multiply it elementwise by the a priori probability vector</span>
+    <span class="n">scaled_apps</span> <span class="o">=</span> <span class="n">P</span><span class="p">[:,</span><span class="n">observation</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">PA0</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">PA0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">scaled_apps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now run a simulation comparing the performance of all of these decision rules:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">)</span>
+
+<span class="n">pe_always0</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pe_always1</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pe_ML</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pe_MAP</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">PA0</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">input_probs</span><span class="p">):</span>
+    <span class="n">pe_always0</span> <span class="o">+=</span> <span class="p">[</span><span class="n">sim2to3</span><span class="p">(</span><span class="n">always_decide0</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">)]</span>
+    <span class="n">pe_always1</span> <span class="o">+=</span> <span class="p">[</span><span class="n">sim2to3</span><span class="p">(</span><span class="n">always_decide1</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">)]</span>
+    <span class="n">pe_ML</span> <span class="o">+=</span> <span class="p">[</span><span class="n">sim2to3</span><span class="p">(</span><span class="n">ML</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">)]</span>
+    <span class="n">pe_MAP</span> <span class="o">+=</span> <span class="p">[</span><span class="n">sim2to3</span><span class="p">(</span><span class="n">MAP</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">PA0</span><span class="p">)]</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">input_probs</span><span class="p">,</span> <span class="n">pe_always0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Always decide 0&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">input_probs</span><span class="p">,</span> <span class="n">pe_always1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Always decide 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">input_probs</span><span class="p">,</span> <span class="n">pe_ML</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ML&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">input_probs</span><span class="p">,</span> <span class="n">pe_MAP</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;MAP&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$P(A_0)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Error probability&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████████████████████████████████████████████████████████████████████████████████████████| 21/21 [06:44&lt;00:00, 19.28s/it]
+</pre></div>
+</div>
+<img alt="../_images/optimal-decisions_43_1.png" src="../_images/optimal-decisions_43_1.png" />
+</div>
+</div>
+<p>As seen in the figure, the MAP rule achieves the lowest error probability for all values of <span class="math notranslate nohighlight">\(P(A_0)\)</span>. However, this does require the receiver to know the <em>a priori</em> values of the inputs.  If the <em>a priori</em> probabilities are note known, then the ML decision rule is usually used.</p>
+</section>
+<section id="terminology-review">
+<h2><span class="section-number">7.3.4. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg)  translateX(-10%);
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transform:  translateX(20px); 
+    transition: display 0s;
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 300px;
+	  width: 640px;
+}
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:20px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 600px;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 16pt;
+    left:442pt;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:20px;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+.flashcardtext{
+    color: var(--snow);
+    font-size: 20pt;
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+  }
+
+</style><script type="text/Javascript">
+/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+function flip(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 700, next);
+}
+
+function reenableNext(next) {
+    next.style.pointerEvents='auto';
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+
+}
+
+
+function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 600, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id) {
+    console.log(id);
+
+    var mydiv=document.getElementById(id);
+
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+
+    for (var i=0; i<2; i++) {
+
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    return flipper;
+}
+
+
+
+
+
+</script><script type="text/Javascript">
+
+    cardsmXPWhGuaKvkB=[
+    {
+        "front": "decision rule<br>(discrete stochastic system)",
+        "back": "For a discrete stochastic system with inputs (or hidden states) $\\{A_i\\}$ and outputs $\\{B_j\\}$, a <I>decision rule</I> for an observation $B_j$ gives a choice of corresponding input event $A_i$.<br> The decision rule may be chosen to optimize some function of the inputs and outputs (e.g., likelihood or APP)."
+    },
+    {
+        "front": "maximum likelihood (ML) rule<br>(discrete stochastic system)",
+        "back": "For a stochastic system with a discrete input events $\\{ A_0, A_i, \\ldots \\}$ and  discrete output events $\\{B_0, B_1, \\ldots\\}$,  the <I>maximum likelihood</I> decision rule given $B_j$ was received is <br> $$ \\hat{A}_i, \\mbox{ where } i = \\arg \\max_{i \\in \\{0,1\\}} P(B_j|A_i). $$ "
+    },
+    {
+        "front": "MAP rule<br>(discrete stochastic system)",
+        "back": "For a stochastic system with a discrete input events $\\{ A_0, A_i, \\ldots \\}$ and  discrete output events $\\{B_0, B_1, \\ldots\\}$,  the <I>maximum a posteriori (MAP)</I> decision rule given $B_j$ was received is <br> $$ \\hat{A}_i, \\mbox{ where } i = \\arg \\max_{i \\in \\{0,1\\}} P(A_i|B_j). $$ "}
+]
+;
+
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/flashcards/optimal-decisions.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("mXPWhGuaKvkB"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("mXPWhGuaKvkB");
+        });
+        }
+        </script>
+        <div style="height:40px"></div><div class="flip-container" id="mXPWhGuaKvkB" onclick="flip(this)"></div><div style="height:40px"></div><div class="next" id="mXPWhGuaKvkB-next" onclick="checkFlip('mXPWhGuaKvkB')"> </div> <div style="height:40px"></div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./07-bayesian-methods"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="bayes-hidden-state.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">7.2. </span>Bayes’ Rule in Systems with Hidden State</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="bayesian-hypothesis-testing.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7.4. </span>Bayesian Hypothesis Testing</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

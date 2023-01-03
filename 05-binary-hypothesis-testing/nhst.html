@@ -1,0 +1,1475 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5.2. General Resampling Approaches for Null Hypothesis Significance Testing &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.3. Calculating \(p\)-Values" href="calculating-p-values.html" />
+    <link rel="prev" title="5.1. Statistical Studies" href="statistical-studies.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-scatter.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="outline.html">
+     5.6. Binary Hypothesis Tests with Resampling (Outline)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-moments/outline.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-conditional-stats/outline.html">
+   10. Applications of Conditional Distributions to Statistical Tests (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-matrix-vector-regression/outline.html">
+   11. Multidimensional Data and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12-categorical-data/outline.html">
+   12. Tests of Independence for Categorical Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/05-binary-hypothesis-testing/nhst.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/05-binary-hypothesis-testing/nhst.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>General Resampling Approaches for Null Hypothesis Significance Testing</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="general-resampling-approaches-for-null-hypothesis-significance-testing">
+<h1><span class="section-number">5.2. </span>General Resampling Approaches for Null Hypothesis Significance Testing<a class="headerlink" href="#general-resampling-approaches-for-null-hypothesis-significance-testing" title="Permalink to this headline">#</a></h1>
+<p>In <a class="reference internal" href="../03-first-data/hypothesis-testing.html"><span class="doc">Section 3.3</span></a>, I introduced Null Hypothesis Significance Testing (NHST), and we used  resampling to conduct a NHST on whether urban areas and rural areas have a significant difference in mean Covid rates. Consider again <em>why</em> we perform resampling for NHST: we have observed some difference between the groups that is captured in a test statistic, and we want to determine the probability of seeing such an extreme value of the test statistic under the null hypothesis. As discussed in  <a class="reference internal" href="../03-first-data/hypothesis-testing.html"><span class="doc">Section 3.3</span></a>, the test statistic comes from a random distribution, which is known as the <em>sampling distribution</em>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary simple">
+<dt id="term-sampling-distribution">sampling distribution<a class="headerlink" href="#term-sampling-distribution" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For some statistic of sample data, the <em>sampling distribution</em> characterizes the possible values of that statistic and the mapping of probability to those values, under some underlying assumption(s) on the population. The sampling distribution varies with the size(s) of the group(s) in the sample.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>If we knew the sampling distribution of the test statistic, we could determine the probability of seeing such an extreme value of the test statistic analytically. Since we do not know the sampling distribution, we generally have two choices:</p>
+<ol class="simple">
+<li><p>We can use a <em>model-based</em> approach, in which we assume that under <span class="math notranslate nohighlight">\(H_0\)</span>,  the test statistic can be modeled as coming from some known random distribution, and we infer the parameters of the distribution from the data. This approach is discussed more in <a class="reference internal" href="../08-random-variables/intro.html"><span class="doc">Chapter 8</span></a>.</p></li>
+<li><p>We can use a <em>model-free</em> approach, in which approximate the sampling distribution of the test statistic by resampling from the data.</p></li>
+</ol>
+<p>This chapter focuses on the model-free approach using resampling.</p>
+<!--For a NHST on an  observed difference of means (or any other summary statistic), the null hypothesis, $H_0$, is that the two populations being compared do not have any difference in the random distribution of the variable being considered. I.e., for the example of Covid rates, $H_0$ is that a person from either population has the same probability of getting Covid. 
+-->
+<p>Let’s consider a generic NHST resampling problem. We have data sets <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>, each of which has some summary statistic <span class="math notranslate nohighlight">\(T_{\mathcal{A}}\)</span> and <span class="math notranslate nohighlight">\(T_{\mathcal{B}}\)</span>. For example, the summary statistic is often the average (or sample mean). Suppose that we observe some difference in the summary statistics of the form <span class="math notranslate nohighlight">\(T_{\mathcal{A}} &gt; T_{\mathcal{B}}\)</span>. Then we can conduct a generic NHST via resampling as follows:</p>
+<ol class="simple">
+<li><p>Choose a significance level, <span class="math notranslate nohighlight">\(\alpha\)</span>, where <span class="math notranslate nohighlight">\(0&lt; \alpha\)</span> and <span class="math notranslate nohighlight">\(\alpha\)</span> is much less than 1. The lower the value, the more strict our test is (in some sense that we discuss further in the next section).</p></li>
+<li><p>Determine the conditions to be tested. We have observed a <strong>difference in some summary statistic</strong>. Let <span class="math notranslate nohighlight">\(\Delta = T_{\mathcal{A}} - T_{\mathcal{B}}\)</span>. Then our resampling test will be to determine the <strong>probability of seeing a difference in test statistics “at least as extreme” as</strong> <span class="math notranslate nohighlight">\(\Delta\)</span>. (Note that I am leaving this a bit open ended right now because I want to explore this step further below.)</p></li>
+<li><p>Under <span class="math notranslate nohighlight">\(H_0\)</span>, the two populations have the same random distribution for the variable of interest. Collect all the data for that variable from both populations into a single set of <em>pooled data</em>: <span class="math notranslate nohighlight">\(\mathcal{P} = \mathcal{A} \cup \mathcal{B}\)</span>.</p></li>
+<li><p>Under <span class="math notranslate nohighlight">\(H_0\)</span>, the assumption is that <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> are just random samples from some larger population and the observed difference <span class="math notranslate nohighlight">\(\Delta\)</span> is created by the fact that <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> are samples of limited size from  that population.  To determine the probability of such a large difference occurring, we conduct an <span class="math notranslate nohighlight">\(N\)</span>-iteration simulation to estimate the probability of seeing a difference as extreme as <span class="math notranslate nohighlight">\(\Delta\)</span>. We first initialize a counter <span class="math notranslate nohighlight">\(C=0\)</span>.  Then in each iteration <span class="math notranslate nohighlight">\(i,\)</span> we:</p>
+<ol class="simple">
+<li><p>Create new samples <span class="math notranslate nohighlight">\(\mathcal{A}_i\)</span> and <span class="math notranslate nohighlight">\(\mathcal{B}_i\)</span>, which we call <em>test samples</em>, based on <span class="math notranslate nohighlight">\(H_0\)</span>. This implies that we should draw new samples <span class="math notranslate nohighlight">\(\mathcal{A}_i\)</span> and <span class="math notranslate nohighlight">\(\mathcal{B}_i\)</span> from the original population; however, we do not have access to the original population. So, we use <strong>resampling and draw the new samples from <span class="math notranslate nohighlight">\(\mathcal{P}\)</span></strong>. (Again, I am purposefully leaving this open-ended so that we can explore this more below.)</p></li>
+<li><p>Calculate the summary statistic for the new populations, <span class="math notranslate nohighlight">\(T_{\mathcal{A}_i}\)</span> and <span class="math notranslate nohighlight">\(T_{\mathcal{B}_i}\)</span>.</p></li>
+<li><p>Calculate and store the difference between the summary statistics for the test data, <span class="math notranslate nohighlight">\(\Delta_i = T_{\mathcal{A}_i} - T_{\mathcal{B}_i}\)</span>. We will call this the <em>test difference</em>.</p></li>
+</ol>
+</li>
+<li><p>Evaluate what the test samples tell us about the statistical significance of the observed difference in the data.</p></li>
+</ol>
+<p>This procedure is quite general – you should be able to use it as a skeleton for any NHST using resampling. However, the procedure above is purposefully vague about several things:</p>
+<ol class="simple">
+<li><p>What does a difference “at least as extreme” as <span class="math notranslate nohighlight">\(\Delta\)</span> mean?</p></li>
+<li><p>How should we draw test samples from the pooled data, <span class="math notranslate nohighlight">\(P\)</span>?</p></li>
+<li><p>How should we evaluate statistical significance using the test differences,  <span class="math notranslate nohighlight">\(\Delta_i, ~i=0,1,\ldots, N-1\)</span>?</p></li>
+</ol>
+<p>Each of these is considered in the following sections. However, to make the discussion more concrete, let’s use the  National Longitudinal Survey of Youth 1979 (NLSY79) data set to try to answer the question “What is the effect on family wealth of schooling beyond undergraduate college?” This question is too vague to be used as a research question because it does not clearly define “the effect”. We will consider two questions:</p>
+<ol class="simple">
+<li><p>Does post-baccalaureate education increase mediate net family wealth?</p></li>
+<li><p>Do people with post-baccalaureate education have a higher probability of becoming millionaires?</p></li>
+</ol>
+<p>First, we consider why and how the NLSY79 might be used to answer this question. The NLSY79 is a longitudinal survey of 9,964 participants who were  14-22 when  interviewed in 1979. The survey contains detailed information on partipants’ education and family wealth. In particular, the 2016 survey contains a variable T56845.00 TNFW_TRUC, which is the total net family wealth, with the top 2% of values <em>topcoded</em>. Here, <em>topcoded</em> means that the top 2% of values are each replaced with the average of those top 2% of values in order to protect the individual income values of those who lie in the to 2% of the survey group. Not that this variable is a <em>created</em> or <em>computed</em> variable, meaning that participants did not provide total family wealth directly; instead, the value is computed from answers to other survey questions about assets and liabilities. The participants in the NLSY79 cohort were 51-59. Although most people in the cohort were likely still working in 2016, most people in the cohort would have already been through the majority of their working life, and so any overall effect of post-baccalaureate education is likely to be observable in the participants.</p>
+<p>There are also reasons that NLSY79 may not be able to answer these questions. The primary reason for this is that the US economy has shifted to have much more of a service-based and high technology emphasis in the past decades. Thus, new college graduates that are considering using statistical results from NLSY79 may find themselves in very different economic circumstances.</p>
+<p>Note that although the NLSY79 is a longitudinal survey, we will be using it as cross-sectional data for the year 2016. As previously mentioned, this is a huge survey with thousands of variable, so we will work with only a small subset that can be used to answer our research question. These variables are:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Reference Number</p></th>
+<th class="head"><p>Question Name/Description</p></th>
+<th class="head"><p>Variable title</p></th>
+<th class="head"><p>Survey Year</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>R00001.00</p></td>
+<td><p>CASEID</p></td>
+<td><p>IDENTIFICATION CODE</p></td>
+<td><p>1979</p></td>
+</tr>
+<tr class="row-odd"><td><p>T55976.00</p></td>
+<td><p>Q11-GENHLTH_4B</p></td>
+<td><p>RESPONDENT GENDER</p></td>
+<td><p>2016</p></td>
+</tr>
+<tr class="row-even"><td><p>T56845.00</p></td>
+<td><p>TNFW_TRUNC</p></td>
+<td><p>FAMILY NET WEALTH (TRUNC)</p></td>
+<td><p>2016</p></td>
+</tr>
+<tr class="row-odd"><td><p>T99000.00</p></td>
+<td><p>HGC_EVER</p></td>
+<td><p>HIGHEST GRADE EVER COMPLETED</p></td>
+<td><p>XRND</p></td>
+</tr>
+</tbody>
+</table>
+<p>Two notes about the data in this table:</p>
+<ol class="simple">
+<li><p>NLSY79 is a longitudinal cohort study, so each respondent has a unique IDENTIFICATION CODE that was established in the first year of the survey. This is why IDENTIFICATION CODE has Survey Year equal to 1979.</p></li>
+<li><p>Because respondents did not provide their highest grade completed in every survey year, I elected to use the HIGHEST GRADE EVER COMPLETED variable, which is collected across all survey years. According to the <a class="reference external" href="https://www.nlsinfo.org/content/getting-started/intro-to-the-nls/glossary-nls-terms/glossary-nls-terms-altogether/glossary">NLS Glossary</a>, XRND stands for “cross-round”, which implies that the data is collected from multiple survey years. (In fact, the NLS Glossary references the highest grade ever reported for the NLSY97 cohort as an example).</p></li>
+</ol>
+<p>The NLSY79 data for the variables mentioned above was retrieved from NLS Investigator and can be loaded as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/05-binary-hypothesis-testing/nls/nls.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>R0000100</th>
+      <th>T5597600</th>
+      <th>T5684500</th>
+      <th>T9900000</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>2</td>
+      <td>-3</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>2</td>
+      <td>115000</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>2</td>
+      <td>112850</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>12681</th>
+      <td>12682</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>12682</th>
+      <td>12683</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>12683</th>
+      <td>12684</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>12684</th>
+      <td>12685</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>12685</th>
+      <td>12686</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+<p>12686 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>The column names for the data frame are the Reference Numbers with the decimal points removed. Since these are not very easy to interpret, let’s rename the columns to more human-friendly versions. This can be done using the <code class="docutils literal notranslate"><span class="pre">rename()</span></code> method of the dataframe. We pass this method a dictionary that provides the map from each original column name to its new value. Here is the renaming dictionary I will use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">remap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;R0000100&#39;</span><span class="p">:</span><span class="s1">&#39;CASE_ID&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;T5597600&#39;</span><span class="p">:</span> <span class="s1">&#39;GENDER&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;T5684500&#39;</span><span class="p">:</span> <span class="s1">&#39;NET_WEALTH&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;T9900000&#39;</span><span class="p">:</span> <span class="s1">&#39;HIGHEST_GRADE_EVER&#39;</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then to rename columns in the dataframe, we can pass <code class="docutils literal notranslate"><span class="pre">remap</span></code> using the keyword argument <code class="docutils literal notranslate"><span class="pre">columns</span></code>. We will also specify to perform this remapping in place; i.e., it will change the columns of <code class="docutils literal notranslate"><span class="pre">df</span></code> directly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">remap</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take a look at the dataframe with the new column labels:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CASE_ID</th>
+      <th>GENDER</th>
+      <th>NET_WEALTH</th>
+      <th>HIGHEST_GRADE_EVER</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>2</td>
+      <td>-3</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>2</td>
+      <td>115000</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>2</td>
+      <td>112850</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>12681</th>
+      <td>12682</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>12682</th>
+      <td>12683</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>12683</th>
+      <td>12684</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>12684</th>
+      <td>12685</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>12685</th>
+      <td>12686</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+<p>12686 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>Note that some of the entries in the dataframe are less than 0. For instance, for <code class="docutils literal notranslate"><span class="pre">CASE_ID==1</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;CASE_ID==1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CASE_ID</th>
+      <th>GENDER</th>
+      <th>NET_WEALTH</th>
+      <th>HIGHEST_GRADE_EVER</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>-5</td>
+      <td>-5</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Both the <code class="docutils literal notranslate"><span class="pre">GENDER</span></code> and <code class="docutils literal notranslate"><span class="pre">NET_WEALTH</span></code> entries are negative. When I downloaded this data from NLS Investigator, I chose to include a <em>codebook</em> that provides information on how to interpret the results: <a class="reference external" href="https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/05-binary-hypothesis-testing/nls/nls.cdb">Codebook for NLSY79 Data on Wealth vs Education</a>. Note that -5 indicates that respondent was not interviewed in that year. A value of -3 is an “Invalid Skip”, which indicates that the respondent should have answered the question but did not. We will filter the data to only preserve those entries that have valid values for <code class="docutils literal notranslate"><span class="pre">NET_WEALTH</span></code> and <code class="docutils literal notranslate"><span class="pre">HIGHEST_GRADE_EVER</span></code>. We do this by using a logical <em>and</em> on the conditions that the value of <code class="docutils literal notranslate"><span class="pre">NET_WEALTH</span></code> is positive and the value of <code class="docutils literal notranslate"><span class="pre">HIGHEST_GRADE_EVER</span></code> is positive:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;HIGHEST_GRADE_EVER &gt; 0 &amp; NET_WEALTH&gt;0&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CASE_ID</th>
+      <th>GENDER</th>
+      <th>NET_WEALTH</th>
+      <th>HIGHEST_GRADE_EVER</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>2</td>
+      <td>115000</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>2</td>
+      <td>112850</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>1</td>
+      <td>95825</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>2</td>
+      <td>172717</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>1</td>
+      <td>679000</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>12565</th>
+      <td>12566</td>
+      <td>2</td>
+      <td>88000</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>12588</th>
+      <td>12589</td>
+      <td>1</td>
+      <td>249280</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>12642</th>
+      <td>12643</td>
+      <td>1</td>
+      <td>26900</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>12662</th>
+      <td>12663</td>
+      <td>1</td>
+      <td>62000</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>12678</th>
+      <td>12679</td>
+      <td>1</td>
+      <td>97000</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+<p>4774 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>Note that the number of rows has dropped from 12,686 to 4,774.</p>
+<p>Before carrying out any statistical tests, we will do some initial data exploration. Let’s first create a scatter plot of net wealth as a function of highest grade ever completed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;HIGHEST_GRADE_EVER&#39;</span><span class="p">],</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;NET_WEALTH&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/nhst_22_0.png" src="../_images/nhst_22_0.png" />
+</div>
+</div>
+<p>To make progress toward answering our research question, let’s extract the data for two groups:</p>
+<ul class="simple">
+<li><p>We will consider students with 16 or 17 years of education as having undergraduate education and place their data into a dataframe called <code class="docutils literal notranslate"><span class="pre">undergrad</span></code>.</p></li>
+<li><p>We will consider students with 18 or more years of education as having post-baccalaureate or graduate education and place their data into a data frame called <code class="docutils literal notranslate"><span class="pre">grad</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">undergrad</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;HIGHEST_GRADE_EVER &gt;= 16 &amp; HIGHEST_GRADE_EVER &lt;=17&#39;</span><span class="p">)</span>                
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grad</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;HIGHEST_GRADE_EVER &gt;= 18&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">undergrad</span><span class="p">[</span><span class="s1">&#39;HIGHEST_GRADE_EVER&#39;</span><span class="p">],</span> <span class="n">undergrad</span><span class="p">[</span><span class="s1">&#39;NET_WEALTH&#39;</span><span class="p">]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">grad</span><span class="p">[</span><span class="s1">&#39;HIGHEST_GRADE_EVER&#39;</span><span class="p">],</span> <span class="n">grad</span><span class="p">[</span><span class="s1">&#39;NET_WEALTH&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/nhst_26_0.png" src="../_images/nhst_26_0.png" />
+</div>
+</div>
+<p>At first glance, the data looks very similar. Part of this is because the high values of net wealth have been top-coded, as discussed above. If we look at the maximum value for each group, we will see they are the same top-coded value (approximately $5.5 million):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">undergrad</span><span class="p">[</span><span class="s1">&#39;NET_WEALTH&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">grad</span><span class="p">[</span><span class="s1">&#39;NET_WEALTH&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5526252, 5526252)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check the median wealth in each of these groups:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">undergrad</span><span class="p">[</span><span class="s1">&#39;NET_WEALTH&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">grad</span><span class="p">[</span><span class="s1">&#39;NET_WEALTH&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(427000.0, 484400.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You may wonder why I chose to use the <em>median</em> here instead of the average (or sample mean). The reason is that the top coding may cause the average value to not be accurate. In particular, let’s suppose that the undergrad group has billionaires but the grad group does not. Both sets of values are top coded to the same value, but the actual sample means for the two groups could be very different.</p>
+<p>The median value for the <code class="docutils literal notranslate"><span class="pre">grad</span></code> group is higher than the <code class="docutils literal notranslate"><span class="pre">undergrad</span></code> group by</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta_median</span> <span class="o">=</span> <span class="n">grad</span><span class="p">[</span><span class="s1">&#39;NET_WEALTH&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span> <span class="o">-</span><span class="n">undergrad</span><span class="p">[</span><span class="s1">&#39;NET_WEALTH&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">delta_median</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>57400.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s also consider the relative frequency of millionaires in each group:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R_undergrad</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">undergrad</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;NET_WEALTH &gt; 1_000_000&#39;</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">undergrad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">R_undergrad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.24482338611449453
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R_grad</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grad</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;NET_WEALTH &gt; 1_000_000&#39;</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">grad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">R_grad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.29809725158562367
+</pre></div>
+</div>
+</div>
+</div>
+<p>The relative frequency of millionaires in the <code class="docutils literal notranslate"><span class="pre">grad</span></code> group is higher than in the <code class="docutils literal notranslate"><span class="pre">undergrad</span></code> group by</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta_M_freq</span> <span class="o">=</span> <span class="n">R_grad</span> <span class="o">-</span> <span class="n">R_undergrad</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">delta_M_freq</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.05327386547112914
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the difference is a positive value. We will always achieve this by putting the group with the larger summary statistic first in the difference equation.</p>
+<p>We can use NHST to answer the following questions:</p>
+<ol class="simple">
+<li><p>Is the observed increase in median wealth (<span class="math notranslate nohighlight">\(\Delta = 57,400\)</span>) between the undergrad and grad groups statistically significant?</p></li>
+<li><p>Is the observed increase in the relative frequency of millionaires between the undergrad and grad groups (<span class="math notranslate nohighlight">\(\Delta \approx 0.053\)</span>) statistically significant?</p></li>
+</ol>
+<p>Note that for both cases, we need to sample from the same pooled data: the net family wealth from both the <code class="docutils literal notranslate"><span class="pre">undergrad</span></code> and <code class="docutils literal notranslate"><span class="pre">grad</span></code> groups. Since these correspond to all students with at least 16 years of education, we can create the pooled data as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pooled</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;HIGHEST_GRADE_EVER &gt;= 16&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the next sections, we answer both these questions by applying different approaches to resample from this pooled data, to determine whether a result is “at least as extreme” as the observed one, and to determine statistical significance.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./05-binary-hypothesis-testing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="statistical-studies.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">5.1. </span>Statistical Studies</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="calculating-p-values.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5.3. </span>Calculating <span class="math notranslate nohighlight">\(p\)</span>-Values</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

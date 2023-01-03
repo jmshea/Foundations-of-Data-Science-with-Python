@@ -1,0 +1,2659 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="8.7. Important Continuous Random Variables" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/08-random-variables/important-continuous-rvs.html" />
+  
+<meta property="og:description" content="There are numerous types of continuous random variables; in fact, Scipy.stats has over 100 (as of release 1.8.0). A list of the continuous random variables in Scipy.stats can be found here: https:/..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="8.7. Important Continuous Random Variables" />
+  
+    <title>8.7. Important Continuous Random Variables &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/08-random-variables/important-continuous-rvs.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.8. Histograms of Continuous Random Variables and Kernel Density Estimation" href="kernel-density-estimation.html" />
+    <link rel="prev" title="8.6. Continuous Random Variables" href="continuous-rvs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   8. Random Variables
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/08-random-variables/important-continuous-rvs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/08-random-variables/important-continuous-rvs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-uniform-random-variable">
+   8.7.1. Continuous Uniform Random Variable
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exponential-random-variable">
+   8.7.2. Exponential Random Variable
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normal-gaussian-random-variable">
+   8.7.3. Normal (Gaussian) Random Variable
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluating-gaussian-probabilities">
+     8.7.3.1. Evaluating Gaussian Probabilities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#central-limit-theorem">
+     8.7.3.2. Central Limit Theorem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chi-squared-random-variable">
+   8.7.4. Chi-Squared Random Variable
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#students-t-random-variable">
+   8.7.5. Student’s
+   <span class="math notranslate nohighlight">
+    \(t\)
+   </span>
+   Random Variable
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discussion">
+   8.7.6. Discussion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   8.7.7. Terminology Review
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Important Continuous Random Variables</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-uniform-random-variable">
+   8.7.1. Continuous Uniform Random Variable
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exponential-random-variable">
+   8.7.2. Exponential Random Variable
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normal-gaussian-random-variable">
+   8.7.3. Normal (Gaussian) Random Variable
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluating-gaussian-probabilities">
+     8.7.3.1. Evaluating Gaussian Probabilities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#central-limit-theorem">
+     8.7.3.2. Central Limit Theorem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chi-squared-random-variable">
+   8.7.4. Chi-Squared Random Variable
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#students-t-random-variable">
+   8.7.5. Student’s
+   <span class="math notranslate nohighlight">
+    \(t\)
+   </span>
+   Random Variable
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discussion">
+   8.7.6. Discussion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   8.7.7. Terminology Review
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="important-continuous-random-variables">
+<h1><span class="section-number">8.7. </span>Important Continuous Random Variables<a class="headerlink" href="#important-continuous-random-variables" title="Permalink to this heading">#</a></h1>
+<p>There are numerous types of continuous random variables; in fact, Scipy.stats has over 100 (as of release 1.8.0).  A list of the continuous random variables in Scipy.stats can be found here:</p>
+<p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html#continuous-distributions">https://docs.scipy.org/doc/scipy/reference/stats.html#continuous-distributions</a></p>
+<p>In this section, we will present five continuous random variables that are used in the remainder of this textbook. Two of these we have already encountered: the continuous uniform random variable and the exponential random variable. We introduce three new continuous random variables: the Gaussian (or Normal), chi-squared, and Student’s <span class="math notranslate nohighlight">\(t\)</span> random variables.</p>
+<section id="continuous-uniform-random-variable">
+<h2><span class="section-number">8.7.1. </span>Continuous Uniform Random Variable<a class="headerlink" href="#continuous-uniform-random-variable" title="Permalink to this heading">#</a></h2>
+<p>We introduced the continuous uniform random variable in <a class="reference internal" href="continuous-rvs.html"><span class="doc">Continuous Random Variables</span></a>, where we used it to draw random arrival times for Poisson events observed on a fixed interval. We found the CDF to be linear over the random variable’s range, and the pdf to be constant over the random variable’s range. The range can be any interval (closed or open). If the range is <span class="math notranslate nohighlight">\([a,b]\)</span> for a uniform random variable <span class="math notranslate nohighlight">\(U\)</span>, then we write <span class="math notranslate nohighlight">\(U \sim \mbox{Uniform}[a,b]\)</span> (read: “<span class="math notranslate nohighlight">\(U\)</span> is distributed uniform on <span class="math notranslate nohighlight">\([A,B]\)</span>. Then a formal definition of a uniform random variable is below.</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-uniform-random-variable">uniform random variable<a class="headerlink" href="#term-uniform-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">If <span class="math notranslate nohighlight">\(U\)</span> is a uniform random variable on the interval <span class="math notranslate nohighlight">\([a,b]\)</span>, then the probability density function <span class="math notranslate nohighlight">\(f_U(u)\)</span> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d95f139a-1710-41e9-8ad6-c13ed110c552">
+<span class="eqno">(8.11)<a class="headerlink" href="#equation-d95f139a-1710-41e9-8ad6-c13ed110c552" title="Permalink to this equation">#</a></span>\[\begin{align} f_U(u) = 
+\begin{cases} 
+\frac{1}{b-a}, &amp; u \in [a,b] \\
+0, &amp; \mbox{otherwise} 
+\end{cases}
+\end{align}\]</div>
+<p class="sd-card-text">and the cumulative distribution function <span class="math notranslate nohighlight">\(F_U(u)\)</span> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7eaf50c9-0761-4863-a331-bf99c040f916">
+<span class="eqno">(8.12)<a class="headerlink" href="#equation-7eaf50c9-0761-4863-a331-bf99c040f916" title="Permalink to this equation">#</a></span>\[\begin{align} F_U(u) = 
+\begin{cases} 
+0, &amp; u &lt; a \\
+\frac{u}{b-a}, &amp; u \in [a,b] \\
+1, &amp; u &gt; b
+\end{cases}.
+\end{align}\]</div>
+<p class="sd-card-text">Note that either or both endpoints may be excluded from the range of <span class="math notranslate nohighlight">\(U\)</span>, in which case the regions in the piecewise definition change slightly (for instance by dropping or adding an equality sign), but the functions are unchanged.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>We can use SciPy.stats to create a uniform distribution by using <code class="docutils literal notranslate"><span class="pre">stats.uniform(start,</span> <span class="pre">length)</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note carefully the form of <code class="docutils literal notranslate"><span class="pre">stats.uniform(start,</span> <span class="pre">length)</span></code> – the range is thus [start, start+length]. To create a variable <span class="math notranslate nohighlight">\(U\)</span> representing a uniform distribution on <span class="math notranslate nohighlight">\([a,b]\)</span>, we need to do <code class="docutils literal notranslate"><span class="pre">U</span> <span class="pre">=</span> <span class="pre">stats.uniform(a,</span> <span class="pre">b-a)</span></code>.</p>
+</div>
+<p>The density function for several uniform random variables is shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
+<span class="n">U1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">U2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">U3</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">U1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Uniform[0, 1]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">U2</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Uniform[2, 2.2]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">U3</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Uniform[3, 8]&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Density function for Uniform random variables&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_6_0.png" src="../_images/important-continuous-rvs_6_0.png" />
+</div>
+</div>
+<p>The figure below shows the distribution functions for these random variables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">U1</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Uniform[0, 1]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">U2</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Uniform[2, 2.2]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">U3</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Uniform[3, 8]&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution function for Uniform random variables&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_8_0.png" src="../_images/important-continuous-rvs_8_0.png" />
+</div>
+</div>
+<p>Note that the probability density is concentrated wherever the CDF is going up quickly.  Because the pdf is the derivative of the CDF, a steeper  slope in the CDF translates into a higher density in the pdf.</p>
+<p><strong>Applications:</strong> Uniform random variables are used for any situation in which some random occurrence is equally likely to occur over a continuous range. For instance, it may model be used to model the random phase of packet in a wireless communication system. Most computer random number systems generate floating-point approximations of uniform random variables. The uniform distribution can also be shown to be the “most random” in a certain sense (maximizing a measure of randomness called entropy) over all distributions with finite range.</p>
+</section>
+<section id="exponential-random-variable">
+<h2><span class="section-number">8.7.2. </span>Exponential Random Variable<a class="headerlink" href="#exponential-random-variable" title="Permalink to this heading">#</a></h2>
+<p>We found that the exponential random variable models the time until the first Poisson arrival in an observation period. The exponential random variable is an example of a continuous random variable with an infinite range, since it can take on any value from <span class="math notranslate nohighlight">\([0, \infty]\)</span>.</p>
+<p>A formal definition of the exponential random variable follows.</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-exponential-random-variable">exponential random variable<a class="headerlink" href="#term-exponential-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">If <span class="math notranslate nohighlight">\(X\)</span> is an exponential random variable with real parameter <span class="math notranslate nohighlight">\(\lambda&gt;0\)</span>, then the probability density function <span class="math notranslate nohighlight">\(f_X(x)\)</span> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ec5a0f33-a865-49f1-b1e0-83088cd6d1c3">
+<span class="eqno">(8.13)<a class="headerlink" href="#equation-ec5a0f33-a865-49f1-b1e0-83088cd6d1c3" title="Permalink to this equation">#</a></span>\[\begin{align} f_X(x) = 
+\begin{cases} 
+0, &amp; x &lt;0 \\
+\lambda e^{-\lambda x}, &amp; x \ge 0
+\end{cases}
+\end{align}\]</div>
+<p class="sd-card-text">and the cumulative distribution function <span class="math notranslate nohighlight">\(F_X(x)\)</span> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0b44e621-d122-4bd7-817e-557277103383">
+<span class="eqno">(8.14)<a class="headerlink" href="#equation-0b44e621-d122-4bd7-817e-557277103383" title="Permalink to this equation">#</a></span>\[\begin{align} F_X(x) = 
+\begin{cases} 
+0, &amp; x &lt;0 \\
+1 - e^{- \lambda x}, &amp; x \ge 0 \\
+\end{cases}.
+\end{align}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some books specify the exponential distribution in terms of a parameter <span class="math notranslate nohighlight">\(\mu\)</span> such that <span class="math notranslate nohighlight">\(\mu = 1/ \lambda\)</span>. The two definitions are equivalent, but the forms of the pdf and CDF are simpler and easier to remember when specified in terms of <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<p>Note that we can avoid the piecewise notation for the pdf and CDF by using the unit-step function, which we will define piecewise as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6b3b3ec4-8a10-45d8-bb59-6326012accce">
+<span class="eqno">(8.15)<a class="headerlink" href="#equation-6b3b3ec4-8a10-45d8-bb59-6326012accce" title="Permalink to this equation">#</a></span>\[\begin{equation}
+u(x) = 
+\begin{cases}
+0, &amp;x&lt; 0 \\
+1, &amp; x \ge 0 \\
+\end{cases}.
+\end{equation}\]</div>
+<p>Then</p>
+<div class="math notranslate nohighlight">
+\[
+f_X(x) = \lambda e^{-\lambda x } u(x).
+\]</div>
+<p>(There are different versions of the unit step function that vary with how they handle the value at <span class="math notranslate nohighlight">\(x=0\)</span>. See <a class="reference external" href="https://en.wikipedia.org/wiki/Heaviside_step_function#Zero_argument">https://en.wikipedia.org/wiki/Heaviside_step_function#Zero_argument</a> for more details. We let <span class="math notranslate nohighlight">\(u(0)=1\)</span> because we can use this <span class="math notranslate nohighlight">\(u(x)\)</span> in the exponential density, which is usually defined to be non-zero for <span class="math notranslate nohighlight">\(x=0\)</span>. However, it usually does not matter for applications in probability because any one point has zero probability associated with .)</p>
+</div>
+<p>We can use SciPy.stats to create an exponential distribution with parameter <code class="docutils literal notranslate"><span class="pre">lam</span></code> using <code class="docutils literal notranslate"><span class="pre">stats.expon(scale=</span> <span class="pre">1</span> <span class="pre">/</span> <span class="pre">lam)</span></code>.</p>
+<p>As we demonstrated before with the uniform random variable, it is possible for <span class="math notranslate nohighlight">\(f_X(x)\)</span> to be greater than 1 because probability densities <strong>are not probabilities</strong>. In particular, at <span class="math notranslate nohighlight">\(x=0\)</span>, <span class="math notranslate nohighlight">\(f_X(0) = \lambda\)</span>, so <span class="math notranslate nohighlight">\(f_X(0)&gt;1\)</span> whenever <span class="math notranslate nohighlight">\(\lambda&gt;1\)</span>.</p>
+<p>To further illustrate this, the pdf of lambda is shown below for a few different values of <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">lambdas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">lam</span> <span class="ow">in</span> <span class="n">lambdas</span><span class="p">:</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">expon</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">lam</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\lambda  = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;pdfs of exponential random variables&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_15_0.png" src="../_images/important-continuous-rvs_15_0.png" />
+</div>
+</div>
+<p>The CDFs for these values of <span class="math notranslate nohighlight">\(\lambda\)</span> are shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">lambdas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">lam</span> <span class="ow">in</span> <span class="n">lambdas</span><span class="p">:</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">expon</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">lam</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\lambda  = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;CDFs of exponential random variables&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_17_0.png" src="../_images/important-continuous-rvs_17_0.png" />
+</div>
+</div>
+<p>Again, note that the region in which the CDF is increasing from near 0 to near 1 represents the region where most of the probability is concentrated. This is particularly easy to see for exponential random variables: these regions all start at 0. We can then find a region of the form <span class="math notranslate nohighlight">\([0,x]\)</span> that contains 99% of the probability in two ways:</p>
+<ul class="simple">
+<li><p>From the graph, if we look on the <span class="math notranslate nohighlight">\(y\)</span> axis at 0.99 and then look right to see what value of <span class="math notranslate nohighlight">\(x\)</span> intersects gives that value of <span class="math notranslate nohighlight">\(F_X(x)\)</span>.  Then that is the value of <span class="math notranslate nohighlight">\(x\)</span> for which <span class="math notranslate nohighlight">\(F_X(x) = P(X \le x) = P (X \in [0,x]) =0.99.\)</span>  From the graph, the regions that contain approximately 99% of the probability are: <span class="math notranslate nohighlight">\([0,1]\)</span> for <span class="math notranslate nohighlight">\(\lambda=5\)</span> and <span class="math notranslate nohighlight">\([0, 4.5]\)</span> for <span class="math notranslate nohighlight">\(\lambda=1\)</span>.</p></li>
+<li><p>We can also find these from the inverse CDF:</p></li>
+</ul>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-inverse-CDF">inverse CDF<a class="headerlink" href="#term-inverse-CDF" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">If <span class="math notranslate nohighlight">\(X\)</span> is a random variable with cumulative distribution function (CDF) <span class="math notranslate nohighlight">\(F_X(x) = P(X \le x)\)</span>, then the <em>inverse CDF</em>, which is also called the <em>quantile function</em> or <em>percent-point function</em> given a value <span class="math notranslate nohighlight">\(p\)</span>, gives a value of <span class="math notranslate nohighlight">\(x\)</span> such that <span class="math notranslate nohighlight">\(F_X(x)=p\)</span>. It is the inverse of the CDF, <span class="math notranslate nohighlight">\(F^{-1}(p)\)</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>SciPy.stats calls the inverse CDF the percent-point function, and evaluates it as <code class="docutils literal notranslate"><span class="pre">ppf(p)</span></code>. Thus, the regions that contain 99% of the probability for the values of <span class="math notranslate nohighlight">\(\lambda\)</span> considered are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambdas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">lam</span> <span class="ow">in</span> <span class="n">lambdas</span><span class="p">:</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">expon</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">lam</span><span class="p">)</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;lambda = </span><span class="si">{</span><span class="n">lam</span><span class="si">}</span><span class="s2">: [0, </span><span class="si">{</span><span class="n">upper</span> <span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lambda = 5: [0, 0.92]
+lambda = 1: [0, 4.61]
+lambda = 0.5: [0, 9.21]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Example</strong> An automotive company finds that 95% of its new LED headlights last more than 5 years. If the life of these headlights follows an exponential distribution, what is the probability that one of these headlights lasts more than 10 years?</p>
+<p><em>Solution:</em> The challenge in this problem is that we know that the distribution is exponential, but we do not know the parameter <span class="math notranslate nohighlight">\(\lambda\)</span> that characterizes that distribution. However, we are given enough information to determine <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<p>Let the life of one of these headlights in years be <span class="math notranslate nohighlight">\(X\)</span>, where <span class="math notranslate nohighlight">\(X \sim\)</span> exponential(<span class="math notranslate nohighlight">\(\lambda\)</span>). If 95% of the headlights last more than 5 years, then it must be that the probability that a particular headlight lasts more than 5 years is 0.95. In math, <span class="math notranslate nohighlight">\(P(X &gt; 5) = 0.95\)</span>.</p>
+<p>Now, we can approach this in two ways. Let’s start with the mathematical approach.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e11fe366-0398-451d-ab73-632889274bde">
+<span class="eqno">(8.16)<a class="headerlink" href="#equation-e11fe366-0398-451d-ab73-632889274bde" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(X &gt; 5) &amp; = 1 - P(X \le 5) \\
+&amp; = 1 - F_X(5) \\
+&amp; = 1 - \left( 1- e^{-\lambda (5)} \right) \\
+&amp;=  e^{-5 \lambda } = 0.95
+\end{align}\]</div>
+<p>Now, take the natural log of both sides. We need to know the natural log of 0.95:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.05129329438755058
+</pre></div>
+</div>
+</div>
+</div>
+<p>So,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d989b1d8-c979-4c17-97ea-057d3315ffbb">
+<span class="eqno">(8.17)<a class="headerlink" href="#equation-d989b1d8-c979-4c17-97ea-057d3315ffbb" title="Permalink to this equation">#</a></span>\[\begin{align}
+- 5  \lambda &amp;\approx -0.051 \\
+\Rightarrow \lambda \approx 0.0102.
+\end{align}\]</div>
+<p>The probability that a headlight lasts more than 10 years is then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2e5d84f3-3ea5-4caa-b9c5-a1f87604bb5e">
+<span class="eqno">(8.18)<a class="headerlink" href="#equation-2e5d84f3-3ea5-4caa-b9c5-a1f87604bb5e" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(X &gt; 10 ) &amp;= 1 - P(X \le 10) \\
+&amp;= 1 - F_X(10) \\
+&amp; = e^{-0.0102(10)},
+\end{align}\]</div>
+<p>which is approximately</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0102</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9030295516688768
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, about 90% of headlights will last over 10 years under these assumptions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is something interesting in these results that might not be immediately obvious. The probability that a headlight still functions decreases with the number of years as expected. However, consider those 95% of bulbs that are still functioning after 5 years. If we apply the same 95% rule to those bulbs to see how many are still functioning after another 5 years, we get <span class="math notranslate nohighlight">\((0.95)^2 = 0.902\)</span>, which is essentially the same as the result we got above. This would mean that <strong>after 5 years of use, those bulbs have the same probability of lasting another 5 years as a brand new bulb has of lasting for 5 years.</strong></p>
+<p>We do not yet have the mathematical tools to analyze this, but it turns out that this is a special property, called the <em>memoryless property</em>, that is unique to the exponential distribution (among all continuous distributions).  We will investigate this property more in <a class="reference internal" href="conditioning-with-rvs.html"><span class="doc">Conditioning with Random Variables</span></a>.</p>
+</div>
+<p><strong>Applications:</strong> As previously noted, the exponential random variable models the time until the first Poisson arrival. It also models the time between two consecutive Poisson arrivals. It is also used in a related application called <em>survival analysis</em> when there is a constant <em>hazard rate</em>. For example, it can be used to model the lifetime of electrical devices.</p>
+</section>
+<section id="normal-gaussian-random-variable">
+<h2><span class="section-number">8.7.3. </span>Normal (Gaussian) Random Variable<a class="headerlink" href="#normal-gaussian-random-variable" title="Permalink to this heading">#</a></h2>
+<p>The Normal, or Gaussian, random variable is one of the most commonly used in statistical analyses. The term  <em>normal random variable</em> is more often used in statistics, whereas <em>Gaussian random variable</em> is more often used in electrical engineering. Either one is easily understood by the other community. Because this book is meant to be accessible to readers across engineering and the sciences and because SciPy.stats uses the term Normal, I will also use that terminology.</p>
+<p>Before we give a formal definition of the Normal random variable, let’s consider some examples that shows how the Normal distribution can emerge.</p>
+<p>We start with a sequence of binomial random variables with equal probability of success <span class="math notranslate nohighlight">\(p\)</span> but different numbers of trials. As a reminder a Binomial(<span class="math notranslate nohighlight">\(N,p\)</span>) random variable is the same as the sum of <span class="math notranslate nohighlight">\(N\)</span> Bernoulli(<span class="math notranslate nohighlight">\(p\)</span>) random variables. Let’s consider <span class="math notranslate nohighlight">\(p=0.2\)</span> and <span class="math notranslate nohighlight">\(N = 20, 40,\)</span> and <span class="math notranslate nohighlight">\(200\)</span> trials. Then the PMFs for these random variables are shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">N</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">200</span><span class="p">]):</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">B</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_28_0.png" src="../_images/important-continuous-rvs_28_0.png" />
+</div>
+</div>
+<p>Note that each of these PMFs has a similar shape – called a <em>bell shape</em>, and each of the PMFs is centered at <span class="math notranslate nohighlight">\(0.2N\)</span>; i.e., the centers are 4, 8, and 40, respectively. If we treated these as the sum of Bernoulli random variables, then they would all be centered at 0.2 if we divided by <span class="math notranslate nohighlight">\(N\)</span>; i.e., if we calculated the <em>average value</em> of the variables instead of the sum. We can plot them on the same axes if we also switch to line plots:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">N</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">200</span><span class="p">]):</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+    <span class="n">scale_factor</span> <span class="o">=</span> <span class="n">N</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span> <span class="o">/</span> <span class="n">scale_factor</span><span class="p">,</span> <span class="n">B</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.0)
+</pre></div>
+</div>
+<img alt="../_images/important-continuous-rvs_30_1.png" src="../_images/important-continuous-rvs_30_1.png" />
+</div>
+</div>
+<p>When we scaled the <span class="math notranslate nohighlight">\(x\)</span>-axis values, that <em>compressed</em> the probability into a smaller range more for large <span class="math notranslate nohighlight">\(N\)</span> than for small <span class="math notranslate nohighlight">\(N\)</span>. Let’s scale the PMFs <strong>up</strong> by the same factor to compensate for that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">N</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">200</span><span class="p">]):</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+    <span class="n">scale_factor</span> <span class="o">=</span> <span class="n">N</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span> <span class="o">/</span> <span class="n">N</span><span class="p">,</span> <span class="n">B</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.0)
+</pre></div>
+</div>
+<img alt="../_images/important-continuous-rvs_32_1.png" src="../_images/important-continuous-rvs_32_1.png" />
+</div>
+</div>
+<p>We can see these are all bell shapes with different amounts of spreading.</p>
+<p>Now suppose we started with a completely different distribution. What if we wanted to find the distribution for sums of continuous uniform random variables instead of Binomial random variables.  We don’t have a random distribution for the sum of an arbitrary number of uniform random variables, so let’s estimate the distribution using simulation. It will be sufficient to just consider the sum of 20 uniform random variables, but feel free to test this with more or fewer!</p>
+<p>We start by generating a matrix that contains 20 rows, each of which has 1,000,000 uniform[0,1] random variables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">()</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1_000_000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s compute the average value across the rows (axis 0) and plot a histogram:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">means</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_37_0.png" src="../_images/important-continuous-rvs_37_0.png" />
+</div>
+</div>
+<p>Surprisingly, the histogram of the averages of this type of random variable <strong>also has a bell shape</strong>.</p>
+<p>It turns out that the average of almost any type of random variable converges to this bell shape under a set of very mild conditions. The shape is the shape of the Normal density:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-Normal-Gaussian-random-variable">Normal (Gaussian) random variable<a class="headerlink" href="#term-Normal-Gaussian-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">If <span class="math notranslate nohighlight">\(X\)</span> is a normal, or Gaussian, random variable with real parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span>,  then the probability density function <span class="math notranslate nohighlight">\(f_X(x)\)</span> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cab6a448-f83e-463f-8d4b-b957735704d3">
+<span class="eqno">(8.19)<a class="headerlink" href="#equation-cab6a448-f83e-463f-8d4b-b957735704d3" title="Permalink to this equation">#</a></span>\[\begin{align} f_X(x) = 
+ \frac{1}{\sigma\sqrt{2 \pi }}
+  \exp \left\{ - \frac 1 2 \left[\frac{x-\mu}{\sigma}\right]^2 \right\}, ~~ -\infty &lt; x &lt; \infty
+\end{align}\]</div>
+<p class="sd-card-text">The parameter <span class="math notranslate nohighlight">\(\mu\)</span> is called the <em>mean</em>, and the parameter <span class="math notranslate nohighlight">\(\sigma\)</span> is called the <em>standard deviation</em>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Normal density is sometimes specified in terms of <span class="math notranslate nohighlight">\(\sigma^2\)</span> (the variance) instead of <span class="math notranslate nohighlight">\(\sigma\)</span> (the standard deviation) because it can be argued that variance is a more fundamental property of random variables.</p>
+<p>I have chosen to use <span class="math notranslate nohighlight">\(\sigma\)</span> for several reasons:</p>
+<ol class="simple">
+<li><p>The units of <span class="math notranslate nohighlight">\(\sigma\)</span> are the same as the units of <span class="math notranslate nohighlight">\(\mu\)</span>. We will see that either <span class="math notranslate nohighlight">\(\sigma\)</span> or <span class="math notranslate nohighlight">\(\sigma^2\)</span> control the spread of the probability density, but <span class="math notranslate nohighlight">\(\sigma\)</span> has units that more directly translate to values we can understand and interpret on graphs.</p></li>
+<li><p>We will see that the term <span class="math notranslate nohighlight">\((x-\mu)/\sigma\)</span> arises in other aspects of working with Normal random variables and in other applications.</p></li>
+<li><p>SciPy.stats specifies Normal densities in terms of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>, not <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
+</ol>
+<p>In general, it is best to specify whether a parameter of a Normal random variable indicates standard deviation or variance. For instance, we might write <span class="math notranslate nohighlight">\(X \sim\)</span> Normal(<span class="math notranslate nohighlight">\(\mu=0\)</span>, <span class="math notranslate nohighlight">\(\sigma=5\)</span>).</p>
+</div>
+<p>From the form of the pdf, we can make several observations:</p>
+<ul class="simple">
+<li><p>The density is symmetric, and it is centered at <span class="math notranslate nohighlight">\(\mu\)</span>.</p></li>
+<li><p>The density rolls off double exponentially fast in the distance from <span class="math notranslate nohighlight">\(\mu\)</span>.</p></li>
+<li><p>The spread of the density away from the mean is controlled by the parameter <span class="math notranslate nohighlight">\(\sigma\)</span>.</p></li>
+</ul>
+<p>In SciPy.stats, we can create a Gaussian distribution using <code class="docutils literal notranslate"><span class="pre">stats.norm(mu,</span> <span class="pre">sigma)</span></code>.  Note that we have to pass <span class="math notranslate nohighlight">\(\sigma\)</span> (<strong>NOT <span class="math notranslate nohighlight">\(\sigma^2\)</span></strong>) to <code class="docutils literal notranslate"><span class="pre">stats.norm</span></code>.</p>
+<p>Below are plots of the pdf for different values of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">all_params</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">all_params</span><span class="p">:</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">mylabel</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Normal(</span><span class="si">{</span><span class="n">N</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, $\sigma=$</span><span class="si">{</span><span class="n">N</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">mylabel</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;pdfs for Normal densities&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_43_0.png" src="../_images/important-continuous-rvs_43_0.png" />
+</div>
+</div>
+<p>Note that each density is centered on <span class="math notranslate nohighlight">\(\mu\)</span> and symmetric about <span class="math notranslate nohighlight">\(\mu\)</span>. Note that larger <span class="math notranslate nohighlight">\(\sigma\)</span> translates to the density being spread out wider around <span class="math notranslate nohighlight">\(\mu\)</span> but also having a lower peak value. It should be somewhat intuitive that this would happen, as we know the pdf must integrate to 1.</p>
+<p>Now you may be wondering – why isn’t the CDF included in this definition? We usually don’t specify the CDF for the Normal random variable because <strong>the CDF can only be written as an integral equation</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+F_X(x) = \int_{-\infty}^{x}    \frac{1}{\sigma \sqrt{2 \pi }}
+      \exp \left\{ - \frac 1 2 \left[\frac{x-\mu}{\sigma}\right]^2 \right\} ~ dx.
+\]</div>
+<p>The distribution function is the area under the pdf from <span class="math notranslate nohighlight">\(-\infty\)</span> to <span class="math notranslate nohighlight">\(x\)</span>, as shown by the shaded area in the figure below:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_46_0.png" src="../_images/important-continuous-rvs_46_0.png" />
+</div>
+</div>
+<p>We will refer to a normal distribution with <span class="math notranslate nohighlight">\(\mu=0\)</span> and <span class="math notranslate nohighlight">\(\sigma=1\)</span> as the <em>standard Normal</em> distribution. The CDF for the standard Normal random variable is often denote <span class="math notranslate nohighlight">\(\Phi(x)\)</span>.</p>
+<p>We will often have the need to calculate the survival function, <span class="math notranslate nohighlight">\(1-F_X(x)\)</span> for a Normal random variable. For a standard Normal random variable, the survival function is often denoted <span class="math notranslate nohighlight">\(Q(x)\)</span> and is typically written as</p>
+<div class="math notranslate nohighlight">
+\[
+Q(x) =   \frac{1}{\sqrt{2 \pi}} \int_{x}^{\infty}    
+      e^{ - \frac{t^2}{2} } ~ dt.
+\]</div>
+<p>Note that we almost always evaluate <span class="math notranslate nohighlight">\(Q(x)\)</span> for <span class="math notranslate nohighlight">\(x&gt;0\)</span> because we can exploit properties of the distribution to need to evaluate it for <span class="math notranslate nohighlight">\(-x\)</span>, as explained further in <a class="reference internal" href="#evaluating-gaussian-probs"><span class="std std-ref">Evaluating Gaussian Probabilities</span></a>. The <span class="math notranslate nohighlight">\(Q\)</span>-function is the area from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(\infty\)</span> under the pdf of the standard Normal random variable, as shown in the figure below:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_48_0.png" src="../_images/important-continuous-rvs_48_0.png" />
+</div>
+</div>
+<p>The CDF and survival function for a Gaussian<span class="math notranslate nohighlight">\((\mu,\sigma^2)\)</span> random variable are</p>
+<div class="math notranslate nohighlight" id="equation-general-gaussian-cdf">
+<span class="eqno">(8.20)<a class="headerlink" href="#equation-general-gaussian-cdf" title="Permalink to this equation">#</a></span>\[\Phi \left(\frac{x-\mu}{\sigma} \right)\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight" id="equation-general-gaussian-sf">
+<span class="eqno">(8.21)<a class="headerlink" href="#equation-general-gaussian-sf" title="Permalink to this equation">#</a></span>\[\operatorname{Q} \left(\frac{x-\mu}{\sigma} \right).\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that the argument of these functions has the same form that we saw in the Normal pdf. The denominator is <span class="math notranslate nohighlight">\(\sigma\)</span>, not <span class="math notranslate nohighlight">\(\sigma^2\)</span>!</p>
+</div>
+<p>Since the <span class="math notranslate nohighlight">\(Q()\)</span> function is the survival function of the standard Normal random variable, we can create a very simple function to evaluate it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">q</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For <span class="math notranslate nohighlight">\(x&gt;0\)</span>, another convenient form for <span class="math notranslate nohighlight">\(Q(x)\)</span>  is</p>
+<div class="math notranslate nohighlight">
+\[
+Q(x) =   \frac 1 \pi \int_{0}^{\pi/2} \exp \left( - \frac{x^2}{2 \sin^2 \theta} \right) ~d \theta.
+\]</div>
+<p>There are many good approximations and bounds for the <span class="math notranslate nohighlight">\(Q\)</span> function that are appropriate for programming into an electronic calculator or for using in analysis when the integral forms are prevent further simplification of expressions. The <a class="reference external" href="https://en.wikipedia.org/wiki/Q-function#Bounds_and_approximations">Wikipedia page on the Q-function</a> has an excellent list. One that is worth pointing out because of its simplicity and accuracy for large values of its argument is this one, which is known as an improved Chernoff bound:</p>
+<div class="math notranslate nohighlight">
+\[
+Q(x) \le \frac 1 2 e^{-x^2 / 2}.
+\]</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">61</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">q</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$Q(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\u00BD</span><span class="s1">$e^{-x^2/2}$&#39;</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_52_0.png" src="../_images/important-continuous-rvs_52_0.png" />
+</div>
+</div>
+<p>In this book, I will assume that you have access to a computer and SciPy.stats, so I am not going to spend additional time on how to actually evaluate the <span class="math notranslate nohighlight">\(Q\)</span> function. Note that the inverse <span class="math notranslate nohighlight">\(Q\)</span> function is simply the inverse survival function, which in SciPy.stats is <code class="docutils literal notranslate"><span class="pre">norm.isf(p)</span></code>. For clarity of notation, we can define a <code class="docutils literal notranslate"><span class="pre">qinv()</span></code> function as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">qinv</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The CDFs are shown below for the same set of parameters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">all_params</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">all_params</span><span class="p">:</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">mylabel</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Normal(</span><span class="si">{</span><span class="n">N</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">N</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">mylabel</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="s2">&quot;k:&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;CDFs for Normal densities&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_56_0.png" src="../_images/important-continuous-rvs_56_0.png" />
+</div>
+</div>
+<p>The dotted lines show that the point that achieves <span class="math notranslate nohighlight">\(F_X(x) =P(X \le x) =0.5\)</span> is <span class="math notranslate nohighlight">\(\mu\)</span> for each of these distributions. This should be expected from our previous observations: since the distribution is symmetric around <span class="math notranslate nohighlight">\(\mu\)</span>, it must be that half of the probability is on each side of <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+<p>Note that the steepness of the CDF curves depends on the value of <span class="math notranslate nohighlight">\(\sigma\)</span> (and not on the value of <span class="math notranslate nohighlight">\(\mu\)</span>). Larger <span class="math notranslate nohighlight">\(\sigma\)</span> results in the CDF curve being less steep because the probability is spread out over a wider range.</p>
+<section id="evaluating-gaussian-probabilities">
+<span id="evaluating-gaussian-probs"></span><h3><span class="section-number">8.7.3.1. </span>Evaluating Gaussian Probabilities<a class="headerlink" href="#evaluating-gaussian-probabilities" title="Permalink to this heading">#</a></h3>
+<p>For a Gaussian random variable, the probability of any interval can be written as a simple function involving the <span class="math notranslate nohighlight">\(Q\)</span>-function with positive arguments. Consider <span class="math notranslate nohighlight">\(X \sim\)</span>Gaussian<span class="math notranslate nohighlight">\((\mu, \sigma),\)</span> where <span class="math notranslate nohighlight">\(\sigma &gt;0\)</span>. We consider several cases below.</p>
+<ol class="simple">
+<li><p>The easiest case is a “right tail”, <span class="math notranslate nohighlight">\(P(X&gt;x)\)</span>, where <span class="math notranslate nohighlight">\(x&gt;\mu\)</span>. This scenario is illustrated below:</p></li>
+</ol>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_59_0.png" src="../_images/important-continuous-rvs_59_0.png" />
+</div>
+</div>
+<p>From <a class="reference internal" href="#equation-general-gaussian-sf">(8.21)</a>,</p>
+<div class="math notranslate nohighlight">
+\[
+P(X &gt; x ) = Q \left( \frac{ x- \mu}{\sigma} \right).
+\]</div>
+<p>Note that the distance between the threshold <span class="math notranslate nohighlight">\(x\)</span> and the mean <span class="math notranslate nohighlight">\(\mu\)</span> is <span class="math notranslate nohighlight">\(d=x-\mu\)</span>.  Then we can write</p>
+<div class="math notranslate nohighlight">
+\[
+P(X &gt; x ) = Q \left( \frac d \sigma \right).
+\]</div>
+<p>Although introducing <span class="math notranslate nohighlight">\(d\)</span> may seem like an unnecessary step at this point, we will soon show why this is useful.</p>
+<ol class="simple">
+<li><p>Now consider a “left tail”, <span class="math notranslate nohighlight">\(P(X &lt; y)\)</span>, where <span class="math notranslate nohighlight">\(y &lt; \mu\)</span>. This scenario is illustrated below:</p></li>
+</ol>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_61_0.png" src="../_images/important-continuous-rvs_61_0.png" />
+</div>
+</div>
+<p>Note that</p>
+<div class="math notranslate nohighlight">
+\[
+P(Y \le y) = F_Y(y) = \Phi\left( \frac { y -\mu}{\sigma} \right).
+\]</div>
+<p>However, we are going to use the standard that every Normal probability should be expressed in terms of <span class="math notranslate nohighlight">\(Q()\)</span> instead of <span class="math notranslate nohighlight">\(\Phi\)</span>. There are several ways to proceed. One is to use the mathematical relation <span class="math notranslate nohighlight">\(\Phi(z) = 1 - Q(z)\)</span>. An alternative is to take advantage of the symmetry of the Normal density around the mean, <span class="math notranslate nohighlight">\(\mu\)</span>. If we reflect the region <span class="math notranslate nohighlight">\(Y \le y\)</span> around an axis located at <span class="math notranslate nohighlight">\(\mu\)</span>, then the probability of the reflected region will be equal to the <span class="math notranslate nohighlight">\(P(Y \le y)\)</span>. To preserve the symmetry of the region, the reflected region must be at the same distance, <span class="math notranslate nohighlight">\(d = \mu - y\)</span>, from <span class="math notranslate nohighlight">\(\mu\)</span>. Thus, the reflected region is <span class="math notranslate nohighlight">\(X \ge \mu + d = 2 \mu -y\)</span>. The result is shown in the dark shaded region below:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_63_0.png" src="../_images/important-continuous-rvs_63_0.png" />
+</div>
+</div>
+<p>Then using <a class="reference internal" href="#equation-general-gaussian-sf">(8.21)</a>, the probability of the reflected region is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6137039b-9b76-46af-8dce-00ae523f3456">
+<span class="eqno">(8.22)<a class="headerlink" href="#equation-6137039b-9b76-46af-8dce-00ae523f3456" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(X \ge 2 \mu -y) &amp;= Q \left( \frac{2\mu -y -\mu}{\sigma} \right) \\
+&amp;= Q \left( \frac{\mu -y}{\sigma} \right) \\
+&amp;= Q \left( \frac{d}{\sigma} \right).
+\end{align}\]</div>
+<p><strong>The probability in a tail of the Gaussian density that is at distance <span class="math notranslate nohighlight">\(d\)</span> from the mean is <span class="math notranslate nohighlight">\(Q(d/\sigma)\)</span>.</strong></p>
+<ol class="simple">
+<li><p>Consider next the probability of a region that does not include the mean. For example, <span class="math notranslate nohighlight">\(P(a &lt; X \le b),\)</span> where <span class="math notranslate nohighlight">\(a&gt; \mu\)</span>.  The corresponding region of probability density is shown below:</p></li>
+</ol>
+<div class="cell tag_hide-input tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_65_0.png" src="../_images/important-continuous-rvs_65_0.png" />
+</div>
+</div>
+<p>Note that the event <span class="math notranslate nohighlight">\(Y &gt;  a\)</span> can be written as <span class="math notranslate nohighlight">\(a &lt; Y \le b \cup Y &gt; b\)</span>, where the events <span class="math notranslate nohighlight">\(\{s | a &lt; Y \le b\}\)</span> and <span class="math notranslate nohighlight">\(\{s |Y&gt;b\}\)</span> are mutually exclusive. Then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3a484a16-edad-4a1f-ab45-36dd337e41da">
+<span class="eqno">(8.23)<a class="headerlink" href="#equation-3a484a16-edad-4a1f-ab45-36dd337e41da" title="Permalink to this equation">#</a></span>\[\begin{align}
+P (Y &gt; a) &amp;= P( a &lt; Y \le b) + P(Y&gt;b) \\
+\Rightarrow P( a &lt; Y \le b) &amp;= P(Y&gt;a) - P(Y&gt;b).
+\end{align}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(d_1\)</span> and <span class="math notranslate nohighlight">\(d_2\)</span> be the distances from the mean to <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, respectively; i.e., <span class="math notranslate nohighlight">\(d_1 =  a-\mu\)</span> and <span class="math notranslate nohighlight">\(d_2 = b-\mu\)</span>. Then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d7288e4b-1cdf-401b-8eb6-0bd97739fedf">
+<span class="eqno">(8.24)<a class="headerlink" href="#equation-d7288e4b-1cdf-401b-8eb6-0bd97739fedf" title="Permalink to this equation">#</a></span>\[\begin{align}
+ P( a &lt; Y \le b) &amp;= Q\left( \frac {d_1}{\sigma} \right) 
+ -Q\left( \frac {d_2}{\sigma} \right).
+\end{align}\]</div>
+<ol class="simple">
+<li><p>For our final case, consider a region that includes the mean. For example, <span class="math notranslate nohighlight">\(P(g &lt; X \le h)\)</span>, where <span class="math notranslate nohighlight">\(g &lt; \mu &lt; h\)</span>. The corresponding region of probability density is shown below:</p></li>
+</ol>
+<div class="cell tag_hide-input tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_68_0.png" src="../_images/important-continuous-rvs_68_0.png" />
+</div>
+</div>
+<p>For this type of probability, the easiest way to write it in terms of <span class="math notranslate nohighlight">\(Q()\)</span> functions is to consider the complimentary event. I.e.,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b3505440-5f2a-4ba3-9a06-30ad5ac13319">
+<span class="eqno">(8.25)<a class="headerlink" href="#equation-b3505440-5f2a-4ba3-9a06-30ad5ac13319" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(g &lt; X \le h) &amp;= 1 - P\left( \overline{g &lt; X \le h}\right) \\
+&amp;= 1 - \left[ P\left(X\le g \cup X&gt;h \right)\right].
+\end{align}\]</div>
+<p>The region of probability density for  <span class="math notranslate nohighlight">\(X\le g \cup X&gt;h\)</span> is shown below:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_70_0.png" src="../_images/important-continuous-rvs_70_0.png" />
+</div>
+</div>
+<p>This probability can be calculated as the sum of two tail probabilities, which we already know how to calculated. The result is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-959f5f02-0601-4e6a-be88-cd94671d6d57">
+<span class="eqno">(8.26)<a class="headerlink" href="#equation-959f5f02-0601-4e6a-be88-cd94671d6d57" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(g &lt; X \le h) &amp;= 1 - Q\left( \frac{d_3}{\sigma}\right) - Q\left( \frac{d_4}{\sigma}\right) \\
+&amp;= 1 - Q\left( \frac{\mu -g }{\sigma}\right) - Q\left( \frac{h- \mu}{\sigma}\right) .
+\end{align}\]</div>
+<p><strong>Example</strong></p>
+<p>The plot below shows the heights for approximately 14,000 people in the <a class="reference external" href="https://wwwn.cdc.gov/Nchs/Nhanes/Search/DataPage.aspx?Component=Examination&amp;Cycle=2017-2020">US National Health and Nutrition Examination Survey (NHANES) for 2017–March 2020</a>. The data comes from the Body Measures data set. Note that this data set includes both adults and children, so the combined data is clearly not Normal. However, there seems to be a strong Normal component in the higher height, which likely correspond to the adults in the survey.</p>
+<p>Using this data set, estimate the probability that an adult is over 7 feet tall.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sas</span><span class="p">(</span><span class="s2">&quot;https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/P_BMX.XPT&quot;</span><span class="p">)</span>
+<span class="n">counts</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;BMXHT&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">2.54</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Height (in)&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_73_0.png" src="../_images/important-continuous-rvs_73_0.png" />
+</div>
+</div>
+<p><em>Solution</em></p>
+<p>This problem is very different from our previous problems because we cannot answer it directly from the data. Since this data set contains no heights that are greater than 7 feet, any resampling of the data will also have no heights greater than 7 feet. Thus, an estimate that uses only resampling will always estimate the probability of a person being over 7 feet tall as 0, which we know is not correct.</p>
+<p>One way to deal with this problem is to use a <em>model-based</em> approach. That is, we assume that we have a model for the data, and use this model to answer the question. Looking at the right-hand side of the histogram, we can choose to model the heights of adults in the US using a Normal distribution. We need to know two parameters to specify the Normal distribution: the mean <span class="math notranslate nohighlight">\(\mu\)</span> and the variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.  We don’t yet know how to estimate these parameters directly, and even if we did, the fact that the adult data is mixed with juvenile data would make this challenging.</p>
+<p>For now, we will estimate these parameters by manually searching for a good match between the Normal density and the normalized histogram. The interactive widget below can b used to experiment with fitting the density to the histogram by varying the mean and variance. There is also a third parameter, scale, which is used to reduce the density of the Normal model by a scaling factor to compensate for the fact that not all of the histogram data is associated with adults.</p>
+<p><strong>Adjust the parameters below so that the Normal density (the smooth curve) matches the main bell shape in the data as closely as possible:</strong></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
+
+
+
+<span class="k">def</span> <span class="nf">plot_normal_density</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">sdev</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
+
+
+  <span class="n">N</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sdev</span><span class="p">)</span>
+  <span class="n">n</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">31</span><span class="p">)</span>
+
+  <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+  <span class="n">counts</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;BMXHT&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">2.54</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+
+
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">scale</span><span class="o">*</span><span class="n">N</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="n">interact</span><span class="p">(</span>
+  <span class="n">plot_normal_density</span><span class="p">,</span>
+  <span class="n">mean</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mi">62</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mi">68</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;$\mu$&quot;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;description_width&quot;</span><span class="p">:</span> <span class="s2">&quot;initial&quot;</span><span class="p">},</span>
+  <span class="p">),</span>
+  <span class="n">sdev</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;$\sigma$&quot;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;description_width&quot;</span><span class="p">:</span> <span class="s2">&quot;initial&quot;</span><span class="p">},</span>
+  <span class="p">),</span>
+  <span class="n">scale</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;scale&quot;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;description_width&quot;</span><span class="p">:</span> <span class="s2">&quot;initial&quot;</span><span class="p">},</span>
+  <span class="p">)</span>  
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "a882844f810a4635999b3f0a54435666", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<p>Your values may differ, but the values that I found to best match are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> = 65.05</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span>=4.9</p></li>
+<li><p>scale = 0.92</p></li>
+</ul>
+<p>Given these values, we can model the height of a random US adult as <span class="math notranslate nohighlight">\(H \sim \)</span>Normal(<span class="math notranslate nohighlight">\(\mu = 65.1\)</span>, <span class="math notranslate nohighlight">\(\sigma^2 = 23.2)\)</span>. Then the probability that a randomly chosen adult is over 7 feet (i.e., 84 inches) is <span class="math notranslate nohighlight">\(P(H&gt;84)\)</span>. We can directly evaluate this using SciPy.stats as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mf">65.05</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">4.9</span> <span class="p">)</span>
+<span class="n">H</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.5012921622610294e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also easily express this using the <span class="math notranslate nohighlight">\(Q\)</span> function by noting that the distance from the mean to the threshold is <span class="math notranslate nohighlight">\(d = 84-65.1 = 18.9\)</span>,  so</p>
+<div class="math notranslate nohighlight">
+\[
+P(H &gt; 84 ) = Q \left( \frac{d}{\sigma }\right) \approx Q \left( \frac{18.9}{4.9 }\right)  \approx Q (3.86),
+\]</div>
+<p>which is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="p">(</span><span class="mf">3.86</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.669351253425653e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>So the probability that a randomly chosen adult in the US is over 7 feet tall should be about <span class="math notranslate nohighlight">\(6 \times 10^{-5}\)</span>. This estimate may be low because the data we used to generate this model also includes adolescents, which may skew the data toward lower heights. Fortunately, we can check this result using another data set.</p>
+<p>The Behavioral Risk Factor Surveillance System (BRFSS) Survey is a telephone survey of US residents that is sponsored by the US Centers for Disease Control and other federal agencies. Here is a link to the <a class="reference external" href="https://www.cdc.gov/brfss/annual_data/annual_2020.html">2020 BRFSS survey data</a>, which includes over 400,000 respondents. The heights (in inches) are shown in the figure below:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/heights.pkl&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">heights</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">counts2</span><span class="p">,</span> <span class="n">bins2</span><span class="p">,</span> <span class="n">plot2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span>
+                                 <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Height (in)&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Heights from the 2020 BRFSS Survey&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_82_0.png" src="../_images/important-continuous-rvs_82_0.png" />
+</div>
+</div>
+<p>In this data set, the relative frequency of heights over 7 feet is <span class="math notranslate nohighlight">\(5.5 \times 10^{-5}\)</span>, which is extremely close to our estimate using the NHANES data set.</p>
+<p><strong>Example</strong></p>
+<p>A professor asks her TA how the students did on an exam. The TA provided the following information:</p>
+<ul class="simple">
+<li><p>The data looks like it follows a Normal distribution with mean <span class="math notranslate nohighlight">\(\mu=83\)</span>.</p></li>
+<li><p>10% of the students got a C or lower (less than 70).</p></li>
+</ul>
+<p>If the threshold for an A is 90, what is the probability that a randomly chosen student got an A?</p>
+<p><em>Solution</em></p>
+<p>As in the last example, we have a <em>model</em> for our data. This time, we do not have to estimate the parameters of the model from data, but we are also not directly given all the parameters. We know <span class="math notranslate nohighlight">\(\mu=83\)</span>, but we will also need <span class="math notranslate nohighlight">\(\sigma^2\)</span> before we can answer the question.  To get <span class="math notranslate nohighlight">\(\sigma^2\)</span>, we can use the second piece of information we were given: 10% of students got a C or lower.  If <span class="math notranslate nohighlight">\(G\)</span> is the grade on the exam, then <span class="math notranslate nohighlight">\(P(G \le 70) =0.1\)</span>. Thus,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(G \le 70) &amp;= 0.1 \\
+Q \left( \frac{ \mu-70}{\sigma} \right) &amp; =0.1 \\
+ \frac{ 83-70}{\sigma}  &amp; =Q^{-1} (0.1) \\
+ \sigma &amp; = \frac{13}{Q^{-1} (0.1)} \\
+\end{align*}\]</div>
+<p>Thus, the standard deviation, <span class="math notranslate nohighlight">\(\sigma\)</span>, is approximately</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">13</span><span class="o">/</span><span class="n">qinv</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.143953898940929
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that our model is fully specified, we can answer the main question: what is the probability that a randomly chosen student got an A (<span class="math notranslate nohighlight">\(G \ge 90\)</span>)?</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4e4dcf60-725a-46c2-9ce1-401d501698f1">
+<span class="eqno">(8.27)<a class="headerlink" href="#equation-4e4dcf60-725a-46c2-9ce1-401d501698f1" title="Permalink to this equation">#</a></span>\[\begin{align}
+P( G \ge 90) &amp;= Q \left( \frac{90-\mu}{\sigma} \right)\\
+ &amp;= Q \left( \frac{90-83}{10.1} \right),
+\end{align}\]</div>
+<p>which is approximately</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="mi">90</span><span class="o">-</span><span class="mi">83</span><span class="p">)</span><span class="o">/</span><span class="mf">10.1</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.24413302914341584
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, the probability that a randomly chosen student got an A is 24.4%.</p>
+<p><strong>JMS: Add questions to check understanding here.</strong></p>
+</section>
+<section id="central-limit-theorem">
+<h3><span class="section-number">8.7.3.2. </span>Central Limit Theorem<a class="headerlink" href="#central-limit-theorem" title="Permalink to this heading">#</a></h3>
+<p>The Central Limit Theorem (CLT) says that the CDF function for the average of <span class="math notranslate nohighlight">\(M\)</span> of almost any type of random variables will converge to a Normal CDF as <span class="math notranslate nohighlight">\(M\)</span> goes to infinity. This is a remarkable result that is useful for two different reasons:</p>
+<ol class="simple">
+<li><p>Many phenomena can be modeled using the Normal distribution if they come from aggregating or averaging other phenomena.</p></li>
+<li><p>For many random models, such as Binomial or Poisson, with a large number of trials, it becomes difficult to calculate the probabilities. In such cases, we can approximate the probabilities using a Normal approximation and compute the probabilities using the <span class="math notranslate nohighlight">\(Q\)</span>-function.</p></li>
+</ol>
+<p>In reality, there are many different Central Limit Theorems, and the details of all of them are outside of the scope of this book. If you are interested in learning more, the <a class="reference external" href="https://en.wikipedia.org/wiki/Central_limit_theorem">Wikipedia page on the Central limit theorem</a> is a good place to start.</p>
+<p>We will demonstrate how to apply the CLT to solve problems relating to the means of data in <a class="reference internal" href="../09-moments/intro.html"><span class="doc">Chapter 9</span></a> once we introduce means and variances for random variables.</p>
+<p><strong>Applications of Normal Random Variables:</strong> As mentioned above, many phenomena that come from aggregate effects of from averaging can be modeled using the Normal distribution. In statistics, an average of a large number of data points can be assumed to be Normal. The motion of electrons bumping around in the receivers of cell phones and other radio equipment cause thermal noise that is modeled as Normal noise in the received data. Many properties in populations of people or animals, such as height or weight, tend to follow a Normal distribution; this may be because there are many different physiological factors that affect these properties, and the resulting values are caused by the aggregate effects of these many factors.</p>
+</section>
+</section>
+<section id="chi-squared-random-variable">
+<h2><span class="section-number">8.7.4. </span>Chi-Squared Random Variable<a class="headerlink" href="#chi-squared-random-variable" title="Permalink to this heading">#</a></h2>
+<p>The chi-squared (sometimes written <span class="math notranslate nohighlight">\(\xi^2\)</span>) random variable is nice because it ties together two of the distributions that we have already been working with.  Let’s start with a definition but note that the form of the definition is a bit different than for the previous random variables:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-chi-squared-random-variable">chi-squared random variable<a class="headerlink" href="#term-chi-squared-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">Let <span class="math notranslate nohighlight">\(N_i,~i=0,1,\ldots, M-1\)</span> be independent, standard Normal random variables with mean <span class="math notranslate nohighlight">\(\mu=0\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2=1\)</span>. Then</p>
+<div class="math notranslate nohighlight">
+\[
+X = \sum_{i=0}^{M-1} N_{i}^{2}
+\]</div>
+<p class="sd-card-text">is a chi-squared random variable with <span class="math notranslate nohighlight">\(M\)</span> degrees of freedom (dof). The pdf of <span class="math notranslate nohighlight">\(X\)</span> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-747d1c54-0b86-47b7-82f6-96a83b88c74b">
+<span class="eqno">(8.28)<a class="headerlink" href="#equation-747d1c54-0b86-47b7-82f6-96a83b88c74b" title="Permalink to this equation">#</a></span>\[\begin{align} f_X(x) = 
+\begin{cases} 
+0, &amp; x &lt;0 \\
+\frac{x^{\frac{M}{2}-1} e^{-\frac{x}{2}}}{2^{\frac M 2} \Gamma\left(\frac M 2\right)}, &amp; x \ge 0
+\end{cases}
+\end{align}\]</div>
+<p class="sd-card-text">where <span class="math notranslate nohighlight">\(\Gamma(M/2)\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_function">gamma function</a>. In general, <span class="math notranslate nohighlight">\(\Gamma(x)\)</span> is defined by an integral, but <span class="math notranslate nohighlight">\(\Gamma(x) = (x-1)! if \)</span>x$ is an integer.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>I am not giving the formula for the CDF because it depends on yet another function that is defined by an integral, and we will use SciPy.stats to compute the CDF.</p>
+<p>But note the form of the pdf when <span class="math notranslate nohighlight">\(M=2\)</span>. For <span class="math notranslate nohighlight">\(x\ge 0\)</span>, the  pdf is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-26f08f7b-1a41-409b-ab34-7d552073750d">
+<span class="eqno">(8.29)<a class="headerlink" href="#equation-26f08f7b-1a41-409b-ab34-7d552073750d" title="Permalink to this equation">#</a></span>\[\begin{align} f_X(x) = 
+    \frac{x^{\frac{2}{2}-1} e^{-\frac{x}{2}}}{2^{\frac 2 2} \Gamma\left(\frac 2 2\right)} = \frac{1}{2 (0!)} e^{-x/2} = \frac 1 2 e^{-x/2}.
+    \end{align}\]</div>
+<p>Hopefully, this form should look familiar. The chi-squared random variable with <span class="math notranslate nohighlight">\(M=2\)</span> is an exponential random variable with <span class="math notranslate nohighlight">\(\lambda=1/2\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(X\)</span> is chi-squared with <span class="math notranslate nohighlight">\(M\)</span> degrees of freedom, we write <span class="math notranslate nohighlight">\(X \sim\)</span> chi-squared<span class="math notranslate nohighlight">\((M)\)</span> or <span class="math notranslate nohighlight">\( X \sim \chi^2(M)\)</span>.</p>
+<p>We can use SciPy.stats to create a chi-squared distribution by using <code class="docutils literal notranslate"><span class="pre">stats.chi2(dof)</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The graph below shows the pdf of chi-squared random variables with different degrees of freedom:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">161</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]:</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; dof&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+    <span class="s2">&quot;Densities of chi-squared random variables</span><span class="se">\n</span><span class="s2">with different degrees of freedom&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$f_X(x)$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_97_0.png" src="../_images/important-continuous-rvs_97_0.png" />
+</div>
+</div>
+<p>Since a random variable that is <span class="math notranslate nohighlight">\(\chi^2(M)\)</span> can be created by summing the squares of <span class="math notranslate nohighlight">\(M\)</span> standard normal random variables, it should be no surprise that the probability density shifts away from 0 as <span class="math notranslate nohighlight">\(M\)</span> increases.</p>
+<p><strong>Applications</strong> Squaring is often used in engineering and sciences applications to compute power, energy, or squared error. When the items being squared have a standard normal distribution, then the resulting quantity has a chi-squared distribution. The chi-squared distribution also arises in contingency tests, which we introduce in <span class="xref std std-doc">../12-categorical-data/outline.html</span>.</p>
+</section>
+<section id="students-t-random-variable">
+<h2><span class="section-number">8.7.5. </span>Student’s <span class="math notranslate nohighlight">\(t\)</span> Random Variable<a class="headerlink" href="#students-t-random-variable" title="Permalink to this heading">#</a></h2>
+<p>The Student’s <span class="math notranslate nohighlight">\(t\)</span> random variable arises when estimating the mean <span class="math notranslate nohighlight">\(\mu\)</span> of data from a Normal distribution for which the variance <span class="math notranslate nohighlight">\(\sigma^2\)</span> is also not known. The distribution takes its name from a paper by William Sealy Gosset that was published under the pen name <em>Student</em>. The paper is linked here:</p>
+<p><a class="reference external" href="https://www.york.ac.uk/depts/maths/histstat/student.pdf">The Probable Error of a Mean by Student</a></p>
+<p>Gosset was working at the Guiness Brewery in Dublin, Ireland when he published this paper. He developed the distribution to perform statistical tests on small samples in the brewery. Thus, his derivation of the <span class="math notranslate nohighlight">\(t\)</span> distribution was motivated by practical consideration.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Gosset also coined the term <em>Pearson’s correlation</em> for a measure of statistical dependence of random variables, which will be introduced in <span class="xref std std-doc">../11-matrix-vector-regression/outline.html</span>.</p>
+<p>A good discussion of Gosset’s work is in the Biometrika article entitled <a class="reference external" href="https://www.jstor.org/stable/2332648?seq=1">‘“Student” as Statistician</a>.</p>
+</div>
+<p>A brief definition of Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution follows. More insight on Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution and its application will be covered in <strong>SECTION 9.5 JMS INSERT CORRECT LINK</strong>.</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-Students-t-random-variable">Student’s <span class="math notranslate nohighlight">\(t\)</span> random variable<a class="headerlink" href="#term-Students-t-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">Like the chi-squared random variable, the Student’s <span class="math notranslate nohighlight">\(t\)</span> random variable depends on the sum of multiple other random variables, and it also has a degrees of freedom parameter, <span class="math notranslate nohighlight">\(\nu\)</span>. If <span class="math notranslate nohighlight">\(T\)</span> is a Student’s <span class="math notranslate nohighlight">\(t\)</span> random variable with <span class="math notranslate nohighlight">\(\nu\)</span> degrees of freedom, the pdf is
+begin{equation}
+f(t)=\frac{\Gamma\left(\frac{\nu+1}{2}\right)}{\sqrt{\nu \pi}
+\Gamma\left(\frac{\nu}{2}\right)}\left(1+\frac{t^{2}}{\nu}\right)^{-(\nu+1) / 2}
+\end{equation}
+Also like the chi-squared random variable, the CDF for the Student’s <span class="math notranslate nohighlight">\(t\)</span> random variable can only be written in terms of standard integral functions.
+When <span class="math notranslate nohighlight">\(\nu \rightarrow \infty\)</span>, the Student’s <span class="math notranslate nohighlight">\(t\)</span> random variable converges to a normal random variable.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>We can use SciPy.stats to create a Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution by using <code class="docutils literal notranslate"><span class="pre">stats.t(dof)</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The graph below shows the pdf of Student’s <span class="math notranslate nohighlight">\(t\)</span> random variables with different degrees of freedom. Also shown is a standard Normal random variable for comparison purposes:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">121</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">]:</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; dof&quot;</span><span class="p">)</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Normal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+    <span class="s2">&quot;Densities of Student&#39;s $t$ random variables</span><span class="se">\n</span><span class="s2">with different degrees of freedom&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$t$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$f_T(t)$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-continuous-rvs_104_0.png" src="../_images/important-continuous-rvs_104_0.png" />
+</div>
+</div>
+<p>The densities for the Student’s <span class="math notranslate nohighlight">\(t\)</span> random variables are very similar to those for the standard Normal random variable. In fact, for <span class="math notranslate nohighlight">\(\nu =16\)</span>, the density is almost identical to that of the standard Normal random variable. For lower dofs, the difference is that smaller dofs result in a greater spread of the density away from the mean. Let’s check this by printing out the probability <span class="math notranslate nohighlight">\(P(|T| &gt; 2) \)</span> for different values of <span class="math notranslate nohighlight">\(\nu\)</span>. Note that by symmetry, $P(|T|&gt;2) = 2*P(T&gt;2).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;DOFs&quot;</span><span class="si">:</span><span class="s1"> &gt;6</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="s2">&quot;P(|T|&gt;2)&quot;</span> <span class="si">:</span><span class="s1"> &gt;11</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">nu</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">]:</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="n">nu</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">nu</span> <span class="si">:</span><span class="s1">6</span><span class="si">}</span><span class="s1"> | </span><span class="si">{</span><span class="s2">&quot;&quot;</span><span class="si">:</span><span class="s1">4</span><span class="si">}{</span><span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="si">:</span><span class="s1"> .3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  DOFs |    P(|T|&gt;2)
+     1 |      0.295
+     2 |      0.184
+     4 |      0.116
+    16 |      0.063
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, the Student’s <span class="math notranslate nohighlight">\(t\)</span> random variable is similar to a standard normal random variable except that more of its probability density is spread out away from 0.</p>
+</section>
+<section id="discussion">
+<h2><span class="section-number">8.7.6. </span>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h2>
+<p>We introduced several important continuous random variables, with an emphasis on random variables that are common in statistical data or statistical tests. As we noted, SciPy.stats actually has classes for over 100 different types of continuous distributions, which can be used to model a wide variety of random phenomena.</p>
+<p>One of the first tools to use in determining whether data can be modeled using a particular distribution is visualizing the distribution of the data. This is the topic of the next section.</p>
+</section>
+<section id="terminology-review">
+<h2><span class="section-number">8.7.7. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg)  translateX(-10%);
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transform:  translateX(20px); 
+    transition: display 0s;
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 300px;
+	  width: 640px;
+}
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:20px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 600px;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 16pt;
+    left:442pt;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:20px;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    outline: none;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+.flashcardtext{
+    color: var(--snow);
+    font-size: 20pt;
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+  }
+
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="itJlHQjdWwYs" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="itJlHQjdWwYs-next" onclick="window.checkFlip('itJlHQjdWwYs')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    var count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    var count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+window.flipCard = function flipCard(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    /* ths.blur(); */
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 600, ths, next);
+}
+
+window.checkKey = function checkKey(container, event) {
+    event.stopPropagation();
+    /*
+    console.log(container);
+    console.log(event.key);
+    console.log(event.code);
+    */
+    /* JMS:  Working here*/
+    var next=document.getElementById(container.id+'-next');
+    /* Only react if not already sliding */
+    if (! next.classList.contains("hide")) {
+        if ((event.key == "j") || (event.key == "Enter") || (event.key == "ArrowRight")) {
+            window.checkFlip(container.id);
+        }
+        if (event.key == " ") {
+            window.flipCard(container);
+        }
+    }
+    event.preventDefault();
+}
+
+
+function reenableNext(ths, next) {
+    next.style.pointerEvents='auto';
+    /* ths.tabIndex= 0;*/
+    /* ths.focus(); */
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    /* container.removeAttribute("tabindex");*/
+    /* container.blur(); */
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+    
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+    
+}
+
+
+window.checkFlip = function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 550, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    /* container.tabIndex= 0; */
+    /* container.focus(); */
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    var colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id, keyControl) {
+    console.log(id);
+    
+    var mydiv=document.getElementById(id);
+    /*mydiv.onclick = window.flipCard(mydiv);*/
+    /*
+    mydiv.addEventListener('click', function(){window.flipCard(mydiv);}, false);
+    mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
+    */
+    mydiv.onclick = function(){window.flipCard(mydiv);};
+    console.log(keyControl);
+    if (keyControl == "True"){
+        mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
+    }
+    /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
+    /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
+
+    console.log(mydiv);
+    
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+    
+    for (var i=0; i<2; i++) {
+    
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    mydiv.focus();
+
+    return flipper;
+}
+
+
+
+
+
+var cardsitJlHQjdWwYs=[
+    {
+        "front": "(Continuous) Uniform RV",
+        "back": "An RV on an interval $[a,b]$ that has the same probability density at every point in that interval, \\[f_U(u) = \\frac{1}{b-a}, ~~ u \\in [a,b] \\]"
+    },
+    {
+        "front": "Exponential RV",
+        "back": "RV with single parameter $\\lambda$ that controls exponential roll-off of density. The pdf is \\[ f_X(x) = \\lambda e^{-\\lambda x} u(x) \\] "
+    },
+    {
+        "front": "Inverse CDF",
+        "back": "Given probability $p$, returns value of $x$ such that $F_X(x)=p$. Can denote as $F_{X}^{-1}(p)$. Also called the <i>quantile function</i> of <i>percent-point function</i>."
+    },
+    {
+        "front": "Normal (Gaussian) RV",
+        "back": "RV that often arises from aggregation of random effects. Has parameters $\\mu$ (mean) and $\\sigma$ (standard deviation) and pdf \\[f_X(x)  = \\frac{1}{\\sigma \\sqrt{ 2 \\pi }} \\exp \\left\\{ - \\frac {1} {2}\\left[\\frac{x-\\mu}{\\sigma}\\right]^2   \\right\\},\\]  \\[-\\infty < x < \\infty \\] "
+    },
+    {
+        "front": "Chi-squared RV",
+        "back": "A chi-squared random variable with $M$ degrees of freedom is equivalent to the sum of the squares of $M$ independent, standard Normal random variables."
+    },
+    {
+        "front": "Student's $t$ RV",
+        "back": "RV similar to standard Normal but has probability spread further from the mean. Spread away from mean increases as degrees of freedom parameter decreases."
+    }
+]
+;
+    
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/08-random-variables/flashcards/important-continuous-rvs.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("itJlHQjdWwYs", "True"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("itJlHQjdWwYs", "True");
+        });
+        }
+        </script></div>
+</div>
+</section>
+</section>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"0d25ca7e5e7f4049a281995261feec0a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "SliderStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "initial", "handle_color": null}}, "37bd9c05011d42459a02f8d45072f9d5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "SliderStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "initial", "handle_color": null}}, "3c95624e04344c82ac034a250b26d09f": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3e5758d561f2432ca54444dbd1b36d8f": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4e72206f1eb6426da7e2ffdd93662133": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "563a334c6ae44ec9b6805c0ed07e1364": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "5eb2cff6e5854f94aebb1182a7130d3c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatSliderModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": true, "description": "$\\mu$", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_4e72206f1eb6426da7e2ffdd93662133", "max": 68, "min": 62, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.05, "style": "IPY_MODEL_0d25ca7e5e7f4049a281995261feec0a", "value": 62}}, "7107b4f8cfc14ea48f5156a261e77cf2": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "8f3432b82b7f4107999f1273efc8a153": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatSliderModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": true, "description": "$\\sigma$", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_3c95624e04344c82ac034a250b26d09f", "max": 6, "min": 3, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_b7ca1a919fbc4ab796f3c788ca73f3d2", "value": 3}}, "b7ca1a919fbc4ab796f3c788ca73f3d2": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "SliderStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "initial", "handle_color": null}}, "d75801f446ab4711beb8bafd05df0674": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_5eb2cff6e5854f94aebb1182a7130d3c", "IPY_MODEL_8f3432b82b7f4107999f1273efc8a153", "IPY_MODEL_dbb011d3bf2b40248fc495dd42677ba9", "IPY_MODEL_f71c25b65fa948c9bc41ccda2ea448d6"], "layout": "IPY_MODEL_7107b4f8cfc14ea48f5156a261e77cf2"}}, "dbb011d3bf2b40248fc495dd42677ba9": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatSliderModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": true, "description": "scale", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_3e5758d561f2432ca54444dbd1b36d8f", "max": 1, "min": 0.5, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.01, "style": "IPY_MODEL_37bd9c05011d42459a02f8d45072f9d5", "value": 1}}, "f71c25b65fa948c9bc41ccda2ea448d6": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_563a334c6ae44ec9b6805c0ed07e1364", "msg_id": "", "outputs": [{"data": {"image/png": "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\n", "text/plain": "<Figure size 432x288 with 1 Axes>"}, "metadata": {"needs_background": "light"}, "output_type": "display_data"}]}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./08-random-variables"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="continuous-rvs.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">8.6. </span>Continuous Random Variables</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="kernel-density-estimation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8.8. </span>Histograms of Continuous Random Variables and Kernel Density Estimation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

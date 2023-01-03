@@ -1,0 +1,3001 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="3.1. Intro to Pandas" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/03-first-data/pandas-start.html" />
+  
+<meta property="og:description" content="Two pandas on an outdoor playset NOT THAT TYPE OF PANDAS Pandas logo “pandas is an open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools ..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="3.1. Intro to Pandas" />
+  
+    <title>3.1. Intro to Pandas &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/03-first-data/pandas-start.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots" href="visualization.html" />
+    <link rel="prev" title="3. First Visualizations and Statistical Tests with Real Data" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03-first-data/pandas-start.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/03-first-data/pandas-start.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-dataframes">
+   3.1.1. Working with Dataframes
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Intro to Pandas</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-dataframes">
+   3.1.1. Working with Dataframes
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="intro-to-pandas">
+<span id="index-0"></span><h1><span class="section-number">3.1. </span>Intro to Pandas<a class="headerlink" href="#intro-to-pandas" title="Permalink to this heading">#</a></h1>
+<!-- Add image like ![](https://images.csmonitor.com/csm/2015/10/944693_1_1029%20panda%20diplomacy_standard.jpg?alias=standard_900x600nc) -->
+<a class="reference internal image-reference" href="../_images/pandas-playset-sd1.png"><img alt="Two pandas on an outdoor playset" src="../_images/pandas-playset-sd1.png" style="width: 250px;" /></a>
+<p><strong>NOT THAT TYPE OF PANDAS</strong></p>
+<p><img alt="Pandas logo" src="../_images/pandas-logo.png" /></p>
+<p><em>“pandas is an open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language”</em></p>
+<p><a class="reference external" href="https://pandas.pydata.org">https://pandas.pydata.org</a></p>
+<p>Rather than spending time explaining what Pandas does, let’s just import it and start working with it. We will import it into the <code class="docutils literal notranslate"><span class="pre">pd</span></code> namespace:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p id="index-1">Pandas works with data in <em>dataframes</em>. A dataframe is similar to a spreadsheet or a database table. It is a two-dimensional structure in which each row corresponds to a single data entry: a set of information about a particular entity or observation. Each column stores one particular piece of information about these entries. Like tables in spreadsheets or databases, the columns can be labeled, and the rows can be indexed by consecutive integers or by the data in one of the columns.</p>
+<p id="index-2">We will work with the following data:</p>
+<ul class="simple">
+<li><p><strong>Cases</strong> and <strong>deaths</strong> from COVID-19 were retrieved from The New York Times “Coronavirus (Covid-19) Data in the United States github repository at <a class="reference external" href="https://github.com/nytimes/covid-19-data/blob/master/us-states.csv">https://github.com/nytimes/covid-19-data/blob/master/us-states.csv</a>. We are going to restrict our analysis to Covid cases in the early part of the pandemic; the data below is for cumulative Covid-19 cases up to April 30, 2020.
+Retrieved April 26, 2021.</p></li>
+<li><p><strong>Population</strong> data is from “Annual Estimates of the Resident Population for the United States, Regions, States, and Puerto Rico: April 1, 2010 to July 1, 2019” 2010-2019 Population Estimates. United States Census Bureau, Population Division. December 30, 2019. Link: <a class="reference external" href="https://www2.census.gov/programs-surveys/popest/tables/2010-2019/state/totals/nst-est2019-01.xlsx">https://www2.census.gov/programs-surveys/popest/tables/2010-2019/state/totals/nst-est2019-01.xlsx</a>. We will use the 2019 census data. Retrieved April 26, 2021.</p></li>
+<li><p><strong>Gross Domestic Product (GDP)</strong> data is from the US Department of Commerce Bureau of Economic Analysis, Regional Data: GDP and Personal Income, Current-dollar Gross Domestic Product (GDP) (Millions of current dollars) 2019:Q4. GDP is a measure of total economic output of a state. Link: <a class="reference external" href="https://apps.bea.gov/itable/iTable.cfm?ReqID=70&amp;step=1&amp;acrdn=1">https://apps.bea.gov/itable/iTable.cfm?ReqID=70&amp;step=1&amp;acrdn=1</a>. Retrieved April 27, 2021.</p></li>
+<li><p>Data on <strong>percentage of population living in urban areas</strong> is from the United States Census Bureau, List of Population, Land Area, and Percent Urban and Rural in 2010 and Changes from 2000 to 2010, “Percent Urban and Rural in 2010 by State”. We will refer to the percentage of a state’s population living in urban areas as the <em>urban index</em>. Link: <a class="reference external" href="https://www2.census.gov/geo/docs/reference/ua/PctUrbanRural_State.xls">https://www2.census.gov/geo/docs/reference/ua/PctUrbanRural_State.xls</a>. Retrieved April 27, 2021.</p></li>
+</ul>
+<p>To make it easier to start working with these data sets, I have merged the data into a single CSV file that is available at</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/covid-merged.csv">https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/covid-merged.csv</a>.</p>
+<p>Pandas provides a method to read CSV files, and it can read them directly from a URL:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://raw.githubusercontent.com/jmshea/&quot;</span>
+    <span class="o">+</span> <span class="s2">&quot;Foundations-of-Data-Science-with-Python/main/&quot;</span>
+    <span class="o">+</span> <span class="s2">&quot;03-first-data/covid-merged.csv&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that this CSV file can be reconstructed from the raw data by running the commands in the notebook “Download Covid Data.ipynb”, which is in the Chapter 3 folder on the book’s github site at</p>
+<p><a class="reference external" href="https://github.com/jmshea/Foundations-of-Data-Science-with-Python/blob/main/03-first-data/Download%20Covid%20Data.ipynb">https://github.com/jmshea/Foundations-of-Data-Science-with-Python/blob/main/03-first-data/Download%20Covid%20Data.ipynb</a></p>
+<section id="working-with-dataframes">
+<span id="index-3"></span><h2><span class="section-number">3.1.1. </span>Working with Dataframes<a class="headerlink" href="#working-with-dataframes" title="Permalink to this heading">#</a></h2>
+<p>Let’s start by looking at the dataframe. When run inside of Jupyter, Pandas will pretty-print a dataframe if the dataframe variable is evaluated as the last line of a code cell. Note that the column labels are imported from the first line of the CSV, and the unlabeled column on the left-hand side is the index, which acts like labels for the rows and which defaults to consecutive integers, starting at row 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>7068</td>
+      <td>4903185</td>
+      <td>230750.1</td>
+      <td>59.04</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>353</td>
+      <td>731545</td>
+      <td>54674.7</td>
+      <td>66.02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>7648</td>
+      <td>7278717</td>
+      <td>379018.8</td>
+      <td>89.81</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>3281</td>
+      <td>3017804</td>
+      <td>132596.4</td>
+      <td>56.16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>50470</td>
+      <td>39512223</td>
+      <td>3205000.1</td>
+      <td>94.95</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Colorado</td>
+      <td>15207</td>
+      <td>5758736</td>
+      <td>400863.4</td>
+      <td>86.15</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Connecticut</td>
+      <td>27700</td>
+      <td>3565287</td>
+      <td>290703.0</td>
+      <td>87.99</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Delaware</td>
+      <td>4734</td>
+      <td>973764</td>
+      <td>77879.4</td>
+      <td>83.30</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Florida</td>
+      <td>33683</td>
+      <td>21477737</td>
+      <td>1126510.3</td>
+      <td>91.16</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Georgia</td>
+      <td>25431</td>
+      <td>10617423</td>
+      <td>634137.5</td>
+      <td>75.07</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Hawaii</td>
+      <td>609</td>
+      <td>1415872</td>
+      <td>97001.1</td>
+      <td>91.93</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Idaho</td>
+      <td>2016</td>
+      <td>1787065</td>
+      <td>85791.1</td>
+      <td>70.58</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Illinois</td>
+      <td>52918</td>
+      <td>12671821</td>
+      <td>893355.5</td>
+      <td>88.49</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Indiana</td>
+      <td>18099</td>
+      <td>6732219</td>
+      <td>384871.7</td>
+      <td>72.44</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Iowa</td>
+      <td>7145</td>
+      <td>3155070</td>
+      <td>196247.4</td>
+      <td>64.02</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Kansas</td>
+      <td>4305</td>
+      <td>2913314</td>
+      <td>178605.1</td>
+      <td>74.20</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Kentucky</td>
+      <td>4708</td>
+      <td>4467673</td>
+      <td>218426.1</td>
+      <td>58.38</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Louisiana</td>
+      <td>28044</td>
+      <td>4648794</td>
+      <td>259079.3</td>
+      <td>73.19</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Maine</td>
+      <td>1095</td>
+      <td>1344212</td>
+      <td>68984.9</td>
+      <td>38.66</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Maryland</td>
+      <td>21825</td>
+      <td>6045680</td>
+      <td>432997.8</td>
+      <td>87.20</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Massachusetts</td>
+      <td>62205</td>
+      <td>6892503</td>
+      <td>603209.6</td>
+      <td>91.97</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Michigan</td>
+      <td>41348</td>
+      <td>9986857</td>
+      <td>543489.4</td>
+      <td>74.57</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Minnesota</td>
+      <td>5136</td>
+      <td>5639632</td>
+      <td>389503.7</td>
+      <td>73.27</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Mississippi</td>
+      <td>6815</td>
+      <td>2976149</td>
+      <td>117642.3</td>
+      <td>49.35</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Missouri</td>
+      <td>7563</td>
+      <td>6137428</td>
+      <td>332659.7</td>
+      <td>70.44</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Montana</td>
+      <td>452</td>
+      <td>1068778</td>
+      <td>54034.7</td>
+      <td>55.89</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Nebraska</td>
+      <td>4332</td>
+      <td>1934408</td>
+      <td>133201.0</td>
+      <td>73.13</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Nevada</td>
+      <td>5053</td>
+      <td>3080156</td>
+      <td>181751.6</td>
+      <td>94.20</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>New Hampshire</td>
+      <td>2146</td>
+      <td>1359711</td>
+      <td>88014.8</td>
+      <td>60.30</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>New Jersey</td>
+      <td>118652</td>
+      <td>8882190</td>
+      <td>642967.7</td>
+      <td>94.68</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>New Mexico</td>
+      <td>3411</td>
+      <td>2096829</td>
+      <td>106914.4</td>
+      <td>77.43</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>New York</td>
+      <td>309696</td>
+      <td>19453561</td>
+      <td>1791566.8</td>
+      <td>87.87</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>North Carolina</td>
+      <td>10507</td>
+      <td>10488084</td>
+      <td>601787.9</td>
+      <td>66.09</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>North Dakota</td>
+      <td>1067</td>
+      <td>762062</td>
+      <td>57471.9</td>
+      <td>59.90</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Ohio</td>
+      <td>18027</td>
+      <td>11689100</td>
+      <td>703368.9</td>
+      <td>77.92</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Oklahoma</td>
+      <td>3618</td>
+      <td>3956971</td>
+      <td>201604.3</td>
+      <td>66.24</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Oregon</td>
+      <td>2510</td>
+      <td>4217737</td>
+      <td>258692.6</td>
+      <td>81.03</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Pennsylvania</td>
+      <td>48224</td>
+      <td>12801989</td>
+      <td>818448.6</td>
+      <td>78.66</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Rhode Island</td>
+      <td>8621</td>
+      <td>1059361</td>
+      <td>62335.4</td>
+      <td>90.73</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>South Carolina</td>
+      <td>6095</td>
+      <td>5148714</td>
+      <td>251664.5</td>
+      <td>66.33</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>South Dakota</td>
+      <td>2450</td>
+      <td>884659</td>
+      <td>56051.9</td>
+      <td>56.65</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Tennessee</td>
+      <td>10506</td>
+      <td>6829174</td>
+      <td>380823.0</td>
+      <td>66.39</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Texas</td>
+      <td>29072</td>
+      <td>28995881</td>
+      <td>1861581.9</td>
+      <td>84.70</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Utah</td>
+      <td>4672</td>
+      <td>3205958</td>
+      <td>196639.4</td>
+      <td>90.58</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Vermont</td>
+      <td>866</td>
+      <td>623989</td>
+      <td>34320.2</td>
+      <td>38.90</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Virginia</td>
+      <td>15846</td>
+      <td>8535519</td>
+      <td>566529.4</td>
+      <td>75.45</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Washington</td>
+      <td>14814</td>
+      <td>7614893</td>
+      <td>624861.4</td>
+      <td>84.05</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>West Virginia</td>
+      <td>1126</td>
+      <td>1792147</td>
+      <td>78480.5</td>
+      <td>48.72</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Wisconsin</td>
+      <td>6973</td>
+      <td>5822434</td>
+      <td>353935.5</td>
+      <td>70.15</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Wyoming</td>
+      <td>559</td>
+      <td>578759</td>
+      <td>40764.3</td>
+      <td>64.76</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>In Pandas, particular columns can be retrieved by putting the name of the column in square brackets after the name of the dataframe. For instance, here is how to retrieve the content of the ‘state’ column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0            Alabama
+1             Alaska
+2            Arizona
+3           Arkansas
+4         California
+5           Colorado
+6        Connecticut
+7           Delaware
+8            Florida
+9            Georgia
+10            Hawaii
+11             Idaho
+12          Illinois
+13           Indiana
+14              Iowa
+15            Kansas
+16          Kentucky
+17         Louisiana
+18             Maine
+19          Maryland
+20     Massachusetts
+21          Michigan
+22         Minnesota
+23       Mississippi
+24          Missouri
+25           Montana
+26          Nebraska
+27            Nevada
+28     New Hampshire
+29        New Jersey
+30        New Mexico
+31          New York
+32    North Carolina
+33      North Dakota
+34              Ohio
+35          Oklahoma
+36            Oregon
+37      Pennsylvania
+38      Rhode Island
+39    South Carolina
+40      South Dakota
+41         Tennessee
+42             Texas
+43              Utah
+44           Vermont
+45          Virginia
+46        Washington
+47     West Virginia
+48         Wisconsin
+49           Wyoming
+Name: state, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>A columns of a dataframe is returned as a Pandas series object, which is a one-dimensional object (like a list) that has a row index.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can retrieve multiple columns simultaneously by including them in a list within the square brackets (meaning that there will be double square brackets – one set to tell Pandas we are selecting columns and one to form the list of columns to be selected:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;cases&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>cases</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>7068</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>353</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>7648</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>3281</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>50470</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Colorado</td>
+      <td>15207</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Connecticut</td>
+      <td>27700</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Delaware</td>
+      <td>4734</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Florida</td>
+      <td>33683</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Georgia</td>
+      <td>25431</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Hawaii</td>
+      <td>609</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Idaho</td>
+      <td>2016</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Illinois</td>
+      <td>52918</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Indiana</td>
+      <td>18099</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Iowa</td>
+      <td>7145</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Kansas</td>
+      <td>4305</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Kentucky</td>
+      <td>4708</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Louisiana</td>
+      <td>28044</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Maine</td>
+      <td>1095</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Maryland</td>
+      <td>21825</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Massachusetts</td>
+      <td>62205</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Michigan</td>
+      <td>41348</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Minnesota</td>
+      <td>5136</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Mississippi</td>
+      <td>6815</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Missouri</td>
+      <td>7563</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Montana</td>
+      <td>452</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Nebraska</td>
+      <td>4332</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Nevada</td>
+      <td>5053</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>New Hampshire</td>
+      <td>2146</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>New Jersey</td>
+      <td>118652</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>New Mexico</td>
+      <td>3411</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>New York</td>
+      <td>309696</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>North Carolina</td>
+      <td>10507</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>North Dakota</td>
+      <td>1067</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Ohio</td>
+      <td>18027</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Oklahoma</td>
+      <td>3618</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Oregon</td>
+      <td>2510</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Pennsylvania</td>
+      <td>48224</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Rhode Island</td>
+      <td>8621</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>South Carolina</td>
+      <td>6095</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>South Dakota</td>
+      <td>2450</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Tennessee</td>
+      <td>10506</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Texas</td>
+      <td>29072</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Utah</td>
+      <td>4672</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Vermont</td>
+      <td>866</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Virginia</td>
+      <td>15846</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Washington</td>
+      <td>14814</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>West Virginia</td>
+      <td>1126</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Wisconsin</td>
+      <td>6973</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Wyoming</td>
+      <td>559</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>When we select multiple columns, the data is no longer one dimensional, and thus the returned data is a new dataframe, not a series:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;cases&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.frame.DataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also retrieve the contents of a pandas row. The general approach is the same as retrieving a column, but we must index into the <code class="docutils literal notranslate"><span class="pre">.loc</span></code> member of the dataframe to retrieve a row:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state          Alaska
+cases             353
+population     731545
+gdp           54674.7
+urban           66.02
+Name: 1, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also retrieve multiple rows by providing a list of indices:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>353</td>
+      <td>731545</td>
+      <td>54674.7</td>
+      <td>66.02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>7648</td>
+      <td>7278717</td>
+      <td>379018.8</td>
+      <td>89.81</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>3281</td>
+      <td>3017804</td>
+      <td>132596.4</td>
+      <td>56.16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>50470</td>
+      <td>39512223</td>
+      <td>3205000.1</td>
+      <td>94.95</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Colorado</td>
+      <td>15207</td>
+      <td>5758736</td>
+      <td>400863.4</td>
+      <td>86.15</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can combine both row and column selection by using <code class="docutils literal notranslate"><span class="pre">.loc</span></code> and specifying the desired columns after a comma inside the square brackets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;cases&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>cases</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>353</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>7648</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>3281</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>50470</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Colorado</td>
+      <td>15207</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>It is often convenient to use the values in one of the columns to provide a more meaningful index for the the rows. Pandas does not require that the entries in the index be unique, but using non-unique entries can significantly impact performance and limit the ability to retrieve data by the index values.  To set the index, use Panda’s <code class="docutils literal notranslate"><span class="pre">set_index</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+    </tr>
+    <tr>
+      <th>state</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alabama</th>
+      <td>7068</td>
+      <td>4903185</td>
+      <td>230750.1</td>
+      <td>59.04</td>
+    </tr>
+    <tr>
+      <th>Alaska</th>
+      <td>353</td>
+      <td>731545</td>
+      <td>54674.7</td>
+      <td>66.02</td>
+    </tr>
+    <tr>
+      <th>Arizona</th>
+      <td>7648</td>
+      <td>7278717</td>
+      <td>379018.8</td>
+      <td>89.81</td>
+    </tr>
+    <tr>
+      <th>Arkansas</th>
+      <td>3281</td>
+      <td>3017804</td>
+      <td>132596.4</td>
+      <td>56.16</td>
+    </tr>
+    <tr>
+      <th>California</th>
+      <td>50470</td>
+      <td>39512223</td>
+      <td>3205000.1</td>
+      <td>94.95</td>
+    </tr>
+    <tr>
+      <th>Colorado</th>
+      <td>15207</td>
+      <td>5758736</td>
+      <td>400863.4</td>
+      <td>86.15</td>
+    </tr>
+    <tr>
+      <th>Connecticut</th>
+      <td>27700</td>
+      <td>3565287</td>
+      <td>290703.0</td>
+      <td>87.99</td>
+    </tr>
+    <tr>
+      <th>Delaware</th>
+      <td>4734</td>
+      <td>973764</td>
+      <td>77879.4</td>
+      <td>83.30</td>
+    </tr>
+    <tr>
+      <th>Florida</th>
+      <td>33683</td>
+      <td>21477737</td>
+      <td>1126510.3</td>
+      <td>91.16</td>
+    </tr>
+    <tr>
+      <th>Georgia</th>
+      <td>25431</td>
+      <td>10617423</td>
+      <td>634137.5</td>
+      <td>75.07</td>
+    </tr>
+    <tr>
+      <th>Hawaii</th>
+      <td>609</td>
+      <td>1415872</td>
+      <td>97001.1</td>
+      <td>91.93</td>
+    </tr>
+    <tr>
+      <th>Idaho</th>
+      <td>2016</td>
+      <td>1787065</td>
+      <td>85791.1</td>
+      <td>70.58</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>52918</td>
+      <td>12671821</td>
+      <td>893355.5</td>
+      <td>88.49</td>
+    </tr>
+    <tr>
+      <th>Indiana</th>
+      <td>18099</td>
+      <td>6732219</td>
+      <td>384871.7</td>
+      <td>72.44</td>
+    </tr>
+    <tr>
+      <th>Iowa</th>
+      <td>7145</td>
+      <td>3155070</td>
+      <td>196247.4</td>
+      <td>64.02</td>
+    </tr>
+    <tr>
+      <th>Kansas</th>
+      <td>4305</td>
+      <td>2913314</td>
+      <td>178605.1</td>
+      <td>74.20</td>
+    </tr>
+    <tr>
+      <th>Kentucky</th>
+      <td>4708</td>
+      <td>4467673</td>
+      <td>218426.1</td>
+      <td>58.38</td>
+    </tr>
+    <tr>
+      <th>Louisiana</th>
+      <td>28044</td>
+      <td>4648794</td>
+      <td>259079.3</td>
+      <td>73.19</td>
+    </tr>
+    <tr>
+      <th>Maine</th>
+      <td>1095</td>
+      <td>1344212</td>
+      <td>68984.9</td>
+      <td>38.66</td>
+    </tr>
+    <tr>
+      <th>Maryland</th>
+      <td>21825</td>
+      <td>6045680</td>
+      <td>432997.8</td>
+      <td>87.20</td>
+    </tr>
+    <tr>
+      <th>Massachusetts</th>
+      <td>62205</td>
+      <td>6892503</td>
+      <td>603209.6</td>
+      <td>91.97</td>
+    </tr>
+    <tr>
+      <th>Michigan</th>
+      <td>41348</td>
+      <td>9986857</td>
+      <td>543489.4</td>
+      <td>74.57</td>
+    </tr>
+    <tr>
+      <th>Minnesota</th>
+      <td>5136</td>
+      <td>5639632</td>
+      <td>389503.7</td>
+      <td>73.27</td>
+    </tr>
+    <tr>
+      <th>Mississippi</th>
+      <td>6815</td>
+      <td>2976149</td>
+      <td>117642.3</td>
+      <td>49.35</td>
+    </tr>
+    <tr>
+      <th>Missouri</th>
+      <td>7563</td>
+      <td>6137428</td>
+      <td>332659.7</td>
+      <td>70.44</td>
+    </tr>
+    <tr>
+      <th>Montana</th>
+      <td>452</td>
+      <td>1068778</td>
+      <td>54034.7</td>
+      <td>55.89</td>
+    </tr>
+    <tr>
+      <th>Nebraska</th>
+      <td>4332</td>
+      <td>1934408</td>
+      <td>133201.0</td>
+      <td>73.13</td>
+    </tr>
+    <tr>
+      <th>Nevada</th>
+      <td>5053</td>
+      <td>3080156</td>
+      <td>181751.6</td>
+      <td>94.20</td>
+    </tr>
+    <tr>
+      <th>New Hampshire</th>
+      <td>2146</td>
+      <td>1359711</td>
+      <td>88014.8</td>
+      <td>60.30</td>
+    </tr>
+    <tr>
+      <th>New Jersey</th>
+      <td>118652</td>
+      <td>8882190</td>
+      <td>642967.7</td>
+      <td>94.68</td>
+    </tr>
+    <tr>
+      <th>New Mexico</th>
+      <td>3411</td>
+      <td>2096829</td>
+      <td>106914.4</td>
+      <td>77.43</td>
+    </tr>
+    <tr>
+      <th>New York</th>
+      <td>309696</td>
+      <td>19453561</td>
+      <td>1791566.8</td>
+      <td>87.87</td>
+    </tr>
+    <tr>
+      <th>North Carolina</th>
+      <td>10507</td>
+      <td>10488084</td>
+      <td>601787.9</td>
+      <td>66.09</td>
+    </tr>
+    <tr>
+      <th>North Dakota</th>
+      <td>1067</td>
+      <td>762062</td>
+      <td>57471.9</td>
+      <td>59.90</td>
+    </tr>
+    <tr>
+      <th>Ohio</th>
+      <td>18027</td>
+      <td>11689100</td>
+      <td>703368.9</td>
+      <td>77.92</td>
+    </tr>
+    <tr>
+      <th>Oklahoma</th>
+      <td>3618</td>
+      <td>3956971</td>
+      <td>201604.3</td>
+      <td>66.24</td>
+    </tr>
+    <tr>
+      <th>Oregon</th>
+      <td>2510</td>
+      <td>4217737</td>
+      <td>258692.6</td>
+      <td>81.03</td>
+    </tr>
+    <tr>
+      <th>Pennsylvania</th>
+      <td>48224</td>
+      <td>12801989</td>
+      <td>818448.6</td>
+      <td>78.66</td>
+    </tr>
+    <tr>
+      <th>Rhode Island</th>
+      <td>8621</td>
+      <td>1059361</td>
+      <td>62335.4</td>
+      <td>90.73</td>
+    </tr>
+    <tr>
+      <th>South Carolina</th>
+      <td>6095</td>
+      <td>5148714</td>
+      <td>251664.5</td>
+      <td>66.33</td>
+    </tr>
+    <tr>
+      <th>South Dakota</th>
+      <td>2450</td>
+      <td>884659</td>
+      <td>56051.9</td>
+      <td>56.65</td>
+    </tr>
+    <tr>
+      <th>Tennessee</th>
+      <td>10506</td>
+      <td>6829174</td>
+      <td>380823.0</td>
+      <td>66.39</td>
+    </tr>
+    <tr>
+      <th>Texas</th>
+      <td>29072</td>
+      <td>28995881</td>
+      <td>1861581.9</td>
+      <td>84.70</td>
+    </tr>
+    <tr>
+      <th>Utah</th>
+      <td>4672</td>
+      <td>3205958</td>
+      <td>196639.4</td>
+      <td>90.58</td>
+    </tr>
+    <tr>
+      <th>Vermont</th>
+      <td>866</td>
+      <td>623989</td>
+      <td>34320.2</td>
+      <td>38.90</td>
+    </tr>
+    <tr>
+      <th>Virginia</th>
+      <td>15846</td>
+      <td>8535519</td>
+      <td>566529.4</td>
+      <td>75.45</td>
+    </tr>
+    <tr>
+      <th>Washington</th>
+      <td>14814</td>
+      <td>7614893</td>
+      <td>624861.4</td>
+      <td>84.05</td>
+    </tr>
+    <tr>
+      <th>West Virginia</th>
+      <td>1126</td>
+      <td>1792147</td>
+      <td>78480.5</td>
+      <td>48.72</td>
+    </tr>
+    <tr>
+      <th>Wisconsin</th>
+      <td>6973</td>
+      <td>5822434</td>
+      <td>353935.5</td>
+      <td>70.15</td>
+    </tr>
+    <tr>
+      <th>Wyoming</th>
+      <td>559</td>
+      <td>578759</td>
+      <td>40764.3</td>
+      <td>64.76</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that by default the <code class="docutils literal notranslate"><span class="pre">set_index</span></code> methods returns a new dataframe and the original dataframe is unchanged:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>7068</td>
+      <td>4903185</td>
+      <td>230750.1</td>
+      <td>59.04</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>353</td>
+      <td>731545</td>
+      <td>54674.7</td>
+      <td>66.02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>7648</td>
+      <td>7278717</td>
+      <td>379018.8</td>
+      <td>89.81</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>3281</td>
+      <td>3017804</td>
+      <td>132596.4</td>
+      <td>56.16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>50470</td>
+      <td>39512223</td>
+      <td>3205000.1</td>
+      <td>94.95</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Colorado</td>
+      <td>15207</td>
+      <td>5758736</td>
+      <td>400863.4</td>
+      <td>86.15</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Connecticut</td>
+      <td>27700</td>
+      <td>3565287</td>
+      <td>290703.0</td>
+      <td>87.99</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Delaware</td>
+      <td>4734</td>
+      <td>973764</td>
+      <td>77879.4</td>
+      <td>83.30</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Florida</td>
+      <td>33683</td>
+      <td>21477737</td>
+      <td>1126510.3</td>
+      <td>91.16</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Georgia</td>
+      <td>25431</td>
+      <td>10617423</td>
+      <td>634137.5</td>
+      <td>75.07</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Hawaii</td>
+      <td>609</td>
+      <td>1415872</td>
+      <td>97001.1</td>
+      <td>91.93</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Idaho</td>
+      <td>2016</td>
+      <td>1787065</td>
+      <td>85791.1</td>
+      <td>70.58</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Illinois</td>
+      <td>52918</td>
+      <td>12671821</td>
+      <td>893355.5</td>
+      <td>88.49</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Indiana</td>
+      <td>18099</td>
+      <td>6732219</td>
+      <td>384871.7</td>
+      <td>72.44</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Iowa</td>
+      <td>7145</td>
+      <td>3155070</td>
+      <td>196247.4</td>
+      <td>64.02</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Kansas</td>
+      <td>4305</td>
+      <td>2913314</td>
+      <td>178605.1</td>
+      <td>74.20</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Kentucky</td>
+      <td>4708</td>
+      <td>4467673</td>
+      <td>218426.1</td>
+      <td>58.38</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Louisiana</td>
+      <td>28044</td>
+      <td>4648794</td>
+      <td>259079.3</td>
+      <td>73.19</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Maine</td>
+      <td>1095</td>
+      <td>1344212</td>
+      <td>68984.9</td>
+      <td>38.66</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Maryland</td>
+      <td>21825</td>
+      <td>6045680</td>
+      <td>432997.8</td>
+      <td>87.20</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Massachusetts</td>
+      <td>62205</td>
+      <td>6892503</td>
+      <td>603209.6</td>
+      <td>91.97</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Michigan</td>
+      <td>41348</td>
+      <td>9986857</td>
+      <td>543489.4</td>
+      <td>74.57</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Minnesota</td>
+      <td>5136</td>
+      <td>5639632</td>
+      <td>389503.7</td>
+      <td>73.27</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Mississippi</td>
+      <td>6815</td>
+      <td>2976149</td>
+      <td>117642.3</td>
+      <td>49.35</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Missouri</td>
+      <td>7563</td>
+      <td>6137428</td>
+      <td>332659.7</td>
+      <td>70.44</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Montana</td>
+      <td>452</td>
+      <td>1068778</td>
+      <td>54034.7</td>
+      <td>55.89</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Nebraska</td>
+      <td>4332</td>
+      <td>1934408</td>
+      <td>133201.0</td>
+      <td>73.13</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Nevada</td>
+      <td>5053</td>
+      <td>3080156</td>
+      <td>181751.6</td>
+      <td>94.20</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>New Hampshire</td>
+      <td>2146</td>
+      <td>1359711</td>
+      <td>88014.8</td>
+      <td>60.30</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>New Jersey</td>
+      <td>118652</td>
+      <td>8882190</td>
+      <td>642967.7</td>
+      <td>94.68</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>New Mexico</td>
+      <td>3411</td>
+      <td>2096829</td>
+      <td>106914.4</td>
+      <td>77.43</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>New York</td>
+      <td>309696</td>
+      <td>19453561</td>
+      <td>1791566.8</td>
+      <td>87.87</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>North Carolina</td>
+      <td>10507</td>
+      <td>10488084</td>
+      <td>601787.9</td>
+      <td>66.09</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>North Dakota</td>
+      <td>1067</td>
+      <td>762062</td>
+      <td>57471.9</td>
+      <td>59.90</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Ohio</td>
+      <td>18027</td>
+      <td>11689100</td>
+      <td>703368.9</td>
+      <td>77.92</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Oklahoma</td>
+      <td>3618</td>
+      <td>3956971</td>
+      <td>201604.3</td>
+      <td>66.24</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Oregon</td>
+      <td>2510</td>
+      <td>4217737</td>
+      <td>258692.6</td>
+      <td>81.03</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Pennsylvania</td>
+      <td>48224</td>
+      <td>12801989</td>
+      <td>818448.6</td>
+      <td>78.66</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Rhode Island</td>
+      <td>8621</td>
+      <td>1059361</td>
+      <td>62335.4</td>
+      <td>90.73</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>South Carolina</td>
+      <td>6095</td>
+      <td>5148714</td>
+      <td>251664.5</td>
+      <td>66.33</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>South Dakota</td>
+      <td>2450</td>
+      <td>884659</td>
+      <td>56051.9</td>
+      <td>56.65</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Tennessee</td>
+      <td>10506</td>
+      <td>6829174</td>
+      <td>380823.0</td>
+      <td>66.39</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Texas</td>
+      <td>29072</td>
+      <td>28995881</td>
+      <td>1861581.9</td>
+      <td>84.70</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Utah</td>
+      <td>4672</td>
+      <td>3205958</td>
+      <td>196639.4</td>
+      <td>90.58</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Vermont</td>
+      <td>866</td>
+      <td>623989</td>
+      <td>34320.2</td>
+      <td>38.90</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Virginia</td>
+      <td>15846</td>
+      <td>8535519</td>
+      <td>566529.4</td>
+      <td>75.45</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Washington</td>
+      <td>14814</td>
+      <td>7614893</td>
+      <td>624861.4</td>
+      <td>84.05</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>West Virginia</td>
+      <td>1126</td>
+      <td>1792147</td>
+      <td>78480.5</td>
+      <td>48.72</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Wisconsin</td>
+      <td>6973</td>
+      <td>5822434</td>
+      <td>353935.5</td>
+      <td>70.15</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Wyoming</td>
+      <td>559</td>
+      <td>578759</td>
+      <td>40764.3</td>
+      <td>64.76</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>If we wish to work with the original one, we can tell <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to change the index <em>in place</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This makes finding the data by state much easier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Florida&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cases            33683.00
+population    21477737.00
+gdp            1126510.30
+urban               91.16
+Name: Florida, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the index (i.e., these row labels) carry over to the Pandas series that is returned by indexing a particular column of the dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cases&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state
+Alabama             7068
+Alaska               353
+Arizona             7648
+Arkansas            3281
+California         50470
+Colorado           15207
+Connecticut        27700
+Delaware            4734
+Florida            33683
+Georgia            25431
+Hawaii               609
+Idaho               2016
+Illinois           52918
+Indiana            18099
+Iowa                7145
+Kansas              4305
+Kentucky            4708
+Louisiana          28044
+Maine               1095
+Maryland           21825
+Massachusetts      62205
+Michigan           41348
+Minnesota           5136
+Mississippi         6815
+Missouri            7563
+Montana              452
+Nebraska            4332
+Nevada              5053
+New Hampshire       2146
+New Jersey        118652
+New Mexico          3411
+New York          309696
+North Carolina     10507
+North Dakota        1067
+Ohio               18027
+Oklahoma            3618
+Oregon              2510
+Pennsylvania       48224
+Rhode Island        8621
+South Carolina      6095
+South Dakota        2450
+Tennessee          10506
+Texas              29072
+Utah                4672
+Vermont              866
+Virginia           15846
+Washington         14814
+West Virginia       1126
+Wisconsin           6973
+Wyoming              559
+Name: cases, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>If all we want is the numerical values in the data series, we can convert it to a list or a NumPy array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cases&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7068, 353, 7648, 3281, 50470, 15207, 27700, 4734, 33683, 25431, 609, 2016, 52918, 18099, 7145, 4305, 4708, 28044, 1095, 21825, 62205, 41348, 5136, 6815, 7563, 452, 4332, 5053, 2146, 118652, 3411, 309696, 10507, 1067, 18027, 3618, 2510, 48224, 8621, 6095, 2450, 10506, 29072, 4672, 866, 15846, 14814, 1126, 6973, 559]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cases&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  7068,    353,   7648,   3281,  50470,  15207,  27700,   4734,
+        33683,  25431,    609,   2016,  52918,  18099,   7145,   4305,
+         4708,  28044,   1095,  21825,  62205,  41348,   5136,   6815,
+         7563,    452,   4332,   5053,   2146, 118652,   3411, 309696,
+        10507,   1067,  18027,   3618,   2510,  48224,   8621,   6095,
+         2450,  10506,  29072,   4672,    866,  15846,  14814,   1126,
+         6973,    559])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./03-first-data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>First Visualizations and Statistical Tests with Real Data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="visualization.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>Visualizing Multiple Data Sets - Part 1: Scatter Plots</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

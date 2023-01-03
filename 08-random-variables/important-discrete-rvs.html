@@ -1,0 +1,2920 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="8.4. Important Discrete RVs" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/08-random-variables/important-discrete-rvs.html" />
+  
+<meta property="og:description" content="There are several types of discrete random variables that commonly arise in statistics and engineering applications. We review the most common ones below. We also show how to use the scipy.stats mo..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="8.4. Important Discrete RVs" />
+  
+    <title>8.4. Important Discrete RVs &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/08-random-variables/important-discrete-rvs.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.6. Continuous Random Variables" href="continuous-rvs.html" />
+    <link rel="prev" title="8.3. Cumulative Distribution Functions" href="cdfs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   8. Random Variables
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/08-random-variables/important-discrete-rvs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/08-random-variables/important-discrete-rvs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   8.4. Important Discrete RVs
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discrete-uniform-random-variable">
+     8.4.1. Discrete Uniform Random Variable
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bernoulli-random-variable">
+     8.4.2. Bernoulli Random Variable
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binomial-random-variable">
+     8.4.3. Binomial Random Variable
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geometric-random-variable">
+     8.4.4. Geometric Random Variable
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poisson-random-variable">
+     8.4.5. Poisson Random Variable
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arbitrary-discrete-rvs">
+   8.5. Arbitrary Discrete RVs
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#terminology-review">
+     8.5.1. Terminology Review
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Important Discrete RVs</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   8.4. Important Discrete RVs
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discrete-uniform-random-variable">
+     8.4.1. Discrete Uniform Random Variable
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bernoulli-random-variable">
+     8.4.2. Bernoulli Random Variable
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binomial-random-variable">
+     8.4.3. Binomial Random Variable
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geometric-random-variable">
+     8.4.4. Geometric Random Variable
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poisson-random-variable">
+     8.4.5. Poisson Random Variable
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arbitrary-discrete-rvs">
+   8.5. Arbitrary Discrete RVs
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#terminology-review">
+     8.5.1. Terminology Review
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="important-discrete-rvs">
+<h1><span class="section-number">8.4. </span>Important Discrete RVs<a class="headerlink" href="#important-discrete-rvs" title="Permalink to this heading">#</a></h1>
+<p>There are several types of discrete random variables that commonly arise in statistics and engineering applications. We review the most common ones below. We also show how to use the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> module to generate these random variables and work with the various functions that characterize the probability of these random variables. SciPy provides implementations of more than 80 common types of random variables, including 19 types of discrete random variables (as of SciPy 1.7.3). To prepare for our use of <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> we will import it as <code class="docutils literal notranslate"><span class="pre">stats</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will also use NumPy to create various input ranges and Matplotlib to visualize various functions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section id="discrete-uniform-random-variable">
+<h2><span class="section-number">8.4.1. </span>Discrete Uniform Random Variable<a class="headerlink" href="#discrete-uniform-random-variable" title="Permalink to this heading">#</a></h2>
+<p>In much of our previous work on probability we have considered fair experiments, where the experiment has a finite set of outcomes, all of which are equally likely.  Here we extend this idea to a random variable:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-discrete-uniform-random-variable">discrete uniform random variable<a class="headerlink" href="#term-discrete-uniform-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A random variable that has a finite number of values in its range
+and for which all of its values have the same probability.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>For example, if we roll a fair die and let <span class="math notranslate nohighlight">\(X\)</span> be the number on the top face, then <span class="math notranslate nohighlight">\(X\)</span> is a discrete uniform random variable with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P_X(x) = 
+\begin{cases}
+1/6, &amp; x \in \{1,2,3,4,5,6\} \\
+0, &amp; \mbox{o.w.}
+\end{cases}
+\end{split}\]</div>
+<p>We can create a discrete uniform random variable in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> using <code class="docutils literal notranslate"><span class="pre">stats.randint()</span></code>:</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>stats.randint
+</pre></div>
+</div>
+</div>
+</div>
+<p>That help is long and complete, and it will be up-to-date with the latest version of <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>. However, it is much more practical to refer to the web page <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.randint.html">scipy.stats.randint</a>. I have included an image of the most important part below:</p>
+<p><img alt="" src="../_images/scipy-stats-randint.png" /></p>
+<p>We specify the values that the random variable will take on by specifying <code class="docutils literal notranslate"><span class="pre">low</span></code> and <code class="docutils literal notranslate"><span class="pre">high</span></code> values. As in most Python functions, the actual values that the random variable will take on will not include <code class="docutils literal notranslate"><span class="pre">high</span></code>; the actual highest value is <code class="docutils literal notranslate"><span class="pre">high</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
+<p>Now let’s see how to create and work with the discrete uniform distribution in Python.</p>
+<p>We will use an object-oriented (OO) approach in working with distributions in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>; however, you will not need to have any background in OO programming to understand this. Basically, we will create an object with the desired distribution by calling the specified <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> random variable type with the desired distribution parameters as the argument, and we will assign the output to a variable.</p>
+<p>So, to create a random variable that represents the value on the top face when rolling a fair 6-sided die. It is convention to use <span class="math notranslate nohighlight">\(U\)</span> for such a random variable if that does not conflict with other random variables’ names. In Python, we can create an object to model this random variable like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, we can pass <code class="docutils literal notranslate"><span class="pre">low</span></code> and <code class="docutils literal notranslate"><span class="pre">high</span></code> as keyword parameters if we want to be more explicit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>U is an <em>object</em>, and it has <em>methods</em> to work with the discrete uniform random variable with the given parameters. <strong>Methods are just like functions, except that they belong to an object, and their behavior is affected by the internal attributes (i.e., properties) of the object.</strong></p>
+<p>For instance, when we created <code class="docutils literal notranslate"><span class="pre">U</span></code>, we set its attributes were set to generate a values from 1 to 6 (inclusive).  You can use Python’s help function to see the methods of <code class="docutils literal notranslate"><span class="pre">U</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on rv_frozen in module scipy.stats._distn_infrastructure object:
+
+class rv_frozen(builtins.object)
+ |  rv_frozen(dist, *args, **kwds)
+ |  
+ |  # Frozen RV class
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, dist, *args, **kwds)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  cdf(self, x)
+ |  
+ |  entropy(self)
+ |  
+ |  expect(self, func=None, lb=None, ub=None, conditional=False, **kwds)
+ |  
+ |  interval(self, alpha)
+ |  
+ |  isf(self, q)
+ |  
+ |  logcdf(self, x)
+ |  
+ |  logpdf(self, x)
+ |  
+ |  logpmf(self, k)
+ |  
+ |  logsf(self, x)
+ |  
+ |  mean(self)
+ |  
+ |  median(self)
+ |  
+ |  moment(self, n)
+ |  
+ |  pdf(self, x)
+ |  
+ |  pmf(self, k)
+ |  
+ |  ppf(self, q)
+ |  
+ |  rvs(self, size=None, random_state=None)
+ |  
+ |  sf(self, x)
+ |  
+ |  stats(self, moments=&#39;mv&#39;)
+ |  
+ |  std(self)
+ |  
+ |  support(self)
+ |  
+ |  var(self)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+ |  
+ |  random_state
+</pre></div>
+</div>
+</div>
+</div>
+<p>A few of these should look familiar: pmf, cdf, and sf refer to the same functions that we abbreviated in <a class="reference internal" href="discrete-rvs.html"><span class="doc">Discrete Random Variables</span></a> and <a class="reference internal" href="cdfs.html"><span class="doc">Cumulative Distribution Functions</span></a>: the probability mass function, cumulative distribution function, and survival function, respectively. Each of the methods can be called by adding it to the object name after a period, followed by parentheses. Any parameters or values for the method should be given in the parentheses.</p>
+<p>We can get the interval containing the range of a random variable in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> using the support method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="o">.</span><span class="n">support</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">support</span></code> returns the lowest value in the range and the highest value in the range, so be careful in using this method. If these values were used as arguments to create a new <code class="docutils literal notranslate"><span class="pre">stats.randint</span></code> object, that object would have a different range!</p>
+</div>
+<p>We can evaluate the PMF at any value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.16666666666666666
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that these methods can also take lists or vectors as their arguments:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">U</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">uvals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.16666667, 0.16666667, 0.16666667, 0.16666667, 0.16666667,
+       0.16666667])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot the PMF for this random variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">uvals</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">uvals</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability mass function $P_U(u)$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_24_0.png" src="../_images/important-discrete-rvs_24_0.png" />
+</div>
+</div>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">rvs</span></code> method to draw random values from this random variable. The argument is the number of random values to generate:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">10_000</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">num_sims</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u</span><span class="p">[:</span><span class="mi">20</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4 5 5 6 5 1 1 1 1 5 4 1 4 5 3 1 1 4 2 6]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s use <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code> to see if the relative frequencies are approximately equal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([1663.,    0., 1713.,    0., 1657.,    0., 1720.,    0., 1635.,
+        1612.]),
+ array([1. , 1.5, 2. , 2.5, 3. , 3.5, 4. , 4.5, 5. , 5.5, 6. ]),
+ &lt;BarContainer object of 10 artists&gt;)
+</pre></div>
+</div>
+<img alt="../_images/important-discrete-rvs_28_1.png" src="../_images/important-discrete-rvs_28_1.png" />
+</div>
+</div>
+<p>The look to have equal counts but have a strange spacing. That is because <code class="docutils literal notranslate"><span class="pre">plt.hist()</span></code> by default has 10 bins, whereas the data only takes on 6 values. We will get much better results if we specify the bins. For discrete random variables with a contiguous set of integer values, specifying the number of bins may work out:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span><span class="p">,</span> <span class="n">mybins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_30_0.png" src="../_images/important-discrete-rvs_30_0.png" />
+</div>
+</div>
+<p>However, look at the set of bin edges returned:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mybins</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.         1.83333333 2.66666667 3.5        4.33333333 5.16666667
+ 6.        ]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In general, it is safest to specify the exact bin edges to use. But again, we must be careful in dealing with the upper value, and this time doubly so. When providing a list of bin edges, they <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code> interprets them as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>   **bins** : *array* 
+        The edges of the bins. Length nbins + 1 (nbins left edges and right edge of last bin). 
+</pre></div>
+</div>
+<p>For the last bin, we need to provide the value 6 as the left edge, and we need to provide another higher value (say, 7) as the right edge. Since a <code class="docutils literal notranslate"><span class="pre">range</span></code> or <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> does not include its last value, we will need to specify a value 1 higher than 7:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newbins</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">newbins</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">newbins</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([1663., 1713., 1657., 1720., 1635., 1612.]),
+ array([1, 2, 3, 4, 5, 6, 7]),
+ &lt;BarContainer object of 6 artists&gt;)
+</pre></div>
+</div>
+<img alt="../_images/important-discrete-rvs_35_1.png" src="../_images/important-discrete-rvs_35_1.png" />
+</div>
+</div>
+<p>When working with discrete random variables, we can get the relative frequencies from <code class="docutils literal notranslate"><span class="pre">plt.hist()</span></code> by passing the <code class="docutils literal notranslate"><span class="pre">density=True</span></code> keyword argument, <strong>provided the random variable is defined on the integers and bins of length 1 are used</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">newbins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$u$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$P_U(u)$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_37_0.png" src="../_images/important-discrete-rvs_37_0.png" />
+</div>
+</div>
+<p>As expected, the relative frequencies match the PMF values closely.</p>
+<p>Next, we plot the CDF. Since the CDF takes on nonzero values in between the values the random variable takes on, we will plot it for a finer mesh of <span class="math notranslate nohighlight">\(u\)</span> values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uvals2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">61</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">uvals2</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">uvals2</span><span class="p">),</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$u$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$F_U(u)$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_40_0.png" src="../_images/important-discrete-rvs_40_0.png" />
+</div>
+</div>
+<p>Finally, let’s compare the cumulative histogram (with both <code class="docutils literal notranslate"><span class="pre">cumulative</span> <span class="pre">=</span> <span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">density</span> <span class="pre">=</span> <span class="pre">True</span></code>) to the CDF:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uvals2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">61</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">uvals2</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">uvals2</span><span class="p">),</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">newbins</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$u$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$F_U(u)$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_42_0.png" src="../_images/important-discrete-rvs_42_0.png" />
+</div>
+</div>
+<p><strong>Exercise:</strong> What happens if we plot the cumulative histogram without specifying the bins? Why do you think that happens?</p>
+</section>
+<section id="bernoulli-random-variable">
+<h2><span class="section-number">8.4.2. </span>Bernoulli Random Variable<a class="headerlink" href="#bernoulli-random-variable" title="Permalink to this heading">#</a></h2>
+<p>The Bernoulli random variable is another of the simplest of the discrete random variables, and it is the simplest random variable that can take on unequal probabilities. We give an
+informal definition:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-Bernoulli-random-variable">Bernoulli random variable<a class="headerlink" href="#term-Bernoulli-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A Bernoulli random variable <span class="math notranslate nohighlight">\(B\)</span> takes on value of 0 or 1. It is specified by a parameter <span class="math notranslate nohighlight">\(p\)</span> such that <span class="math notranslate nohighlight">\(P(B=1) = p\)</span> and <span class="math notranslate nohighlight">\(P(B=0) = 1-p\)</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>Formally, we can define the Bernoulli random variable as follows:</p>
+<p>Let <span class="math notranslate nohighlight">\((S, \mathcal{F}, P)\)</span> be a probability space. Let <span class="math notranslate nohighlight">\(A \in \mathcal{F}\)</span> be an event and define <span class="math notranslate nohighlight">\(p=P(A)\)</span>; for instance, <span class="math notranslate nohighlight">\(A\)</span> may be an event corresponding to a “success”.  Then define the Bernoulli random variable <span class="math notranslate nohighlight">\(B\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+B = 
+\begin{cases}1, &amp; s\in A \\
+0, &amp; s\notin A 
+\end{cases}
+\end{split}\]</div>
+<p>The PMF for a Bernoulli RV <span class="math notranslate nohighlight">\(B\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+p_B(b) = 
+\begin{cases}
+p, &amp; b=1\\
+1-p, &amp; b=0\\
+0,&amp; \mbox{o.w.}
+\end{cases}
+\end{split}\]</div>
+<p>We have already given examples of two binary random variables in Examples 1 and 2 in <a class="reference internal" href="discrete-rvs.html"><span class="doc">Discrete Random Variables</span></a>. There are many other phenomena that may be modeled as Bernoulli random variables. Some engineering examples include:</p>
+<ul class="simple">
+<li><p>whether a bit is 0 or 1</p></li>
+<li><p>whether a bit is in error in a communication system</p></li>
+<li><p>whether a component of a system has failed</p></li>
+<li><p>whether a sensor detects some phenomena.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DISTRIBUTIONS OF RANDOM VARIABLES</strong></p>
+<p>We introduce a definition and some notation to facilitate discussing random variables of common types.</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-distribution-of-a-random-variable">distribution (of a random variable)<a class="headerlink" href="#term-distribution-of-a-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">The <em>distribution</em> of a random variable is a characterization of how the random variable maps sets of values to probabilities. For instance, the distribution may refer to a particular type of random variable along with whatever parameter(s) are required to completely specify the probabilities for that type of random variable.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>When the distribution refers to a particular type of random variable, we write either that a random variable has that distribution or that the random variable is <em>distributed</em> according to that type. For example, if <span class="math notranslate nohighlight">\(X\)</span> is a Bernoulli random variable with  <span class="math notranslate nohighlight">\(p=P(X=1)\)</span>, then we say that <span class="math notranslate nohighlight">\(X\)</span> has a Bernoulli(<span class="math notranslate nohighlight">\(p\)</span>) distribution or that <span class="math notranslate nohighlight">\(X\)</span> is distributed Bernoulli(<span class="math notranslate nohighlight">\(p\)</span>). Both of these statements have the same meaning, and we will denote this in shorthand notation as
+$<span class="math notranslate nohighlight">\(
+X \sim \mbox{Bernoulli} (p).
+\)</span>$</p>
+</div>
+<p>We now show how to work with the Bernoulli random variable using <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>. First, review the help page for <code class="docutils literal notranslate"><span class="pre">stats.bernoulli</span></code>:</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>stats.bernoulli
+</pre></div>
+</div>
+</div>
+</div>
+<p>For instance, to create a Bernoulli random variable <span class="math notranslate nohighlight">\(B_1\)</span> with probability <span class="math notranslate nohighlight">\(P(B_1 = 1) = 0.2\)</span>, we will use the following Python code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">bernoulli</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">B1</span></code> is now an object that represents a Bernoulli random variable with parameter <span class="math notranslate nohighlight">\(p=0.2\)</span>.</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">B1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s inspect and then plot the PMF values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">B1</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0. , 0.8, 0.2, 0. ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">B1</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_53_0.png" src="../_images/important-discrete-rvs_53_0.png" />
+</div>
+</div>
+<p>The CDF also works as expected:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">B1</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_55_0.png" src="../_images/important-discrete-rvs_55_0.png" />
+</div>
+</div>
+<p>Each <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> random variables also has the ability to draw random values from the specified distribution (i.e., to get values of the random variable).  The method to do this is called <code class="docutils literal notranslate"><span class="pre">rvs</span></code>. If it is called with no argument, then it generates a single value of that random variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B1</span><span class="o">.</span><span class="n">rvs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<p>More commonly, we pass the number of random values we want to generate as an argument:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B1</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lets simulate 100_000 values of the Bernoulli(0.2) random variable and plot a histogram of the values. We will also capture the output counts to compare the relative frequencies with the true values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">B1</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">num_sims</span><span class="p">)</span>
+<span class="n">mybins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">counts</span><span class="p">,</span> <span class="n">mybins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">mybins</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_61_0.png" src="../_images/important-discrete-rvs_61_0.png" />
+</div>
+</div>
+<p>Then the relative frequencies are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The relative freqs are </span><span class="si">{</span><span class="n">counts</span><span class="o">/</span><span class="n">num_sims</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">counts</span> <span class="o">/</span> <span class="n">num_sims</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">B1</span><span class="o">.</span><span class="n">pmf</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">linefmt</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The relative freqs are [0.79916 0.20084]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;StemContainer object of 3 artists&gt;
+</pre></div>
+</div>
+<img alt="../_images/important-discrete-rvs_63_2.png" src="../_images/important-discrete-rvs_63_2.png" />
+</div>
+</div>
+</section>
+<section id="binomial-random-variable">
+<h2><span class="section-number">8.4.3. </span>Binomial Random Variable<a class="headerlink" href="#binomial-random-variable" title="Permalink to this heading">#</a></h2>
+<p>One of the next most common types of discrete random variables arises when we have <span class="math notranslate nohighlight">\(N\)</span> repeated, independent Bernoulli trials with identical probability of success <span class="math notranslate nohighlight">\(p\)</span>. Let <span class="math notranslate nohighlight">\(B_2\)</span> be the number of successes. Then <span class="math notranslate nohighlight">\(B_2\)</span> is a Binomial<span class="math notranslate nohighlight">\((N,p)\)</span> random variable. For example, in our very first experiments in <a class="reference internal" href="../02-first-stats/motivating-problem.html"><span class="doc">Motivating Problem: Is This Coin Fair?</span></a>, we considered the probability of seeing 6 or fewer heads when a fair coin is tossed 20 times. We can model the number of heads as Binomial(20, 0.5) random variable.</p>
+<p>Note that we can also think of a Binomial<span class="math notranslate nohighlight">\((n,p)\)</span> random variable as the <strong>sum</strong> of <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli<span class="math notranslate nohighlight">\((p)\)</span> random variables.</p>
+<p>In shorthand notation, we will write</p>
+<div class="math notranslate nohighlight">
+\[B_2 \sim \text{Binomial}(n,p)\]</div>
+<p>The PMF for a Binomial random variable is easily derived:</p>
+<ul class="simple">
+<li><p>For <span class="math notranslate nohighlight">\(N\)</span> trials with probability of success <span class="math notranslate nohighlight">\(p\)</span>, the probability of a particular ordering of <span class="math notranslate nohighlight">\(k\)</span> successes is <span class="math notranslate nohighlight">\(p^k(1-p)^{N-k}\)</span>.</p></li>
+<li><p>The number of different orderings of <span class="math notranslate nohighlight">\(k\)</span> successes and <span class="math notranslate nohighlight">\(N-k\)</span> failures in <span class="math notranslate nohighlight">\(N\)</span> total trials is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\binom{N}{k}.
+\]</div>
+<p>Thus the probability of getting <span class="math notranslate nohighlight">\(k\)</span> successes on <span class="math notranslate nohighlight">\(N\)</span> independent Bernoulli(<span class="math notranslate nohighlight">\(p\)</span>) trials is</p>
+<div class="math notranslate nohighlight">
+\[
+\binom{N}{k} p^k(1-p)^{N-k}. 
+\]</div>
+<p>Here, the variable <span class="math notranslate nohighlight">\(k\)</span> was used instead of <span class="math notranslate nohighlight">\(b\)</span> because <span class="math notranslate nohighlight">\(k\)</span> is used widely in practice to represent a number of successes for a Binomial random variable.</p>
+<p>We summarize our definition of the Binomial random variable below:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-Binomial-random-variable">Binomial random variable<a class="headerlink" href="#term-Binomial-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A binomial random variable <span class="math notranslate nohighlight">\(B_2\)</span> represents the number of successes on <span class="math notranslate nohighlight">\(N\)</span> independent Bernoulli trials, each of which has probability of success <span class="math notranslate nohighlight">\(p\)</span>. The probability mass function for the Binomial random variable is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b3dad7a2-4c57-4a6f-af26-be73e28c502b">
+<span class="eqno">(8.5)<a class="headerlink" href="#equation-b3dad7a2-4c57-4a6f-af26-be73e28c502b" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+p_{B_2}(k) =  
+\begin{cases} 
+\binom{N}{k} p^k (1-p)^{N-k}, &amp; k=0,1,\dots,N \\
+0, &amp; \mbox{o.w.} 
+\end{cases}  
+\end{equation}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<p>Some engineering examples include:</p>
+<ul class="simple">
+<li><p>the number of bits in error in a packet</p></li>
+<li><p>the number of defective items in a manufacturing run</p></li>
+</ul>
+<p>A binomial random variable can be created in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> using <code class="docutils literal notranslate"><span class="pre">stats.binom</span></code>. The number of trials and probability of success must be passed as the arguments:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">B2</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_67_0.png" src="../_images/important-discrete-rvs_67_0.png" />
+</div>
+</div>
+<p>Intuitively, if <span class="math notranslate nohighlight">\(p\)</span> is small (such as <span class="math notranslate nohighlight">\(p=0.2\)</span> in the example above), then most of the probability  mass will be around the small values of the random variable. Moreover, most people have the sense that if we conduct <span class="math notranslate nohighlight">\(N\)</span> trials with probability <span class="math notranslate nohighlight">\(p\)</span>, then the most likely outcomes will be around <span class="math notranslate nohighlight">\(Np\)</span>. We see that this is true for our example of <span class="math notranslate nohighlight">\(N=10\)</span> and <span class="math notranslate nohighlight">\(p=0.2\)</span> – the value with the highest probability is <span class="math notranslate nohighlight">\(Np=2\)</span>. If we increase <span class="math notranslate nohighlight">\(p\)</span> to 0.6, we get the following pmf:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B3</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">B3</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_69_0.png" src="../_images/important-discrete-rvs_69_0.png" />
+</div>
+</div>
+<p>Again, <span class="math notranslate nohighlight">\(Np=6\)</span> is the most common value. Let’s try <span class="math notranslate nohighlight">\(p=0.75\)</span>, for which <span class="math notranslate nohighlight">\(NP=7.5\)</span> is not a possible value of the random variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B4</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">B4</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_71_0.png" src="../_images/important-discrete-rvs_71_0.png" />
+</div>
+</div>
+<p>For the Binomial(10, 0.75) random variable, the value with the highest probability is 8, which is close to <span class="math notranslate nohighlight">\(Np=7.5\)</span>.</p>
+<p>Here is a plot of the CDF for the Binomial(10, 0.75) random variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">B4</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_74_0.png" src="../_images/important-discrete-rvs_74_0.png" />
+</div>
+</div>
+<p>Note that the region where the CDF is increasing quickly is the region where most of the probability is concentrated (since the size of the jumps is equal to the probabilities at the location of the jumps). Finally, we compare a cumulative histogram (with <code class="docutils literal notranslate"><span class="pre">density=True</span></code>) to the CDF:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b4</span> <span class="o">=</span> <span class="n">B4</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100_000</span><span class="p">)</span>
+<span class="n">mybins</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">b4</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">mybins</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">B4</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_76_0.png" src="../_images/important-discrete-rvs_76_0.png" />
+</div>
+</div>
+<p>Before we leave the binomial random variable, let’s observe one more behavior. Consider how the PMF looks for a large number of trials:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B5</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">b5vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">b5vals</span><span class="p">,</span> <span class="n">B5</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">b5vals</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Applications/anaconda3/lib/python3.9/site-packages/scipy/stats/_discrete_distns.py:67: RuntimeWarning: divide by zero encountered in _binom_pdf
+  return _boost._binom_pdf(x, n, p)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;StemContainer object of 3 artists&gt;
+</pre></div>
+</div>
+<img alt="../_images/important-discrete-rvs_78_2.png" src="../_images/important-discrete-rvs_78_2.png" />
+</div>
+</div>
+<p>Let’s zoom in to where most of the probability is and use <code class="docutils literal notranslate"><span class="pre">plt.scatter</span></code> to remove the “stems”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">b5vals</span><span class="p">[</span><span class="mi">150</span><span class="p">:</span><span class="mi">250</span><span class="p">],</span> <span class="n">B5</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">b5vals</span><span class="p">[</span><span class="mi">150</span><span class="p">:</span><span class="mi">250</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7fcfcc0e7340&gt;
+</pre></div>
+</div>
+<img alt="../_images/important-discrete-rvs_80_1.png" src="../_images/important-discrete-rvs_80_1.png" />
+</div>
+</div>
+<p>This shape is called a <em>bell shape</em> or <em>bell curve</em>. It plays an important role in probability and statistics, but we do not yet have the tools to explore it in detail yet.</p>
+</section>
+<section id="geometric-random-variable">
+<h2><span class="section-number">8.4.4. </span>Geometric Random Variable<a class="headerlink" href="#geometric-random-variable" title="Permalink to this heading">#</a></h2>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-Geometric-random-variable">Geometric random variable<a class="headerlink" href="#term-Geometric-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">If independent Bernoulli trials with probability of success <span class="math notranslate nohighlight">\(p\)</span> are conducted until the first success, the number of trials required is a <em>geometric random variable.</em>  If <span class="math notranslate nohighlight">\(G\)</span> is a geometric random variable created from Bernoulli trials with probability of success <span class="math notranslate nohighlight">\(p\)</span>, we write <span class="math notranslate nohighlight">\(X \sim \text{Geometric}(p)\)</span>, and the probability mass function for <span class="math notranslate nohighlight">\(G\)</span> is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+p_G(k) =
+\begin{cases}
+p(1-p)^{k-1}, &amp; k=1,2,\dots \\ 
+0, &amp; \text{o.w.}\\
+\end{cases}
+\end{align*}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<p>We already encountered such a scenario in Example 5 of <a class="reference internal" href="discrete-rvs.html"><span class="doc">Discrete Random Variables</span></a>, where we flipped a fair coin until the first Heads. The Geometric random variable generalizes that example to handle Bernoulli trials with arbitrary probabilities. Unlike the Binomial, the Geometric random variable
+does not have a finite range; that is, we cannot specify any particular maximum number of Bernoulli trials that might be required to get the first success. However, since the range is the counting numbers <span class="math notranslate nohighlight">\(1,2,3, \ldots\)</span>, it is countable.</p>
+<p>It may seem that if the range of a random variable is an infinite set, then it will not be possible to assign a non-zero probability to every outcome. However, the Geometric random variable shows that this is not true. It is possible to assign non-zero probabilities to a discrete random variable with a countable number of outcomes, provided that the probabilities go to zero fast enough.</p>
+<p>Note that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\sum_{k=1}^{\infty} p (1-p)^{k-1} &amp;= p \sum_{m=0}^{\infty} (1-p)^m \\
+&amp;= p \left( \frac 1 p \right) =1,
+\end{align*}\]</div>
+<p>so the total probability assigned to all the outcomes sums to 1.</p>
+<p>Some examples include:</p>
+<ul class="simple">
+<li><p>The number of transmissions required for a packet to be successfully received when transmitted over a noisy channel and retransmitted whenever the received version is corrupted by noise.</p></li>
+<li><p>An book publisher is promoting a book on the foundations of data science at a conference. The attendees use  Python, R, or SPSS for computational data analysis.  The number of people that the publisher must talk to before finding one that uses Python for data analysis is a geometric random variable.</p></li>
+</ul>
+<p>A geometric random variable can be created in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> as <code class="docutils literal notranslate"><span class="pre">stats.geom()</span></code>, where the argument is the probability of success for the Bernoulli trials. See the help for a list of methods, which are similar to those available for the other discrete random variables that we have introduced:</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>stats.geom
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">geom</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)),</span> <span class="n">g</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_87_0.png" src="../_images/important-discrete-rvs_87_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vals</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">vals</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">vals</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_88_0.png" src="../_images/important-discrete-rvs_88_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+<span class="n">vals</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">vals</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">vals</span><span class="p">),</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_89_0.png" src="../_images/important-discrete-rvs_89_0.png" />
+</div>
+</div>
+<p>Rather than derive the cdf for a geometric random variable mathematically, we will determine it from a simple argument that is easy to remember. Consider instead the probability <span class="math notranslate nohighlight">\(P(G&gt;k)\)</span>, which is the value of the survival function for <span class="math notranslate nohighlight">\(G\)</span> with argument <span class="math notranslate nohighlight">\(k\)</span>. If <span class="math notranslate nohighlight">\(G&gt;g\)</span>, more than <span class="math notranslate nohighlight">\(g\)</span> trials are required <strong>because there have been no successes in the first <span class="math notranslate nohighlight">\(g\)</span> trials</strong>. Thus, we can calculate <span class="math notranslate nohighlight">\(P(G&gt;g)\)</span> as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(G &gt;g) &amp;= \operatorname{Pr} \left( \mbox{no successes on } g \mbox{ consecutive independent Bernoulli}(p) \mbox{ trials} \right) \\
+&amp;= (1-p)^g.
+\end{align*}\]</div>
+<p>Then the CDF for <span class="math notranslate nohighlight">\(G\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+P(G \le k) = 1 - P(G&gt;k) = 1 - (1-p)^g.
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">),</span> <span class="n">vals</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$k$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;CDF of geometric RV, $G(k)$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;CDF of geometric RV, $G(k)$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/important-discrete-rvs_91_1.png" src="../_images/important-discrete-rvs_91_1.png" />
+</div>
+</div>
+</section>
+<section id="poisson-random-variable">
+<h2><span class="section-number">8.4.5. </span>Poisson Random Variable<a class="headerlink" href="#poisson-random-variable" title="Permalink to this heading">#</a></h2>
+<p>First things first – Poisson is French and roughly pronounced “pwah - sahn”. It is named after the French mathematician Siméon Denis Poisson (<a class="reference external" href="https://en.wikipedia.org/wiki/Sim%C3%A9on_Denis_Poisson">Wikipedia article on Siméon Denis Poisson</a>).</p>
+<p>Before explaining the Poisson random variable, we begin with a story told by the famous Swiss psychiatrist Carl Jung in “Synchronicity: An Acausal Connecting Principle” about observations he made starting at lunch on April 1, 1949:</p>
+<blockquote>
+<div><p>We have fish for lunch. Somebody happens to mention the custom of making an “April fish” of someone. That same morning I made a note of an inscription which read: “Est homo totus medius piscis ab imo.” [Rough translation: It is man from the middle, fish from the bottom.] In the afternoon a former patient of mine, whom I had not seen for months, showed me some extremely impressive pictures of fish which she had painted in the meantime. In the evening I was shown a piece of embroidery with fish-like sea-monsters in it. On the morning of April 2 another patient, whom I had not seen for many years, told me a dream in which she stood on the shore of a lake and saw a large fish that swam straight towards her and landed at her feet. I was at this time engaged on a study of the fish symbol in history.</p>
+</div></blockquote>
+<p>Seeing six fish in a 24-hour period seemed unusual. However, he recognizes that this must be assumed as a  “meaningful coincidence” unless there is proof “that their incidence exceeds the limits of probability.”</p>
+<p>Now, you should be asking: what does this have to do with the Poisson random variable:</p>
+<ol class="simple">
+<li><p>The Poisson random variable can help us answer questions like “<strong>What is the probability of seeing six fish in 24 hours?</strong>” and can be combined with other random variables to answer a question like “<strong>What is the probably of seeing six fish in 24 hours at least sometime in a 20 year period?</strong>”</p></li>
+<li><p><em>Poisson</em> is French for… <br><br>
+<strong>fish</strong>!</p></li>
+</ol>
+<p>The Poisson random variable is used to model phenomena that occur randomly over some fixed amount of time or space. For convenience of discussion and because it is the most common application, we will only consider periods of time, but everything we discuss below applies equally well to events that occur at some random rate over space.</p>
+<p>A Poisson random variable is the number of occurrences given the average rate at which the phenomena occur and the length of time or area of space being considered. We will use the following notation for parameters associated with a random variable:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> is the average rate of occurrences over time or space,</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span> is a length of time  being considered, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha = \lambda T\)</span> is the <em>average</em> number of occurrences over <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+</ul>
+<p>Note that if <span class="math notranslate nohighlight">\(\alpha\)</span> is known, then it is not required to know <span class="math notranslate nohighlight">\(\lambda\)</span> and <span class="math notranslate nohighlight">\(T\)</span> separately.</p>
+<p>Given the parameter(s), then we can define a Poisson random variable in terms of its PMF:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-Poisson-random-variable">Poisson random variable<a class="headerlink" href="#term-Poisson-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A random variable <span class="math notranslate nohighlight">\(X\)</span> that models events that occur randomly over time (or space), such that if <span class="math notranslate nohighlight">\(\alpha\)</span> events occur on average in some interval of length <span class="math notranslate nohighlight">\(T\)</span>, then the PMF of <span class="math notranslate nohighlight">\(X\)</span> is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*} p_X(x) = \begin{cases} \frac{ \alpha^k}{k!} e^{- \alpha}, &amp; k = 0, 1, \ldots \\ 0, &amp; \mbox{o.w.} \end{cases} \end{equation*}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<p>Note that the range of a Poisson random variable is from 0 to <span class="math notranslate nohighlight">\(\infty\)</span>.</p>
+<p>The shape of the Poisson varies depending on its parameter, <span class="math notranslate nohighlight">\(\alpha\)</span>. Consider first the PMF for a Poisson random variable with <span class="math notranslate nohighlight">\(\alpha=0.5\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">p1vals</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">p1vals</span><span class="p">,</span> <span class="n">P1</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">p1vals</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;StemContainer object of 3 artists&gt;
+</pre></div>
+</div>
+<img alt="../_images/important-discrete-rvs_97_1.png" src="../_images/important-discrete-rvs_97_1.png" />
+</div>
+</div>
+<p>If viewing this book online, use the slider to change the value of alpha and observe the effect on the shape of the PMF.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
+
+<span class="n">pvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">plot_poisson_pmf</span><span class="p">(</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">pvals</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">pvals</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">alpha</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="n">interact</span><span class="p">(</span>
+    <span class="n">plot_poisson_pmf</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+        <span class="nb">min</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="nb">max</span><span class="o">=</span><span class="mf">5.1</span><span class="p">,</span>
+        <span class="n">step</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span>
+        <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;description_width&quot;</span><span class="p">:</span> <span class="s2">&quot;initial&quot;</span><span class="p">},</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "3bca8a551c094fd1b1c36fe726baeaa9", "version_major": 2, "version_minor": 0}
+</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.plot_poisson_pmf(alpha)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Basically, we can see that there are three different cases:</p>
+<ul class="simple">
+<li><p>For <span class="math notranslate nohighlight">\(\alpha &lt; 1\)</span>, the PMF is a strictly decreasing function of its argument,</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(\alpha =1\)</span>, then the PMF is a nonincreasing function of its argument: it has the same value at 0 and 1, and then decreases for all larger values,</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(\alpha &gt;1\)</span>, the PMF first increases and then decreases. If <span class="math notranslate nohighlight">\(\alpha\)</span> is an integer, then the PMF has the same value for arguments <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\alpha-1\)</span>.</p></li>
+</ul>
+<p>Illustrations of the second two cases are shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vals</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+
+<span class="n">P2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">P2</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">vals</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;alpha=1&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$k$&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$p_</span><span class="si">{P2}</span><span class="s2"> (k)$&quot;</span><span class="p">)</span>
+
+<span class="n">P3</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">P3</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">vals</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;alpha=2.5&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$k$&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$p_</span><span class="si">{P3}</span><span class="s2"> (k)$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$p_{P3} (k)$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/important-discrete-rvs_102_1.png" src="../_images/important-discrete-rvs_102_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P4</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p4vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">p4vals</span><span class="p">,</span> <span class="n">P4</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">p4vals</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;StemContainer object of 3 artists&gt;
+</pre></div>
+</div>
+<img alt="../_images/important-discrete-rvs_105_1.png" src="../_images/important-discrete-rvs_105_1.png" />
+</div>
+</div>
+<p>Interestingly, when the average number of occurrences is large,  we get another bell shape, just as we saw with the binomial random variable.</p>
+<p>Now, let’s see how to apply the Poisson random variable to a practical problem.</p>
+<p><strong>Example</strong></p>
+<p>In this example, we will show how even minimal information provided in a news article can be used to conduct a statistical test when we can apply a model for the data. In the article <a class="reference external" href="https://www.theinertia.com/environment/man-bitten-in-floridas-shark-capital-of-the-world/">Man Bitten in Florida’s ‘Shark Capital of the World’</a>, the town of New Smyrna, Florida is referred to as the “shark capital of the world.”. While mostly focusing on details of a particular shark attack in the beginning of 2022, the article provides the following information about shark bites in the same county in 2021:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>According to the International Shark Attack File (ISAF), Volusia county averages nine attacks per year but reported 17 attacks in 2021.
+</pre></div>
+</div>
+<p>The much higher number of shark attacks than the average could either indicate a concerning trend or could be attributable to the randomness in the number of shark attacks that occur in a given year. How can we tell?</p>
+<p>To try to get an answer to this, we have to first acknowledge that the article provides very little data: other than the number of shark attacks in 2021, we are only given the average number of shark attacks per year. With such limited data, we have two choices:</p>
+<ol class="simple">
+<li><p>We can introduce a model, by which we mean that we assume that the data comes from a particular distribution that can be completely specified using the available information, or</p></li>
+<li><p>We can find more detailed data and use that to conduct a statistical test.</p></li>
+</ol>
+<p>Let’s start with the modeling approach. Our previous discussion of fish may make us think of the Poisson distribution, but in general we can ask several questions to determine whether the Poisson is a reasonable model:</p>
+<ul class="simple">
+<li><p><strong>Is there a specific maximum value that the data can take on? The answer should be no for the Poisson.</strong>  For instance, there is no way to upper bound the number of shark bites that might happen in a given year.</p></li>
+<li><p><strong>Do the individual occurrences occur randomly over time or space and can we specify some rate of occurrence for the given data? The answer should be yes. If the rate is not given, we can usually estimate it from the data.</strong>  For the shark bite data, shark bites occur at random times.</p></li>
+</ul>
+<p>In this example, we will use approach 1. We assume that the number of shark attacks in Volusia County in a year is Poisson with parameter 9 representing the average number of shark attacks.</p>
+<p>Let’s use Scipy.Stats to create a Poisson object with this parameter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="n">S</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we will see how to conduct statistical test using this model. We can set up the following null hypothesis significance test:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_0\)</span>: the observation comes from the Poisson(9) distribution</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_1\)</span>: the observation comes from some other distribution</p></li>
+</ul>
+<p>Let’s choose a <span class="math notranslate nohighlight">\(p\)</span>-value threshold of <span class="math notranslate nohighlight">\(0.05\)</span>.</p>
+<p>As before, we do not usually measure the probability of seeing the exact result observed in the data. Instead, we ask about seeing a result that is at least as extreme as this model. In this case, it makes sense to conduct a one-sided test, where we determine the probability of seeing 17 <strong>or more</strong> attacks in a year.</p>
+<p>Note that <span class="math notranslate nohighlight">\(P(S \ge 17) = P(S&gt; 16)\)</span> allows us to calculate this probability using the survival function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.011105909377583819
+</pre></div>
+</div>
+</div>
+</div>
+<p>This probability is smaller than 0.05, so we reject <span class="math notranslate nohighlight">\(H_0\)</span> under this test.</p>
+<p>However, the article might not have included this information if the result had not seemed significant in the first place. We might instead ask the probability of seeing such an extreme result at least once in a decade. We can model this as a binomial random variable with 10 trials, each of which has probability of “success” <span class="math notranslate nohighlight">\(P(S&gt;16)\)</span>. Let’s call this binomial random variable <span class="math notranslate nohighlight">\(S_2\)</span>, and we will create a Scipy.Stats object to represent its distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then the probability of having at least one year with 17 or more shark attacks in a decade is <span class="math notranslate nohighlight">\(P(S_2 &gt;0)\)</span>, which is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S2</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.105669964152784
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus there is more than a 10% chance that there is at least one year in a decade with 17 or more shark attacks in Volusia County. Given this, we would not be able to reject the possibility that the 2021 result comes from the Poisson(9) distribution. It may just be attributable to the random nature of the number of shark attacks in a year.</p>
+<p>Let’s use this example to work with one more of our distributions. What is the probability that it is more than 10 years before there is another year with 15 or more shark attacks?</p>
+<p>We can model the number of years until there is a year with 15 or more shark attacks as a Geometric random variable with probability of “success” <span class="math notranslate nohighlight">\(P(S&gt;14)\)</span>. Let <span class="math notranslate nohighlight">\(S_3\)</span> denote this random variable, and we can create a Scipy.Stats object to represent its distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S3</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">geom</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">14</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then the probability that it is more than 10 years before there is another year with 15 more shark attacks is <span class="math notranslate nohighlight">\(P(S_3 &gt; 10)\)</span>, which is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S3</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6547473480899506
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is over an 65% chance that we will not have a year with 15 or more shark attacks in the next decade.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="arbitrary-discrete-rvs">
+<h1><span class="section-number">8.5. </span>Arbitrary Discrete RVs<a class="headerlink" href="#arbitrary-discrete-rvs" title="Permalink to this heading">#</a></h1>
+<p>We can create a discrete random variable with an  finite set of integer values  using the <code class="docutils literal notranslate"><span class="pre">stats.rv_discrete()</span></code> method:</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>stats.rv_discrete
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that this method implicitly assumes that the discrete random variable is defined on a subset of the integers.</p>
+<p>Let’s use this method to create a random variable based on Example 3 of <a class="reference internal" href="discrete-rvs.html"><span class="doc">Discrete Random Variables</span></a>. Note that we need to pass a tuple that includes:</p>
+<ul class="simple">
+<li><p>a list or vector containing the random variable’s range, and</p></li>
+<li><p>a list or vector containing the probabilities of each point in the random variable’s range.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">range1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">probs1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">rv_discrete</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">(</span><span class="n">range1</span><span class="p">,</span> <span class="n">probs1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can work with the random variable <code class="docutils literal notranslate"><span class="pre">A</span></code> using the same methods that we used for pre-defined discrete random variables in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.</p>
+<p>We will use <code class="docutils literal notranslate"><span class="pre">A</span></code> to demonstrate how to work with such a random variable. If we want to plot the PMF for a random variable created in this way, we can first determine the range of <code class="docutils literal notranslate"><span class="pre">A</span></code>, using <code class="docutils literal notranslate"><span class="pre">support()</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">support</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we want to plot the PMF for every value in the support, then we can use <code class="docutils literal notranslate"><span class="pre">np.arange()</span></code> to create a numpy vector of these values. We will capture the outputs of <code class="docutils literal notranslate"><span class="pre">support()</span></code> into  variables <code class="docutils literal notranslate"><span class="pre">low</span></code> and <code class="docutils literal notranslate"><span class="pre">high</span></code>, and we will need to pass <code class="docutils literal notranslate"><span class="pre">high+1</span></code> as the second argument to <code class="docutils literal notranslate"><span class="pre">np.arange()</span></code> because upper values are not included in the created vector:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">support</span><span class="p">()</span>
+<span class="n">avals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">avals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0 1 2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">avals</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">avals</span><span class="p">),</span> <span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$a$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability mass function $P_A(a)$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_132_0.png" src="../_images/important-discrete-rvs_132_0.png" />
+</div>
+</div>
+<p>Let’s simulate some random values from this distribution and compute the relative frequencies:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">num_sims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avals</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">avals</span><span class="p">,</span> <span class="n">counts</span> <span class="o">/</span> <span class="n">num_sims</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_136_0.png" src="../_images/important-discrete-rvs_136_0.png" />
+</div>
+</div>
+<p>As expected, the relative frequencies closely match the probabilities.</p>
+<p>Now, let’s compare the analytical CDF to the empirical CDF generated bh <code class="docutils literal notranslate"><span class="pre">plt.hist()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avals2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">81</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">avals2</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">avals2</span><span class="p">),</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/important-discrete-rvs_139_0.png" src="../_images/important-discrete-rvs_139_0.png" />
+</div>
+</div>
+<p>As expected, the theoretical result (the dashed line) matches the empirical histogram (the shaded region) almost exactly.</p>
+<section id="terminology-review">
+<h2><span class="section-number">8.5.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg);
+	/*transform: rotateY(180deg)  translateX(-10%); */
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transition: display 0s;
+    transform:  translateX(20px); 
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 200px;
+	  width: 100%;
+}
+
+
+
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:10px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 95%;
+}
+
+.flashcardtext{
+    color: var(--snow);
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+    font-size: 1.5em;
+}
+
+.back .flashcardtext{
+    font-size: 1.2em;
+}
+
+
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.jp-OutputArea-output .back {
+	  transform: rotateY(180deg) translateX(7.5%);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 1.5em;
+    /*left:90%; */
+    margin-left: 70%;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:-1em;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    outline: none;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+
+@media only screen and (min-width:1000px) {
+
+    .flip-container, .front, .back {
+	      height: 300px;
+	      width: 640px;
+    }
+
+    .flipper {
+        margin-left:20px;
+	      height: 300px;
+        width: 600px;
+    }
+
+    .flashcardtext{
+        font-size: 20pt;
+    }
+
+    .next {
+        font-size: 16pt;
+        left:438pt;
+        margin-left: 0;
+        width: 100pt;
+        height: 22pt;
+        top:-0.5em;
+    }
+
+    .back .flashcardtext{
+        font-size: 1.5em;
+    }
+
+}
+
+@media only screen and (min-width:660px) and (max-width:999px) {
+    .next {
+        left:0;
+        margin-left: 80%;
+    }
+
+}
+
+@media only screen and (max-width:680px) and (min-height:376px) {
+    .flip-container, .front, .back {
+	      height: 300px;
+    }
+
+    .flipper {
+	      height: 300px;
+    }
+
+}
+
+@media only screen and (max-width:330px) and (max-height:600px) {
+
+    .back .flashcardtext{
+        font-size: 1em;
+    }
+    .next {
+        margin-left: 65%;
+    }
+
+}
+
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="BDwjIJnejPXg" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="BDwjIJnejPXg-next" onclick="window.checkFlip('BDwjIJnejPXg')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    var count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    var count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+window.flipCard = function flipCard(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    /* ths.blur(); */
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 600, ths, next);
+}
+
+window.checkKey = function checkKey(container, event) {
+    event.stopPropagation();
+    /*
+    console.log(container);
+    console.log(event.key);
+    console.log(event.code);
+    */
+    /* JMS:  Working here*/
+    var next=document.getElementById(container.id+'-next');
+    /* Only react if not already sliding */
+    if (! next.classList.contains("hide")) {
+        if ((event.key == "j") || (event.key == "Enter") || (event.key == "ArrowRight")) {
+            window.checkFlip(container.id);
+        }
+        if (event.key == " ") {
+            window.flipCard(container);
+        }
+    }
+    event.preventDefault();
+}
+
+
+function reenableNext(ths, next) {
+    next.style.pointerEvents='auto';
+    /* ths.tabIndex= 0;*/
+    /* ths.focus(); */
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    /* container.removeAttribute("tabindex");*/
+    /* container.blur(); */
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+    
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+    
+}
+
+
+window.checkFlip = function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 550, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    /* container.tabIndex= 0; */
+    /* container.focus(); */
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    var colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id, keyControl) {
+    console.log(id);
+    
+    var mydiv=document.getElementById(id);
+    /*mydiv.onclick = window.flipCard(mydiv);*/
+    /*
+    mydiv.addEventListener('click', function(){window.flipCard(mydiv);}, false);
+    mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
+    */
+    mydiv.onclick = function(){window.flipCard(mydiv);};
+    console.log(keyControl);
+    if (keyControl == "True"){
+        mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
+    }
+    /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
+    /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
+
+    console.log(mydiv);
+    
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+    
+    for (var i=0; i<2; i++) {
+    
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    mydiv.focus();
+
+    return flipper;
+}
+
+
+
+
+
+var cardsBDwjIJnejPXg=[
+    {
+        "front": "Discrete uniform random variable",
+        "back": "RV with a finite number of values, all of which have the same probability"
+    },
+    {
+        "front": "Bernoulli random variable",
+        "back": "RV with two values. Usually 0 and 1, with $p$ such that $P(B=1) = p$ and $P(B=0) = 1-p$."
+    },
+    {
+        "front": "Binomial random variable",
+        "back": "RV representing number of successes on $N$ independent Bernoulli($p$) trials. $P(N=k) = \\binom{N}{k} p^k (1-p)^{N-k}$, $k=0,1,\\dots,N$ "
+    },
+    {
+        "front": "Geometric random variable",
+        "back": "For repeated, independent Binomial($p$) trials, RV $G$ is number of trials to first success.  $p_G(k) = p(1-p)^{k-1}$, $k=1,2,\\ldots$"
+    },
+    {
+        "front": "Poisson random variable",
+        "back": "Models events that occur randomly over time (or space). If average of $\\alpha$ events in observation window, \\[p_X(k) = \\frac{\\alpha^k}{k!} e^{- \\alpha},~~k = 0, 1, \\ldots\\]"
+    }
+]
+;
+    
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/08-random-variables/flashcards/important-discrete-rvs.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("BDwjIJnejPXg", "True"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("BDwjIJnejPXg", "True");
+        });
+        }
+        </script></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./08-random-variables"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="cdfs.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">8.3. </span>Cumulative Distribution Functions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="continuous-rvs.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8.6. </span>Continuous Random Variables</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

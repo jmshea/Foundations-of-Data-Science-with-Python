@@ -1,0 +1,1921 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="8.1. Definition of a Real Random Variable" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/08-random-variables/definition.html" />
+  
+<meta property="og:description" content="In the introduction, we provided an informal definition for a random variable. The informal definition is helpful to build some intuition about what we mean by a random variable. However, we want t..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="8.1. Definition of a Real Random Variable" />
+  
+    <title>8.1. Definition of a Real Random Variable &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/08-random-variables/definition.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.2. Discrete Random Variables" href="discrete-rvs.html" />
+    <link rel="prev" title="8. Random Variables" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   8. Random Variables
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/08-random-variables/definition.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/08-random-variables/definition.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   8.1.1. Terminology Review
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Definition of a Real Random Variable</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   8.1.1. Terminology Review
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="definition-of-a-real-random-variable">
+<h1><span class="section-number">8.1. </span>Definition of a Real Random Variable<a class="headerlink" href="#definition-of-a-real-random-variable" title="Permalink to this heading">#</a></h1>
+<p>In the introduction, we provided an informal definition for a random variable. The informal definition is helpful to build some intuition about what we mean by a random variable. However, we want to develop random variables in such a way that we can take advantage of all of the properties of the <em>probability spaces</em> that we developed in <a class="reference internal" href="../04-probability1/axiomatic-prob.html"><span class="doc">Axiomatic  Probability</span></a>.  In this class, we will only consider the case of <strong>real</strong> random variables, but random variables can also be complex-valued.</p>
+<p>Let’s start by introducing some notation that we will use for  random variables and in our discussion below:</p>
+<ul class="simple">
+<li><p>We will generally use upper-case (capital) letters to represent a random variable, such as <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, or <span class="math notranslate nohighlight">\(Z\)</span>. We may choose the letter to represent a particular quantity, such as representing a random time by <span class="math notranslate nohighlight">\(T\)</span> or a random rate by <span class="math notranslate nohighlight">\(R\)</span>. For a generic random variable, we will usually use <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+<li><p>We want to ask about the probability that a random variable’s value lies in some set. Until now, we have used <span class="math notranslate nohighlight">\(P\)</span> to denote either a probability or a probability measure. We will draw a distinction between these below, where we will write <span class="math notranslate nohighlight">\(\operatorname{Pr}()\)</span> to denote a probability and <span class="math notranslate nohighlight">\(P()\)</span> to denote a particular probability measure.</p></li>
+<li><p>We will have the need to provide notation for an arbitrary value that a random variable may take on. Such a value will be represented by the lower-case version of the letter used to denote the random variable. In other words, we can ask about the probability that the random variable <span class="math notranslate nohighlight">\(X\)</span> takes on a value <span class="math notranslate nohighlight">\(x\)</span>, which we can write as <span class="math notranslate nohighlight">\(\operatorname{P}(X=x)\)</span>. In particular, we can define functions this way; for instance, we can create a function of <span class="math notranslate nohighlight">\(x\)</span> that returns <span class="math notranslate nohighlight">\(\operatorname{Pr}(X=x)\)</span> for each real <span class="math notranslate nohighlight">\(x\)</span>, like <span class="math notranslate nohighlight">\(p_X(x) = \operatorname{Pr}(X=x)\)</span>.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Many people learning probability get confused by the notation of using an upper-case letter for a random variable and using a lower-case letter for the value of a random variable.</p>
+<p><strong>This confusion is especially bad when it comes to handwritten math because many people use very similar letter styles for both the upper-case and lower-case versions of their letters.</strong></p>
+<p>Here are my recommendations to reduce this confusion:</p>
+<ul class="simple">
+<li><p>Write your random variables in a <em>san serif</em> style. Serifs are decorative strokes at the ends of letters, so write your upper-case letters in a block style without serifs.</p></li>
+<li><p>Write the lower case versions with curvy <em>serifs</em>.</p></li>
+</ul>
+<p>Some examples are below:</p>
+<a class="reference internal image-reference" href="../_images/writing-letters.jpg"><img alt="Image of handwritten versions of X,Y,Z and x,y,z with upper-case letters drawn without serifs and lower-case letters drawn with curly serifs" src="../_images/writing-letters.jpg" style="width: 300px;" /></a>
+<p>I recommend crossing the stem of the upper-case <span class="math notranslate nohighlight">\(Z\)</span> to help distinguish it from the number two.</p>
+</div>
+<p>As mentioned above, we wish to be able to evaluate the probabilities that a random variable takes on certain sets of values. There are several immediate problems:</p>
+<ul class="simple">
+<li><p>How can we define a random variable so that we can evaluate the probability that it will take on a set of values in  a way that is consistent with our work on probability.</p></li>
+<li><p>As in the case of event classes and probability measures, it turns out that we cannot come up with a rule that will assign a meaningful probability to any arbitrary set of values that a random variable might take on. How can we choose reasonable sets of values to assign probability to, and how can we evaluate those probabilities?</p></li>
+</ul>
+<p>Our approach may seem a bit strange at first, but it defines random variables in a way that directly leverages our work on probability spaces. Suppose we have a probability space <span class="math notranslate nohighlight">\((S, \mathcal{F}, P)\)</span>, and we want to use the probability measure <span class="math notranslate nohighlight">\(P\)</span> from this probability space to determine the probabilities for a random variable <span class="math notranslate nohighlight">\(X\)</span>.  Then if <span class="math notranslate nohighlight">\(B\)</span> is a set of real values, we want to translate <span class="math notranslate nohighlight">\(\operatorname{Pr}(X \in B)\)</span> to some probability <span class="math notranslate nohighlight">\(P(E_B)\)</span>, where <span class="math notranslate nohighlight">\(E_B \in \mathcal{F}\)</span> is an event in our probability space. To achieve this, we must have that the outcomes (which do not have to be numbers) in <span class="math notranslate nohighlight">\(E_B\)</span> correspond in some way to the real values in <span class="math notranslate nohighlight">\(B\)</span>. Since we need to be able to determine what outcomes in <span class="math notranslate nohighlight">\(E_B\)</span> correspond to the set of reals <span class="math notranslate nohighlight">\(B\)</span>, then there must be a <strong>function</strong> that maps from the outcomes in <span class="math notranslate nohighlight">\(E_B\)</span> to the real values in <span class="math notranslate nohighlight">\(B\)</span>.  We define the random variable <span class="math notranslate nohighlight">\(X\)</span> as that function: it is a function that maps the outcomes in <span class="math notranslate nohighlight">\(S\)</span> to the real line.</p>
+<p>Formally, we do not write a random variable as <span class="math notranslate nohighlight">\(X\)</span> but instead write it as <span class="math notranslate nohighlight">\(X(s)\)</span> to indicate that it is a function of an outcome in the sample space. Note also that the function itself <strong>is not random</strong>. In other words, if we know that some particular value <span class="math notranslate nohighlight">\(s_1 \in S\)</span> occurred, then <span class="math notranslate nohighlight">\(X(s_1)\)</span> is a deterministic real number.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the discussion below, we get into some very fine details about random variables, and this discussion is more mathematically challenging than is usually included in a book at this level.  I have chosen to include this level of detail for two reasons:</p>
+<ol class="simple">
+<li><p>This careful approach establishes a solid foundation for further study of probability.</p></li>
+<li><p>This approach will motivate our use of a particular function in working with random variables.</p></li>
+</ol>
+<p><strong>Do not be concerned if you do no understand every detail of these arguments: in practice, we will use a very pragmatic approach for working with random variables that does not require us to worry about the following details.</strong></p>
+</div>
+<p>Thinking back to our work on probability spaces, you should recall that we cannot define <span class="math notranslate nohighlight">\(P(A)\)</span> for all <span class="math notranslate nohighlight">\(A \subset S\)</span> if <span class="math notranslate nohighlight">\(S\)</span> is uncountably infinite. We can only define <span class="math notranslate nohighlight">\(P(A)\)</span> if <span class="math notranslate nohighlight">\(A \in \mathcal{F}\)</span>. Thus, we will need to introduce some additional restrictions on <span class="math notranslate nohighlight">\(X\)</span> to ensure that the sets of values <span class="math notranslate nohighlight">\(B\)</span> for which we define the probability <span class="math notranslate nohighlight">\(\operatorname{Pr}(X \in B)\)</span> correspond to events <span class="math notranslate nohighlight">\(E_B \in \mathcal{F}\)</span>.  There is no way to create a random variable that ensures that this will be true for every set of real values <span class="math notranslate nohighlight">\(B\)</span>, so we must introduce a restriction on the sets <span class="math notranslate nohighlight">\(B_i \subset \mathbb{R}\)</span> for  which we will define <span class="math notranslate nohighlight">\(\operatorname{Pr}(X \in B_i)\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> be a set of all of the subsets of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> for which we will define <span class="math notranslate nohighlight">\(\operatorname{Pr}(X \in B)\)</span> if <span class="math notranslate nohighlight">\(B \in \mathcal{B}\)</span>.<br />
+We want to at least be able to ask questions like what is <span class="math notranslate nohighlight">\(\operatorname{Pr}(X=x)\)</span> and what is <span class="math notranslate nohighlight">\(\operatorname{Pr} \left\{X \in [a,b)\right\}\)</span>, and we can easily see that we would like to create unions of such sets: for instance, if <span class="math notranslate nohighlight">\(X\)</span> represents the value on the top-face of a six-sided die, we may want to determine the probability that the dies is even. If <span class="math notranslate nohighlight">\(A\)</span> represents the age of people who have been hospitalized for Covid, we may wish to assess the impact on people outside of the usual working age by  determining the probability that <span class="math notranslate nohighlight">\(A\)</span> is less than  18 or greater than or equal to 65.  Thus, we can use the following generalization of the intervals:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-Borel-sets-of-mathbb-R">Borel sets (of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>)<a class="headerlink" href="#term-Borel-sets-of-mathbb-R" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">The collection of all countable unions, intersections, and complements of intervals.</p>
+</dd>
+</dl>
+</div>
+</div>
+<span class="target" id="index-0"></span><p id="index-1">The collection of Borel sets is called the <em>Borel <span class="math notranslate nohighlight">\(\sigma\)</span>-algebra</em> or the <em>Borel field</em> (technically, including the operators <span class="math notranslate nohighlight">\(\cup\)</span> and <span class="math notranslate nohighlight">\(\cap\)</span>). For conciseness, we will use the terminology <em>Borel field</em> to refer to the collection of Borel sets of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Borel field for <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> can be formed from the countable unions, intersections, and complements of the half-open intervals <span class="math notranslate nohighlight">\((-\infty, x)\)</span> for all <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span>.</p>
+</div>
+<p>To be able to define the probability <span class="math notranslate nohighlight">\(\operatorname{Pr}(X \in B)\)</span> for every Borel set <span class="math notranslate nohighlight">\(B\)</span>, we must require that if we collect the set of outcomes that result in <span class="math notranslate nohighlight">\(X \in B\)</span>, then that set must be an event. In mathematical notation, we require that <span class="math notranslate nohighlight">\(\left\{s \left \vert X(s) \in B \right. \right\} \in \mathcal{F}\)</span>.</p>
+<p>Putting all of this together, we have our formal definition for a random variable:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-random-variable">random variable<a class="headerlink" href="#term-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text"><em>(Formal definition)</em> Let <span class="math notranslate nohighlight">\((S, \mathcal{F}, P)\)</span> be a probability space. Then a random variable is a <em>function</em> that maps from the sample space <span class="math notranslate nohighlight">\(S\)</span> to the real line <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, such that if <span class="math notranslate nohighlight">\(B\)</span> is in the Borel field for <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, then <span class="math notranslate nohighlight">\(\left\{s \left \vert X(s) \in B \right. \right\} \in \mathcal{F}\)</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>Since a random variable is a function, we have the following properties:</p>
+<ul class="simple">
+<li><p>A particular outcome <span class="math notranslate nohighlight">\(s \in S\)</span> maps to exactly one value of <span class="math notranslate nohighlight">\(X(s)\)</span>.</p></li>
+<li><p>For a particular value <span class="math notranslate nohighlight">\(X=x\)</span>, there may be multiple values of <span class="math notranslate nohighlight">\(s\)</span> for which <span class="math notranslate nohighlight">\(X(s) =x\)</span>.</p></li>
+<li><p>For any two different values <span class="math notranslate nohighlight">\(x_1 \ne x_2\)</span>, the sets <span class="math notranslate nohighlight">\(\left\{ s \left \vert X(s) = x_1 \right. \right\}\)</span>
+and <span class="math notranslate nohighlight">\(\left\{ s \left \vert X(s) = x_2 \right. \right\}\)</span> are disjoint; otherwise, there must be some outcome <span class="math notranslate nohighlight">\(\tilde{s}\)</span> that belongs to both sets and for which both <span class="math notranslate nohighlight">\(X(\tilde{s})=x_1\)</span>  and <span class="math notranslate nohighlight">\(X(\tilde{s})=x_2\)</span>. This is not possible if <span class="math notranslate nohighlight">\(X(s)\)</span> is a function.</p></li>
+</ul>
+<p>One important factor in classifying a random variable, <span class="math notranslate nohighlight">\(X\)</span>, is based upon the number of values <span class="math notranslate nohighlight">\(X\)</span> can take on. Since <span class="math notranslate nohighlight">\(X\)</span> is a function of <span class="math notranslate nohighlight">\(s\)</span>, the set of values that <span class="math notranslate nohighlight">\(X\)</span> takes on is called the <em>range</em> of <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-range-of-a-random-variable">range of a random variable<a class="headerlink" href="#term-range-of-a-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">Let <span class="math notranslate nohighlight">\(\left( S, \mathcal{F}, P \right)\)</span> be a probability space and let <span class="math notranslate nohighlight">\(X(s)\)</span> be a random variable on that space. Then  the <em>range</em> (or <em>image</em>) of <span class="math notranslate nohighlight">\(X(s)\)</span>, denoted by <span class="math notranslate nohighlight">\(\operatorname{Range}(X)\)</span> is the set of values that <span class="math notranslate nohighlight">\(X(s)\)</span> can take on, which is given by \begin{equation} \bigl\{ X(s) \left \vert s \in S \right.  \bigr\}. \end{equation}</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>Note that <span class="math notranslate nohighlight">\(\left\{s \left \vert X(s) \in B \right. \right\}\)</span> defines the set of outcomes that produce a set of values in the range of <span class="math notranslate nohighlight">\(X(s)\)</span>, so we abbreviate this as <span class="math notranslate nohighlight">\(X^{-1}(B)\)</span>.</p>
+<p>Thus, we can write</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Pr}(X \in B) = P\left[ X^{-1} (B) \right].
+\]</div>
+<p>Since the probability is evaluated using the probability measure <span class="math notranslate nohighlight">\(P\)</span>, for convenience of notation, will just write <span class="math notranslate nohighlight">\(P(X \in B)\)</span> in the remainder of this book.</p>
+<p>To help make these ideas more clear, we consider some simple examples. In each example, we show a graphical depiction of the sample space for an experiment with directed arrows that indicate the mapping from the sample space to values of the random variable, which are shown on a number line.</p>
+<p><strong>Example 1</strong></p>
+<p>Let’s create a binary random variable that has equal probability of being 0 or 1. Such a random variable can be created using many different probability spaces, but lets pick a simple one that we are already familiar with. We will flip a fair coin. Then <span class="math notranslate nohighlight">\(S = \left\{H, T \right\}\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{F} =2^S = \bigl\{ \emptyset, \{H\}, \{T\}, \{H,T\} \bigr\}.
+\]</div>
+<p>The probability measure is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P(E) = 
+\begin{cases}
+0, &amp; E= \emptyset \\
+1/2, &amp; E=\{H\} \mbox{ or } E=\{T\} \\
+1, &amp; E = \{H, T \}
+\end{cases}
+\end{split}\]</div>
+<p>We can create our random variable as the function <span class="math notranslate nohighlight">\(X(s)\)</span> given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X(s) = 
+\begin{cases}
+0, &amp; s = T \\
+1, &amp; s = H \\
+\end{cases}
+\end{split}\]</div>
+<p>The figure below shows this mapping:</p>
+<a class="reference internal image-reference" href="../_images/binary-rv1.pdf"><img alt="Image of handwritten versions of X,Y,Z and x,y,z with upper-case letters drawn without serifs and lower-case letters drawn with curly serifs" src="../_images/binary-rv1.pdf" style="width: 600px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This concrete example helps make an important point:</p>
+<p>A random variable is defined on the sample space – it is a function whose argument is an <strong>outcome</strong>.  In this case, the argument of the function is either <span class="math notranslate nohighlight">\(H\)</span> or <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>Contrast this with the probability measure, which is defined on the event class – its argument is an <strong>event</strong>. The probability measure can take as argument any of <span class="math notranslate nohighlight">\(\emptyset, \{H\}, \{T\}, or \{H,T\}\)</span>.</p>
+</div>
+<p>Let’s implement our random variable as a function in Python. The function takes an argument which is one of the outcomes <span class="math notranslate nohighlight">\(H\)</span> or <span class="math notranslate nohighlight">\(T\)</span> and performs the mapping shown above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">X</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">s</span> <span class="o">==</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;The Random Variable X only takes inputs H or T&quot;</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we will generate an outcome to simulate flipping a fair coin using <code class="docutils literal notranslate"><span class="pre">random.choice()</span></code> as we have before. Start by importing the random library and setting up the sample space:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">sample_space</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s draw 10 different random outcomes <span class="math notranslate nohighlight">\(s\)</span> from the sample space and output the corresponding value of the random variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sample_space</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">X</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 T 0
+1 H 1
+2 H 1
+3 T 0
+4 T 0
+5 H 1
+6 T 0
+7 H 1
+8 T 0
+9 T 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we demonstrate how we can use the definition of the random variable and the underlying probability measure to evaluate probabilities for the random variable.</p>
+<p>We start with the simplest case. We wish to find <span class="math notranslate nohighlight">\(P[X(s)=0]\)</span>, which is illustrated on the number line portion of the diagram below by a green X:</p>
+<a class="reference internal image-reference" href="../_images/binary-rv1-region1.pdf"><img alt="" src="../_images/binary-rv1-region1.pdf" style="width: 500px;" /></a>
+<p>Graphically, we can see that there is exactly one outcome <span class="math notranslate nohighlight">\(s \in S\)</span> for which <span class="math notranslate nohighlight">\(X(s)=0\)</span>; that is, <span class="math notranslate nohighlight">\(X(T)=0\)</span>. Mathematically,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P \left[ X(s) = 0 \right] &amp;= P\left[ X^{-1}(0) \right] \\
+&amp;= P\bigl[ \left\{T \right\} \bigr] \\
+&amp;= \frac{1}{2}
+\end{align*}\]</div>
+<p>We can use our Python random variable to estimate this probability by generating a large number of values of the random variable and finding the relative frequency of the value 0:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">10_000</span>
+
+<span class="n">counter</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sample_space</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">counter</span><span class="o">+=</span><span class="mi">1</span>
+        
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Pr( X = 0 ) is approximately </span><span class="si">{</span><span class="n">counter</span><span class="o">/</span><span class="n">num_sims</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pr( X = 0 ) is approximately 0.4991
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now lets consider <span class="math notranslate nohighlight">\(P(X \le -0.5)\)</span>, which is shown by the green line below. The square brace at the point 0.5 indicates that the point 0.5 is included in the region, and the arrow indicates that the region continues to <span class="math notranslate nohighlight">\(-\infty\)</span>. We could write an equivalent form for this probability as <span class="math notranslate nohighlight">\(P( X \in (-\infty, -0.5]\)</span>.</p>
+<a class="reference internal image-reference" href="../_images/binary-rv1-region2.pdf"><img alt="" src="../_images/binary-rv1-region2.pdf" style="width: 500px;" /></a>
+<p>This region introduces an important concept: <strong>we are not constrained to ask only about the probability of points in the range of <span class="math notranslate nohighlight">\(X(s)\)</span>. We can ask about the probability of any Borel set of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>.</strong></p>
+<p>However, for this region, we can see that there are no points in <span class="math notranslate nohighlight">\(S\)</span> that yield any values of <span class="math notranslate nohighlight">\(X(s)\)</span> in <span class="math notranslate nohighlight">\((-\infty, -0.5]\)</span>. Thus, <span class="math notranslate nohighlight">\(P\left[ X(s) \le -0.5 \right] = P\left[ \emptyset \right] = 0\)</span></p>
+<p>Next consider <span class="math notranslate nohighlight">\(P(0 &lt; X \le 1)\)</span>, which is shown below. The parenthesis at the point 0 indicates that it is not a part of this region. We may also write this probability as <span class="math notranslate nohighlight">\(P\left[ X \in (0, 1] \right]\)</span>.</p>
+<a class="reference internal image-reference" href="../_images/binary-rv1-region3.pdf"><img alt="" src="../_images/binary-rv1-region3.pdf" style="width: 500px;" /></a>
+<p>As illustrated in the figure by the green line and the green shading on the point <span class="math notranslate nohighlight">\(H\)</span> in <span class="math notranslate nohighlight">\(S\)</span>, there is again only one <span class="math notranslate nohighlight">\(s \in S\)</span> that gives a value of <span class="math notranslate nohighlight">\(0 &lt; X \le 1\)</span>. So, in this case, <span class="math notranslate nohighlight">\(P\left[ 0 &lt; X \le 1 \right] = P\left[ \left\{H \right\} \right] =1/2\)</span>.</p>
+<p>To simulate this probability, we will need to rewrite the condition <span class="math notranslate nohighlight">\(0 &lt; X \le 1\)</span> into a form that more directly translates to Python. Note that this form is really a shorthand for two conditions:</p>
+<ul class="simple">
+<li><p>the left-hand side of the inequality is <span class="math notranslate nohighlight">\(0&lt; X\)</span>, but we more commonly flip that relation to write <span class="math notranslate nohighlight">\(X&gt;0\)</span> when writing a single inequality, and</p></li>
+<li><p>the right-hand side of the inequality is <span class="math notranslate nohighlight">\( X \le 1\)</span>.
+We are asking about the probability for values of <span class="math notranslate nohighlight">\(X\)</span> that satisify both of these inequalities, so we may also write <span class="math notranslate nohighlight">\( X&gt; 0 \cap X \le 1\)</span></p></li>
+</ul>
+<p>A simulation to estimate the probability of <span class="math notranslate nohighlight">\(X\)</span> satisfying these condition is shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">10_000</span>
+
+<span class="n">counter</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sample_space</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">counter</span><span class="o">+=</span><span class="mi">1</span>
+        
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Pr( 0 &lt; X &lt;= 1 ) is approximately </span><span class="si">{</span><span class="n">counter</span><span class="o">/</span><span class="n">num_sims</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pr( 0 &lt; X &lt;= 1 ) is approximately 0.4926
+</pre></div>
+</div>
+</div>
+</div>
+<p>We consider one final probability for this random variable, <span class="math notranslate nohighlight">\(P( x &lt; 1.5)\)</span>, which is illustrated in the figure below.</p>
+<a class="reference internal image-reference" href="../_images/binary-rv1-region4.pdf"><img alt="" src="../_images/binary-rv1-region4.pdf" style="width: 500px;" /></a>
+<p>In this case, there are two different values of <span class="math notranslate nohighlight">\(s \in S\)</span> such that <span class="math notranslate nohighlight">\(X(s) &lt; 1.5\)</span>. In particular, <span class="math notranslate nohighlight">\(X(T) =0 &lt; 1.5\)</span> and <span class="math notranslate nohighlight">\(X(H)=1 &lt; 1.5\)</span>. If we let <span class="math notranslate nohighlight">\(B=(-\infty, 1.5)\)</span>, then <span class="math notranslate nohighlight">\(X^{-1} (B) = \left\{H, T \right\}\)</span>, and <span class="math notranslate nohighlight">\(P(X &lt; 1.5) = P\left[ X \in B \right] = \left[ X^{-1}(B) \right] = P\left[ \left\{H, T \right\} \right] =1\)</span>.</p>
+<p><strong>Example 2</strong></p>
+<p>Let’s create a binary RV <span class="math notranslate nohighlight">\(Y\)</span> from tossing a fair coin twice. We will use the following rule: the random variable is 1 if at least one heads occurs; otherwise it is 0. Mathematically, we write the definition of <span class="math notranslate nohighlight">\(X(s)\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Y(s)  = 
+\begin{cases}
+0, &amp; s = TT \\
+1, &amp; s \in \left\{HH, HT, TH \right\}
+\end{cases}
+\end{split}\]</div>
+<p>Pictorially, this relation is shown below, where all of the points within the blue region of <span class="math notranslate nohighlight">\(S\)</span> are mapped to 1.</p>
+<a class="reference internal image-reference" href="../_images/binary-rv2.pdf"><img alt="" src="../_images/binary-rv2.pdf" style="width: 600px;" /></a>
+<p>From the figure and mathematical definition of <span class="math notranslate nohighlight">\(Y(s)\)</span>, we can see that <span class="math notranslate nohighlight">\(Y^{-1}(0) = \left\{TT \right\}\)</span> and <span class="math notranslate nohighlight">\(Y^{-1}(1) = \left\{HH, HT, TH \right\}\)</span>. This is our first example where we see that multiple <span class="math notranslate nohighlight">\(s\)</span> can map to the same value of a random variable. Thus even if we ask an equation like <span class="math notranslate nohighlight">\(P\left[Y(s)=y \right]\)</span>, the underlying event may contain multiple outcomes, as in this case. Given that the coin is fair, it is easy to see that the probability of each outcome is 1/4, so <span class="math notranslate nohighlight">\(P\left[ Y(s) = 0 \right] = 1/4\)</span> and <span class="math notranslate nohighlight">\(P \left[ Y(s) =1 \right] = 3/4\)</span>. This is our first example of a random variable with unequal probabilities, and it was built from a fair experiment, in which each outcome has an equal probability of occurring.</p>
+<p>Now, let’s implement <span class="math notranslate nohighlight">\(Y\)</span> as a function in Python. We will draw two values of the coin using <code class="docutils literal notranslate"><span class="pre">random.choices()</span></code>, which will return a list, so we will build the function <code class="docutils literal notranslate"><span class="pre">Y()</span></code> accordingly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Y</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span> <span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">]</span> <span class="p">]:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Must input a list of two elements, each of which may be either &quot;H&quot; or &quot;T&quot;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s estimate the probability that <span class="math notranslate nohighlight">\(Y=1\)</span> via simulation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">10_000</span>
+
+<span class="n">sample_space</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]</span>
+<span class="n">counter</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">sample_space</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">Y</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">counter</span><span class="o">+=</span><span class="mi">1</span>
+        
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P(Y=1) is approximately </span><span class="si">{</span><span class="n">counter</span><span class="o">/</span><span class="n">num_sims</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P(Y=1) is approximately 0.7418
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Example 3</strong></p>
+<p>Let’s create another RV <span class="math notranslate nohighlight">\(Z\)</span> using the same probability space as the last experiment; i.e., define <span class="math notranslate nohighlight">\(Z(s)\)</span> using the same outcome. Let <span class="math notranslate nohighlight">\(Z\)</span> be the number of heads that occurred. Then the mathematical definition of <span class="math notranslate nohighlight">\(Z(s)\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Z(s) =
+\begin{cases} 
+0, &amp; s = TT \\
+1, &amp; s \in \{HT, TH\} \\
+2, &amp; s = HH.
+\end{cases}
+\end{split}\]</div>
+<p>We can depict this relationship graphically below:</p>
+<a class="reference internal image-reference" href="../_images/example-rv3.pdf"><img alt="" src="../_images/example-rv3.pdf" style="width: 700px;" /></a>
+<p>Note that even though <span class="math notranslate nohighlight">\(Z\)</span> is created from the same probability space, it takes on a different set of values and is not even a binary random variable. The point probabilities <span class="math notranslate nohighlight">\(P(Z=z)\)</span> are easy to find:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cca0244c-aba6-4155-b216-ce6c38c36f11">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-cca0244c-aba6-4155-b216-ce6c38c36f11" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(Z = 0) &amp;= P( \{TT\} ) = 1/4 \\
+P(Z = 1) &amp;= P( \{TH, HT\} ) = 1/2 \\
+P(Z = 2) &amp; = P( \{HH\} ) = 1/4 \\
+P(Z =z) &amp;  = 0 \mbox{ if }  z \notin \{0,1,2 \}.
+\end{align}\]</div>
+<p>Consider an example of what can happen when <span class="math notranslate nohighlight">\(Y(s)\)</span> and <span class="math notranslate nohighlight">\(Z(s)\)</span> are created from the same outcome. If you are given no information about <span class="math notranslate nohighlight">\(Y\)</span>, then we can see from above that <span class="math notranslate nohighlight">\(P(Z=0) = 1/4\)</span>.  Now suppose I told you that <span class="math notranslate nohighlight">\(Y=0\)</span>. From above, we see that <span class="math notranslate nohighlight">\(Y^{-1}(0) = TT \)</span> and <span class="math notranslate nohighlight">\(Z(TT) = 0\)</span>. So we know that <span class="math notranslate nohighlight">\(Z=0\)</span> with probability 1. Thus <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> are dependent random variables – we haven’t defined exactly what this means yet mathematically, but we can see that they are dependent by this example.</p>
+<p>To illustrate this concept, we implement the random variable <span class="math notranslate nohighlight">\(Z\)</span> as a function and conduct a simulation to estimate <span class="math notranslate nohighlight">\(P(Z=0)\)</span> and <span class="math notranslate nohighlight">\(P(Z=0|Y=0)\)</span>, which corresponds to the description above that “I told you <span class="math notranslate nohighlight">\(Y=0\)</span>”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Z</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span> <span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]]:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">s</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Must input a list of two elements, each of which may be either &quot;H&quot; or &quot;T&quot;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span><span class="o">=</span><span class="mi">100_000</span>
+
+<span class="n">count_z0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">count_y0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">count_z0_y0</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">sample_space</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">Y</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">Z</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">count_z0</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">count_y0</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">count_z0_y0</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P(Z=0) is approximately </span><span class="si">{</span><span class="n">count_z0</span><span class="o">/</span><span class="n">num_sims</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P(Z=0|Y=0) is approximately </span><span class="si">{</span><span class="n">count_z0_y0</span><span class="o">/</span><span class="n">count_y0</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+      
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P(Z=0) is approximately 0.2487
+P(Z=0|Y=0) is approximately 1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, these values closely match the results of our analysis.</p>
+<p><strong>JMS: Add JupyterQuiz questions about probabilities on ranges of this random variable to help students check understanding of this material.</strong></p>
+<p>All of these examples use discrete sample spaces, and the ranges of the random variables are all discrete, finite sets. These are called <em>discrete random variables</em>.The true power of working with random variables will be for the cases where these sets are uncountably infinite. However, before we get to those cases, the next section introduces some tools for working with discrete random variables and some common types of discrete random variables.</p>
+<section id="terminology-review">
+<h2><span class="section-number">8.1.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg)  translateX(-10%);
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transform:  translateX(20px); 
+    transition: display 0s;
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 300px;
+	  width: 640px;
+}
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:20px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 600px;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 16pt;
+    left:442pt;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:20px;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+.flashcardtext{
+    color: var(--snow);
+    font-size: 20pt;
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+  }
+
+</style><script type="text/Javascript">
+/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+function flip(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 700, next);
+}
+
+function reenableNext(next) {
+    next.style.pointerEvents='auto';
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+
+}
+
+
+function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 600, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id) {
+    console.log(id);
+
+    var mydiv=document.getElementById(id);
+
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+
+    for (var i=0; i<2; i++) {
+
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    return flipper;
+}
+
+
+
+
+
+</script><script type="text/Javascript">
+
+    cardslvFAsHfwvnjx=[
+    {
+     "front": "Borel sets (of $\\mathbb{R}$)",
+     "back": "The collection of all countable unions, intersections, and complements of intervals."
+    },
+    {
+        "front": "Borel field or Borel $\\sigma$-algebra",
+        "back": "The collection of Borel sets."
+    },
+    {
+        "front": "Random variable",
+        "back": "A <i>function</i> that maps from the sample space $S$ to the real line $\\mathbb{R}$."
+    },
+    {
+        "front": "Range (of a random variable)",
+        "back": "The set of values a random variable can take on."
+    }
+]
+;
+
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/08-random-variables/flashcards/definition.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("lvFAsHfwvnjx"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("lvFAsHfwvnjx");
+        });
+        }
+        </script>
+        <div style="height:40px"></div><div class="flip-container" id="lvFAsHfwvnjx" onclick="flip(this)"></div><div style="height:40px"></div><div class="next" id="lvFAsHfwvnjx-next" onclick="checkFlip('lvFAsHfwvnjx')"> </div> <div style="height:40px"></div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./08-random-variables"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Random Variables</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="discrete-rvs.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8.2. </span>Discrete Random Variables</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,2780 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="11.3. Summary Statistics for Vector Data" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/vector-stats.html" />
+  
+<meta property="og:description" content="One of the advantages of working with vectors of data is that allows us to efficiently analyze that data. In this section, we review techniques for computing summary statistics with vector data, an..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="11.3. Summary Statistics for Vector Data" />
+  
+    <title>11.3. Summary Statistics for Vector Data &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/vector-stats.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11.4. Linear Regression" href="linear-regression.html" />
+    <link rel="prev" title="11.2. Vector Operations" href="vector-operations.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/11-matrix-vector-regression/vector-stats.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/11-matrix-vector-regression/vector-stats.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-dataframes-to-matrices">
+   11.3.1. From Dataframes to Matrices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#averages-medians-and-variances">
+   11.3.2. Averages, Medians, and Variances
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measuring-dependence-through-moments-covariances-and-correlations">
+   11.3.3. Measuring Dependence through Moments: Covariances, and Correlations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   11.3.4. Terminology Review
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Summary Statistics for Vector Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-dataframes-to-matrices">
+   11.3.1. From Dataframes to Matrices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#averages-medians-and-variances">
+   11.3.2. Averages, Medians, and Variances
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measuring-dependence-through-moments-covariances-and-correlations">
+   11.3.3. Measuring Dependence through Moments: Covariances, and Correlations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   11.3.4. Terminology Review
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="summary-statistics-for-vector-data">
+<h1><span class="section-number">11.3. </span>Summary Statistics for Vector Data<a class="headerlink" href="#summary-statistics-for-vector-data" title="Permalink to this heading">#</a></h1>
+<p>One of the advantages of working with vectors of data is that allows us to efficiently analyze that data. In this section, we review techniques for computing summary statistics with vector data, and we introduce a new summary statistic that provides a measure of how different data depend on each other. We start by introducing the use of matrices to facilitate working with multiple vectors of data in NumPy.</p>
+<p>In this section, we will revisit the Covid data set from <span class="xref std std-doc">../03-first-data/intro</span> and show how to use both Pandas and NumPy techniques to compute summary statistics on the data. Let’s start by loading the data into a dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://raw.githubusercontent.com/jmshea/&quot;</span>
+    <span class="o">+</span> <span class="s2">&quot;Foundations-of-Data-Science-with-Python/main/&quot;</span>
+    <span class="o">+</span> <span class="s2">&quot;03-first-data/covid-merged.csv&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>7068</td>
+      <td>4903185</td>
+      <td>230750.1</td>
+      <td>59.04</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>353</td>
+      <td>731545</td>
+      <td>54674.7</td>
+      <td>66.02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>7648</td>
+      <td>7278717</td>
+      <td>379018.8</td>
+      <td>89.81</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>3281</td>
+      <td>3017804</td>
+      <td>132596.4</td>
+      <td>56.16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>50470</td>
+      <td>39512223</td>
+      <td>3205000.1</td>
+      <td>94.95</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This data frame has five columns. For each state, the data set contains:</p>
+<ul class="simple">
+<li><p>the cumulative cases up to April 30, 2020,</p></li>
+<li><p>the total population of the state as of 2019,</p></li>
+<li><p>the GDP of the state for the fourth quarter of 2019, and</p></li>
+<li><p>the percentage of the population living in urban areas as of 2010 (the most recent data available).</p></li>
+</ul>
+<p>We will set the ‘state’ column to be the index:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+    </tr>
+    <tr>
+      <th>state</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alabama</th>
+      <td>7068</td>
+      <td>4903185</td>
+      <td>230750.1</td>
+      <td>59.04</td>
+    </tr>
+    <tr>
+      <th>Alaska</th>
+      <td>353</td>
+      <td>731545</td>
+      <td>54674.7</td>
+      <td>66.02</td>
+    </tr>
+    <tr>
+      <th>Arizona</th>
+      <td>7648</td>
+      <td>7278717</td>
+      <td>379018.8</td>
+      <td>89.81</td>
+    </tr>
+    <tr>
+      <th>Arkansas</th>
+      <td>3281</td>
+      <td>3017804</td>
+      <td>132596.4</td>
+      <td>56.16</td>
+    </tr>
+    <tr>
+      <th>California</th>
+      <td>50470</td>
+      <td>39512223</td>
+      <td>3205000.1</td>
+      <td>94.95</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s also add a column that normalizes the cases per 1000 people:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;cases&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can consider each column of this dataframe to be a vector of data. In fact, it is easy to convert any column to a vector by just passing the column to <code class="docutils literal notranslate"><span class="pre">np.array()</span></code>. For example,  we can create a vector of the number of cases like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">cases</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cases</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[  7068    353   7648   3281  50470  15207  27700   4734  33683  25431
+    609   2016  52918  18099   7145   4305   4708  28044   1095  21825
+  62205  41348   5136   6815   7563    452   4332   5053   2146 118652
+   3411 309696  10507   1067  18027   3618   2510  48224   8621   6095
+   2450  10506  29072   4672    866  15848  14814   1126   6973    559]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This offers us flexibility in working with data because it makes it easy to work with all of the tools that NumPy offers.</p>
+<section id="from-dataframes-to-matrices">
+<h2><span class="section-number">11.3.1. </span>From Dataframes to Matrices<a class="headerlink" href="#from-dataframes-to-matrices" title="Permalink to this heading">#</a></h2>
+<p>Recall from <a class="reference internal" href="../01-intro/python-start.html"><span class="doc">Chapter 1</span></a> that a matrix is a two-dimensional table of numbers. Matrices are special cases of arrays, which can have any number of dimensions. When the values in our dataframe are all numeric, we can convert our dataframe directly into a two-dimension NumPy array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_array</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This array has a lot of rows, so let’s print the first five. We can do this using indexing. By using the index range <code class="docutils literal notranslate"><span class="pre">:5</span></code>, we will get the first five rows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_array</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[7.06800000e+03, 4.90318500e+06, 2.30750100e+05, 5.90400000e+01,
+        1.44151200e+00],
+       [3.53000000e+02, 7.31545000e+05, 5.46747000e+04, 6.60200000e+01,
+        4.82540377e-01],
+       [7.64800000e+03, 7.27871700e+06, 3.79018800e+05, 8.98100000e+01,
+        1.05073463e+00],
+       [3.28100000e+03, 3.01780400e+06, 1.32596400e+05, 5.61600000e+01,
+        1.08721441e+00],
+       [5.04700000e+04, 3.95122230e+07, 3.20500010e+06, 9.49500000e+01,
+        1.27732626e+00]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare the values in <code class="docutils literal notranslate"><span class="pre">covid_array</span></code> with the values in the dataframe. Each column in <code class="docutils literal notranslate"><span class="pre">df</span></code> has been converted into a column of the numpy array <code class="docutils literal notranslate"><span class="pre">covid_array</span></code>. Note that all of the data has been converted to floating point because a NumPy array can only have one data type, and the percent urban data requires floating point.</p>
+<p>Note that each data feature (i.e., number of cases, population, GDP, percent urban) occupies one of the columns of the Numpy array. The entries in this matrix can be indexed by row and then column. For instance, since row 4 corresponds to California and column 1 corresponds to population, we can retrieve the population of California as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_array</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>39512223.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can get all the data for California using two different indexing approaches. If we omit the column, we will get the whole row:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_array</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5.04700000e+04, 3.95122230e+07, 3.20500010e+06, 9.49500000e+01,
+       1.27732626e+00])
+</pre></div>
+</div>
+</div>
+</div>
+<p>As an alternative, we can pass just a colon as the range to indicate to retrieve all the values in that dimension:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_array</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5.04700000e+04, 3.95122230e+07, 3.20500010e+06, 9.49500000e+01,
+       1.27732626e+00])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">:</span></code> for the column index is not particular helpful, as we could have just omitted it. But if we want to retrieve a column, then it becomes very useful. To get all the population data, we can use <code class="docutils literal notranslate"><span class="pre">:</span></code> as the index of the rows and 1 as the column index:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">populations</span> <span class="o">=</span> <span class="n">covid_array</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">populations</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 4903185.   731545.  7278717.  3017804. 39512223.  5758736.  3565287.
+   973764. 21477737. 10617423.  1415872.  1787065. 12671821.  6732219.
+  3155070.  2913314.  4467673.  4648794.  1344212.  6045680.  6892503.
+  9986857.  5639632.  2976149.  6137428.  1068778.  1934408.  3080156.
+  1359711.  8882190.  2096829. 19453561. 10488084.   762062. 11689100.
+  3956971.  4217737. 12801989.  1059361.  5148714.   884659.  6829174.
+ 28995881.  3205958.   623989.  8535519.  7614893.  1792147.  5822434.
+   578759.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that some NumPy methods expect each data feature to be in a different row, while the Pandas dataframe <code class="docutils literal notranslate"><span class="pre">to_numpy()</span></code> method puts each data feature into a different column. We can <em>transpose</em> the matrix to interchange the rows and columns:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-transpose">transpose<a class="headerlink" href="#term-transpose" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">Interchange the rows and columns in a matrix. For a matrix <span class="math notranslate nohighlight">\(\mathbf{M}\)</span>, the transpose is denoted by <span class="math notranslate nohighlight">\(\mathbf{M}^{T}\)</span> satisfies</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*} \mathbf{M}^T [i,j] = \mathbf{M}[j,i] ~~~ \forall i,j.\end{equation*}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<p>We can get the transpose of a NumPy matrix by appending <code class="docutils literal notranslate"><span class="pre">.T</span></code>. Because <code class="docutils literal notranslate"><span class="pre">covid_array.T</span></code> has 50 columns, I only print the first 5 below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">covid_array</span><span class="o">.</span><span class="n">T</span><span class="p">[:,:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[7.06800000e+03 3.53000000e+02 7.64800000e+03 3.28100000e+03
+  5.04700000e+04]
+ [4.90318500e+06 7.31545000e+05 7.27871700e+06 3.01780400e+06
+  3.95122230e+07]
+ [2.30750100e+05 5.46747000e+04 3.79018800e+05 1.32596400e+05
+  3.20500010e+06]
+ [5.90400000e+01 6.60200000e+01 8.98100000e+01 5.61600000e+01
+  9.49500000e+01]
+ [1.44151200e+00 4.82540377e-01 1.05073463e+00 1.08721441e+00
+  1.27732626e+00]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="averages-medians-and-variances">
+<h2><span class="section-number">11.3.2. </span>Averages, Medians, and Variances<a class="headerlink" href="#averages-medians-and-variances" title="Permalink to this heading">#</a></h2>
+<p>We often use the average (sample mean), median, and variance as summary statistics for individual data features. Both Pandas and NumPy have methods for calculating these different features, but they occasionally have some differences in their behavior. In this section, I show how to use each method and point out any behaviors that users need to be aware of.</p>
+<p>Let’s start with Pandas. The Pandas dataframe object has methods called <code class="docutils literal notranslate"><span class="pre">mean()</span></code>, <code class="docutils literal notranslate"><span class="pre">median()</span></code>, and <code class="docutils literal notranslate"><span class="pre">var()</span></code>, which calculate the average, median, and variance, respectively. When called on the whole dataframe, it will calculate these values for each column of numerical data. Examples for the Covid dataframe are shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cases         2.137406e+04
+population    6.550675e+06
+gdp           4.296362e+05
+urban         7.358180e+01
+cases_norm    2.718524e+00
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cases         7.020500e+03
+population    4.558234e+06
+gdp           2.551785e+05
+urban         7.373500e+01
+cases_norm    1.540303e+00
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cases         2.189225e+09
+population    5.460149e+13
+gdp           3.134142e+11
+urban         2.121263e+02
+cases_norm    9.898749e+00
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>In <a class="reference internal" href="../09-moments/parameter-estimation.html"><span class="doc">Section 9.4</span></a> we introduced two different estimates for the variance:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+s_{n}^{2} &amp;= \frac 1 {n} \sum_{i=0}^{n-1} \left( x_i - \overline{\mathbf{x}} \right)^2, &amp;&amp;\mbox{ (biased)} \\
+s_{n-1}^{2} &amp;= \frac 1 {n-1} \sum_{i=0}^{n-1} \left( x_i - \overline{\mathbf{x}} \right)^2 &amp;&amp;\mbox{ (unbiased).}\\
+\end{align*}\]</div>
+<p>As a reminder, the corresponding estimator, <span class="math notranslate nohighlight">\(S_{n-1}^{2}\)</span> is an unbiased estimator for the variance, but it does have a higher mean-squared error than the biased estimator.</p>
+<p>A quick check of the help for <code class="docutils literal notranslate"><span class="pre">df.var()</span></code> will indicate that it is <span class="math notranslate nohighlight">\(s_{n-1}^{2}\)</span>, the unbiased estimate.</p>
+<p>Now, let’s see how to perform these operations on a NumPy array, where each column represents a different data feature. As with Pandas, NumPy arrays have <code class="docutils literal notranslate"><span class="pre">mean()</span></code> and <code class="docutils literal notranslate"><span class="pre">var()</span></code> methods, but they do not have a <code class="docutils literal notranslate"><span class="pre">median()</span></code> method, and they might not give us the results we expect.</p>
+<p>Let’s start with the <code class="docutils literal notranslate"><span class="pre">mean()</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_array</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1400352.4120647903
+</pre></div>
+</div>
+</div>
+</div>
+<p>Rather than return the average for each column, the <code class="docutils literal notranslate"><span class="pre">mean()</span></code> method by default finds the average for all of the values in the array. To specify that we want the <code class="docutils literal notranslate"><span class="pre">mean()</span></code> for each column, we need to specify that the mean should be computed across the rows, which is axis 0. If we pass the <code class="docutils literal notranslate"><span class="pre">axis=0</span></code> keyword argument, we get back a vector of the feature means that has the same values that we found with Pandas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_array</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.13740600e+04, 6.55067548e+06, 4.29636220e+05, 7.35818000e+01,
+       2.71852395e+00])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The average can be efficiently calculated using vector operations. For instance, the average can be written as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\overline{x} &amp;= \frac 1 n \sum_{i=0}^{n-1} x_i \\
+&amp;= \frac 1 n \mathbf{1}_n \cdot \mathbf{x}.
+\end{align*}\]</div>
+<p>Let’s check that using the ‘cases’ feature:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">])</span>
+<span class="n">cases_avg</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">@</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">]</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Avg. number of cases per state = </span><span class="si">{</span><span class="n">cases_avg</span><span class="si">:</span><span class="s1"> .1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Avg. number of cases per state =  21374.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can actually find the averages of all of the columns simultaneously using matrix multiplication, but we defer that discussion to <span class="xref std std-doc">Chapter 14</span>.</p>
+<p>Although NumPy arrays do not have a <code class="docutils literal notranslate"><span class="pre">median()</span></code> method, NumPy does offer a <code class="docutils literal notranslate"><span class="pre">np.median()</span></code> function to get the medians. Again, we need to specify that the median is over axis 0:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">covid_array</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([7.0205000e+03, 4.5582335e+06, 2.5517855e+05, 7.3735000e+01,
+       1.5403029e+00])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can use the NumPy array’s <code class="docutils literal notranslate"><span class="pre">var()</span></code> method to find the variances:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_array</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.14544021e+09, 5.35094565e+13, 3.07145961e+11, 2.07883783e+02,
+       9.70077394e+00])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that these variances do not match the ones from Pandas. That is because NumPy returns the <span class="math notranslate nohighlight">\(s_{n}^{2}\)</span> estimate by default. To get the unbiased estimator, we need to pass the keyword argument <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>. Here, ddof stands for differential degrees of freedom, and we are telling it that since the mean is being estimated, that it should subtract one degree of freedom, which results in the <span class="math notranslate nohighlight">\(s_{n-1}^{2}\)</span> estimate:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_array</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.18922470e+09, 5.46014863e+13, 3.13414246e+11, 2.12126309e+02,
+       9.89874892e+00])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Like the average/sample mean, the variance can also be written as a dot product:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+s_{n-1}^{2} &amp;= \frac 1 {n-1} \sum_{i=0}^{n-1} \left( x_i - \overline{\mathbf{x}} \right)^2 \\
+&amp;= \frac 1 {n-1} (\mathbf{x} - \overline{\mathbf{x}}) \cdot (\mathbf{x} - \overline{\mathbf{x}}).
+\end{align*}\]</div>
+<p>For the cases feature, this can be implemented as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cases_var</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">cases_avg</span><span class="p">)</span> \
+            <span class="o">@</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">cases_avg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Variance of cases = </span><span class="si">{</span><span class="n">cases_var</span><span class="si">:</span><span class="s1"> .1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variance of cases =  2189224703.3
+</pre></div>
+</div>
+</div>
+</div>
+<p>The fact that NumPy returns the means as an array is not just a convenience. If we consider each data point to be a vector of data, then the mean of those vectors is the vector of the means.</p>
+<p>To illustrate this concept, let’s look at plot two features against each other along with the mean vector. The figure below shows the Covid rate per 1000 people as a function of the percent of the population that live in an urban area. The average value of these two features is shown by an orange <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;urban&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Percent of population in urban area&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Covid Rate per 1000 People&quot;</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;urban&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cases_norm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f97030cabe0&gt;
+</pre></div>
+</div>
+<img alt="../_images/vector-stats_47_1.png" src="../_images/vector-stats_47_1.png" />
+</div>
+</div>
+<p>Note from the scatter plot that there seems to be a general trend that the Covid rate increases withe the percentage of the population that lives in an urban area. However, the statistics that we have covered up to now are not able to measure this dependence because they operate on one data feature separately. In the following section, we introduce new summary statistics that can measure dependence among the data features.</p>
+</section>
+<section id="measuring-dependence-through-moments-covariances-and-correlations">
+<h2><span class="section-number">11.3.3. </span>Measuring Dependence through Moments: Covariances, and Correlations<a class="headerlink" href="#measuring-dependence-through-moments-covariances-and-correlations" title="Permalink to this heading">#</a></h2>
+<p>To measure dependence between two features, we generalize the concept of variance. The math will be easier if we start with random variables. Let <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> be random variables. Then the variances of these random variables are</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\operatorname{Var}[X] &amp;= E \left[ \left(X - E[X]\right)^2 \right], \mbox{ and} \\
+\operatorname{Var}[Y] &amp;= E \left[ \left(Y - E[Y]\right)^2 \right]. \\
+\end{align*}\]</div>
+<p>We create a new <em>joint moment</em> called <em>covariance</em> that combines these two:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-covariance-random-variables">covariance (random variables)<a class="headerlink" href="#term-covariance-random-variables" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, the <em>covariance</em> is the joint moment given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*} \operatorname{Cov}(X, Y) = E \left[ \left( X - E[X]\right) \left( Y- E[Y]\right) \right]. \end{equation*}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<p>It can be shown that if <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent random variables, then <span class="math notranslate nohighlight">\(\operatorname{Cov}(X, Y) =0\)</span>. However, the converse is not true:  <span class="math notranslate nohighlight">\(\operatorname{Cov}(X, Y) =0\)</span> does not mean that <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent.</p>
+<ul class="simple">
+<li><p>Roughly speaking, a positive covariance indicates that the values of <span class="math notranslate nohighlight">\(X-E[X]\)</span> and <span class="math notranslate nohighlight">\(Y-E[Y]\)</span> obtained in a single experiment “tend” to have the same sign. For example, the data below are drawn from a Normal distribution with positive covariance:</p></li>
+</ul>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/vector-stats_51_0.png" src="../_images/vector-stats_51_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Similarly, a negative covariance indicates that the values of <span class="math notranslate nohighlight">\(X-E[X]\)</span> and <span class="math notranslate nohighlight">\(Y-E[Y]\)</span> obtained in a single experiment “tend” to have the <em>opposite</em> sign. The data below are drawn from a Normal distribution with negative covariance:</p></li>
+</ul>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/vector-stats_53_0.png" src="../_images/vector-stats_53_0.png" />
+</div>
+</div>
+<p>Computing covariance for random variables requires understanding <em>joint probability distributions</em> – this topic is outside the scope of this class. However, we will compute the covariance when we are working with vectors of data.</p>
+<p>If <span class="math notranslate nohighlight">\(\{x_i\}\)</span> and <span class="math notranslate nohighlight">\(\{y_i\}\)</span> are sample data from some random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, then the unbiased (sample) covariance is</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-covariance-data-vectors">covariance (data vectors)<a class="headerlink" href="#term-covariance-data-vectors" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For <span class="math notranslate nohighlight">\(n\)</span>-vectors  <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, the unbiased sample <em>covariance</em> is  given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*} \operatorname{Cov}( \mathbf{x}, \mathbf{y}) = \frac{1}{n-1} \sum_{i=0}^{n-1} \left(x_i - \overline{x}\right) \left(y_i - \overline{y}\right) . \end{equation*}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<p>Note that the covariance of a feature with itself is just the variance of that feature. As with variance, the covariance can be calculated efficiently using dot product:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*} \operatorname{Cov}( \mathbf{x}, \mathbf{y}) = \frac{1}{n-1}  \left(\mathbf{x} - \overline{\mathbf{x}}\right)  \cdot \left(\mathbf{y}- \overline{\mathbf{y}}\right) . 
+\end{equation*}\]</div>
+<p>Pandas dataframes have a <code class="docutils literal notranslate"><span class="pre">cov()</span></code> method that return all the pairwise covariances:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+      <th>cases_norm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>cases</th>
+      <td>2.189225e+09</td>
+      <td>1.566015e+11</td>
+      <td>1.410528e+10</td>
+      <td>2.428692e+05</td>
+      <td>1.195509e+05</td>
+    </tr>
+    <tr>
+      <th>population</th>
+      <td>1.566015e+11</td>
+      <td>5.460149e+13</td>
+      <td>4.044665e+12</td>
+      <td>4.833276e+07</td>
+      <td>3.638665e+06</td>
+    </tr>
+    <tr>
+      <th>gdp</th>
+      <td>1.410528e+10</td>
+      <td>4.044665e+12</td>
+      <td>3.134142e+11</td>
+      <td>3.787249e+06</td>
+      <td>4.303970e+05</td>
+    </tr>
+    <tr>
+      <th>urban</th>
+      <td>2.428692e+05</td>
+      <td>4.833276e+07</td>
+      <td>3.787249e+06</td>
+      <td>2.121263e+02</td>
+      <td>1.945257e+01</td>
+    </tr>
+    <tr>
+      <th>cases_norm</th>
+      <td>1.195509e+05</td>
+      <td>3.638665e+06</td>
+      <td>4.303970e+05</td>
+      <td>1.945257e+01</td>
+      <td>9.898749e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>NumPy arrays do not have a covariance method. However, NumPy does have a <code class="docutils literal notranslate"><span class="pre">np.cov()</span></code> function for computing the pairwise covariances. It expects each feature to be in a row, so we need to transpose the data before calling <code class="docutils literal notranslate"><span class="pre">np.cov()</span></code>. Fortunately (but somewhat inconsistently), numpy uses the unbiased estimator for covariance by default:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">covid_array</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2.18922470e+09, 1.56601457e+11, 1.41052773e+10, 2.42869243e+05,
+        1.19550942e+05],
+       [1.56601457e+11, 5.46014863e+13, 4.04466480e+12, 4.83327588e+07,
+        3.63866512e+06],
+       [1.41052773e+10, 4.04466480e+12, 3.13414246e+11, 3.78724946e+06,
+        4.30397008e+05],
+       [2.42869243e+05, 4.83327588e+07, 3.78724946e+06, 2.12126309e+02,
+        1.94525706e+01],
+       [1.19550942e+05, 3.63866512e+06, 4.30397008e+05, 1.94525706e+01,
+        9.89874892e+00]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result is a matrix whose <span class="math notranslate nohighlight">\(i,j\)</span>th entry give the covariance between feature <span class="math notranslate nohighlight">\(i\)</span> and feature <span class="math notranslate nohighlight">\(j\)</span>. The <span class="math notranslate nohighlight">\(i,i\)</span>th entries are the variances. This type of matrix is called a <em>covariance matrix</em>.</p>
+<p>NumPy’s <code class="docutils literal notranslate"><span class="pre">np.cov()</span></code> can also calculate the covariance for two separate vectors. For instance, we can get the covariance between the features 3 and 4 as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">covid_array</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span> <span class="n">covid_array</span><span class="p">[:,</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[212.12630894,  19.45257063],
+       [ 19.45257063,   9.89874892]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>One problem with covariances is that it is hard to interpret because it can take on very large or very small values, depending on the variance that is present in the data. To get around this, we often use a normalized version of the covariance called the <em>correlation coefficient</em>. As with covariance, we start by defining it in terms of random variables:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-correlation-coefficient-random-variables">correlation coefficient (random variables)<a class="headerlink" href="#term-correlation-coefficient-random-variables" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, the <em>correlation coefficient</em> is the given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*} \rho = \frac{ \operatorname{Cov}(X, Y)}{\sigma_X \sigma_Y}, \end{equation*}\]</div>
+<p class="sd-card-text">where <span class="math notranslate nohighlight">\(\sigma_X\)</span> and <span class="math notranslate nohighlight">\(\sigma_Y\)</span> are the standard deviations of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, respectively.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>It can be shown that <span class="math notranslate nohighlight">\(|\rho| \le 1\)</span>. Correlation coefficients that are closer to 1  generally indicate greater dependence among the variables.</p>
+<p>The correlation coefficient for data vectors is usually denoted by <span class="math notranslate nohighlight">\(r\)</span> or <span class="math notranslate nohighlight">\(R\)</span> and is given by</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-correlation-coefficient-data-vectors">correlation coefficient (data vectors)<a class="headerlink" href="#term-correlation-coefficient-data-vectors" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For <span class="math notranslate nohighlight">\(n\)</span>-vectors  <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, the <em>correlation coefficient</em> or <em>Pearson’s correlation coefficient</em> is  given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*} r = \frac{ \operatorname{Cov}(\mathbf{x}, \mathbf{y})}{\sigma_x \sigma_y}, \end{equation*}\]</div>
+<p class="sd-card-text">where <span class="math notranslate nohighlight">\(\sigma_x\)</span> and <span class="math notranslate nohighlight">\(\sigma_y\)</span> are the standard deviations of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, respectively.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>Pandas dataframes have a <code class="docutils literal notranslate"><span class="pre">corr()</span></code> method for computing the pairwise correlation coefficients:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+      <th>cases_norm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>cases</th>
+      <td>1.000000</td>
+      <td>0.452948</td>
+      <td>0.538489</td>
+      <td>0.356394</td>
+      <td>0.812115</td>
+    </tr>
+    <tr>
+      <th>population</th>
+      <td>0.452948</td>
+      <td>1.000000</td>
+      <td>0.977734</td>
+      <td>0.449099</td>
+      <td>0.156513</td>
+    </tr>
+    <tr>
+      <th>gdp</th>
+      <td>0.538489</td>
+      <td>0.977734</td>
+      <td>1.000000</td>
+      <td>0.464480</td>
+      <td>0.244354</td>
+    </tr>
+    <tr>
+      <th>urban</th>
+      <td>0.356394</td>
+      <td>0.449099</td>
+      <td>0.464480</td>
+      <td>1.000000</td>
+      <td>0.424512</td>
+    </tr>
+    <tr>
+      <th>cases_norm</th>
+      <td>0.812115</td>
+      <td>0.156513</td>
+      <td>0.244354</td>
+      <td>0.424512</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that the correlation coefficient is much easier to interpret than the covariance. If we look at the normalized cases, we can see that it is most correlated with the non-normalize number of cases, followed by the percent of the population living in urban areas. The correlation with GDP and the state’s population are lower. The correlation coefficients give us an easy way to look for dependence during exploratory data analysis.</p>
+<p>The equivalent function in Numpy is <code class="docutils literal notranslate"><span class="pre">np.corrcoef()</span></code>. Here, <code class="docutils literal notranslate"><span class="pre">corrcoef</span></code> is short for correlation coefficient. As with <code class="docutils literal notranslate"><span class="pre">np.cov()</span></code>, the data features are expected to be in the rows of the array, so we have to transpose the array before passing it to <code class="docutils literal notranslate"><span class="pre">np.corrcoef()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">covid_array</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.        , 0.45294805, 0.53848932, 0.35639375, 0.81211528],
+       [0.45294805, 1.        , 0.97773449, 0.449099  , 0.15651274],
+       [0.53848932, 0.97773449, 1.        , 0.46448028, 0.24435415],
+       [0.35639375, 0.449099  , 0.46448028, 1.        , 0.42451162],
+       [0.81211528, 0.15651274, 0.24435415, 0.42451162, 1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>As with <code class="docutils literal notranslate"><span class="pre">np.cov()</span></code>, we can use <code class="docutils literal notranslate"><span class="pre">np.corrcoef()</span></code> to calculate the correlation coefficient between two vectors, like</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span> <span class="n">covid_array</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span> <span class="n">covid_array</span><span class="p">[:,</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.        , 0.42451162],
+       [0.42451162, 1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Another example</strong></p>
+<p>“The Behavioral Risk Factor Surveillance System (BRFSS) is the nation’s premier system of health-related telephone surveys that collect state data about U.S. residents regarding their health-related risk behaviors, chronic health conditions, and use of preventive services.”: <a class="reference external" href="https://www.cdc.gov/brfss/index.html">https://www.cdc.gov/brfss/index.html</a></p>
+<p>The BRFSS contains 450015 records, with over 350 variables. It takes a LONG time to load and work with, so I have pulled out 2 variables and sampled 5000 records for us to work with. The data we will use is</p>
+<ul class="simple">
+<li><p><strong>HEIGHT</strong>: I created a new computed variable that I have computed as the height in inches</p></li>
+<li><p><strong>WEIGHT2</strong>: The reported weight in pounds</p></li>
+</ul>
+<p>I dropped those entries that did not have valid values or were reported in metric units (a small percentage of the total).  The resulting dataframe is stored in the pickle file <code class="docutils literal notranslate"><span class="pre">brfss17.pickle</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span> 
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;brfss17.pickle&quot;</span><span class="p">,</span><span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+  <span class="n">brfss</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="n">brfss</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>HEIGHT</th>
+      <th>WEIGHT2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>435546</th>
+      <td>64.0</td>
+      <td>180.0</td>
+    </tr>
+    <tr>
+      <th>191440</th>
+      <td>64.0</td>
+      <td>160.0</td>
+    </tr>
+    <tr>
+      <th>236807</th>
+      <td>64.0</td>
+      <td>210.0</td>
+    </tr>
+    <tr>
+      <th>2422</th>
+      <td>64.0</td>
+      <td>155.0</td>
+    </tr>
+    <tr>
+      <th>166257</th>
+      <td>73.0</td>
+      <td>220.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s start by plotting our data. For this data, I am interested in the dependence between height and weight, so I plot the weights as a function of the heights using a scatter plot:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">brfss</span><span class="p">[</span><span class="s1">&#39;HEIGHT&#39;</span><span class="p">],</span> <span class="n">brfss</span><span class="p">[</span><span class="s1">&#39;WEIGHT2&#39;</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Height (in)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Weight (lbs)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;BRFSS 2017 Data on US Residents Heights and Weights&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/vector-stats_72_0.png" src="../_images/vector-stats_72_0.png" />
+</div>
+</div>
+<p>Before we determine the numerical values of the covariance and correlation coefficient for this pair of features, try to answer the following questions:</p>
+<ul class="simple">
+<li><p>What should the sign of the covariance between Height and Weight be?</p></li>
+<li><p>What should the magnitude of the correlation coefficient be?</p></li>
+</ul>
+<p>Let’s start by calculating the covariance matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brfss</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>HEIGHT</th>
+      <th>WEIGHT2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>HEIGHT</th>
+      <td>17.628628</td>
+      <td>92.671004</td>
+    </tr>
+    <tr>
+      <th>WEIGHT2</th>
+      <td>92.671004</td>
+      <td>1819.515627</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Hopefully you guessed that the covariance is positive. People who are taller tend to weight more than people who are shorter, so these features tend to move together.</p>
+<p>Now let’s check the correlation coefficient:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brfss</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>HEIGHT</th>
+      <th>WEIGHT2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>HEIGHT</th>
+      <td>1.000000</td>
+      <td>0.517436</td>
+    </tr>
+    <tr>
+      <th>WEIGHT2</th>
+      <td>0.517436</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The correlation coefficient is 0.46, which indicates a fairly strong dependence between height and weight.</p>
+<p>Finally, let’s look at what happens for some independent data. Below I generate completely separate samples of Normal random variables with different variances and show a scatter plot of the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="n">Y</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span>
+<span class="n">Z</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">Y</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+<span class="n">z</span><span class="o">=</span><span class="n">Z</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/vector-stats_79_0.png" src="../_images/vector-stats_79_0.png" />
+</div>
+</div>
+<p>Since the shape of the scatter plot is circular, there is no clear direction of dependence. Let’s check the numerical value of the covariance and correlation coefficient:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[ 1.01217719,  0.05824538],
+        [ 0.05824538, 15.68893564]]),
+ array([[1.        , 0.01461627],
+        [0.01461627, 1.        ]]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note the very small sample covariance and very small correlation coefficient. When random variables are independent, their covariance is zero; however, the sample covariance will generally not be exactly zero.</p>
+<p>More examples of datasets with different correlations are shown in this image from the Wikipedia page for correlation (<a class="reference external" href="https://en.wikipedia.org/wiki/Correlation">https://en.wikipedia.org/wiki/Correlation</a>):</p>
+<p><img alt="Correlation Examples" src="../_images/Correlation_examples.png" /></p>
+<p>In the next section, we use the concepts of covariance and correlation to help find the best functional relationships between data features to minimize an error metric.</p>
+</section>
+<section id="terminology-review">
+<h2><span class="section-number">11.3.4. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg);
+	/*transform: rotateY(180deg)  translateX(-10%); */
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transition: display 0s;
+    transform:  translateX(20px); 
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 200px;
+	  width: 100%;
+}
+
+
+
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:10px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 95%;
+}
+
+.flashcardtext{
+    color: var(--snow);
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+    font-size: 1.5em;
+}
+
+.back .flashcardtext{
+    font-size: 1.2em;
+}
+
+
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.jp-OutputArea-output .back {
+	  transform: rotateY(180deg) translateX(7.5%);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 1.5em;
+    /*left:90%; */
+    margin-left: 70%;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:-1em;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    outline: none;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+
+@media only screen and (min-width:1000px) {
+
+    .flip-container, .front, .back {
+	      height: 300px;
+	      width: 640px;
+    }
+
+    .flipper {
+        margin-left:20px;
+	      height: 300px;
+        width: 600px;
+    }
+
+    .flashcardtext{
+        font-size: 20pt;
+    }
+
+    .next {
+        font-size: 16pt;
+        left:438pt;
+        margin-left: 0;
+        width: 100pt;
+        height: 22pt;
+        top:-0.5em;
+    }
+
+    .back .flashcardtext{
+        font-size: 1.5em;
+    }
+
+}
+
+@media only screen and (min-width:660px) and (max-width:999px) {
+    .next {
+        left:0;
+        margin-left: 80%;
+    }
+
+}
+
+@media only screen and (max-width:680px) and (min-height:376px) {
+    .flip-container, .front, .back {
+	      height: 300px;
+    }
+
+    .flipper {
+	      height: 300px;
+    }
+
+}
+
+@media only screen and (max-width:330px) and (max-height:600px) {
+
+    .back .flashcardtext{
+        font-size: 1em;
+    }
+    .next {
+        margin-left: 65%;
+    }
+
+}
+
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="hHxzdsiJiVQk" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="hHxzdsiJiVQk-next" onclick="window.checkFlip('hHxzdsiJiVQk')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    var count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    var count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+window.flipCard = function flipCard(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    /* ths.blur(); */
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 600, ths, next);
+}
+
+window.checkKey = function checkKey(container, event) {
+    event.stopPropagation();
+    /*
+    console.log(container);
+    console.log(event.key);
+    console.log(event.code);
+    */
+    /* JMS:  Working here*/
+    var next=document.getElementById(container.id+'-next');
+    /* Only react if not already sliding */
+    if (! next.classList.contains("hide")) {
+        if ((event.key == "j") || (event.key == "Enter") || (event.key == "ArrowRight")) {
+            window.checkFlip(container.id);
+        }
+        if (event.key == " ") {
+            window.flipCard(container);
+        }
+    }
+    event.preventDefault();
+}
+
+
+function reenableNext(ths, next) {
+    next.style.pointerEvents='auto';
+    /* ths.tabIndex= 0;*/
+    /* ths.focus(); */
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    /* container.removeAttribute("tabindex");*/
+    /* container.blur(); */
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+    
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+    
+}
+
+
+window.checkFlip = function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 550, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    /* container.tabIndex= 0; */
+    /* container.focus(); */
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    var colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id, keyControl) {
+    console.log(id);
+    
+    var mydiv=document.getElementById(id);
+    /*mydiv.onclick = window.flipCard(mydiv);*/
+    /*
+    mydiv.addEventListener('click', function(){window.flipCard(mydiv);}, false);
+    mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
+    */
+    mydiv.onclick = function(){window.flipCard(mydiv);};
+    console.log(keyControl);
+    if (keyControl == "True"){
+        mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
+    }
+    /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
+    /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
+
+    console.log(mydiv);
+    
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+    
+    for (var i=0; i<2; i++) {
+    
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    mydiv.focus();
+
+    return flipper;
+}
+
+
+
+
+
+var cardshHxzdsiJiVQk=[
+    {
+        "front": "transpose",
+        "back": "Interchange the rows and columns in a matrix. For a matrix $\\mathbf{M}$, the transpose is denoted by $\\mathbf{M}^{T}$ satisifies  \\begin{equation*} \\mathbf{M}^T [i,j] = \\mathbf{M}[j,i] ~~~ \\forall i,j.\\end{equation*}"
+    }, 
+    {
+        "front": "covariance<br>(random variables)",
+        "back": "For random variables $X$ and $Y$, the <i>covariance</i> is the joint moment \\begin{equation*} \\operatorname{Cov}(X, Y) = E \\left[ \\left( X - E[X]\\right) \\left( Y- E[Y]\\right) \\right]. \\end{equation*}"
+    },
+    {
+        "front": "covariance<br>(data vectors)",
+        "back": "For $n$-vectors  $\\mathbf{x}$ and $\\mathbf{y}$, the unbiased sample <i>covariance</i> is  \\begin{equation*} \\operatorname{Cov}( \\mathbf{x}, \\mathbf{y}) = \\frac{1}{n-1} \\sum_{i=0}^{n-1} \\left(x_i - \\overline{x}\\right) \\left(y_i - \\overline{y}\\right) . \\end{equation*}" 
+    },
+
+    {
+        "front": "correlation coefficient<br>(random variables)",
+        "back": "For random variables $X$ and $Y$, the <i>correlation coefficient</i> is \\begin{equation*} \\rho = \\frac{ \\operatorname{Cov}(X, Y)}{\\sigma_X \\sigma_Y}. \\end{equation*} "
+    },
+    {
+        "front": "correlation coefficient<br>(data vectors)",
+        "back": "For $n$-vectors  $\\mathbf{x}$ and $\\mathbf{y}$, the <i>correlation coefficient</i> or <i>Pearson's correlation coefficient</i> is  \\begin{equation*} r = \\frac{ \\operatorname{Cov}(\\mathbf{x}, \\mathbf{y})}{\\sigma_x \\sigma_y}. \\end{equation*} "
+    }
+]
+;
+    
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/11-matrix-vector-regression/flashcards/vector-stats.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("hHxzdsiJiVQk", "True"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("hHxzdsiJiVQk", "True");
+        });
+        }
+        </script></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./11-matrix-vector-regression"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="vector-operations.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">11.2. </span>Vector Operations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="linear-regression.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">11.4. </span>Linear Regression</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

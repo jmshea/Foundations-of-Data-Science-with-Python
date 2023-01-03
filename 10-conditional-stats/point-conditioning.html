@@ -1,0 +1,1867 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="10.2. Point Conditioning" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/10-conditional-stats/point-conditioning.html" />
+  
+<meta property="og:description" content="In this section, we build upon some of the concepts from Section 8.9, where we began to study conditioning with random variables. We often have cases where the observed output of a system is best m..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="10.2. Point Conditioning" />
+  
+    <title>10.2. Point Conditioning &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/10-conditional-stats/point-conditioning.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.3. Optimal Bayesian Decision Making with Continuous Random Variables" href="bayesian-decisions.html" />
+    <link rel="prev" title="10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches" href="binary-decisions-nonbayesian.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/10-conditional-stats/point-conditioning.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/10-conditional-stats/point-conditioning.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#total-probability-for-continuous-distributions">
+   10.2.1. Total Probability for Continuous Distributions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   10.2.2. Terminology Review
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Point Conditioning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#total-probability-for-continuous-distributions">
+   10.2.1. Total Probability for Continuous Distributions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   10.2.2. Terminology Review
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="k">def</span> <span class="nf">q</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="point-conditioning">
+<h1><span class="section-number">10.2. </span>Point Conditioning<a class="headerlink" href="#point-conditioning" title="Permalink to this heading">#</a></h1>
+<p>In this section, we build upon some of the concepts from <span class="xref std std-doc">Section 8.9</span>, where we began to study conditioning with random variables. We often have cases where the observed output of a system is best modeled as a random variable, and we would like to make decisions based on the observed value of the random variable. However, if the output is a continuous random variable, then our previous approaches break down because the probability of a continuous random variable taking on any particular value is zero.</p>
+<p>Let’s return to the example of a binary communication system introduced in <span class="xref std std-doc">Section 8.9</span>, for which the output is conditionally Gaussian given the input. In particular, the output random variable has conditional distributions given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  \begin{cases}
+  X  \sim \mbox{Normal}(+1,\sigma), &amp; 0 \mbox{ transmitted}\\
+  X  \sim \mbox{Normal}(-1,\sigma), &amp; 1 \mbox{ transmitted}.
+  \end{cases}
+\end{align*}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(T_i\)</span> denote the event that <span class="math notranslate nohighlight">\(i\)</span> is transmitted. As in <span class="xref std std-doc">Section 7.3</span>, we want to determine the probabilities of the inputs given the observed value of the output. The difference is that in <span class="xref std std-doc">Section 7.3</span>, the output was a discrete event, whereas now we observe a particular value of a continuous random variable: we observe some received value <span class="math notranslate nohighlight">\(X=x\)</span>.</p>
+<p>We would like to calculate the probabilities of <span class="math notranslate nohighlight">\(T_0\)</span> and <span class="math notranslate nohighlight">\(T_1\)</span> given an observation <span class="math notranslate nohighlight">\(X=x\)</span>. The form of these probabilities may look familiar: we are asking about probabilities of the form <span class="math notranslate nohighlight">\(P(T_i|X=x)\)</span>. This is the probability of an input given the observation or output, and hence is an <em>a posteriori</em> probability (APP).  Given the APPs, we would also like to find the maximum <em>a posteriori</em> (MAP) decision rule.</p>
+<p>Let’s revisit the example from <span class="xref std std-doc">Section 8.9</span> to identify the issue:</p>
+<p><strong>Example</strong></p>
+<p>Suppose that we want to calculate probability of the events <span class="math notranslate nohighlight">\(T_0\)</span> and <span class="math notranslate nohighlight">\(T_1\)</span> given that <span class="math notranslate nohighlight">\(X=2\)</span> if <span class="math notranslate nohighlight">\(P(T_0)=0.4\)</span>, <span class="math notranslate nohighlight">\(P(T_1)=0.6\)</span>, and <span class="math notranslate nohighlight">\(\sigma=2\)</span>. A direct application of our previous Bayes’ rule approaches yields</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(T_0 | X=2) &amp;= \frac{ P(X=2|T_0) P(T_0) }{P(X=2) }.\\
+\end{align*}\]</div>
+<p>This is problematic because <span class="math notranslate nohighlight">\(P(X=2|T_0)=0\)</span> and <span class="math notranslate nohighlight">\(P(X=2)=0\)</span>, so the fraction is 0/0.</p>
+<p>This problem is caused by conditioning on an event that has zero probability. But keep in mind that every time that <span class="math notranslate nohighlight">\(X\)</span> is received it takes on <em>some</em> value with zero probability.  Being able to answer this type of question is important, but we don’t have the math to deal with it yet. This type of conditional probability is called <em>point conditioning</em>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-point-conditioning">point conditioning<a class="headerlink" href="#term-point-conditioning" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">Point conditioning occurs for a conditional probability if the conditioning statement is (or includes) the event that a continuous random variable is equal to a particular value. I.e., <span class="math notranslate nohighlight">\(P(A|X=x)\)</span>, where <span class="math notranslate nohighlight">\(X\)</span> is a continuous random variable.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>We can evaluate a conditional probability with point conditioning, by treating it as a limit and doing some careful manipulation:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+P(A|X = x) \! \! &amp;=&amp; \underset{ \Delta x \rightarrow 0}{\lim} P(A| 
+ x &lt; X \le x+ \Delta x  )   \\
+\!\!&amp;=&amp; \underset{ \Delta x \rightarrow 0}{\lim}
+\frac{F_X(x + \Delta x |A)- F_X(x|A)}{F_X(x+\Delta x)-F_X(x)} 
+P(A) \\
+&amp;=&amp; \underset{ \Delta x \rightarrow 0}{\lim}
+\frac{\frac{ F_X(x + \Delta x |A)- F_X(x|A)}{ \Delta x}}
+{ \frac {F_X(x+\Delta x)-F_X(x)}{ \Delta x}} P(A) \\
+\end{eqnarray*}\]</div>
+<p>if <span class="math notranslate nohighlight">\(f_X(x|A)\)</span> and <span class="math notranslate nohighlight">\(f_X(x)\)</span> exist, and <span class="math notranslate nohighlight">\(f_X(x) \ne 0\)</span>. Taking the limit in the numerator and denominator yields</p>
+<div class="math notranslate nohighlight" id="equation-event-prob-pt-cond">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-event-prob-pt-cond" title="Permalink to this equation">#</a></span>\[  P(A|X = x)   = \frac{f_X(x|A)}{f_X(x)} P(A).\]</div>
+<p>(The result looks like what you would do if you didn’t know any better – treat the densities as if they were probabilities, and everything works out!)</p>
+<!--Note that in many cases, we do not know $f_X(x)$. As in Bayes' Rule for events with nonzero probability, we have to apply Total Probability to find the value of the denominator. However, the particular equation for Total Probability is different because we are now finding a density instead of a probability.-->
+<section id="total-probability-for-continuous-distributions">
+<h2><span class="section-number">10.2.1. </span>Total Probability for Continuous Distributions<a class="headerlink" href="#total-probability-for-continuous-distributions" title="Permalink to this heading">#</a></h2>
+<p>Note that the form above is almost a Bayes’ rule form.  If <span class="math notranslate nohighlight">\(A\)</span> is some input event and <span class="math notranslate nohighlight">\(X\)</span> is the observed output, then <span class="math notranslate nohighlight">\(f_X(x|A)\)</span> is the likelihood of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-likelihood-discrete-input-continuous-output-stochastic-system">likelihood; discrete-input, continuous-output stochastic system<a class="headerlink" href="#term-likelihood-discrete-input-continuous-output-stochastic-system" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">Consider a stochastic system with a discrete set of possible input events <span class="math notranslate nohighlight">\(\{ A_0, A_i, \ldots \}\)</span> and a continuous output random variable <span class="math notranslate nohighlight">\(X\)</span>, where the dependence of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(A_i\)</span> can be expressed in terms of the likelihoods <span class="math notranslate nohighlight">\(f_X(x|A_i)\)</span>.</p>
+<p class="sd-card-text">Then the <em>likelihood</em> is the conditional density of the output given that the input was <span class="math notranslate nohighlight">\(A_i\)</span>, <span class="math notranslate nohighlight">\(f_X(x |A_i)\)</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>In this context, the conditional probability <span class="math notranslate nohighlight">\(P(A|X=x)\)</span> is the <em>a posteriori</em> probability of <span class="math notranslate nohighlight">\(A\)</span> given that the output of the system is <span class="math notranslate nohighlight">\(X=x\)</span>. However, in Bayes’ rule the denominator usually needs to be found using total probability, but we do not yet have any Law of Total Probability for point conditioning.</p>
+<p>In the binary communication system example, we can use the partitioning events <span class="math notranslate nohighlight">\(\{T_0, T_1\}\)</span>. We can easily create a general Total Probability rule for CDFs because CDFs are probability measures:</p>
+<p><strong>Total Probability for CDFs</strong></p>
+<p>If  <span class="math notranslate nohighlight">\(\left\{A_i\right\}\)</span> form a partition of <span class="math notranslate nohighlight">\(S\)</span>, then from our previous work on the Law of Total Probability, we have</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7a6386ef-1986-4b1f-bdbd-611cd9c37c64">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-7a6386ef-1986-4b1f-bdbd-611cd9c37c64" title="Permalink to this equation">#</a></span>\[\begin{align}
+F_X(x) &amp;= P(X \le x) \\
+&amp;= \sum_i P(X \le x| A_i) P(A_i) \\
+&amp;= \sum_i F_X(x|A_i) P(A_i)
+\end{align}\]</div>
+<p><strong>Total Probability for pdfs</strong></p>
+<p>To derive a similar rule for pdfs, we note that
+<span class="math notranslate nohighlight">\( f_X(x) = \frac{d}{dx} F_X(x)\)</span> and <span class="math notranslate nohighlight">\(f_X(x|A_i) = \frac{d}{dx} F_X(x|A_i)\)</span>.
+Substituting the Total Probability for CDFs into the definition of the pdf <span class="math notranslate nohighlight">\(f_X(x)\)</span>
+yields</p>
+<div class="amsmath math notranslate nohighlight" id="equation-77f26e74-18ad-43d9-ba5c-5f53a796b97d">
+<span class="eqno">(10.3)<a class="headerlink" href="#equation-77f26e74-18ad-43d9-ba5c-5f53a796b97d" title="Permalink to this equation">#</a></span>\[\begin{align}
+f_X(x) &amp;= \frac{d}{dx} F_X(x) \\
+&amp;= \frac{d}{dx}\sum_i F_X(x|A_i) P(A_i) \\
+&amp;= \sum_i \left[\frac{d}{dx} F_X(x|A_i) \right]P(A_i)  \\
+&amp;= \sum_i f_X(x|A_i) P(A_i) 
+\end{align}\]</div>
+<p>The equation is almost identical to the equation for the Total Probability for CDFs, except CDFs (denoted by <span class="math notranslate nohighlight">\(F\)</span>) are replaced by pdfs (denoted by <span class="math notranslate nohighlight">\(f\)</span>) everywhere.</p>
+<p><strong>Total Probability for Events with Point Conditioning</strong></p>
+<p>We have one more case that often arises, which is when we wish to calculate the probability of some event when we know the probability of that event given the value of some continuous random variable. Consider again the point-conditioning form for the probability of an event, which we found in <a class="reference internal" href="#equation-event-prob-pt-cond">(10.1)</a>,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+   &amp;P(A|X = x) = \frac{f_X(x|A)}{f_X(x)} P(A) .
+ \end{align*}\]</div>
+<p>Multiplying both sides by <span class="math notranslate nohighlight">\(f_X(x)\)</span> and integrating over <span class="math notranslate nohighlight">\(x\)</span> yields</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+   \Rightarrow&amp; P(A|X=x)f_X(x) = f_X(x|A)P(A) \\
+   \Rightarrow&amp; \int_{-\infty}^{\infty} P(A|X=x)f_X(x)~ dx 
+   =  \int_{-\infty}^{\infty} f_X(x|A) ~dx P(A) ,
+  \end{align*}\]</div>
+<p>where on the right side, we have pulled out <span class="math notranslate nohighlight">\(P(A)\)</span> from the integral because it does not depend on <span class="math notranslate nohighlight">\(x\)</span>. The remaining integral on the right evaluates to 1 because it is the integral of a density from <span class="math notranslate nohighlight">\(-\infty \)</span> to <span class="math notranslate nohighlight">\(\infty.\)</span> Swapping the two sides yields</p>
+<!--   \begin{align*}
+& P(A) =\int_{-\infty}^{\infty} P(A|X=x)f_X(x) ~dx.
+ \end{align*}
+-->
+<div class="math notranslate nohighlight" id="equation-total-prob-pt-cond">
+<span class="eqno">(10.4)<a class="headerlink" href="#equation-total-prob-pt-cond" title="Permalink to this equation">#</a></span>\[ P(A) =\int_{-\infty}^{\infty} P(A|X=x)f_X(x) ~dx.\]</div>
+<p><strong>Bayes’ Rule for the Probability of an Event Under Point Conditioning:</strong></p>
+<p>We are now ready to finish deriving a general formula for Bayes’ rule
+for scenarios in which the observation is a continuous-valued random variable for which the distribution depends on some discrete underlying hidden state. Examples include the binary communication system described at the beginning of this section and many types of sensing systems, such as when the sensor output (e.g., sound, RADAR, or seismic)  depends on whether some type of vehicle is present.  A generic formulation of this type of problem is as follows:</p>
+<p>Let <span class="math notranslate nohighlight">\(\{A_i, ~i=0,1,\ldots, n-1\}\)</span> be a partition of <span class="math notranslate nohighlight">\(S\)</span>; for instance, if <span class="math notranslate nohighlight">\(\{A_i\}\)</span> represent all of the different values of the hidden state, and no two values of <span class="math notranslate nohighlight">\(\{A_i\}\)</span> can occur at the same time, then <span class="math notranslate nohighlight">\(\{A_i\}\)</span> will be a partition of <span class="math notranslate nohighlight">\(S\)</span>. Let <span class="math notranslate nohighlight">\(X\)</span> be some random
+variable for which we know the conditional density given <span class="math notranslate nohighlight">\(A_i\)</span> occurred for
+each <span class="math notranslate nohighlight">\(i=0,1,\ldots, n-1\)</span>. Then we can use <a class="reference internal" href="#equation-total-prob-pt-cond">(10.4)</a> in <a class="reference internal" href="#equation-event-prob-pt-cond">(10.1)</a> to get Bayes’ Rule for this case:</p>
+<!-- the probability of an event under point conditioning: -->
+  <!-- \begin{eqnarray*}
+   P(A_i|X \!=\! x)  &~=~& \frac{f_X(x|A_i) P(A_i)}{
+      \sum_{i=0}^{n-1}{f_X(x|A_i) P(A_i)}
+      }
+\end{eqnarray*}
+-->
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-a-posteriori-probability-discrete-input-continuous-output-stochastic-system"><em>a posteriori</em> probability; discrete-input, continuous-output stochastic system<a class="headerlink" href="#term-a-posteriori-probability-discrete-input-continuous-output-stochastic-system" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">Consider a stochastic system with a discrete set of possible input events <span class="math notranslate nohighlight">\(\{ A_0, A_i, \ldots \}\)</span> and a continuous output random variable <span class="math notranslate nohighlight">\(X\)</span>, where the dependence of <span class="math notranslate nohighlight">\(X\)</span> on <span class="math notranslate nohighlight">\(A_i\)</span> can be expressed in terms of the likelihoods <span class="math notranslate nohighlight">\(f_X(x|A_i)\)</span>.</p>
+<p class="sd-card-text">Then the <em>a posterior probabilities</em> are the conditional probabilities of the input events given the observed outputs:</p>
+</dd>
+</dl>
+<div class="math notranslate nohighlight" id="equation-bayes">
+<span class="eqno">(10.5)<a class="headerlink" href="#equation-bayes" title="Permalink to this equation">#</a></span>\[   P(A_i|X \!=\! x)  = \frac{f_X(x|A_i) P(A_i)}{
+      \sum_{i=0}^{n-1}{f_X(x|A_i) P(A_i)}
+      }\]</div>
+</div>
+</div>
+<p>Let’s see how to use this to find the <em>a posteriori</em> probabilities in our communications example.</p>
+<p><strong>Example</strong></p>
+<p>Consider again the binary communication system with <span class="math notranslate nohighlight">\(P(T_0)=0.4\)</span> and <span class="math notranslate nohighlight">\(P(T_1)=0.6\)</span> if <span class="math notranslate nohighlight">\(\sigma=2\)</span>. If <span class="math notranslate nohighlight">\(X=1\)</span> is received, what is the conditional probabilities for <span class="math notranslate nohighlight">\(T_0\)</span> and <span class="math notranslate nohighlight">\(T_1\)</span>?</p>
+<p>We have to use point conditioning because <span class="math notranslate nohighlight">\(P(X=2) =0\)</span>.  Thus, we will specialize <a class="reference internal" href="#equation-bayes">(10.5)</a> as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(T_i|X=x) = \frac{f_X(x|T_i)P(T_i)}{f_X(x|T_0)P(T_0) + f_X(x|T_1)P(T_1)},
+\end{align*}\]</div>
+<p>where we can evaluate the particular probabilities by plugging in the values specified. Before we do that, let’s try to gain some intuition about this formula. First, note that the denominator is the same for both <span class="math notranslate nohighlight">\(P(T_0|X=x)\)</span> and <span class="math notranslate nohighlight">\(P(T_1|X=x)\)</span>. It can be considered a normalization constant. So, let’s start by comparing the un-normalized numerator values. Below, I have plotted <span class="math notranslate nohighlight">\(f_X(x|T_0)(0.4)\)</span> and <span class="math notranslate nohighlight">\(f_X(x|T_1)(0.6)\)</span> and indicated the values at <span class="math notranslate nohighlight">\(x=2\)</span> with markers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">p0</span><span class="o">=</span><span class="mf">0.4</span>
+<span class="n">G0</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">G1</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">p0</span>
+
+<span class="c1"># plot the weighted densities:</span>
+<span class="c1"># these are proportional to the APPs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">p0</span><span class="o">*</span><span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">p1</span><span class="o">*</span><span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># Fill under the regions found above</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">p0</span><span class="o">*</span><span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">p1</span><span class="o">*</span><span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1">#ax.get_yaxis().set_ticks([]);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$f_X(x|T_0)P(T_0)$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.4</span><span class="p">,</span><span class="mf">0.085</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$f_X(x|T_1)P(T_1)$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">0.125</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/point-conditioning_13_0.png" src="../_images/point-conditioning_13_0.png" />
+</div>
+</div>
+<p>From the graph, <span class="math notranslate nohighlight">\(f_X(2|T_0)P(T_0) \approx 0.75\)</span> and <span class="math notranslate nohighlight">\(f_X(2|T_1)P(T_1) \approx 0.4\)</span>, so we can conclude that <span class="math notranslate nohighlight">\(P(T_0|X=2)\)</span> is greater than <span class="math notranslate nohighlight">\(P(T_1|X=2)\)</span> by a factor of approximately <span class="math notranslate nohighlight">\(0.75/0.4 = 1.875\)</span>. Let’s check out the exact values using <a class="reference internal" href="#equation-bayes">(10.5)</a>. The denominator is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">den</span><span class="o">=</span><span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.4</span> <span class="o">+</span> <span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.6</span>
+<span class="n">den</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10926834405262742
+</pre></div>
+</div>
+</div>
+</div>
+<p>The conditional probability of <span class="math notranslate nohighlight">\(T_0\)</span> given <span class="math notranslate nohighlight">\(X=2\)</span> is then</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pT0_2</span> <span class="o">=</span> <span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.4</span><span class="o">/</span><span class="n">den</span>
+<span class="n">pT0_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6444049826448045
+</pre></div>
+</div>
+</div>
+</div>
+<p>and the conditional probability of <span class="math notranslate nohighlight">\(T_1\)</span> given <span class="math notranslate nohighlight">\(X=2\)</span> is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pT1_2</span> <span class="o">=</span> <span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mf">0.6</span><span class="o">/</span><span class="n">den</span>
+<span class="n">pT1_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3555950173551955
+</pre></div>
+</div>
+</div>
+</div>
+<p>and the ratio is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pT0_2</span><span class="o">/</span><span class="n">pT1_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8121878856393636
+</pre></div>
+</div>
+</div>
+</div>
+<p>which matches our approximation from the graph.</p>
+<p>As in the example of a binary communication system with discrete outputs, the <em>a posteriori</em> probabilities provide information about the probabilities of the inputs given the observed output, and these are useful for optimal decision making, which we consider in the next section.</p>
+</section>
+<section id="terminology-review">
+<h2><span class="section-number">10.2.2. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg)  translateX(-10%);
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transform:  translateX(20px); 
+    transition: display 0s;
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 300px;
+	  width: 640px;
+}
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:20px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 600px;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 16pt;
+    left:442pt;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:20px;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    outline: none;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+.flashcardtext{
+    color: var(--snow);
+    font-size: 20pt;
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+  }
+
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="DTDzYsTzjzQk" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="DTDzYsTzjzQk-next" onclick="window.checkFlip('DTDzYsTzjzQk')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    var count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    var count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+window.flipCard = function flipCard(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    /* ths.blur(); */
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 600, ths, next);
+}
+
+window.checkKey = function checkKey(container, event) {
+    event.stopPropagation();
+    /*
+    console.log(container);
+    console.log(event.key);
+    console.log(event.code);
+    */
+    /* JMS:  Working here*/
+    var next=document.getElementById(container.id+'-next');
+    /* Only react if not already sliding */
+    if (! next.classList.contains("hide")) {
+        if ((event.key == "j") || (event.key == "Enter") || (event.key == "ArrowRight")) {
+            window.checkFlip(container.id);
+        }
+        if (event.key == " ") {
+            window.flipCard(container);
+        }
+    }
+    event.preventDefault();
+}
+
+
+function reenableNext(ths, next) {
+    next.style.pointerEvents='auto';
+    /* ths.tabIndex= 0;*/
+    /* ths.focus(); */
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    /* container.removeAttribute("tabindex");*/
+    /* container.blur(); */
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+    
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+    
+}
+
+
+window.checkFlip = function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 550, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    /* container.tabIndex= 0; */
+    /* container.focus(); */
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    var colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id, keyControl) {
+    console.log(id);
+    
+    var mydiv=document.getElementById(id);
+    /*mydiv.onclick = window.flipCard(mydiv);*/
+    /*
+    mydiv.addEventListener('click', function(){window.flipCard(mydiv);}, false);
+    mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
+    */
+    mydiv.onclick = function(){window.flipCard(mydiv);};
+    console.log(keyControl);
+    if (keyControl == "True"){
+        mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
+    }
+    /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
+    /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
+
+    console.log(mydiv);
+    
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+    
+    for (var i=0; i<2; i++) {
+    
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    mydiv.focus();
+
+    return flipper;
+}
+
+
+
+
+
+var cardsDTDzYsTzjzQk=[
+    {
+        "front": "point conditioning",
+        "back": "Point conditioning occurs when the conditioning  event is that a continuous random variable is equal to a particular value. I.e., $P(A|X=x)$, where $X$ is a continuous random variable."
+    }, 
+    {
+        "front": "likelihood for discrete-input, continuous-output systems",
+        "back": "A conditional density in a form like $f_X(x|A_i)$"
+    },
+    {
+        "front": "<it>a posteriori</it> probability for discrete-input, continuous-output systems",
+        "back": "A conditional probability in a point-conditioning form like $P(A|X=x)$" 
+    },
+
+    {
+        "front": "total probability for CDFs",
+        "back": "\\begin{align*} F_X(x) &= \\sum_i F_X(x|A_i) P(A_i) \\end{align*}"
+    },
+    {
+        "front": "total probability for pdfs",
+        "back": "\\begin{align*} f_X(x) &= \\sum_i f_X(x|A_i) P(A_i) \\end{align*}"
+    },
+    {
+        "front": "total probability for events with point conditioning",
+        "back": "\\begin{align*}P(A) &=\\int_{-\\infty}^{\\infty} P(A|X=x)f_X(x) ~dx.\\end{align*}"
+    }
+]
+;
+    
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/10-conditional-stats/flashcards/point-conditioning.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("DTDzYsTzjzQk", "True"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("DTDzYsTzjzQk", "True");
+        });
+        }
+        </script></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./10-conditional-stats"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="binary-decisions-nonbayesian.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">10.1. </span>Binary Decisions from Continuous Data: Non-Bayesian Approaches</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="bayesian-decisions.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10.3. </span>Optimal Bayesian Decision Making with Continuous Random Variables</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

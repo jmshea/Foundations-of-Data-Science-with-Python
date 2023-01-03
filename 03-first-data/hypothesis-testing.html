@@ -1,0 +1,2279 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="3.6. Binary Hypothesis Testing with Real Data" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/03-first-data/hypothesis-testing.html" />
+  
+<meta property="og:description" content="When dealing with data from different groups, we will generally observe differences. For instance, we may measure the means or medians of the data sets and we will usually find that these summary s..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="3.6. Binary Hypothesis Testing with Real Data" />
+  
+    <title>3.6. Binary Hypothesis Testing with Real Data &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/03-first-data/hypothesis-testing.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.7. A Quick Preview of Two-Dimensional Statistical Methods" href="2d-statistics-preview.html" />
+    <link rel="prev" title="3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data" href="histogram.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03-first-data/hypothesis-testing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/03-first-data/hypothesis-testing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#small-data-example-using-covid-rates">
+   3.6.1. Small Data Example Using Covid Rates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-the-observed-differences-in-covid-rates">
+   3.6.2. Testing the Observed Differences in Covid Rates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distribution-of-the-bootstrap-mean-difference">
+   3.6.3. Distribution of the bootstrap mean-difference
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Binary Hypothesis Testing with Real Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#small-data-example-using-covid-rates">
+   3.6.1. Small Data Example Using Covid Rates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#testing-the-observed-differences-in-covid-rates">
+   3.6.2. Testing the Observed Differences in Covid Rates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distribution-of-the-bootstrap-mean-difference">
+   3.6.3. Distribution of the bootstrap mean-difference
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="binary-hypothesis-testing-with-real-data">
+<h1><span class="section-number">3.6. </span>Binary Hypothesis Testing with Real Data<a class="headerlink" href="#binary-hypothesis-testing-with-real-data" title="Permalink to this heading">#</a></h1>
+<p>When dealing with data from different groups, we will generally observe differences. For instance, we may measure the means or medians of the data sets and we will usually find that these summary statistics are different.  At this point, we wish to understand whether the observed difference is “significant”: is this difference a property of the underlying groups or is it just caused by random variations in the data?</p>
+<div class="cell tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is included here but hidden because a reader of the book can work straight</span>
+<span class="c1"># through with the same variables, but for users downloading the notebooks, this</span>
+<span class="c1"># separate Juypter notebook needs to recreate those variables from the CSV file</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/covid-merged.csv&quot;</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;cases&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;gdp_norm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;gdp&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we saw in Chapter 2, the number of samples of random phenomena has a significant impact on how accurately we can estimate those phenomena. When it comes to real data, the problem is amplified because we do not know the ground-truth characterization of the random phenomena that is producing the data.</p>
+<p>Let’s start by restricting our analysis to a very small subset of our data to see how effects observed with small data may be caused simply by random sampling. By restricting our data, we can show examples of the technique that we will be using, and the examples will be small enough to easily understand.</p>
+<section id="small-data-example-using-covid-rates">
+<h2><span class="section-number">3.6.1. </span>Small Data Example Using Covid Rates<a class="headerlink" href="#small-data-example-using-covid-rates" title="Permalink to this heading">#</a></h2>
+<p>Consider the normalized Covid case rates from the first six states, and partition them into two sets using alphabetical order:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="s2">&quot;Arizona&quot;</span><span class="p">]</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+      <th>cases_norm</th>
+      <th>gdp_norm</th>
+    </tr>
+    <tr>
+      <th>state</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alabama</th>
+      <td>7068</td>
+      <td>4903185</td>
+      <td>230750.1</td>
+      <td>59.04</td>
+      <td>1.441512</td>
+      <td>47.061267</td>
+    </tr>
+    <tr>
+      <th>Alaska</th>
+      <td>353</td>
+      <td>731545</td>
+      <td>54674.7</td>
+      <td>66.02</td>
+      <td>0.482540</td>
+      <td>74.738670</td>
+    </tr>
+    <tr>
+      <th>Arizona</th>
+      <td>7648</td>
+      <td>7278717</td>
+      <td>379018.8</td>
+      <td>89.81</td>
+      <td>1.050735</td>
+      <td>52.072199</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Arkansas&quot;</span><span class="p">:</span><span class="s2">&quot;Colorado&quot;</span><span class="p">]</span>
+<span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cases</th>
+      <th>population</th>
+      <th>gdp</th>
+      <th>urban</th>
+      <th>cases_norm</th>
+      <th>gdp_norm</th>
+    </tr>
+    <tr>
+      <th>state</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Arkansas</th>
+      <td>3281</td>
+      <td>3017804</td>
+      <td>132596.4</td>
+      <td>56.16</td>
+      <td>1.087214</td>
+      <td>43.938042</td>
+    </tr>
+    <tr>
+      <th>California</th>
+      <td>50470</td>
+      <td>39512223</td>
+      <td>3205000.1</td>
+      <td>94.95</td>
+      <td>1.277326</td>
+      <td>81.114143</td>
+    </tr>
+    <tr>
+      <th>Colorado</th>
+      <td>15207</td>
+      <td>5758736</td>
+      <td>400863.4</td>
+      <td>86.15</td>
+      <td>2.640684</td>
+      <td>69.609616</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Because the data is so small, histograms do not make sense. Instead, we directly turn to using summary statistics. The means for these data sets are</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9915956672540028
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6684081069437913
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the mean Covid case rate for states in group <span class="math notranslate nohighlight">\(b\)</span> is much larger then for states in group <span class="math notranslate nohighlight">\(a\)</span>. To carry out a statistical test, we usually want to reduce the observed data to a single statistic, called the <em>test statistic</em>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-test-statistic">test statistic<a class="headerlink" href="#term-test-statistic" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A single numerical value that can be used in a statistical test.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>When are comparing two groups and observe different values for some summary statistic of the two groups, then the usual test statistic to use is the difference between the values of the summary statistic. For our example, this is the difference of the means. Usually the terms in the difference are ordered so that the difference will come out to be a positive value. Thus, for the difference of means, the test statistic is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">diff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6768124396897884
+</pre></div>
+</div>
+</div>
+</div>
+<p>Seeing such a large difference, we would like to consider possible hypotheses (possible explanations) for the difference. Some possible hypotheses for the observed difference between groups <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are:</p>
+<ol class="simple">
+<li><p>States that come later alphabetically might have higher Covid rates. It seems hard to justify why that would be the case, thought.</p></li>
+<li><p>The states in group <span class="math notranslate nohighlight">\(b\)</span> might differ from the states in group <span class="math notranslate nohighlight">\(a\)</span> in some significant way. This could be the case, but we might want to consider another possibility first.</p></li>
+<li><p>The differences might just caused by random sampling. That is, the Covid rates all come from the same underlying random phenomena, but because of randomness, some states end up with higher rates in the observed data than others. In the groups <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, it just happened by randomness that <span class="math notranslate nohighlight">\(b\)</span> ended up with more higher rates, and <span class="math notranslate nohighlight">\(a\)</span> ended up with more lower rates.</p></li>
+</ol>
+<p>In statistics, we want to create hypotheses that can be <em>tested</em>, which means that we can assess the likelihood that the hypothesis true or false.  In this case, we use the term <em>statistical hypothesis</em>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-statistical-hypothesis">statistical hypothesis<a class="headerlink" href="#term-statistical-hypothesis" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">an explanation for phenomena observed in a data set that can be formally tested using the data</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>Hypothesis 3 is a very common type of statistical hypothesis when working with two groups of data that have different values for some summary statistic of interest. This type of hypothesis is called the <em>null hypothesis</em>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-null-hypothesis-for-multiple-groups">null hypothesis (for multiple groups)<a class="headerlink" href="#term-null-hypothesis-for-multiple-groups" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">the hypothesis that the feature(s) being measured come from the same random phenomena; any observed differences come from issues related to random sampling, such as having sets that are too small to accurately measure the true value of some summary statistic</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>The concept of the null hypothesis was introduced in <em>The Design of Experiments</em> by Sir Ronald A. Fisher, Hafner Press, New York, 1935. It is helpful to introduce mathematical notation to refer to hypotheses. The null hypothesis is usually denoted by <span class="math notranslate nohighlight">\(H_0\)</span>, which is typically read as “H naught”. Intuitively, the zero can be read as implying zero difference between the populations (in the feature being compared).</p>
+<p>When there is a null hypothesis, we typically compare it with the hypothesis that the feature being measured comes from random phenomena that differ between the two groups. We call this the <em>alternative hypothesis</em> and denote it by <span class="math notranslate nohighlight">\(H_a\)</span>.</p>
+<p>Usually, <span class="math notranslate nohighlight">\(H_a\)</span> cannot be tested directly because we do not know ahead of time <em>how</em> the underlying phenomena differ. Thus, we will usually conduct tests by assuming the null hypothesis is true. Then, apply an approach similar to falsification in the natural sciences: we try to determine the probability that the observed test statistic value have come from the null hypothesis, and if the result is  has a very low probability of occurring under the null hypothesis, then an alternative hypothesis is likely true. (Note that randomness in the data will usually prevent us from deciding that any hypothesis is absolutely true; i.e., we will only be able to estimate the probabilities of hypotheses.)</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-binary-hypothesis-test">binary hypothesis test <a class="headerlink" href="#term-binary-hypothesis-test" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A binary hypothesis test is a statistical test that decides between two competing statistical hypotheses.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>We will consider estimating the probability of some observed statistic occurring under the assumption that <span class="math notranslate nohighlight">\(H_0\)</span> is true:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils" id="index-0">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-null-hypothesis-significance-test-NHST">null hypothesis significance test (NHST)<a class="headerlink" href="#term-null-hypothesis-significance-test-NHST" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A type of binary hypothesis  test that estimates the probability of observing such a large value of the  statistic under the condition that some null hypothesis, <span class="math notranslate nohighlight">\(H_0\)</span>, is true.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>There are several methods to test the null hypothesis. Before introducing the technique we will use, we note that statistical methods can generally be put into one of two categories:</p>
+<ol class="simple">
+<li><p>In <em>model-based</em> methods, we assume that (under <span class="math notranslate nohighlight">\(H_0\)</span>), the summary statistics we use will fit certain statistical models, and we can typically use those models to produce an analytic estimate for the probability of observing such a large difference in the observed summary statistics.</p></li>
+<li><p>In <em>model-free</em> methods, we use techniques to estimate the probability of seeing such a large difference without assuming any model for the summary statistics, but instead make other assumptions, such as that samples from the data itself can represent samples from the underlying random phenomena.</p></li>
+</ol>
+<p>It is important to note that either approach will rely on assumptions. In this section and throughout most of this book,  we will primarily use the model-free method because it has several important advantages:</p>
+<ol class="simple">
+<li><p>It does not require certain size data before the model is accurate.</p></li>
+<li><p>It does not require analytical formulas to be available for every summary statistic that may be considered.</p></li>
+<li><p>It does not rely on mathematical formulas that may seem obscure or that require a significant amount of foundational work in probability to understand.</p></li>
+<li><p>The model-free approach we will use is easier to get started with, especially for engineers who are experienced in programming and simulating phenomena.</p></li>
+</ol>
+<p>The approach we will use is called <em>resampling</em>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-resampling">resampling<a class="headerlink" href="#term-resampling" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">Resampling is a type of statistical simulation in which new samples are repeatedly drawn from the existing data for each of the groups under consideration, and the statistical measures being used are evaluated for each of the new sample groups.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>When using two-group null hypothesis testing via resampling, our assumption is that the data in the two groups come from the same underlying random phenomena. Thus, we can pool the data from the two groups, and then we draw samples from the pooled data to represent samples from the underlying random phenomena.</p>
+<p>We can put all the data into one long NumPy array by horizontally stacking the data. To do this we use NumPy’s <code class="docutils literal notranslate"><span class="pre">hstack</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pooled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]))</span>
+<span class="n">pooled</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.441512  , 0.48254038, 1.05073463, 1.08721441, 1.27732626,
+       2.64068365])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we have numerical data, we leverage the <code class="docutils literal notranslate"><span class="pre">numpy.random</span></code> library to draw samples, which we will import as <code class="docutils literal notranslate"><span class="pre">npr</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Random number generators, such as the one used by <code class="docutils literal notranslate"><span class="pre">numpy.random</span></code>  produce a sequence of pseudo-random numbers, which look random but are actually deterministic if the internal state of the random number generator is known. This internal state can be set using a “seed”. To allow readers to obtain the same results as those shown in this book, I set the seed of the random number generator as shown below (where the see value was chosen arbitrarily). However, be aware that if you re-run cells or run cells out of order, you will get different results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npr</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">21341</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can randomly draw data from <code class="docutils literal notranslate"><span class="pre">pooled</span></code> using <code class="docutils literal notranslate"><span class="pre">npr.choice</span></code>, which requires a variable to draw from as the first argument and can take a second argument as the number of items to draw (if not given, the default is one).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.05073463, 1.05073463, 2.64068365])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the resulting array has a repeated value, even though there are no repeated values in <code class="docutils literal notranslate"><span class="pre">pooled</span></code>. There are two ways to sample from data:</p>
+<ol class="simple">
+<li><p><strong>Sampling with replacement:</strong> Items drawn are placed back into the array from which data is being sampled. Any number of items may be drawn.</p></li>
+<li><p><strong>Sampling without replacement:</strong> Items drawn are removed from the array from which data is being sampled. The maximum number of items that can be drawn is the size of the original array.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">npr.choice</span></code> defaults to sampling with replacement, but can use sampling without replacement by passing the keyword argument <code class="docutils literal notranslate"><span class="pre">replace=False</span></code>.</p>
+<p>For example, here are two draws of 6 items using each approach:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">npr</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">21398475</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.27732626 0.48254038 1.05073463 1.27732626 1.27732626 0.48254038]
+[1.05073463 1.27732626 1.08721441 0.48254038 1.441512   2.64068365]
+</pre></div>
+</div>
+</div>
+</div>
+<p>To perform resampling, we simulate how <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> <strong>could have been created</strong> if they came from the same random phenomena. Thus, we
+create new <span class="math notranslate nohighlight">\(\tilde{a}\)</span> and <span class="math notranslate nohighlight">\(\tilde{b}\)</span> that contain the same number of samples as <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, respectively, but where the samples are drawn from the pooled data. In this chapter, we use the most popular method, which is drawing the data <strong>with replacement</strong>.  This is commonly called <strong>bootstrap sampling</strong>, and the purpose of bootstrap sampling is to simulate random values of the test statistic under <span class="math notranslate nohighlight">\(H_0\)</span>.</p>
+<p>When creating the new groups, it is important to use the same sizes as the original groups. The cell below will perform one such random draw of <span class="math notranslate nohighlight">\(\tilde{a}\)</span> and <span class="math notranslate nohighlight">\(\tilde{b}\)</span>, which in Python I call <code class="docutils literal notranslate"><span class="pre">newa</span></code> and <code class="docutils literal notranslate"><span class="pre">newb</span></code>.</p>
+<p>Try running the cell below a few times:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">blen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">newa</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="n">alen</span><span class="p">)</span>
+<span class="n">newb</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="n">blen</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;new a:&quot;</span><span class="p">,</span> <span class="n">newa</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;new b:&quot;</span><span class="p">,</span> <span class="n">newb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>new a: [0.48254038 2.64068365 1.05073463]
+new b: [0.48254038 0.48254038 1.05073463]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our goal is to determine whether the observed value of the test statistic could be attributed just to randomness. We want to use resampling to determine how often we see such a large difference in means under <span class="math notranslate nohighlight">\(H_0\)</span>. Copy the cell from above and then add the line shown at the end of the cell below to print out the difference in means. Run the cell below a few times to see what can happen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">blen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">newa</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="n">alen</span><span class="p">)</span>
+<span class="n">newb</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="n">blen</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;new a:&quot;</span><span class="p">,</span> <span class="n">newa</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;new b:&quot;</span><span class="p">,</span> <span class="n">newb</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;original diff&quot;</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;new diff&quot;</span><span class="p">,</span> <span class="n">newb</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">newa</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>new a: [0.48254038 1.441512   1.441512  ]
+new b: [2.64068365 2.64068365 1.441512  ]
+original diff 0.6768124396897884
+new diff 1.119104975459625
+</pre></div>
+</div>
+</div>
+</div>
+<p>One thing to note is that the new difference can be either positive or negative. We previously mentioned that we want to determine “how often we see such a large difference”, but this turns out to be ambiguous, because we could use the magnitude (absolute value) of the new difference or we could use the signed new difference. For now, let’s use the magnitude, which is called a two-sided test. I will have more to say about one-sided tests vs. two sided tests in <span class="xref std std-doc">Chapter 5</span>.</p>
+<p>Now, we will see how to build a simulation to estimate the probability of seeing such a large difference in sample means under <span class="math notranslate nohighlight">\(H_0\)</span>. This probability is called the <span class="math notranslate nohighlight">\(\mathbf{p}\)</span><strong>-value</strong>. For now, we will say that the difference is statistically significant if the observed <span class="math notranslate nohighlight">\(p\)</span>-value is smaller than a threshold. In other words, the result is considered to be statistically significant if it is very unlikely to have seen such an extreme difference in summary statistics between the groups under the null hypothesis.</p>
+<p>An important part of statistical testing is to declare what is being tested and what the criterion is for statistical significance <strong>before</strong> performing the statistical tests. Thus, we need to determine the <span class="math notranslate nohighlight">\(p\)</span>-value threshold <strong>before</strong> running the simulation. For instance, if <span class="math notranslate nohighlight">\(H_0\)</span> is true and we see differences as large as we observed in our data 10% of the time, should we consider the observed difference significant? What if it were only 5% of the time? How about only 1% of the time? There is no right answer to that question.
+The threshold for rejecting the null hypothesis
+will determine the maximum probability that we will allow for making the error of rejecting the null hypothesis when it is actually true. For instance if the threshold is 10%, then if there is no actual difference between the groups for the random phenomena being measured, a difference in summary statistics as large as the one observed could still occur as often as 10% of the time. In many scientific fields, a <span class="math notranslate nohighlight">\(p\)</span>-value threshold of 5% is used. In this book, I will use a <span class="math notranslate nohighlight">\(p\)</span>-value threshold of 1%, which can be considered to be more “strict” in the sense that we are less likely to reject the null hypothesis.</p>
+<p>Note that if the estimated <span class="math notranslate nohighlight">\(p\)</span>-value is above the threshold, that does not mean that the null hypothesis is true or that the alternative hypothesis is false. We say that we “fail to reject the null hypothesis”. In many such cases, the null hypothesis will actually be false but we just do not have enough data to support rejecting the null hypothesis.</p>
+<p>With these details out of the way, we can build our simulation. As in Chapter 2, the simulation is a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop in which each iteration of the for loop represents one random draw. Here, each iteration creates two groups <span class="math notranslate nohighlight">\(\tilde{a}\)</span> and <span class="math notranslate nohighlight">\(\tilde{b}\)</span> by drawing randomly from the pooled data. For each draw, we calculate the averages, and we use a counter to track how often we observe an absolute difference in means that is large as we observed in the original data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are common to most simulation:</span>
+<span class="c1"># 1) Set up the number of iterations (draws from the pool)</span>
+<span class="c1"># 2) Initialize our counter to zero</span>
+<span class="n">num_sims</span> <span class="o">=</span> <span class="mi">10_000</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Put these outside the loop to save execution time, since they don&#39;t change</span>
+<span class="n">alen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">blen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+    <span class="c1"># Bootstrap sampling</span>
+    <span class="n">newa</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="n">alen</span><span class="p">)</span>
+    <span class="n">newb</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="n">blen</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the absolute value of the difference of means</span>
+    <span class="n">newdiff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">newa</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">newb</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+    <span class="c1"># Update the counter if it exceeds the difference from the original groups</span>
+    <span class="k">if</span> <span class="n">newdiff</span> <span class="o">&gt;=</span> <span class="n">diff</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prob. of seeing a result this extreme =~&quot;</span><span class="p">,</span> <span class="n">count</span> <span class="o">/</span> <span class="n">num_sims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prob. of seeing a result this extreme =~ 0.2038
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the cell above a few times. The results will vary, but should be close to 0.2. Since this <span class="math notranslate nohighlight">\(p\)</span>-value is much larger than our threshold of 1% (i.e., 0.01), we <strong>fail to reject the null hypothesis</strong>. The observed difference will occur approximately 20% of the time even if there is no difference in normalized Covid rates among these states.</p>
+</section>
+<section id="testing-the-observed-differences-in-covid-rates">
+<h2><span class="section-number">3.6.2. </span>Testing the Observed Differences in Covid Rates<a class="headerlink" href="#testing-the-observed-differences-in-covid-rates" title="Permalink to this heading">#</a></h2>
+<p>Now let’s apply bootstrap resampling to test the previous observed differences in covid rates based on GDP per population:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_gdp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;gdp_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">m_gdp</span>
+<span class="n">higher_gdp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;gdp_norm&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">m_gdp</span><span class="p">]</span>
+<span class="n">lower_gdp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;gdp_norm&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">m_gdp</span><span class="p">]</span>
+<span class="n">hgdp_mu</span> <span class="o">=</span> <span class="n">higher_gdp</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">lgdp_mu</span> <span class="o">=</span> <span class="n">lower_gdp</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a reminder, we previously found the mean Covid rates per population for higher GDP and lower GDP states to be:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hgdp_mu</span><span class="p">,</span> <span class="n">lgdp_mu</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.511232264232122, 1.9258062634390536)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first step of our binary hypothesis test is to calculate the difference in means:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_gdp</span> <span class="o">=</span> <span class="n">hgdp_mu</span> <span class="o">-</span> <span class="n">lgdp_mu</span>
+<span class="n">diff_gdp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.5854260007930685
+</pre></div>
+</div>
+</div>
+</div>
+<p>For this case, the pooled data is simply all of the normalized Covid data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pooled_covid</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Copy the simulation from the previous section and modify it to draw data to represent new <code class="docutils literal notranslate"><span class="pre">higher_gdp</span></code> and <code class="docutils literal notranslate"><span class="pre">lower_gdp</span></code> groups:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These are common to most simulation:</span>
+<span class="c1"># 1) Set up the number of iterations (draws from the pool)</span>
+<span class="c1"># 2) Initialize our counter to zero</span>
+<span class="n">num_sims</span> <span class="o">=</span> <span class="mi">10_000</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Put these outside the loop to save execution time, since they don&#39;t change</span>
+<span class="n">hlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">higher_gdp</span><span class="p">)</span>
+<span class="n">llen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lower_gdp</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+    <span class="c1"># Bootstrap sampling</span>
+    <span class="n">newh</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled_covid</span><span class="p">,</span> <span class="n">hlen</span><span class="p">)</span>
+    <span class="n">newl</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled_covid</span><span class="p">,</span> <span class="n">llen</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the absolute value of the difference of means</span>
+    <span class="n">newdiff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">newh</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">newl</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+    <span class="c1"># Update the counter if it exceeds the difference from the original groups</span>
+    <span class="k">if</span> <span class="n">newdiff</span> <span class="o">&gt;=</span> <span class="n">diff_gdp</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prob. of seeing a result this extreme =~&quot;</span><span class="p">,</span> <span class="n">count</span> <span class="o">/</span> <span class="n">num_sims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prob. of seeing a result this extreme =~ 0.0719
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the simulation a few times. The results should vary but will generally be around 0.07 ( 7%). Since this is larger than our <span class="math notranslate nohighlight">\(p\)</span>-value threshold of 1%, we fail to reject the null hypothesis. The data does not provide enough evidence for us to be sure that per-capita GDP is associated with higher per-capita Covid rates.</p>
+<p>The simulation code above can easily be turned into a function that can be applied to any data when we are using resampling to perform a two-sided test for an observed difference of means. To make this into a function:</p>
+<ol class="simple">
+<li><p>Click in the cell with the simulation above and choose “Copy Cells” from Jupyter’s Edit menu. (Alternatively, you can use the Copy command from your Browser’s Edit menu or the corresponding keyboard shortcut.)</p></li>
+<li><p>Paste it into a new cell block using “Paste Cells Below” from the Edit menu. (If you used the Copy command from your Browser, then click in an empty cell and use  your browser’s Paste command.)</p></li>
+<li><p>The simulation code will be the body of the new function, and so it will need to be indented. Select the entire contents of the simulation code in the new cell using your mouse, the Select All command from your browser’s Edit menu, or the keyboard shortcut. Then press the keyboard shortcut to indent the block (Control-] or Command-]).</p></li>
+<li><p>Add a function signature at the top to name your function and determine the arguments. Provide arguments for the pooled data, the observed mean difference, and the number of observations in each group. It is also helpful to make the number of simulation iterations be an argument of the function in case we need to run more iterations to accurately estimate the <span class="math notranslate nohighlight">\(p\)</span>-value.</p></li>
+<li><p>I have revised the names of the variables inside the function to make them more generic, and I recommend you do the same.</p></li>
+</ol>
+<p>The final function should look as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">resample_mean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">len1</span><span class="p">,</span> <span class="n">len2</span><span class="p">,</span> <span class="n">num_sims</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+        <span class="c1"># Bootstrap sampling</span>
+        <span class="n">group1</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">len1</span><span class="p">)</span>
+        <span class="n">group2</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">len2</span><span class="p">)</span>
+
+        <span class="c1"># Calculate the absolute value of the difference of means</span>
+        <span class="n">newdiff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">group1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">group2</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+        <span class="c1"># Update the counter if it exceeds the difference from the original groups</span>
+        <span class="k">if</span> <span class="n">newdiff</span> <span class="o">&gt;=</span> <span class="n">diff</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prob. of seeing a result this extreme =~&quot;</span><span class="p">,</span> <span class="n">count</span> <span class="o">/</span> <span class="n">num_sims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use this function to test our observation for per-capita GDP as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resample_mean</span><span class="p">(</span><span class="n">pooled_covid</span><span class="p">,</span> <span class="n">diff_gdp</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">higher_gdp</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">lower_gdp</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prob. of seeing a result this extreme =~ 0.0746
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s apply bootstrap resampling when the states are grouped using the urban index:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_urban</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;urban&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">higher_urban</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;urban&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">m_urban</span><span class="p">]</span>
+<span class="n">lower_urban</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;urban&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">m_urban</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">higher_urban</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">lower_urban</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.8908656178327066, 1.5461729098384682)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_urban</span> <span class="o">=</span> <span class="n">higher_urban</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">lower_urban</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">diff_urban</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.3446927079942386
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use our <code class="docutils literal notranslate"><span class="pre">resample_mean()</span></code> function to perform the two-sided test via bootstrap resampling:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resample_mean</span><span class="p">(</span><span class="n">pooled_covid</span><span class="p">,</span> <span class="n">diff_urban</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">higher_urban</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">lower_urban</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prob. of seeing a result this extreme =~ 0.0104
+</pre></div>
+</div>
+</div>
+</div>
+<p>The observed <span class="math notranslate nohighlight">\(p\)</span>-value is close to 0.01, which is our threshold, and some simulations may exceed 0.01. We need to determine the <span class="math notranslate nohighlight">\(p\)</span>-value more accurately, which can be achieved by using more simulation iterations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resample_mean</span><span class="p">(</span>
+    <span class="n">pooled_covid</span><span class="p">,</span> <span class="n">diff_urban</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">higher_urban</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">lower_urban</span><span class="p">),</span> <span class="n">num_sims</span><span class="o">=</span><span class="mi">100_000</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prob. of seeing a result this extreme =~ 0.00935
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the additional simulation iterations, the <span class="math notranslate nohighlight">\(p\)</span>-value is found to be approximately 0.009, which is below our threshold. Therefore, we reject the null hypothesis, and we can say that the groupings based on the Urban index  are associated with differences in the mean per-capita Covid rates that are statistically significant at the <span class="math notranslate nohighlight">\(p&lt;0.01\)</span> level.</p>
+</section>
+<section id="distribution-of-the-bootstrap-mean-difference">
+<h2><span class="section-number">3.6.3. </span>Distribution of the bootstrap mean-difference<a class="headerlink" href="#distribution-of-the-bootstrap-mean-difference" title="Permalink to this heading">#</a></h2>
+<p>In each iteration of the bootstrap simulation, random sampling produces a new difference of means, which is a numerical random value. These random values can be characterized by the set of values and the mapping of probability to those values. (I.e., how likely different values are.) We call this the <em>distribution</em> of the random values.</p>
+<p>Let’s see how the bootstrap means are distributed by modifying our simulation to also produce a histogram of those values. Copy the simulation from above, update the function name, and add the marked lines to store every mean difference and plot the histogram:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">resample_mean_hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">len1</span><span class="p">,</span> <span class="n">len2</span><span class="p">,</span> <span class="n">num_sims</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">sample_means</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># New variable to store sample means</span>
+
+    <span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+        <span class="c1"># Bootstrap sampling</span>
+        <span class="n">group1</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">len1</span><span class="p">)</span>
+        <span class="n">group2</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">len2</span><span class="p">)</span>
+
+        <span class="c1"># Calculate the absolute value of the difference of means</span>
+        <span class="n">newdiff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">group1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">group2</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+        <span class="n">sample_means</span> <span class="o">+=</span> <span class="p">[</span><span class="n">group1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">group2</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span>  <span class="c1"># Store sample mean</span>
+
+        <span class="c1"># Update the counter if it exceeds the difference from the original groups</span>
+        <span class="k">if</span> <span class="n">newdiff</span> <span class="o">&gt;=</span> <span class="n">diff</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prob. of seeing a result this extreme =~&quot;</span><span class="p">,</span> <span class="n">count</span> <span class="o">/</span> <span class="n">num_sims</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample_means</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>  <span class="c1"># Plot the histogram with 40 bins</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the histogram does not depend on the mean difference observed in the data. Since the pooled data and the group sizes are the same for both the GDP grouping and the Urban index grouping, both will produce the same histograms (up to variations from the random sampling). Let’s call the new function with the arguments used for the urban index data. Because the focus of this simulation is the histogram and 10,000 points will already produce a very detailed histogram, we leave <code class="docutils literal notranslate"><span class="pre">num_sims</span></code> set to the default.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resample_mean_hist</span><span class="p">(</span><span class="n">pooled_covid</span><span class="p">,</span> <span class="n">diff_urban</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">higher_urban</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">lower_urban</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prob. of seeing a result this extreme =~ 0.0104
+</pre></div>
+</div>
+<img alt="../_images/hypothesis-testing_66_1.png" src="../_images/hypothesis-testing_66_1.png" />
+</div>
+</div>
+<p>A few observations:</p>
+<ol class="simple">
+<li><p>The difference of means has a bell shape – we saw this shape before. Why do you think that is?</p></li>
+<li><p>The majority of the values fall between -2 and +2. Thus, it is not surprising that getting a mean-difference as large as 2.34 is rare.</p></li>
+</ol>
+<p>Later in the book, we will investigate how we can use the histogram to provide confidence intervals on the mean difference under the null hypothesis. This is a way to provide more information about how an observed difference in means compares to what is expected under the null hypothesis.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg)  translateX(-10%);
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transform:  translateX(20px); 
+    transition: display 0s;
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 300px;
+	  width: 640px;
+}
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:20px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 600px;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 16pt;
+    left:442pt;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:20px;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+.flashcardtext{
+    color: var(--snow);
+    font-size: 20pt;
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+  }
+
+</style><script type="text/Javascript">
+/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+function flip(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 700, next);
+}
+
+function reenableNext(next) {
+    next.style.pointerEvents='auto';
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+
+}
+
+
+function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 600, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id) {
+    console.log(id);
+
+    var mydiv=document.getElementById(id);
+
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+
+    for (var i=0; i<2; i++) {
+
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    return flipper;
+}
+
+
+
+
+
+</script><script type="text/Javascript">
+
+    cardsySVKoaRYDwWM=[
+    {
+        "front": "statistical hypothesis",
+        "back": "An explanation for phenomena observed in a data set that can be formally tested using the data."
+    },
+    {
+        "front": "null hypothesis (for multiple groups)",
+        "back": "The hypothesis that the feature(s) being measured come from the same random phenomena; any observed differences come from issues related to random sampling, such as having sets that are too small to accurately measure the true value of some summary statistic."
+    },
+    {
+        "front": "binary hypothesis test ",
+        "back": "A statistical test that decides between two competing statistical hypotheses."
+    },
+    {
+        "front": "resampling",
+        "back": "A type of statistical simulation in which new samples are repeatedly drawn from the existing data for each of the groups under consideration, and the statistical measures being used are evaluated for each of the new sample groups. "
+    }
+]
+;
+
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/flashcards/hypothesis-testing.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("ySVKoaRYDwWM"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("ySVKoaRYDwWM");
+        });
+        }
+        </script>
+        <div style="height:40px"></div><div class="flip-container" id="ySVKoaRYDwWM" onclick="flip(this)"></div><div style="height:40px"></div><div class="next" id="ySVKoaRYDwWM-next" onclick="checkFlip('ySVKoaRYDwWM')"> </div> <div style="height:40px"></div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./03-first-data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="histogram.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3.5. </span>Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="2d-statistics-preview.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.7. </span>A Quick Preview of Two-Dimensional Statistical Methods</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

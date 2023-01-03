@@ -1,0 +1,2257 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="9.6. Testing a Difference of Means" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/09-moments/mean-hypothesis-testing.html" />
+  
+<meta property="og:description" content="One of the most common statistical tests is whether two data sets come from distributions with the same means. The mean is special because of the Central Limit Theorem (see Section 8.7.3.2) – regar..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="9.6. Testing a Difference of Means" />
+  
+    <title>9.6. Testing a Difference of Means &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/09-moments/mean-hypothesis-testing.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9.7. Sampling and Bootstrap Distributions of Parameters" href="parameter-distributions.html" />
+    <link rel="prev" title="9.5. Confidence Intervals for Estimates" href="confidence-intervals-estimates.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/09-moments/mean-hypothesis-testing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/09-moments/mean-hypothesis-testing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#characterizing-the-difference-of-sample-mean-estimators">
+   9.6.1. Characterizing the Difference of Sample Mean Estimators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statistical-inference-for-a-difference-of-sample-means-with-known-and-equal-variances">
+   9.6.2. Statistical Inference for a Difference of Sample Means
+   <em>
+    with Known and Equal Variances
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binary-hypothesis-tests-with-unknown-variance">
+   9.6.3. Binary Hypothesis Tests with
+   <em>
+    Unknown Variance
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   9.6.4. Exercises
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Testing a Difference of Means</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#characterizing-the-difference-of-sample-mean-estimators">
+   9.6.1. Characterizing the Difference of Sample Mean Estimators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statistical-inference-for-a-difference-of-sample-means-with-known-and-equal-variances">
+   9.6.2. Statistical Inference for a Difference of Sample Means
+   <em>
+    with Known and Equal Variances
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binary-hypothesis-tests-with-unknown-variance">
+   9.6.3. Binary Hypothesis Tests with
+   <em>
+    Unknown Variance
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   9.6.4. Exercises
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="testing-a-difference-of-means">
+<h1><span class="section-number">9.6. </span>Testing a Difference of Means<a class="headerlink" href="#testing-a-difference-of-means" title="Permalink to this heading">#</a></h1>
+<!-- JMS: Consider adding test for whether one value matches a known mean. I don't have a great example right now, though -->
+<p>One of the most common statistical tests is whether two data sets come from distributions with the same means. The mean is special because of the Central Limit Theorem (see <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html"><span class="doc">Section 8.7.3.2</span></a>) – regardless of the type of distribution of the underlying data[^clt], the distribution of the sample mean will be approximately Normal if there are at least tens of data points. This allows two approaches to conducting tests involving sample means: we can either use bootstrap resampling or we can use analysis by applying the assumption that sample means are approximately Normal.  To understand how to apply the analytical approaches, we need to characterize the sample mean estimators and the test statistic, which is the difference between the sample mean estimators.</p>
+<section id="characterizing-the-difference-of-sample-mean-estimators">
+<h2><span class="section-number">9.6.1. </span>Characterizing the Difference of Sample Mean Estimators<a class="headerlink" href="#characterizing-the-difference-of-sample-mean-estimators" title="Permalink to this heading">#</a></h2>
+<p>Suppose we have two  data samples <span class="math notranslate nohighlight">\(\mathbf{X}=\left[X_0,X_1,\cdots,X_{n_X-1} \right]\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}=\left[Y_0,Y_1,\cdots,Y_{n_Y-1}\right]\)</span>, where the data samples are assumed to be independent<a class="footnote-reference brackets" href="#ci" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. From the results in <a class="reference internal" href="confidence-intervals-estimates.html"><span class="doc">Section 9.5.2</span></a>, the sample mean estimators for these data samples have the following distributions:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\hat{\mu}_X &amp;\sim \mbox{Normal} \left(\mu_X, \frac{\sigma_X}{\sqrt{n_X}} \right), \mbox{ and}\\
+\hat{\mu}_Y &amp;\sim \mbox{Normal} \left(\mu_Y, \frac{\sigma_Y}{\sqrt{n_Y}} \right). 
+\end{align*}\]</div>
+<p>In addition, <span class="math notranslate nohighlight">\(\hat{\mu}_X\)</span> and <span class="math notranslate nohighlight">\(\hat{\mu}_Y\)</span> are independent.</p>
+<p>To assess a difference in means, we will create a test statistic that is the difference between sample mean estimators. For convenience, we will consider the case <span class="math notranslate nohighlight">\(T = \hat{\mu}_X - \hat{\mu}_Y\)</span>, but the result for <span class="math notranslate nohighlight">\(T = \hat{\mu}_Y - \hat{\mu}_X\)</span> is almost identical. The mean of the test statistic is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+E[T] &amp; = E\left[\hat{\mu}_X - \hat{\mu}_Y \right] \\
+&amp;= E\left[\hat{\mu}_X\right]  - E \left[\hat{\mu}_Y \right] &amp;&amp; \mbox{(by linearity)} \\
+&amp;= \mu_X - \mu_Y &amp;&amp;\mbox{(the estimators are unbiased)}.
+\end{align*}\]</div>
+<p>To find the variance of <span class="math notranslate nohighlight">\(T\)</span>, we first rewrite the formula for the test statistic slightly, as <span class="math notranslate nohighlight">\(T = \hat{\mu}_X + (-1) \hat{\mu}_Y\)</span>. Since <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span> are independent, so are variables computed from them. Thus,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\sigma_{T}^2 &amp;= \operatorname{Var}[T] \\
+&amp; = \operatorname{Var}\left[\hat{\mu}_X + (-1) \hat{\mu}_Y \right] \\
+&amp; = \operatorname{Var}\left[\hat{\mu}_X \right] + 
+\operatorname{Var} \left[(-1) \hat{\mu}_Y \right] 
+&amp;&amp; \mbox{(by Property 4 of variance)}\\
+&amp; = \frac{\sigma_{X}^2}{n_X} +  (-1)^2\frac{\sigma_{Y}^2}{n_Y}
+&amp;&amp; \mbox{(from above and Property 3)}\\
+&amp; = \frac{\sigma_{X}^2}{n_X} +  \frac{\sigma_{Y}^2}{n_Y} \\
+\end{align*}\]</div>
+<p>Importantly, a linear combination of independent Normal random variables is also a Normal random variable. Thus we have a characterization of the test statistic:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+T \sim \mbox{Normal} \left( \mu_X - \mu_Y, \sqrt{\frac{\sigma_{X}^2}{n_X} +  \frac{\sigma_{Y}^2}{n_Y}} \right)
+\end{equation*}\]</div>
+</section>
+<section id="statistical-inference-for-a-difference-of-sample-means-with-known-and-equal-variances">
+<h2><span class="section-number">9.6.2. </span>Statistical Inference for a Difference of Sample Means <em>with Known and Equal Variances</em><a class="headerlink" href="#statistical-inference-for-a-difference-of-sample-means-with-known-and-equal-variances" title="Permalink to this heading">#</a></h2>
+<p>Consider the case where we know that the data come from distributions with the same variance, <span class="math notranslate nohighlight">\(\sigma^2\)</span>, and that we know the value of <span class="math notranslate nohighlight">\(\sigma^2\)</span>. (The case of known but unequal variances requires only a minor modification but is rare enough that I omit here.) Suppose we have samples from these distributions,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbf{x} = \left[ x_0, x_1, \ldots, x_{n_X-1} \right],
+\end{align*}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbf{y} = \left[ y_0, y_1,\ldots, y_{n_Y-1} \right].
+\end{align*}\]</div>
+<p>Let the averages of the data be denoted by <span class="math notranslate nohighlight">\(\overline{\mathbf{x}}\)</span> and <span class="math notranslate nohighlight">\(\overline{\mathbf{y}}\)</span>, and denote the true (but unknown) means of the distributions as <span class="math notranslate nohighlight">\(\mu_X\)</span> and <span class="math notranslate nohighlight">\(\mu_Y\)</span>.</p>
+<p>We can now easily conduct a NHST. The null hypothesis is that the data have the same mean and so <span class="math notranslate nohighlight">\(E[T]=0\)</span>.  Let the observed value of the test statistic be <span class="math notranslate nohighlight">\(t = \overline{\mathbf{x}} - \overline{\mathbf{y}}\)</span>. Below I assume that <span class="math notranslate nohighlight">\(t&gt;0\)</span>; if not, then interchange the role of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p>Under the assumption that variances of the <span class="math notranslate nohighlight">\(X_i\)</span> and <span class="math notranslate nohighlight">\(Y_k\)</span> are both equal to <span class="math notranslate nohighlight">\(\sigma^2\)</span>, the variance of <span class="math notranslate nohighlight">\(T\)</span> simplifies to</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\sigma_{T}^2  &amp; = \frac{\sigma^2}{n_X} +  \frac{\sigma^2}{n_Y} \\
+ &amp; = \sigma^2 \left( \frac{1}{n_X} +  \frac{1}{n_Y} \right) \\
+\end{align*}\]</div>
+<p>Once we know the mean and variance of <span class="math notranslate nohighlight">\(T\)</span>, then the NHST is straight-forward application of the results in <a class="reference internal" href="../08-random-variables/intro.html"><span class="doc">Chapter 8</span></a>:</p>
+<ul>
+<li><p>For a one-sided hypothesis test, the <span class="math notranslate nohighlight">\(p\)</span>-value is</p>
+<div class="math notranslate nohighlight">
+\[
+    P(T \geq t | H_0) = Q\left(\frac{t }{\sigma_T}\right) = Q\left(\frac{t}{\sigma \sqrt{\frac{1}{n_X}+\frac{1}{n_Y}}}\right).
+    \]</div>
+</li>
+<li><p>For a two-sided NHST, the <span class="math notranslate nohighlight">\(p\)</span> value is</p>
+<div class="math notranslate nohighlight">
+\[
+    P(|T| \geq t | H_0) = 2 Q\left(\frac{t}{\sigma \sqrt{\frac{1}{n_X}+\frac{1}{n_Y}}}\right).
+    \]</div>
+</li>
+</ul>
+<p>Note that in both these cases, the only information that is needed is the observed value of the test statistic, the standard deviation of the data, and the number of samples in each group (<span class="math notranslate nohighlight">\(n_X\)</span> and <span class="math notranslate nohighlight">\(n_Y\)</span>).</p>
+</section>
+<section id="binary-hypothesis-tests-with-unknown-variance">
+<h2><span class="section-number">9.6.3. </span>Binary Hypothesis Tests with <em>Unknown Variance</em><a class="headerlink" href="#binary-hypothesis-tests-with-unknown-variance" title="Permalink to this heading">#</a></h2>
+<p>In most cases, the variance(s) of the underlying distributions are not known and must be estimated from the data. As in the previous section, scaling the test statistic based on the sample variance will result in a statistic that is no longer Normal. The the scaled test statistic depends on what we can assume about the relationship of the variances of the two samples. If the samples can be assumed to have the same variance, then the test statistic can be scaled so that the resulting variable has a Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution. If the variances of the data samples are unequal, then the test statistic can be scaled so that the resulting distribution is well approximated by a Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution.  Before considering each of these cases, we start with some preliminaries:</p>
+<p>We wish to determine the probability of observing a difference in averages with magnitude as large as <span class="math notranslate nohighlight">\(t = \overline{x} -\overline{y}\)</span> under the null hypothesis, under which the mean of the scaled mean estimator is zero.  To calculate this probability, we will need the variance estimates for each sample, which in turn depend on the mean estimators . The mean estimators are given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\hat{\mu}_X &amp;= \frac{1}{n_x} \sum_{i=0}^{n_x-1} X_i, \mbox{ and} \\
+\hat{\mu}_Y &amp;= \frac{1}{n_y} \sum_{i=0}^{n_y-1} Y_i.
+\end{align*}\]</div>
+<p>The unbiased variance estimator for each sample is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+S_{x}^{2} &amp;= \frac{1}{n_x-1} \sum_{i=0}^{n_x-1} \left( X_{i} - \hat{\mu}_X
+\right)^2, \mbox{ and} \\
+S_{y}^{2} &amp;= \frac{1}{n_y-1} \sum_{i=0}^{n_y-1} \left( Y_{i} - \hat{\mu}_Y
+\right)^2.
+\end{align*}\]</div>
+<p>Now we consider the two cases:</p>
+<p><strong>1.</strong> Test for equal means with <em>unknown, equal variances</em></p>
+<p>If the variances can assumed to be equal, then we only need a single estimate of the variance, called the pooled variance estimator. Since we do not know whether the means are equal, then the pooled variance estimator must use the mean estimator for each data sample when centralizing the data for that sample. Because two mean estimators are used, the degrees of freedom adjustment requires us to divide by <span class="math notranslate nohighlight">\(n_x + n_y-2\)</span> when calculating the unbiased sample variance estimator for the pooled data. The resulting pooled variance can be written in either of the following forms:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+S_{p}^2 &amp;= \frac{1}{n_x +n_y -2} \left[  \sum_{i=0}^{n_x-1} \left( X_{i} - \hat{\mu}_X
+\right)^2 
++ \sum_{i=0}^{n_y-1} \left( Y_{i} - \hat{\mu}_Y
+\right)^2 \right] \\
+&amp;= \frac{(n_x-1) S_{X}^2 + (n_y-1) S_{Y}^2}{n_x +n_y -2}
+\end{align*}\]</div>
+<p>Then</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{T}{S_p \sqrt { \frac 1 {n_x} + \frac 1 {n_Y}}} \sim t_\nu
+\end{equation*}\]</div>
+<p>for <span class="math notranslate nohighlight">\(\nu = n_x+n_y-2\)</span> degrees of freedom.</p>
+<p><strong>2.</strong> Test for equal means with <em>unknown, unequal variances</em></p>
+<p>If we cannot assume that the variances are equal, then distribution of the following normalized form will be approximately equal to a Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{T}{S_d} \sim t_\nu,
+\end{align*}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-t-denom-unequal">
+<span class="eqno">(9.10)<a class="headerlink" href="#equation-t-denom-unequal" title="Permalink to this equation">#</a></span>\[S_d= \sqrt{\frac {S_{x}^2}{ n_x} + \frac {S_{y}^2}{n_y}}.\]</div>
+<p>Here, the value of <span class="math notranslate nohighlight">\(\nu\)</span> must be determined from the sample standard errors of the means, which
+we denote by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+s_{\overline{x}}^2 &amp;=  {s_{x}^2}/{n_x}, \mbox{ and} \\
+s_{\overline{y}}^2 &amp;=  {s_{y}^2}/{n_x}, \mbox{ and} \\
+\end{align*}\]</div>
+<p>Then <span class="math notranslate nohighlight">\(\nu\)</span> is the largest integer that satisfies</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\nu \le \frac{ \left( s_{\overline{x}}^2   +  s_{\overline{y}}^2  \right)^2 }
+{ {s_{\overline{x}}^2  }/{(n_x-1)} + {  s_{\overline{y}}^2  }/{(n_y-1)}
+}.
+\end{equation*}\]</div>
+<p><strong>Example: Analytical Test on Difference of Means (T-Test)</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The following example is about deaths caused by firearms, and this may be a sensitive topic for some readers. In addition, the example is particularly about assessing the effect of gun legislation on firearms deaths, which is a politically sensitive topic. However, I have chosen to include this example because of its relevance to the national discussion around these topics. Readers should know that a simple analysis like that included here can suggest a relationship between factors that may actually be attributable to other underlying causes.</p>
+<p>Please read this example with an open mind and the desire to see what the data indicates.</p>
+</div>
+<p>In this example, we will consider the effect of “permitless carry” on different types of firearms deaths. Here “permitless carry” (variants of which are also known as “constitutional carry”) allows gun owners in a state to carry a loaded firearm without having to apply to the government for a gun permit. There are actually many variations on permitless carry, but I consider a state to allow permitless carry if state’s citizens can generally carry (either open or concealed) a loaded handgun without a gun permit.</p>
+<p>The two research hypotheses I will consider are:</p>
+<ol class="simple">
+<li><p>There is a difference in firearms homicide rates between states with permitless carry and those without.</p></li>
+<li><p>There is a difference in firearms suicide rates between states with permitless carry and those without.</p></li>
+</ol>
+<p>To answer these questions, we will need to collect data from two separate sources. For the firearms mortality data, we can use firearms mortality data from CDC WONDER, which is the Wide-ranging ONline Data for Epidemiologic Research.  In particular, I have used WONDER SEARCH to access data from <a class="reference external" href="https://wonder.cdc.gov/ucd-icd10.html">Underlying Cause of Death 1999-2020</a>. I have downloaded data by state for the following Causes of Death, shown using IC-10 codes:</p>
+<ul class="simple">
+<li><p>X93: Assault by handgun discharge</p></li>
+<li><p>X94: Assault by rifle, shotgun, and larger firearm discharge</p></li>
+<li><p>X95: Assault by other and unspecified firearm discharge.</p></li>
+</ul>
+<p>I selected to download the total deaths across these categories, the population, and the crude rate. Here, the crude rate is defined as the deaths per population times 100,000. The resulting download is a tab-separate value (TSV) file, which is very similar to the CSV files that we saw previously, except the field separators are tabs instead of commas. The resulting file is available on GitHub at <a class="reference external" href="https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/09-moments/data/wonder-homicides-2020.tsv">https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/09-moments/data/wonder-homicides-2020.tsv</a></p>
+<p>Data for suicides was retrieved from the same WONDER database using the following IC-10 codes:</p>
+<ul class="simple">
+<li><p>X72: Intentional self-harm by handgun discharge</p></li>
+<li><p>X73: Intentional self-harm by rifle, shotgun, and larger firearm discharge</p></li>
+<li><p>X74: Intentional self-harm by  other and unspecified firearm discharge.
+The resulting TSV is available on GitHub at <a class="reference external" href="https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/09-moments/data/wonder-suicides-2020.tsv">https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/09-moments/data/wonder-suicides-2020.tsv</a>.</p></li>
+</ul>
+<p>To load these data into Pandas, we can use <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code>, but we need to tell that function that the data is separated by tabs instead of commas. To do this, we will pass the keyword argument <code class="docutils literal notranslate"><span class="pre">sep</span> <span class="pre">=</span> <span class="pre">'\t'</span></code>, where <code class="docutils literal notranslate"><span class="pre">\t</span></code> is a special code that translates to the tab character. Code to load these two data sets is below. (Note that because these files are being read directly from GitHub, you will need an active internet connection with GitHub access to retrieve them.)</p>
+<p>First, let’s load the libraries we will need:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#suicides = pd.read_csv(&#39;data/wonder-suicides-2020.tsv&#39;, sep=&#39;\t&#39;)</span>
+<span class="c1">#homicides = pd.read_csv(&#39;data/wonder-homicides-2020.tsv&#39;, sep=&#39;\t&#39;)</span>
+<span class="n">fdsp_prefix</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/&#39;</span>
+<span class="n">suicides</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fdsp_prefix</span> <span class="o">+</span> <span class="s1">&#39;main/09-moments/data/wonder-suicides-2020.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">homicides</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fdsp_prefix</span> <span class="o">+</span> <span class="s1">&#39;main/09-moments/data/wonder-homicides-2020.tsv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s merge these two dataframes into a single dataframe. To do that, I am first going to do some preparation:</p>
+<ol class="simple">
+<li><p>We will drop the Notes, Crude Rate, and State Code columns from the <code class="docutils literal notranslate"><span class="pre">suicides</span></code> dataframe.</p></li>
+<li><p>We will drop all of the above plus the Population column from the <code class="docutils literal notranslate"><span class="pre">homicides</span></code> dataframe (because we are going to merge with the <code class="docutils literal notranslate"><span class="pre">suicides</span></code> dataframe that already has the information.</p></li>
+<li><p>We will relabel the <code class="docutils literal notranslate"><span class="pre">Deaths</span></code> column of each dataframe to match the type of death.
+Here are these first steps:</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#1.</span>
+<span class="n">suicides</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Notes&#39;</span><span class="p">,</span> <span class="s1">&#39;Crude Rate&#39;</span><span class="p">,</span> <span class="s1">&#39;State Code&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#2.</span>
+<span class="n">homicides</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Notes&#39;</span><span class="p">,</span> <span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;Crude Rate&#39;</span><span class="p">,</span> <span class="s1">&#39;State Code&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#3. </span>
+<span class="n">suicides</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;Deaths&#39;</span><span class="p">:</span> <span class="s1">&#39;Suicides&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">homicides</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;Deaths&#39;</span><span class="p">:</span> <span class="s1">&#39;Homicides&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check each dataframe now:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">suicides</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Suicides</th>
+      <th>Population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>542</td>
+      <td>4921532</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>133</td>
+      <td>731158</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>830</td>
+      <td>7421401</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>364</td>
+      <td>3030522</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>1552</td>
+      <td>39368078</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">homicides</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Homicides</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>564</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>382</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>282</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>1731</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>A few notes:</p>
+<ol class="simple">
+<li><p>We are interested in mortality <strong>rates</strong>, and we could have preserved the <code class="docutils literal notranslate"><span class="pre">Crude</span> <span class="pre">Rate</span></code> column instead of the <code class="docutils literal notranslate"><span class="pre">Deaths</span></code> column. However, the <code class="docutils literal notranslate"><span class="pre">Crude</span> <span class="pre">Rate</span></code> is computed from <code class="docutils literal notranslate"><span class="pre">Deaths</span></code> and <code class="docutils literal notranslate"><span class="pre">Population</span></code>, and preserving these separately will allow us to analyze the data in different ways. Moreover, the <code class="docutils literal notranslate"><span class="pre">Crude</span> <span class="pre">Rate</span></code> for suicide in some states is listed as <code class="docutils literal notranslate"><span class="pre">unreliable</span></code>, corresponding to fewer than 20 suicide deaths in that state. Since we are never using these rates for a single state in isolation, the values are useful to our analysis, and we will use all the rate data.</p></li>
+<li><p>Note that these dataframes are of different sizes:</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">suicides</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">homicides</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(50, 49)
+</pre></div>
+</div>
+</div>
+</div>
+<p>When we merge them, we need to decide to handle any discrepancies in which states are included. I will use the approach that we only include in the combined data set those states that have entries in <em>both</em> of the <code class="docutils literal notranslate"><span class="pre">suicides</span></code> and <code class="docutils literal notranslate"><span class="pre">homicides</span></code> dataframes. This is called an <em>inner join</em>.  We will use the <code class="docutils literal notranslate"><span class="pre">merge()</span></code> method of the <code class="docutils literal notranslate"><span class="pre">suicides</span></code> Pandas dataframe, which takes as argument the dataframe to be merged. We will specify the keyword argument <code class="docutils literal notranslate"><span class="pre">on</span> <span class="pre">=</span> <span class="pre">'State'</span></code> to specify that we are matching up the rows from the different dataframes based on the entry in the <code class="docutils literal notranslate"><span class="pre">State</span></code> column. We will  pass the keyword argument <code class="docutils literal notranslate"><span class="pre">how</span> <span class="pre">=</span> <span class="pre">'inner'</span></code>, to do an inner join and preserve only those entries that appear in <em>both</em> of the dataframes being merged.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_deaths</span><span class="o">=</span><span class="n">suicides</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">homicides</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="n">all_deaths</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Suicides</th>
+      <th>Population</th>
+      <th>Homicides</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>542</td>
+      <td>4921532</td>
+      <td>564</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>133</td>
+      <td>731158</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>830</td>
+      <td>7421401</td>
+      <td>382</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>364</td>
+      <td>3030522</td>
+      <td>282</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>1552</td>
+      <td>39368078</td>
+      <td>1731</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s check the length of the merged dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">all_deaths</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>48
+</pre></div>
+</div>
+</div>
+</div>
+<p>Even though the smaller of the dataframes had 49 rows, the inner join produced only 48 rows. The <code class="docutils literal notranslate"><span class="pre">homicides</span></code> dataframe actually has entries for all 50 states, but the <code class="docutils literal notranslate"><span class="pre">suicides</span></code> dataframe has entries for only 48 states and the District of Columbia.</p>
+<p>Now let’s go ahead and compute the homicide and suicide rates (scaled up by 100,000):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_deaths</span><span class="p">[</span><span class="s1">&#39;Homicide Rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_deaths</span><span class="p">[</span><span class="s1">&#39;Homicides&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">all_deaths</span><span class="p">[</span><span class="s1">&#39;Population&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100_000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_deaths</span><span class="p">[</span><span class="s1">&#39;Suicide Rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_deaths</span><span class="p">[</span><span class="s1">&#39;Suicides&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">all_deaths</span><span class="p">[</span><span class="s1">&#39;Population&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100_000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_deaths</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Suicides</th>
+      <th>Population</th>
+      <th>Homicides</th>
+      <th>Homicide Rate</th>
+      <th>Suicide Rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>542</td>
+      <td>4921532</td>
+      <td>564</td>
+      <td>11.459846</td>
+      <td>11.012831</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>133</td>
+      <td>731158</td>
+      <td>27</td>
+      <td>3.692772</td>
+      <td>18.190323</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>830</td>
+      <td>7421401</td>
+      <td>382</td>
+      <td>5.147276</td>
+      <td>11.183872</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>364</td>
+      <td>3030522</td>
+      <td>282</td>
+      <td>9.305328</td>
+      <td>12.011132</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>1552</td>
+      <td>39368078</td>
+      <td>1731</td>
+      <td>4.396963</td>
+      <td>3.942280</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The second source of data we will need is on permitless carry of firearms. I used the table at <a class="reference external" href="https://en.wikipedia.org/wiki/Constitutional_carry#Ages_to_carry_without_a_permit">Wikipedia: Constitutional Carry - Ages to carry without a permit</a> and the source documents to create a CSV file that gives a list states that permitted a <em>state resident</em> to carry a <em>handgun</em> without a permit as of 2020. For each such state, the age at which a handgun can be carried without a permit is listed for both <em>open</em> and <em>concealed</em> carry. If permitless carry of a handgun by a state resident is not allowed for one of these categories, the entry is “N/A”. States not in this CSV file do not allow permitless carry as of 2020.  The resulting CSV file is available on GitHub at <a class="reference external" href="https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/09-moments/data/permitless-carry-2020.csv">https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/09-moments/data/permitless-carry-2020.csv</a>.</p>
+<p>Let’s load this data into another Pandas dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">permitless_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fdsp_prefix</span> <span class="o">+</span> <span class="s1">&#39;main/09-moments/data/permitless-carry-2020.csv&#39;</span><span class="p">)</span>
+<span class="n">permitless_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>Permitless_open</th>
+      <th>Permitless_concealed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>18.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>16.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>18.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>18.0</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Idaho</td>
+      <td>18.0</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Kansas</td>
+      <td>18.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Kentucky</td>
+      <td>18.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Maine</td>
+      <td>18.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Mississippi</td>
+      <td>18.0</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Missouri</td>
+      <td>18.0</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Montana</td>
+      <td>18.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>New Hampshire</td>
+      <td>18.0</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>North Dakota</td>
+      <td>NaN</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ohio</td>
+      <td>NaN</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Oklahoma</td>
+      <td>21.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>South Dakota</td>
+      <td>18.0</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Vermont</td>
+      <td>16.0</td>
+      <td>16.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>West Virginia</td>
+      <td>18.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Wyoming</td>
+      <td>18.0</td>
+      <td>21.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We will again use the <code class="docutils literal notranslate"><span class="pre">merge()</span></code> method of the Pandas dataframe,
+but this time we will use it on the <code class="docutils literal notranslate"><span class="pre">all_deaths</span></code> dataframe.  We will specify the keyword argument <code class="docutils literal notranslate"><span class="pre">on</span> <span class="pre">=</span> <span class="pre">'State'</span></code> to specify that we are matching up the rows from the different dataframes based on the entry in the <code class="docutils literal notranslate"><span class="pre">State</span></code> column. For this merge operation, we do not want to do an inner join because that would drop all of the death data for states that do not allow permitless carry. Instead, we will perform a <em>left join</em>, which means we will preserve all of the keys in the <code class="docutils literal notranslate"><span class="pre">all_deaths</span></code> dataframe, which appears to the left of the <code class="docutils literal notranslate"><span class="pre">permitless</span></code> dataframe.</p>
+<p>Here is that left join:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">all_deaths</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">permitless_df</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It will be convenient to index this dataframe by the State:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For convenience of display, I will remap the order of the columns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span> <span class="p">[</span><span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;Homicides&#39;</span><span class="p">,</span> <span class="s1">&#39;Homicide Rate&#39;</span><span class="p">,</span> <span class="s1">&#39;Suicides&#39;</span><span class="p">,</span> <span class="s1">&#39;Suicide Rate&#39;</span><span class="p">,</span> <span class="s1">&#39;Permitless_open&#39;</span><span class="p">,</span> <span class="s1">&#39;Permitless_concealed&#39;</span><span class="p">]</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>Homicides</th>
+      <th>Homicide Rate</th>
+      <th>Suicides</th>
+      <th>Suicide Rate</th>
+      <th>Permitless_open</th>
+      <th>Permitless_concealed</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alabama</th>
+      <td>4921532</td>
+      <td>564</td>
+      <td>11.459846</td>
+      <td>542</td>
+      <td>11.012831</td>
+      <td>18.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Alaska</th>
+      <td>731158</td>
+      <td>27</td>
+      <td>3.692772</td>
+      <td>133</td>
+      <td>18.190323</td>
+      <td>16.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>Arizona</th>
+      <td>7421401</td>
+      <td>382</td>
+      <td>5.147276</td>
+      <td>830</td>
+      <td>11.183872</td>
+      <td>18.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>Arkansas</th>
+      <td>3030522</td>
+      <td>282</td>
+      <td>9.305328</td>
+      <td>364</td>
+      <td>12.011132</td>
+      <td>18.0</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>California</th>
+      <td>39368078</td>
+      <td>1731</td>
+      <td>4.396963</td>
+      <td>1552</td>
+      <td>3.942280</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that California is not one of the states in the <code class="docutils literal notranslate"><span class="pre">permitless</span></code> dataframe and yet its firearms mortality data is preserved in the merged dataframe.</p>
+<p>Finally, let’s split <code class="docutils literal notranslate"><span class="pre">df</span></code> back into two separate dataframes based on whether they allow permitless carry (open or concealed, at any age) or not. When using <code class="docutils literal notranslate"><span class="pre">df.query()</span></code>, we can combine logical conditions using “|” to represent logical <strong>or</strong> or “&amp;” to represent logical <strong>and</strong>. Thus, the following queries can be used to partition <code class="docutils literal notranslate"><span class="pre">df</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">permitless</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;Permitless_concealed &gt;0 | Permitless_open &gt;0&#39;</span><span class="p">)</span>
+<span class="n">permit</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;Permitless_concealed.isnull() &amp; Permitless_open.isnull()&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a check, we can see that the sizes of <code class="docutils literal notranslate"><span class="pre">permitless</span></code> and <code class="docutils literal notranslate"><span class="pre">permit</span></code> equal the size of <code class="docutils literal notranslate"><span class="pre">df</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">permitless</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">permit</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(17, 31, 48)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Effect of Permitless Carry on Homicide Rates</strong>*</p>
+<p>Let’s conduct a test to see whether the average homicide rate differs between permitless carry states and states that require a permit to carry a gun. In this analysis, we will use the simplest approach, which is to directly compute the average of the homicide rates. We discuss an alternative approach in the problems further below.</p>
+<p>Computing the average homicide rate for each class of states is easy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">permitless</span><span class="p">[</span><span class="s1">&#39;Homicide Rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.066280811037098
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">permit</span><span class="p">[</span><span class="s1">&#39;Homicide Rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.391510100924644
+</pre></div>
+</div>
+</div>
+</div>
+<p>The difference in means is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hdiff</span> <span class="o">=</span> <span class="n">permitless</span><span class="p">[</span><span class="s1">&#39;Homicide Rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">permit</span><span class="p">[</span><span class="s1">&#39;Homicide Rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">Hdiff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6747707101124538
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that the homicide rate for permitless carry states is higher. We can perform bootstrap resampling to determine if the observed difference is statistically significant. Since our initial research hypothesis is that there is a difference in homicide rates between permitless carry states and those without, it makes sense to carry out a two-sided test. Our null hypothesis is that there is no difference in homicide rate between these two classes of states, and so we will pool the homicide rate data for all states and draw random bootstrap samples representing each class of states. We then determine the relative frequency of observing a difference in averages as high as the one present in the data. Because we are interested in conducting statistical tests on both homicide rates and suicide rates and most of the programming code is identical, we write a function that can carry out a bootstrapping test on any column of the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bootstrap_permit</span> <span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">permitless</span><span class="p">,</span> <span class="n">permit</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">num_sims</span> <span class="o">=</span> <span class="mi">10_000</span><span class="p">):</span>
+  <span class="n">pooled</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">column_name</span><span class="p">]</span>
+  <span class="n">permitless_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">permitless</span><span class="p">)</span>
+  <span class="n">permit_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">permit</span><span class="p">)</span>
+
+  <span class="n">diff</span> <span class="o">=</span> <span class="n">permitless</span><span class="p">[</span><span class="n">column_name</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">permit</span><span class="p">[</span><span class="n">column_name</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Observed difference in means was </span><span class="si">{</span><span class="n">diff</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+    <span class="c1"># Draw the bootstrap samples</span>
+    <span class="n">bs_permitless</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="n">permitless_len</span><span class="p">)</span>
+    <span class="n">bs_permit</span> <span class="o">=</span><span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="n">permit_len</span><span class="p">)</span>
+
+    <span class="c1"># Now compute the statistic for the bootstrap samples</span>
+    <span class="n">bs_t</span> <span class="o">=</span>  <span class="n">bs_permitless</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">bs_permit</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> 
+
+    <span class="c1"># And conduct a two-sided test</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">bs_t</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">diff</span><span class="p">:</span>
+      <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Prob. of observing absolute difference as large as data =~ </span><span class="si">{</span><span class="n">count</span><span class="o">/</span><span class="n">num_sims</span><span class="si">:</span><span class="s1"> .2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we can carry out the two-sided hypothesis test for a difference of means as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bootstrap_permit</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">permitless</span><span class="p">,</span> <span class="n">permit</span><span class="p">,</span> <span class="s1">&#39;Homicide Rate&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observed difference in means was 0.67
+Prob. of observing absolute difference as large as data =~  0.54
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, under the null hypothesis that the means are identical, we see a difference in homicide rates this large more than 50% of the time. The observed difference in means is not statistically significant.</p>
+<p>As an alternative to conducting the NHST using bootstrap resampling, we can conduct an analytical <span class="math notranslate nohighlight">\(T\)</span>-test. We cannot assume that the data has the same variance, so we calculate the scaling factor to make the sample mean estimator into a Student’s <span class="math notranslate nohighlight">\(t\)</span> random variable using <a class="reference internal" href="#equation-t-denom-unequal">(9.10)</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sem_x</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">permitless</span><span class="p">[</span><span class="s1">&#39;Homicide Rate&#39;</span><span class="p">])</span>
+<span class="n">sem_y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">permit</span><span class="p">[</span><span class="s1">&#39;Homicide Rate&#39;</span><span class="p">])</span>
+<span class="n">sem_x</span><span class="p">,</span> <span class="n">sem_y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.0171744597615262, 0.5861643161996805)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span> <span class="o">=</span> <span class="nb">len</span> <span class="p">(</span><span class="n">permitless</span><span class="p">)</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">permit</span><span class="p">)</span>
+<span class="n">nx</span><span class="p">,</span> <span class="n">ny</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(17, 31)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sem_x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">sem_y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Sd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1739814679870342
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nu</span> <span class="o">=</span> <span class="p">(</span><span class="n">sem_x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span><span class="n">sem_y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span> <span class="n">sem_x</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sem_y</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">ny</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">nu</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26.81406900531913
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HT</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="n">df</span> <span class="o">=</span> <span class="n">nu</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">Sd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">*</span><span class="n">HT</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">Hdiff</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5702375898678336
+</pre></div>
+</div>
+</div>
+</div>
+<p>The analytical result gives a very similar value to the bootstrap result. This test for a difference of means is often just called a T-test, and it is common enough that SciPy.stats has a built-in method for carrying out the analytical T-test, <code class="docutils literal notranslate"><span class="pre">stats.ttest_ind()</span></code>. Here, the “ind” refers to the fact that the samples must be <em>independent</em>. The call signature for this function is shown below:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>scipy.stats.ttest_ind(a, b, axis=0, equal_var=True, nan_policy=&#39;propagate&#39;, permutations=None, random_state=None, alternative=&#39;two-sided&#39;, trim=0)
+</pre></div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are the two data samples. The main thing that we will need to be aware of here is that the default is to assume that the variances are <strong>equal</strong>, which we cannot assume for our data set; so we will need to pass the keyword argument <code class="docutils literal notranslate"><span class="pre">equal_var=False</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">permitless</span><span class="p">[</span><span class="s1">&#39;Homicide Rate&#39;</span><span class="p">],</span> <span class="n">permit</span><span class="p">[</span><span class="s1">&#39;Homicide Rate&#39;</span><span class="p">],</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=0.5747711769841217, pvalue=0.570237589867833)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <span class="math notranslate nohighlight">\(p\)</span>-value matches our analytical result exactly because it is using the exact same formulas internally.</p>
+<p><strong>Effect of Permitless Carry on Suicide Rates</strong></p>
+<p>Now let’s consider whether permitless carry affects suicide rates. As before, we start by computing the mean suicide rates for both the permitless and the permit group, as well as the difference in means:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">permitless</span><span class="p">[</span><span class="s1">&#39;Suicide Rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.555980404372416
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">permit</span><span class="p">[</span><span class="s1">&#39;Suicide Rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.238123660784346
+</pre></div>
+</div>
+</div>
+</div>
+<p>The difference in means is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Sdiff</span> <span class="o">=</span> <span class="n">permitless</span><span class="p">[</span><span class="s1">&#39;Suicide Rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">permit</span><span class="p">[</span><span class="s1">&#39;Suicide Rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">Sdiff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.31785674358807
+</pre></div>
+</div>
+</div>
+</div>
+<p>The difference in mean suicide rates (5.32) is <em>much</em> larger than the difference in homicide rates (0.67). The larger difference is much less likely to be attributed to randomness in sampling, but we need to conduct tests to confirm whether the result should be considered statistically significant. We can carry out a two-sided hypothesis test on the difference of means using the function that we created previously:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bootstrap_permit</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">permitless</span><span class="p">,</span> <span class="n">permit</span><span class="p">,</span> <span class="s1">&#39;Suicide Rate&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observed difference in means was 5.32
+Prob. of observing absolute difference as large as data =~  0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bootstrap_permit</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">permitless</span><span class="p">,</span> <span class="n">permit</span><span class="p">,</span> <span class="s1">&#39;Suicide Rate&#39;</span><span class="p">,</span> <span class="n">num_sims</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observed difference in means was 5.32
+Prob. of observing absolute difference as large as data =~  3.5e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>The probability of observing such a large difference in means under the null hypothesis is so small that most runs of the bootstrap simulation will not generate any events where a difference this large occurs under the null hypothesis, unless we use a much larger number of simulation points.  If we want to accurately estimate the probability of seeing such a large difference under the null hypothesis, the analytical approach can estimate that probability without requiring a huge number bootstrap simulation points. As for the case of homicide rates, we start by finding the sample SEM for each group:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sem_x</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">permitless</span><span class="p">[</span><span class="s1">&#39;Suicide Rate&#39;</span><span class="p">])</span>
+<span class="n">sem_y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">permit</span><span class="p">[</span><span class="s1">&#39;Suicide Rate&#39;</span><span class="p">])</span>
+<span class="n">sem_x</span><span class="p">,</span> <span class="n">sem_y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.8939434974895945, 0.588546275254346)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span> <span class="o">=</span> <span class="nb">len</span> <span class="p">(</span><span class="n">permitless</span><span class="p">)</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">permit</span><span class="p">)</span>
+<span class="n">nx</span><span class="p">,</span> <span class="n">ny</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(17, 31)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then the standard error for the decision statistic is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sem_x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">sem_y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Sd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0702904721708462
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we need to estimate the number of degrees of freedom to use in the Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nu</span> <span class="o">=</span> <span class="p">(</span><span class="n">sem_x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span><span class="n">sem_y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span> <span class="n">sem_x</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sem_y</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">ny</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">nu</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29.882264069086958
+</pre></div>
+</div>
+</div>
+</div>
+<p>Putting this all together, we can create the SciPy distribution object as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HT</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="n">df</span> <span class="o">=</span> <span class="n">nu</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">Sd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and the probability of such a large difference under <span class="math notranslate nohighlight">\(H_0\)</span> is approximately</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">*</span><span class="n">HT</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">Sdiff</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.5702508897424183e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>For comparison, I ran the bootstrap simulation for 10 million points, and the resulting probability estimate was <span class="math notranslate nohighlight">\(3.5 \times 10^{-5}\)</span>. Thus, either method produces a similar result, but the analytical solution is much faster in this case. Finally, let’s check our analytical result using <code class="docutils literal notranslate"><span class="pre">stats.ttest_ind()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">permitless</span><span class="p">[</span><span class="s1">&#39;Suicide Rate&#39;</span><span class="p">],</span> <span class="n">permit</span><span class="p">[</span><span class="s1">&#39;Suicide Rate&#39;</span><span class="p">],</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=4.96861074807289, pvalue=2.5702508897423888e-05)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercises">
+<h2><span class="section-number">9.6.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<ol class="simple">
+<li><p>Use the Student’s <span class="math notranslate nohighlight">\(T\)</span> random variable to determine 95% confidence intervals for the mean difference under the null hypothesis for each of the statistics above. Are the resulting confidence intervals compatible with the observed differences of means?</p></li>
+<li><p>The tests above are based on averaging over states. But the states involved have very different populations. Compute the average rate over populations by summing up the number of homicides for each group and then dividing by the corresponding total population for the group. Conduct a bootstrapping NHST based on the observed rates. Repeat for suicide rates.</p></li>
+</ol>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="ci" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Actually, the data within each group are only <em>conditionally independent</em> given the group it belongs to.</p>
+</aside>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./09-moments"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="confidence-intervals-estimates.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">9.5. </span>Confidence Intervals for Estimates</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="parameter-distributions.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9.7. </span>Sampling and Bootstrap Distributions of Parameters</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

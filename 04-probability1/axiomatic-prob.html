@@ -1,0 +1,1928 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="4.4. Axiomatic  Probability" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/04-probability1/axiomatic-prob.html" />
+  
+<meta property="og:description" content="The methods of the previous two sections that define probabilities using relative frequencies or based on properties of fair experiments are helpful to develop some intuition about probability. How..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="4.4. Axiomatic  Probability" />
+  
+    <title>4.4. Axiomatic Probability &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/04-probability1/axiomatic-prob.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.5. Corollaries to the Axioms of Probability" href="corollaries.html" />
+    <link rel="prev" title="4.3. Fair Experiments" href="fair-experiments.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   4. Introduction to Probability
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/04-probability1/axiomatic-prob.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/04-probability1/axiomatic-prob.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#probability-spaces">
+   4.4.1. Probability Spaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#axioms-of-probability">
+   4.4.2. Axioms of Probability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   4.4.3. Terminology Review
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Axiomatic  Probability</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#probability-spaces">
+   4.4.1. Probability Spaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#axioms-of-probability">
+   4.4.2. Axioms of Probability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   4.4.3. Terminology Review
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="axiomatic-probability">
+<span id="index-0"></span><h1><span class="section-number">4.4. </span>Axiomatic  Probability<a class="headerlink" href="#axiomatic-probability" title="Permalink to this heading">#</a></h1>
+<p>The methods of the previous two sections that define probabilities using relative frequencies or based on properties of fair experiments are helpful to develop some intuition about probability. However, these methods have limitations that restrict their usefulness to many  real world problems. These problems were recognized by mathematicians working on probability and motivated these mathematicians to develop an approach to probability that is:</p>
+<ul class="simple">
+<li><p>not based on a particular application or interpretation,</p></li>
+<li><p>agrees models based on relative frequency and fair probabilities,</p></li>
+<li><p>agrees with our intuition (where appropriate), and</p></li>
+<li><p>are useful to solving real-world problems.</p></li>
+</ul>
+<p>The approach they developed is called <em>Axiomatic Probability</em>. Axiomatic means that there is a set of assumptions or rules (called axioms) for probability, but that the set of rules is made as small as possible. This approach may at first seem unnecessarily mathematical, but I believe that the reader will soon see that this approach will help them to develop a fundamentally sound understanding of probability.</p>
+<section id="probability-spaces">
+<span id="index-1"></span><h2><span class="section-number">4.4.1. </span>Probability Spaces<a class="headerlink" href="#probability-spaces" title="Permalink to this heading">#</a></h2>
+<p>The first step in developing Axiomatic Probability is to define the core objects that the axioms apply to. Define a <em>Probability Space</em> as an ordered collection (tuple) of three objects, and we denote it by
+$<span class="math notranslate nohighlight">\(
+(S, \mathcal{F}, P)
+\)</span>$</p>
+<p>These objects are called the <em>sample space</em>, the <em>event class</em>, and the <em>probability measure</em>. Since there are three objects in a probability space, it is sometimes said that <strong>probability is a triple</strong> or <strong>a probability space is a triple</strong>.</p>
+<p><strong>Sample Space</strong></p>
+<p>We have already introduce the sample space in <a class="reference internal" href="outcomes-samplespaces-events.html"><span class="doc">Outcomes, Sample Spaces, and Events</span></a>. It is a <strong>set</strong> containing all possible outcomes for an experiment.</p>
+<p><strong>Event Class</strong></p>
+<p>The second object, denoted by a calligraphic F (<span class="math notranslate nohighlight">\(\mathcal{F}\)</span>), is called the <em>event class</em>.</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-event-class">event class<a class="headerlink" href="#term-event-class" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For a sample space <span class="math notranslate nohighlight">\(S\)</span> and a probability measure <span class="math notranslate nohighlight">\(P\)</span>, the event class, denoted by <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is a collection of all subsets of <span class="math notranslate nohighlight">\(S\)</span> to which we will assign probability (i.e., for which <span class="math notranslate nohighlight">\(P\)</span> will be defined). The sets in <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> are called events.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>We require that the event class be a <span class="math notranslate nohighlight">\(\sigma-algebra\)</span> (read “sigma algebra”) of <span class="math notranslate nohighlight">\(S\)</span>, which is a concise and mathematically precise way to say that events in <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> that combinations of events using (a finite or countably infinite number of) the usual set operations will still be events in $\mathcal{F}.</p>
+<p>For many readers of this book, the above explanation will be sufficient to understand what events are in <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>. If you feel satisfied with this explanation, you may skip ahead to the heading <strong>Event Class for Finite Sample Spaces</strong>. If you want more mathematical depth and rigor, here are the properties that <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> must satisfy to be a <span class="math notranslate nohighlight">\(\sigma\)</span>-algebra on <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathcal{F}\)</span> contains the sample space:<br>
+<span class="math notranslate nohighlight">\(S \in \mathcal{F}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is <strong>closed under complements</strong>:<br>
+If <span class="math notranslate nohighlight">\(A \in \mathcal{F}\)</span>, then <span class="math notranslate nohighlight">\(\overline{A} \in \mathcal{F}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is <strong>closed under countable unions</strong>:<br>
+If <span class="math notranslate nohighlight">\(A_1, A_2, \ldots\)</span> are a finite or countably infinite number of sets in \mathcal{F}, then</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\bigcup_i A_i \in \mathcal{F}
+\end{equation*}\]</div>
+<p>Note that DeMorgan’s Laws immediately imply a few other properties:</p>
+<ul class="simple">
+<li><p>The null set <span class="math notranslate nohighlight">\(\emptyset\)</span> is in <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> by combining properties 1 and 2. <span class="math notranslate nohighlight">\(S \in \mathcal{F}\)</span>, and so <span class="math notranslate nohighlight">\(\overline{S} =\emptyset \in \mathcal{F}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is <strong>closed under countable intersections</strong>. If <span class="math notranslate nohighlight">\(A_1, A_2, \ldots\)</span> are a finite or countably infinite number of sets in <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>, then by property 2, <span class="math notranslate nohighlight">\(\overline{A_1}, \overline{A_2} \ldots\)</span> are in <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>. By property 3,</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\bigcup_i \overline{A_i} \in \mathcal{F}
+\end{equation*}\]</div>
+<p>If we apply DeMorgan’s Laws to this expression, we have</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\overline{\bigcap_i A_i} \in \mathcal{F}
+\end{equation*}\]</div>
+<p>Then by applying property 2 again, we have that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+{\bigcap_i A_i} \in \mathcal{F}
+\end{equation*}\]</div>
+<p><strong>Event Class for Finite Sample Spaces</strong></p>
+<p>When <span class="math notranslate nohighlight">\(S\)</span> is finite, we almost always use the same event class, which is to take <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> to be the <em>power set</em> of <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-power-set">power set<a class="headerlink" href="#term-power-set" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For a set <span class="math notranslate nohighlight">\(S\)</span> with finite cardinality, <span class="math notranslate nohighlight">\(|S|=N &lt; \infty\)</span>, the power set is the set of all possible subsets. We will use the notation <span class="math notranslate nohighlight">\(2^S\)</span> to denote the power set.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>Note that the power set includes both the empty set (<span class="math notranslate nohighlight">\(\emptyset\)</span>) and <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p><strong>Example</strong>
+Consider flipping a coin and observing the top face. Then <span class="math notranslate nohighlight">\(S=\{H,T\}\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{F} = \bigl\{ \emptyset, H, T, \{H,T\} = S \bigr\}
+\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(|S|=2\)</span> and <span class="math notranslate nohighlight">\(|2^S| = 4 = 2^{|S|}\)</span>.</p>
+<p><strong>Exercise</strong></p>
+<p>Consider rolling a standard six-sided die. Give the sample space, <span class="math notranslate nohighlight">\(S\)</span>,  and the power set of the sample space, <span class="math notranslate nohighlight">\(2^S\)</span>.  What is the cardinality of <span class="math notranslate nohighlight">\(2^S\)</span>?</p>
+<p>When <span class="math notranslate nohighlight">\(|S|=\infty\)</span>, weird things can happen if we try to assign probabilities to every subset of <span class="math notranslate nohighlight">\(S\)</span>. <strong>JMS: Working here. Need footnote about uncountably infinite</strong> For typical data science applications, we can assume that any event that we want to ask about will be in the event class, and we do not need to explicitly enumerate the event class.</p>
+<p><strong>Probability Measure</strong></p>
+<p>Until now, we have discussed the probabilities of outcomes. However, this is not the approach taken in probability spaces:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-probability-measure">probability measure<a class="headerlink" href="#term-probability-measure" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">The probability measure, <span class="math notranslate nohighlight">\(P\)</span>, is a real-valued set function that maps every element of the event class to the real line.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>Note that in defining the probability measure, we do not specify the range of values for <span class="math notranslate nohighlight">\(P\)</span>, because at this point we are only defining the structure of the probability space through the types of elements that make it up.</p>
+<p>Although <span class="math notranslate nohighlight">\(P\)</span> assigns outcomes to events (as opposed to outcomes), every outcome in <span class="math notranslate nohighlight">\(S\)</span> is typically an event in the event class. Thus, <span class="math notranslate nohighlight">\(P\)</span> is more general in its operation than we have considered in our previous examples. As explained in <a class="reference internal" href="outcomes-samplespaces-events.html"><span class="doc">Outcomes, Sample Spaces, and Events</span></a>, an event occurs if the experiment’s outcome is one of the outcomes in that event’s set.</p>
+</section>
+<section id="axioms-of-probability">
+<span id="index-2"></span><h2><span class="section-number">4.4.2. </span>Axioms of Probability<a class="headerlink" href="#axioms-of-probability" title="Permalink to this heading">#</a></h2>
+<p>As previously mentioned, axioms are a minimal set of rules. There are three Axioms of Probability that are specified in terms of the probability measure:</p>
+<p><strong>The Axioms of Probability</strong></p>
+<p><strong>I.</strong> For every event <span class="math notranslate nohighlight">\(E\)</span> in the eventclass <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>, <span class="math notranslate nohighlight">\( P(E) \ge 0\)</span>
+<em>(the event probabilities are non-negative)</em></p>
+<p><strong>II.</strong> <span class="math notranslate nohighlight">\(P(S) =1\)</span>   <em>(the probability that some outcome occurs is 1)</em></p>
+<p><strong>III.</strong> For all pairs of events <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(F\)</span> in the event class that are disjoint (<span class="math notranslate nohighlight">\(E \cap F = \emptyset\)</span>),
+<span class="math notranslate nohighlight">\(P( E \cup F) = P(E)+P(F)\)</span> <em>(if two events are disjoint, then the probability that either one of the events occurs is equal to the sum of the event probabilities)</em></p>
+<p>When dealing with infinite sample spaces, an alternative version of Axiom III should be used:</p>
+<p><strong>III’.</strong> If <span class="math notranslate nohighlight">\(A_1, A_2, \ldots\)</span> is a sequence of
+event that are all disjoint  (<span class="math notranslate nohighlight">\(A_i \cap A_j = \emptyset~ \forall i\ne j\)</span>),
+then</p>
+<div class="math notranslate nohighlight">
+\[
+P \left[ \bigcup_{k=1}^{\infty} A_k \right] = \sum_{k=1}^{\infty}
+ P\left[ A_k \right].
+\]</div>
+<!-- *(Note that these sums and unions are over countably infinite sequences of events.)* --><p>Many students of probability wonder why Axiom I does not specify that <span class="math notranslate nohighlight">\(0 \le P(E) \le 1\)</span>. The answer is that the second part of that inequality is not needed because it can be proven from the other axioms. Anything that is not required is removed to ensure that the axioms are a minimal set of rules.</p>
+<p>Axiom III is a powerful tool for calculating probabilities. However, it must be used carefully.</p>
+<p><strong>Example</strong></p>
+<p>A fair six-sided die is rolled twice. What is the probability that the top face on the first roll is less than 3? What is the probability that the top face on the second roll is less than 3?</p>
+<p>First, let’s define some notation for the events of interest:</p>
+<p>Let <span class="math notranslate nohighlight">\(E_i\)</span> denote the event that the top face on roll <span class="math notranslate nohighlight">\(i\)</span> is less than 3</p>
+<p>Then</p>
+<div class="math notranslate nohighlight">
+\[
+E_1=\{1_1, 2_1 \},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(k_l\)</span> denotes the <strong>outcome</strong> that the top face is <span class="math notranslate nohighlight">\(k\)</span> on roll <span class="math notranslate nohighlight">\(l\)</span>. Similarly,</p>
+<div class="math notranslate nohighlight">
+\[E_2=\{1_2, 2_2 \}.\]</div>
+<p>Note that we can rewrite</p>
+<div class="math notranslate nohighlight">
+\[
+E_i = \{1_i\} \cup \{2_i\},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\cup\)</span> is the union operator.  Because outcomes are always disjoint, axiom III can be applied to yield</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(E_i) &amp;= P\left(\{1_i\} \cup \{2_i\} \right) \\
+ &amp;= P\left(\{1_i\} \right) + P \left( \{2_i\} \right) \\
+ &amp;= \frac{1}{6} + \frac{1}{6},
+\end{align*}\]</div>
+<p>where the last line comes from applying the probability of an outcome in a fair experiment. Thus, <span class="math notranslate nohighlight">\(P(E_i)=1/3\)</span> for <span class="math notranslate nohighlight">\(i=1,2\)</span>. Most readers will intuitively have known this answer.</p>
+<p><strong>Example</strong></p>
+<p>Consider the same exact experiment described in the previous example.  However, let’s ask a slightly different question: what is the probability that either the value on the first die is less than 3 <strong>or</strong> the value on the second die is less than 3. (This could also include the case that both are less than 3.)  Mathematically, we write this as <span class="math notranslate nohighlight">\(P(E_1 \cup E_2)\)</span> using the events already defined.</p>
+<p>Since <span class="math notranslate nohighlight">\(E_1\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span> correspond to events on completely different dice, it may be tempting to apply Axiom III like:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(E_1 \cup E_2) &amp;= P(E_1) + P(E_2) \\
+&amp;= \frac{1}{3} + \frac{1}{3}\\
+&amp;= \frac{2}{3}.
+\end{align*}\]</div>
+<p>However, it is easy to see that somehow this thinking is not correct. For example, if we defined events <span class="math notranslate nohighlight">\(G_i\)</span> to be the event that the value on die <span class="math notranslate nohighlight">\(i\)</span> is less than 5, this approach would imply that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(G_1 \cup G_2) &amp;= P(G_1) + P(G_2) \\
+&amp;= \frac{2}{3} + \frac{2}{3}\\
+&amp;= \frac{4}{3}.
+\end{align*}\]</div>
+<p>Hopefully the reader recognizes that this is not an allowed value for a probability! Let’s delve in to see what went wrong. We can begin by estimating the true value of <span class="math notranslate nohighlight">\(P(E_1 \cup E_2)\)</span> using simulation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+
+<span class="n">num_sims</span> <span class="o">=</span> <span class="mi">100_000</span>
+
+<span class="c1"># Generate the dice values for all simulations:</span>
+<span class="n">die1</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_sims</span><span class="p">)</span>
+<span class="n">die2</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_sims</span><span class="p">)</span>
+
+<span class="c1"># Each comparison will generate an array of True/False value</span>
+<span class="n">E1occurred</span> <span class="o">=</span> <span class="n">die1</span> <span class="o">&lt;</span> <span class="mi">3</span>
+<span class="n">E2occurred</span> <span class="o">=</span> <span class="n">die2</span> <span class="o">&lt;</span> <span class="mi">3</span>
+
+<span class="c1"># Use NumPy&#39;s union operator (|) to return True where either array is True:</span>
+<span class="n">Eoccurred</span> <span class="o">=</span> <span class="n">E1occurred</span> <span class="o">|</span> <span class="n">E2occurred</span>
+
+<span class="c1"># NumPy&#39;s count_nonzero function will count 1 for each True value and 0 for each False value</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P(E1 or E2) =~&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">Eoccurred</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_sims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P(E1 or E2) =~ 0.55556
+</pre></div>
+</div>
+</div>
+</div>
+<p>The estimated probability is about 0.56, which is lower than predicted by trying to apply Axiom III. The problem is that Axiom III does not hold in the way that it is used here because <span class="math notranslate nohighlight">\(E_1\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span> are not disjoint: both can occur at the same time. Let’s enumerate every thing that could happen by writing the outcomes of dice 1 and dice 2 as a tuple, where <span class="math notranslate nohighlight">\((j,k)\)</span> means that die 1’s outcome was <span class="math notranslate nohighlight">\(j\)</span> and die 2’s outcome was <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>We will use colors to help denote when events belong to a particular event. We start by printing all outcomes with the outcomes in event <span class="math notranslate nohighlight">\(E_1\)</span> highlighted in blue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Need to see if this is standard in Anaconda</span>
+<span class="kn">from</span> <span class="nn">termcolor</span> <span class="kn">import</span> <span class="n">colored</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Outcomes in E1 are in blue:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">colored</span><span class="p">(</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)   &quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)   &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outcomes in E1 are in blue:
+<span class=" -Color -Color-Blue">(1, 1)   (1, 2)   (1, 3)   (1, 4)   (1, 5)   (1, 6)   </span>
+<span class=" -Color -Color-Blue">(2, 1)   (2, 2)   (2, 3)   (2, 4)   (2, 5)   (2, 6)   </span>
+(3, 1)   (3, 2)   (3, 3)   (3, 4)   (3, 5)   (3, 6)   
+(4, 1)   (4, 2)   (4, 3)   (4, 4)   (4, 5)   (4, 6)   
+(5, 1)   (5, 2)   (5, 3)   (5, 4)   (5, 5)   (5, 6)   
+(6, 1)   (6, 2)   (6, 3)   (6, 4)   (6, 5)   (6, 6)   
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can easily modify this to highlight the events in <span class="math notranslate nohighlight">\(E_2\)</span> in green:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Outcomes in E2 are in green:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">colored</span><span class="p">(</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)   &quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)   &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outcomes in E2 are in green:
+<span class=" -Color -Color-Green">(1, 1)   (1, 2)   </span>(1, 3)   (1, 4)   (1, 5)   (1, 6)   
+<span class=" -Color -Color-Green">(2, 1)   (2, 2)   </span>(2, 3)   (2, 4)   (2, 5)   (2, 6)   
+<span class=" -Color -Color-Green">(3, 1)   (3, 2)   </span>(3, 3)   (3, 4)   (3, 5)   (3, 6)   
+<span class=" -Color -Color-Green">(4, 1)   (4, 2)   </span>(4, 3)   (4, 4)   (4, 5)   (4, 6)   
+<span class=" -Color -Color-Green">(5, 1)   (5, 2)   </span>(5, 3)   (5, 4)   (5, 5)   (5, 6)   
+<span class=" -Color -Color-Green">(6, 1)   (6, 2)   </span>(6, 3)   (6, 4)   (6, 5)   (6, 6)   
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that we can already see that the set of outcomes in <span class="math notranslate nohighlight">\(E_1\)</span> overlap with the set of outcomes in <span class="math notranslate nohighlight">\(E_2\)</span>. To make that explicit, let’s highlight the outcomes that are in both <span class="math notranslate nohighlight">\(E_1\)</span> or <span class="math notranslate nohighlight">\(E_2\)</span> in red:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Outcomes in both E1 and E2 are in red:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">colored</span><span class="p">(</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)   &quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)   &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outcomes in both E1 and E2 are in red:
+<span class=" -Color -Color-Red">(1, 1)   (1, 2)   </span>(1, 3)   (1, 4)   (1, 5)   (1, 6)   
+<span class=" -Color -Color-Red">(2, 1)   (2, 2)   </span>(2, 3)   (2, 4)   (2, 5)   (2, 6)   
+(3, 1)   (3, 2)   (3, 3)   (3, 4)   (3, 5)   (3, 6)   
+(4, 1)   (4, 2)   (4, 3)   (4, 4)   (4, 5)   (4, 6)   
+(5, 1)   (5, 2)   (5, 3)   (5, 4)   (5, 5)   (5, 6)   
+(6, 1)   (6, 2)   (6, 3)   (6, 4)   (6, 5)   (6, 6)   
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, does this mean that we cannot use Axiom III to solve this problem? No. We just have to be more careful. Let’s highlight all the outcomes that belong to <span class="math notranslate nohighlight">\(E_1 \cup E_2\)</span> with a yellow background. Let’s also count these as we go:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Outcomes in  E1 OR E2 are on a yellow background:&quot;</span><span class="p">)</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="ow">or</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="n">colored</span><span class="p">(</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)   &quot;</span><span class="p">,</span> <span class="n">on_color</span><span class="o">=</span><span class="s2">&quot;on_yellow&quot;</span><span class="p">),</span>
+                <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)   &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of outcomes in E1 OR E2 is&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outcomes in  E1 OR E2 are on a yellow background:
+<span class=" -Color -Color-BGYellow">(1, 1)   (1, 2)   (1, 3)   (1, 4)   (1, 5)   (1, 6)   </span>
+<span class=" -Color -Color-BGYellow">(2, 1)   (2, 2)   (2, 3)   (2, 4)   (2, 5)   (2, 6)   </span>
+<span class=" -Color -Color-BGYellow">(3, 1)   (3, 2)   </span>(3, 3)   (3, 4)   (3, 5)   (3, 6)   
+<span class=" -Color -Color-BGYellow">(4, 1)   (4, 2)   </span>(4, 3)   (4, 4)   (4, 5)   (4, 6)   
+<span class=" -Color -Color-BGYellow">(5, 1)   (5, 2)   </span>(5, 3)   (5, 4)   (5, 5)   (5, 6)   
+<span class=" -Color -Color-BGYellow">(6, 1)   (6, 2)   </span>(6, 3)   (6, 4)   (6, 5)   (6, 6)   
+
+Number of outcomes in E1 OR E2 is 20
+</pre></div>
+</div>
+</div>
+</div>
+<p>If an event is written in terms of a set of <span class="math notranslate nohighlight">\(K\)</span> <strong>outcomes</strong> <span class="math notranslate nohighlight">\(o_0, o_1, \ldots, o_{K-1}\)</span>, and the experiment is fair and has <span class="math notranslate nohighlight">\(N\)</span> total outcomes, then Axiom III can be applied to calculate the probability as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(E) &amp;= P \left(\left\{o_0, o_1, \ldots, o_{K-1} \right\} \right) \\
+&amp;= P \left( o_0 \right) + P \left( o_1 \right) +  \ldots + P \left( o_{K-1}  \right) \\
+&amp;= \frac{1}{N} + \frac{1}{N} + \ldots + \frac{1}{N} \mbox{        (total of } K \mbox{ terms)} \\
+&amp;= \frac{K}{N} 
+\end{align*}\]</div>
+<p>We believe that this experiment is fair and that any of the 36 total outcomes is equally likely to occur. The form above is general to any event for a fair experiment, and it is convenient to rewrite it in terms of set cardinalities as</p>
+<div class="math notranslate nohighlight">
+\[
+P(E) = \frac{|E|}{|S|}.
+\]</div>
+<p>Applying this our example, we can easily calculate the probability we are looking for as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P\left( E_1 \cup E_2 \right) &amp;= \frac{ \left \vert E_1 \cup E_2 \right \vert } { \left \vert S \right \vert} \\ 
+&amp;= \frac{20}{36} \\
+&amp;= \frac{5}{9}
+\end{align*}\]</div>
+<p>Note that the calculated value matches our estimate from the simulation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5555555555555556
+</pre></div>
+</div>
+</div>
+</div>
+<p>The key to making this work was that we had to realize several things:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E_1\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span> are not outcomes. They are events, and they can occur at the same time.</p></li>
+<li><p>The outcomes of the experiment are the combination of the outcomes from the individual rolls of the two dice.</p></li>
+<li><p>The composite experiment is still a fair experiment. It is easy to calculate probabilities using Axiom III and the properties of fair experiments once we can determine the number of outcomes in the event of interest.</p></li>
+</ul>
+<p>However, we can see that the solution method is still lacking in some ways:</p>
+<ul class="simple">
+<li><p>It only works for fair experiments</p></li>
+<li><p>It requires enumeration of the outcomes in the event – this may be challenging to do without a computer and may not scale well.</p></li>
+</ul>
+<!-- * It will not work if the trials are not independent.-->
+<p>Some of the difficulties in solving this problem come from not having a larger toolbox; i.e., the axioms provide a very limited set of equations for working with probabilities. In the next section, we explore several corollaries to the axioms and show how these can be used to simplify some problems in probability.</p>
+</section>
+<section id="terminology-review">
+<h2><span class="section-number">4.4.3. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<p>Use the flashcards below to help you review the terminology introduced in this chapter.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg)  translateX(-10%);
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transform:  translateX(20px); 
+    transition: display 0s;
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 300px;
+	  width: 640px;
+}
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:20px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 600px;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 16pt;
+    left:442pt;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:20px;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+.flashcardtext{
+    color: var(--snow);
+    font-size: 20pt;
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+  }
+
+</style><script type="text/Javascript">
+/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+function flip(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 700, next);
+}
+
+function reenableNext(next) {
+    next.style.pointerEvents='auto';
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+
+}
+
+
+function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 600, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id) {
+    console.log(id);
+
+    var mydiv=document.getElementById(id);
+
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+
+    for (var i=0; i<2; i++) {
+
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    return flipper;
+}
+
+
+
+
+
+</script><script type="text/Javascript">
+
+    cardsMXKVOdMzzmqj=[
+    {
+        "front": "event class",
+        "back": "For a sample space $S$ and a probability measure $P$, the event class, denoted by $\\mathcal{F}$ is a collection of all subsets of $S$ to which we will assign probability (i.e., for which $P$ will be defined). The sets in $\\mathcal{F}$ are called events."
+    },
+    {
+        "front": "power set",
+        "back": "For a set $S$ with finite cardinality, $|S|=N < \\infty$, the power set is the set of all possible subsets. We will use the notation $2^S$ to denote the power set."
+    },
+    {
+        "front": "probability measure",
+        "back": "The probability measure, $P$, is a real-valued set function that maps every element of the event class to the real line."
+    }
+]
+;
+
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/axiomatic-prob.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("MXKVOdMzzmqj"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("MXKVOdMzzmqj");
+        });
+        }
+        </script>
+        <div style="height:40px"></div><div class="flip-container" id="MXKVOdMzzmqj" onclick="flip(this)"></div><div style="height:40px"></div><div class="next" id="MXKVOdMzzmqj-next" onclick="checkFlip('MXKVOdMzzmqj')"> </div> <div style="height:40px"></div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./04-probability1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="fair-experiments.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">4.3. </span>Fair Experiments</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="corollaries.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4.5. </span>Corollaries to the Axioms of Probability</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,2228 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="8.6. Continuous Random Variables" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/08-random-variables/continuous-rvs.html" />
+  
+<meta property="og:description" content="The discrete random variables introduced the last two sections can model many random phenomena of interest; however, there are also many phenomena that they cannot model. Let’s begin with an exampl..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="8.6. Continuous Random Variables" />
+  
+    <title>8.6. Continuous Random Variables &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/08-random-variables/continuous-rvs.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.7. Important Continuous Random Variables" href="important-continuous-rvs.html" />
+    <link rel="prev" title="8.4. Important Discrete RVs" href="important-discrete-rvs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   8. Random Variables
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/08-random-variables/continuous-rvs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/08-random-variables/continuous-rvs.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivating-example-poisson-events">
+   8.6.1. Motivating Example – Poisson Events
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition-and-implications">
+   8.6.2. Definition and Implications
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#density-functions">
+   8.6.3. Density Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-density-functions">
+   8.6.4. Properties of Density Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   8.6.5. Terminology Review
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Continuous Random Variables</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivating-example-poisson-events">
+   8.6.1. Motivating Example – Poisson Events
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition-and-implications">
+   8.6.2. Definition and Implications
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#density-functions">
+   8.6.3. Density Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-density-functions">
+   8.6.4. Properties of Density Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   8.6.5. Terminology Review
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="continuous-random-variables">
+<h1><span class="section-number">8.6. </span>Continuous Random Variables<a class="headerlink" href="#continuous-random-variables" title="Permalink to this heading">#</a></h1>
+<p>The discrete random variables introduced the last two sections can model many random phenomena of interest; however, there are also many phenomena that they cannot model. Let’s begin with an example based on our study of the Poisson random variable in <a class="reference internal" href="important-discrete-rvs.html"><span class="doc">Important Discrete RVs</span></a>.</p>
+<section id="motivating-example-poisson-events">
+<h2><span class="section-number">8.6.1. </span>Motivating Example – Poisson Events<a class="headerlink" href="#motivating-example-poisson-events" title="Permalink to this heading">#</a></h2>
+<p>The Poisson random variable models the number of events that occur in some time period for a random phenomenon with events that occur randomly over time at some specified rate <span class="math notranslate nohighlight">\(\lambda\)</span>. However, the Poisson random variable does not tell us <strong>when</strong> those events occur.</p>
+<p>Let’s first try to get some insight into the distribution of the event times via simulating Poisson events. Let <span class="math notranslate nohighlight">\(P\)</span> be the number of Poisson events in an interval. Then given <span class="math notranslate nohighlight">\(P=p\)</span> (i.e., given the number of Poisson events is some specific value <span class="math notranslate nohighlight">\(p\)</span> to be specified later), the <span class="math notranslate nohighlight">\(p\)</span> events should be equally likely to be anywhere in the interval being observed.  Let’s simulate this scenario for the shark attack example from <a class="reference internal" href="important-discrete-rvs.html"><span class="doc">Important Discrete RVs</span></a>. The average number of shark attacks per year in Volussia County was given in the referenced article as 9. Let’s treat the interval as 365 days instead of 1 year, so that the resulting times are not all small decimals.</p>
+<p>The first thing to note is that the event times are <strong>not discrete</strong>. There is no need to limit our model of when events can occur to just the day, hour, or minute – the events can occur at any non-negative real value in the observation interval. Let <span class="math notranslate nohighlight">\(T_i\)</span>, <span class="math notranslate nohighlight">\(0 \le i \le p-1\)</span>,  be the random variable representing the time that event <span class="math notranslate nohighlight">\(i\)</span> occurs. If <span class="math notranslate nohighlight">\(T_i\)</span> is equally likely to be any time in that interval, then <span class="math notranslate nohighlight">\(T\)</span> is a <em>uniform continuous random variable</em>, which is usually just called a *uniform random variable.</p>
+<p>We are going to begin using the uniform random variable without formally defining it. Later, we will determine the important functions that characterize the uniform random variable and we will provide a careful definition at that point.</p>
+<p>We can create a SciPy.stats object representing a continuous random variable on the interval <span class="math notranslate nohighlight">\([0,365]\)</span> as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s draw 10 random times from this interval:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([263.25850218, 307.34792063, 123.7398398 , 213.73212016,
+       170.98777379, 211.81591296,  36.97985194,  75.27562725,
+       296.35851839,  83.71546447])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can note a few things:</p>
+<ul class="simple">
+<li><p>Each random variable is drawn separately and independently, and the resulting values are not sorted in any way.</p></li>
+<li><p>The values are not integer.</p></li>
+<li><p>Although the values are meant to represent values from <span class="math notranslate nohighlight">\([0,365]\)</span>, they are limited to values that can be represented by Python’s <code class="docutils literal notranslate"><span class="pre">float</span></code> type, which has limited resolution.</p></li>
+</ul>
+<p>Let’s investigate the histogram of values drawn from this distribution. We will use 100,000 random values to allow us to create a histogram with many bins:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100_000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/continuous-rvs_9_0.png" src="../_images/continuous-rvs_9_0.png" />
+</div>
+</div>
+<p>The relative frequencies are approximately equal for all of the bins, which we expect if the random values are equally likely to be anywhere in the interval.</p>
+<p>Now let’s plot the empirical CDF, which we can get by passing <code class="docutils literal notranslate"><span class="pre">density</span> <span class="pre">=</span> <span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">cumulative</span> <span class="pre">=</span> <span class="pre">True</span></code> as parameters to <code class="docutils literal notranslate"><span class="pre">plt.hist()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">cumulative</span> <span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/continuous-rvs_11_0.png" src="../_images/continuous-rvs_11_0.png" />
+</div>
+</div>
+<p>This is a very different CDF than any we encountered in <a class="reference internal" href="important-discrete-rvs.html"><span class="doc">Important Discrete RVs</span></a>. The CDF for a discrete random variable is a staircase function. By contrast, this CDF appears to be a continuous function. Let’s see if we can determine the CDF for <span class="math notranslate nohighlight">\(T\)</span>. If <span class="math notranslate nohighlight">\(T\)</span> is equally likely to be any value in <span class="math notranslate nohighlight">\([0, 365]\)</span>, then if we choose any interval <span class="math notranslate nohighlight">\([a,b] \subseteq [0,365]\)</span>, then the probability that <span class="math notranslate nohighlight">\(T \in [a,b]\)</span> should be proportional to the length <span class="math notranslate nohighlight">\(b-a\)</span>.  Since the probability that <span class="math notranslate nohighlight">\(T\)</span> is any value in <span class="math notranslate nohighlight">\([0, 365]\)</span> is 1, it must be that</p>
+<div class="math notranslate nohighlight">
+\[
+P\left( T \in \left[a,b\right] \right)  = \frac{b-a}{365-0}, \mbox{ if} [a,b] \subseteq [0,365].
+\]</div>
+<p>In particular, note that <span class="math notranslate nohighlight">\(P(T \le t) = P(T \in [0,t])\)</span> if <span class="math notranslate nohighlight">\(t \in [0,365]\)</span>.  Thus</p>
+<div class="math notranslate nohighlight">
+\[
+F_t(t) = \frac{t-0}{365} = \frac{t}{365}, ~~ 0 \le t \le 365,
+\]</div>
+<p>which is shown below on top of the empirical CDF:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Empirical CDF</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">cumulative</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
+
+<span class="c1"># Analytical CDF</span>
+<span class="n">tvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">365</span><span class="p">,</span> <span class="mi">366</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tvals</span><span class="p">,</span> <span class="n">tvals</span><span class="o">/</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$F_T(t)$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/continuous-rvs_13_0.png" src="../_images/continuous-rvs_13_0.png" />
+</div>
+</div>
+<p>The empirical CDF and the analytical CDF match up almost exactly. So now we have a way to generate Poisson events: Generate a random value <span class="math notranslate nohighlight">\(P\)</span> according to the Poisson distribution. Then generate <span class="math notranslate nohighlight">\(P\)</span> random values from the uniform continuous  distribution on <span class="math notranslate nohighlight">\([0, 365]\)</span>. Let’s start by creating our SciPy.stats Python object with parameter 9:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I am including code to create the uniform time random variable for people who are running this code out of order:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s create six different realizations of the Poisson events for a year. For each realization, we draw a random number of events. We use our usual notation that (upper case) <code class="docutils literal notranslate"><span class="pre">P</span></code> denotes the SciPy random variable object and (lower case) <span class="math notranslate nohighlight">\(p\)</span> denotes a particular value drawn from the random variable <span class="math notranslate nohighlight">\(P\)</span>. determine the arrival times for each of the <span class="math notranslate nohighlight">\(P\)</span> events</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">cols</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+    <span class="n">p</span><span class="o">=</span><span class="n">P</span><span class="o">.</span><span class="n">rvs</span><span class="p">()</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">T</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;v&#39;</span> <span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Hide most of the border</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span>          <span class="c1"># changes apply to the x-axis</span>
+                         <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span>      <span class="c1"># both major and minor ticks are affected</span>
+                         <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>      <span class="c1"># ticks along the bottom edge are off</span>
+                         <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>         <span class="c1"># ticks along the top edge are off</span>
+                         <span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># labels along the bottom edge are off</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="c1">#plt.show();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/continuous-rvs_19_0.png" src="../_images/continuous-rvs_19_0.png" />
+</div>
+</div>
+<p>This approach will work to generate Poisson events. However, it is not able to answer some simple questions like <em>what is the distribution for the first event time?</em>  Let’s start out by finding out what the distribution for the first event time looks like by using simulation. Let’s simulate 100,000 sets of Poisson events and store the <em>first</em> event time (i.e., the minimum of the randomly generated times) for each simulation iteration:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">first_event_times</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">rvs</span><span class="p">()</span> <span class="c1"># a Poisson number of events</span>
+  <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">first_event_times</span> <span class="o">+=</span> <span class="p">[</span> <span class="n">ts</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s plot the histogram for the first event times:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">first_event_times</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/continuous-rvs_23_0.png" src="../_images/continuous-rvs_23_0.png" />
+</div>
+</div>
+<p>The histogram for the first event times looks very different than the histogram for a particular event’s time. It clearly is not uniformly distributed on <span class="math notranslate nohighlight">\([0,365]\)</span>.</p>
+<p>Here is the empirical CDF:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">first_event_times</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/continuous-rvs_25_0.png" src="../_images/continuous-rvs_25_0.png" />
+</div>
+</div>
+<p>Again, the CDF appears to be a continuous function.
+In fact, the Poisson random variable gives us enough information to find the CDF for the first event times.  Let <span class="math notranslate nohighlight">\(T_0\)</span> to be the time at which the first event occurs. Then suppose we want to find the probability that <span class="math notranslate nohighlight">\(T_0\)</span> is greater than some specified value <span class="math notranslate nohighlight">\(t\)</span>. This will be true if there are no arrivals in the period <span class="math notranslate nohighlight">\([0,t]\)</span>.  For events that occur at rate <span class="math notranslate nohighlight">\(\lambda\)</span>, the number of events that occur in the period <span class="math notranslate nohighlight">\([0,t]\)</span> is a Poisson random variable with parameter <span class="math notranslate nohighlight">\(\alpha_t= \lambda t\)</span>; let’s refer to this Poisson random variable as <span class="math notranslate nohighlight">\(N_t\)</span>.  We can use the PMF for the Poisson random variable to give</p>
+<div class="amsmath math notranslate nohighlight" id="equation-18da7af9-b694-4388-9246-b76cab0f95d6">
+<span class="eqno">(8.6)<a class="headerlink" href="#equation-18da7af9-b694-4388-9246-b76cab0f95d6" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(T_0 &gt; t ) &amp;= P\left(N_t = 0 \right )\\
+&amp;= \frac{\alpha_{t}^0}{0!} e^{-\alpha_t} \\
+&amp;= e^{-\lambda t}.
+\end{align}\]</div>
+<p>For our shark example, <span class="math notranslate nohighlight">\(\lambda =9\)</span> attacks per year or <span class="math notranslate nohighlight">\(\lambda=9/365\)</span> attacks per day. The figure below shows <span class="math notranslate nohighlight">\(P(T_0 &gt;t)\)</span> as a function of <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">365</span><span class="p">,</span><span class="mi">366</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="mi">9</span><span class="o">/</span><span class="mi">365</span> <span class="o">*</span> <span class="n">t</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Pr(First event occurs after time $t$, $P(T_0 &gt;t)$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/continuous-rvs_27_0.png" src="../_images/continuous-rvs_27_0.png" />
+</div>
+</div>
+<p>We can apply some intuition to see if this makes sense. If an average of 9 events occur, then it seems likely that the first event occurs in the first <span class="math notranslate nohighlight">\(365/9 \approx 40.6\)</span> days. The figure confirms this intuition.</p>
+<p>Note also that the shape of this curve resembles the shape of the histogram for the data.</p>
+<p>We can extend this analysis to get the histogram for <span class="math notranslate nohighlight">\(T_0\)</span>, <span class="math notranslate nohighlight">\(F_{T_0}(t) = P(T_0 \le t) = 1 -P(t) = 1 - e^{\lambda t}\)</span>.  Since <span class="math notranslate nohighlight">\(P(T_0 &lt; 0) =0\)</span>, we can summarize its CDF as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+F_{T_0} (t) = 
+\begin{cases} 
+1 -P(t) = 1 - e^{\lambda t}, &amp; t \ge 0 \\
+0, &amp; t &lt; 0
+\end{cases}.
+\end{split}\]</div>
+<p>The CDF is shown below for this example, plotted on the same graph as the empirical CDF:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Empirical CDF</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">first_event_times</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
+
+<span class="c1"># Analytical CDF</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">365</span><span class="p">,</span> <span class="mi">366</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="mi">9</span><span class="o">/</span><span class="mi">365</span> <span class="o">*</span> <span class="n">t</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$F_</span><span class="si">{T_0}</span><span class="s1">(t) = P(T_0 &gt;t)$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/continuous-rvs_30_0.png" src="../_images/continuous-rvs_30_0.png" />
+</div>
+</div>
+<p>Again, the CDF is a continuous function, not a staircase function, and this is a very different CDF than for the uniform random variable.  In fact, this is the CDF of an <em>exponential random variable.</em> As with the uniform random variable, we will start to use the exponential distribution from SciPy.stats before we formally define the exponential random variable.</p>
+<p>Let’s create a SciPy.stats object for an exponential distribution. Note that instead of the parameter <span class="math notranslate nohighlight">\(\lambda\)</span>, we need to pass the average time before an event occurs as the <code class="docutils literal notranslate"><span class="pre">scale</span></code> parameter. The average value is simply the value <span class="math notranslate nohighlight">\(365/9 \approx 40.6\)</span> that we computed before. Below, we create a Scipy.stats object for an exponential distribution with this parameter and plot the CDF of this object on top of the empirical histogram:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">expon</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">40.6</span><span class="p">)</span>
+
+<span class="c1"># Empirical CDF</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">first_event_times</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
+
+<span class="c1"># Analytical CDF from exponential random variable object</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">365</span><span class="p">,</span> <span class="mi">366</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fec448c8e20&gt;]
+</pre></div>
+</div>
+<img alt="../_images/continuous-rvs_32_1.png" src="../_images/continuous-rvs_32_1.png" />
+</div>
+</div>
+</section>
+<section id="definition-and-implications">
+<h2><span class="section-number">8.6.2. </span>Definition and Implications<a class="headerlink" href="#definition-and-implications" title="Permalink to this heading">#</a></h2>
+<p>For most purposes, the following definition of a continuous random variable will suffice:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-continuous-uniform-random-variable">continuous uniform random variable<a class="headerlink" href="#term-continuous-uniform-random-variable" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A random variable <span class="math notranslate nohighlight">\(X\)</span> that has an uncountably infinite number of values in its range
+and for which the cumulative distribution function (CDF) <span class="math notranslate nohighlight">\(F_X(x)\)</span> is a <strong>continuous function of</strong>  <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>You should already know what a continuous function is.  Informally, it is easiest to think of how the function looks when plotted.  A continuous function has no “breaks” in its graph, and we can imagine drawing it without having to pick up our pencil.</p>
+<p>Mathematically, <span class="math notranslate nohighlight">\(F_X(x)\)</span> is a continuous function at a point <span class="math notranslate nohighlight">\(x_0\)</span> if and only</p>
+<div class="amsmath math notranslate nohighlight" id="equation-868a7210-907f-420e-93d9-814f551f1b83">
+<span class="eqno">(8.7)<a class="headerlink" href="#equation-868a7210-907f-420e-93d9-814f551f1b83" title="Permalink to this equation">#</a></span>\[\begin{align}
+\lim_{\epsilon \rightarrow 0} F_X(x_0-\epsilon) &amp;= F_X(x_0), \mbox{ and} \\
+\lim_{\epsilon \rightarrow 0} F_X(x_0+\epsilon) &amp;= F_X(x_0).
+\end{align}\]</div>
+<p>We say that the “limit from the left” and the “limit from the right” are equal to the value of <span class="math notranslate nohighlight">\(F_X()\)</span> at <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+<p>Then <span class="math notranslate nohighlight">\(F_X(x)\)</span> is a continuous function if and only if it is a continuous function at every point <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(X\)</span> is a continuous random variable, then the fact that <span class="math notranslate nohighlight">\(F_X(x)\)</span> is a continuous random variable has an interesting implication.  Recall from <a class="reference internal" href="cdfs.html"><span class="doc">Cumulative Distribution Functions</span></a> that <span class="math notranslate nohighlight">\(P(X=x)\)</span> is equal to the “height of the jump” in <span class="math notranslate nohighlight">\(F_X(x)\)</span> at the point <span class="math notranslate nohighlight">\(x\)</span>. For continuous functions, there are no jumps!  Mathematically, we saw that</p>
+<div class="math notranslate nohighlight">
+\[
+P(X=b) = F_X(b^+) - F_X(b^-).
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(F_X(x)\)</span> is continuous, <span class="math notranslate nohighlight">\(F_X(x^+) = F_X(x) = F_X(x^-)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span>, and thus</p>
+<div class="math notranslate nohighlight">
+\[
+P(X=x) = F_X(x^+) - F_X(x^-) = F_X(x) -F_X(x) =0.
+\]</div>
+<p>Since this holds for all <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(P(X=x)=0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span>. This is a surprising and counterintuitive result: <strong>none of the values that <span class="math notranslate nohighlight">\(X\)</span> takes on have a non-zero probability.</strong></p>
+<p>This is hard to understand in the abstract, so let’s consider a concrete example. For the uniform random variable on <span class="math notranslate nohighlight">\([0,1],\)</span> the distribution function is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+F_X(x) = 
+\begin{cases}
+0, &amp; x&lt;0 \\
+x, &amp; 0 \le x &lt; 1 \\
+1, &amp; x \ge 1\\
+\end{cases}.
+\end{split}\]</div>
+<p>Consider the probability of a symmetric interval centered around 0.5, <span class="math notranslate nohighlight">\(P\left( X \in \left(0.5 - \epsilon, 0.5+ \epsilon \right] \right)\)</span>. Using Property 4 of the CDF, we can calculate this probability as a function of <span class="math notranslate nohighlight">\(0 &lt; \epsilon \le 0.5\)</span> as follows</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b8d383d0-1376-4e60-b03d-df9d3eaa0ef5">
+<span class="eqno">(8.8)<a class="headerlink" href="#equation-b8d383d0-1376-4e60-b03d-df9d3eaa0ef5" title="Permalink to this equation">#</a></span>\[\begin{align}
+ P\left( X \in \left(0.5 - \epsilon, 0.5+ \epsilon \right] \right) &amp; =  P ( 0.5 - \epsilon &lt; X \le 0.5 + \epsilon) \\
+ &amp; = F_X(0.5 + \epsilon) - F_X (0.5  - \epsilon) \\
+ &amp;= (0.5 + \epsilon) - (0.5 - \epsilon) \\
+ &amp;= 2 \epsilon
+\end{align}\]</div>
+<p>In fact, it is not hard to see that <span class="math notranslate nohighlight">\(P\left( X \in \left(x -\epsilon, x+ \epsilon \right] \right) = 2 \epsilon\)</span> for any <span class="math notranslate nohighlight">\(x \in (0,1)\)</span> provided <span class="math notranslate nohighlight">\(\epsilon\)</span> is small enough that <span class="math notranslate nohighlight">\(\left(x -\epsilon, x+ \epsilon \right] \subseteq [0,1]\)</span>.</p>
+<p>Note that <span class="math notranslate nohighlight">\(P(X=x) \le P\left( X \in \left(x -\epsilon, x+ \epsilon \right] \right) \)</span> for all <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span>. Then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a82b658f-8a06-41ed-b2f8-c72f3ee5b9ca">
+<span class="eqno">(8.9)<a class="headerlink" href="#equation-a82b658f-8a06-41ed-b2f8-c72f3ee5b9ca" title="Permalink to this equation">#</a></span>\[\begin{align}
+P(X=x) &amp; \le \lim_{\epsilon \rightarrow 0} P\left( X \in \left(x -\epsilon, x+ \epsilon \right] \right)  \\
+&amp; = \lim_{\epsilon \rightarrow 0} 2 \epsilon = 0.
+\end{align}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(P(X=x) \ge 0\)</span>, it must be that <span class="math notranslate nohighlight">\(P(X=x) =0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span>.
+ 
+<strong>If you have not encountered this before, it may seem to make no sense – how can <span class="math notranslate nohighlight">\(X\)</span> not have
+any nonzero probabilities for any values in its range?</strong> Let’s start with an analogy. Consider a rectangular wood block, such as the  one shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;figs/woodblock.png&#39;</span><span class="p">)</span>
+<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span>          <span class="c1"># changes apply to the x-axis</span>
+               <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span>      <span class="c1"># both major and minor ticks are affected</span>
+               <span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>      <span class="c1"># ticks along the bottom edge are off</span>
+               <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>         <span class="c1"># ticks along the top edge are off</span>
+               <span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># labels along the bottom edge are off</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/continuous-rvs_35_0.png" src="../_images/continuous-rvs_35_0.png" />
+</div>
+</div>
+<p>If the wood block weighs 100 g and the mass is evenly distributed, how much mass is in the horizontal range <span class="math notranslate nohighlight">\([0,50]\)</span> ? That range contains half the block, so the answer is 1/2. How much mass is in the horizontal range <span class="math notranslate nohighlight">\([0,x]\)</span>, where <span class="math notranslate nohighlight">\(0 \le x \le 100\)</span>? The range contains <span class="math notranslate nohighlight">\(x/100\)</span> of the mass, so the answer is <span class="math notranslate nohighlight">\(x\)</span> grams. But if we ask how much mass is at any point, then we are back to the same issue.  For instance, the mass at horizontal location 0 is the mass in the range <span class="math notranslate nohighlight">\([0,0]\)</span>, which is 0 grams.</p>
+<p>The way to resolve this issue is that we do not specify the mass at any particular location on the horizontal axis – instead we can specify the mass density. So, if the horizontal axis is in millimeters, then the mass density is 100 g/ 100 mm = 1 g/mm. Since the mass is assumed to be evenly distributed, the mass in any horizontal range <span class="math notranslate nohighlight">\([x_0, x_1]\)</span>, where <span class="math notranslate nohighlight">\(0 \le x_0 &lt; x_1 \le 100\)</span> is then <span class="math notranslate nohighlight">\((x_1 -x_0) \mbox{mm} \cdot (1  \mbox{g/mm}) = (x_1 -x_0)\)</span> g. If our mass is nonuniformly distributed, then we can create a function <span class="math notranslate nohighlight">\(\rho(x)\)</span> that gives the mass density at position <span class="math notranslate nohighlight">\(x\)</span>. Then the mass density in an interval <span class="math notranslate nohighlight">\([x_0, x_1]\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{x_0}^{x_1} \rho(x) ~ dx.
+\]</div>
+</section>
+<section id="density-functions">
+<h2><span class="section-number">8.6.3. </span>Density Functions<a class="headerlink" href="#density-functions" title="Permalink to this heading">#</a></h2>
+<p>We can apply the same idea as mass density in physical objects to probability distributions. The CDF for a random variable <span class="math notranslate nohighlight">\(X\)</span> is the total probability in the range <span class="math notranslate nohighlight">\((- \infty, x)\)</span>. If we want to create a probability density, <span class="math notranslate nohighlight">\(f_X(x)\)</span>, then the CDF should be the <em>integral</em> of the probability density on this range:</p>
+<div class="math notranslate nohighlight">
+\[
+F_X(x) = \int_{-\infty}^{x} f(u)~du.
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There are several important things to note about the equation above:</p>
+<ul class="simple">
+<li><p>Note again the importance of distinguishing upper-case and lower-case letters: <span class="math notranslate nohighlight">\(F_X(x)\)</span> is a distribution function (CDF), whereas <span class="math notranslate nohighlight">\(f_X(x)\)</span> is a density function.</p></li>
+<li><p>The distribution function at the point <span class="math notranslate nohighlight">\(x\)</span> is defined as the integral of the density function from <span class="math notranslate nohighlight">\(-\infty\)</span> to <span class="math notranslate nohighlight">\(x\)</span>. Because <span class="math notranslate nohighlight">\(x\)</span> is in the region of integration, we <strong>cannot use <span class="math notranslate nohighlight">\(x\)</span> as the variable of integration</strong>.  You can use any unused variable as the variable of integration (here, I chose <span class="math notranslate nohighlight">\(u\)</span>) to represent a variable that is changing values as we integrate from <span class="math notranslate nohighlight">\(u = -\infty\)</span> to <span class="math notranslate nohighlight">\(u=x\)</span>.  <strong>If you try to use <span class="math notranslate nohighlight">\(x\)</span> both in the region of integration and as the variable of integration, the answer will almost sure come out wrong!</strong></p></li>
+</ul>
+</div>
+<p>Then we have the following definition of the probability density function (from the Fundamental Theorem of Calculus):</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-probability-density-function-pdf">probability density function (pdf)<a class="headerlink" href="#term-probability-density-function-pdf" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">If <span class="math notranslate nohighlight">\(X\)</span> is a continuous random variable with distribution function <span class="math notranslate nohighlight">\(F_X(x)\)</span>, then the probability density function <span class="math notranslate nohighlight">\(f_X(x)\)</span> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7ceb0b04-8386-4cd1-914c-a763a4e6512b">
+<span class="eqno">(8.10)<a class="headerlink" href="#equation-7ceb0b04-8386-4cd1-914c-a763a4e6512b" title="Permalink to this equation">#</a></span>\[\begin{align} f_X(x) = \frac{d}{dx} F_X(x) \end{align}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>First note the notation:</p>
+<ul class="simple">
+<li><p>We will use lower-case <em>pdf</em> to denote the probability density function, in the same way that we use lower-case <span class="math notranslate nohighlight">\(f\)</span> for this function.</p></li>
+<li><p>We will use upper-case <em>CDF</em> to denote the cumulative distribution function, in the same way that we use upper-case <span class="math notranslate nohighlight">\(F\)</span> for this function.</p></li>
+</ul>
+<p>This consistency in capitalization will make it easier to remember the differences between these functions.  Although most books follow this convention, not all do, and you may encounter PDF to mean the probability density function in some contexts.</p>
+</div>
+<p><strong>SymPy for Derivatives</strong></p>
+<p>Python has a powerful library for performing symbolic mathematics – i.e., mathematics with variables instead of specific values. I will briefly demonstrate how to use this library to find density functions from distribution functions, and vice versa. As usual, the first step is to import the library. Here, we will use the short name <code class="docutils literal notranslate"><span class="pre">sp</span></code> to refer to SymPy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next step we will need to do is to create a variable that maps to a symbol. We can use the SymPy function <code class="docutils literal notranslate"><span class="pre">sp.symbols()</span></code> to create one or more symbols. The function <code class="docutils literal notranslate"><span class="pre">sp.symbols()</span></code> can be called with multiple different types of arguments, but we will always pass an argument that is a string containing a single variable name or a comma separated list of variable names.  The output will be a tuple that can will automatically unpack into a set of comma separated variables. We can create a SymPy symbol object for the variable <span class="math notranslate nohighlight">\(x\)</span> as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we want to create SymPy objects for variables <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span>, we can use this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span> <span class="s1">&#39;y,z&#39;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can now create a function  of any of these variables. For instance, if we want to create the function <span class="math notranslate nohighlight">\(g(x) = x^2 +5x +6\)</span>, we can just do the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can take derivatives using <code class="docutils literal notranslate"><span class="pre">sp.diff()</span></code>. It takes two arguments: the function to take the derivative of, and the variable to differentiate. So we can get</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d}{dx} g(x)
+\]</div>
+<p>using SymPy as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2 x + 5\]</div>
+</div>
+</div>
+<p>The SymPy function <code class="docutils literal notranslate"><span class="pre">sp.integrate()</span></code> performs symbolic integration. It has a similar call pattern to <code class="docutils literal notranslate"><span class="pre">sp.diff()</span></code>: the first argument is the function to integrate, and the second argument is the variable of integration:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x^{2} + 5 x\]</div>
+</div>
+</div>
+<p>(Note that the integral of the derivative is only equal to the original expression up to a constant.)</p>
+<p>Many density and distribution functions are <em>piecewise functions</em>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-piecewise-function">piecewise function<a class="headerlink" href="#term-piecewise-function" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A <em>piecewise function</em> is a function that has a different functional relationship on different regions of its variable(s).</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>For instance, consider again the distribution of the uniform random variable <span class="math notranslate nohighlight">\(T\)</span> with range <span class="math notranslate nohighlight">\([0,365]\)</span>.  We saw that if <span class="math notranslate nohighlight">\(t \in [0, 365]\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+F_T(t) = \frac{t}{365}.
+\]</div>
+<p>However, that does not generalize to outside of this interval.  For instance, since we know that the range of <span class="math notranslate nohighlight">\(T\)</span> is <span class="math notranslate nohighlight">\([0,365]\)</span>, then there are no values of <span class="math notranslate nohighlight">\(T\)</span> for which <span class="math notranslate nohighlight">\(T\le t\)</span> if <span class="math notranslate nohighlight">\(t &lt; 0\)</span>. For example, see below for an illustration of the relation of these regions:</p>
+<a class="reference internal image-reference" href="../_images/uniform-cdf-less-than-zero.pdf"><img alt="" src="../_images/uniform-cdf-less-than-zero.pdf" style="width: 320px;" /></a>
+<p>Thus,</p>
+<div class="math notranslate nohighlight">
+\[
+F_T(t) = P(T \le t) = 0, \mbox{ if } t&lt;0.
+\]</div>
+<p>Similarly if <span class="math notranslate nohighlight">\(t&gt; 365,\)</span> then the region <span class="math notranslate nohighlight">\(T \le t\)</span> contains the region <span class="math notranslate nohighlight">\(T \le 365\)</span>, as shown below:</p>
+<a class="reference internal image-reference" href="../_images/uniform-cdf-greater-than-365.pdf"><img alt="" src="../_images/uniform-cdf-greater-than-365.pdf" style="width: 320px;" /></a>
+<p>Thus, all of the probability of <span class="math notranslate nohighlight">\(T\)</span> is contained in the region <span class="math notranslate nohighlight">\(T \le t\)</span>, and</p>
+<div class="math notranslate nohighlight">
+\[
+F_T(t) = P (T \le t) = 1, \mbox{ if } t \ge 365.
+\]</div>
+<p>(We could also have considered the region <span class="math notranslate nohighlight">\(t \ge 365\)</span>, but we already have a functional relationship for <span class="math notranslate nohighlight">\(0 \le t \le 365\)</span>, which contains the pointer <span class="math notranslate nohighlight">\(t=365\)</span>.</p>
+<p>Putting all this together, <span class="math notranslate nohighlight">\(F_T(t)\)</span> is a piecewise function given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_T(t) = 
+\begin{cases}
+0, &amp; t &lt; 0 \\
+\frac{t}{365}, &amp; 0 \le t \le 365 \\
+1, &amp; t &gt; 365 
+\end{cases}
+\end{equation*}\]</div>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">sp.Piecewise()</span></code> function to implement this in SymPy. The arguments of <code class="docutils literal notranslate"><span class="pre">sp.Piecewise()</span></code> are a sequence of tuples, where the first element of the tuple is the function, and the second element is the condition that specifies the region. Here is an implementation of the function <span class="math notranslate nohighlight">\(F_T(t)\)</span> above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">Piecewise</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">365</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span><span class="mi">365</span><span class="p">)),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;</span><span class="mi">365</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \begin{cases} 0 &amp; \text{for}\: x &lt; 0 \\\frac{x}{365} &amp; \text{for}\: x \leq 365 \\1 &amp; \text{otherwise} \end{cases}\end{split}\]</div>
+</div>
+</div>
+<p>Note that the region for the second “piece” does not match the one we specified; that is because  <code class="docutils literal notranslate"><span class="pre">sp.Piecewise()</span></code> evaluates the conditions in order, so it is not necessary to specify <span class="math notranslate nohighlight">\(x \ge 0\)</span> for the second “piece”. Similarly, the last piece corresponds to every condition not covered by the first two. We could have taken advantage of this in creating SymPy version as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">Piecewise</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mi">365</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;=</span><span class="mi">365</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \begin{cases} 0 &amp; \text{for}\: x &lt; 0 \\\frac{x}{365} &amp; \text{for}\: x \leq 365 \\1 &amp; \text{otherwise} \end{cases}\end{split}\]</div>
+</div>
+</div>
+<p>SymPy can differentiate piecewise functions, but the derivative is also piecewise. This works fine if the function being differentiated is continuous, but derivatives of functions with step discontinuities (like CDFs of discrete random variables) require using generalized functions (Dirac delta functions).</p>
+<p>Here is the density function <span class="math notranslate nohighlight">\(f_T(t)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \begin{cases} 0 &amp; \text{for}\: x &lt; 0 \\\frac{1}{365} &amp; \text{for}\: x \leq 365 \\0 &amp; \text{otherwise} \end{cases}\end{split}\]</div>
+</div>
+</div>
+<p>Note that probability densities are not probabilities. Like probabilities, they are non-negative (because a density function is the derivative of a monotonically nolen-decreasing function).  However, unlike probabilities, they are not upper-bounded by 1. For example, suppose that <span class="math notranslate nohighlight">\(U\)</span> is a uniform random variable with range <span class="math notranslate nohighlight">\([0, 0.1]\)</span>. Then the CDF is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+F_U(u) = 
+\begin{cases}
+0, &amp; u &lt; 0 \\
+\frac{u}{0.1}, &amp; 0 \le u \ 0.1 \\
+1, &amp; u &gt; 1
+\end{cases},
+\end{split}\]</div>
+<p>and the density function is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f_u(u) = \frac{d}{du} F_U(u) = 
+\begin{cases}
+10, &amp; 0 \le u \ 0.1 \\
+0, &amp; \mbox{otherwise}
+\end{cases}.
+\end{split}\]</div>
+<p>Now consider the time to the first Poisson event, <span class="math notranslate nohighlight">\(T_0\)</span>, which has the CDF</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+F_{T_0} (t) = 
+\begin{cases} 
+1 -P(t) = 1 - e^{\lambda t}, &amp; t \ge 0 \\
+0, &amp; t &lt; 0
+\end{cases}.
+\end{split}\]</div>
+<p>Then a SymPy implementation and derivative are shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;t,l&#39;</span><span class="p">)</span>
+<span class="n">FT0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Piecewise</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">l</span> <span class="o">*</span> <span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">FT0</span>
+                   
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \begin{cases} 0 &amp; \text{for}\: t &lt; 0 \\1 - e^{- l t} &amp; \text{otherwise} \end{cases}\end{split}\]</div>
+</div>
+</div>
+<p>Then the density function is given by</p>
+<div class="math notranslate nohighlight">
+\[
+f_{T_0} = \frac{d}{dt} F_{T_0}(t),
+\]</div>
+<p>which is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fT0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">FT0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="n">fT0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \begin{cases} 0 &amp; \text{for}\: t &lt; 0 \\l e^{- l t} &amp; \text{otherwise} \end{cases}\end{split}\]</div>
+</div>
+</div>
+</section>
+<section id="properties-of-density-functions">
+<h2><span class="section-number">8.6.4. </span>Properties of Density Functions<a class="headerlink" href="#properties-of-density-functions" title="Permalink to this heading">#</a></h2>
+<p><strong>1.The probability density function is non-negative:</strong> <span class="math notranslate nohighlight">\(f_X(x) \ge 0, -\infty &lt; x &lt; \infty\)</span></p>
+<p><em>Proof:</em> Since the CDF, <span class="math notranslate nohighlight">\(F_X(x)\)</span>, is a nondecreasing function, its derivative is non-negative.</p>
+<p><strong>2. The density function integrates to 1:</strong></p>
+<p><em>Proof:</em> From the Fundamental Theorem of Calculus and the fact that <span class="math notranslate nohighlight">\(P(-\infty)=0\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+F_X(x) = \int_{-\infty}^{x} f_X(x) dx. 
+\]</div>
+<p>Then</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{-\infty}^{\infty} f_X(x) dx = F_X(\infty) = 1. 
+\]</div>
+<p><strong>3. Calculate the probability of an interval by integrating the density over it.</strong> I.e.,</p>
+<div class="math notranslate nohighlight">
+\[
+P(a &lt; X \le b) = \int_a^b f_X(x) dx, a \le b
+\]</div>
+<p><em>Proof:</em></p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+P(a&lt; X \le b) &amp;=&amp; F_X(b) -F_X(a)  \\
+  &amp;=&amp; \int_{-\infty}^{b} f_X(x)~dx - \int_{-\infty}^{a} f_X(x)~dx  \\
+  &amp;=&amp; \int_a^b f_X(x)~dx .
+\end{eqnarray*}\]</div>
+<p><strong>4. Calculate probabilities of any Borel set by integrating the density over that set.</strong>
+For any Borel set <span class="math notranslate nohighlight">\(B\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+P(B) = \int_B f_X(x)~dx.
+\]</div>
+<p><em>Proof Sketch:</em>
+<span class="math notranslate nohighlight">\(B\)</span> can be written as the union of intervals, so pdf property 3 can be used to write the pdf of each interval as an integral of the pdf over the interval. Then the integral above is short-hand notation for integrating over all the intervals that make up <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>This is not a particularly powerful property when dealing with single random variables; however, when this property is extended to working with multiple random variables, it enables the computation of probabilities that cannot otherwise be computed.</p>
+<p><strong>5. Almost any nonnegative function that integrates to 1 is a valid density function for some random variable.</strong></p>
+<p>If <span class="math notranslate nohighlight">\(g(x)\)</span> is a nonnegative piecewise continuous function
+with finite integral
+\begin{eqnarray*}
+\int_{-\infty}^{+\infty} g(x) dx = c, -\infty&lt; c &lt; +\infty,
+\end{eqnarray*}
+then <span class="math notranslate nohighlight">\(f_X(x)=\frac{g(x)}{c}\)</span> is a valid pdf for a random variable.</p>
+<p><em>The proof is beyond the scope of this text.</em></p>
+<p>Now that we have been introduced to continuous random variables, along with pdfs and their properties, we are ready to learn more about important continuous random variables and how to work with them using SciPy.stats in the next section.</p>
+</section>
+<section id="terminology-review">
+<h2><span class="section-number">8.6.5. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg)  translateX(-10%);
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transform:  translateX(20px); 
+    transition: display 0s;
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 300px;
+	  width: 640px;
+}
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:20px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 600px;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 16pt;
+    left:442pt;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:20px;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+.flashcardtext{
+    color: var(--snow);
+    font-size: 20pt;
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+  }
+
+</style><script type="text/Javascript">
+/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+function flip(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 700, next);
+}
+
+function reenableNext(next) {
+    next.style.pointerEvents='auto';
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+
+}
+
+
+function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 600, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id) {
+    console.log(id);
+
+    var mydiv=document.getElementById(id);
+
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+
+    for (var i=0; i<2; i++) {
+
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    return flipper;
+}
+
+
+
+
+
+</script><script type="text/Javascript">
+
+    cardsdTntGxyKWvFn=[
+    {
+        "front": "Continuous uniform random variable",
+        "back": "RV with uncountably infinite range and continuous CDF"
+    },
+    {
+        "front": "Probability density function (pdf)",
+        "back": "For a continuous RV $X$, \\[f_X(x) = \\frac{d}{dx} F_X(x)\\] "
+    },
+    {
+        "front": "Piecewise function",
+        "back": "A function that has a different functional relationship on different regions of its variable(s)."
+    }
+]
+;
+
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/08-random-variables/flashcards/continuous-rvs.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("dTntGxyKWvFn"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("dTntGxyKWvFn");
+        });
+        }
+        </script>
+        <div style="height:40px"></div><div class="flip-container" id="dTntGxyKWvFn" onclick="flip(this)"></div><div style="height:40px"></div><div class="next" id="dTntGxyKWvFn-next" onclick="checkFlip('dTntGxyKWvFn')"> </div> <div style="height:40px"></div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./08-random-variables"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="important-discrete-rvs.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">8.4. </span>Important Discrete RVs</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="important-continuous-rvs.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8.7. </span>Important Continuous Random Variables</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

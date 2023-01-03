@@ -1,0 +1,1685 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="1.6. Getting Started in Jupyter" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/01-intro/jupyter-start.html" />
+  
+<meta property="og:description" content="Let’s begin exploring JupyterLab using an existing notebook: 1) Download a Jupyter notebook file. We will use the file “intro.ipynb”, which is available by clicking on the link below or typing the ..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="1.6. Getting Started in Jupyter" />
+  
+    <title>1.6. Getting Started in Jupyter &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/01-intro/jupyter-start.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.7. Getting Started in Python" href="python-start.html" />
+    <link rel="prev" title="1.5. Extremely Brief Intro to Jupyter and Python" href="intro-jupyter-and-python.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   1. Introduction
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/01-intro/jupyter-start.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/01-intro/jupyter-start.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learn-the-basics-of-jupyterlab">
+   1.6.1. Learn the basics of JupyterLab
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#notebook-structure">
+     1.6.1.1. Notebook structure
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyterlab-interface-modes">
+     1.6.1.2. JupyterLab interface modes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-on-cells">
+   1.6.2. More on cells
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intro-to-markdown-in-jupyter">
+   1.6.3. Intro to Markdown in Jupyter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-notebooks-into-and-out-of-jupyter-lab">
+   1.6.4. Getting Notebooks Into and Out of Jupyter Lab
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-magics">
+   1.6.5. Jupyter Magics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-your-work-closing-notebooks-and-closing-jupyter-lab">
+   1.6.6. Saving Your Work, Closing Notebooks, and Closing Jupyter Lab
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Getting Started in Jupyter</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learn-the-basics-of-jupyterlab">
+   1.6.1. Learn the basics of JupyterLab
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#notebook-structure">
+     1.6.1.1. Notebook structure
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyterlab-interface-modes">
+     1.6.1.2. JupyterLab interface modes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-on-cells">
+   1.6.2. More on cells
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intro-to-markdown-in-jupyter">
+   1.6.3. Intro to Markdown in Jupyter
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-notebooks-into-and-out-of-jupyter-lab">
+   1.6.4. Getting Notebooks Into and Out of Jupyter Lab
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-magics">
+   1.6.5. Jupyter Magics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-your-work-closing-notebooks-and-closing-jupyter-lab">
+   1.6.6. Saving Your Work, Closing Notebooks, and Closing Jupyter Lab
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started-in-jupyter">
+<h1><span class="section-number">1.6. </span>Getting Started in Jupyter<a class="headerlink" href="#getting-started-in-jupyter" title="Permalink to this heading">#</a></h1>
+<p>Let’s begin exploring JupyterLab using an existing notebook:</p>
+<p><strong>1) Download a Jupyter notebook file.</strong></p>
+<p>We will use the file “intro.ipynb”, which is available by clicking on the link below or typing the link into your browser:</p>
+<p><strong>Change this to an Intro notebook when this section is finished</strong></p>
+<p><a href="https://raw.githubusercontent.com/jmshea/EEL5544/master/Python%20Basics.ipynb" download="python-basics.ipynb">Python Basics</a></p>
+<p>If your browser displays the notebook as text, you will need to tell it to save it as a file. You can usually do this by right-clicking or control-clicking in the browser window and choosing to save the page as a file. For instance in Safari 14, choose the “Save Page As…” menu item. Be sure to name your file with a <em>.ipynb</em> ending.)</p>
+<p><em>Hint:</em> If your file was saved to your default Downloads folder, be sure to move it to your <em>notebooks</em> folder to keep things organized!</p>
+<p><strong>2) Start JupyterLab.</strong></p>
+<p>JupyterLab can be started from the Anaconda-Navigator program that is installed with the Anaconda distribution. Start Anaconda-Navigator, scroll to find JupyterLab and then click the <em>Launch</em> button under JupyterLab. JupyterLab should start up in your browser.</p>
+<p><em>Alternative for command line users:</em> users that are familiar with the command line can start JupyterLab by typing <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> at the command prompt (provided the anaconda bin directory is on the command line search path). Because setting this up is specialized to each operating system and command shell, the details are omitted. However, details of how to set up the path for Anaconda can be found at many sites online.</p>
+<p>Your JupyterLab should open to a view that looks something like the one below:</p>
+<p><img alt="" src="../_images/jupyter-lab-start.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you have used JupyterLab before, it may not look like this – it will pick up where you left off!</p>
+</div>
+<p>The JupyterLab interface has many different parts:</p>
+<ol class="simple">
+<li><p>The <strong>menu bar</strong> is across the very top of the JupyterLab app. We will introduce the use of menus later in this lesson.</p></li>
+<li><p>The <strong>left sidebar</strong> occupies the left side below the menu bar. It includes several different tabs, which you can switch between by clicking the different icons on the very far left of the left sidebar. In the view above, the folder icon is highlighted, which indicates that the file browser is selected. For this book, we will use the left sidebar only to access the file browser.</p></li>
+<li><p>The <strong>main work area</strong> is to the right of the left sidebar. The main work area will usually show whatever document you are working on. However, if you have not opened any document yet, it will show you different types of notebooks that you can open and other tools that you can access. To start a completely new Jupyter notebook file that can run Python 3 code, you could click on the Python 3 icon under <code class="docutils literal notranslate"><span class="pre">Notebooks</span></code>. For now, you do not need to do that.</p></li>
+</ol>
+<p>Detailed documentation for JupyterLab is available at <a class="reference external" href="https://jupyterlab.readthedocs.io/">https://jupyterlab.readthedocs.io/</a></p>
+<p><strong>3) Navigate to the downloaded notebook.</strong></p>
+<p>Use the file browser in the left sidebar of JupyterLab to navigate to the downloaded file.</p>
+<p><em>If the file browser is not already showing your files, click on the folder icon (on the very left hand side of the window) to switch to it.</em></p>
+<p>Navigation using the file browser should be similar to navigating in most file selection boxes:</p>
+<ul class="simple">
+<li><p>Single click on items to select them</p></li>
+<li><p>Double click on folders to navigate into them</p></li>
+<li><p>Double click on files to open them</p></li>
+<li><p>As you navigate down into folders, the current path (relative to your starting path) is shown above the file lsit. You can navigate back out of folders by clicking on the <em>name</em> of a parent folder in the current path.</p></li>
+</ul>
+<p>If you downloaded the file <code class="docutils literal notranslate"><span class="pre">intro.ipynb</span></code> to the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> subdirectory of the <code class="docutils literal notranslate"><span class="pre">data-science</span></code> directory, which lies in your home directory, then  you would:</p>
+<ul class="simple">
+<li><p>Double click on the <code class="docutils literal notranslate"><span class="pre">data-science</span></code> folder</p></li>
+<li><p>Double click on the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder</p></li>
+<li><p>Double click on the file <code class="docutils literal notranslate"><span class="pre">intro.ipynb</span></code></p></li>
+</ul>
+<p>The file <code class="docutils literal notranslate"><span class="pre">intro.ipynb</span></code> should open in the main work area.</p>
+<section id="learn-the-basics-of-jupyterlab">
+<span id="index-0"></span><h2><span class="section-number">1.6.1. </span>Learn the basics of JupyterLab<a class="headerlink" href="#learn-the-basics-of-jupyterlab" title="Permalink to this heading">#</a></h2>
+<p>After opening the <code class="docutils literal notranslate"><span class="pre">intro.ipynb</span></code> notebook, take a minute to scroll through the <code class="docutils literal notranslate"><span class="pre">intro.ipynb</span></code> notebook before interacting with it. Note that the notebook includes formatted text, graphics, mathematics, and Python programming code. You will learn to use all of these features in working with data and presenting your analyses.</p>
+<section id="notebook-structure">
+<h3><span class="section-number">1.6.1.1. </span>Notebook structure<a class="headerlink" href="#notebook-structure" title="Permalink to this heading">#</a></h3>
+<p>Jupyter notebooks are subdivided into parts called <strong>cells</strong>. Each cell can be used for different purposes; we will use them for either Python code or for Markdown, which is a simple markup language that allows the creation of formatted text with math and graphics. Code cells are subdivided into Input and Output parts. Single click on any part of the <code class="docutils literal notranslate"><span class="pre">intro.ipynb</span></code> notebook to select a cell. The selected cell will be indicated by a color bar along the entire left side of the cell.</p>
+</section>
+<section id="jupyterlab-interface-modes">
+<span id="index-1"></span><h3><span class="section-number">1.6.1.2. </span>JupyterLab interface modes<a class="headerlink" href="#jupyterlab-interface-modes" title="Permalink to this heading">#</a></h3>
+<p>The JupyterLab user interface can be in one of two modes, and these modes affect what you can do with a cell:</p>
+<ul class="simple">
+<li><p>In <strong>Edit Mode</strong>, the focus is on one cell, which will be outlined in color (blue on my computer with the default theme), and the cursor will contain a blinking cursor indicating where typed text will appear.</p></li>
+<li><p>In <strong>Command Mode</strong>, you cannot edit or enter text into a cell, but you can navigate among cells and use keyboard shortcuts to act on them, including running cells, selecting groups of cells, and copying/cutting/pasting or deleting cells.</p></li>
+</ul>
+<p>There are several ways to</p>
+<p>In <strong>Command Mode</strong>, to switch to <strong>Edit Mode</strong> and begin editing a cell:</p>
+<ul class="simple">
+<li><p>Double-click on a cell.</p></li>
+<li><p>Select a cell using the cursor keys and then press Enter.</p></li>
+</ul>
+<p>In <strong>Edit Mode</strong>, to switch to <strong>Command Mode</strong>:</p>
+<ul class="simple">
+<li><p>Press the ESC key. The current cell is <em>not evaluated</em>, but it will be selected in <strong>Command Mode</strong>.</p></li>
+<li><p>If editing a cell that is <em>not</em> the last cell in the notebook, press Shift-Enter to <em>evaluate</em> the current cell and return to <strong>Command Mode</strong>. (If you are in the last cell of the notebook, Shift-Enter will evaluate the current cell, create a new cell below it, and will remain in <strong>EDIT MODE</strong> in the newly created cell.</p></li>
+</ul>
+</section>
+</section>
+<section id="more-on-cells">
+<h2><span class="section-number">1.6.2. </span>More on cells<a class="headerlink" href="#more-on-cells" title="Permalink to this heading">#</a></h2>
+<p>In <strong>EDIT MODE</strong>, code or Markdown can be typed into a cell. Remember that each cell has a <em>cell type</em> associated with it. The cell type does not limit what can be entered into a cell.  The cell type <strong>determines how a cell is evaluated</strong>.  When a cell is evaluated, the contents are parsed by either a Markdown render (for a Markdown cell) or the Python kernel (for a Code cell). Cells may be evaluated in many different ways. Here are a few of the typical ways that we will use:</p>
+<ul class="simple">
+<li><p>Most commonly, we will evaluate the current cell by pressing <code class="docutils literal notranslate"><span class="pre">shift-Enter</span></code> on the keyboard. This will always evaluate the current cell. If this is the last cell in the notebook, it will also insert a new cell below the current cell, so that it is easy to continue building the notebook.</p></li>
+<li><p>It is also possible to evaluate a cell using the toolbar at the top of the notebook.  Use the triangular “play” button (pointed to by the red arrow in the image below) to execute the currently selected cell or cells.
+<img alt="Play button to evaluate a notebook cell" src="../_images/play-button.png" /></p></li>
+<li><p>Sometimes we wish to make changes in the middle of an existing notebook. To evaluate the current cell and insert a new cell below it, press <code class="docutils literal notranslate"><span class="pre">alt-Enter</span></code> on the computer keyboard.</p></li>
+<li><p>Cells can also be run by some of the commands in the <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> menu in the JupyterLab menu. For example, it is always best to reset the Python kernel and run all of the cells in a notebook from top to bottom before sharing a Jupyter notebook with someone else (for example, before submitting an assignment). To do this, click on the <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> menu and choose the <code class="docutils literal notranslate"><span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells...</span></code> menu item.</p></li>
+</ul>
+<p>If you enter Markdown into a Code cell or Python into a Markdown cell, the results will not be what you intend. For instance, most Markdown is not valid Python, and so if Markdown is entered into a Code cell, a syntax error will be displayed when the cell is evaluated.  Fortunately, you can change the cell type afterward to make it evaluate properly.</p>
+<div class="warning admonition">
+<p class="admonition-title">Important!</p>
+<p>New cells, including the starting cell of a new notebook, start as <em>Code</em> cells.</p>
+</div>
+<p>Cells start as <em>Code</em> cells, but we often want to enter Markdown instead. We also may wish to switch a <em>Markdown</em> cell back to a <em>Code</em> cell. There are three easy ways to change the cell type:</p>
+<ul class="simple">
+<li><p>As seen below, you can use the drop-down menu at the top of the notebook to set the cell type to <em>Code</em>, <em>Markdown</em>, or <em>Raw</em>
+<img alt="" src="../_images/cell-type-dropdown.png" /></p></li>
+<li><p>If you are in command mode, you can use a keyboard shortcut to change the type of a selected cell. The standard keyboard shortcuts are <code class="docutils literal notranslate"><span class="pre">m</span></code> for Markdown and <code class="docutils literal notranslate"><span class="pre">y</span></code> for code.</p></li>
+<li><p>If you are not in command mode, you can still use a keyboard shortcut, but you will need to press <code class="docutils literal notranslate"><span class="pre">ctrl-m</span></code> first, and then press either <code class="docutils literal notranslate"><span class="pre">m</span></code> for <em>Markdown</em> or <code class="docutils literal notranslate"><span class="pre">y</span></code> for <em>Code</em>.</p></li>
+</ul>
+</section>
+<section id="intro-to-markdown-in-jupyter">
+<span id="index-2"></span><h2><span class="section-number">1.6.3. </span>Intro to Markdown in Jupyter<a class="headerlink" href="#intro-to-markdown-in-jupyter" title="Permalink to this heading">#</a></h2>
+<p>You will use Jupyter to create documents that inform the reader about data. Although we will use code to process the data and generate graphs, that is usually not enough to tell the story to the reader. Markdown is used to add text, heading, mathematics, and other graphics.</p>
+<p>The example notebook <code class="docutils literal notranslate"><span class="pre">intro.ipynb</span></code> demonstrates the main features of Markdown that we will need in this book. Recall that you can double click on any cell in the notebook to see the Markdown source. Below is a d the title “Intro to Jupyter and Python” cell to see the Markdown tex. This cell illustrates several features of Markdown:</p>
+<p><strong>1. Headings</strong></p>
+<p>The first cell (starting with “Intro to Markdown”) illustrates how to use Markdown to format headings.
+Headings are entered by prefacing text by one or more # (usually pronounced “hash”) symbols. If you know any HTML, then <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Title</span></code> is equivalent to a <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;Title&lt;/h1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">###</span> <span class="pre">Subtitle</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">&lt;h2&gt;Subtitle&lt;/h2&gt;</span></code>, etc. Note that you must put a space between the hashes and the text for it to be recognized as a heading.</p>
+<p><strong>2. Text and paragraphs</strong></p>
+<p>The second cell shows paragraphs of text. Regular text can be entered as normal.
+Blank lines between text indicate the start of a new paragraph; press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> twice
+at the end of a paragraph to leave such a blank line.
+Other line breaks do not create a new paragraph and can be used
+to avoid over-long lines of text or to separate sentences so they can be
+more easily reordered in the future.</p>
+<p><strong>3. Emphasis</strong></p>
+<p>The third cell (labeled “<em><strong>Emphasis</strong></em>”) illustrates how to make text italicized or bold.  Double click on the cell (to view the source text).</p>
+<ul class="simple">
+<li><p>Text can be italicized by surrounding it by single asterisks, like <code class="docutils literal notranslate"><span class="pre">*italicize</span> <span class="pre">text*</span></code>: <em>italicize text</em></p></li>
+<li><p>Similarly, text can be bolded by surrounding it by double asterisks, like <code class="docutils literal notranslate"><span class="pre">**bold</span> <span class="pre">text**</span></code>: <strong>bold text</strong></p></li>
+<li><p>Text can be both italicized and bolded by surrounding it with triple asterisks, like <code class="docutils literal notranslate"><span class="pre">***bold</span> <span class="pre">and</span> <span class="pre">italics***</span></code>: <em><strong>bold and italics</strong></em></p></li>
+</ul>
+<p><strong>4. Bulleted and Numbered Lists</strong></p>
+<p>The fourth cell illustrates how to make bulleted and numbered lists.</p>
+<p><strong>Bulleted lists</strong> can be created by starting a line with an asterisk and a space, followed by the text of the bulleted item. Bulleted sub-lists can be created by tab-indenting a bulleted list under a bulleted item. For example,</p>
+<pre>
+* Item 1
+    * Item 1.1
+    * Item 1.2
+*Item 2
+</pre>
+<p>formats as</p>
+<ul class="simple">
+<li><p>Item 1</p>
+<ul>
+<li><p>Item 1.1</p></li>
+<li><p>Item 1.2
+*Item 2</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Numbered lists</strong> can be created by starting a line with a number, a period, and a space, followed by the item to be numbered. <em>Note that the first number you use in a sequence of numbered items will determine the starting point for numbering, but later values are ignored. It is a good habit in most cases to use 1 for every numbered item because then you can rearrange them via cut and pasted without worrying about upsetting the overall list numbering.</em>  Numbered sub-lists can be created by tab-indenting a numbered list under a numbered item. For example,</p>
+<pre>
+1. Item 1
+    1. Item 1.1
+    1. Item 1.2
+3. Item 2
+</pre>
+<p>formats as</p>
+<ol class="simple">
+<li><p>Item 1</p>
+<ol class="simple">
+<li><p>Item 1.1</p></li>
+<li><p>Item 1.2</p></li>
+</ol>
+</li>
+<li><p>Item 2</p></li>
+</ol>
+<p><strong>5. Links and images</strong></p>
+<p>The fifth cell gives an example of a link and an image.</p>
+<p><strong>Links</strong> are easily created by putting the link text in square brackets, followed by the link URL in parentheses, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Example</span> <span class="n">link</span><span class="p">](</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which is rendered as</p>
+<p><a class="reference external" href="http://google.com">Example link</a></p>
+<p><strong>Images</strong> are entered in a very similar way to URLs. Just put an exclamation point (!) before the square brackets. The text in the square brackets will be used as the “alt text”, which is used by screen readers or displayed when hovering the mouse over the image. Images can also be inserted by dragging them from your file manager into a cell. After the Markdown code is inserted, you can edit the alt-text to something more meaningful.</p>
+<p><strong>6. Mathematics</strong></p>
+<p id="index-3">The sixth cell (labeled “Mathematics”) illustrates formatted mathematics.<br />
+Markdown in Jupyter supports sophisticated formatting of mathematics using
+LaTeX</p>
+<!-- $\LaTeX$ -->
+<p>(pronounced <em>lay tek</em>) notation.<br />
+For inline equations (those that will appear in-line with text, include the</p>
+<!-- $\LaTeX$ -->
+<p>LaTeX notation between dollar signs, like <code class="docutils literal notranslate"><span class="pre">$\sin^2</span> <span class="pre">x$</span></code> renders as <span class="math notranslate nohighlight">\(\sin^2 x\)</span>.
+Longer equations should be displayed separate from the text and can be created by enclosing them between pairs of dollar signs. For example,</p>
+<pre>
+$$
+\int_{0}^{\infty} e^{-x}~dx = 1
+$$
+</pre>
+<p>is rendered as
+$<span class="math notranslate nohighlight">\(
+\int_{0}^{\infty} e^{-x}~dx = 1
+\)</span>$</p>
+<p><strong>7. Other Markdown formatting</strong></p>
+<p>Markdown has many other features that we will not cover, such as horizontal rules, block quotes, syntax highlighting, and tables.
+A good reference for Markdown syntax is
+<a class="reference external" href="https://www.markdownguide.org/extended-syntax/">Markdown Guide(https://www.markdownguide.org/extended-syntax/)</a></p>
+</section>
+<section id="getting-notebooks-into-and-out-of-jupyter-lab">
+<h2><span class="section-number">1.6.4. </span>Getting Notebooks Into and Out of Jupyter Lab<a class="headerlink" href="#getting-notebooks-into-and-out-of-jupyter-lab" title="Permalink to this heading">#</a></h2>
+<p>There are several ways to get notebooks into Jupyter Lab:</p>
+<ul class="simple">
+<li><p>As previously mentioned, you can use the left-hand files pane to navigate to the current location of a file. Note that you will be constrained to only navigating to files that are in the directory in which  Jupyter was started or any subdirectory below that. One disadvantage of this approach is that your work will be saved wherever that file currently resides. For instance, if you have downloaded a notebook from the internet into your <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> folder, your work on that notebook will remain in the <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> folder.</p></li>
+<li><p>You can use drag-and-drop to copy any file into a directory that you are currently browsing using Jupyter Lab’s files pane. To do this:</p>
+<ul>
+<li><p>Open the files panel in Jupyter and navigate to the directory where you want to work.</p></li>
+<li><p>Open the folder containing the file you want to copy.</p></li>
+<li><p>Position and resize the folder and your web browser’s window so that you can see both at the same time.</p></li>
+<li><p>Click and hold on the Jupyter notebook that you want to move. Then drag it onto the files panel.</p></li>
+<li><p>When the Jupyter notebook is over Jupyter lab’s files panel, the outline of the files panel will change to indicate that it is ready for you to drop the file. Release the mouse button or trackpad to copy the file into the selected directory.</p></li>
+<li><p><strong>Note that this makes a copy of the file from its original location.</strong></p></li>
+</ul>
+</li>
+<li><p>As an alternative to drag-and-drop, you can click on the upload icon (an arrow with a line under it) at the very top of the files panel. This will bring up a file selector that you can use to copy a file from anywhere on your computer.</p></li>
+</ul>
+</section>
+<section id="jupyter-magics">
+<span id="index-4"></span><h2><span class="section-number">1.6.5. </span>Jupyter Magics<a class="headerlink" href="#jupyter-magics" title="Permalink to this heading">#</a></h2>
+<p>Code cells can also contain special instructions intended for JupyterLab itself, rather than the
+Python kernel. These are called <em>magics</em>. For instance, to output your current directory, you can use the
+<code class="docutils literal notranslate"><span class="pre">%pwd</span></code> magic</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pwd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/jshea/Dropbox (UFL)/teaching/stats/book/fdsp/01-intro&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can use the “%cd” magic to change your directory (recall that~ is a shortcut for your home user directory):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jshea
+</pre></div>
+</div>
+</div>
+</div>
+<p>Changing directories is often useful to switch to a directory where data is stored.</p>
+<p>You can get a list of magics and other information about Jupyter using the <code class="docutils literal notranslate"><span class="pre">%quickref</span></code> magic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">quickref</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IPython -- An enhanced Interactive Python - Quick Reference Card
+================================================================
+
+obj?, obj??      : Get help, or more help for object (also works as
+                   ?obj, ??obj).
+?foo.*abc*       : List names in &#39;foo&#39; containing &#39;abc&#39; in them.
+%magic           : Information about IPython&#39;s &#39;magic&#39; % functions.
+
+Magic functions are prefixed by % or %%, and typically take their arguments
+without parentheses, quotes or even commas for convenience.  Line magics take a
+single % and cell magics are prefixed with two %%.
+
+Example magic function calls:
+
+%alias d ls -F   : &#39;d&#39; is now an alias for &#39;ls -F&#39;
+alias d ls -F    : Works if &#39;alias&#39; not a python name
+alist = %alias   : Get list of aliases to &#39;alist&#39;
+cd /usr/share    : Obvious. cd -&lt;tab&gt; to choose from visited dirs.
+%cd??            : See help AND source for magic %cd
+%timeit x=10     : time the &#39;x=10&#39; statement with high precision.
+%%timeit x=2**100
+x**100           : time &#39;x**100&#39; with a setup of &#39;x=2**100&#39;; setup code is not
+                   counted.  This is an example of a cell magic.
+
+System commands:
+
+!cp a.txt b/     : System command escape, calls os.system()
+cp a.txt b/      : after %rehashx, most system commands work without !
+cp ${f}.txt $bar : Variable expansion in magics and system commands
+files = !ls /usr : Capture system command output
+files.s, files.l, files.n: &quot;a b c&quot;, [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;], &#39;a\nb\nc&#39;
+
+History:
+
+_i, _ii, _iii    : Previous, next previous, next next previous input
+_i4, _ih[2:5]    : Input history line 4, lines 2-4
+exec(_i81)       : Execute input history line #81 again
+%rep 81          : Edit input history line #81
+_, __, ___       : previous, next previous, next next previous output
+_dh              : Directory history
+_oh              : Output history
+%hist            : Command history of current session.
+%hist -g foo     : Search command history of (almost) all sessions for &#39;foo&#39;.
+%hist -g         : Command history of (almost) all sessions.
+%hist 1/2-8      : Command history containing lines 2-8 of session 1.
+%hist 1/ ~2/     : Command history of session 1 and 2 sessions before current.
+%hist ~8/1-~6/5  : Command history from line 1 of 8 sessions ago to
+                   line 5 of 6 sessions ago.
+%edit 0/         : Open editor to execute code with history of current session.
+
+Autocall:
+
+f 1,2            : f(1,2)  # Off by default, enable with %autocall magic.
+/f 1,2           : f(1,2) (forced autoparen)
+,f 1 2           : f(&quot;1&quot;,&quot;2&quot;)
+;f 1 2           : f(&quot;1 2&quot;)
+
+Remember: TAB completion works in many contexts, not just file names
+or python names.
+
+The following magic functions are currently available:
+
+%alias:
+    Define an alias for a system command.
+%alias_magic:
+    ::
+%autoawait:
+    
+%autocall:
+    Make functions callable without having to type parentheses.
+%automagic:
+    Make magic functions callable without having to type the initial %.
+%autosave:
+    Set the autosave interval in the notebook (in seconds).
+%bookmark:
+    Manage IPython&#39;s bookmark system.
+%cat:
+    Alias for `!cat`
+%cd:
+    Change the current working directory.
+%clear:
+    Clear the terminal.
+%colors:
+    Switch color scheme for prompts, info system and exception handlers.
+%conda:
+    Run the conda package manager within the current kernel.
+%config:
+    configure IPython
+%connect_info:
+    Print information for connecting other clients to this kernel
+%cp:
+    Alias for `!cp`
+%debug:
+    ::
+%dhist:
+    Print your history of visited directories.
+%dirs:
+    Return the current directory stack.
+%doctest_mode:
+    Toggle doctest mode on and off.
+%ed:
+    Alias for `%edit`.
+%edit:
+    Bring up an editor and execute the resulting code.
+%env:
+    Get, set, or list environment variables.
+%gui:
+    Enable or disable IPython GUI event loop integration.
+%hist:
+    Alias for `%history`.
+%history:
+    ::
+%killbgscripts:
+    Kill all BG processes started by %%script and its family.
+%ldir:
+    Alias for `!ls -F -G -l %l | grep /$`
+%less:
+    Show a file through the pager.
+%lf:
+    Alias for `!ls -F -l -G %l | grep ^-`
+%lk:
+    Alias for `!ls -F -l -G %l | grep ^l`
+%ll:
+    Alias for `!ls -F -l -G`
+%load:
+    Load code into the current frontend.
+%load_ext:
+    Load an IPython extension by its module name.
+%loadpy:
+    Alias of `%load`
+%logoff:
+    Temporarily stop logging.
+%logon:
+    Restart logging.
+%logstart:
+    Start logging anywhere in a session.
+%logstate:
+    Print the status of the logging system.
+%logstop:
+    Fully stop logging and close log file.
+%ls:
+    Alias for `!ls -F -G`
+%lsmagic:
+    List currently available magic functions.
+%lx:
+    Alias for `!ls -F -l -G %l | grep ^-..x`
+%macro:
+    Define a macro for future re-execution. It accepts ranges of history,
+%magic:
+    Print information about the magic function system.
+%man:
+    Find the man page for the given command and display in pager.
+%matplotlib:
+    ::
+%mkdir:
+    Alias for `!mkdir`
+%more:
+    Show a file through the pager.
+%mv:
+    Alias for `!mv`
+%notebook:
+    ::
+%page:
+    Pretty print the object and display it through a pager.
+%pastebin:
+    Upload code to dpaste.com, returning the URL.
+%pdb:
+    Control the automatic calling of the pdb interactive debugger.
+%pdef:
+    Print the call signature for any callable object.
+%pdoc:
+    Print the docstring for an object.
+%pfile:
+    Print (or run through pager) the file where an object is defined.
+%pinfo:
+    Provide detailed information about an object.
+%pinfo2:
+    Provide extra detailed information about an object.
+%pip:
+    Run the pip package manager within the current kernel.
+%popd:
+    Change to directory popped off the top of the stack.
+%pprint:
+    Toggle pretty printing on/off.
+%precision:
+    Set floating point precision for pretty printing.
+%prun:
+    Run a statement through the python code profiler.
+%psearch:
+    Search for object in namespaces by wildcard.
+%psource:
+    Print (or run through pager) the source code for an object.
+%pushd:
+    Place the current dir on stack and change directory.
+%pwd:
+    Return the current working directory path.
+%pycat:
+    Show a syntax-highlighted file through a pager.
+%pylab:
+    ::
+%qtconsole:
+    Open a qtconsole connected to this kernel.
+%quickref:
+    Show a quick reference sheet 
+%recall:
+    Repeat a command, or get command to input line for editing.
+%rehashx:
+    Update the alias table with all executable files in $PATH.
+%reload_ext:
+    Reload an IPython extension by its module name.
+%rep:
+    Alias for `%recall`.
+%rerun:
+    Re-run previous input
+%reset:
+    Resets the namespace by removing all names defined by the user, if
+%reset_selective:
+    Resets the namespace by removing names defined by the user.
+%rm:
+    Alias for `!rm`
+%rmdir:
+    Alias for `!rmdir`
+%run:
+    Run the named file inside IPython as a program.
+%save:
+    Save a set of lines or a macro to a given filename.
+%sc:
+    Shell capture - run shell command and capture output (DEPRECATED use !).
+%set_env:
+    Set environment variables.  Assumptions are that either &quot;val&quot; is a
+%store:
+    Lightweight persistence for python variables.
+%sx:
+    Shell execute - run shell command and capture output (!! is short-hand).
+%system:
+    Shell execute - run shell command and capture output (!! is short-hand).
+%tb:
+    Print the last traceback.
+%time:
+    Time execution of a Python statement or expression.
+%timeit:
+    Time execution of a Python statement or expression
+%unalias:
+    Remove an alias
+%unload_ext:
+    Unload an IPython extension by its module name.
+%who:
+    Print all interactive variables, with some minimal formatting.
+%who_ls:
+    Return a sorted list of all interactive variables.
+%whos:
+    Like %who, but gives some extra information about each variable.
+%xdel:
+    Delete a variable, trying to clear it from anywhere that
+%xmode:
+    Switch modes for the exception handlers.
+%%!:
+    Shell execute - run shell command and capture output (!! is short-hand).
+%%HTML:
+    Alias for `%%html`.
+%%SVG:
+    Alias for `%%svg`.
+%%bash:
+    %%bash script magic
+%%capture:
+    ::
+%%debug:
+    ::
+%%file:
+    Alias for `%%writefile`.
+%%html:
+    ::
+%%javascript:
+    Run the cell block of Javascript code
+%%js:
+    Run the cell block of Javascript code
+%%latex:
+    Render the cell as a block of latex
+%%markdown:
+    Render the cell as Markdown text block
+%%perl:
+    %%perl script magic
+%%prun:
+    Run a statement through the python code profiler.
+%%pypy:
+    %%pypy script magic
+%%python:
+    %%python script magic
+%%python2:
+    %%python2 script magic
+%%python3:
+    %%python3 script magic
+%%ruby:
+    %%ruby script magic
+%%script:
+    ::
+%%sh:
+    %%sh script magic
+%%svg:
+    Render the cell as an SVG literal
+%%sx:
+    Shell execute - run shell command and capture output (!! is short-hand).
+%%system:
+    Shell execute - run shell command and capture output (!! is short-hand).
+%%time:
+    Time execution of a Python statement or expression.
+%%timeit:
+    Time execution of a Python statement or expression
+%%writefile:
+    ::
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="saving-your-work-closing-notebooks-and-closing-jupyter-lab">
+<h2><span class="section-number">1.6.6. </span>Saving Your Work, Closing Notebooks, and Closing Jupyter Lab<a class="headerlink" href="#saving-your-work-closing-notebooks-and-closing-jupyter-lab" title="Permalink to this heading">#</a></h2>
+<p>You can save your work by choosing <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Notebook</span></code> in Jupyter Lab’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu, or by pressing the keyboard sequence listed next to that item in the menu. When you manually save your work in this way, Jupyter actually saves two copies of your work: it updates the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file that you see in the file list, and it also updates a <em>hidden</em> checkpoint file.  When you are updating your document, Jupyter will also autosave your work periodically – the default is every 120s. When Jupyter autosaves, it only updates the .ipynb file. If Jupyter crashes or your quit it without saving your notebooks, your last autosaved work will be what you see in the .ipynb files. However, you can always revert to the version that your purposefully saved by using the <code class="docutils literal notranslate"><span class="pre">Revert</span> <span class="pre">Notebook</span> <span class="pre">to</span> <span class="pre">Checkpoint</span></code> item in the File menu.</p>
+<p>When starting new Jupyter notebooks, their initial name will be “Untitled.ipynb”. You can easily rename your notebook in a couple of ways. First, you can choose the <code class="docutils literal notranslate"><span class="pre">Rename</span> <span class="pre">Notebook...</span></code> option from the file menu. As an alternative, you can right-click on the notebook in the left-hand Files panel and
+choose <code class="docutils literal notranslate"><span class="pre">Rename</span></code>. In both cases, be sure to only change the part of the notebook name that is in front of the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> extension. The extension is used by Jupyter to recognize Jupyter notebooks.</p>
+<p>When you are finished working with a Jupyter notebook, I recommend you perform the following steps:</p>
+<ol class="simple">
+<li><p>First, from the <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> menu, choose <code class="docutils literal notranslate"><span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells...</span></code> This will clear the previous output from your work and rerun every cell from the top down.</p></li>
+<li><p>Check over your notebook carefully to make sure you haven’t introduced any errors or produced any unexpected results from having been able to execute cells out of order and from deleting cells or their content. By performing these first two steps, you help make sure that someone else loading your notebook will be able to reproduce your work.</p></li>
+<li><p>Check the notebook file name and update if necessary.</p></li>
+<li><p>Save the notebook.</p></li>
+<li><p>Choose <code class="docutils literal notranslate"><span class="pre">Close</span> <span class="pre">and</span> <span class="pre">Shutdown</span> <span class="pre">Notebook</span></code> from Jupyter’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu.</p></li>
+<li><p>If you are completely finished working in Jupyter Lab, then choose <code class="docutils literal notranslate"><span class="pre">Shut</span> <span class="pre">Down</span></code> from Jupyter’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu.</p></li>
+</ol>
+<p>Another common workflow in Jupyter Lab is to use an existing notebook as a starting point for a new notebook. Again, there are several ways to do this:</p>
+<ul class="simple">
+<li><p>If you already have the existing notebook open, then you can save it under a new name by choosing <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Notebook</span> <span class="pre">As...</span></code> from Jupyter’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu and giving the notebook a new name. <strong>Note that after you use this option, the notebook that is open in the main work are will be the notebook with the new name. You will no longer be working on the original notebook.</strong></p></li>
+<li><p>You can also duplicate a notebook by right-clicking on the notebook’s name in the File panel on the left-hand side and choosing <code class="docutils literal notranslate"><span class="pre">Duplicate</span></code>. A copy of the notebook will be created with the name of the existing notebook appended with a suffix like <code class="docutils literal notranslate"><span class="pre">-Copy1</span></code> before the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./01-intro"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro-jupyter-and-python.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1.5. </span>Extremely Brief Intro to Jupyter and Python</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="python-start.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1.7. </span>Getting Started in Python</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

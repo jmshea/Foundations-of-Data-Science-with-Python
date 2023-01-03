@@ -1,0 +1,1639 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/10-conditional-stats/binary-decisions-nonbayesian.html" />
+  
+<meta property="og:description" content="In Optimal Decisions for Discrete Stochastic Systems, we considered optimal decision making in a discrete stochastic system (with discrete inputs and outputs) using a Bayesian framework. However, i..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches" />
+  
+    <title>10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/10-conditional-stats/binary-decisions-nonbayesian.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.2. Point Conditioning" href="point-conditioning.html" />
+    <link rel="prev" title="10. Decision Making with Observations from Continuous Distributions" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/10-conditional-stats/binary-decisions-nonbayesian.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/10-conditional-stats/binary-decisions-nonbayesian.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maximum-likelihood-decision-rule">
+   10.1.1. Maximum Likelihood Decision Rule
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimizing-decision-regions-based-on-performance-tradeoffs">
+   10.1.2. Optimizing Decision Regions Based on Performance Tradeoffs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#illustrating-performance-tradeoffs-roc-curves">
+     10.1.2.1. Illustrating Performance Tradeoffs: ROC Curves
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quantifying-overall-detector-performance-area-under-the-curve-auc">
+     10.1.2.2. Quantifying Overall Detector Performance: Area Under the Curve (AUC)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neyman-pearson-detection">
+     10.1.2.3. Neyman-Pearson Detection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   10.1.3. Exercises
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Binary Decisions from Continuous Data: Non-Bayesian Approaches</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maximum-likelihood-decision-rule">
+   10.1.1. Maximum Likelihood Decision Rule
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimizing-decision-regions-based-on-performance-tradeoffs">
+   10.1.2. Optimizing Decision Regions Based on Performance Tradeoffs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#illustrating-performance-tradeoffs-roc-curves">
+     10.1.2.1. Illustrating Performance Tradeoffs: ROC Curves
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quantifying-overall-detector-performance-area-under-the-curve-auc">
+     10.1.2.2. Quantifying Overall Detector Performance: Area Under the Curve (AUC)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neyman-pearson-detection">
+     10.1.2.3. Neyman-Pearson Detection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   10.1.3. Exercises
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="binary-decisions-from-continuous-data-non-bayesian-approaches">
+<h1><span class="section-number">10.1. </span>Binary Decisions from Continuous Data: Non-Bayesian Approaches<a class="headerlink" href="#binary-decisions-from-continuous-data-non-bayesian-approaches" title="Permalink to this heading">#</a></h1>
+<p>In <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html"><span class="doc">Optimal Decisions for Discrete Stochastic Systems</span></a>, we considered optimal decision making in a discrete stochastic system (with discrete inputs and outputs) using a Bayesian framework. However, in many applications, the output of the system is continuous even if the input is discrete. For example, for a binary communication system, the input is bits, but the received noisy waveform is converted inside the receiver into a continuous random variable. Similarly, many medical tests for disease are based on chemical tests whose outputs are  continuous random variables.</p>
+<p>In this section, we consider scenarios in which the system input or hidden state is binary and the output is a continuous random variable. More specifically, we assume the data comes from one of two continuous densities, <span class="math notranslate nohighlight">\(f_0(x|H_0)\)</span> or <span class="math notranslate nohighlight">\(f_1(x|H_1)\)</span>, and we wish to make a decision between <span class="math notranslate nohighlight">\(H_0\)</span> and <span class="math notranslate nohighlight">\(H_1\)</span> based on an observed value <span class="math notranslate nohighlight">\(x\)</span>. <strong>Any</strong> decision rule can then be written as follows. Let <span class="math notranslate nohighlight">\(\{R_0, R_1 \}\)</span> be a partition of the real line. Then the decision rule is:</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(x \in R_0\)</span>, decide <span class="math notranslate nohighlight">\(H_0\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(x \in R_1\)</span>, decide <span class="math notranslate nohighlight">\(H_1\)</span>.</p></li>
+</ul>
+<p>The regions <span class="math notranslate nohighlight">\(R_0\)</span> and <span class="math notranslate nohighlight">\(R_1\)</span> can be chosen to optimize some criteria that measures costs or rewards for making correct or erroneous decisions. Although <span class="math notranslate nohighlight">\(R_0\)</span> and <span class="math notranslate nohighlight">\(R_1\)</span> can generally be any Borel set, in practice they are often intervals that are determined by
+single threshold <span class="math notranslate nohighlight">\(\gamma\)</span>, like <span class="math notranslate nohighlight">\(R_0 = \{x|x &lt; \gamma\}\)</span> and <span class="math notranslate nohighlight">\(R_1 = \{x|x &gt; \gamma\}\)</span>.</p>
+<p>Consider a scenario where the <em>a priori</em> probabilities <span class="math notranslate nohighlight">\(P(H_0)\)</span> and <span class="math notranslate nohighlight">\(P(H_1)\)</span> are not known, and thus we cannot apply a Bayesian test. Then we might instead focus on determining <span class="math notranslate nohighlight">\(R_0\)</span> and <span class="math notranslate nohighlight">\(R_1\)</span> based on performance criteria that do not depend on these <em>a prioris</em>. In particular, we will use:</p>
+<ul class="simple">
+<li><p>the probability of false alarm, which we denote by <span class="math notranslate nohighlight">\(\alpha\)</span>, and</p></li>
+<li><p>the probability of miss, which we denote by <span class="math notranslate nohighlight">\(\beta\)</span>.</p></li>
+</ul>
+<p>Let’s introduce a concrete example to start to motivate our work:</p>
+<p><strong>Example</strong></p>
+<p>The PSA (Prostate-Specific Antigen) values for men in their 60s without cancer are approximately Gaussian(2,<span class="math notranslate nohighlight">\(\sigma=1\)</span>). The PSA values for men in their 60s with cancer are approximately Gaussian(4,<span class="math notranslate nohighlight">\(\sigma=1.5\)</span>).</p>
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> denote the PSA value. Then the conditional densities for <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(H_0\)</span> and given <span class="math notranslate nohighlight">\(H_1\)</span> are shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="n">G0</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">G1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># Fill under the regions found above</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([]);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$f_X(x|H_0)$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">0.38</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$f_X(x|H_1)$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">4.7</span><span class="p">,</span><span class="mf">0.27</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/binary-decisions-nonbayesian_2_0.png" src="../_images/binary-decisions-nonbayesian_2_0.png" />
+</div>
+</div>
+<section id="maximum-likelihood-decision-rule">
+<h2><span class="section-number">10.1.1. </span>Maximum Likelihood Decision Rule<a class="headerlink" href="#maximum-likelihood-decision-rule" title="Permalink to this heading">#</a></h2>
+<p>Let’s start by considering the maximum likelihood (ML) rule:</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(f_X(x|H_0) &gt; f_X(x|H_1)\)</span>, decide <span class="math notranslate nohighlight">\(H_0\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(f_X(x|H_0) \le f_X(x|H_1)\)</span>, decide <span class="math notranslate nohighlight">\(H_1\)</span>.</p></li>
+</ul>
+<p>(Note that the deciding <span class="math notranslate nohighlight">\(H_1\)</span> when <span class="math notranslate nohighlight">\(f_X(x|H_0) = f_X(x|H_1)\)</span> is arbitrary and basically meaningless – the probability of getting that exact value of <span class="math notranslate nohighlight">\(X\)</span> is zero, because <span class="math notranslate nohighlight">\(X\)</span> is a continuous random variable.)</p>
+<p>We can determine the ML decision region corresponding to <span class="math notranslate nohighlight">\(H_0\)</span> by finding the values of <span class="math notranslate nohighlight">\(x\)</span> where  <span class="math notranslate nohighlight">\(f_X(x|H_0) &gt; f_X(x|H_1)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.28, -2.26, -2.24, -2.22, -2.2 , -2.18, -2.16, -2.14, -2.12,
+       -2.1 , -2.08, -2.06, -2.04, -2.02, -2.  , -1.98, -1.96, -1.94,
+       -1.92, -1.9 , -1.88, -1.86, -1.84, -1.82, -1.8 , -1.78, -1.76,
+       -1.74, -1.72, -1.7 , -1.68, -1.66, -1.64, -1.62, -1.6 , -1.58,
+       -1.56, -1.54, -1.52, -1.5 , -1.48, -1.46, -1.44, -1.42, -1.4 ,
+       -1.38, -1.36, -1.34, -1.32, -1.3 , -1.28, -1.26, -1.24, -1.22,
+       -1.2 , -1.18, -1.16, -1.14, -1.12, -1.1 , -1.08, -1.06, -1.04,
+       -1.02, -1.  , -0.98, -0.96, -0.94, -0.92, -0.9 , -0.88, -0.86,
+       -0.84, -0.82, -0.8 , -0.78, -0.76, -0.74, -0.72, -0.7 , -0.68,
+       -0.66, -0.64, -0.62, -0.6 , -0.58, -0.56, -0.54, -0.52, -0.5 ,
+       -0.48, -0.46, -0.44, -0.42, -0.4 , -0.38, -0.36, -0.34, -0.32,
+       -0.3 , -0.28, -0.26, -0.24, -0.22, -0.2 , -0.18, -0.16, -0.14,
+       -0.12, -0.1 , -0.08, -0.06, -0.04, -0.02,  0.  ,  0.02,  0.04,
+        0.06,  0.08,  0.1 ,  0.12,  0.14,  0.16,  0.18,  0.2 ,  0.22,
+        0.24,  0.26,  0.28,  0.3 ,  0.32,  0.34,  0.36,  0.38,  0.4 ,
+        0.42,  0.44,  0.46,  0.48,  0.5 ,  0.52,  0.54,  0.56,  0.58,
+        0.6 ,  0.62,  0.64,  0.66,  0.68,  0.7 ,  0.72,  0.74,  0.76,
+        0.78,  0.8 ,  0.82,  0.84,  0.86,  0.88,  0.9 ,  0.92,  0.94,
+        0.96,  0.98,  1.  ,  1.02,  1.04,  1.06,  1.08,  1.1 ,  1.12,
+        1.14,  1.16,  1.18,  1.2 ,  1.22,  1.24,  1.26,  1.28,  1.3 ,
+        1.32,  1.34,  1.36,  1.38,  1.4 ,  1.42,  1.44,  1.46,  1.48,
+        1.5 ,  1.52,  1.54,  1.56,  1.58,  1.6 ,  1.62,  1.64,  1.66,
+        1.68,  1.7 ,  1.72,  1.74,  1.76,  1.78,  1.8 ,  1.82,  1.84,
+        1.86,  1.88,  1.9 ,  1.92,  1.94,  1.96,  1.98,  2.  ,  2.02,
+        2.04,  2.06,  2.08,  2.1 ,  2.12,  2.14,  2.16,  2.18,  2.2 ,
+        2.22,  2.24,  2.26,  2.28,  2.3 ,  2.32,  2.34,  2.36,  2.38,
+        2.4 ,  2.42,  2.44,  2.46,  2.48,  2.5 ,  2.52,  2.54,  2.56,
+        2.58,  2.6 ,  2.62,  2.64,  2.66,  2.68,  2.7 ,  2.72,  2.74,
+        2.76,  2.78,  2.8 ,  2.82,  2.84,  2.86,  2.88,  2.9 ,  2.92,
+        2.94,  2.96,  2.98,  3.  ,  3.02,  3.04,  3.06,  3.08])
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we will decide <span class="math notranslate nohighlight">\(H_0\)</span> if <span class="math notranslate nohighlight">\(-2.28 \le X \le 3.08\)</span> and decide <span class="math notranslate nohighlight">\(H_1\)</span> otherwise. Note, however, that <span class="math notranslate nohighlight">\(P(X&lt;-2.28|H_i)\)</span> is <strong>very small</strong> for both <span class="math notranslate nohighlight">\(H_0\)</span> and <span class="math notranslate nohighlight">\(H_1\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="o">-</span><span class="mf">2.28</span><span class="p">),</span> <span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="o">-</span><span class="mf">2.28</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4.198750293161747e-05, 4.1555007345160996e-05)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, a simpler decision region with similar performance is:</p>
+<ul class="simple">
+<li><p>Decide <span class="math notranslate nohighlight">\(H_0\)</span> if <span class="math notranslate nohighlight">\(X \le 3.08\)</span>.</p></li>
+<li><p>Decide <span class="math notranslate nohighlight">\(H_1\)</span> if <span class="math notranslate nohighlight">\(X &gt; 3.08\)</span>.</p></li>
+</ul>
+<p>Recall that a false alarm is when <span class="math notranslate nohighlight">\(H_0\)</span> is true but the decision is <span class="math notranslate nohighlight">\(H_1\)</span>. Since <span class="math notranslate nohighlight">\(H_0\)</span> is true, the probability a false alarm corresponds to some region under the curve <span class="math notranslate nohighlight">\(f_X(x|H_0)\)</span>. For the ML detection rule, that region is <span class="math notranslate nohighlight">\(\{x|x &gt; 3.08\}\)</span>, and the false alarm probability is shown below:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G0</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="mi">7</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fa_region</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))]</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">fa_region</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># Fill under the regions found above</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">fa_region</span><span class="p">,</span> <span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">fa_region</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([]);</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">gamma</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;$\gamma$&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;false alarm&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">gamma</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">),</span>  <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">7.25</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">headwidth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+            <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$f_X(x|H_0)$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">0.38</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/binary-decisions-nonbayesian_9_0.png" src="../_images/binary-decisions-nonbayesian_9_0.png" />
+</div>
+</div>
+<p>Similarly, a miss is when <span class="math notranslate nohighlight">\(H_1\)</span> is true, but the decision is <span class="math notranslate nohighlight">\(H_0\)</span>. The figure below illustrates the region under the conditional density <span class="math notranslate nohighlight">\(f_X(x|H_1)\)</span> that corresponds to the probability of miss:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="o">*</span><span class="mi">100</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">miss_region</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">G0</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))]</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">miss_region</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># Fill under the regions found above</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">miss_region</span><span class="p">,</span> <span class="n">G1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">miss_region</span><span class="p">),</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+
+
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([]);</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">gamma</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;$\gamma$&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;miss&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">gamma</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">),</span>  <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
+            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">0.17</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">headwidth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+            <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$f_X(x|H_1)$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">4.7</span><span class="p">,</span><span class="mf">0.27</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/binary-decisions-nonbayesian_11_0.png" src="../_images/binary-decisions-nonbayesian_11_0.png" />
+</div>
+</div>
+<p>Note that both the probability of false alarm (<span class="math notranslate nohighlight">\(\alpha\)</span>) and the probability of miss (<span class="math notranslate nohighlight">\(\beta\)</span>) are tail probabilities of a Normal distribution. Thus, we can easily calculate their values using the <span class="math notranslate nohighlight">\(Q\)</span> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">q</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># False alarm: Given H0, mu = 2 and sigma = 1</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">sigma0</span> <span class="o">=</span><span class="mi">1</span>
+
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">3.08</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">gamma</span> <span class="o">-</span> <span class="n">mu0</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The probability of false alarm is </span><span class="si">{</span><span class="n">alpha</span><span class="si">:</span><span class="s1">.2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of false alarm is 0.14
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Miss: Given H1, mu = 4 and sigma = 1.5</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">3.08</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">mu1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The probability of miss is </span><span class="si">{</span><span class="n">beta</span><span class="si">:</span><span class="s1">.2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of miss is 0.27
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="optimizing-decision-regions-based-on-performance-tradeoffs">
+<h2><span class="section-number">10.1.2. </span>Optimizing Decision Regions Based on Performance Tradeoffs<a class="headerlink" href="#optimizing-decision-regions-based-on-performance-tradeoffs" title="Permalink to this heading">#</a></h2>
+<p>The ML rule gives us one pair of values for <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>. However, we can generate different pairs of <span class="math notranslate nohighlight">\(\alpha, \beta\)</span> by using the same rule but varying the decision threshold, <span class="math notranslate nohighlight">\(\gamma\)</span>. For example, the figure below shows the false alarm and miss probability regions for <span class="math notranslate nohighlight">\(\gamma=3.5\)</span>:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/binary-decisions-nonbayesian_17_0.png" src="../_images/binary-decisions-nonbayesian_17_0.png" />
+</div>
+</div>
+<p>By using a larger value of <span class="math notranslate nohighlight">\(\gamma\)</span> than for the (approximate) ML decision, the probability of false alarm is reduced, while the probability of miss is increased:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma</span> <span class="o">=</span> <span class="mf">3.5</span>
+
+<span class="c1"># False alarm: Given H0, mu = 2 and sigma = 1</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">sigma0</span> <span class="o">=</span><span class="mi">1</span>
+
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">gamma</span> <span class="o">-</span> <span class="n">mu0</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma0</span><span class="p">)</span>
+
+<span class="c1"># Miss: Given H1, mu = 4 and sigma = 1.5</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">mu1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma1</span><span class="p">)</span>
+
+
+<span class="c1">#alpha, beta</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The probability of false alarm is </span><span class="si">{</span><span class="n">alpha</span><span class="si">:</span><span class="s1">.2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The probability of miss is </span><span class="si">{</span><span class="n">beta</span><span class="si">:</span><span class="s1">.2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of false alarm is 0.067
+The probability of miss is 0.37
+</pre></div>
+</div>
+</div>
+</div>
+<p>If a lower probability of miss is desired, the decision threshold can be decreased. the figure below shows the false alarm and miss probability regions for <span class="math notranslate nohighlight">\(\gamma=2.5\)</span>:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/binary-decisions-nonbayesian_21_0.png" src="../_images/binary-decisions-nonbayesian_21_0.png" />
+</div>
+</div>
+<p>The probability of false alarm and miss for <span class="math notranslate nohighlight">\(\gamma=2.5\)</span> are</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.5</span>
+
+<span class="c1"># False alarm: Given H0, mu = 2 and sigma = 1</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">sigma0</span> <span class="o">=</span><span class="mi">1</span>
+
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">gamma</span> <span class="o">-</span> <span class="n">mu0</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma0</span><span class="p">)</span>
+
+<span class="c1"># Miss: Given H1, mu = 4 and sigma = 1.5</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">mu1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma1</span><span class="p">)</span>
+
+
+<span class="c1">#alpha, beta</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The probability of false alarm is </span><span class="si">{</span><span class="n">alpha</span><span class="si">:</span><span class="s1">.2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The probability of miss is </span><span class="si">{</span><span class="n">beta</span><span class="si">:</span><span class="s1">.2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of false alarm is 0.31
+The probability of miss is 0.16
+</pre></div>
+</div>
+</div>
+</div>
+<section id="illustrating-performance-tradeoffs-roc-curves">
+<h3><span class="section-number">10.1.2.1. </span>Illustrating Performance Tradeoffs: ROC Curves<a class="headerlink" href="#illustrating-performance-tradeoffs-roc-curves" title="Permalink to this heading">#</a></h3>
+<p>A common way to illustrated the tradeoff between probability of false alarm and probability of miss is through a ROC curve. ROC stands for Receiver Operating Characteristic, ROC curves and were originally developed for detecting objects in RADAR signals. A ROC curve plots the probability of false alarm (sometimes called the False Positive Rate, or FPR) versus the probability of detection (sometimes called the True Positive Rate, or TPR). Here, the probability of detection is <span class="math notranslate nohighlight">\(1-\beta\)</span>. A ROC curve is usually generated by sweeping the threshold, <span class="math notranslate nohighlight">\(\gamma\)</span>, over a region that essentially covers <span class="math notranslate nohighlight">\(0 \le \alpha \le 1\)</span> and <span class="math notranslate nohighlight">\(0\le \beta \le 1\)</span>, recording the pairs <span class="math notranslate nohighlight">\(\alpha, 1-\beta\)</span>, and then generating a line plot of the probability of detection as a function of the probability of false alarm.</p>
+<p>The code below generates a ROC curve for this example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_gammas</span> <span class="o">=</span> <span class="mi">101</span>
+
+<span class="n">gammas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num_gammas</span><span class="p">)</span>
+<span class="c1"># False alarm: Given H0, mu = 2 and sigma = 1</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">sigma0</span> <span class="o">=</span><span class="mi">1</span>
+
+<span class="c1"># Miss: Given H1, mu = 4 and sigma = 1.5</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+<span class="n">alphas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_gammas</span><span class="p">)</span>
+<span class="n">betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_gammas</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">gamma</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gammas</span><span class="p">):</span>
+  <span class="n">alphas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">gamma</span> <span class="o">-</span> <span class="n">mu0</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma0</span><span class="p">)</span>
+  <span class="n">betas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">mu1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma1</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">betas</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Probability of False Alarm&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability of Detection&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/binary-decisions-nonbayesian_25_0.png" src="../_images/binary-decisions-nonbayesian_25_0.png" />
+</div>
+</div>
+<p>If we don’t use the observed value of <span class="math notranslate nohighlight">\(X\)</span> at all, then if we guess <span class="math notranslate nohighlight">\(H_1\)</span> with probability <span class="math notranslate nohighlight">\(p\)</span>, then the probability of false alarm will be <span class="math notranslate nohighlight">\(p\)</span> (since when <span class="math notranslate nohighlight">\(H_0\)</span> is true, we will still choose <span class="math notranslate nohighlight">\(H_1\)</span> probability <span class="math notranslate nohighlight">\(p\)</span>), and the probability of detection will also be <span class="math notranslate nohighlight">\(p\)</span> (since, when <span class="math notranslate nohighlight">\(H_1\)</span> is true, we also decide <span class="math notranslate nohighlight">\(H_1\)</span> with probability <span class="math notranslate nohighlight">\(p\)</span>). Thus, without using the observed value, we get a linear relation between <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(1-\beta\)</span>. Sometimes this is shown as a reference on the ROC curve:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_gammas</span> <span class="o">=</span> <span class="mi">101</span>
+
+<span class="n">gammas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num_gammas</span><span class="p">)</span>
+<span class="c1"># False alarm: Given H0, mu = 2 and sigma = 1</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">sigma0</span> <span class="o">=</span><span class="mi">1</span>
+
+<span class="c1"># Miss: Given H1, mu = 4 and sigma = 1.5</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+<span class="n">alphas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_gammas</span><span class="p">)</span>
+<span class="n">betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_gammas</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">gamma</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gammas</span><span class="p">):</span>
+  <span class="n">alphas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">gamma</span> <span class="o">-</span> <span class="n">mu0</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma0</span><span class="p">)</span>
+  <span class="n">betas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">mu1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma1</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">betas</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ROC curve&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Probability of False Alarm&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability of Detection&#39;</span><span class="p">);</span>
+
+<span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_gammas</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reference&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/binary-decisions-nonbayesian_27_0.png" src="../_images/binary-decisions-nonbayesian_27_0.png" />
+</div>
+</div>
+<p>The further the ROC curve is from the reference (in terms of being more toward the upper left-hand corner), the better performance of the detector. I.e., it is able to achieve a higher <span class="math notranslate nohighlight">\(1-\beta\)</span> for a given <span class="math notranslate nohighlight">\(\alpha\)</span>, or vice versa.</p>
+</section>
+<section id="quantifying-overall-detector-performance-area-under-the-curve-auc">
+<h3><span class="section-number">10.1.2.2. </span>Quantifying Overall Detector Performance: Area Under the Curve (AUC)<a class="headerlink" href="#quantifying-overall-detector-performance-area-under-the-curve-auc" title="Permalink to this heading">#</a></h3>
+<p>The individual points on the ROC curve tell the performance of a given detector for a specific detection threshold. However, we can also quantify the overall performance of a detector by providing a measure of how close the ROC curve is to the upper left-hand corner of the graph. Such a measure should depend on the entire ROC curve. We typically quantify this by by integrating the area under the ROC curve. This is called the <em>Area Under Curve (AUC)</em>. We have seen that random guessing yields the diagonal reference line, and the area under the reference line is 1/2.  If a detector makes perfect decisions, then it can achieve a probability of detection of <span class="math notranslate nohighlight">\(1-\beta = 1\)</span> with probability of false alarm <span class="math notranslate nohighlight">\(\alpha=0\)</span>, so the ideal ROC curve rises instantly from 0 to 1 and then remains at 1. The area under the ideal ROC curve is thus 1. We can compute the area under the ROC for our example by using NumPy’s <code class="docutils literal notranslate"><span class="pre">np.trapz()</span></code> numerical integration routine. It is important to note that depending on the form of the detector, the <span class="math notranslate nohighlight">\(\alpha\)</span> values may come out in reverse numerical order:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alphas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.00000000e+00, 1.00000000e+00, 1.00000000e+00, 1.00000000e+00,
+       1.00000000e+00, 1.00000000e+00, 1.00000000e+00, 1.00000000e+00,
+       1.00000000e+00, 1.00000000e+00, 1.00000000e+00, 1.00000000e+00,
+       1.00000000e+00, 1.00000000e+00, 1.00000000e+00, 1.00000000e+00,
+       1.00000000e+00, 1.00000000e+00, 1.00000000e+00, 1.00000000e+00,
+       1.00000000e+00, 1.00000000e+00, 1.00000000e+00, 1.00000000e+00,
+       1.00000000e+00, 1.00000000e+00, 1.00000000e+00, 1.00000000e+00,
+       1.00000000e+00, 1.00000000e+00, 9.99999999e-01, 9.99999997e-01,
+       9.99999989e-01, 9.99999967e-01, 9.99999900e-01, 9.99999713e-01,
+       9.99999207e-01, 9.99997888e-01, 9.99994587e-01, 9.99986654e-01,
+       9.99968329e-01, 9.99927652e-01, 9.99840891e-01, 9.99663071e-01,
+       9.99312862e-01, 9.98650102e-01, 9.97444870e-01, 9.95338812e-01,
+       9.91802464e-01, 9.86096552e-01, 9.77249868e-01, 9.64069681e-01,
+       9.45200708e-01, 9.19243341e-01, 8.84930330e-01, 8.41344746e-01,
+       7.88144601e-01, 7.25746882e-01, 6.55421742e-01, 5.79259709e-01,
+       5.00000000e-01, 4.20740291e-01, 3.44578258e-01, 2.74253118e-01,
+       2.11855399e-01, 1.58655254e-01, 1.15069670e-01, 8.07566592e-02,
+       5.47992917e-02, 3.59303191e-02, 2.27501319e-02, 1.39034475e-02,
+       8.19753592e-03, 4.66118802e-03, 2.55513033e-03, 1.34989803e-03,
+       6.87137938e-04, 3.36929266e-04, 1.59108590e-04, 7.23480439e-05,
+       3.16712418e-05, 1.33457490e-05, 5.41254391e-06, 2.11245470e-06,
+       7.93328152e-07, 2.86651572e-07, 9.96442632e-08, 3.33204485e-08,
+       1.07175903e-08, 3.31574598e-09, 9.86587645e-10, 2.82315804e-10,
+       7.76884758e-11, 2.05578891e-11, 5.23095754e-12, 1.27981254e-12,
+       3.01062798e-13, 6.80922489e-14, 1.48065375e-14, 3.09535877e-15,
+       6.22096057e-16])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Whenever that is the case, we need to use <code class="docutils literal notranslate"><span class="pre">np.flip()</span></code> on both vectors to put them in the correct order. We pass the flipped <code class="docutils literal notranslate"><span class="pre">alphas</span></code> vector as the <code class="docutils literal notranslate"><span class="pre">x</span></code> keyword parameter and the flipped <code class="docutils literal notranslate"><span class="pre">1-betas</span></code> vector as the <code class="docutils literal notranslate"><span class="pre">y</span></code> keyword parameter of <code class="docutils literal notranslate"><span class="pre">np.trapz()</span></code>. (<strong>Do NOT omit the keyword names because the default order is y, x, which will be confusing to most people.</strong>) The final command is shown at the end of the code block below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_gammas</span> <span class="o">=</span> <span class="mi">101</span>
+
+<span class="n">gammas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num_gammas</span><span class="p">)</span>
+<span class="c1"># False alarm: Given H0, mu = 2 and sigma = 1</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">sigma0</span> <span class="o">=</span><span class="mi">1</span>
+
+<span class="c1"># Miss: Given H1, mu = 4 and sigma = 1.5</span>
+<span class="n">mu1</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+<span class="n">alphas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_gammas</span><span class="p">)</span>
+<span class="n">betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_gammas</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">gamma</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gammas</span><span class="p">):</span>
+  <span class="n">alphas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">gamma</span> <span class="o">-</span> <span class="n">mu0</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma0</span><span class="p">)</span>
+  <span class="n">betas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span> <span class="p">(</span><span class="n">mu1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma1</span><span class="p">)</span>
+  
+<span class="n">auc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">alphas</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">betas</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The area under curve (AUC) for this experiment is </span><span class="si">{</span><span class="n">auc</span> <span class="si">:</span><span class="s1"> .2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The area under curve (AUC) for this experiment is  0.87
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="neyman-pearson-detection">
+<h3><span class="section-number">10.1.2.3. </span>Neyman-Pearson Detection<a class="headerlink" href="#neyman-pearson-detection" title="Permalink to this heading">#</a></h3>
+<p>Neyman-Pearson detection formalizes making the trade-off between <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> in the following way: Given a required value of <span class="math notranslate nohighlight">\(\alpha\)</span>, Neyman-Pearson detection chooses the decision regions <span class="math notranslate nohighlight">\(R_0, R_1\)</span> to minimize the probability of miss. Let’s find the Neyman-Pearson decision rule for <span class="math notranslate nohighlight">\(\alpha=0.1\)</span> when the decision regions are constrained to be of the form <span class="math notranslate nohighlight">\(R_0: \{x| x &lt; \gamma \}\)</span> and <span class="math notranslate nohighlight">\(R_1: \{x| x \ge \gamma\}\)</span>.  We can use the ROC curve to get the approximate value of <span class="math notranslate nohighlight">\(1- \beta \approx 0.7\)</span>, or <span class="math notranslate nohighlight">\(\beta =0.3\)</span>. Let’s see how we can get the same result analytically.</p>
+<p>For <span class="math notranslate nohighlight">\(\alpha &lt; 0.5\)</span>, the probability of false alarm will be the probability of an upper tail of the form <span class="math notranslate nohighlight">\(P(X&gt;\gamma|H_0)\)</span>, which is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(X&gt;\gamma|H_0) &amp; = Q \left( \frac{\gamma - \mu_0}{\sigma_0} \right) \\
+&amp;= Q \left(\gamma -2 \right) = 0.1.
+\end{align*}\]</div>
+<p>We can solve for <span class="math notranslate nohighlight">\(\gamma\)</span> by taking <span class="math notranslate nohighlight">\(Q^{-1}\)</span> of both sides:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\gamma -2 &amp;= Q^{-1} (0.1) \\
+\gamma  &amp;= 2+ Q^{-1} (0.1) \\
+\end{align*}\]</div>
+<p>Let’s create a <code class="docutils literal notranslate"><span class="pre">qinv()</span></code> function as an alias for <code class="docutils literal notranslate"><span class="pre">stats.norm.isf()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">qinv</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma_np</span> <span class="o">=</span><span class="mi">2</span><span class="o">+</span><span class="n">qinv</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The Neyman-Pearson detection threshold for a false alarm probability&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;of 0.1 is </span><span class="si">{</span><span class="n">gamma_np</span> <span class="si">:</span><span class="s1"> 0.3g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Neyman-Pearson detection threshold for a false alarm probability
+of 0.1 is  3.28
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then the probability of false alarm is <span class="math notranslate nohighlight">\(P(X&lt; \gamma|H_1)\)</span>, which is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(X&lt;\gamma|H_1) &amp; = Q \left( \frac{ \mu_1 -\gamma}{\sigma_1} \right) \\
+&amp;= Q \left(\frac{4-\gamma}{1.5} \right).
+\end{align*}\]</div>
+<p>The result is computed below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_np</span> <span class="o">=</span> <span class="n">q</span><span class="p">((</span><span class="mi">4</span><span class="o">-</span><span class="n">gamma_np</span><span class="p">)</span><span class="o">/</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The probability of miss for the Neyman-Pearson detector&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;with alpha=0.1 is </span><span class="si">{</span><span class="n">beta_np</span> <span class="si">:</span><span class="s1"> 0.2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of miss for the Neyman-Pearson detector
+with alpha=0.1 is  0.32
+</pre></div>
+</div>
+</div>
+</div>
+<p>The analytical result is very close to our estimate from the ROC curve.</p>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">10.1.3. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<p><strong>1.</strong> Plot the performance if the variance of each PSA test is reduced by a factor of 4. What is the AUC?</p>
+<p><strong>2.</strong> If the variance of each PSA test is reduced by a factor of 2 (from the original values), what is the decision threshold for <span class="math notranslate nohighlight">\(\alpha=0.1\)</span>? What value of <span class="math notranslate nohighlight">\(\beta\)</span> is achieved?</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./10-conditional-stats"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">10. </span>Decision Making with Observations from Continuous Distributions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="point-conditioning.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10.2. </span>Point Conditioning</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

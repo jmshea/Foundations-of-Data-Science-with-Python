@@ -1,0 +1,1278 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5.4. How to Sample from the Pooled Data &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.5. Example Null Hypothesis Significance Tests on Whether Post-Baccalaureate Education Increases Family Wealth" href="example-nhst.html" />
+    <link rel="prev" title="5.3. Calculating \(p\)-Values" href="calculating-p-values.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-scatter.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="outline.html">
+     5.6. Binary Hypothesis Tests with Resampling (Outline)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../07-bayesian-methods/intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/bayesian-hypothesis-testing.html">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../07-bayesian-methods/summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-moments/outline.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-conditional-stats/outline.html">
+   10. Applications of Conditional Distributions to Statistical Tests (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-matrix-vector-regression/outline.html">
+   11. Multidimensional Data and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12-categorical-data/outline.html">
+   12. Tests of Independence for Categorical Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/05-binary-hypothesis-testing/how-to-sample.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/05-binary-hypothesis-testing/how-to-sample.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bootstrap-sampling">
+   5.4.1. Bootstrap Sampling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permutation-tests">
+   5.4.2. Permutation Tests
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#which-test-to-use">
+   5.4.3. Which Test to Use?
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>How to Sample from the Pooled Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bootstrap-sampling">
+   5.4.1. Bootstrap Sampling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permutation-tests">
+   5.4.2. Permutation Tests
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#which-test-to-use">
+   5.4.3. Which Test to Use?
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-sample-from-the-pooled-data">
+<h1><span class="section-number">5.4. </span>How to Sample from the Pooled Data<a class="headerlink" href="#how-to-sample-from-the-pooled-data" title="Permalink to this headline">#</a></h1>
+<p>In <a class="reference internal" href="../03-first-data/hypothesis-testing.html"><span class="doc">Section 3.3</span></a>, I introduced one way to sample from the pooled data, bootstrap sampling. In this section, we will delve a little bit deeper into ways to sample from the pooled data and the different implications of these different ways. In general, sampling can either be <em>with replacement</em> or <em>without replacement</em>. Sampling with replacement is called bootstrapping. Sampling without replacement is called <em>permutation testing</em>. It is easiest to see the differences among these approaches if we use a small data set with unique values. Consider whether a professor’s course grades increased after the professor was promoted.  The table below shows the average course grade for the graduate course EEE 5544 Stochastic Methods for Engineering I at the University of Florida over six semesters with the same professor:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Year</p></th>
+<th class="head"><p>Grade</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2013</p></td>
+<td><p>74.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2014</p></td>
+<td><p>74.5</p></td>
+</tr>
+<tr class="row-even"><td><p>2015</p></td>
+<td><p>79.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>2016</p></td>
+<td><p>79.0</p></td>
+</tr>
+<tr class="row-even"><td><p>2018</p></td>
+<td><p>78.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>2019</p></td>
+<td><p>79.3</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that the grades are all distinct. The professor was promoted between the 2014 and 2015 courses. Let’s compare the average of the course grades pre- and post-promotion:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">grades1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">74.1</span><span class="p">,</span> <span class="mf">74.5</span><span class="p">])</span>
+<span class="n">grades2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">79.4</span><span class="p">,</span><span class="mf">79.0</span><span class="p">,</span> <span class="mf">78.4</span><span class="p">,</span><span class="mf">79.3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(74.3, 79.025)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We observe that the average of the course grades increased from 74.3 before the professor’s promotion to 79.025 after the professor’s promotion.  We can define the test statistic as the difference between these averaged course grades:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.725
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will pool the data and then consider different resampling approaches below. The pooled data is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pooled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span> <span class="p">(</span><span class="n">grades1</span><span class="p">,</span> <span class="n">grades2</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="bootstrap-sampling">
+<h2><span class="section-number">5.4.1. </span>Bootstrap Sampling<a class="headerlink" href="#bootstrap-sampling" title="Permalink to this headline">#</a></h2>
+<p>We begin by reconsidering bootstrap sampling, which is also simply called <em>bootstrapping</em>. <strong>Bootstrapping is used when we want to better characterize a test statistic under a particular hypothesis.</strong> Bootstrapping approximates drawing values from the sampling distribution of the test statistic by instead randomly sampling from the pooled data.  <strong>Boostrapping uses sampling with replacement</strong>, so a single value in the pooled data may appear multiple times in a test sample. As in <a class="reference internal" href="../03-first-data/hypothesis-testing.html"><span class="doc">Section 3.3</span></a>, we will use <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code> to sample from the pooled data; by default, <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code> samples <em>with replacement</em>.</p>
+<p>The code cell below contains a simulation that draws 20 bootstrap samples of the data. In each iteration, we construct a sample version <strong>for each group</strong>, and we print out the grades in each group, as well as a list of the repeated values across the two sample groups:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="n">num_sims</span> <span class="o">=</span> <span class="mi">20</span>
+
+
+<span class="c1"># Don&#39;t worry about how to do all this fancy f-string formatting!</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;iter&quot;</span><span class="si">:</span><span class="s1">^6</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="s2">&quot;pre-tenure&quot;</span><span class="si">:</span><span class="s1">16</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="s2">&quot;post-tenure&quot;</span><span class="si">:</span><span class="s1">^24</span><span class="si">}</span><span class="s1">  </span><span class="si">{</span><span class="s2">&quot;repeated values&quot;</span><span class="si">:</span><span class="s1">^20</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;----&quot;</span><span class="si">:</span><span class="s1">^6</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">14</span><span class="si">:</span><span class="s1">^16</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">22</span><span class="si">:</span><span class="s1">^24</span><span class="si">}</span><span class="s1">  </span><span class="si">{</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">22</span><span class="si">:</span><span class="s1">^20</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+  <span class="n">sample1</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">)</span>
+  <span class="n">sample2</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="p">)</span>
+
+  <span class="c1"># Find the repeated values</span>
+  <span class="n">vals</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span> <span class="p">(</span><span class="n">sample1</span><span class="p">,</span> <span class="n">sample2</span><span class="p">)</span> <span class="p">)</span> <span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sim</span><span class="si">:</span><span class="s1">^6</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">sample1</span><span class="p">)</span><span class="si">:</span><span class="s1">16</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">sample2</span><span class="p">)</span><span class="si">:</span><span class="s1">^24</span><span class="si">}</span><span class="s1">  </span><span class="si">{</span>  <span class="nb">str</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">counts</span> <span class="o">&gt;</span><span class="mi">1</span> <span class="p">)])</span><span class="si">:</span><span class="s1">^20</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> iter  pre-tenure             post-tenure           repeated values   
+ ----   --------------   ----------------------   ----------------------
+  0    [74.5 74.5]       [79.3 79.3 79.  74.5]        [74.5 79.3]     
+  1    [74.5 79. ]       [79.  74.1 79.4 79.4]        [79.  79.4]     
+  2    [79.3 79. ]       [74.5 74.5 74.1 74.5]           [74.5]       
+  3    [74.1 79. ]       [79.3 78.4 78.4 74.5]           [78.4]       
+  4    [78.4 79.4]       [74.1 74.1 78.4 78.4]        [74.1 78.4]     
+  5    [79.  79.3]       [79.4 79.3 78.4 79.4]        [79.3 79.4]     
+  6    [79. 79.]         [78.4 78.4 79.  79. ]        [78.4 79. ]     
+  7    [74.1 74.1]       [74.1 79.4 79.4 74.5]        [74.1 79.4]     
+  8    [78.4 78.4]       [74.1 74.1 79.4 79. ]        [74.1 78.4]     
+  9    [79.3 74.1]       [74.5 79.4 79.  78.4]             []         
+  10   [74.1 79. ]       [74.5 79.3 74.5 78.4]           [74.5]       
+  11   [79.4 78.4]       [74.1 79.4 74.5 74.5]        [74.5 79.4]     
+  12   [79.4 79.3]       [74.1 79.  74.1 79. ]        [74.1 79. ]     
+  13   [74.5 78.4]       [74.1 78.4 74.1 74.5]      [74.1 74.5 78.4]  
+  14   [79.4 78.4]       [78.4 79.4 78.4 79.3]        [78.4 79.4]     
+  15   [78.4 79. ]       [74.5 79.4 74.5 79.4]        [74.5 79.4]     
+  16   [79.  79.4]       [78.4 79.4 79.4 79. ]        [79.  79.4]     
+  17   [78.4 74.1]       [79.4 79.  79.4 79.4]           [79.4]       
+  18   [79.3 74.1]       [74.5 79.  79.4 79.3]           [79.3]       
+  19   [74.5 74.5]       [74.1 78.4 78.4 74.1]      [74.1 74.5 78.4]  
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is likely that every group has at least one repeated value. In fact, the probability of having no repeats in an iteration is about <span class="math notranslate nohighlight">\(1.5 \times 10^{-2}\)</span>.  The probability of having at least one row with no repeats in the table is approximately 0.267, so if you run this repeatedly, you should see some rows with no repeats occasionally.</p>
+<p>The purpose of bootstrapping is to approximate drawing from the sampling distribution of the test statistic. Our test statistic is the difference in averages of the two groups, so to create the bootstrap samples of the test statistic, we will calculate the averages for each test group and then calculate the difference:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">20</span>
+
+
+<span class="c1"># Don&#39;t worry about how to do all this fancy f-string formatting!</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;iter&quot;</span><span class="si">:</span><span class="s1">^6</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="s2">&quot;pre-tenure avg&quot;</span><span class="si">:</span><span class="s1">16</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="s2">&quot;post-tenure avg&quot;</span><span class="si">:</span><span class="s1">^24</span><span class="si">}</span><span class="s1">  </span><span class="si">{</span><span class="s2">&quot;sample test stat&quot;</span><span class="si">:</span><span class="s1">^20</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;----&quot;</span><span class="si">:</span><span class="s1">^6</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">14</span><span class="si">:</span><span class="s1">^16</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">22</span><span class="si">:</span><span class="s1">^24</span><span class="si">}</span><span class="s1">  </span><span class="si">{</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">22</span><span class="si">:</span><span class="s1">^20</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+  <span class="n">sample1</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">)</span>
+  <span class="n">sample2</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sim</span><span class="si">:</span><span class="s1">^6</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="mi">3</span><span class="p">))</span><span class="si">:</span><span class="s1">16</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">3</span><span class="p">))</span><span class="si">:</span><span class="s1">^24</span><span class="si">}</span><span class="s1">&#39;</span>  \
+        <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="mi">3</span><span class="p">))</span> <span class="si">:</span><span class="s1">^20</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> iter  pre-tenure avg       post-tenure avg         sample test stat  
+ ----   --------------   ----------------------   ----------------------
+  0    79.0                      77.925                -1.075       
+  1    74.3                      78.875                4.575        
+  2    79.0                       77.8                  -1.2        
+  3    79.15                      77.8                 -1.35        
+  4    78.9                       77.7                  -1.2        
+  5    79.15                      79.2                  0.05        
+  6    76.9                      77.625                0.725        
+  7    76.7                      77.775                1.075        
+  8    76.75                     78.05                  1.3         
+  9    74.3                       77.8                  3.5         
+  10   79.4                       78.0                  -1.4        
+  11   76.55                     78.05                  1.5         
+  12   74.3                      78.95                  4.65        
+  13   76.9                      77.725                0.825        
+  14   76.55                      76.5                 -0.05        
+  15   76.7                       75.6                  -1.1        
+  16   79.4                       76.7                  -2.7        
+  17   79.2                      79.35                  0.15        
+  18   79.2                      79.025                -0.175       
+  19   78.85                     76.475                -2.375       
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that we get both positive and negative values for the sample test statistic.  This should be expected under the null hypothesis, as the data from the two groups is coming from the same distribution. We can further explore this by looking at the distribution of the values of the sample test statistic using a histogram. The code below generates a histogram from 100,000 sample test statistics created using bootstrapping:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">num_sims</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">diffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_sims</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+  <span class="n">sample1</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">)</span>
+  <span class="n">sample2</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="p">)</span>
+  <span class="n">diffs</span><span class="p">[</span><span class="n">sim</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">diffs</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/how-to-sample_14_0.png" src="../_images/how-to-sample_14_0.png" />
+</div>
+</div>
+<p>Although the histogram will not be completely symmetric, it should be symmetric enough to see that the actual distribution of the bootstrap test statistic is symmetric around 0. A NHST can be conducted using this distribution by determining the probability of being in a tail determined by the observed value of the test statistic. For instance, if we wish to conduct a one-sided test, we can estimate the probability of seeing a value as high as the observed difference in averages by determining the relative frequency of such events, as shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">observed_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+  <span class="c1"># Generate test statistic</span>
+  <span class="n">sample1</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">)</span>
+  <span class="n">sample2</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="p">)</span>
+  <span class="n">sample_diff</span> <span class="o">=</span> <span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  
+  <span class="c1"># Count if at least as large as observed test difference</span>
+  <span class="k">if</span> <span class="n">sample_diff</span> <span class="o">&gt;=</span> <span class="n">observed_diff</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Relative frequency of events with difference &gt;= </span><span class="si">{</span><span class="n">observed_diff</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">count</span><span class="o">/</span><span class="n">num_sims</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Relative frequency of events with difference &gt;= 4.725 is 0.01196
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we are using <span class="math notranslate nohighlight">\(\alpha=0.05\)</span> as a threshold for statistical significance, then the result is  statistically significant. Even with this small data set, the difference is big enough that we <strong>reject the null hypothesis at the <span class="math notranslate nohighlight">\(p &lt; 0.05\)</span> level</strong>.</p>
+</div>
+<div class="section" id="permutation-tests">
+<h2><span class="section-number">5.4.2. </span>Permutation Tests<a class="headerlink" href="#permutation-tests" title="Permalink to this headline">#</a></h2>
+<p>When we carried out the bootstrap test, we observed that almost every row had repeated values of the data.  This is attributable to resampling with replacement, and the probability of at least one repeated value increases as the size of the data increases.  There is also nothing preventing the sample groups from repeating in different iterations, although the probability of repeated sample groups decreases with the size of the data.</p>
+<p>If our goal is to conduct a statistical test that directly breaks any dependence on the assignment of the data to the two groups, then it makes more sense to consider simply shuffling, or <em>permuting</em>, the data among the groups, with no repetitions allowed.  When the data is small, we can simply try every permutation of the data across the two groups. This is called an <em>exact permutation test</em>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary simple">
+<dt id="term-exact-permutation-test">exact permutation test<a class="headerlink" href="#term-exact-permutation-test" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">The data is permuted among the groups in every possible order. (No data is repeated.)</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>For instance, with six data points, the number of permutations is <span class="math notranslate nohighlight">\(6! = 720\)</span>. If we want to carry out a NHST, we can compute the test difference for each permutation and determine the proportion of permutations that result in sample test statistics greater than our observed test difference.</p>
+<p>We will use the <code class="docutils literal notranslate"><span class="pre">itertools</span></code> library to find every permutation of the data across the two groups. Let’s first see how to get every permutation of a list of sequential integers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 1, 2)
+(0, 2, 1)
+(1, 0, 2)
+(1, 2, 0)
+(2, 0, 1)
+(2, 1, 0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>For three values, we expect <span class="math notranslate nohighlight">\(3!=6\)</span> permutations, which is what we observe.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">itertools.permutations()</span></code> returns a special object that can be iterated over but that you can’t directly get individual values from.
+Thus, we will always use <code class="docutils literal notranslate"><span class="pre">itertools.permutations()</span></code> in a <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span> </code> statement.</p>
+</div>
+<p>To find permutations into two groups, we first permute the entire pooled data and then partition according to the size of the two groups. For instance, here are the first 10 permutations of the pooled data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">perm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">)):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span><span class="mi">10</span><span class="p">:</span>
+    <span class="k">break</span>
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(74.1, 74.5, 79.4, 79.0, 78.4, 79.3)
+(74.1, 74.5, 79.4, 79.0, 79.3, 78.4)
+(74.1, 74.5, 79.4, 78.4, 79.0, 79.3)
+(74.1, 74.5, 79.4, 78.4, 79.3, 79.0)
+(74.1, 74.5, 79.4, 79.3, 79.0, 78.4)
+(74.1, 74.5, 79.4, 79.3, 78.4, 79.0)
+(74.1, 74.5, 79.0, 79.4, 78.4, 79.3)
+(74.1, 74.5, 79.0, 79.4, 79.3, 78.4)
+(74.1, 74.5, 79.0, 78.4, 79.4, 79.3)
+(74.1, 74.5, 79.0, 78.4, 79.3, 79.4)
+(74.1, 74.5, 79.0, 79.3, 79.4, 78.4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>To partition the data, we can simply split each returned tuple using indexing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">perm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">)):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)],</span> <span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">):])</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span><span class="mi">10</span><span class="p">:</span>
+    <span class="k">break</span>
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(74.1, 74.5) (79.4, 79.0, 78.4, 79.3)
+(74.1, 74.5) (79.4, 79.0, 79.3, 78.4)
+(74.1, 74.5) (79.4, 78.4, 79.0, 79.3)
+(74.1, 74.5) (79.4, 78.4, 79.3, 79.0)
+(74.1, 74.5) (79.4, 79.3, 79.0, 78.4)
+(74.1, 74.5) (79.4, 79.3, 78.4, 79.0)
+(74.1, 74.5) (79.0, 79.4, 78.4, 79.3)
+(74.1, 74.5) (79.0, 79.4, 79.3, 78.4)
+(74.1, 74.5) (79.0, 78.4, 79.4, 79.3)
+(74.1, 74.5) (79.0, 78.4, 79.3, 79.4)
+(74.1, 74.5) (79.0, 79.3, 79.4, 78.4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can carry out a NHST by determining the proportion of permutations that result in a sample test statistic as large as the observed test difference:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_perms</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">observed_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">):</span>
+  <span class="n">num_perms</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="c1"># Split the permuted data across the two sample groups</span>
+  <span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)]</span> <span class="p">)</span>
+  <span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">:</span> <span class="p">]</span> <span class="p">)</span>
+  <span class="c1"># Compute the test statistic</span>
+  <span class="n">sample_diff</span> <span class="o">=</span> <span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  
+  <span class="c1"># Count if at least as large as observed test difference</span>
+  <span class="k">if</span> <span class="n">sample_diff</span> <span class="o">&gt;=</span> <span class="n">observed_diff</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;After </span><span class="si">{</span><span class="n">num_perms</span><span class="si">}</span><span class="s1"> permutations:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Proportion of events with difference &gt;= </span><span class="si">{</span><span class="n">observed_diff</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">count</span><span class="o">/</span><span class="n">num_perms</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>After 720 permutations:
+Proportion of events with difference &gt;= 4.725 is 0.06666666666666667
+</pre></div>
+</div>
+</div>
+</div>
+<p>The proportion of permutations with difference as large as that observed is 6.67%, so the null hypothesis cannot be rejected at the <span class="math notranslate nohighlight">\(\alpha=0.05\)</span> level. Note that the calculated <span class="math notranslate nohighlight">\(p\)</span>-value is larger than for the bootstrap test; this is typical of permutation tests. They are more conservative, in the sense that the null hypothesis is less likely to be rejected than if a bootstrap test were applied.</p>
+<p>One problem with exact permutation tests is that the number of possible permutations grows exponentially with the length of the data. For 6 data points, there are only 720 permutations, but for 60 data points, there are approximately <span class="math notranslate nohighlight">\(8.3 \times 10^{81}\)</span> permutations, which is too large to enumerate. As an alternative, we can use a <em>Monte Carlo permutation test</em>, in which permutations are drawn at random from the set of all permutations. This is equivalent to sampling <em>without replacement</em>, which we can do in Python using <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code> with the keyword parameter <code class="docutils literal notranslate"><span class="pre">replace</span> <span class="pre">=</span> <span class="pre">False</span></code>.</p>
+<p>The simulation for a Monte Carlo permutation test is a hybrid between the simulation for bootstrapping and that for the exact permutation test. We draw the data using <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code>, but we need to get a full permutation of the data and split it among the two sample groups. An example is show below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">observed_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+  <span class="c1"># Get a random permutation of the pooled data:</span>
+  <span class="n">perm</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pooled</span><span class="p">),</span> <span class="n">replace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> 
+  <span class="c1"># Split the permuted data across the two sample groups</span>
+  <span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)]</span> <span class="p">)</span>
+  <span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">:</span> <span class="p">]</span> <span class="p">)</span>
+  <span class="n">sample_diff</span> <span class="o">=</span> <span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  
+  <span class="c1"># Count if at least as large as observed test difference</span>
+  <span class="k">if</span> <span class="n">sample_diff</span> <span class="o">&gt;=</span> <span class="n">observed_diff</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Relative frequency of events with difference &gt;= </span><span class="si">{</span><span class="n">observed_diff</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">count</span><span class="o">/</span><span class="n">num_sims</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Relative frequency of events with difference &gt;= 4.725 is 0.06645
+</pre></div>
+</div>
+</div>
+</div>
+<p>The relative frequency of the Monte Carlo test is very similar to the exact test. In this case, we have a lot of repetitions of the same permutations because there are only 720 unique permutations, but we are drawing 100,000 permutations at random. The computed relative frequency is an estimate of the proportion of permutations that meet the specified criteria.</p>
+</div>
+<div class="section" id="which-test-to-use">
+<h2><span class="section-number">5.4.3. </span>Which Test to Use?<a class="headerlink" href="#which-test-to-use" title="Permalink to this headline">#</a></h2>
+<p>Some factors you should consider when determining whether to use a bootstrap or permutation test:</p>
+<ul class="simple">
+<li><p>The bootstrap test is generally the most popular test, although this varies with the particular research community.</p></li>
+<li><p>The goal of the bootstrap test is to approximate drawing values from the sampling distribution of the test statistic. If the reason for resampling is focused on the sampling distribution of the test statistic, then a bootstrap test should be used. We will give an example in the next section.</p></li>
+<li><p>If the goal of resampling is to break up any dependence on the data from the assignment to the underlying groups, then a permutation test makes the most sense. For instance, if each group represents a treatment, then the goal of resampling may be to break up the mapping of data to treatments; this would merit the use of a permutation test.</p></li>
+<li><p>When the data is small, an exact permutation test can consider every possible mapping of data to groups.</p></li>
+<li><p>Permutation tests are generally more conservative than bootstrap tests in the sense that they generally produce larger <span class="math notranslate nohighlight">\(p\)</span>-values and are thus less likely to reject the null hypothesis and indicate statistical significance.</p></li>
+</ul>
+<p>In the remainder of this book, we will primarily use bootstrap tests because of their simplicity and popularity. An exception is that we will use an exact permutation test for categorical data in <span class="xref std std-doc">Chapter 12</span>.  In the following section, we apply bootstrap tests on the questions we formulated about the impact of post-baccalaureate work on family wealth with the purpose of further investigating the meaning of <span class="math notranslate nohighlight">\(p\)</span>-values and how we can use full the bootstrap distribution of the test statistic to create confidence intervals.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./05-binary-hypothesis-testing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="calculating-p-values.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">5.3. </span>Calculating <span class="math notranslate nohighlight">\(p\)</span>-Values</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="example-nhst.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5.5. </span>Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

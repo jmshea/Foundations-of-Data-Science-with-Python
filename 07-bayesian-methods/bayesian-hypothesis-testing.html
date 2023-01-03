@@ -1,0 +1,2666 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="7.4. Bayesian Hypothesis Testing" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/07-bayesian-methods/bayesian-hypothesis-testing.html" />
+  
+<meta property="og:description" content="In Chapter 2-5, we introduced null hypothesis significance testing (NHST) via resampling. In NHST, we assign significance to some observed statistic if the value of the statistic has a very low pro..." />
+  
+<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+  
+<meta property="og:image:alt" content="7.4. Bayesian Hypothesis Testing" />
+  
+    <title>7.4. Bayesian Hypothesis Testing &#8212; Foundations of Data Science with Python</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/07-bayesian-methods/bayesian-hypothesis-testing.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.5. Review" href="review.html" />
+    <link rel="prev" title="7.3. Optimal Decisions for Discrete Stochastic Systems" href="optimal-decisions.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-51XGJJ29T3"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-51XGJJ29T3');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/normal-people.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Foundations of Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Foundations of Data Science with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../01-intro/intro.html">
+   1. Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/who-for.html">
+     1.1. Who is this book for?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/why-this-book.html">
+     1.2. Why learn data science from this book?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-is-data-science.html">
+     1.3. What is data science?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/what-book-covers.html">
+     1.4. What data science topics does this book cover?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">
+     1.5. Extremely Brief Intro to Jupyter and Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/jupyter-start.html">
+     1.6. Getting Started in Jupyter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/python-start.html">
+     1.7. Getting Started in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../01-intro/review.html">
+     1.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02-first-stats/intro.html">
+   2. First Simulations, Visualizations, and Statistical Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/motivating-problem.html">
+     2.1. Motivating Problem: Is This Coin Fair?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-sims.html">
+     2.2. First Computer Simulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-vis.html">
+     2.3. First Visualizations: Scatter Plots and Histograms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/first-stats.html">
+     2.4. First Statistical Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02-first-stats/review.html">
+     2.5. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03-first-data/intro.html">
+   3. First Visualizations and Statistical Tests with Real Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/pandas-start.html">
+     3.1. Intro to Pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/visualization.html">
+     3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/partitions.html">
+     3.3. Partitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/summary-stats.html">
+     3.4. Summary Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/histogram.html">
+     3.5. Visualizing Multiple Data Sets - Part 2: Histograms for Partitioned Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/hypothesis-testing.html">
+     3.6. Binary Hypothesis Testing with Real Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/2d-statistics-preview.html">
+     3.7. A Quick Preview of Two-Dimensional Statistical Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03-first-data/review.html">
+     3.8. Review
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04-probability1/intro.html">
+   4. Introduction to Probability
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">
+     4.1. Outcomes, Sample Spaces, and Events
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/relative-frequency.html">
+     4.2. Relative Frequencies and Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/fair-experiments.html">
+     4.3. Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/axiomatic-prob.html">
+     4.4. Axiomatic  Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/corollaries.html">
+     4.5. Corollaries to the Axioms of Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/combinatorics.html">
+     4.6. Combinatorics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/review.html">
+     4.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04-probability1/summary.html">
+     4.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05-null-hypothesis-testing/intro.html">
+   5. Null Hypothesis Tests
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">
+     5.1. Statistical Studies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">
+     5.2. General Resampling Approaches for Null Hypothesis Significance Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">
+     5.3. Calculating
+     <span class="math notranslate nohighlight">
+      \(p\)
+     </span>
+     -Values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">
+     5.4. How to Sample from the Pooled Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">
+     5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">
+     5.6. Bootstrap Distribution and Confidence Intervals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">
+     5.7. Types of Errors and Statistical Power
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/review.html">
+     5.8. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05-null-hypothesis-testing/summary.html">
+     5.9. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06-conditional-prob/intro.html">
+   6. Dependence and Independence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/simulating-cond-probs.html">
+     6.1. Simulating and Counting Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/notation-and-intuition.html">
+     6.2. Conditional Probability: Notation and Intuition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/definition.html">
+     6.3. Formally Defining Conditional Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/relating-cond-uncond.html">
+     6.4. Relating Conditional and Unconditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/more-on-simulating.html">
+     6.5. More on Simulating Conditional Probabilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/independence.html">
+     6.6. Statistical Independence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/fair-exps.html">
+     6.7. Conditional Probabilities and Independence in Fair Experiments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/conditional-independence.html">
+     6.8. Conditioning and (In)dependence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/chain-rules-total-prob.html">
+     6.9. Chain Rules and Total Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/review.html">
+     6.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06-conditional-prob/summary.html">
+     6.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="intro.html">
+   7. Introduction to Bayesian Methods
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="bayes-rule.html">
+     7.1. Bayes’ Rule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bayes-hidden-state.html">
+     7.2. Bayes’ Rule in Systems with Hidden State
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimal-decisions.html">
+     7.3. Optimal Decisions for Discrete Stochastic Systems
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     7.4. Bayesian Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     7.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     7.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08-random-variables/intro.html">
+   8. Random Variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/definition.html">
+     8.1. Definition of a Real Random Variable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/discrete-rvs.html">
+     8.2. Discrete Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/cdfs.html">
+     8.3. Cumulative Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-discrete-rvs.html">
+     8.4. Important Discrete RVs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/continuous-rvs.html">
+     8.6. Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/important-continuous-rvs.html">
+     8.7. Important Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/kernel-density-estimation.html">
+     8.8. Histograms of Continuous Random Variables and Kernel Density Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/conditioning-with-rvs.html">
+     8.9. Conditioning with Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/review.html">
+     8.10. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08-random-variables/summary.html">
+     8.11. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../09-moments/intro.html">
+   9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value.html">
+     9.1. Expected Value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/expected-value-continuous.html">
+     9.2. Expected Value of a Continuous Random Variable with SymPy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/moments.html">
+     9.3. Moments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-estimation.html">
+     9.4. Parameter Estimation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">
+     9.5. Confidence Intervals for Estimates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">
+     9.6. Testing a Difference of Means
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/parameter-distributions.html">
+     9.7. Sampling and Bootstrap Distributions of Parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/sample-size-selection.html">
+     9.8. Effect Size, Power, and Sample Size Selection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/review.html">
+     9.9. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../09-moments/summary.html">
+     9.10. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../10-conditional-stats/intro.html">
+   10. Decision Making with Observations from Continuous Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">
+     10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/point-conditioning.html">
+     10.2. Point Conditioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">
+     10.3. Optimal Bayesian Decision Making with Continuous Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/review.html">
+     10.4. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../10-conditional-stats/summary.html">
+     10.5. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
+   11. Multidimensional Data and Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
+     11.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
+     11.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
+     11.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
+     11.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
+     11.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
+     11.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
+     11.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
+     11.8. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-categorical-data/intro.html">
+   12. Categorical Data and Tests for Dependence
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
+     12.1. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/nhst.html">
+     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-categorical-data/summary.html">
+     12.3. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13-clustering-transforming/outline.html">
+   13. Clustering and Transforming Multi-dimensional Data (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14-matrix-applications/outline.html">
+   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../15-multidim-dependence/outline.html">
+   15. Working with Dependent Data in Multiple Dimensions (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../16-next-steps/outline.html">
+   16. Next Steps (Outline)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   17. Index
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/07-bayesian-methods/bayesian-hypothesis-testing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/07-bayesian-methods/bayesian-hypothesis-testing.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uninformative-prior">
+   7.4.1. Uninformative Prior
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#informative-prior">
+   7.4.2. Informative prior
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extending-the-set-of-a-prioris">
+   7.4.3. Extending the set of a prioris
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     7.4.3.1. Uninformative prior
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     7.4.3.2. Informative prior
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   7.4.4. Terminology Review
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#remaining-items">
+   7.4.5. Remaining Items
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Bayesian Hypothesis Testing</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uninformative-prior">
+   7.4.1. Uninformative Prior
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#informative-prior">
+   7.4.2. Informative prior
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extending-the-set-of-a-prioris">
+   7.4.3. Extending the set of a prioris
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     7.4.3.1. Uninformative prior
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     7.4.3.2. Informative prior
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   7.4.4. Terminology Review
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#remaining-items">
+   7.4.5. Remaining Items
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<span class="target" id="index-0"></span><section class="tex2jax_ignore mathjax_ignore" id="bayesian-hypothesis-testing">
+<span id="index-1"></span><h1><span class="section-number">7.4. </span>Bayesian Hypothesis Testing<a class="headerlink" href="#bayesian-hypothesis-testing" title="Permalink to this heading">#</a></h1>
+<p>In Chapter 2-5, we introduced null hypothesis significance testing (NHST) via resampling.  In NHST, we assign significance to some observed statistic if the value of the statistic has a very low probability of occurring under some testable null hypothesis. This approach is very common, but it also has some problems:</p>
+<ul class="simple">
+<li><p>NHST cannot utilize information from other source about the probability of a hypothesis being true;</p></li>
+<li><p>NHST can only evaluate the probability of seeing such an extreme value of a statistic under the null hypothesis; it cannot assign probabilities to the null and alternative hypotheses;</p></li>
+<li><p>Moreover, NHST is not easily generalized to handle multiple possible hypotheses;</p></li>
+<li><p>The result of an NHST (the <span class="math notranslate nohighlight">\(p\)</span> value) is often misinterpreted and <span class="math notranslate nohighlight">\(p\)</span>-values are often subject to manipulation through “<span class="math notranslate nohighlight">\(p\)</span> hacking”.</p></li>
+</ul>
+<p>NHST can be considered a <em>frequentist</em> technique because it only involves counting how often we see a certain type of value under the null hypothesis.</p>
+<p>An alternative is to use a <em>Bayesian hypothesis test</em> in which the goal is to estimate the <em>a posteriori</em> probability of the possible hypotheses.</p>
+<p>To simplify the introduction to this approach, let’s use a slightly modified version of our first statistical test, which we introduced in Chapter 2:</p>
+<p>You find an odd coin. Suppose you flip the coin 8 times and it comes up tails on every flip. You would like to conduct a statistical test to determine if it is a fair coin.  If it were a fair coin, then there is one outcome of “all tails” among the <span class="math notranslate nohighlight">\(2^8\)</span> possible outcomes, meaning that the probability of observing all tails is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">8</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.00390625
+</pre></div>
+</div>
+</div>
+</div>
+<p>Under the NHST approach, you would determine the probability of seeing an outcome that is at least this extreme under the null hypothesis, which would typically be that the coin is a fair coin. However, under a Bayesian approach we can find the <em>a posteriori</em> probability that this is a fair coin given this observation.</p>
+<p>Unlike NHST, we will have to establish a model for all the possible behaviors of the coin and assign probabilities to this model. Let’s start with the simplest possible model that might fit our observations:
+<strong>the coin is either fair or it has tails on both sides</strong>.</p>
+<p>Now, let’s establish some notation.</p>
+<p>Let:</p>
+<p><span class="math notranslate nohighlight">\(F\)</span> = event the coin is fair</p>
+<p>(Then <span class="math notranslate nohighlight">\(\overline{F}\)</span> = even that the coin has tails on both sides.)</p>
+<p><span class="math notranslate nohighlight">\(E\)</span> = event that coin comes up tails on 8 consecutive flips</p>
+<p>Then we wish to estimate the APP <span class="math notranslate nohighlight">\(P(F|E)\)</span>. As usual, we do not have direct knowledge of this type of probability. In addition, we know from our previous work in this chapter that we generally need to know the <em>a priori</em> probabilities. For the model we have chosen, we need to know <span class="math notranslate nohighlight">\(P(F)\)</span> and <span class="math notranslate nohighlight">\(P(\overline{F}) = 1 -P(F)\)</span>.</p>
+<p>Given the <em>a prioris</em>, we can find <span class="math notranslate nohighlight">\(P(F|E)\)</span> in two ways:</p>
+<ol class="simple">
+<li><p>We can run a simulation of the system</p></li>
+<li><p>We can calculate it using Bayes’ rule</p></li>
+</ol>
+<p>Although approach 2 is tractable for this simple problem, let’s apply approach 1, since this approach is applicable to a larger class of problems.</p>
+<p>We need the <em>a priori</em> probabilities, but there is no way for us to know the true <em>a prioris</em>. So what to do?</p>
+<p>We will have to choose the <em>a prioris</em>. How? There are 2 typical approaches:</p>
+<ol class="simple">
+<li><p><strong>Uninformative prior</strong>: We choose a prior that basically assumes as little information about the inputs as possible. For discrete inputs, this will often be equally likely probabilities</p></li>
+<li><p><strong>Informative prior</strong>: We choose a prior based on other knowledge of the problem.</p></li>
+</ol>
+<p>Below, we consider both of these approaches and compare the effect of these assumptions on the <em>a posteriori</em> probabilities and on our conclusions:</p>
+<span class="target" id="index-2"></span><section id="uninformative-prior">
+<span id="index-3"></span><h2><span class="section-number">7.4.1. </span>Uninformative Prior<a class="headerlink" href="#uninformative-prior" title="Permalink to this heading">#</a></h2>
+<p>Let’s assume that the probabilities that coin is fair or two-tailed are equally likely:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># How many sets of coin flip events to simulate</span>
+<span class="n">num_sims</span> <span class="o">=</span> <span class="mi">1000000</span>
+
+
+<span class="c1"># This is the number of flips and the target for the event E</span>
+<span class="n">flips</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="c1"># Set up some counters. As we saw before, when we estimate a conditional probability,</span>
+<span class="c1"># we generally need two counters:</span>
+<span class="n">event_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">fair_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># We have two types of coins:</span>
+<span class="n">cointypes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fair&quot;</span><span class="p">,</span> <span class="s2">&quot;twotail&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+
+    <span class="c1"># Choose a coin at random and set up the sample space for the coin flip:</span>
+    <span class="n">cointype</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">cointypes</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cointype</span> <span class="o">==</span> <span class="s2">&quot;fair&quot;</span><span class="p">:</span>
+        <span class="n">faces</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">faces</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Now flip the coin the required number of times:</span>
+    <span class="n">coins</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">faces</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">flips</span><span class="p">)</span>
+
+    <span class="c1"># Count how many tails were observed</span>
+    <span class="n">num_tails</span> <span class="o">=</span> <span class="n">coins</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check if E occurred and update counter if it did</span>
+    <span class="k">if</span> <span class="n">num_tails</span> <span class="o">==</span> <span class="n">flips</span><span class="p">:</span>
+        <span class="n">event_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># Now check that the event F occurred when E occurred and update the counter:</span>
+        <span class="k">if</span> <span class="n">cointype</span> <span class="o">==</span> <span class="s2">&quot;fair&quot;</span><span class="p">:</span>
+            <span class="n">fair_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Prob. of fair coin given that&quot;</span><span class="p">,</span>
+    <span class="n">flips</span><span class="p">,</span>
+    <span class="s2">&quot;tails observed is&quot;</span><span class="p">,</span>
+    <span class="n">fair_count</span> <span class="o">/</span> <span class="n">event_count</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prob. of fair coin given that 8 tails observed is 0.003895069959994427
+</pre></div>
+</div>
+</div>
+</div>
+<p>An alternative to directly counting the number of events <span class="math notranslate nohighlight">\(F\)</span> when <span class="math notranslate nohighlight">\(E\)</span> is observed is to instead keep a list of all the events (<span class="math notranslate nohighlight">\(F\)</span> or <span class="math notranslate nohighlight">\(\overline{F}\)</span>) when <span class="math notranslate nohighlight">\(E\)</span> is observed. We will find this approach helpful if we consider a more complicated model for the behavior of the coin. Below is the code to save those events to a list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># How many sets of coin flip events to simulate</span>
+<span class="n">num_sims</span> <span class="o">=</span> <span class="mi">1000000</span>
+
+
+<span class="c1"># This is the number of flips and the target for the event E</span>
+<span class="n">flips</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="c1"># Instead of counters, just keep track of the system states when</span>
+<span class="c1"># the output event E is observed:</span>
+<span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># We have two types of coins:</span>
+<span class="n">cointypes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fair&quot;</span><span class="p">,</span> <span class="s2">&quot;twotail&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+
+    <span class="c1"># Choose a coin at random and set up the sample space for the coin flip:</span>
+    <span class="n">cointype</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">cointypes</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cointype</span> <span class="o">==</span> <span class="s2">&quot;fair&quot;</span><span class="p">:</span>
+        <span class="n">faces</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">faces</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Now flip the coin the required number of times:</span>
+    <span class="n">coins</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">faces</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">flips</span><span class="p">)</span>
+
+    <span class="c1"># Count how many tails were observed</span>
+    <span class="n">num_tails</span> <span class="o">=</span> <span class="n">coins</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check if E occurred and update counter if it did</span>
+    <span class="k">if</span> <span class="n">num_tails</span> <span class="o">==</span> <span class="n">flips</span><span class="p">:</span>
+        <span class="n">events</span> <span class="o">+=</span> <span class="p">[</span><span class="n">cointype</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">events</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;fair&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0038363349470613636
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">events</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;twotail&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9961636650529386
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can easily create a histogram from this data. However, since the system states are not numerical, we cannot use the normal <code class="docutils literal notranslate"><span class="pre">plt.hist()</span></code> function. Instead, we will use Matplotlib’s <code class="docutils literal notranslate"><span class="pre">plt.bar()</span></code> function:</p>
+<div class="cell docutils container" id="index-4">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span> plt.bar
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Signature:</span>
+ plt<span class=" -Color -Color-Blue">.</span>bar<span class=" -Color -Color-Blue">(</span>
+    x<span class=" -Color -Color-Blue">,</span>
+    height<span class=" -Color -Color-Blue">,</span>
+    width<span class=" -Color -Color-Blue">=</span><span class=" -Color -Color-Cyan">0.8</span><span class=" -Color -Color-Blue">,</span>
+    bottom<span class=" -Color -Color-Blue">=</span><span class=" -Color -Color-Green">None</span><span class=" -Color -Color-Blue">,</span>
+    <span class=" -Color -Color-Blue">*,</span>
+    align<span class=" -Color -Color-Blue">=&#39;center&#39;,</span>
+    data<span class=" -Color -Color-Blue">=</span><span class=" -Color -Color-Green">None</span><span class=" -Color -Color-Blue">,</span>
+    <span class=" -Color -Color-Blue">**</span>kwargs<span class=" -Color -Color-Blue">,</span>
+<span class=" -Color -Color-Blue">)</span>
+<span class=" -Color -Color-Red">Docstring:</span>
+Make a bar plot.
+
+The bars are positioned at *x* with the given *align*\ment. Their
+dimensions are given by *height* and *width*. The vertical baseline
+is *bottom* (default 0).
+
+Many parameters can take either a single value applying to all bars
+or a sequence of values, one for each bar.
+
+Parameters
+----------
+x : float or array-like
+    The x coordinates of the bars. See also *align* for the
+    alignment of the bars to the coordinates.
+
+height : float or array-like
+    The height(s) of the bars.
+
+width : float or array-like, default: 0.8
+    The width(s) of the bars.
+
+bottom : float or array-like, default: 0
+    The y coordinate(s) of the bars bases.
+
+align : {&#39;center&#39;, &#39;edge&#39;}, default: &#39;center&#39;
+    Alignment of the bars to the *x* coordinates:
+
+    - &#39;center&#39;: Center the base on the *x* positions.
+    - &#39;edge&#39;: Align the left edges of the bars with the *x* positions.
+
+    To align the bars on the right edge pass a negative *width* and
+    ``align=&#39;edge&#39;``.
+
+Returns
+-------
+`.BarContainer`
+    Container with all the bars and optionally errorbars.
+
+Other Parameters
+----------------
+color : color or list of color, optional
+    The colors of the bar faces.
+
+edgecolor : color or list of color, optional
+    The colors of the bar edges.
+
+linewidth : float or array-like, optional
+    Width of the bar edge(s). If 0, don&#39;t draw edges.
+
+tick_label : str or list of str, optional
+    The tick labels of the bars.
+    Default: None (Use default numeric labels.)
+
+xerr, yerr : float or array-like of shape(N,) or shape(2, N), optional
+    If not *None*, add horizontal / vertical errorbars to the bar tips.
+    The values are +/- sizes relative to the data:
+
+    - scalar: symmetric +/- values for all bars
+    - shape(N,): symmetric +/- values for each bar
+    - shape(2, N): Separate - and + values for each bar. First row
+      contains the lower errors, the second row contains the upper
+      errors.
+    - *None*: No errorbar. (Default)
+
+    See :doc:`/gallery/statistics/errorbar_features`
+    for an example on the usage of ``xerr`` and ``yerr``.
+
+ecolor : color or list of color, default: &#39;black&#39;
+    The line color of the errorbars.
+
+capsize : float, default: :rc:`errorbar.capsize`
+   The length of the error bar caps in points.
+
+error_kw : dict, optional
+    Dictionary of kwargs to be passed to the `~.Axes.errorbar`
+    method. Values of *ecolor* or *capsize* defined here take
+    precedence over the independent kwargs.
+
+log : bool, default: False
+    If *True*, set the y-axis to be log scale.
+
+data : indexable object, optional
+    If given, all parameters also accept a string ``s``, which is
+    interpreted as ``data[s]`` (unless this raises an exception).
+
+**kwargs : `.Rectangle` properties
+
+Properties:
+    agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi value, and returns a (m, n, 3) array
+    alpha: scalar or None
+    angle: unknown
+    animated: bool
+    antialiased or aa: bool or None
+    bounds: (left, bottom, width, height)
+    capstyle: `.CapStyle` or {&#39;butt&#39;, &#39;projecting&#39;, &#39;round&#39;}
+    clip_box: `.Bbox`
+    clip_on: bool
+    clip_path: Patch or (Path, Transform) or None
+    color: color
+    edgecolor or ec: color or None
+    facecolor or fc: color or None
+    figure: `.Figure`
+    fill: bool
+    gid: str
+    hatch: {&#39;/&#39;, &#39;\\&#39;, &#39;|&#39;, &#39;-&#39;, &#39;+&#39;, &#39;x&#39;, &#39;o&#39;, &#39;O&#39;, &#39;.&#39;, &#39;*&#39;}
+    height: unknown
+    in_layout: bool
+    joinstyle: `.JoinStyle` or {&#39;miter&#39;, &#39;round&#39;, &#39;bevel&#39;}
+    label: object
+    linestyle or ls: {&#39;-&#39;, &#39;--&#39;, &#39;-.&#39;, &#39;:&#39;, &#39;&#39;, (offset, on-off-seq), ...}
+    linewidth or lw: float or None
+    path_effects: `.AbstractPathEffect`
+    picker: None or bool or float or callable
+    rasterized: bool
+    sketch_params: (scale: float, length: float, randomness: float)
+    snap: bool or None
+    transform: `.Transform`
+    url: str
+    visible: bool
+    width: unknown
+    x: unknown
+    xy: (float, float)
+    y: unknown
+    zorder: float
+
+See Also
+--------
+barh : Plot a horizontal bar plot.
+
+Notes
+-----
+Stacked bars can be achieved by passing individual *bottom* values per
+bar. See :doc:`/gallery/lines_bars_and_markers/bar_stacked`.
+<span class=" -Color -Color-Red">File:</span>      /Applications/anaconda3/lib/python3.9/site-packages/matplotlib/pyplot.py
+<span class=" -Color -Color-Red">Type:</span>      function
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the call signature, we can see that <code class="docutils literal notranslate"><span class="pre">plt.bar()</span></code> has two required arguments:</p>
+<ul class="simple">
+<li><p>The first argument, <code class="docutils literal notranslate"><span class="pre">x</span></code>, is a sequence that contains the values</p></li>
+<li><p>The second argument, <code class="docutils literal notranslate"><span class="pre">height</span></code> contains a sequence of heights for each value</p></li>
+</ul>
+<p>We will pass the <code class="docutils literal notranslate"><span class="pre">cointypes</span></code> list and a list of the estimated probabilities for each coin type, which we calculate using the relative frequencies from our simulation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">cointypes</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">events</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;fair&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">),</span> <span class="n">events</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;twotail&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)],</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Estimated probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A posteriori probabilities for tails observed on 8 flips of a coin&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-hypothesis-testing_19_0.png" src="../_images/bayesian-hypothesis-testing_19_0.png" />
+</div>
+</div>
+<p>Note that the value of the probability for the fair coin is so small that we cannot read it from the graph. We can overcome this by plotting these bars on a logarithmic scale. However, we should note that the heights of the bars will no longer be in proportion to the probabilities when shown on a log-scale, so we should use this with caution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">cointypes</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">events</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;fair&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">),</span> <span class="n">events</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;twotail&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)],</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Estimated probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A posteriori probabilities for tails observed on 8 flips of a coin&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-hypothesis-testing_21_0.png" src="../_images/bayesian-hypothesis-testing_21_0.png" />
+</div>
+</div>
+<p>Now that you see this result, you can say that the chance that the coin was a fair coin was very small indeed. But would you be willing to show this job to your boss if your job were on the line? What could go wrong?</p>
+<p>The most likely thing to go wrong is that your boss would say: “<strong>How many coins have you found that have tails on both side?</strong>” I have never found a coin with two tails after handling coins for decades.  That means that you have some information that you could use to choose a prior other than the uninformative prior. We consider how to handle that next.</p>
+</section>
+<section id="informative-prior">
+<span id="index-5"></span><h2><span class="section-number">7.4.2. </span>Informative prior<a class="headerlink" href="#informative-prior" title="Permalink to this heading">#</a></h2>
+<p>Given our prior experience, we can say that a randomly chosen coin has a very small probability of having tails on both sides. So, the <em>a priori</em> probabilities should not be equal to 0.5. The <em>a posteriori</em> probabilities will depend on the particular values chosen for the <em>a prioris</em>. However, if you bias these probabilities too much, then it will give someone viewing your results yet another point of criticism. So, for instance, if you say that the probability of finding a two-tailed coin is 1 in 1,000,000, then you may be forced to defend why that particular value. But, if you assume that the probability of a two-tailed coin is 1/100 and still find that there is a reasonable probability that the coin is fair, then that is much easier to defend. To make assessing this tradeoff easier, let’s create a function that can simulate the <em>a posteriori</em> probabilities for any choice of the probability of a two-tailed coin.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">random.choices()</span></code> function has a <code class="docutils literal notranslate"><span class="pre">weights</span></code> keyword parameter that can be used to change the probability of the choices according to input probabilities or other weightings.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">coin_bayes</span><span class="p">(</span><span class="n">prob_2tails</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">flips</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">num_sims</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">):</span>
+    <span class="c1"># Set up some counters. As we saw before, when we estimate a conditional probability,</span>
+    <span class="c1"># we generally need two counters:</span>
+    <span class="n">event_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">fair_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># We have two types of coins:</span>
+    <span class="n">cointypes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;fair&quot;</span><span class="p">,</span> <span class="s2">&quot;twotail&quot;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+
+        <span class="c1"># Choose a coin at random and set up the sample space for the coin flip:</span>
+        <span class="n">cointype</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">cointypes</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">prob_2tails</span><span class="p">,</span> <span class="n">prob_2tails</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">cointype</span> <span class="o">==</span> <span class="s2">&quot;fair&quot;</span><span class="p">:</span>
+            <span class="n">faces</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">faces</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Now flip the coin the required number of times:</span>
+        <span class="n">coins</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">faces</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">flips</span><span class="p">)</span>
+        <span class="c1"># print(cointype, faces, coins)</span>
+
+        <span class="c1"># Count how many tails were observed</span>
+        <span class="n">num_tails</span> <span class="o">=</span> <span class="n">coins</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check if E occurred and update counter if it did</span>
+        <span class="k">if</span> <span class="n">num_tails</span> <span class="o">==</span> <span class="n">flips</span><span class="p">:</span>
+            <span class="n">event_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># Now check that the event F occurred when E occurred and update the counter:</span>
+            <span class="k">if</span> <span class="n">cointype</span> <span class="o">==</span> <span class="s2">&quot;fair&quot;</span><span class="p">:</span>
+                <span class="n">fair_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">fair_count</span> <span class="o">/</span> <span class="n">event_count</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s start by checking the output of our function for the uninformative prior, which uses the default value of <code class="docutils literal notranslate"><span class="pre">prob_2tails</span> <span class="pre">=</span> <span class="pre">0.5</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coin_bayes</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.003743512606213952
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can check how the answer varies if we set the probability of finding a two-tailed coin to 1/100:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coin_bayes</span><span class="p">(</span><span class="n">prob_2tails</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.27587712913087786
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <em>a posteriori</em> value of the coin being fair will increase when the probability of finding a two-tailed coin decreases:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coin_bayes</span><span class="p">(</span><span class="n">prob_2tails</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7907351460221551
+</pre></div>
+</div>
+</div>
+</div>
+<p>Even though the chance of getting 8 heads on 8 flips of a fair coin is very small, the <em>a posteriori</em> probability of the coin being fair can be large if the <em>a priori</em> probability of the coin being two-tailed is very small.</p>
+<p>If we return to what we could be confident in telling our boss, we can say that if the probability of finding a two-tailed coin  is less than 1/100, then the probability that the coin is fair is greater than 0.28. Although this probability is still less than 1/2, it is large enough that we can’t classify this as a rare occurrence.</p>
+<p><strong>Example</strong> What prior makes it equally likely for the coin to be fair or two-headed?</p>
+<p>Let’s try to analyze this using conditional probability. Let <span class="math notranslate nohighlight">\(T_i\)</span> be the event that the coin came up tails on flip <span class="math notranslate nohighlight">\(i\)</span>. If the coin is fair, then the outcomes of the individual flips are independent, so</p>
+<div class="math notranslate nohighlight">
+\[
+P(E|F) = P\left( \bigcap_{i=0}^{7} T_i  \right)= \prod_{i=0}^{7} P\left( T_i \right) 
+= \left( \frac 1 2  \right) ^ 8 = \frac{ 1} {256}
+\]</div>
+<p>Clearly, <span class="math notranslate nohighlight">\(P\left(E \left \vert \overline{F} \right. \right) = 1\)</span>. If <span class="math notranslate nohighlight">\(P(F|E) = P\left( \overline{F} \left \vert E \right. \right)\)</span>, then <span class="math notranslate nohighlight">\(P(F|E) = 1/2\)</span>. Let <span class="math notranslate nohighlight">\(P(F)= q\)</span> and <span class="math notranslate nohighlight">\(P\left( \overline{F} \right) = 1-q\)</span>. Then</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(F|E) = \frac 1 2 &amp;= \frac{P(E|F) P(F)}
+{P\bigl(E \bigl \vert F \bigr. \bigr)P\bigl(F \bigr) + 
+P\bigl( E \bigl \vert \overline{F} \bigr. \bigr) P \bigl( \overline{F} \bigr) }\\
+&amp;= \frac{\frac{1}{256} q}
+{\frac{1}{256} q + (1) (1-q)} \\
+ 1 &amp;= \frac{ 2q}{ q +256  - 256q} \\
+ 256 - 255q &amp;= 2q \\
+q &amp;= \frac{256}{257}.
+\end{align*}\]</div>
+<p>So, for the <em>a posteriori</em> probability that the coin is fair to be equal to
+the <em>a posteriori</em> probability that the coin is unfair, the probability of the coin being fair must be approximately</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">256</span> <span class="o">/</span> <span class="mi">257</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9961089494163424
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extending-the-set-of-a-prioris">
+<h2><span class="section-number">7.4.3. </span>Extending the set of a prioris<a class="headerlink" href="#extending-the-set-of-a-prioris" title="Permalink to this heading">#</a></h2>
+<p>Now suppose you believe that coins do not have to be either fair, two-headed, or two-tailed. Suppose you believe that biased coins can be made that, when flipped, are more likely to turn up heads or more likely to turn up tails.</p>
+<p>This introduces a new <em>model</em> for the coins, and we have to choose a new prior. However, this is where things may start to be a bit confusing. The reason is that the bias can be quantified as the probability that the coin comes up tails, <span class="math notranslate nohighlight">\(P(T)\)</span>. But now we want to assign probabilities to different biases for the coin. I.e., we have something like <span class="math notranslate nohighlight">\(P\left[ P\left( T \right) = 0.8 \right]\)</span>.  And probabilities of this form are <em>a priori</em> probabilities for the bias. What we really want to estimate are <em>a posteriori</em> probabilities like <span class="math notranslate nohighlight">\(P\left [ P\left(T \right) = 0.8 \left \vert E \right. \right] \)</span>.  To help simplify this confusing situation, let’s define the bias <span class="math notranslate nohighlight">\(B = P(T)\)</span>. Then we can write the <em>a priori</em> probabilities as <span class="math notranslate nohighlight">\(P(B=b)\)</span> and the <em>a posteriori</em> probability <span class="math notranslate nohighlight">\(P\left(B=b  \left \vert  E \right. \right)\)</span> for different values of <span class="math notranslate nohighlight">\(b\)</span> in the interval <span class="math notranslate nohighlight">\([0,1]\)</span>.</p>
+<section id="id1">
+<h3><span class="section-number">7.4.3.1. </span>Uninformative prior<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>As before, we may use an uninformative prior or an informative prior. Let’s begin with an uninformative prior. Because we do not yet know how to handle the case of how to estimate the <em>a posterior</em> probability when the the bias <span class="math notranslate nohighlight">\(B\)</span> is chosen randomly from the continuous range <span class="math notranslate nohighlight">\([0,1]\)</span>, we will instead quantize the range in steps of 0.01:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.  , 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1 ,
+       0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2 , 0.21,
+       0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3 , 0.31, 0.32,
+       0.33, 0.34, 0.35, 0.36, 0.37, 0.38, 0.39, 0.4 , 0.41, 0.42, 0.43,
+       0.44, 0.45, 0.46, 0.47, 0.48, 0.49, 0.5 , 0.51, 0.52, 0.53, 0.54,
+       0.55, 0.56, 0.57, 0.58, 0.59, 0.6 , 0.61, 0.62, 0.63, 0.64, 0.65,
+       0.66, 0.67, 0.68, 0.69, 0.7 , 0.71, 0.72, 0.73, 0.74, 0.75, 0.76,
+       0.77, 0.78, 0.79, 0.8 , 0.81, 0.82, 0.83, 0.84, 0.85, 0.86, 0.87,
+       0.88, 0.89, 0.9 , 0.91, 0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98,
+       0.99, 1.  ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">biased_coins_u</span><span class="p">(</span><span class="n">flips</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">num_sims</span><span class="o">=</span><span class="mi">100_000</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Simulate randomly choosing the bias for a coin (from 0 to 100 by 0.01) and</span>
+<span class="sd">    then flipping the coin 8 times. Whenever it comes up tails 8 times, record</span>
+<span class="sd">    that coin&#39;s bias.  As before, the relative frequencies of the biases in the resulting set</span>
+<span class="sd">    approximate the *a posteriori* probability of those biases. &quot;&quot;&quot;</span>
+
+    <span class="c1"># Generate the set of possible biases</span>
+    <span class="n">allcoins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+
+    <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+
+        <span class="c1"># Choose a bias for this coin</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">allcoins</span><span class="p">)</span>
+
+        <span class="c1"># Now generate the coins according to that bias and count the number of heads</span>
+        <span class="n">coins</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">([</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">B</span><span class="p">,</span> <span class="n">B</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="n">flips</span><span class="p">)</span>
+        <span class="n">num_tails</span> <span class="o">=</span> <span class="n">coins</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Record the events with the target number of tails</span>
+        <span class="k">if</span> <span class="n">num_tails</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">events</span> <span class="o">+=</span> <span class="p">[</span><span class="n">B</span><span class="p">]</span>
+
+    <span class="c1"># Use the np.unique function (introduced in Ch. 2) to return the values and their counts</span>
+    <span class="n">vals</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Now manually generate a histogram using plt.bar</span>
+    <span class="c1"># The relative frequency of a given value is the count of that value divided</span>
+    <span class="c1"># by the total number of captured events</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+        <span class="n">vals</span><span class="p">,</span> <span class="n">counts</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.01</span>
+    <span class="p">)</span>  <span class="c1"># Note that we had to change the bar width here!!!</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Simulation of </span><span class="si">{</span><span class="n">flips</span><span class="si">}</span><span class="s2"> flips of a randomly biased coin, recording bias when </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> tails occurs&quot;</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Bias (Probability of Tails)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;A Posteriori Probability&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">events</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">events</span> <span class="o">=</span> <span class="n">biased_coins_u</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-hypothesis-testing_40_0.png" src="../_images/bayesian-hypothesis-testing_40_0.png" />
+</div>
+</div>
+<p>As might be expected,  the <em>a posteriori</em> probabilities are largest for those biases that are closest to 1, since these large biases are most likely to result in getting 8 heads on 8 flips of a biased coin. By changing the weights, we can create a much more general <em>a priori</em> model than we had before. However, we have introduced a new problem:</p>
+<p><strong>How can we turn the <em>a posteriori</em> probabilities into a statistical test –  i.e., how can we make a decision about whether the coin could be a fair coin based on the <em>a posteriori</em> information?</strong></p>
+<p>A typical approach is to find whether the fair coin (<span class="math notranslate nohighlight">\(B=0.5\)</span>) is within a certain range of values where <em>almost all</em> of the <em>a posteriori</em> probability lies. We call such a region a <em>credible interval</em>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-credible-interval">credible interval<a class="headerlink" href="#term-credible-interval" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A <span class="math notranslate nohighlight">\(C\)</span>% <em>credible interval</em> is an interval of values that contains <span class="math notranslate nohighlight">\(C\)</span>% of the <em>a posteriori</em> probability.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>Note that it is possible to choose possible credible intervals. In this book, we will always generate <em>equal-tailed intervals</em>. In probability, the <em>tails</em> correspond to the values above and below the region that contains most of the probability. For an equal-tail credible interval, the set of values below the credible interval have the same probability as the set of values above the credible interval. For more discussion on types of credible intervals, see <a class="reference external" href="https://en.wikipedia.org/wiki/Credible_interval">https://en.wikipedia.org/wiki/Credible_interval</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>Credible intervals</em> are generated in Bayesian statistics using <em>a posteriori</em> probabilities. Be careful not to confuse them with <em>confidence intervals</em>, which can be generated in frequentist approaches.</p>
+<ul class="simple">
+<li><p>Credible intervals have a straight-forward interpretation: the probability that a value of interest lies within a <span class="math notranslate nohighlight">\(C\)</span>% credible interval is <span class="math notranslate nohighlight">\(C\)</span>%.</p></li>
+<li><p>Confidence intervals do not have such a straight-forward interpretation: a 95% confidence interval implies that if an experiment were run again, generating independent results, then there would be a 95% chance that resulting confidence interval would contain the true value.</p></li>
+<li><p>Both confidence intervals and credible intervals can be generated using a model-based or model-free approach. If you</p></li>
+<li><p>Credible intervals and confidence intervals will be the same under certain conditions, including that an uninformative prior is used that has equal probabilities (or equivalent for continuous priors).</p></li>
+</ul>
+</div>
+<p>Here are two basic approaches to finding the 95% credible interval without assuming anything about the distribution of the data (i.e., it is model-free):</p>
+<p><strong>Credible Interval Calculation – Way 1</strong></p>
+<p>Consider the histogram produced by <code class="docutils literal notranslate"><span class="pre">biased_coins_u()</span></code>. To find the <span class="math notranslate nohighlight">\(C\)</span>% credible interval, we would like to find the tail regions of the histogram plot that contain <span class="math notranslate nohighlight">\((1-C)/2\)</span>% of the probability. The histogram we created is showing (estimated) probabilities, but we are really asking about the <em>sums</em> of the probabilities in the tails of the histogram. We can overcome these issues if we instead plot a running sum of the probabilities; i.e., for each <span class="math notranslate nohighlight">\(x\)</span>, we do not plot <span class="math notranslate nohighlight">\(P(x)\)</span>, but we instead plot</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{w \le x} P(w).
+\]</div>
+<p id="index-6">These are also called the <em>cumulative probabilities</em>, and Matplotlib’s <code class="docutils literal notranslate"><span class="pre">hist</span></code> function has a <code class="docutils literal notranslate"><span class="pre">cumulative</span></code> keyword option. When both <code class="docutils literal notranslate"><span class="pre">cumulative</span> <span class="pre">=</span> <span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">density</span> <span class="pre">=</span> <span class="pre">True</span></code> are used, the histogram will show estimates of the cumulative probabilities:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([8.60437102e-05, 2.58131131e-04, 2.58131131e-04, 3.44174841e-04,
+        5.16262261e-04, 1.54878678e-03, 2.23713647e-03, 3.01152986e-03,
+        4.81844777e-03, 8.43228360e-03, 1.17879883e-02, 1.75529169e-02,
+        2.79642058e-02, 4.25055928e-02, 5.25727069e-02, 7.56324213e-02,
+        1.08501119e-01, 1.35949062e-01, 1.88263638e-01, 2.57356737e-01,
+        3.49079332e-01, 4.29616245e-01, 5.70211668e-01, 7.57528825e-01,
+        1.00000000e+00]),
+ array([0.32  , 0.3472, 0.3744, 0.4016, 0.4288, 0.456 , 0.4832, 0.5104,
+        0.5376, 0.5648, 0.592 , 0.6192, 0.6464, 0.6736, 0.7008, 0.728 ,
+        0.7552, 0.7824, 0.8096, 0.8368, 0.864 , 0.8912, 0.9184, 0.9456,
+        0.9728, 1.    ]),
+ &lt;BarContainer object of 25 artists&gt;)
+</pre></div>
+</div>
+<img alt="../_images/bayesian-hypothesis-testing_44_1.png" src="../_images/bayesian-hypothesis-testing_44_1.png" />
+</div>
+</div>
+<p>Since our prior values come from a discrete set, we need to estimate the cumulative probabilities on that same set. We can do this by augmenting the set of possible prior values as the bins in the histogram using the <code class="docutils literal notranslate"><span class="pre">bins</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">pyplotl.hist()</span></code>. Referring to the documentation for <code class="docutils literal notranslate"><span class="pre">pyplot.hist()</span></code>, when bin edges are specified the rightmost bin is inclusive of both endpoints – thus if we use <code class="docutils literal notranslate"><span class="pre">allcoins</span></code> as our bins, then the last bin would include both 0.99 and 1.0. Thus, we just need to add a value higher than 1 to our list. Here we use a generic approach, where we find the spacing between the last two values and add a new value that is higher than the previous maximum value by that spacing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the set of possible biases</span>
+<span class="n">allcoins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">spacing</span> <span class="o">=</span> <span class="n">allcoins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">allcoins</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">coin_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">allcoins</span><span class="p">,</span> <span class="n">allcoins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">spacing</span><span class="p">))</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">coin_bins</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-hypothesis-testing_46_0.png" src="../_images/bayesian-hypothesis-testing_46_0.png" />
+</div>
+</div>
+<p>Note that the cumulative histogram is much smoother than the regular histogram. That is usually true, and it occurs because the summing operations acts to smooth out variations in the data.</p>
+<p>Now let’s add some lines to delimit the credible interval and the tails. Note that a line with  probability <span class="math notranslate nohighlight">\(x\)</span> above it corresponds to a line with probability <span class="math notranslate nohighlight">\(1-x\)</span> below it. Thus, for a <span class="math notranslate nohighlight">\(C\)</span>% credible interval, we want to draw lines corresponding to <span class="math notranslate nohighlight">\((100-C)/2\)</span>% and <span class="math notranslate nohighlight">\(\left[100 - (100-C)/2\right]\)</span>%. For instance for a 90% credible interval, these correspond to <span class="math notranslate nohighlight">\((100-95)/2 = 2.5\)</span>% and <span class="math notranslate nohighlight">\(100-2.5 = 97.5\)</span>%, respectively.</p>
+<p>We can easily make a line at each of these values by just repeating a value in a list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the set of possible biases</span>
+<span class="n">allcoins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">spacing</span> <span class="o">=</span> <span class="n">allcoins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">allcoins</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">coin_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">allcoins</span><span class="p">,</span> <span class="n">allcoins</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">spacing</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">coin_bins</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coin_bins</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">coin_bins</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coin_bins</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="mf">0.05</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">coin_bins</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7faf905b5760&gt;]
+</pre></div>
+</div>
+<img alt="../_images/bayesian-hypothesis-testing_48_1.png" src="../_images/bayesian-hypothesis-testing_48_1.png" />
+</div>
+</div>
+<p>And we would like to find the values that correspond to those thresholds. Since our input space is discrete, we must choose one of the values that has a cumulative relative frequency close to the target threshold; in general, we will not get that target threshold exactly, so we can just choose the closets value. To  do this, we capture the output from <code class="docutils literal notranslate"><span class="pre">plt.hist()</span></code>, which as we previously introduced, consists of the cumulative relative frequencies, the bins, and a set of patches used to construct the histogram. We only care about the first of these.</p>
+<p>Let’s start by getting the relative frequencies and plotting the <strong>absolute</strong> differences between the relative frequencies and the thresholds for the 90% credible interval:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cum_probs</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">events</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">coin_bins</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="c1"># We have to</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coin_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cum_probs</span> <span class="o">-</span> <span class="mf">0.05</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coin_bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cum_probs</span> <span class="o">-</span> <span class="mf">0.95</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7faf8f5c58e0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/bayesian-hypothesis-testing_50_1.png" src="../_images/bayesian-hypothesis-testing_50_1.png" />
+<img alt="../_images/bayesian-hypothesis-testing_50_2.png" src="../_images/bayesian-hypothesis-testing_50_2.png" />
+</div>
+</div>
+<p>For this set of data, can find the biases that minimize the absolute errors to the thresholds by using <code class="docutils literal notranslate"><span class="pre">np.argmin()</span></code> to find the index of the minimum value and then use that index to find the corresponding value of the bias:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lower_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cum_probs</span> <span class="o">-</span> <span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+<span class="n">upper_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cum_probs</span> <span class="o">-</span> <span class="mf">0.95</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lower threshold = </span><span class="si">{</span><span class="n">coin_bins</span><span class="p">[</span><span class="n">lower_index</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Upper threshold = </span><span class="si">{</span><span class="n">coin_bins</span><span class="p">[</span><span class="n">upper_index</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lower threshold = 0.72
+Upper threshold = 0.99
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, this will not work in general. For instance, if we had cumulative probabilities like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probs_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">cum_probs_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">probs_test</span><span class="p">)</span>
+<span class="n">lower_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cum_probs_test</span> <span class="o">-</span> <span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+<span class="n">upper_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cum_probs_test</span> <span class="o">-</span> <span class="mf">0.95</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lower_index</span><span class="p">,</span> <span class="n">upper_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then  the returned lower threshold of 0 corresponds to a value with 0 probability. The problem is that we need to only return value that have nonzero probability, which in our case corresponds to that value occurring in our data. A simple solution is to not pass in the set of <strong>possible</strong> biases, but instead use <code class="docutils literal notranslate"><span class="pre">np.unique()</span></code> to find the set of biases that <strong>actually occurred</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2 3 4]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then use the set of observed values to determine the bins.</p>
+<p>Let’s put this all together into a function to do all these step for any credible value, <span class="math notranslate nohighlight">\(C\)</span>. The functions inputs will be the possible values, the observed data, and a desired credible value, <span class="math notranslate nohighlight">\(C\)</span>.
+The function will plot the histogram with the threshold lines and print out the credible interval in stanard form, <span class="math notranslate nohighlight">\([a,b]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">credible_interval</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Find the C% credible interval given data&quot;&quot;&quot;</span>
+
+    <span class="c1"># Calculate the thresholds</span>
+    <span class="n">lower_thresh</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">C</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">upper_thresh</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lower_thresh</span>
+
+    <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">spacing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">value_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">values</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">spacing</span><span class="p">))</span>
+
+    <span class="c1"># Generate the histogram and store the cumulative relative frequencies</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">cum_probs</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">value_bins</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Draw the threshold lines for the credible interval</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="p">[</span><span class="n">lower_thresh</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="p">[</span><span class="n">upper_thresh</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="s2">&quot;g&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Find the values that correspond to the lower and upper ends of the credible interval:</span>
+    <span class="n">lower_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cum_probs</span> <span class="o">-</span> <span class="n">lower_thresh</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+    <span class="n">upper_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cum_probs</span> <span class="o">-</span> <span class="n">upper_thresh</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">C</span><span class="si">}</span><span class="s2">% credible interval is [</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="n">lower_index</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="n">upper_index</span><span class="p">]</span><span class="si">}</span><span class="s2">].&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s make sure the function is working by applying it to our observed coin data with a 90% credible interval:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">allcoins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+
+<span class="n">credible_interval</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 90% credible interval is [0.72, 0.99].
+</pre></div>
+</div>
+<img alt="../_images/bayesian-hypothesis-testing_60_1.png" src="../_images/bayesian-hypothesis-testing_60_1.png" />
+</div>
+</div>
+<p>If we increase the credible value to 95%, then we get the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">credible_interval</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 95% credible interval is [0.66, 1.0].
+</pre></div>
+</div>
+<img alt="../_images/bayesian-hypothesis-testing_62_1.png" src="../_images/bayesian-hypothesis-testing_62_1.png" />
+</div>
+</div>
+<p>As <span class="math notranslate nohighlight">\(C\)</span> increases, the confidence interval gets wider:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">credible_interval</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 99% credible interval is [0.56, 1.0].
+</pre></div>
+</div>
+<img alt="../_images/bayesian-hypothesis-testing_64_1.png" src="../_images/bayesian-hypothesis-testing_64_1.png" />
+</div>
+</div>
+<p>Now we return to our original question: how can we use this to conduct a statistical test for whether the coin could be unbiased? The approach we will use is to evaluate if the unbiased coin is in a <span class="math notranslate nohighlight">\(C\)</span>% credible interval, where typically <span class="math notranslate nohighlight">\(C\)</span>% is 95% or 99%. For either the 95% credible interval or 99% credible interval, the the unbiased coin (<span class="math notranslate nohighlight">\(b=0.5\)</span>) is not within the credible interval, so we reject the possibility that the coin is unbiased because it does not belong to the respective credible interval.</p>
+<p>Before we consider an informative prior, we present a short-cut technique to finding a credible interval from <em>a posteriori</em> observations of a statistic:</p>
+<p><strong>Credible Interval Calculation – Way 2</strong></p>
+<p>Finding the credible interval from the cumulative histogram has the advantages that it is intuitive and it provides a graphical check of the computed credible interval. However, it also has the disadvantage that it does a lot of manipulation in doing the counting and plotting of the histogram if that is not necessarily desired.</p>
+<p>A more direct approach is that if we want to find a threshold that <span class="math notranslate nohighlight">\(x\)</span>% of the data is less than or equal to, we can simply sort the data and then find the value that is <span class="math notranslate nohighlight">\(x\)</span>% through the sorted data. Similarly, the value that defines the upper end of the confidence interval can be found as that value that is <span class="math notranslate nohighlight">\(x\)</span>% from the upper end of the sorted data. If there are <span class="math notranslate nohighlight">\(N\)</span> points, then the value that is <span class="math notranslate nohighlight">\(C/2\)</span>% of the way through the sorted data is the value closest to the index <span class="math notranslate nohighlight">\(Nx/100\)</span>. A function that finds the credible interval based on this technique is below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">credible_interval2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Find the C% confidence interval given data&quot;&quot;&quot;</span>
+
+    <span class="c1"># probability to be in each tail of the data</span>
+    <span class="n">tail_prob</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">C</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="n">datalen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">tail_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">datalen</span> <span class="o">*</span> <span class="n">tail_prob</span><span class="p">)</span>
+
+    <span class="nb">sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Note that position 0 is the first element from the left, but position -1 is the</span>
+    <span class="c1"># first element from the right, so we have to subtract 1 from -tail_length to get</span>
+    <span class="c1"># the correct value  on the right-hand side:</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">C</span><span class="si">}</span><span class="s2">% confidence interval is [</span><span class="si">{</span><span class="nb">sorted</span><span class="p">[</span><span class="n">tail_length</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">sorted</span><span class="p">[</span><span class="o">-</span><span class="n">tail_length</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">]&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note the the results may have very slight differences at the endpoints of the intervals:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">C</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">99</span><span class="p">]:</span>
+    <span class="n">credible_interval2</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 90% confidence interval is [0.72, 1.0]
+The 95% confidence interval is [0.67, 1.0]
+The 99% confidence interval is [0.5700000000000001, 1.0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3><span class="section-number">7.4.3.2. </span>Informative prior<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Now let’s again assume that at least 99% of the coins in circulation are fair coins (i.e., with bias <span class="math notranslate nohighlight">\(B=0.5\)</span>). We will assign <span class="math notranslate nohighlight">\(P(B=0.5)=0.99\)</span>. Then we still have to choose a model for how the remaining 0.01 probability will be distributed among the other biases. Let’s just assign it evenly. There are 100 other biases, so we will assign each one a probability of <span class="math notranslate nohighlight">\(0.01/100 = 10^{-4}\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bias_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">101</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">)</span>
+<span class="n">bias_probs</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">allcoins</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">0.99</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bias_probs</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because of floating point approximations, the sum computes to ever so slightly less than 1, but we know that it is in fact 1, and this numerical error will not have any significant effect on our statistical test.</p>
+<p>Now, let’s use <code class="docutils literal notranslate"><span class="pre">random.choices()</span></code> to choose values according to these probabilities and then  plot the probabilities. Since we are dealing with four orders of magnitude (from close to 1 down to <span class="math notranslate nohighlight">\(10^{-4}\)</span>), we will use a logarithmic <span class="math notranslate nohighlight">\(y\)</span>-axis by calling the Matplotlib function <code class="docutils literal notranslate"><span class="pre">plt.semilogy()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_pts</span> <span class="o">=</span> <span class="mi">1_000_000</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">allcoins</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">bias_probs</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">num_pts</span><span class="p">))</span>
+
+<span class="n">values</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">counts</span> <span class="o">/</span> <span class="n">num_pts</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Bias, $B$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Relative Frequency&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-hypothesis-testing_73_0.png" src="../_images/bayesian-hypothesis-testing_73_0.png" />
+</div>
+</div>
+<p>The relative frequencies closely match the probabilities, so we are ready to carry out a statistical test using this informative prior.</p>
+<p>Copy the function <code class="docutils literal notranslate"><span class="pre">biased_coins_u()</span></code> from above and change the name to <code class="docutils literal notranslate"><span class="pre">biased_coins_i</span></code>, where the <em>u</em> and <em>i</em> stand for uninformative and informative, respectively. Make the function have a keyword parameter called <code class="docutils literal notranslate"><span class="pre">a_prioris</span></code> as its first argument. Then change the coin generation to use <code class="docutils literal notranslate"><span class="pre">random.choices()</span></code> as shown above. The resulting code follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">biased_coins_i</span><span class="p">(</span><span class="n">a_prioris</span><span class="p">,</span> <span class="n">flips</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">num_sims</span><span class="o">=</span><span class="mi">100_000</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Simulate randomly choosing the bias for a coin (from 0 to 100 by 0.01) and</span>
+<span class="sd">    then flipping the coin 8 times. Whenever it comes up tails 8 times, record</span>
+<span class="sd">    that coin&#39;s bias.  As before, the relative frequencies of the biases in the resulting set</span>
+<span class="sd">    approximate the *a posteriori* probability of those biases. &quot;&quot;&quot;</span>
+
+    <span class="c1"># Generate the set of possible biases</span>
+    <span class="n">allcoins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+
+    <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+
+        <span class="c1"># Choose a bias for this coin</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">allcoins</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">a_prioris</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Now generate the coins according to that bias and count the number of heads</span>
+        <span class="n">coins</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">([</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">B</span><span class="p">,</span> <span class="n">B</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="n">flips</span><span class="p">)</span>
+        <span class="n">num_tails</span> <span class="o">=</span> <span class="n">coins</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Record the events with the target number of tails</span>
+        <span class="k">if</span> <span class="n">num_tails</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">events</span> <span class="o">+=</span> <span class="p">[</span><span class="n">B</span><span class="p">]</span>
+
+    <span class="c1"># Use the np.unique function (introduced in Ch. 2) to return the values and their counts</span>
+    <span class="n">vals</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Now manually generate a histogram using plt.bar</span>
+    <span class="c1"># The relative frequency of a given value is the count of that value divided</span>
+    <span class="c1"># by the total number of captured events</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+        <span class="n">vals</span><span class="p">,</span> <span class="n">counts</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.01</span>
+    <span class="p">)</span>  <span class="c1"># Note that we had to change the bar width here!!!</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Simulation of </span><span class="si">{</span><span class="n">flips</span><span class="si">}</span><span class="s2"> flips of a randomly biased coin, recording bias when </span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2"> tails occurs&quot;</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Bias (Probability of Tails)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;A Posteriori Probability&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">events</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">events2</span> <span class="o">=</span> <span class="n">biased_coins_i</span><span class="p">(</span><span class="n">bias_probs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bayesian-hypothesis-testing_77_0.png" src="../_images/bayesian-hypothesis-testing_77_0.png" />
+</div>
+</div>
+<p>Even before we generate the confidence intervals, we can see that with the <em>a priori</em> probability of a fair coin being 0.99, most of the coins that result in 8 tails on 8 flips of the coin are actually fair coins. Thus, we expect that any confidence intervals that we consider will include the fair coin.</p>
+<p>We can directly pass <code class="docutils literal notranslate"><span class="pre">events2</span></code> to our function <code class="docutils literal notranslate"><span class="pre">credible_interval</span></code> to generate the plots and credible intervals:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">C</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">99</span><span class="p">]:</span>
+    <span class="n">credible_interval</span><span class="p">(</span><span class="n">events2</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 90% credible interval is [0.5, 0.97].
+The 95% credible interval is [0.5, 0.99].
+The 99% credible interval is [0.5, 1.0].
+</pre></div>
+</div>
+<img alt="../_images/bayesian-hypothesis-testing_79_1.png" src="../_images/bayesian-hypothesis-testing_79_1.png" />
+<img alt="../_images/bayesian-hypothesis-testing_79_2.png" src="../_images/bayesian-hypothesis-testing_79_2.png" />
+<img alt="../_images/bayesian-hypothesis-testing_79_3.png" src="../_images/bayesian-hypothesis-testing_79_3.png" />
+</div>
+</div>
+<p>Since the credible interval contains 0.5 in each of these cases, we cannot reject the possibility that the coin is fair. We can easily estimate the <em>a posteriori</em> probability of the coin being fair:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">events2</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">events2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8022181146025879
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, even given that we observed 8 tails on 8 flips of the coin, the probability that the coin is a fair coin is almost 0.8. This is because of the large prevalence of fair coins in our model for the <em>a priori</em> probabilities.</p>
+</section>
+</section>
+<section id="terminology-review">
+<h2><span class="section-number">7.4.4. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg)  translateX(-10%);
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transform:  translateX(20px); 
+    transition: display 0s;
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 300px;
+	  width: 640px;
+}
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:20px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 600px;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 16pt;
+    left:442pt;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:20px;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    outline: none;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+.flashcardtext{
+    color: var(--snow);
+    font-size: 20pt;
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+  }
+
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="OuvhiIuIPZav" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="OuvhiIuIPZav-next" onclick="window.checkFlip('OuvhiIuIPZav')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    var count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    var count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+window.flipCard = function flipCard(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    /* ths.blur(); */
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 600, ths, next);
+}
+
+window.checkKey = function checkKey(container, event) {
+    event.stopPropagation();
+    /*
+    console.log(container);
+    console.log(event.key);
+    console.log(event.code);
+    */
+    /* JMS:  Working here*/
+    var next=document.getElementById(container.id+'-next');
+    /* Only react if not already sliding */
+    if (! next.classList.contains("hide")) {
+        if ((event.key == "j") || (event.key == "Enter") || (event.key == "ArrowRight")) {
+            window.checkFlip(container.id);
+        }
+        if (event.key == " ") {
+            window.flipCard(container);
+        }
+    }
+    event.preventDefault();
+}
+
+
+function reenableNext(ths, next) {
+    next.style.pointerEvents='auto';
+    /* ths.tabIndex= 0;*/
+    /* ths.focus(); */
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    /* container.removeAttribute("tabindex");*/
+    /* container.blur(); */
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+    
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+    
+}
+
+
+window.checkFlip = function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 550, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    /* container.tabIndex= 0; */
+    /* container.focus(); */
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    var colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id, keyControl) {
+    console.log(id);
+    
+    var mydiv=document.getElementById(id);
+    /*mydiv.onclick = window.flipCard(mydiv);*/
+    /*
+    mydiv.addEventListener('click', function(){window.flipCard(mydiv);}, false);
+    mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
+    */
+    mydiv.onclick = function(){window.flipCard(mydiv);};
+    console.log(keyControl);
+    if (keyControl == "True"){
+        mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
+    }
+    /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
+    /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
+
+    console.log(mydiv);
+    
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+    
+    for (var i=0; i<2; i++) {
+    
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    mydiv.focus();
+
+    return flipper;
+}
+
+
+
+
+
+var cardsOuvhiIuIPZav=[
+    {
+        "front": "uninformative prior",
+        "back": "A collection of <i>a priori</i> probabilities that do not give preference to any of the outcomes; usually flat (constant) across the set of outcomes."
+    },
+    {
+        "front": "informative prior",
+        "back": "A collection of <i>a priori</i> probabilities that are based on information that are external to the data and that are usually not flat (constant) across the set of outcomes."
+    },
+    {
+        "front": "credible interval", 
+        "back": "A $C$% <i>credible interval</i> is an interval of values that contains $C$% of the <i>a posteriori</i> probability."
+    }
+]
+;
+    
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/flashcards//bayesian-hypothesis-testing.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("OuvhiIuIPZav", "True"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("OuvhiIuIPZav", "True");
+        });
+        }
+        </script></div>
+</div>
+</section>
+<section id="remaining-items">
+<h2><span class="section-number">7.4.5. </span>Remaining Items<a class="headerlink" href="#remaining-items" title="Permalink to this heading">#</a></h2>
+<ol class="simple">
+<li><p>Add example with real data - may wait until we have RVs to serve as models</p></li>
+<li><p>Talk about Likelihood ratio/Bayes factors and interpretation</p></li>
+<li><p>Add JupyterQuiz questions on credible intervals, other simple random experiments with Bayesian tests</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./07-bayesian-methods"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="optimal-decisions.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">7.3. </span>Optimal Decisions for Discrete Stochastic Systems</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="review.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7.5. </span>Review</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By John M. Shea<br/>
+  
+      &copy; Copyright 2021-2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
