@@ -741,10 +741,56 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../13-clustering-transforming/outline.html">
-   13. Clustering and Transforming Multi-dimensional Data (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../13-clustering-transforming/intro.html">
+   13. Clustering and Transforming Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/k-means.html">
+     13.1. Clustering Data: The
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+     -Means Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/vector-correlation.html">
+     13.2. Vector Correlation and Projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/spanningsets-bases.html">
+     13.3. Representing a Vector Using Projections: Spanning Sets and Bases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/fft.html">
+     13.4. Universal Bases: The Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/gram-schmidt.html">
+     13.5. Set-Specific Bases: The Gram-Schmidt Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/review.html">
+     13.6. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/summary.html">
+     13.7. Summary
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../14-matrix-applications/outline.html">
@@ -1041,8 +1087,8 @@ title="Print to PDF"
 <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, whereas scalars are written as non-bold lowercase letters, such as <span class="math notranslate nohighlight">\(c\)</span>.  In handwriting, vectors should be written as lowercase letters
 that are underlined.</p>
 <p>As mentioned in <a class="reference internal" href="../01-intro/python-start.html"><span class="doc">Section 1.7</span></a>,  vectors usually refer to <em>column vectors</em>, in which the numbers form a column that is only one element wide. Vectors are shown enclosed in square brackets:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9ec0eee5-0e45-4fa5-b811-e1135aea956d">
-<span class="eqno">(11.1)<a class="headerlink" href="#equation-9ec0eee5-0e45-4fa5-b811-e1135aea956d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d056d838-ed7a-4814-a5f0-01edef3b25c5">
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-d056d838-ed7a-4814-a5f0-01edef3b25c5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathbf{x} = \begin{bmatrix}
            0.75 \\
            -1 \\
@@ -1367,8 +1413,8 @@ g = [ 12 14 16 14 14 19 16 13 13 17 ...]
 </div>
 <p>We will denote the zero vector of size <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(\mathbf{0}_n\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(~~~~~\)</span> For example,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d4c157ad-3711-43d7-9c5f-0d699176f7df">
-<span class="eqno">(11.2)<a class="headerlink" href="#equation-d4c157ad-3711-43d7-9c5f-0d699176f7df" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-52443658-5af1-4cea-b7a5-ae5590a6c056">
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-52443658-5af1-4cea-b7a5-ae5590a6c056" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathbf{0}_5 = 
 \begin{bmatrix}
 0\\0\\0\\0\\ 0
@@ -1413,8 +1459,8 @@ g = [ 12 14 16 14 14 19 16 13 13 17 ...]
 </div>
 <p>For a given size <span class="math notranslate nohighlight">\(n\)</span>, we denote the standard unit vector with element <span class="math notranslate nohighlight">\(i\)</span> equal to 1 by <span class="math notranslate nohighlight">\(\mathbf{e}_i\)</span>.</p>
 <p>For example, the three standard unit vectors of dimension 3 are:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d5c01edf-d192-4385-9ed8-8d69775737b6">
-<span class="eqno">(11.3)<a class="headerlink" href="#equation-d5c01edf-d192-4385-9ed8-8d69775737b6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fa1771f7-8e55-4100-9131-a8f6e2b12f73">
+<span class="eqno">(11.3)<a class="headerlink" href="#equation-fa1771f7-8e55-4100-9131-a8f6e2b12f73" title="Permalink to this equation">#</a></span>\[\begin{align}
 \mathbf{e}_0=
 \begin{bmatrix}
 1\\ 0\\ 0
@@ -1455,32 +1501,79 @@ g = [ 12 14 16 14 14 19 16 13 13 17 ...]
 a_x\\ a_y
 \end{bmatrix}.
 \end{equation*}\]</div>
-<p>To make life easier, I have created a simple function to plot multiple vectors on the same axes and automatically choose the <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(y\)</span>-limits for plotting:</p>
+<p>To make life easier, I have created a function to plot multiple vectors on the same axes and automatically choose the <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(y\)</span>-limits for plotting. The complete code, including the necessary libraries is shown below. However, I have also uploaded this module to PyPi, and it can be installed on your computer using <code class="docutils literal notranslate"><span class="pre">pip</span></code> as</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">instal</span> <span class="pre">plotvec</span></code></p>
+<p>In all future sections that rely on the <code class="docutils literal notranslate"><span class="pre">plotvec()</span></code> function, I will assume that the <code class="docutils literal notranslate"><span class="pre">plotvec</span></code> module has been installed. If you have any problems with that, you can always come back to this section and copy this definition:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotvec</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">,</span> <span class="n">chain</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-    <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span>
-    <span class="n">xmax</span><span class="o">=-</span><span class="mi">1000000</span>
-    <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span>
-    <span class="n">ymax</span><span class="o">=-</span><span class="mi">1000000</span>
-    <span class="n">origin</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">head</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-                   <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-        <span class="n">xmin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">xmax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">xmax</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">ymin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">ymax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">ymax</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">chain</span><span class="p">:</span>
-          <span class="n">origin</span> <span class="o">=</span> <span class="n">head</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-          
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">xmax</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ymin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ymax</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmax</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymin</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ymax</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">plotvec</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">,</span> <span class="n">chain</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">newfig</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">legendloc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">color_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot; plot a sequence of 2-d vectors</span>
+<span class="sd">  </span>
+<span class="sd">  Uses Matplotlib to plot 2-d vectors as directional arrows. Allows</span>
+<span class="sd">  chaining sequence of vectors for effects like sums of vectors, and</span>
+<span class="sd">  allows labeling and color shifting (to coordinate colors of multiple</span>
+<span class="sd">  calls to plotvec).</span>
+<span class="sd">  </span>
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  *argv: lists or NumPy vectors</span>
+<span class="sd">         One or more 2-d vectors</span>
+<span class="sd">  </span>
+<span class="sd">  chain: bool, default: False</span>
+<span class="sd">         Whether to place tail of vector at head of previous vector</span>
+<span class="sd">         </span>
+<span class="sd">  labels: list, tuple, or bool, default: False</span>
+<span class="sd">          Labels for each vector for use in legend, or False for no labels</span>
+<span class="sd">          </span>
+<span class="sd">  newfig: bool, default: True</span>
+<span class="sd">          Whether to open a new figure for this plot (else plot on current fig)</span>
+<span class="sd">          </span>
+<span class="sd">  legendlog: string or int, default: &#39;best&#39;</span>
+<span class="sd">             Argument for legend location passed to Matplotlib</span>
+<span class="sd">             </span>
+<span class="sd">  color_offset: int, default: 0</span>
+<span class="sd">                Shift color sequence by fixed value</span>
+<span class="sd">                </span>
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  None</span>
+<span class="sd">  </span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  
+  <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span>
+  <span class="n">xmax</span><span class="o">=-</span><span class="mi">1000000</span>
+  <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span>
+  <span class="n">ymax</span><span class="o">=-</span><span class="mi">1000000</span>
+  <span class="n">origin</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+  <span class="k">if</span> <span class="n">newfig</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">head</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
+      <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+                 <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">color_offset</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
+                 <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">color_offset</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">xmin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">xmax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">xmax</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">ymin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ymax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">ymax</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">chain</span><span class="p">:</span>
+      <span class="n">origin</span> <span class="o">=</span> <span class="n">head</span>
+
+
+  <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">xmax</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ymin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ymax</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">xmax</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ymin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ymax</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+  <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">legendloc</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1789,7 +1882,7 @@ a_x\\ a_y
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="jVKStzDKsDoD" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="jVKStzDKsDoD-next" onclick="window.checkFlip('jVKStzDKsDoD')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="knwJGQCfRMNx" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="knwJGQCfRMNx-next" onclick="window.checkFlip('knwJGQCfRMNx')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2131,7 +2224,7 @@ function createCards(id, keyControl) {
 
 
 
-var cardsjVKStzDKsDoD=[
+var cardsknwJGQCfRMNx=[
     {
         "front": "vector",
         "back": "A one-dimensional, ordered list of numbers that has an accompanying notions of magnitude of a vector and  distance between two vectors."
@@ -2173,10 +2266,10 @@ var cardsjVKStzDKsDoD=[
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/11-matrix-vector-regression/flashcards/vectors.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("jVKStzDKsDoD", "True"))
+        .then(json => createCards("knwJGQCfRMNx", "True"))
         .catch(err => {
         console.log("Fetch error or timeout");
-        createCards("jVKStzDKsDoD", "True");
+        createCards("knwJGQCfRMNx", "True");
         });
         }
         </script></div>

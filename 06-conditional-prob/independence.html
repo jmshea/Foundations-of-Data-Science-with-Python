@@ -741,10 +741,56 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../13-clustering-transforming/outline.html">
-   13. Clustering and Transforming Multi-dimensional Data (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../13-clustering-transforming/intro.html">
+   13. Clustering and Transforming Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/k-means.html">
+     13.1. Clustering Data: The
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+     -Means Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/vector-correlation.html">
+     13.2. Vector Correlation and Projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/spanningsets-bases.html">
+     13.3. Representing a Vector Using Projections: Spanning Sets and Bases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/fft.html">
+     13.4. Universal Bases: The Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/gram-schmidt.html">
+     13.5. Set-Specific Bases: The Gram-Schmidt Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/review.html">
+     13.6. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/summary.html">
+     13.7. Summary
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../14-matrix-applications/outline.html">
@@ -3015,8 +3061,8 @@ if (typeof version == 'undefined') {
 <p>I.e., if the probability of an event <span class="math notranslate nohighlight">\(A\)</span> occurring does not depend on whether some event <span class="math notranslate nohighlight">\(B\)</span> occurs, then it cannot depend on whether the event <span class="math notranslate nohighlight">\(B\)</span> does not occur.  This probably matches your intuition. However, we should verify it. Let’s check the first example. We need to evaluate <span class="math notranslate nohighlight">\(P(A \cap \overline{B})\)</span> to see if it factors as <span class="math notranslate nohighlight">\(P(A)P(\overline{B})\)</span>. Referring to the Venn diagram below, we can see that <span class="math notranslate nohighlight">\(A\)</span> consists of the union of the mutually exclusive parts,  <span class="math notranslate nohighlight">\(A \cap B\)</span> and <span class="math notranslate nohighlight">\(A \cap \overline{B}\)</span>. So we can write <span class="math notranslate nohighlight">\(P\left(A \cap \overline{B} \right)= P(A) - P(A \cap B)\)</span>.</p>
 <a class="reference internal image-reference" href="../_images/si-intersection.png"><img alt="Venn Diagram Showing Relation of $A$, $A \cap \overline{B}$, and $A \cap B$" src="../_images/si-intersection.png" style="width: 400px;" /></a>
 <p>Then by utilizing the fact that <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are s.i., we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6ac480d7-86a0-4e22-8efa-fa8ca998c95f">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-6ac480d7-86a0-4e22-8efa-fa8ca998c95f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2a556ce9-93cc-495e-8cf6-05efc23d0fa0">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-2a556ce9-93cc-495e-8cf6-05efc23d0fa0" title="Permalink to this equation">#</a></span>\[\begin{align}
 P\left(A \cap \overline{B} \right) &amp;= P(A) - P(A \cap B) \\
  &amp;= P(A) - P(A) P(B) \\
  &amp;= P(A) \left[ 1- P\left(B\right) \right] \\
@@ -3026,8 +3072,8 @@ P\left(A \cap \overline{B} \right) &amp;= P(A) - P(A \cap B) \\
 <p><strong>Example</strong></p>
 <p><strong>(Take 4)</strong> A fair six-sided die is rolled twice.  What is the probability that either of the rolls is a value less than 3?</p>
 <p>As before, let <span class="math notranslate nohighlight">\(E_i\)</span> be the event that the top face on roll <span class="math notranslate nohighlight">\(i\)</span> is less than 3, for <span class="math notranslate nohighlight">\(i=1,2\)</span>, and <span class="math notranslate nohighlight">\(E_1\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span> are s.i. then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22f87d5e-6048-4a92-aa34-886318d975c7">
-<span class="eqno">(6.4)<a class="headerlink" href="#equation-22f87d5e-6048-4a92-aa34-886318d975c7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-23526bae-8653-46aa-aaaf-309c59d56e97">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-23526bae-8653-46aa-aaaf-309c59d56e97" title="Permalink to this equation">#</a></span>\[\begin{align}
 P(E_1 \cup E_2) &amp;= 1 - P\left(\overline{E_1 \cup E_2}\right) \\
 &amp;= 1 - P\left( \overline{E_1} \cap \overline{E_2} \right) \\
 &amp;= 1 - P\left( \overline{E_1} \right) P\left( \overline{E_2} \right) \\
@@ -3047,8 +3093,8 @@ P(E_1 \cup E_2) &amp;= 1 - P\left(\overline{E_1 \cup E_2}\right) \\
 <dt>statistically independent (for any number of events)</dt><dd><p class="sd-card-text">Given a probability space <span class="math notranslate nohighlight">\(S, \mathcal{F}, P\)</span>, a collection of events <span class="math notranslate nohighlight">\(E_0, E_1, \ldots E_{n-1}\)</span> in <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> are {\it statistically independent} if and only if (iff)</p>
 </dd>
 </dl>
-<div class="amsmath math notranslate nohighlight" id="equation-a6351981-12cc-4c98-b1ce-ced6cb293852">
-<span class="eqno">(6.5)<a class="headerlink" href="#equation-a6351981-12cc-4c98-b1ce-ced6cb293852" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c17250bb-72fd-43e8-980f-cd1e00d5f54c">
+<span class="eqno">(6.5)<a class="headerlink" href="#equation-c17250bb-72fd-43e8-980f-cd1e00d5f54c" title="Permalink to this equation">#</a></span>\[\begin{align}
 P(E_i \cap E_j) &amp;= P(E_i) P(E_j), ~~ \forall i \ne j \\
 P(E_i \cap E_j \cap E_k) &amp;= P(E_i) P(E_j) P(E_k), ~~ \forall i \ne j \ne k \\
 \ldots
@@ -3066,15 +3112,15 @@ P(E_0 \cap E_1 \cap \ldots \cap E_{n-1}) &amp;= P(E_0) P(E_1) \cdots P(E_{n-1}),
 <dt>pairwise statistically independent</dt><dd><p class="sd-card-text">Given a probability space <span class="math notranslate nohighlight">\(S, \mathcal{F}, P\)</span>, a collection of events <span class="math notranslate nohighlight">\(E_0, E_1, \ldots E_{n-1}\)</span> in <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> are {\it pairwise statistically independent} if and only if (iff)</p>
 </dd>
 </dl>
-<div class="amsmath math notranslate nohighlight" id="equation-7a225c68-4c12-4131-af5e-6abbbd9f8806">
-<span class="eqno">(6.6)<a class="headerlink" href="#equation-7a225c68-4c12-4131-af5e-6abbbd9f8806" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fba0798a-793f-4047-b5a9-384b5841aa0f">
+<span class="eqno">(6.6)<a class="headerlink" href="#equation-fba0798a-793f-4047-b5a9-384b5841aa0f" title="Permalink to this equation">#</a></span>\[\begin{align}
 P(E_i \cap E_j) &amp;= P(E_i) P(E_j), ~~ \forall i \ne j 
 \end{align}\]</div>
 </div>
 </div>
 <p>We want to use complements to convert the unions to intersections and the resulting general form looks like</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06c06ec7-5031-4a1f-a6b0-9917a192e221">
-<span class="eqno">(6.7)<a class="headerlink" href="#equation-06c06ec7-5031-4a1f-a6b0-9917a192e221" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-201d3968-3d49-40b0-b8be-ce105c5fa3b7">
+<span class="eqno">(6.7)<a class="headerlink" href="#equation-201d3968-3d49-40b0-b8be-ce105c5fa3b7" title="Permalink to this equation">#</a></span>\[\begin{align}
 P\left( \bigcup_i E_i \right) &amp;=
 1- \prod_i \left[ 1- P\left( E_i \right) \right].
 \end{align}\]</div>

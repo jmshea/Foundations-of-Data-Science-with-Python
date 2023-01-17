@@ -741,10 +741,56 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../13-clustering-transforming/outline.html">
-   13. Clustering and Transforming Multi-dimensional Data (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../13-clustering-transforming/intro.html">
+   13. Clustering and Transforming Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/k-means.html">
+     13.1. Clustering Data: The
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+     -Means Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/vector-correlation.html">
+     13.2. Vector Correlation and Projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/spanningsets-bases.html">
+     13.3. Representing a Vector Using Projections: Spanning Sets and Bases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/fft.html">
+     13.4. Universal Bases: The Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/gram-schmidt.html">
+     13.5. Set-Specific Bases: The Gram-Schmidt Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/review.html">
+     13.6. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/summary.html">
+     13.7. Summary
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../14-matrix-applications/outline.html">
@@ -1193,8 +1239,8 @@ F_t(t) = \frac{t-0}{365} = \frac{t}{365}, ~~ 0 \le t \le 365,
 </div>
 <p>Again, the CDF appears to be a continuous function.
 In fact, the Poisson random variable gives us enough information to find the CDF for the first event times.  Let <span class="math notranslate nohighlight">\(T_0\)</span> to be the time at which the first event occurs. Then suppose we want to find the probability that <span class="math notranslate nohighlight">\(T_0\)</span> is greater than some specified value <span class="math notranslate nohighlight">\(t\)</span>. This will be true if there are no arrivals in the period <span class="math notranslate nohighlight">\([0,t]\)</span>.  For events that occur at rate <span class="math notranslate nohighlight">\(\lambda\)</span>, the number of events that occur in the period <span class="math notranslate nohighlight">\([0,t]\)</span> is a Poisson random variable with parameter <span class="math notranslate nohighlight">\(\alpha_t= \lambda t\)</span>; let’s refer to this Poisson random variable as <span class="math notranslate nohighlight">\(N_t\)</span>.  We can use the PMF for the Poisson random variable to give</p>
-<div class="amsmath math notranslate nohighlight" id="equation-18da7af9-b694-4388-9246-b76cab0f95d6">
-<span class="eqno">(8.6)<a class="headerlink" href="#equation-18da7af9-b694-4388-9246-b76cab0f95d6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-11f77542-27b9-4e7b-b1ff-4c55c8e7a94e">
+<span class="eqno">(8.6)<a class="headerlink" href="#equation-11f77542-27b9-4e7b-b1ff-4c55c8e7a94e" title="Permalink to this equation">#</a></span>\[\begin{align}
 P(T_0 &gt; t ) &amp;= P\left(N_t = 0 \right )\\
 &amp;= \frac{\alpha_{t}^0}{0!} e^{-\alpha_t} \\
 &amp;= e^{-\lambda t}.
@@ -1283,8 +1329,8 @@ and for which the cumulative distribution function (CDF) <span class="math notra
 </div>
 <p>You should already know what a continuous function is.  Informally, it is easiest to think of how the function looks when plotted.  A continuous function has no “breaks” in its graph, and we can imagine drawing it without having to pick up our pencil.</p>
 <p>Mathematically, <span class="math notranslate nohighlight">\(F_X(x)\)</span> is a continuous function at a point <span class="math notranslate nohighlight">\(x_0\)</span> if and only</p>
-<div class="amsmath math notranslate nohighlight" id="equation-868a7210-907f-420e-93d9-814f551f1b83">
-<span class="eqno">(8.7)<a class="headerlink" href="#equation-868a7210-907f-420e-93d9-814f551f1b83" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8cb41886-7480-494f-9cf3-b59a26d07b39">
+<span class="eqno">(8.7)<a class="headerlink" href="#equation-8cb41886-7480-494f-9cf3-b59a26d07b39" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lim_{\epsilon \rightarrow 0} F_X(x_0-\epsilon) &amp;= F_X(x_0), \mbox{ and} \\
 \lim_{\epsilon \rightarrow 0} F_X(x_0+\epsilon) &amp;= F_X(x_0).
 \end{align}\]</div>
@@ -1312,8 +1358,8 @@ x, &amp; 0 \le x &lt; 1 \\
 \end{cases}.
 \end{split}\]</div>
 <p>Consider the probability of a symmetric interval centered around 0.5, <span class="math notranslate nohighlight">\(P\left( X \in \left(0.5 - \epsilon, 0.5+ \epsilon \right] \right)\)</span>. Using Property 4 of the CDF, we can calculate this probability as a function of <span class="math notranslate nohighlight">\(0 &lt; \epsilon \le 0.5\)</span> as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b8d383d0-1376-4e60-b03d-df9d3eaa0ef5">
-<span class="eqno">(8.8)<a class="headerlink" href="#equation-b8d383d0-1376-4e60-b03d-df9d3eaa0ef5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1de177b3-0739-4d9e-8d3c-72ff59254b4d">
+<span class="eqno">(8.8)<a class="headerlink" href="#equation-1de177b3-0739-4d9e-8d3c-72ff59254b4d" title="Permalink to this equation">#</a></span>\[\begin{align}
  P\left( X \in \left(0.5 - \epsilon, 0.5+ \epsilon \right] \right) &amp; =  P ( 0.5 - \epsilon &lt; X \le 0.5 + \epsilon) \\
  &amp; = F_X(0.5 + \epsilon) - F_X (0.5  - \epsilon) \\
  &amp;= (0.5 + \epsilon) - (0.5 - \epsilon) \\
@@ -1321,8 +1367,8 @@ x, &amp; 0 \le x &lt; 1 \\
 \end{align}\]</div>
 <p>In fact, it is not hard to see that <span class="math notranslate nohighlight">\(P\left( X \in \left(x -\epsilon, x+ \epsilon \right] \right) = 2 \epsilon\)</span> for any <span class="math notranslate nohighlight">\(x \in (0,1)\)</span> provided <span class="math notranslate nohighlight">\(\epsilon\)</span> is small enough that <span class="math notranslate nohighlight">\(\left(x -\epsilon, x+ \epsilon \right] \subseteq [0,1]\)</span>.</p>
 <p>Note that <span class="math notranslate nohighlight">\(P(X=x) \le P\left( X \in \left(x -\epsilon, x+ \epsilon \right] \right) \)</span> for all <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span>. Then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a82b658f-8a06-41ed-b2f8-c72f3ee5b9ca">
-<span class="eqno">(8.9)<a class="headerlink" href="#equation-a82b658f-8a06-41ed-b2f8-c72f3ee5b9ca" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b7b83211-59e6-4d19-ab09-021239dc8188">
+<span class="eqno">(8.9)<a class="headerlink" href="#equation-b7b83211-59e6-4d19-ab09-021239dc8188" title="Permalink to this equation">#</a></span>\[\begin{align}
 P(X=x) &amp; \le \lim_{\epsilon \rightarrow 0} P\left( X \in \left(x -\epsilon, x+ \epsilon \right] \right)  \\
 &amp; = \lim_{\epsilon \rightarrow 0} 2 \epsilon = 0.
 \end{align}\]</div>
@@ -1382,8 +1428,8 @@ F_X(x) = \int_{-\infty}^{x} f(u)~du.
 <div class="sd-card-body docutils">
 <dl class="glossary">
 <dt id="term-probability-density-function-pdf">probability density function (pdf)<a class="headerlink" href="#term-probability-density-function-pdf" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">If <span class="math notranslate nohighlight">\(X\)</span> is a continuous random variable with distribution function <span class="math notranslate nohighlight">\(F_X(x)\)</span>, then the probability density function <span class="math notranslate nohighlight">\(f_X(x)\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ceb0b04-8386-4cd1-914c-a763a4e6512b">
-<span class="eqno">(8.10)<a class="headerlink" href="#equation-7ceb0b04-8386-4cd1-914c-a763a4e6512b" title="Permalink to this equation">#</a></span>\[\begin{align} f_X(x) = \frac{d}{dx} F_X(x) \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-813f53ff-08ac-409d-9206-efbd7397f1a1">
+<span class="eqno">(8.10)<a class="headerlink" href="#equation-813f53ff-08ac-409d-9206-efbd7397f1a1" title="Permalink to this equation">#</a></span>\[\begin{align} f_X(x) = \frac{d}{dx} F_X(x) \end{align}\]</div>
 </dd>
 </dl>
 </div>

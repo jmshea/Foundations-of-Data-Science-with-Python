@@ -741,10 +741,56 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../13-clustering-transforming/outline.html">
-   13. Clustering and Transforming Multi-dimensional Data (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../13-clustering-transforming/intro.html">
+   13. Clustering and Transforming Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/k-means.html">
+     13.1. Clustering Data: The
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+     -Means Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/vector-correlation.html">
+     13.2. Vector Correlation and Projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/spanningsets-bases.html">
+     13.3. Representing a Vector Using Projections: Spanning Sets and Bases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/fft.html">
+     13.4. Universal Bases: The Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/gram-schmidt.html">
+     13.5. Set-Specific Bases: The Gram-Schmidt Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/review.html">
+     13.6. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/summary.html">
+     13.7. Summary
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../14-matrix-applications/outline.html">
@@ -952,8 +998,8 @@ P(T_7) = \frac{|T_7|}{|S|}=\frac{6}{36}= \frac 1 6.
 <a class="reference internal image-reference" href="../_images/fair-cond-si-example.png"><img alt="Diagram showing outcomes included in events $E_1$, $E_2$, and $F$." src="../_images/fair-cond-si-example.png" style="width: 800px;" /></a>
 <p>Now we will consider some conditional probabilities and see how the computation simplifies for fair experiments. In addition, we will see the implications of  statistical independence for fair experiments.</p>
 <p>First consider some generic events (i.e. representing any possible event) <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> for this experiment. Then the conditional probability of <span class="math notranslate nohighlight">\(A\)</span> given <span class="math notranslate nohighlight">\(B\)</span> can be written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-570127a5-a544-4d73-9051-58cc84c5ce23">
-<span class="eqno">(6.8)<a class="headerlink" href="#equation-570127a5-a544-4d73-9051-58cc84c5ce23" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-73a1b26e-45ac-46ab-ab08-7398cb8b4fa2">
+<span class="eqno">(6.8)<a class="headerlink" href="#equation-73a1b26e-45ac-46ab-ab08-7398cb8b4fa2" title="Permalink to this equation">#</a></span>\[\begin{align}
 P(A|B) &amp;= \frac{ P(A \cap B) }{ P(B)}\\
 &amp;= \frac{ \frac{ |A \cap B|}{|S|}}{ \frac{|B|}{|S|} }\\
 &amp;= \frac{|A \cap B|}{|B|}
@@ -980,8 +1026,8 @@ P(A|B) &amp;= \frac{ P(A \cap B) }{ P(B)}\\
 <p>So, what is required for independence for fair experiments? For an event <span class="math notranslate nohighlight">\(A\)</span> to be independent of an event <span class="math notranslate nohighlight">\(B\)</span>, the proportion of outcomes of <span class="math notranslate nohighlight">\(A\)</span> within <span class="math notranslate nohighlight">\(B\)</span> must equal the proportion of outcomes of <span class="math notranslate nohighlight">\(A\)</span> within <span class="math notranslate nohighlight">\(S\)</span> (the original sample space).  Or we could also test if the proportion of outcomes of <span class="math notranslate nohighlight">\(B\)</span> within <span class="math notranslate nohighlight">\(A\)</span> is equal to the proportion of outcomes of <span class="math notranslate nohighlight">\(B\)</span> within <span class="math notranslate nohighlight">\(S\)</span>.</p>
 <p><strong>Please note that all these computations involving proportions do not necessarily hold (and usually do not hold) if the experiment is not fair!</strong></p>
 <p>Now, note that <span class="math notranslate nohighlight">\(E_1\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span> are independent. And we showed <span class="math notranslate nohighlight">\(T_7\)</span> and <span class="math notranslate nohighlight">\(E_1\)</span> are independent. It is not hard to see that <span class="math notranslate nohighlight">\(T_7\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span> are also independent. Combined, we can see that <span class="math notranslate nohighlight">\(E_1\)</span>, <span class="math notranslate nohighlight">\(E_2\)</span>, and <span class="math notranslate nohighlight">\(T_7\)</span> are <em>pairwise statistically independent</em>. So, are these events independent? We only need to check if one more condition holds: does <span class="math notranslate nohighlight">\(P(E_1 \cap E_2 \cap T_7)\)</span> equal <span class="math notranslate nohighlight">\(P(E_1) P(E_2) P(T_7)\)</span>?  We have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8df7cbac-11ee-4fff-b03e-4c786c918e4b">
-<span class="eqno">(6.9)<a class="headerlink" href="#equation-8df7cbac-11ee-4fff-b03e-4c786c918e4b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-059e0313-8a73-46e3-a62e-a1a16f1c69d9">
+<span class="eqno">(6.9)<a class="headerlink" href="#equation-059e0313-8a73-46e3-a62e-a1a16f1c69d9" title="Permalink to this equation">#</a></span>\[\begin{align}
 P(E_1) P(E_2) P(T_7) &amp;= \left( \frac 1 3\right) \left(\frac 1 3\right) \left(\frac 1 6\right)  \\
 &amp;= \frac 1 {54}
 \end{align}\]</div>

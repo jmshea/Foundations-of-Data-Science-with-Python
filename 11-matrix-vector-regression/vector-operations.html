@@ -741,10 +741,56 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../13-clustering-transforming/outline.html">
-   13. Clustering and Transforming Multi-dimensional Data (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../13-clustering-transforming/intro.html">
+   13. Clustering and Transforming Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/k-means.html">
+     13.1. Clustering Data: The
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+     -Means Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/vector-correlation.html">
+     13.2. Vector Correlation and Projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/spanningsets-bases.html">
+     13.3. Representing a Vector Using Projections: Spanning Sets and Bases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/fft.html">
+     13.4. Universal Bases: The Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/gram-schmidt.html">
+     13.5. Set-Specific Bases: The Gram-Schmidt Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/review.html">
+     13.6. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/summary.html">
+     13.7. Summary
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../14-matrix-applications/outline.html">
@@ -1135,60 +1181,20 @@ In this section, we consider these operations and their visualization.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">plotvec</span> <span class="kn">import</span> <span class="n">plotvec</span>
 
-<span class="k">def</span> <span class="nf">plotvec</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">,</span> <span class="n">chain</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">newfig</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">legendloc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">color_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span>
-    <span class="n">xmax</span><span class="o">=-</span><span class="mi">1000000</span>
-    <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span>
-    <span class="n">ymax</span><span class="o">=-</span><span class="mi">1000000</span>
-    <span class="n">origin</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">newfig</span><span class="p">:</span>
-      <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">head</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-      <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-                   <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">color_offset</span><span class="p">))</span>
-      <span class="k">else</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span>
-                   <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">color_offset</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="n">xmin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-      <span class="n">xmax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">xmax</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-      <span class="n">ymin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-      <span class="n">ymax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">ymax</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-      <span class="k">if</span> <span class="n">chain</span><span class="p">:</span>
-        <span class="n">origin</span> <span class="o">=</span> <span class="n">head</span>
-
-          
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">xmax</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ymin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ymax</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">xmax</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ymin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ymax</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">bool</span><span class="p">:</span>
-      <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">legendloc</span><span class="p">);</span>
-      
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
 
 <span class="n">plotvec</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span>
         <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$\mathbf</span><span class="si">{a}</span><span class="s1"> = [ 2,3]^T$&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;$\mathbf</span><span class="si">{b}</span><span class="s1"> = [ 1, -2]^T$&#39;</span><span class="p">],</span>
-        <span class="n">legendloc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+        <span class="n">legendloc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">square_aspect_ratio</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/vector-operations_2_0.png" src="../_images/vector-operations_2_0.png" />
+<img alt="../_images/vector-operations_1_0.png" src="../_images/vector-operations_1_0.png" />
 </div>
 </div>
 <section id="vector-addition">
@@ -1208,7 +1214,9 @@ In this section, we consider these operations and their visualization.</p>
 <p>Note that we can visualize the sum of two vectors as the displacement achieved from the consecutive (chained) displacement of the two vectors. The function below takes in a sequence of vectors and plots them with each vector’s head serving as the location of the next vector’s tail. This function also plots the sum of the vectors as a dashed vector:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotvecsum</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">plotvecsum</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">):</span>
     <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span>
     <span class="n">xmax</span><span class="o">=-</span><span class="mi">1000000</span>
     <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span>
@@ -1251,7 +1259,7 @@ In this section, we consider these operations and their visualization.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 1]
 </pre></div>
 </div>
-<img alt="../_images/vector-operations_5_1.png" src="../_images/vector-operations_5_1.png" />
+<img alt="../_images/vector-operations_4_1.png" src="../_images/vector-operations_4_1.png" />
 </div>
 </div>
 <p>Note that since addition of each component is commutative (i.e., insensitive to order), vector addition is also commutative:</p>
@@ -1265,7 +1273,7 @@ In this section, we consider these operations and their visualization.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 1]
 </pre></div>
 </div>
-<img alt="../_images/vector-operations_7_1.png" src="../_images/vector-operations_7_1.png" />
+<img alt="../_images/vector-operations_6_1.png" src="../_images/vector-operations_6_1.png" />
 </div>
 </div>
 <p>In NumPy, vectors can be added using the usual + operator:</p>
@@ -1365,7 +1373,7 @@ In this section, we consider these operations and their visualization.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/vector-operations_19_0.png" src="../_images/vector-operations_19_0.png" />
+<img alt="../_images/vector-operations_18_0.png" src="../_images/vector-operations_18_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1378,7 +1386,7 @@ In this section, we consider these operations and their visualization.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/vector-operations_20_0.png" src="../_images/vector-operations_20_0.png" />
+<img alt="../_images/vector-operations_19_0.png" src="../_images/vector-operations_19_0.png" />
 </div>
 </div>
 <p>Note that multiplying a vector by a scalar yields an output  vector that is in the <strong>same direction as the original vector</strong>, but it’s length has been changed in a way that depends on the value of the scalar. Let’s consider the effect of negative scalars:</p>
@@ -1390,7 +1398,7 @@ In this section, we consider these operations and their visualization.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/vector-operations_22_0.png" src="../_images/vector-operations_22_0.png" />
+<img alt="../_images/vector-operations_21_0.png" src="../_images/vector-operations_21_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1403,7 +1411,7 @@ In this section, we consider these operations and their visualization.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/vector-operations_23_0.png" src="../_images/vector-operations_23_0.png" />
+<img alt="../_images/vector-operations_22_0.png" src="../_images/vector-operations_22_0.png" />
 </div>
 </div>
 <p>Multiplying by a negative scalar yields a vector that is in the <strong>opposite direction</strong> as the original vector. The length of the new vector is controlled by the magnitude (i.e., the absolute value) of the scalar.For either  scalar  magnitude 0.5, the new vector is <em>shorter</em> than the original vector. For either scalar with magnitude 3, the new vector is longer than the original vector.</p>
@@ -1437,7 +1445,7 @@ In this section, we consider these operations and their visualization.</p>
 <p>For example, the figure below show the relation between <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{b-a}\)</span>:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/vector-operations_27_0.png" src="../_images/vector-operations_27_0.png" />
+<img alt="../_images/vector-operations_26_0.png" src="../_images/vector-operations_26_0.png" />
 </div>
 </div>
 <p>The vector <span class="math notranslate nohighlight">\(\mathbf{x}-\mathbf{y}\)</span> is the negative of the vector <span class="math notranslate nohighlight">\(\mathbf{y}-\mathbf{x}\)</span>. Thus both have the same length. The closer that <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> are to each other, the smaller the length of the difference will be.</p>
@@ -1795,12 +1803,22 @@ c·c = 155
 </div>
 <div class="sd-card-body docutils">
 <dl class="simple glossary">
-<dt id="term-norm-squared">norm squared<a class="headerlink" href="#term-norm-squared" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For a mathematical object <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with an inner product operator <span class="math notranslate nohighlight">\(\langle , \rangle\)</span>, the norm squared is denoted by <span class="math notranslate nohighlight">\(\| x \|^2\)</span>, and defined as \begin{equation*} | x |^2 = \langle x, x \rangle .\end{equation*}</p>
+<dt id="term-norm-squared-of-a-vector">norm squared (of a vector)<a class="headerlink" href="#term-norm-squared-of-a-vector" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For a mathematical object <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with an inner product operator <span class="math notranslate nohighlight">\(\langle , \rangle\)</span>, the norm squared is denoted by <span class="math notranslate nohighlight">\(\| x \|^2\)</span>, and defined as \begin{equation*} | x |^2 = \langle x, x \rangle .\end{equation*}</p>
 </dd>
 </dl>
 </div>
 </div>
 <p>Since inner product for vectors is the dot product, the norm squared of a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is <span class="math notranslate nohighlight">\(\|x\|^2 = \mathbf{x} \cdot \mathbf{x}\)</span>.</p>
+<!--
+````{card}
+DEFINITION
+^^^
+```{glossary}
+norm (of a vector)
+    For a mathematical object $\mathbf{x}$ with an inner product operator $\langle , \rangle$, the norm, denoted by $\| x \|$, is \begin{equation*} \| x \| = \sqrt{\langle x, x \rangle} .\end{equation*}
+```
+````
+-->
 </section>
 </section>
 <section id="length-or-magnitude-of-a-vector">
@@ -1808,13 +1826,13 @@ c·c = 155
 <p>Consider again the vector <span class="math notranslate nohighlight">\(\mathbf{a} = \left[2, 3 \right]^T\)</span>, shown below:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/vector-operations_74_0.png" src="../_images/vector-operations_74_0.png" />
+<img alt="../_images/vector-operations_73_0.png" src="../_images/vector-operations_73_0.png" />
 </div>
 </div>
 <p>Then <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is the hypotenuse of a right triangle with sides 2 and 3, as shown below:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/vector-operations_76_0.png" src="../_images/vector-operations_76_0.png" />
+<img alt="../_images/vector-operations_75_0.png" src="../_images/vector-operations_75_0.png" />
 </div>
 </div>
 <p>Let <span class="math notranslate nohighlight">\(\ell_a\)</span> denote the length of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>. Then by the Pythagorean theorem,</p>
@@ -1904,7 +1922,7 @@ c·c = 155
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/vector-operations_84_0.png" src="../_images/vector-operations_84_0.png" />
+<img alt="../_images/vector-operations_83_0.png" src="../_images/vector-operations_83_0.png" />
 </div>
 </div>
 <p>For an arbitrary vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, we can calculate the length of <span class="math notranslate nohighlight">\(\gamma \mathbf{x}\)</span> as</p>
@@ -2201,7 +2219,7 @@ c·c = 155
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="UdDPjYRUEOgC" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="UdDPjYRUEOgC-next" onclick="window.checkFlip('UdDPjYRUEOgC')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="ybuPRAtyBiIG" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="ybuPRAtyBiIG-next" onclick="window.checkFlip('ybuPRAtyBiIG')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2543,7 +2561,7 @@ function createCards(id, keyControl) {
 
 
 
-var cardsUdDPjYRUEOgC=[
+var cardsybuPRAtyBiIG=[
     {
         "front": "vector addition",
         "back": "The sum of vectors $\\mathbf{a}$ and $\\mathbf{b}$ is a vector $\\mathbf{a+b}$ whose $i$th component is the sum of the $i$th components of $\\mathbf{a}$ and $\\mathbf{b}$; i.e. $\\mathbf{(a+b)}_i = a_i + b_i$."
@@ -2585,10 +2603,10 @@ var cardsUdDPjYRUEOgC=[
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/11-matrix-vector-regression/flashcards/vector-operations.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("UdDPjYRUEOgC", "True"))
+        .then(json => createCards("ybuPRAtyBiIG", "True"))
         .catch(err => {
         console.log("Fetch error or timeout");
-        createCards("UdDPjYRUEOgC", "True");
+        createCards("ybuPRAtyBiIG", "True");
         });
         }
         </script></div>

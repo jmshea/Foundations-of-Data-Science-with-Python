@@ -741,10 +741,56 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../13-clustering-transforming/outline.html">
-   13. Clustering and Transforming Multi-dimensional Data (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../13-clustering-transforming/intro.html">
+   13. Clustering and Transforming Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/k-means.html">
+     13.1. Clustering Data: The
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+     -Means Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/vector-correlation.html">
+     13.2. Vector Correlation and Projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/spanningsets-bases.html">
+     13.3. Representing a Vector Using Projections: Spanning Sets and Bases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/fft.html">
+     13.4. Universal Bases: The Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/gram-schmidt.html">
+     13.5. Set-Specific Bases: The Gram-Schmidt Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/review.html">
+     13.6. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/summary.html">
+     13.7. Summary
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../14-matrix-applications/outline.html">
@@ -1278,8 +1324,8 @@ Z(s) =
 <p>We can depict this relationship graphically below:</p>
 <a class="reference internal image-reference" href="../_images/example-rv3.pdf"><img alt="" src="../_images/example-rv3.pdf" style="width: 700px;" /></a>
 <p>Note that even though <span class="math notranslate nohighlight">\(Z\)</span> is created from the same probability space, it takes on a different set of values and is not even a binary random variable. The point probabilities <span class="math notranslate nohighlight">\(P(Z=z)\)</span> are easy to find:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cca0244c-aba6-4155-b216-ce6c38c36f11">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-cca0244c-aba6-4155-b216-ce6c38c36f11" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f10298a7-0de2-4fb3-a5eb-a1a2434424fc">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-f10298a7-0de2-4fb3-a5eb-a1a2434424fc" title="Permalink to this equation">#</a></span>\[\begin{align}
 P(Z = 0) &amp;= P( \{TT\} ) = 1/4 \\
 P(Z = 1) &amp;= P( \{TH, HT\} ) = 1/2 \\
 P(Z = 2) &amp; = P( \{HH\} ) = 1/4 \\

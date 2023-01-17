@@ -741,10 +741,56 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../13-clustering-transforming/outline.html">
-   13. Clustering and Transforming Multi-dimensional Data (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../13-clustering-transforming/intro.html">
+   13. Clustering and Transforming Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/k-means.html">
+     13.1. Clustering Data: The
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+     -Means Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/vector-correlation.html">
+     13.2. Vector Correlation and Projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/spanningsets-bases.html">
+     13.3. Representing a Vector Using Projections: Spanning Sets and Bases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/fft.html">
+     13.4. Universal Bases: The Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/gram-schmidt.html">
+     13.5. Set-Specific Bases: The Gram-Schmidt Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/review.html">
+     13.6. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/summary.html">
+     13.7. Summary
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../14-matrix-applications/outline.html">
@@ -1012,8 +1058,8 @@ title="Print to PDF"
 \end{align*}\]</div>
 <p>where <span class="math notranslate nohighlight">\(A_i\)</span> denotes the event that <span class="math notranslate nohighlight">\(i\)</span> is transmitted.</p>
 <p>Since we have only two possible inputs, the MAP rule can be simplified to a single comparison. We will decide <span class="math notranslate nohighlight">\(\hat{A}_0\)</span> if <span class="math notranslate nohighlight">\(A_0\)</span> maximizes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6c415dc4-09d9-43eb-9107-40a03709a41b">
-<span class="eqno">(10.6)<a class="headerlink" href="#equation-6c415dc4-09d9-43eb-9107-40a03709a41b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2f901b52-6363-4f31-8073-b3a87a8e9149">
+<span class="eqno">(10.6)<a class="headerlink" href="#equation-2f901b52-6363-4f31-8073-b3a87a8e9149" title="Permalink to this equation">#</a></span>\[\begin{align}
 f_X(x|A_0)P(A_0) &amp; \ge f_X(x|A_1)P(A_1)
 \end{align}\]</div>
 <p>and decide <span class="math notranslate nohighlight">\(\hat{A}_1\)</span> otherwise.</p>

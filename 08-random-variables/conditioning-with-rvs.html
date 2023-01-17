@@ -741,10 +741,56 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../13-clustering-transforming/outline.html">
-   13. Clustering and Transforming Multi-dimensional Data (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../13-clustering-transforming/intro.html">
+   13. Clustering and Transforming Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/k-means.html">
+     13.1. Clustering Data: The
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+     -Means Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/vector-correlation.html">
+     13.2. Vector Correlation and Projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/spanningsets-bases.html">
+     13.3. Representing a Vector Using Projections: Spanning Sets and Bases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/fft.html">
+     13.4. Universal Bases: The Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/gram-schmidt.html">
+     13.5. Set-Specific Bases: The Gram-Schmidt Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/review.html">
+     13.6. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/summary.html">
+     13.7. Summary
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../14-matrix-applications/outline.html">
@@ -1142,8 +1188,8 @@ P(X&gt;2) = P(X&gt;2|T_0)P(T_0) + P(X&gt;2|T_1)P(T_1).
 </div>
 </div>
 <p>The probability <span class="math notranslate nohighlight">\(P(X&gt;2)\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-695dec85-c5a9-4ea4-8a33-8bb230e104fc">
-<span class="eqno">(8.33)<a class="headerlink" href="#equation-695dec85-c5a9-4ea4-8a33-8bb230e104fc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3092831c-75c0-4ce7-9a5d-4f628d02c64a">
+<span class="eqno">(8.33)<a class="headerlink" href="#equation-3092831c-75c0-4ce7-9a5d-4f628d02c64a" title="Permalink to this equation">#</a></span>\[\begin{align}
 P(X&gt;2) &amp;= Q\left(\frac{d_0}{\sigma} \right)(0.4) +
 Q\left(\frac{d_1}{\sigma} \right)(0.6) \\
 &amp;=Q\left(\frac{1}{2} \right)(0.4) +
@@ -1221,8 +1267,8 @@ P(T_0 | X=2) &amp;= \frac{ P(X=2|T_0) P(T_0) }{P(X=2) }\\
 <h2><span class="section-number">8.9.1. </span>The Memoryless Property of the Exponential Distribution<a class="headerlink" href="#the-memoryless-property-of-the-exponential-distribution" title="Permalink to this heading">#</a></h2>
 <p>In <a class="reference internal" href="important-continuous-rvs.html"><span class="doc">Important Continuous Random Variables</span></a>, I gave a specific example where the time that had passed since a lightbulb was first in service did not seem to affect its future lifetime. Let’s try to formalize and generalize this using conditional distribution functions.</p>
 <p>Let <span class="math notranslate nohighlight">\(T\)</span> be the lifetime of some device. (The same result applies if <span class="math notranslate nohighlight">\(T\)</span> is instead a different type of time, such as the time waiting in a queue.) Let <span class="math notranslate nohighlight">\(T \sim\)</span> exponential(<span class="math notranslate nohighlight">\(\lambda\)</span>) for some <span class="math notranslate nohighlight">\(\lambda &gt;0\)</span>. Now suppose that we are given <span class="math notranslate nohighlight">\(T&gt;5\)</span>. Let’s first evaluate the conditional distribution for <span class="math notranslate nohighlight">\(T\)</span> given that <span class="math notranslate nohighlight">\(T&gt;5\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a7fdb64e-a258-448a-aefb-a5eeee944997">
-<span class="eqno">(8.34)<a class="headerlink" href="#equation-a7fdb64e-a258-448a-aefb-a5eeee944997" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8e582910-6fd9-48bd-85ab-f8f342b9088f">
+<span class="eqno">(8.34)<a class="headerlink" href="#equation-8e582910-6fd9-48bd-85ab-f8f342b9088f" title="Permalink to this equation">#</a></span>\[\begin{align}
 F_T(t|T&gt;5) &amp;= P(T \le t | T&gt;5)\\
  &amp;= \frac{P(T \le t \cap T&gt;5)}{P(T&gt;5)}\\
 \end{align}\]</div>
@@ -1244,8 +1290,8 @@ P(5 &lt; T \le t) &amp;= F_T(t) - F_T(5)\\
 &amp;= e^{ -5\lambda}- e^{-\lambda t}
 \end{align*}\]</div>
 <p>Thus, for <span class="math notranslate nohighlight">\(t \ge 5\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6f43354a-745a-49be-a73d-76de3966b6b3">
-<span class="eqno">(8.35)<a class="headerlink" href="#equation-6f43354a-745a-49be-a73d-76de3966b6b3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0a22b24c-5174-42d2-aade-5585af152126">
+<span class="eqno">(8.35)<a class="headerlink" href="#equation-0a22b24c-5174-42d2-aade-5585af152126" title="Permalink to this equation">#</a></span>\[\begin{align}
 F_T(t|T&gt;5) &amp;= \frac{e^{ -5\lambda}- e^{-\lambda t}}{ e^{ -5\lambda} } \\
 &amp;= 1- e^{-\lambda (t-5)}
 \end{align}\]</div>
@@ -1278,8 +1324,8 @@ F_T(t|T&gt;5) =
 </div>
 <p>The conditional cdf is simply a <strong>shifted version of the original cdf</strong>.</p>
 <p>Now we are ready to see why this creates a memoryless property. Instead of asking about the total lifetime of the device <span class="math notranslate nohighlight">\(T\)</span> given that it has already lasted for 5 time units, let’s ask about the remaining lifetime. Let <span class="math notranslate nohighlight">\(L\)</span> be the remaining lifetime. Given that the devices has lasted for time units, the remaining lifetime is <span class="math notranslate nohighlight">\(L=T-5\)</span>. Then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-47d4d617-d961-4c45-a807-97e0a32fd660">
-<span class="eqno">(8.36)<a class="headerlink" href="#equation-47d4d617-d961-4c45-a807-97e0a32fd660" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-440ecfca-b625-436f-8a68-2404b855f0c3">
+<span class="eqno">(8.36)<a class="headerlink" href="#equation-440ecfca-b625-436f-8a68-2404b855f0c3" title="Permalink to this equation">#</a></span>\[\begin{align}
 F_L(l| T \ge 5) &amp;= P(L \le l| T \ge 5) \\
 &amp;= P(T -5 \le l| T \ge 5) \\
 &amp;= P (T \le l+5| T \ge 5) \\

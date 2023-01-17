@@ -741,10 +741,56 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../13-clustering-transforming/outline.html">
-   13. Clustering and Transforming Multi-dimensional Data (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../13-clustering-transforming/intro.html">
+   13. Clustering and Transforming Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/k-means.html">
+     13.1. Clustering Data: The
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+     -Means Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/vector-correlation.html">
+     13.2. Vector Correlation and Projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/spanningsets-bases.html">
+     13.3. Representing a Vector Using Projections: Spanning Sets and Bases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/fft.html">
+     13.4. Universal Bases: The Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/gram-schmidt.html">
+     13.5. Set-Specific Bases: The Gram-Schmidt Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/review.html">
+     13.6. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/summary.html">
+     13.7. Summary
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../14-matrix-applications/outline.html">
@@ -1060,8 +1106,8 @@ P(A) \\
 <p>In the binary communication system example, we can use the partitioning events <span class="math notranslate nohighlight">\(\{T_0, T_1\}\)</span>. We can easily create a general Total Probability rule for CDFs because CDFs are probability measures:</p>
 <p><strong>Total Probability for CDFs</strong></p>
 <p>If  <span class="math notranslate nohighlight">\(\left\{A_i\right\}\)</span> form a partition of <span class="math notranslate nohighlight">\(S\)</span>, then from our previous work on the Law of Total Probability, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7a6386ef-1986-4b1f-bdbd-611cd9c37c64">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-7a6386ef-1986-4b1f-bdbd-611cd9c37c64" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-76f1f21f-7c34-40c6-89a8-d852daa7c490">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-76f1f21f-7c34-40c6-89a8-d852daa7c490" title="Permalink to this equation">#</a></span>\[\begin{align}
 F_X(x) &amp;= P(X \le x) \\
 &amp;= \sum_i P(X \le x| A_i) P(A_i) \\
 &amp;= \sum_i F_X(x|A_i) P(A_i)
@@ -1071,8 +1117,8 @@ F_X(x) &amp;= P(X \le x) \\
 <span class="math notranslate nohighlight">\( f_X(x) = \frac{d}{dx} F_X(x)\)</span> and <span class="math notranslate nohighlight">\(f_X(x|A_i) = \frac{d}{dx} F_X(x|A_i)\)</span>.
 Substituting the Total Probability for CDFs into the definition of the pdf <span class="math notranslate nohighlight">\(f_X(x)\)</span>
 yields</p>
-<div class="amsmath math notranslate nohighlight" id="equation-77f26e74-18ad-43d9-ba5c-5f53a796b97d">
-<span class="eqno">(10.3)<a class="headerlink" href="#equation-77f26e74-18ad-43d9-ba5c-5f53a796b97d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c58415fd-3519-4cb8-bd3d-b1d81041c704">
+<span class="eqno">(10.3)<a class="headerlink" href="#equation-c58415fd-3519-4cb8-bd3d-b1d81041c704" title="Permalink to this equation">#</a></span>\[\begin{align}
 f_X(x) &amp;= \frac{d}{dx} F_X(x) \\
 &amp;= \frac{d}{dx}\sum_i F_X(x|A_i) P(A_i) \\
 &amp;= \sum_i \left[\frac{d}{dx} F_X(x|A_i) \right]P(A_i)  \\
