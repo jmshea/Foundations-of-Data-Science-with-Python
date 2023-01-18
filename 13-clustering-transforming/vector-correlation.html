@@ -61,8 +61,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/13-clustering-transforming/vector-correlation.html" />
@@ -1112,21 +1110,21 @@ r=  \frac{{\mathbf{a}} \cdot \mathbf{{b}} }{ \Vert\mathbf{{a}}\Vert \,\Vert\math
 </div>
 </div>
 <p>This definition has properties that are similar to those of Pearson’s correlation, but the connection is actually much deeper than that. First, let’s write vector correlation in terms of the arithmetic operations on the elements of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2301124e-41d3-4c7c-a0b6-4ea8807cddb5">
-<span class="eqno">(13.1)<a class="headerlink" href="#equation-2301124e-41d3-4c7c-a0b6-4ea8807cddb5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b61710b8-0e5a-4af1-abc2-b34f4ba2204e">
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-b61710b8-0e5a-4af1-abc2-b34f4ba2204e" title="Permalink to this equation">#</a></span>\[\begin{align}
 r &amp;= \frac{  \sum_{i} a_i b_i }
 {\sqrt{ \sum_{i} a_{i}^{2}}\sqrt{ \sum_{j}b_{j}^{2}}}
 \end{align}\]</div>
 <p>Now let’s treat <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> as vectors of data features and compute Pearson’s correlation between them:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-53f0e81d-17de-4f4f-b274-eb9a5ea38f80">
-<span class="eqno">(13.2)<a class="headerlink" href="#equation-53f0e81d-17de-4f4f-b274-eb9a5ea38f80" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4cca19b8-f2b8-40fa-b0cb-ed9f986bf58f">
+<span class="eqno">(13.2)<a class="headerlink" href="#equation-4cca19b8-f2b8-40fa-b0cb-ed9f986bf58f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \rho_{ab} &amp;= \frac{\mbox{Cov}(\mathbf{a},\mathbf{b})}{\sigma_a \sigma_b} \\
 &amp;= \frac{ \frac{1}{N-1} \sum_{i} (a_i- \overline{\mathbf{a}})(b_i - \overline{\mathbf{b}})}
 {\sqrt{\frac{1}{N-1} \sum_{i} (a_i- \overline{\mathbf{a}})^2}\sqrt{\frac{1}{N-1} \sum_{j}(b_j -\overline{\mathbf{b}})^2}}
 \end{align}\]</div>
 <p>For the special case <span class="math notranslate nohighlight">\(\overline{\mathbf{a}} = \overline{\mathbf{b}}=0\)</span>, this simplifies to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f594885-bac3-483c-b6ae-2af3f2b3f452">
-<span class="eqno">(13.3)<a class="headerlink" href="#equation-9f594885-bac3-483c-b6ae-2af3f2b3f452" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-59f856c4-4464-460b-8696-5afaa8ec7205">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-59f856c4-4464-460b-8696-5afaa8ec7205" title="Permalink to this equation">#</a></span>\[\begin{align}
 \rho_{ab} 
 &amp;= \frac{ \sum_{i} a_i b_i }
 {\sqrt{ \sum_{i} a_{i}^2}\sqrt{ \sum_{j}b_{j}^2}}.
@@ -1172,9 +1170,9 @@ y_i = \frac{ \mathbf{y}  \cdot \mathbf{x}_i}{ \| \mathbf{x}_i \|}.
 <dl class="glossary">
 <dt id="term-scalar-projection">scalar projection<a class="headerlink" href="#term-scalar-projection" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">Given <span class="math notranslate nohighlight">\(n\)</span>-vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, the <em>scalar projection</em> of <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> onto <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> has magnitude equal to the length of the vector in the direction of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> that minimizes the error to <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. The sign is positive if that component of <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is in the same direction as <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> and negative if not. It is given by</p>
 <div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-ac{ \mathbf{y}  \cdot \mathbf{x}}{ \| \mathbf{x} \|}.
-\end{equation*}\]</div>
+\[\begin{align*} 
+\frac{ \mathbf{y}  \cdot \mathbf{x}}{ \| \mathbf{x} \|}.
+\end{align*}\]</div>
 </dd>
 </dl>
 </div>
