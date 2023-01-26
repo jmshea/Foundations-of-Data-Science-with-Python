@@ -6,19 +6,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-<meta property="og:title" content="12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables" />
+<meta property="og:title" content="11.3. Null Hypothesis Significance Testing for Dependence in Contingency Tables" />
   
 <meta property="og:type" content="website" />
   
-<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-categorical-data/nhst.html" />
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-categorical-data/nhst.html" />
   
 <meta property="og:description" content="When the relative frequencies in a contingency table vary by row or column, that suggests that the categorical data in the rows may depend on the categorical data in the columns, and vice versa. Ho..." />
   
 <meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
   
-<meta property="og:image:alt" content="12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables" />
+<meta property="og:image:alt" content="11.3. Null Hypothesis Significance Testing for Dependence in Contingency Tables" />
   
-    <title>12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables &#8212; Foundations of Data Science with Python</title>
+    <title>11.3. Null Hypothesis Significance Testing for Dependence in Contingency Tables &#8212; Foundations of Data Science with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -65,11 +65,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-categorical-data/nhst.html" />
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-categorical-data/nhst.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12.3. Summary" href="summary.html" />
-    <link rel="prev" title="12.1. Tabulating Categorical Data and Creating a Test Statistic" href="contingency-tables.html" />
+    <link rel="next" title="11.4. Chi-Square Goodness-of-Fit Test" href="goodness-of-fit.html" />
+    <link rel="prev" title="11.2. Tabulating Categorical Data and Creating a Test Statistic" href="contingency-tables.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -662,81 +662,91 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
-   11. Multidimensional Data and Regression
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
-     11.1. Introduction to Vectors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
-     11.2. Vector Operations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
-     11.3. Summary Statistics for Vector Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
-     11.4. Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
-     11.5. Null Hypothesis Tests for Correlation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
-     11.6. Nonlinear Regression Tests
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
-     11.7. Review
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
-     11.8. Summary
-    </a>
-   </li>
-  </ul>
- </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="intro.html">
-   12. Categorical Data and Tests for Dependence
+   11. Categorical Data, Tests for Dependence, and Goodness of Fit for Discrete Distributions
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="contingency-tables.html">
-     12.1. Tabulating Categorical Data and Creating a Test Statistic
+     11.2. Tabulating Categorical Data and Creating a Test Statistic
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+     11.3. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="goodness-of-fit.html">
+     11.4. Chi-Square Goodness-of-Fit Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     11.5. Review
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="summary.html">
-     12.3. Summary
+     11.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-vector-regression/intro.html">
+   12. Multidimensional Data: Vectors and Linear Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/vectors.html">
+     12.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/vector-operations.html">
+     12.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/vector-stats.html">
+     12.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/linear-regression.html">
+     12.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/nhst.html">
+     12.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/nonlinear-regression.html">
+     12.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/review.html">
+     12.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/summary.html">
+     12.8. Summary
     </a>
    </li>
   </ul>
@@ -781,21 +791,48 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/feature-extraction.html">
+     13.6. Alternative Bases for Feature Extraction
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/review.html">
-     13.6. Review
+     13.7. Review
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/summary.html">
-     13.7. Summary
+     13.8. Summary
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../14-matrix-applications/outline.html">
-   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../14-matrix-applications/intro.html">
+   14. Matrices and Applications
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrices.html">
+     14.1. Introduction to Arrays and Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrix-ops.html">
+     14.2. Matrix Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/outline.html">
+     14.3. Remaining Sections (Outline)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../15-multidim-dependence/outline.html">
@@ -871,7 +908,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/12-categorical-data/nhst.ipynb"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/11-categorical-data/nhst.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -914,7 +951,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/12-categorical-data/nhst.ipynb"
+        <a href="../_sources/11-categorical-data/nhst.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -975,17 +1012,17 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#resampling-nhst-contingency-test">
-   12.2.1. Resampling NHST Contingency Test
+   11.3.1. Resampling NHST Contingency Test
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analytical-nhst">
-   12.2.2. Analytical NHST
+   11.3.2. Analytical NHST
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fishers-exact-test">
-   12.2.3. Fisher’s Exact Test
+   11.3.3. Fisher’s Exact Test
   </a>
  </li>
 </ul>
@@ -1009,17 +1046,17 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#resampling-nhst-contingency-test">
-   12.2.1. Resampling NHST Contingency Test
+   11.3.1. Resampling NHST Contingency Test
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analytical-nhst">
-   12.2.2. Analytical NHST
+   11.3.2. Analytical NHST
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fishers-exact-test">
-   12.2.3. Fisher’s Exact Test
+   11.3.3. Fisher’s Exact Test
   </a>
  </li>
 </ul>
@@ -1033,10 +1070,10 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="null-hypothesis-significance-testing-for-dependence-in-contingency-tables">
-<h1><span class="section-number">12.2. </span>Null Hypothesis Significance Testing for Dependence in Contingency Tables<a class="headerlink" href="#null-hypothesis-significance-testing-for-dependence-in-contingency-tables" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">11.3. </span>Null Hypothesis Significance Testing for Dependence in Contingency Tables<a class="headerlink" href="#null-hypothesis-significance-testing-for-dependence-in-contingency-tables" title="Permalink to this heading">#</a></h1>
 <p>When the relative frequencies in a contingency table vary by row or column, that suggests that the categorical data in the rows may depend on the categorical data in the columns, and vice versa. However, the observed dependence may also be caused by randomness in the data sample. To determine whether we can be confident that any observed dependence cannot reasonably attributed to randomness, we can conduct a NHST. The null hypothesis, <span class="math notranslate nohighlight">\(H_0\)</span>, will be that the data in the rows and columns are not dependent. We have already defined the summary statistic that we will use, <span class="math notranslate nohighlight">\(C\)</span>, so we just need to determine the probability of seeing such a large value of <span class="math notranslate nohighlight">\(C\)</span> under <span class="math notranslate nohighlight">\(H_0\)</span>. We can do this using resampling or analysis, each of which we cover below.</p>
 <section id="resampling-nhst-contingency-test">
-<h2><span class="section-number">12.2.1. </span>Resampling NHST Contingency Test<a class="headerlink" href="#resampling-nhst-contingency-test" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.3.1. </span>Resampling NHST Contingency Test<a class="headerlink" href="#resampling-nhst-contingency-test" title="Permalink to this heading">#</a></h2>
 <p>Let’s load our data for marijuana use by reported sex of college students in the 2021 BRFSS study and generate the contingency table:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1140,53 +1177,53 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>83311     nonmedical
-337411          both
-141122    nonmedical
-430336          both
-125117    nonmedical
-388938          both
-51119           both
-318190          both
-391169          both
-91728     nonmedical
-189007          both
-88256           both
-155844          both
-142714    nonmedical
-50301     nonmedical
-184398          both
-76039           both
-156247          both
-390954    nonmedical
-212258    nonmedical
-211951    nonmedical
-180635    nonmedical
-237800    nonmedical
-125725    nonmedical
-141105    nonmedical
-142846       medical
-138765          both
-237034    nonmedical
-337471       medical
-182458          both
-79778     nonmedical
-49893           both
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>391169          both
 189778          both
-77166           both
-143296       medical
-69656     nonmedical
-140980    nonmedical
-44864     nonmedical
-92932     nonmedical
+82267        medical
+390954    nonmedical
+337411          both
+211920       medical
 389980    nonmedical
 141834    nonmedical
+141122    nonmedical
 8392      nonmedical
+69656     nonmedical
+140980    nonmedical
+76039           both
 138159          both
-82267        medical
-303371    nonmedical
-211920       medical
 159226    nonmedical
+83311     nonmedical
+184398          both
+237034    nonmedical
+430336          both
+77166           both
+50301     nonmedical
+125117    nonmedical
+189007          both
+51119           both
+88256           both
+143296       medical
+182458          both
+211951    nonmedical
+91728     nonmedical
+92932     nonmedical
+237800    nonmedical
+337471       medical
+318190          both
+142846       medical
+79778     nonmedical
+125725    nonmedical
+303371    nonmedical
+180635    nonmedical
+156247          both
+142714    nonmedical
+49893           both
+141105    nonmedical
+388938          both
+44864     nonmedical
+155844          both
+212258    nonmedical
+138765          both
 Name: marijuana_use, dtype: object
 </pre></div>
 </div>
@@ -1239,16 +1276,13 @@ Name: marijuana_use, dtype: object
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nhst_contingency</span><span class="p">(</span><span class="n">college2</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">],</span>
                  <span class="n">college2</span><span class="p">[</span><span class="s1">&#39;marijuana_use&#39;</span><span class="p">],</span>
-                 <span class="n">C</span><span class="p">)</span>
+                 <span class="n">C</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prob. of observing chi-squared value as large as original
-data under H0  =~  0.26
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.255
+data under H0  =~  0.25
 </pre></div>
 </div>
 </div>
@@ -1456,10 +1490,10 @@ data under H0  =~  0.26
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prob. of observing chi-squared value as large as original
-data under H0  =~  0.011
+data under H0  =~  0.01
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.011
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01
 </pre></div>
 </div>
 </div>
@@ -1467,8 +1501,9 @@ data under H0  =~  0.011
 <p>Since the <span class="math notranslate nohighlight">\(p\)</span>-value of 0.011 is less than our significance threshold of <span class="math notranslate nohighlight">\(\alpha=0.05\)</span>, the result is statistically significant at the <span class="math notranslate nohighlight">\(p&lt;0.05\)</span> level. We can reject the null hypothesis and conclude that the <code class="docutils literal notranslate"><span class="pre">sex</span></code> and <code class="docutils literal notranslate"><span class="pre">exercised</span></code> features are dependent. Note, however, that this test does not allow us to say anything else about how these features depend on each other.</p>
 </section>
 <section id="analytical-nhst">
-<h2><span class="section-number">12.2.2. </span>Analytical NHST<a class="headerlink" href="#analytical-nhst" title="Permalink to this heading">#</a></h2>
-<p>Under <span class="math notranslate nohighlight">\(H_0\)</span>, the chi-squared statistic can be shown to be a standard chi-squared random variable. The standard chi-squared random variable requires a single parameter: the number of degrees of freedom (dof). Recall that the number of degrees of freedom for a contingency table with <span class="math notranslate nohighlight">\(r\)</span> rows and <span class="math notranslate nohighlight">\(c\)</span> columns is <span class="math notranslate nohighlight">\((r-1)(c-1)\)</span>. Then under <span class="math notranslate nohighlight">\(H_0\)</span>, the chi-squared statistic is a chi-squared random variable with <span class="math notranslate nohighlight">\((r-1)(c-1)\)</span> degrees of freedom.</p>
+<h2><span class="section-number">11.3.2. </span>Analytical NHST<a class="headerlink" href="#analytical-nhst" title="Permalink to this heading">#</a></h2>
+<p>Under <span class="math notranslate nohighlight">\(H_0\)</span>, the chi-squared statistic can be shown to be a standard chi-squared random variable, provided that the entries in the table are sufficiently large. The typical criterion for being able to model the test statistic as a chi-squared random variable is that the expected values in each cell are all at least 4. Thus, the analytical model is likely to be less accurate if applied to the marijuana use example and more accurate for the example about exercise.</p>
+<p>The standard chi-squared random variable requires a single parameter: the number of degrees of freedom (dof). Recall that the number of degrees of freedom for a contingency table with <span class="math notranslate nohighlight">\(r\)</span> rows and <span class="math notranslate nohighlight">\(c\)</span> columns is <span class="math notranslate nohighlight">\((r-1)(c-1)\)</span>. Then under <span class="math notranslate nohighlight">\(H_0\)</span>, the chi-squared statistic is a chi-squared random variable with <span class="math notranslate nohighlight">\((r-1)(c-1)\)</span> degrees of freedom.</p>
 <p>The pdf for a standard chi-squared random variable with different numbers of degrees of freedom is shown below. Note that as the number of degrees of freedom increases, the probability mass moves toward higher values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1511,7 +1546,7 @@ data under H0  =~  0.011
 </div>
 </div>
 </div>
-<p>Note the the value from analysis is approximately equal to the value found through resampling.</p>
+<p>For this example, the value from analysis is approximately equal to the value found through resampling, even though some of the cell values are smaller than our usual threshold for applying the chi-squared model.</p>
 <p>As usual, there are also methods that can reduce our effort in determining the <span class="math notranslate nohighlight">\(p\)</span>-value. The function <code class="docutils literal notranslate"><span class="pre">stats.chi2_contingency()</span></code> takes as input a contingency table and returns:</p>
 <ul class="simple">
 <li><p>the chi-squared statistic,</p></li>
@@ -1535,25 +1570,7 @@ data under H0  =~  0.011
 </div>
 </div>
 </div>
-<p>Note that the <span class="math notranslate nohighlight">\(p\)</span>-value slightly differs from our previous analysis. The reason is that the statistic is not really a chi-squared random variable under <span class="math notranslate nohighlight">\(H_0\)</span> because we are processing a set of discrete values and representing the result by a continuous distribution. To compensate for this, <code class="docutils literal notranslate"><span class="pre">stats.chi2_contingency()</span></code> applies an adjustment called <em>Yate’s continuity correction</em> to produce a more accurate estimate of the true <span class="math notranslate nohighlight">\(p\)</span>-value.</p>
-<p>To find the <span class="math notranslate nohighlight">\(p\)</span>-value without the continuity correction, pass the <code class="docutils literal notranslate"><span class="pre">correction=False</span></code> argument:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">chi2_contingency</span><span class="p">(</span><span class="n">contingency</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.686121212121211,
- 0.26104548728461613,
- 2,
- array([[ 8.42553191,  2.34042553, 11.23404255],
-        [ 9.57446809,  2.65957447, 12.76595745]]))
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now the result matches our analysis exactly. In practice, it is better to use the continuity correction.</p>
+<p>The results match our analysis and confirm that the data is not sufficient to reject the null hypothesis.</p>
 <p><strong>Second Example</strong></p>
 <p>Now let’s use <code class="docutils literal notranslate"><span class="pre">stats.chi2_contingency()</span></code> to calculate the <span class="math notranslate nohighlight">\(p\)</span>-value for the data features <code class="docutils literal notranslate"><span class="pre">sex</span></code> and <code class="docutils literal notranslate"><span class="pre">exercised</span></code>. Recall that the contingency table is</p>
 <div class="cell docutils container">
@@ -1622,23 +1639,6 @@ data under H0  =~  0.011
 <p>We pass this as the argument of <code class="docutils literal notranslate"><span class="pre">stats.chi2_contingency()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">chi2_contingency</span><span class="p">(</span><span class="n">ex_contingency</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(6.954582494119101,
- 0.008360480726183703,
- 1,
- array([[ 82.71428571, 496.28571429],
-        [ 96.28571429, 577.71428571]]))
-</pre></div>
-</div>
-</div>
-</div>
-<p>The value of the chi-squared statistic and the two <span class="math notranslate nohighlight">\(p\)</span>-values generated by analysis match, but they differ from our simulation result. If we allow the continuity correction, then we get</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">chi2_contingency</span><span class="p">(</span><span class="n">ex_contingency</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1653,10 +1653,28 @@ data under H0  =~  0.011
 </div>
 </div>
 </div>
-<p>This <span class="math notranslate nohighlight">\(p\)</span>-value is very close to our result via resampling. Again, since <span class="math notranslate nohighlight">\(p \approx 0.011\)</span> is less than our signficance threshold of <span class="math notranslate nohighlight">\(\alpha=0.05\)</span>, we reject the null hypothesis and conclude that these data features are dependent.</p>
+<p>Note that the <span class="math notranslate nohighlight">\(p\)</span>-value slightly differs from our previous analysis. The reason is that the statistic is not really a chi-squared random variable under <span class="math notranslate nohighlight">\(H_0\)</span> because we are processing a set of discrete values and representing the result by a continuous distribution. To compensate for this, <code class="docutils literal notranslate"><span class="pre">stats.chi2_contingency()</span></code> applies an adjustment called <em>Yate’s continuity correction</em> when the number of degrees of freedom is 1 to produce a more accurate estimate of the true <span class="math notranslate nohighlight">\(p\)</span>-value.</p>
+<p>To find the <span class="math notranslate nohighlight">\(p\)</span>-value without the continuity correction, pass the <code class="docutils literal notranslate"><span class="pre">correction=False</span></code> argument:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">chi2_contingency</span><span class="p">(</span><span class="n">ex_contingency</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(6.954582494119101,
+ 0.008360480726183703,
+ 1,
+ array([[ 82.71428571, 496.28571429],
+        [ 96.28571429, 577.71428571]]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now the result matches our analysis exactly. In practice, it is better to use the continuity correction.  The analytical <span class="math notranslate nohighlight">\(p\)</span>-value with the continuity correction is very close to our result via resampling. Again, since <span class="math notranslate nohighlight">\(p \approx 0.011\)</span> is less than our significance threshold of <span class="math notranslate nohighlight">\(\alpha=0.05\)</span>, we reject the null hypothesis and conclude that these data features are dependent.</p>
 </section>
 <section id="fishers-exact-test">
-<h2><span class="section-number">12.2.3. </span>Fisher’s Exact Test<a class="headerlink" href="#fishers-exact-test" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.3.3. </span>Fisher’s Exact Test<a class="headerlink" href="#fishers-exact-test" title="Permalink to this heading">#</a></h2>
 <p>For small tables, instead of using random permutations of the data, we can simply use every possible permutation of the data. The resulting test is called Fisher’s Exact Test. Students who wish to implement this test may wish to use the <code class="docutils literal notranslate"><span class="pre">itertools</span></code> library to generate all permutations of the data for one of the features.</p>
 </section>
 </section>
@@ -1674,7 +1692,7 @@ data under H0  =~  0.011
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./12-categorical-data"
+            path: "./11-categorical-data"
         },
         predefinedOutput: true
     }
@@ -1692,13 +1710,13 @@ data under H0  =~  0.011
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">12.1. </span>Tabulating Categorical Data and Creating a Test Statistic</p>
+            <p class="prev-next-title"><span class="section-number">11.2. </span>Tabulating Categorical Data and Creating a Test Statistic</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="summary.html" title="next page">
+    <a class='right-next' id="next-link" href="goodness-of-fit.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">12.3. </span>Summary</p>
+        <p class="prev-next-title"><span class="section-number">11.4. </span>Chi-Square Goodness-of-Fit Test</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

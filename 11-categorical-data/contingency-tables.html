@@ -6,19 +6,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-<meta property="og:title" content="12.1. Tabulating Categorical Data and Creating a Test Statistic" />
+<meta property="og:title" content="11.2. Tabulating Categorical Data and Creating a Test Statistic" />
   
 <meta property="og:type" content="website" />
   
-<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-categorical-data/contingency-tables.html" />
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-categorical-data/contingency-tables.html" />
   
 <meta property="og:description" content="Let’s consider two health-related questions related to college students: Many states now permit the licensed use of medical marijuana. Marijuana has often been used recreationally by college studen..." />
   
 <meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
   
-<meta property="og:image:alt" content="12.1. Tabulating Categorical Data and Creating a Test Statistic" />
+<meta property="og:image:alt" content="11.2. Tabulating Categorical Data and Creating a Test Statistic" />
   
-    <title>12.1. Tabulating Categorical Data and Creating a Test Statistic &#8212; Foundations of Data Science with Python</title>
+    <title>11.2. Tabulating Categorical Data and Creating a Test Statistic &#8212; Foundations of Data Science with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -65,11 +65,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-categorical-data/contingency-tables.html" />
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-categorical-data/contingency-tables.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables" href="nhst.html" />
-    <link rel="prev" title="12. Categorical Data and Tests for Dependence" href="intro.html" />
+    <link rel="next" title="11.3. Null Hypothesis Significance Testing for Dependence in Contingency Tables" href="nhst.html" />
+    <link rel="prev" title="11. Categorical Data, Tests for Dependence, and Goodness of Fit for Discrete Distributions" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -662,81 +662,91 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../11-matrix-vector-regression/intro.html">
-   11. Multidimensional Data and Regression
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/vectors.html">
-     11.1. Introduction to Vectors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/vector-operations.html">
-     11.2. Vector Operations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/vector-stats.html">
-     11.3. Summary Statistics for Vector Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/linear-regression.html">
-     11.4. Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/nhst.html">
-     11.5. Null Hypothesis Tests for Correlation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/nonlinear-regression.html">
-     11.6. Nonlinear Regression Tests
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/review.html">
-     11.7. Review
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../11-matrix-vector-regression/summary.html">
-     11.8. Summary
-    </a>
-   </li>
-  </ul>
- </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="intro.html">
-   12. Categorical Data and Tests for Dependence
+   11. Categorical Data, Tests for Dependence, and Goodness of Fit for Discrete Distributions
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     12.1. Tabulating Categorical Data and Creating a Test Statistic
+     11.2. Tabulating Categorical Data and Creating a Test Statistic
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="nhst.html">
-     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+     11.3. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="goodness-of-fit.html">
+     11.4. Chi-Square Goodness-of-Fit Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="review.html">
+     11.5. Review
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="summary.html">
-     12.3. Summary
+     11.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-vector-regression/intro.html">
+   12. Multidimensional Data: Vectors and Linear Regression
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/vectors.html">
+     12.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/vector-operations.html">
+     12.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/vector-stats.html">
+     12.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/linear-regression.html">
+     12.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/nhst.html">
+     12.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/nonlinear-regression.html">
+     12.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/review.html">
+     12.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/summary.html">
+     12.8. Summary
     </a>
    </li>
   </ul>
@@ -781,21 +791,48 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/feature-extraction.html">
+     13.6. Alternative Bases for Feature Extraction
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/review.html">
-     13.6. Review
+     13.7. Review
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/summary.html">
-     13.7. Summary
+     13.8. Summary
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../14-matrix-applications/outline.html">
-   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../14-matrix-applications/intro.html">
+   14. Matrices and Applications
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrices.html">
+     14.1. Introduction to Arrays and Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrix-ops.html">
+     14.2. Matrix Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/outline.html">
+     14.3. Remaining Sections (Outline)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../15-multidim-dependence/outline.html">
@@ -871,7 +908,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/12-categorical-data/contingency-tables.ipynb"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/11-categorical-data/contingency-tables.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -914,7 +951,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/12-categorical-data/contingency-tables.ipynb"
+        <a href="../_sources/11-categorical-data/contingency-tables.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -951,12 +988,36 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   11.2.1. Terminology Review
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -968,6 +1029,19 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#terminology-review">
+   11.2.1. Terminology Review
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -976,7 +1050,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="tabulating-categorical-data-and-creating-a-test-statistic">
-<h1><span class="section-number">12.1. </span>Tabulating Categorical Data and Creating a Test Statistic<a class="headerlink" href="#tabulating-categorical-data-and-creating-a-test-statistic" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">11.2. </span>Tabulating Categorical Data and Creating a Test Statistic<a class="headerlink" href="#tabulating-categorical-data-and-creating-a-test-statistic" title="Permalink to this heading">#</a></h1>
 <p>Let’s consider two health-related questions related to college students:</p>
 <ol class="simple">
 <li><p>Many states now permit the licensed use of medical marijuana. Marijuana has often been used recreationally by college students. Is the use marijuana for non-medical uses by college students dependent on students’ self-reported sex?</p></li>
@@ -1310,7 +1384,7 @@ title="Print to PDF"
 </div>
 <div class="sd-card-body docutils">
 <dl class="simple glossary">
-<dt id="term-contingency-table">contingency table<a class="headerlink" href="#term-contingency-table" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For data consisting of two or more categorical features, a table that lists the number of occurrences (the counts) for each combination of feature outcomes. Also called a <em>cross tabulation</em>.</p>
+<dt id="term-contingency-table">contingency table<a class="headerlink" href="#term-contingency-table" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For data consisting of two or more categorical features, a table that lists the number of occurrences (the counts) for each combination of feature outcomes. The totals across each category (rows and columns for a two-way table) are also usually computed and shown. Also called a <em>cross tabulation</em>.</p>
 </dd>
 </dl>
 </div>
@@ -1533,7 +1607,9 @@ title="Print to PDF"
 <p>As usual, there are easier ways to do this using SciPy.stats. In fact SciPy.stats has a whole submodule called <code class="docutils literal notranslate"><span class="pre">contingency</span></code> that is dedicated to working with contingency tables. To get the expected contingency table, we can pass the contingency table to <code class="docutils literal notranslate"><span class="pre">stats.contingency.expected_freq()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">expected_contingency2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">contingency</span><span class="o">.</span><span class="n">expected_freq</span><span class="p">(</span><span class="n">contingency</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="n">expected_contingency2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">contingency</span><span class="o">.</span><span class="n">expected_freq</span><span class="p">(</span><span class="n">contingency</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">expected_contingency2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1634,11 +1710,22 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>Note that each row and column sums to zero, and this is always true for such a difference table. In fact, the absolute values of the cells can only take on 3 distinct values, and if two of those values are known, then the third is also fixed. Thus, we say that the number of degrees of freedom (dofs) for this table is 2. In general, if a table has <span class="math notranslate nohighlight">\(r\)</span> rows and <span class="math notranslate nohighlight">\(c\)</span> columns, the number of dofs is</p>
+<p>Note that each row and column sums to zero, and this is always true for such a difference table. In fact, the absolute values of the cells can only take on 3 distinct values, and if two of those values are known, then the third is also fixed. Thus, we say that the number of degrees of freedom (dofs) for this table is 2. We give a definition and formula for the number of degrees of freedom below:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-degrees-of-freedom-contingency-table">degrees of freedom (contingency table)<a class="headerlink" href="#term-degrees-of-freedom-contingency-table" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">For a contingency table, the <em>number of degrees of freedom</em>, abbreviated dofs, is the number of values in the table that can be selected independently while satisfying the row and column totals. For a table with <span class="math notranslate nohighlight">\(r\)</span> rows and <span class="math notranslate nohighlight">\(c\)</span> columns, the number of dofs is</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 n_{dof} = (r-1)(c-1).
 \end{equation*}\]</div>
+</dd>
+</dl>
+</div>
+</div>
 <p>The next step is to convert the difference table to a summary statistic. The summary statistic should increase the more the observed table differs from the expect. We can’t use the sum of the differences, because it is always zero. We could use the sum of the squares of the differences, but in general tables, some cells may have much larger expected values than others, and bigger difference may also occur in such cells. Let <span class="math notranslate nohighlight">\(I\)</span> be the set of indices of all cells, and let <span class="math notranslate nohighlight">\(O_i\)</span> and <span class="math notranslate nohighlight">\(E_i\)</span> be the observed value and expected value, respectively, for cell <span class="math notranslate nohighlight">\(i\)</span>. Then the standard test statistic for contingency table is</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -1675,6 +1762,634 @@ C = \sum_{i \in I}  \frac{\left(O_i - E_i\right)^2}{E_i}.
 </div>
 </div>
 <p>In the next section, we will carry out a null hypothesis test and determine if the observed difference is statistically significant.</p>
+<section id="terminology-review">
+<h2><span class="section-number">11.2.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+	transform: rotateY(180deg);
+	/*transform: rotateY(180deg)  translateX(-10%); */
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transition: display 0s;
+    transform:  translateX(20px); 
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    height: 360px;
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 200px;
+	  width: 100%;
+}
+
+
+
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:10px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    width: 95%;
+}
+
+.flashcardtext{
+    color: var(--snow);
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+    font-size: 1.5em;
+}
+
+.back .flashcardtext{
+    font-size: 1.2em;
+}
+
+
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.jp-OutputArea-output .back {
+	  transform: rotateY(180deg) translateX(7.5%);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 1.5em;
+    /*left:90%; */
+    margin-left: 70%;
+    width: 100pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:-1em;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    outline: none;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+
+}
+
+.flashcardtext li{
+    text-align: left;
+}
+
+@media only screen and (min-width:1000px) {
+
+    .flip-container, .front, .back {
+	      height: 300px;
+	      width: 640px;
+    }
+
+    .flipper {
+        margin-left:20px;
+	      height: 300px;
+        width: 600px;
+    }
+
+    .flashcardtext{
+        font-size: 20pt;
+    }
+
+    .next {
+        font-size: 16pt;
+        left:438pt;
+        margin-left: 0;
+        width: 100pt;
+        height: 22pt;
+        top:-0.5em;
+    }
+
+    .back .flashcardtext{
+        font-size: 1.5em;
+    }
+
+}
+
+@media only screen and (min-width:660px) and (max-width:999px) {
+    .next {
+        left:0;
+        margin-left: 80%;
+    }
+
+}
+
+@media only screen and (max-width:680px) and (min-height:376px) {
+    .flip-container, .front, .back {
+	      height: 300px;
+    }
+
+    .flipper {
+	      height: 300px;
+    }
+
+}
+
+@media only screen and (max-width:330px) and (max-height:600px) {
+
+    .back .flashcardtext{
+        font-size: 1em;
+    }
+    .next {
+        margin-left: 65%;
+    }
+
+}
+
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="iEFZwofizaXg" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="iEFZwofizaXg-next" onclick="window.checkFlip('iEFZwofizaXg')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    console.log(mystring);
+
+    var count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    var count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+window.flipCard = function flipCard(ths) {
+    console.log(ths);
+    console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    /* ths.blur(); */
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 600, ths, next);
+}
+
+window.checkKey = function checkKey(container, event) {
+    event.stopPropagation();
+    /*
+    console.log(container);
+    console.log(event.key);
+    console.log(event.code);
+    */
+    /* JMS:  Working here*/
+    var next=document.getElementById(container.id+'-next');
+    /* Only react if not already sliding */
+    if (! next.classList.contains("hide")) {
+        if ((event.key == "j") || (event.key == "Enter") || (event.key == "ArrowRight")) {
+            window.checkFlip(container.id);
+        }
+        if (event.key == " ") {
+            window.flipCard(container);
+        }
+    }
+    event.preventDefault();
+}
+
+
+function reenableNext(ths, next) {
+    next.style.pointerEvents='auto';
+    /* ths.tabIndex= 0;*/
+    /* ths.focus(); */
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    /* container.removeAttribute("tabindex");*/
+    /* container.blur(); */
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+    
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+    
+}
+
+
+window.checkFlip = function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 550, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    /* container.tabIndex= 0; */
+    /* container.focus(); */
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    var colors=[
+        '--asparagus',
+        '--terra-cotta',
+        '--cyan-process'
+    ]
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    front.style.background='var(' + colors[cardnum % colors.length] + ')';
+
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id, keyControl) {
+    console.log(id);
+    
+    var mydiv=document.getElementById(id);
+    /*mydiv.onclick = window.flipCard(mydiv);*/
+    /*
+    mydiv.addEventListener('click', function(){window.flipCard(mydiv);}, false);
+    mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
+    */
+    mydiv.onclick = function(){window.flipCard(mydiv);};
+    console.log(keyControl);
+    if (keyControl == "True"){
+        mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
+    }
+    /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
+    /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
+
+    console.log(mydiv);
+    
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+    
+    for (var i=0; i<2; i++) {
+    
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    mydiv.focus();
+
+    return flipper;
+}
+
+
+
+
+
+var cardsiEFZwofizaXg=[
+    {
+        "front": "contingency table",
+        "back": "For data consisting of two or more categorical features, a table that lists the number of occurrences (the counts) for each combination of feature outcomes. The totals across each category (rows and columns for a two-way table) are also usually computed and shown. Also called a <i>cross tabulation</i>. "
+    },
+    {
+        "front": "degrees of freedom (contingency table)",
+        "back": "For a contingency table, the <i>number of degrees of freedom</i>, abbreviated dofs, is the number of values in the table that can be selected independently while satisfying the row and column totals. For a table with $r$ rows and $c$ columns, the number of dofs is \\begin{equation*} n_{dof} = (r-1)(c-1). \\end{equation*}"
+    }
+]
+;
+    
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/12-categorical-data/flashcards/contingency-tables.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("iEFZwofizaXg", "True"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        createCards("iEFZwofizaXg", "True");
+        });
+        }
+        </script></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1690,7 +2405,7 @@ C = \sum_{i \in I}  \frac{\left(O_i - E_i\right)^2}{E_i}.
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./12-categorical-data"
+            path: "./11-categorical-data"
         },
         predefinedOutput: true
     }
@@ -1708,13 +2423,13 @@ C = \sum_{i \in I}  \frac{\left(O_i - E_i\right)^2}{E_i}.
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">12. </span>Categorical Data and Tests for Dependence</p>
+            <p class="prev-next-title"><span class="section-number">11. </span>Categorical Data, Tests for Dependence, and Goodness of Fit for Discrete Distributions</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="nhst.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">12.2. </span>Null Hypothesis Significance Testing for Dependence in Contingency Tables</p>
+        <p class="prev-next-title"><span class="section-number">11.3. </span>Null Hypothesis Significance Testing for Dependence in Contingency Tables</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -6,19 +6,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-<meta property="og:title" content="11.2. Vector Operations" />
+<meta property="og:title" content="12.2. Vector Operations" />
   
 <meta property="og:type" content="website" />
   
-<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/vector-operations.html" />
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-vector-regression/vector-operations.html" />
   
 <meta property="og:description" content="One of the main reasons to use vectors is that enables simple notation for, and implementation of, a variety of operations between two vectors or between a vector and a scalar. In this section, we ..." />
   
 <meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
   
-<meta property="og:image:alt" content="11.2. Vector Operations" />
+<meta property="og:image:alt" content="12.2. Vector Operations" />
   
-    <title>11.2. Vector Operations &#8212; Foundations of Data Science with Python</title>
+    <title>12.2. Vector Operations &#8212; Foundations of Data Science with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -65,11 +65,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/vector-operations.html" />
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-vector-regression/vector-operations.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11.3. Summary Statistics for Vector Data" href="vector-stats.html" />
-    <link rel="prev" title="11.1. Introduction to Vectors" href="vectors.html" />
+    <link rel="next" title="12.3. Summary Statistics for Vector Data" href="vector-stats.html" />
+    <link rel="prev" title="12.1. Introduction to Vectors" href="vectors.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -662,81 +662,91 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-categorical-data/intro.html">
+   11. Categorical Data, Tests for Dependence, and Goodness of Fit for Discrete Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/contingency-tables.html">
+     11.2. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/nhst.html">
+     11.3. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/goodness-of-fit.html">
+     11.4. Chi-Square Goodness-of-Fit Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/review.html">
+     11.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/summary.html">
+     11.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="intro.html">
-   11. Multidimensional Data and Regression
+   12. Multidimensional Data: Vectors and Linear Regression
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="vectors.html">
-     11.1. Introduction to Vectors
+     12.1. Introduction to Vectors
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     11.2. Vector Operations
+     12.2. Vector Operations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="vector-stats.html">
-     11.3. Summary Statistics for Vector Data
+     12.3. Summary Statistics for Vector Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="linear-regression.html">
-     11.4. Linear Regression
+     12.4. Linear Regression
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="nhst.html">
-     11.5. Null Hypothesis Tests for Correlation
+     12.5. Null Hypothesis Tests for Correlation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="nonlinear-regression.html">
-     11.6. Nonlinear Regression Tests
+     12.6. Nonlinear Regression Tests
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="review.html">
-     11.7. Review
+     12.7. Review
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="summary.html">
-     11.8. Summary
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../12-categorical-data/intro.html">
-   12. Categorical Data and Tests for Dependence
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
-     12.1. Tabulating Categorical Data and Creating a Test Statistic
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/nhst.html">
-     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/summary.html">
-     12.3. Summary
+     12.8. Summary
     </a>
    </li>
   </ul>
@@ -781,21 +791,48 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/feature-extraction.html">
+     13.6. Alternative Bases for Feature Extraction
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/review.html">
-     13.6. Review
+     13.7. Review
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/summary.html">
-     13.7. Summary
+     13.8. Summary
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../14-matrix-applications/outline.html">
-   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../14-matrix-applications/intro.html">
+   14. Matrices and Applications
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrices.html">
+     14.1. Introduction to Arrays and Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrix-ops.html">
+     14.2. Matrix Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/outline.html">
+     14.3. Remaining Sections (Outline)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../15-multidim-dependence/outline.html">
@@ -871,7 +908,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/11-matrix-vector-regression/vector-operations.ipynb"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/12-vector-regression/vector-operations.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -914,7 +951,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/11-matrix-vector-regression/vector-operations.ipynb"
+        <a href="../_sources/12-vector-regression/vector-operations.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -975,85 +1012,85 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vector-addition">
-   11.2.1. Vector Addition
+   12.2.1. Vector Addition
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#properties-of-vector-addition">
-     11.2.1.1. Properties of Vector Addition
+     12.2.1.1. Properties of Vector Addition
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sum-of-elements-of-a-vector">
-   11.2.2. Sum of Elements of a Vector
+   12.2.2. Sum of Elements of a Vector
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#scalar-vector-multiplication-scaling">
-   11.2.3. Scalar-Vector Multiplication (Scaling)
+   12.2.3. Scalar-Vector Multiplication (Scaling)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#properties-of-scalar-multiplication">
-     11.2.3.1. Properties of Scalar Multiplication
+     12.2.3.1. Properties of Scalar Multiplication
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vector-subtraction">
-   11.2.4. Vector Subtraction
+   12.2.4. Vector Subtraction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#component-wise-vector-multiplication-the-hadamard-product">
-   11.2.5. Component-wise Vector Multiplication: The Hadamard Product
+   12.2.5. Component-wise Vector Multiplication: The Hadamard Product
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#properties-of-hadamard-product">
-     11.2.5.1. Properties of Hadamard Product
+     12.2.5.1. Properties of Hadamard Product
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#special-examples">
-     11.2.5.2. Special examples:
+     12.2.5.2. Special examples:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vector-vector-multiplication-inner-product">
-   11.2.6. Vector-Vector Multiplication: Inner Product
+   12.2.6. Vector-Vector Multiplication: Inner Product
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#properties-of-dot-product">
-     11.2.6.1. Properties of Dot Product
+     12.2.6.1. Properties of Dot Product
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     11.2.6.2. Special examples:
+     12.2.6.2. Special examples:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#length-or-magnitude-of-a-vector">
-   11.2.7. Length or Magnitude of a Vector
+   12.2.7. Length or Magnitude of a Vector
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#distance-between-vectors">
-   11.2.8. Distance Between Vectors
+   12.2.8. Distance Between Vectors
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#terminology-review">
-   11.2.9. Terminology Review
+   12.2.9. Terminology Review
   </a>
  </li>
 </ul>
@@ -1077,85 +1114,85 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vector-addition">
-   11.2.1. Vector Addition
+   12.2.1. Vector Addition
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#properties-of-vector-addition">
-     11.2.1.1. Properties of Vector Addition
+     12.2.1.1. Properties of Vector Addition
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sum-of-elements-of-a-vector">
-   11.2.2. Sum of Elements of a Vector
+   12.2.2. Sum of Elements of a Vector
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#scalar-vector-multiplication-scaling">
-   11.2.3. Scalar-Vector Multiplication (Scaling)
+   12.2.3. Scalar-Vector Multiplication (Scaling)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#properties-of-scalar-multiplication">
-     11.2.3.1. Properties of Scalar Multiplication
+     12.2.3.1. Properties of Scalar Multiplication
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vector-subtraction">
-   11.2.4. Vector Subtraction
+   12.2.4. Vector Subtraction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#component-wise-vector-multiplication-the-hadamard-product">
-   11.2.5. Component-wise Vector Multiplication: The Hadamard Product
+   12.2.5. Component-wise Vector Multiplication: The Hadamard Product
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#properties-of-hadamard-product">
-     11.2.5.1. Properties of Hadamard Product
+     12.2.5.1. Properties of Hadamard Product
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#special-examples">
-     11.2.5.2. Special examples:
+     12.2.5.2. Special examples:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vector-vector-multiplication-inner-product">
-   11.2.6. Vector-Vector Multiplication: Inner Product
+   12.2.6. Vector-Vector Multiplication: Inner Product
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#properties-of-dot-product">
-     11.2.6.1. Properties of Dot Product
+     12.2.6.1. Properties of Dot Product
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     11.2.6.2. Special examples:
+     12.2.6.2. Special examples:
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#length-or-magnitude-of-a-vector">
-   11.2.7. Length or Magnitude of a Vector
+   12.2.7. Length or Magnitude of a Vector
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#distance-between-vectors">
-   11.2.8. Distance Between Vectors
+   12.2.8. Distance Between Vectors
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#terminology-review">
-   11.2.9. Terminology Review
+   12.2.9. Terminology Review
   </a>
  </li>
 </ul>
@@ -1169,7 +1206,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="vector-operations">
-<h1><span class="section-number">11.2. </span>Vector Operations<a class="headerlink" href="#vector-operations" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">12.2. </span>Vector Operations<a class="headerlink" href="#vector-operations" title="Permalink to this heading">#</a></h1>
 <p>One of the main reasons to use vectors is that enables simple notation for, and implementation of, a variety of operations between two vectors or between a vector and a scalar.
 In this section, we consider these operations and their visualization.</p>
 <p>Let’s start by defining our <code class="docutils literal notranslate"><span class="pre">plotvec()</span></code> function and visualizing two vectors,</p>
@@ -1198,7 +1235,7 @@ In this section, we consider these operations and their visualization.</p>
 </div>
 </div>
 <section id="vector-addition">
-<h2><span class="section-number">11.2.1. </span>Vector Addition<a class="headerlink" href="#vector-addition" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.2.1. </span>Vector Addition<a class="headerlink" href="#vector-addition" title="Permalink to this heading">#</a></h2>
 <p>Vector addition is one of the easiest operations, because it is just component-wise addition:</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-header docutils">
@@ -1306,7 +1343,7 @@ In this section, we consider these operations and their visualization.</p>
 </div>
 <p>(The + operator <strong>concatenates</strong> lists.)</p>
 <section id="properties-of-vector-addition">
-<h3><span class="section-number">11.2.1.1. </span>Properties of Vector Addition<a class="headerlink" href="#properties-of-vector-addition" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">12.2.1.1. </span>Properties of Vector Addition<a class="headerlink" href="#properties-of-vector-addition" title="Permalink to this heading">#</a></h3>
 <p>Because vector addition is component-wise scalar addition, it inherits many of its properties from scalar addition:</p>
 <ul class="simple">
 <li><p><em>Commutative</em>: <span class="math notranslate nohighlight">\(\mathbf{a}+\mathbf{b} = \mathbf{b} + \mathbf{a}\)</span></p></li>
@@ -1316,7 +1353,7 @@ In this section, we consider these operations and their visualization.</p>
 </div></section>
 </section>
 <section id="sum-of-elements-of-a-vector">
-<h2><span class="section-number">11.2.2. </span>Sum of Elements of a Vector<a class="headerlink" href="#sum-of-elements-of-a-vector" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.2.2. </span>Sum of Elements of a Vector<a class="headerlink" href="#sum-of-elements-of-a-vector" title="Permalink to this heading">#</a></h2>
 <p>In data science, we often want to sum up a set of data that is contained in a vector. If <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a <span class="math notranslate nohighlight">\(n\)</span>-vector, then mathematically, the sum of the elements of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> would be written as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1351,7 +1388,7 @@ In this section, we consider these operations and their visualization.</p>
 </div>
 </section>
 <section id="scalar-vector-multiplication-scaling">
-<h2><span class="section-number">11.2.3. </span>Scalar-Vector Multiplication (Scaling)<a class="headerlink" href="#scalar-vector-multiplication-scaling" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.2.3. </span>Scalar-Vector Multiplication (Scaling)<a class="headerlink" href="#scalar-vector-multiplication-scaling" title="Permalink to this heading">#</a></h2>
 <p>In scalar-vector multiplication, a vector is  multiplied by a scalar (a number). This is achieved by multiplying every component of the vector by the scalar:</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-header docutils">
@@ -1423,7 +1460,7 @@ In this section, we consider these operations and their visualization.</p>
 </ul>
 <p>The details of how to show this have to wait until we define the length of a vector later in this section.</p>
 <section id="properties-of-scalar-multiplication">
-<h3><span class="section-number">11.2.3.1. </span>Properties of Scalar Multiplication<a class="headerlink" href="#properties-of-scalar-multiplication" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">12.2.3.1. </span>Properties of Scalar Multiplication<a class="headerlink" href="#properties-of-scalar-multiplication" title="Permalink to this heading">#</a></h3>
 <p>Since scalar multiplication is component-wise multiplication by a scalar, it inherits the  properties below from normal multiplication of real values.</p>
 <p>If <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a vector and <span class="math notranslate nohighlight">\(\alpha\)</span> is a real scalar, then these properties hold:</p>
 <ul class="simple">
@@ -1435,7 +1472,7 @@ In this section, we consider these operations and their visualization.</p>
 </section>
 </section>
 <section id="vector-subtraction">
-<h2><span class="section-number">11.2.4. </span>Vector Subtraction<a class="headerlink" href="#vector-subtraction" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.2.4. </span>Vector Subtraction<a class="headerlink" href="#vector-subtraction" title="Permalink to this heading">#</a></h2>
 <p>We can combine vector addition and scaling to define vector subtraction. We define <span class="math notranslate nohighlight">\(\mathbf{y} - \mathbf{x}\)</span> as <span class="math notranslate nohighlight">\(\mathbf{y} + (-\mathbf{x})\)</span>, which yields</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1451,7 +1488,7 @@ In this section, we consider these operations and their visualization.</p>
 <p>The vector <span class="math notranslate nohighlight">\(\mathbf{x}-\mathbf{y}\)</span> is the negative of the vector <span class="math notranslate nohighlight">\(\mathbf{y}-\mathbf{x}\)</span>. Thus both have the same length. The closer that <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> are to each other, the smaller the length of the difference will be.</p>
 </section>
 <section id="component-wise-vector-multiplication-the-hadamard-product">
-<h2><span class="section-number">11.2.5. </span>Component-wise Vector Multiplication: The Hadamard Product<a class="headerlink" href="#component-wise-vector-multiplication-the-hadamard-product" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.2.5. </span>Component-wise Vector Multiplication: The Hadamard Product<a class="headerlink" href="#component-wise-vector-multiplication-the-hadamard-product" title="Permalink to this heading">#</a></h2>
 <p>Component-wise multiplication of vectors is also known as the Hadamard or Schur product:</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-header docutils">
@@ -1502,7 +1539,7 @@ In this section, we consider these operations and their visualization.</p>
 </div>
 </div>
 <section id="properties-of-hadamard-product">
-<h3><span class="section-number">11.2.5.1. </span>Properties of Hadamard Product<a class="headerlink" href="#properties-of-hadamard-product" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">12.2.5.1. </span>Properties of Hadamard Product<a class="headerlink" href="#properties-of-hadamard-product" title="Permalink to this heading">#</a></h3>
 <p>Because Hadamard product is just a collection of pairwise scalar multiplications across all the elements in two vectors, it takes on properties of scalar multiplication, such as being commutative and distributive across addition:</p>
 <ul class="simple">
 <li><p><em>Commutative</em>: <span class="math notranslate nohighlight">\(\mathbf{a} \odot \mathbf{b} = \mathbf{b} \odot \mathbf{a}\)</span></p></li>
@@ -1511,7 +1548,7 @@ In this section, we consider these operations and their visualization.</p>
 </ul>
 </section>
 <section id="special-examples">
-<h3><span class="section-number">11.2.5.2. </span>Special examples:<a class="headerlink" href="#special-examples" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">12.2.5.2. </span>Special examples:<a class="headerlink" href="#special-examples" title="Permalink to this heading">#</a></h3>
 <p><strong>Hadamard product with 0 vector</strong></p>
 <p>The Hadamard product of any vector with the zeros vector is the zeros vector:</p>
 <div class="cell docutils container">
@@ -1593,7 +1630,7 @@ c⊙c = [25 49 81]
 </section>
 </section>
 <section id="vector-vector-multiplication-inner-product">
-<h2><span class="section-number">11.2.6. </span>Vector-Vector Multiplication: Inner Product<a class="headerlink" href="#vector-vector-multiplication-inner-product" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.2.6. </span>Vector-Vector Multiplication: Inner Product<a class="headerlink" href="#vector-vector-multiplication-inner-product" title="Permalink to this heading">#</a></h2>
 <p>The most common form of multiplication between vectors is called the <em>inner product</em> or <em>dot product</em>. The input is two vectors of the same length, and the output is a scalar:</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-header docutils">
@@ -1675,7 +1712,7 @@ c⊙c = [25 49 81]
 </div>
 </div>
 <section id="properties-of-dot-product">
-<h3><span class="section-number">11.2.6.1. </span>Properties of Dot Product<a class="headerlink" href="#properties-of-dot-product" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">12.2.6.1. </span>Properties of Dot Product<a class="headerlink" href="#properties-of-dot-product" title="Permalink to this heading">#</a></h3>
 <p>Because dot product is just the Hadamard product followed by a summation operation, it inherits all of the properties of the Hadamard product:</p>
 <ul class="simple">
 <li><p><em>Commutative</em>: <span class="math notranslate nohighlight">\(\mathbf{a} \cdot \mathbf{b} = \mathbf{b} \cdot \mathbf{a}\)</span></p></li>
@@ -1684,7 +1721,7 @@ c⊙c = [25 49 81]
 </ul>
 </section>
 <section id="id1">
-<h3><span class="section-number">11.2.6.2. </span>Special examples:<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">12.2.6.2. </span>Special examples:<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p><strong>Dot product with 0 vector</strong></p>
 <p>The Hadamard product of any vector with the zeros vector is the zeros vector, so the dot product is the sum over the zeros vector, which is zero:</p>
 <div class="cell docutils container">
@@ -1822,7 +1859,7 @@ norm (of a vector)
 </section>
 </section>
 <section id="length-or-magnitude-of-a-vector">
-<h2><span class="section-number">11.2.7. </span>Length or Magnitude of a Vector<a class="headerlink" href="#length-or-magnitude-of-a-vector" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.2.7. </span>Length or Magnitude of a Vector<a class="headerlink" href="#length-or-magnitude-of-a-vector" title="Permalink to this heading">#</a></h2>
 <p>Consider again the vector <span class="math notranslate nohighlight">\(\mathbf{a} = \left[2, 3 \right]^T\)</span>, shown below:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
@@ -1952,7 +1989,7 @@ norm (of a vector)
 <p>We can see that the norm of <span class="math notranslate nohighlight">\(0.5 \mathbf{a}\)</span> is one-half the norm of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>.</p>
 </section>
 <section id="distance-between-vectors">
-<h2><span class="section-number">11.2.8. </span>Distance Between Vectors<a class="headerlink" href="#distance-between-vectors" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.2.8. </span>Distance Between Vectors<a class="headerlink" href="#distance-between-vectors" title="Permalink to this heading">#</a></h2>
 <p>We define the distance between two <span class="math notranslate nohighlight">\(n\)</span>-vectors as follows:</p>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-header docutils">
@@ -1968,7 +2005,7 @@ norm (of a vector)
 <p>In the next section, we use these vector operations to find summary statistics for vector data, including defining some new statistics that provide an indication of how different data affect each other.</p>
 </section>
 <section id="terminology-review">
-<h2><span class="section-number">11.2.9. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.2.9. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><style>
@@ -2627,7 +2664,7 @@ var cardsybuPRAtyBiIG=[
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./11-matrix-vector-regression"
+            path: "./12-vector-regression"
         },
         predefinedOutput: true
     }
@@ -2645,13 +2682,13 @@ var cardsybuPRAtyBiIG=[
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">11.1. </span>Introduction to Vectors</p>
+            <p class="prev-next-title"><span class="section-number">12.1. </span>Introduction to Vectors</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="vector-stats.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">11.3. </span>Summary Statistics for Vector Data</p>
+        <p class="prev-next-title"><span class="section-number">12.3. </span>Summary Statistics for Vector Data</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -6,19 +6,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-<meta property="og:title" content="11.6. Nonlinear Regression Tests" />
+<meta property="og:title" content="12.6. Nonlinear Regression Tests" />
   
 <meta property="og:type" content="website" />
   
-<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/nonlinear-regression.html" />
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-vector-regression/nonlinear-regression.html" />
   
 <meta property="og:description" content="Consider again the scatter plot of the Covid data that we have been working with, along with the best line of fit from liner regression: Our previous tests show that this data is better fit by a li..." />
   
 <meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
   
-<meta property="og:image:alt" content="11.6. Nonlinear Regression Tests" />
+<meta property="og:image:alt" content="12.6. Nonlinear Regression Tests" />
   
-    <title>11.6. Nonlinear Regression Tests &#8212; Foundations of Data Science with Python</title>
+    <title>12.6. Nonlinear Regression Tests &#8212; Foundations of Data Science with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -65,11 +65,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/nonlinear-regression.html" />
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-vector-regression/nonlinear-regression.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11.7. Review" href="review.html" />
-    <link rel="prev" title="11.5. Null Hypothesis Tests for Correlation" href="nhst.html" />
+    <link rel="next" title="12.7. Review" href="review.html" />
+    <link rel="prev" title="12.5. Null Hypothesis Tests for Correlation" href="nhst.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -662,81 +662,91 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-categorical-data/intro.html">
+   11. Categorical Data, Tests for Dependence, and Goodness of Fit for Discrete Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/contingency-tables.html">
+     11.2. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/nhst.html">
+     11.3. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/goodness-of-fit.html">
+     11.4. Chi-Square Goodness-of-Fit Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/review.html">
+     11.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/summary.html">
+     11.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="intro.html">
-   11. Multidimensional Data and Regression
+   12. Multidimensional Data: Vectors and Linear Regression
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="vectors.html">
-     11.1. Introduction to Vectors
+     12.1. Introduction to Vectors
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="vector-operations.html">
-     11.2. Vector Operations
+     12.2. Vector Operations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="vector-stats.html">
-     11.3. Summary Statistics for Vector Data
+     12.3. Summary Statistics for Vector Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="linear-regression.html">
-     11.4. Linear Regression
+     12.4. Linear Regression
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="nhst.html">
-     11.5. Null Hypothesis Tests for Correlation
+     12.5. Null Hypothesis Tests for Correlation
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     11.6. Nonlinear Regression Tests
+     12.6. Nonlinear Regression Tests
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="review.html">
-     11.7. Review
+     12.7. Review
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="summary.html">
-     11.8. Summary
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../12-categorical-data/intro.html">
-   12. Categorical Data and Tests for Dependence
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
-     12.1. Tabulating Categorical Data and Creating a Test Statistic
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/nhst.html">
-     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/summary.html">
-     12.3. Summary
+     12.8. Summary
     </a>
    </li>
   </ul>
@@ -781,21 +791,48 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/feature-extraction.html">
+     13.6. Alternative Bases for Feature Extraction
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/review.html">
-     13.6. Review
+     13.7. Review
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/summary.html">
-     13.7. Summary
+     13.8. Summary
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../14-matrix-applications/outline.html">
-   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../14-matrix-applications/intro.html">
+   14. Matrices and Applications
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrices.html">
+     14.1. Introduction to Arrays and Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrix-ops.html">
+     14.2. Matrix Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/outline.html">
+     14.3. Remaining Sections (Outline)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../15-multidim-dependence/outline.html">
@@ -871,7 +908,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/11-matrix-vector-regression/nonlinear-regression.ipynb"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/12-vector-regression/nonlinear-regression.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -914,7 +951,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/11-matrix-vector-regression/nonlinear-regression.ipynb"
+        <a href="../_sources/12-vector-regression/nonlinear-regression.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -975,7 +1012,7 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#non-polynomial-regression">
-   11.6.1. Non-polynomial Regression
+   12.6.1. Non-polynomial Regression
   </a>
  </li>
 </ul>
@@ -999,7 +1036,7 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#non-polynomial-regression">
-   11.6.1. Non-polynomial Regression
+   12.6.1. Non-polynomial Regression
   </a>
  </li>
 </ul>
@@ -1013,7 +1050,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="nonlinear-regression-tests">
-<h1><span class="section-number">11.6. </span>Nonlinear Regression Tests<a class="headerlink" href="#nonlinear-regression-tests" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">12.6. </span>Nonlinear Regression Tests<a class="headerlink" href="#nonlinear-regression-tests" title="Permalink to this heading">#</a></h1>
 <p>Consider again the scatter plot of the Covid data that we have been working with, along with the best line of fit from liner regression:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1101,7 +1138,7 @@ Quadratic: r^2 =  0.2
 <p><strong>Problem</strong></p>
 <p>Experiment with using other powers of <code class="docutils literal notranslate"><span class="pre">urban</span></code> in the linear regression. What power achieves the best <span class="math notranslate nohighlight">\(r^2\)</span>?</p>
 <section id="non-polynomial-regression">
-<h2><span class="section-number">11.6.1. </span>Non-polynomial Regression<a class="headerlink" href="#non-polynomial-regression" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.6.1. </span>Non-polynomial Regression<a class="headerlink" href="#non-polynomial-regression" title="Permalink to this heading">#</a></h2>
 <p>Note that we are not limited to polynomial functions of the explanatory variable. We may use any function that we think explains the relationship. To provide a very good demonstration of this, we introduce another Covid data set that the students in my data science class used to analyze the spread of Covid-19 in early 2020.</p>
 <p>We will use data from the COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University (JHU CSSE COVID-19 Data). The entire repository is available here: <a class="reference external" href="https://github.com/CSSEGISandData/COVID-19">https://github.com/CSSEGISandData/COVID-19</a>. This data is licensed under the Creative Commons Attribution 4.0 International license (CC BY 4.0).</p>
 <p>We will use the archived time series data for confirmed cases, which gives the number of confirmed cases by location (rows) and date (columns). The data can be directly access from the JHU CSSE Covid-19 Data GitHub repository as shown below (an alternate URL is provided in the comment).</p>
@@ -1700,7 +1737,7 @@ x_i  &amp;= \frac{1}{0.293} \log \left(\frac{10^6}{86.8} \right) \\
 </div>
 </div>
 <p>Since day 0 for our calculations is March 2, 2020, we could have expected to reach 100,000 cases in the US by approximately April 3, 2020. According to the cumulative case data on Statista at <a class="reference external" href="https://www.statista.com/statistics/1103185/cumulative-coronavirus-covid19-cases-number-us-by-day/">https://www.statista.com/statistics/1103185/cumulative-coronavirus-covid19-cases-number-us-by-day/</a>, 100,000 confirmed cases was reached sometime between March 27, 2020 and April 3, 2020, and was likely reached by March 28, 2020, indicating that either our estimate of the exponential rate of growth was too low or the rate of growth increased with time. Such fast rates of growth motivated the government-mandated measures to reduce the spread of Covid in 2020.</p>
-<p>In this section, we have seen that “linear” regression can actually be applied to a variety of different relationships between data through appropriate transforms of the explanatory or response variables. In <span class="xref std std-doc">Chapter 14</span>, we will introduce more powerful approaches for determining these relationships using techniques for solving sets of simultaneous linear equations.</p>
+<p>In this section, we have seen that “linear” regression can actually be applied to a variety of different relationships between data through appropriate transforms of the explanatory or response variables. In <a class="reference internal" href="../14-matrix-applications/intro.html"><span class="doc">Chapter 14</span></a>, we will introduce more powerful approaches for determining these relationships using techniques for solving sets of simultaneous linear equations.</p>
 </section>
 </section>
 
@@ -1717,7 +1754,7 @@ x_i  &amp;= \frac{1}{0.293} \log \left(\frac{10^6}{86.8} \right) \\
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./11-matrix-vector-regression"
+            path: "./12-vector-regression"
         },
         predefinedOutput: true
     }
@@ -1735,13 +1772,13 @@ x_i  &amp;= \frac{1}{0.293} \log \left(\frac{10^6}{86.8} \right) \\
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">11.5. </span>Null Hypothesis Tests for Correlation</p>
+            <p class="prev-next-title"><span class="section-number">12.5. </span>Null Hypothesis Tests for Correlation</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="review.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">11.7. </span>Review</p>
+        <p class="prev-next-title"><span class="section-number">12.7. </span>Review</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

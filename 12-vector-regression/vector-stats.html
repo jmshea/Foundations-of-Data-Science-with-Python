@@ -6,19 +6,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-<meta property="og:title" content="11.3. Summary Statistics for Vector Data" />
+<meta property="og:title" content="12.3. Summary Statistics for Vector Data" />
   
 <meta property="og:type" content="website" />
   
-<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/vector-stats.html" />
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-vector-regression/vector-stats.html" />
   
 <meta property="og:description" content="One of the advantages of working with vectors of data is that allows us to efficiently analyze that data. In this section, we review techniques for computing summary statistics with vector data, an..." />
   
 <meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
   
-<meta property="og:image:alt" content="11.3. Summary Statistics for Vector Data" />
+<meta property="og:image:alt" content="12.3. Summary Statistics for Vector Data" />
   
-    <title>11.3. Summary Statistics for Vector Data &#8212; Foundations of Data Science with Python</title>
+    <title>12.3. Summary Statistics for Vector Data &#8212; Foundations of Data Science with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -65,11 +65,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/vector-stats.html" />
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-vector-regression/vector-stats.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11.4. Linear Regression" href="linear-regression.html" />
-    <link rel="prev" title="11.2. Vector Operations" href="vector-operations.html" />
+    <link rel="next" title="12.4. Linear Regression" href="linear-regression.html" />
+    <link rel="prev" title="12.2. Vector Operations" href="vector-operations.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -662,81 +662,91 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-categorical-data/intro.html">
+   11. Categorical Data, Tests for Dependence, and Goodness of Fit for Discrete Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/contingency-tables.html">
+     11.2. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/nhst.html">
+     11.3. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/goodness-of-fit.html">
+     11.4. Chi-Square Goodness-of-Fit Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/review.html">
+     11.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/summary.html">
+     11.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="intro.html">
-   11. Multidimensional Data and Regression
+   12. Multidimensional Data: Vectors and Linear Regression
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="vectors.html">
-     11.1. Introduction to Vectors
+     12.1. Introduction to Vectors
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="vector-operations.html">
-     11.2. Vector Operations
+     12.2. Vector Operations
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     11.3. Summary Statistics for Vector Data
+     12.3. Summary Statistics for Vector Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="linear-regression.html">
-     11.4. Linear Regression
+     12.4. Linear Regression
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="nhst.html">
-     11.5. Null Hypothesis Tests for Correlation
+     12.5. Null Hypothesis Tests for Correlation
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="nonlinear-regression.html">
-     11.6. Nonlinear Regression Tests
+     12.6. Nonlinear Regression Tests
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="review.html">
-     11.7. Review
+     12.7. Review
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="summary.html">
-     11.8. Summary
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../12-categorical-data/intro.html">
-   12. Categorical Data and Tests for Dependence
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
-     12.1. Tabulating Categorical Data and Creating a Test Statistic
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/nhst.html">
-     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/summary.html">
-     12.3. Summary
+     12.8. Summary
     </a>
    </li>
   </ul>
@@ -781,21 +791,48 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/feature-extraction.html">
+     13.6. Alternative Bases for Feature Extraction
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/review.html">
-     13.6. Review
+     13.7. Review
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/summary.html">
-     13.7. Summary
+     13.8. Summary
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../14-matrix-applications/outline.html">
-   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../14-matrix-applications/intro.html">
+   14. Matrices and Applications
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrices.html">
+     14.1. Introduction to Arrays and Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrix-ops.html">
+     14.2. Matrix Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/outline.html">
+     14.3. Remaining Sections (Outline)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../15-multidim-dependence/outline.html">
@@ -871,7 +908,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/11-matrix-vector-regression/vector-stats.ipynb"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/12-vector-regression/vector-stats.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -914,7 +951,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/11-matrix-vector-regression/vector-stats.ipynb"
+        <a href="../_sources/12-vector-regression/vector-stats.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -975,22 +1012,22 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#from-dataframes-to-matrices">
-   11.3.1. From Dataframes to Matrices
+   12.3.1. From Dataframes to Matrices
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#averages-medians-and-variances">
-   11.3.2. Averages, Medians, and Variances
+   12.3.2. Averages, Medians, and Variances
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#measuring-dependence-through-moments-covariances-and-correlations">
-   11.3.3. Measuring Dependence through Moments: Covariances, and Correlations
+   12.3.3. Measuring Dependence through Moments: Covariances, and Correlations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#terminology-review">
-   11.3.4. Terminology Review
+   12.3.4. Terminology Review
   </a>
  </li>
 </ul>
@@ -1014,22 +1051,22 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#from-dataframes-to-matrices">
-   11.3.1. From Dataframes to Matrices
+   12.3.1. From Dataframes to Matrices
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#averages-medians-and-variances">
-   11.3.2. Averages, Medians, and Variances
+   12.3.2. Averages, Medians, and Variances
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#measuring-dependence-through-moments-covariances-and-correlations">
-   11.3.3. Measuring Dependence through Moments: Covariances, and Correlations
+   12.3.3. Measuring Dependence through Moments: Covariances, and Correlations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#terminology-review">
-   11.3.4. Terminology Review
+   12.3.4. Terminology Review
   </a>
  </li>
 </ul>
@@ -1043,7 +1080,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="summary-statistics-for-vector-data">
-<h1><span class="section-number">11.3. </span>Summary Statistics for Vector Data<a class="headerlink" href="#summary-statistics-for-vector-data" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">12.3. </span>Summary Statistics for Vector Data<a class="headerlink" href="#summary-statistics-for-vector-data" title="Permalink to this heading">#</a></h1>
 <p>One of the advantages of working with vectors of data is that allows us to efficiently analyze that data. In this section, we review techniques for computing summary statistics with vector data, and we introduce a new summary statistic that provides a measure of how different data depend on each other. We start by introducing the use of matrices to facilitate working with multiple vectors of data in NumPy.</p>
 <p>In this section, we will revisit the Covid data set from <span class="xref std std-doc">../03-first-data/intro</span> and show how to use both Pandas and NumPy techniques to compute summary statistics on the data. Let’s start by loading the data into a dataframe:</p>
 <div class="cell docutils container">
@@ -1252,7 +1289,7 @@ title="Print to PDF"
 </div>
 <p>This offers us flexibility in working with data because it makes it easy to work with all of the tools that NumPy offers.</p>
 <section id="from-dataframes-to-matrices">
-<h2><span class="section-number">11.3.1. </span>From Dataframes to Matrices<a class="headerlink" href="#from-dataframes-to-matrices" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.3.1. </span>From Dataframes to Matrices<a class="headerlink" href="#from-dataframes-to-matrices" title="Permalink to this heading">#</a></h2>
 <p>Recall from <a class="reference internal" href="../01-intro/python-start.html"><span class="doc">Chapter 1</span></a> that a matrix is a two-dimensional table of numbers. Matrices are special cases of arrays, which can have any number of dimensions. When the values in our dataframe are all numeric, we can convert our dataframe directly into a two-dimension NumPy array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1384,7 +1421,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="averages-medians-and-variances">
-<h2><span class="section-number">11.3.2. </span>Averages, Medians, and Variances<a class="headerlink" href="#averages-medians-and-variances" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.3.2. </span>Averages, Medians, and Variances<a class="headerlink" href="#averages-medians-and-variances" title="Permalink to this heading">#</a></h2>
 <p>We often use the average (sample mean), median, and variance as summary statistics for individual data features. Both Pandas and NumPy have methods for calculating these different features, but they occasionally have some differences in their behavior. In this section, I show how to use each method and point out any behaviors that users need to be aware of.</p>
 <p>Let’s start with Pandas. The Pandas dataframe object has methods called <code class="docutils literal notranslate"><span class="pre">mean()</span></code>, <code class="docutils literal notranslate"><span class="pre">median()</span></code>, and <code class="docutils literal notranslate"><span class="pre">var()</span></code>, which calculate the average, median, and variance, respectively. When called on the whole dataframe, it will calculate these values for each column of numerical data. Examples for the Covid dataframe are shown below:</p>
 <div class="cell docutils container">
@@ -1584,7 +1621,7 @@ s_{n-1}^{2} &amp;= \frac 1 {n-1} \sum_{i=0}^{n-1} \left( x_i - \overline{\mathbf
 <p>Note from the scatter plot that there seems to be a general trend that the Covid rate increases withe the percentage of the population that lives in an urban area. However, the statistics that we have covered up to now are not able to measure this dependence because they operate on one data feature separately. In the following section, we introduce new summary statistics that can measure dependence among the data features.</p>
 </section>
 <section id="measuring-dependence-through-moments-covariances-and-correlations">
-<h2><span class="section-number">11.3.3. </span>Measuring Dependence through Moments: Covariances, and Correlations<a class="headerlink" href="#measuring-dependence-through-moments-covariances-and-correlations" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.3.3. </span>Measuring Dependence through Moments: Covariances, and Correlations<a class="headerlink" href="#measuring-dependence-through-moments-covariances-and-correlations" title="Permalink to this heading">#</a></h2>
 <p>To measure dependence between two features, we generalize the concept of variance. The math will be easier if we start with random variables. Let <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> be random variables. Then the variances of these random variables are</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -2119,7 +2156,7 @@ s_{n-1}^{2} &amp;= \frac 1 {n-1} \sum_{i=0}^{n-1} \left( x_i - \overline{\mathbf
 <p>In the next section, we use the concepts of covariance and correlation to help find the best functional relationships between data features to minimize an error metric.</p>
 </section>
 <section id="terminology-review">
-<h2><span class="section-number">11.3.4. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">12.3.4. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><style>
@@ -2770,7 +2807,7 @@ var cardshHxzdsiJiVQk=[
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./11-matrix-vector-regression"
+            path: "./12-vector-regression"
         },
         predefinedOutput: true
     }
@@ -2788,13 +2825,13 @@ var cardshHxzdsiJiVQk=[
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">11.2. </span>Vector Operations</p>
+            <p class="prev-next-title"><span class="section-number">12.2. </span>Vector Operations</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="linear-regression.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">11.4. </span>Linear Regression</p>
+        <p class="prev-next-title"><span class="section-number">12.4. </span>Linear Regression</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

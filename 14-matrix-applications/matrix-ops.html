@@ -6,19 +6,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-<meta property="og:title" content="14.3. Remaining Sections (Outline)" />
+<meta property="og:title" content="14.2. Matrix Operations" />
   
 <meta property="og:type" content="website" />
   
-<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/14-matrix-applications/outline.html" />
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/14-matrix-applications/matrix-ops.html" />
   
-<meta property="og:description" content="Matrix Operations and Properties: Writing Systems of Linear Equations Using Matrices and Vectors: Row-Reduced Echelon Form and Gauss-Jordan Elimination: Dependent vs Independent Equations: Matrix D..." />
+<meta property="og:description" content="Matrices (and more generally, arrays) have a wide variety of operations that are defined between multiple matrices and between matrices, vectors, and scalars. We introduce the most important of the..." />
   
 <meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
   
-<meta property="og:image:alt" content="14.3. Remaining Sections (Outline)" />
+<meta property="og:image:alt" content="14.2. Matrix Operations" />
   
-    <title>14.3. Remaining Sections (Outline) &#8212; Foundations of Data Science with Python</title>
+    <title>14.2. Matrix Operations &#8212; Foundations of Data Science with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -63,11 +63,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/14-matrix-applications/outline.html" />
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/14-matrix-applications/matrix-ops.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="15. Working with Dependent Data in Multiple Dimensions (Outline)" href="../15-multidim-dependence/outline.html" />
-    <link rel="prev" title="14.2. Matrix Operations" href="matrix-ops.html" />
+    <link rel="next" title="14.3. Remaining Sections (Outline)" href="outline.html" />
+    <link rel="prev" title="14.1. Introduction to Arrays and Matrices" href="matrices.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -820,13 +822,13 @@ const thebe_selector_output = ".output, .cell_output"
      14.1. Introduction to Arrays and Matrices
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="matrix-ops.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      14.2. Matrix Operations
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="outline.html">
      14.3. Remaining Sections (Outline)
     </a>
    </li>
@@ -906,7 +908,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/14-matrix-applications/outline.ipynb"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/14-matrix-applications/matrix-ops.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -949,7 +951,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/14-matrix-applications/outline.ipynb"
+        <a href="../_sources/14-matrix-applications/matrix-ops.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -1009,63 +1011,64 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matrix-operations-and-properties">
-   14.3.1. Matrix Operations and Properties
+  <a class="reference internal nav-link" href="#matrix-addition-and-subtraction">
+   14.2.1. Matrix Addition and Subtraction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properties-of-matrix-addition">
+     14.2.1.1. Properties of Matrix Addition
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scalar-matrix-multiplication">
+   14.2.2. Scalar-Matrix Multiplication
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properties-of-scalar-multiplication">
+     14.2.2.1. Properties of Scalar Multiplication
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dot-product-as-matrix-multiplication">
+   14.2.3. Dot Product as Matrix Multiplication
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#writing-systems-of-linear-equations-using-matrices-and-vectors">
-   14.3.2. Writing Systems of Linear Equations Using Matrices and Vectors
+  <a class="reference internal nav-link" href="#vector-matrix-and-matrix-vector-multiplication">
+   14.2.4. Vector-Matrix and Matrix-Vector Multiplication
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#row-reduced-echelon-form-and-gauss-jordan-elimination">
-   14.3.3. Row-Reduced Echelon Form and Gauss-Jordan Elimination
+  <a class="reference internal nav-link" href="#matrix-norm">
+   14.2.5. Matrix Norm
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dependent-vs-independent-equations">
-   14.3.4. Dependent vs Independent Equations
+  <a class="reference internal nav-link" href="#reading">
+   14.2.6. Reading
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matrix-determinant-and-properties">
-   14.3.5. Matrix Determinant and Properties
+  <a class="reference internal nav-link" href="#matrices-and-linear-equations">
+   14.2.7. Matrices and Linear Equations
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#affine-functions">
+     14.2.7.1. Affine Functions
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matrix-inverse-and-application-to-solving-systems-of-linear-equations">
-   14.3.6. Matrix Inverse and Application to Solving Systems of Linear Equations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#orthogonal-matrices-gram-matrices-and-gram-invertibility">
-   14.3.7. Orthogonal Matrices, Gram Matrices, and Gram Invertibility
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dual-basis-and-vector-representation">
-   14.3.8. Dual Basis and Vector Representation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#least-squares-fitting-and-matrix-pseudo-inverse">
-   14.3.9. Least-Squares Fitting and Matrix Pseudo-Inverse
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#regression">
-   14.3.10. Regression
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#review">
-   14.3.11. Review
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   14.3.12. Summary
+  <a class="reference internal nav-link" href="#systems-of-linear-equations">
+   14.2.8. Systems of Linear Equations
   </a>
  </li>
 </ul>
@@ -1077,7 +1080,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Remaining Sections (Outline)</h1>
+                <h1>Matrix Operations</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1088,63 +1091,64 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matrix-operations-and-properties">
-   14.3.1. Matrix Operations and Properties
+  <a class="reference internal nav-link" href="#matrix-addition-and-subtraction">
+   14.2.1. Matrix Addition and Subtraction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properties-of-matrix-addition">
+     14.2.1.1. Properties of Matrix Addition
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scalar-matrix-multiplication">
+   14.2.2. Scalar-Matrix Multiplication
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properties-of-scalar-multiplication">
+     14.2.2.1. Properties of Scalar Multiplication
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dot-product-as-matrix-multiplication">
+   14.2.3. Dot Product as Matrix Multiplication
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#writing-systems-of-linear-equations-using-matrices-and-vectors">
-   14.3.2. Writing Systems of Linear Equations Using Matrices and Vectors
+  <a class="reference internal nav-link" href="#vector-matrix-and-matrix-vector-multiplication">
+   14.2.4. Vector-Matrix and Matrix-Vector Multiplication
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#row-reduced-echelon-form-and-gauss-jordan-elimination">
-   14.3.3. Row-Reduced Echelon Form and Gauss-Jordan Elimination
+  <a class="reference internal nav-link" href="#matrix-norm">
+   14.2.5. Matrix Norm
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dependent-vs-independent-equations">
-   14.3.4. Dependent vs Independent Equations
+  <a class="reference internal nav-link" href="#reading">
+   14.2.6. Reading
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matrix-determinant-and-properties">
-   14.3.5. Matrix Determinant and Properties
+  <a class="reference internal nav-link" href="#matrices-and-linear-equations">
+   14.2.7. Matrices and Linear Equations
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#affine-functions">
+     14.2.7.1. Affine Functions
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matrix-inverse-and-application-to-solving-systems-of-linear-equations">
-   14.3.6. Matrix Inverse and Application to Solving Systems of Linear Equations
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#orthogonal-matrices-gram-matrices-and-gram-invertibility">
-   14.3.7. Orthogonal Matrices, Gram Matrices, and Gram Invertibility
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dual-basis-and-vector-representation">
-   14.3.8. Dual Basis and Vector Representation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#least-squares-fitting-and-matrix-pseudo-inverse">
-   14.3.9. Least-Squares Fitting and Matrix Pseudo-Inverse
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#regression">
-   14.3.10. Regression
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#review">
-   14.3.11. Review
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   14.3.12. Summary
+  <a class="reference internal nav-link" href="#systems-of-linear-equations">
+   14.2.8. Systems of Linear Equations
   </a>
  </li>
 </ul>
@@ -1157,43 +1161,422 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="remaining-sections-outline">
-<h1><span class="section-number">14.3. </span>Remaining Sections (Outline)<a class="headerlink" href="#remaining-sections-outline" title="Permalink to this heading">#</a></h1>
-<section id="matrix-operations-and-properties">
-<h2><span class="section-number">14.3.1. </span>Matrix Operations and Properties<a class="headerlink" href="#matrix-operations-and-properties" title="Permalink to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="matrix-operations">
+<h1><span class="section-number">14.2. </span>Matrix Operations<a class="headerlink" href="#matrix-operations" title="Permalink to this heading">#</a></h1>
+<p>Matrices (and more generally, arrays) have a wide variety of operations that are defined between multiple matrices and between matrices, vectors, and scalars. We introduce the most important of these operations below.</p>
+<section id="matrix-addition-and-subtraction">
+<h2><span class="section-number">14.2.1. </span>Matrix Addition and Subtraction<a class="headerlink" href="#matrix-addition-and-subtraction" title="Permalink to this heading">#</a></h2>
+<p>One of the most simple operations to define is addition between two matrices of the same dimensions. For <span class="math notranslate nohighlight">\(m \times n\)</span> matrices <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span>, the sum <span class="math notranslate nohighlight">\( \mathbf{X} + \mathbf{Y}\)</span> is defined as the elementwise sum:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbf{X} + \mathbf{Y} = 
+\begin{bmatrix}
+x_{0,0} + y_{0,0}  &amp; x_{0,1} + y_{0,1} &amp; \ldots &amp; x_{0,n-1} + y_{0,n-1}  \\
+x_{1,0} + y_{1,0}  &amp; x_{1,1} + y_{1,1} &amp; \ldots &amp; x_{1,n-1} + y_{0,n-1}  \\
+\vdots &amp; \vdots &amp; \ldots &amp; \vdots \\
+x_{m-1,0} + y_{m-1,0}  &amp; x_{m-1,1} + y_{m-1,1} &amp; \ldots &amp; x_{m-1,n-1} + y_{m-1,n-1}  \\
+\end{bmatrix}.
+\end{equation*}\]</div>
+<p>Matrix addition in NumPy uses the usual <code class="docutils literal notranslate"><span class="pre">+</span></code> operator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+             <span class="p">])</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+             <span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">+</span><span class="n">Y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[2 1]
+ [4 3]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarly, matrix subtraction is denoted  <span class="math notranslate nohighlight">\(\mathbf{X} - \mathbf{Y}\)</span> and defined by elementwise subtraction,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbf{X} - \mathbf{Y} = 
+\begin{bmatrix}
+x_{0,0} - y_{0,0}  &amp; x_{0,1} - y_{0,1} &amp; \ldots &amp; x_{0,n-1} - y_{0,n-1}  \\
+x_{1,0} - y_{1,0}  &amp; x_{1,1} - y_{1,1} &amp; \ldots &amp; x_{1,n-1} - y_{0,n-1}  \\
+\vdots &amp; \vdots &amp; \ldots &amp; \vdots \\
+x_{m-1,0} - y_{m-1,0}  &amp; x_{m-1,1} - y_{m-1,1} &amp; \ldots &amp; x_{m-1,n-1} - y_{m-1,n-1}  \\
+\end{bmatrix}.
+\end{equation*}\]</div>
+<p>Matrix subtraction with NumPy arrays uses the usual <code class="docutils literal notranslate"><span class="pre">-</span></code> operator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">Y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0 3]
+ [2 5]]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="properties-of-matrix-addition">
+<h3><span class="section-number">14.2.1.1. </span>Properties of Matrix Addition<a class="headerlink" href="#properties-of-matrix-addition" title="Permalink to this heading">#</a></h3>
+<p>Because matrix addition is component-wise scalar addition, it inherits many of its properties from scalar addition:</p>
+<ul class="simple">
+<li><p><em>Commutative</em> <span class="math notranslate nohighlight">\(\mathbf{A} + \mathbf{B} = \mathbf{B} + \mathbf{A}\)</span></p></li>
+<li><p><em>Associative</em>: <span class="math notranslate nohighlight">\(( \mathbf{A} + \mathbf{B}) + \mathbf{C} =  \mathbf{A} + (\mathbf{B} + \mathbf{C})\)</span></p></li>
+<li><p><em>Identity</em>:  The additive identity is the zero matrix: <span class="math notranslate nohighlight">\(\mathbf{A} + \mathbf{0} = \mathbf{0}+ \mathbf{A}= \mathbf{A}\)</span>.</p></li>
+</ul>
+<p><strong>NumPy Only: Matrix-Scalar Addition and Subtraction</strong></p>
+<p>Addition and subtraction between a matrix and a scalar is not usually defined mathematically. However, NumPy will <em>broadcast</em> scalar addition or subtraction across all of the elements of a matrix. Thus, if <span class="math notranslate nohighlight">\(c\)</span> is a scalar, then <span class="math notranslate nohighlight">\(\mathbf{X} +c\)</span> is defined as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbf{X} + c = 
+\begin{bmatrix}
+x_{0,0} + c  &amp; x_{0,1} + c &amp; \ldots &amp; x_{0,n-1} + c  \\
+x_{1,0} + c  &amp; x_{1,1} + c &amp; \ldots &amp; x_{1,n-1} + c  \\
+\vdots &amp; \vdots &amp; \ldots &amp; \vdots \\
+x_{m-1,0} + c  &amp; x_{m-1,1} + c &amp; \ldots &amp; x_{m-1,n-1} + c  \\
+\end{bmatrix}.
+\end{equation*}\]</div>
+<p>Subtraction is defined similarly. Examples are below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+             <span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">+</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[11 12]
+ [13 14]]
+
+[[0 1]
+ [2 3]]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="writing-systems-of-linear-equations-using-matrices-and-vectors">
-<h2><span class="section-number">14.3.2. </span>Writing Systems of Linear Equations Using Matrices and Vectors<a class="headerlink" href="#writing-systems-of-linear-equations-using-matrices-and-vectors" title="Permalink to this heading">#</a></h2>
 </section>
-<section id="row-reduced-echelon-form-and-gauss-jordan-elimination">
-<h2><span class="section-number">14.3.3. </span>Row-Reduced Echelon Form and Gauss-Jordan Elimination<a class="headerlink" href="#row-reduced-echelon-form-and-gauss-jordan-elimination" title="Permalink to this heading">#</a></h2>
+<section id="scalar-matrix-multiplication">
+<h2><span class="section-number">14.2.2. </span>Scalar-Matrix Multiplication<a class="headerlink" href="#scalar-matrix-multiplication" title="Permalink to this heading">#</a></h2>
+<p>A matrix may be left-multiplied or right-multiplied by a scalar with the same result: each element in the matrix is multiplied by the scalar. We can consider this to be broadcasting the multiplication across the elements of the array. Thus,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+c \mathbf{X} = \mathbf{X} c = 
+\begin{bmatrix}
+c x_{0,0}  &amp; c x_{0,1} &amp; \ldots &amp; c x_{0,n-1}   \\
+c x_{1,0}   &amp; c x_{1,1}  &amp; \ldots &amp; c x_{1,n-1}   \\
+\vdots &amp; \vdots &amp; \ldots &amp; \vdots \\
+c x_{m-1,0}   &amp; c x_{m-1,1}  &amp; \ldots &amp; c x_{m-1,n-1}   \\
+\end{bmatrix}.
+\end{equation*}\]</div>
+<section id="properties-of-scalar-multiplication">
+<h3><span class="section-number">14.2.2.1. </span>Properties of Scalar Multiplication<a class="headerlink" href="#properties-of-scalar-multiplication" title="Permalink to this heading">#</a></h3>
+<p>Since scalar multiplication is component-wise multiplication by a scalar, it inherits the  properties below from normal multiplication of real values.</p>
+<p>If <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is a vector and <span class="math notranslate nohighlight">\(c\)</span> is a real scalar, then these properties hold:</p>
+<ul class="simple">
+<li><p><em>Commutative</em>: <span class="math notranslate nohighlight">\(c\mathbf{X} = \mathbf{X} c.\)</span> It does not matter whether the multiplying scalar is on the right or left of the vector.</p></li>
+<li><p><em>Associative</em>: If <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> are scalars, then <span class="math notranslate nohighlight">\((bc) \mathbf{X} = b (c \mathbf{X})\)</span>. If multiplying by two scalars, we will get the same result if we do the scalar-scalar multiplication first or the scalar-matrix multiplication first.</p></li>
+<li><p><em>Distributive over scalar addition</em>: <span class="math notranslate nohighlight">\((b+c) \mathbf{X} = b \mathbf{X} + c \mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{X} (b+c)  = \mathbf{X}b  + \mathbf{X}c \)</span>.</p></li>
+<li><p><em>Distributive over matrix addition</em>: <span class="math notranslate nohighlight">\(c ( \mathbf{X} +\mathbf{Y}) =c \mathbf{X} + c \mathbf{Y}\)</span>.</p></li>
+</ul>
 </section>
-<section id="dependent-vs-independent-equations">
-<h2><span class="section-number">14.3.4. </span>Dependent vs Independent Equations<a class="headerlink" href="#dependent-vs-independent-equations" title="Permalink to this heading">#</a></h2>
 </section>
-<section id="matrix-determinant-and-properties">
-<h2><span class="section-number">14.3.5. </span>Matrix Determinant and Properties<a class="headerlink" href="#matrix-determinant-and-properties" title="Permalink to this heading">#</a></h2>
+<section id="dot-product-as-matrix-multiplication">
+<h2><span class="section-number">14.2.3. </span>Dot Product as Matrix Multiplication<a class="headerlink" href="#dot-product-as-matrix-multiplication" title="Permalink to this heading">#</a></h2>
+<p>We will build up our definition of matrix multiplication by starting with dot product of two <span class="math notranslate nohighlight">\(n\)</span>-vectors. Recall our definition of the dot product from <span class="xref std std-doc">Chapter 12</span>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple myst">
+<dt>dot product, inner product</dt><dd><p class="sd-card-text">Given <span class="math notranslate nohighlight">\(n\)</span>-vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, the <em>dot product</em> or <em>inner product</em> is denoted <span class="math notranslate nohighlight">\(\mathbf{x} \cdot \mathbf{y}\)</span> or <span class="math notranslate nohighlight">\(\mathbf{x}^T \mathbf{y}\)</span> and is the <strong>scalar value</strong> given by multiplying corresponding components and summing them up:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*} 
+  \mathbf{x} \cdot \mathbf{y} = \sum_{i=0}^{n-1} x_i y_i. 
+  \end{equation*}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<p>Note that <span class="math notranslate nohighlight">\(n\)</span>-vectors are generally treated as <span class="math notranslate nohighlight">\(n \times 1\)</span> “tall” matrices. For instance, the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> can be written as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbf{x} =
+\begin{bmatrix}
+x_0 \\
+x_1 \\
+\vdots \\
+x_{n-1} \\
+\end{bmatrix}.
+\end{equation*}\]</div>
+<p>Note also that the dot product of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> can be written in two forms. Until now, we have used the form <span class="math notranslate nohighlight">\(\mathbf{x} \cdot \mathbf{y}\)</span>, but the dot product can also be written as <span class="math notranslate nohighlight">\(\mathbf{x}^T \mathbf{y}\)</span>, which looks like this:</p>
+<!--
+\begin{align*}
+\mathbf{x}^T \mathbf{y} & =
+\begin{bmatrix}
+x_0 & x_1 & \ldots &x_{n-1} \
+\end{bmatrix}
+\begin{bmatrix}
+y_0 \\
+y_1 \\
+\vdots \\
+y_{n-1} \\
+\end{bmatrix} \\
+&= x_0 y_0 + x_1 y_1 + \ldots + x_{n-1} y_{n-1},
+\end{align*}
+-->
+<div class="math notranslate nohighlight" id="equation-row-vector-mpy">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-row-vector-mpy" title="Permalink to this equation">#</a></span>\[\begin{split}\mathbf{x}^T \mathbf{y}  =
+\begin{bmatrix}
+x_0 &amp; x_1 &amp; \ldots &amp;x_{n-1} \
+\end{bmatrix}
+\begin{bmatrix}
+y_0 \\
+y_1 \\
+\vdots \\
+y_{n-1} \\
+\end{bmatrix} \\
+= x_0 y_0 + x_1 y_1 + \ldots + x_{n-1} y_{n-1},\end{split}\]</div>
+<p>where the last line comes from the definition of the dot product.</p>
+<p>The vector <span class="math notranslate nohighlight">\(\mathbf{x}^T\)</span> is called a row vector, while <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is a column vector. We use <a class="reference internal" href="#equation-row-vector-mpy">(14.2)</a> to define multiplication between a row vector and a column vector.</p>
 </section>
-<section id="matrix-inverse-and-application-to-solving-systems-of-linear-equations">
-<h2><span class="section-number">14.3.6. </span>Matrix Inverse and Application to Solving Systems of Linear Equations<a class="headerlink" href="#matrix-inverse-and-application-to-solving-systems-of-linear-equations" title="Permalink to this heading">#</a></h2>
+<section id="vector-matrix-and-matrix-vector-multiplication">
+<h2><span class="section-number">14.2.4. </span>Vector-Matrix and Matrix-Vector Multiplication<a class="headerlink" href="#vector-matrix-and-matrix-vector-multiplication" title="Permalink to this heading">#</a></h2>
+<p>Matrices can enable efficient multiplication between a vector and multiple other vectors. For example, consider the problem of</p>
+<p><strong>JMS:WORKING HERE</strong></p>
 </section>
-<section id="orthogonal-matrices-gram-matrices-and-gram-invertibility">
-<h2><span class="section-number">14.3.7. </span>Orthogonal Matrices, Gram Matrices, and Gram Invertibility<a class="headerlink" href="#orthogonal-matrices-gram-matrices-and-gram-invertibility" title="Permalink to this heading">#</a></h2>
+<section id="matrix-norm">
+<h2><span class="section-number">14.2.5. </span>Matrix Norm<a class="headerlink" href="#matrix-norm" title="Permalink to this heading">#</a></h2>
+<div class="alert-success">
+<p>The norm of an <span class="math notranslate nohighlight">\(m \times n\)</span> matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is
+$<span class="math notranslate nohighlight">\(
+\left\| \mathbf{A} \right\| = 
+\sqrt{
+\sum_{i=0}^{m-1}\sum_{j=0}^{n-1} A_{ij}^{2}
+}
+\)</span>$</p>
+</div><p>Matrix norm satisifies several properties:</p>
+<ul class="simple">
+<li><p><strong>Triangle Inequality</strong> <span class="math notranslate nohighlight">\(\left\| \mathbf{A} + \mathbf{B} \right\| \le \left\| \mathbf{A} \right\| + \left\| \mathbf{B} \right\| \)</span></p></li>
+<li><p><strong>Norm of Transposed Matrix</strong> <span class="math notranslate nohighlight">\(\left\| \mathbf{A}^T \right\| = \left\| \mathbf{A} \right\|\)</span></p></li>
+<li><p><strong>Relation to Vector Norms</strong> If <span class="math notranslate nohighlight">\(\mathbf{a}_0, \mathbf{a}_1, \ldots, \mathbf{a}_{n-1}\)</span> are the columns of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, then <span class="math notranslate nohighlight">\(\left\| \mathbf{A} \right\|^2 = \left\| \mathbf{a}_0 \right\|^2 + \left\| \mathbf{a}_1 \right\| ^2+ \ldots + \left\| \mathbf{a}_{n-1}  \right\|^2\)</span></p></li>
+</ul>
+<p>We can use the matrix norm to define distance between two matrices <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> as <span class="math notranslate nohighlight">\(\left\| \mathbf{A} - \mathbf{B} \right\|\)</span>. Small distances imply the two matrices are similar</p>
 </section>
-<section id="dual-basis-and-vector-representation">
-<h2><span class="section-number">14.3.8. </span>Dual Basis and Vector Representation<a class="headerlink" href="#dual-basis-and-vector-representation" title="Permalink to this heading">#</a></h2>
+<section id="reading">
+<h2><span class="section-number">14.2.6. </span>Reading<a class="headerlink" href="#reading" title="Permalink to this heading">#</a></h2>
+<p>Be sure to <strong>study</strong>  Chapter 6 in the Boyd and Vanderberghe <em>Introduction to Applied Linear Algebra</em> book</p>
 </section>
-<section id="least-squares-fitting-and-matrix-pseudo-inverse">
-<h2><span class="section-number">14.3.9. </span>Least-Squares Fitting and Matrix Pseudo-Inverse<a class="headerlink" href="#least-squares-fitting-and-matrix-pseudo-inverse" title="Permalink to this heading">#</a></h2>
+<section id="matrices-and-linear-equations">
+<h2><span class="section-number">14.2.7. </span>Matrices and Linear Equations<a class="headerlink" href="#matrices-and-linear-equations" title="Permalink to this heading">#</a></h2>
+<p>We can use matrices and vectors to concisely express systems of linear equations <strong>and to efficiently solve them</strong></p>
+<p>We begin by defining <em>vector-vector functions</em></p>
+<p>The notation <span class="math notranslate nohighlight">\(\mathbf{f}: \mathbb{R}^n \Rightarrow \mathbb{R}^m\)</span> means that <span class="math notranslate nohighlight">\(\mathbf{f}\)</span> is a function that takes a <span class="math notranslate nohighlight">\(n\)</span>-vector as input and produces an <span class="math notranslate nohighlight">\(m\)</span>-vector as output</p>
+<p>(I will use bold letters for the function <span class="math notranslate nohighlight">\(f\)</span> to indicate that it is a vector function)</p>
+<p>One special case is the matrix-vector multiplication function:
+$<span class="math notranslate nohighlight">\(
+\mathbf{f}(\mathbf{x}) = \mathbf{Ax},
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\mathbf{A}<span class="math notranslate nohighlight">\( is a \)</span>m \times n$ matrix</p>
+<p>As usual, the vector-vector function <span class="math notranslate nohighlight">\(\mathbf{f}(\mathbf{x})\)</span> is <em>linear</em> if it satisfies the <em>superposition property</em>:
+$<span class="math notranslate nohighlight">\(
+\mathbf{f} \left( \alpha \mathbf{x} + \beta \mathbf{y} \right)
+= \alpha \mathbf{f} \left(  \mathbf{x}\right) 
++ 
+ \beta\mathbf{f} \left( \mathbf{y} \right)
+\)</span>$</p>
+<p>The matrix-vector multiplication function <span class="math notranslate nohighlight">\(\mathbf{f}(\mathbf{x}) = \mathbf{Ax}\)</span> is linear:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b5f5ed1f-ec75-4383-b4af-5a81e0178664">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-b5f5ed1f-ec75-4383-b4af-5a81e0178664" title="Permalink to this equation">#</a></span>\[\begin{align}
+\mathbf{f} \left( \alpha \mathbf{x} + \beta \mathbf{y} \right) &amp;=\mathbf{A} \left( \alpha \mathbf{x} + \beta \mathbf{y} \right)\\
+&amp;=
+\mathbf{A} \left( \alpha \mathbf{x}\right) + \mathbf{A} \left( \beta \mathbf{y} \right) \\
+&amp;=
+ \alpha \left( \mathbf{A} \mathbf{x}\right) + \beta \left( \mathbf{A} \mathbf{y} \right) \\
+&amp;= \mathbf{f} \left( \alpha \mathbf{x}\right) + 
+\mathbf{f} \left( \beta \mathbf{y} \right) 
+\end{align}\]</div>
+<p>In fact, if <span class="math notranslate nohighlight">\(\mathbf{f}: \mathbb{R}^n \Rightarrow \mathbb{R}^m\)</span>, then <span class="math notranslate nohighlight">\(\mathbf{f}\)</span> can be written as <span class="math notranslate nohighlight">\(\mathbf{f}(\mathbf{x}) = \mathbf{Ax}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is unique.</p>
+<p><strong>Examples of linear functions</strong> (More examples in Boyd book)</p>
+<p><strong>Negation</strong>
+$<span class="math notranslate nohighlight">\(
+\mathbf{f}(\mathbf{x} ) = - \mathbf{x},
+\)</span><span class="math notranslate nohighlight">\(
+which can be written as
+\)</span><span class="math notranslate nohighlight">\(
+\mathbf{f}(\mathbf{x} ) = (-\mathbf{I}) \mathbf{x}
+\)</span>$</p>
+<p><strong>Reversal</strong>
+$<span class="math notranslate nohighlight">\(
+\mathbf{f}(\mathbf{x} ) = \left[ x_{n-1}, x_{n-2}, \ldots, x_1, x_0 \right]
+\)</span>$</p>
+<p>Let
+$$
+\mathbf{A} =</p>
+<div class="amsmath math notranslate nohighlight" id="equation-559af7ad-963f-4f07-b0e5-bb1fb77dc683">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-559af7ad-963f-4f07-b0e5-bb1fb77dc683" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+0 &amp; 0 &amp; \ldots &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; \ldots &amp; 1 &amp; 0 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+1 &amp; 0 &amp; \ldots 0 &amp; 0 \\
+\end{bmatrix}\]</div>
+<p>$<span class="math notranslate nohighlight">\(
+Then \)</span>\mathbf{f}(\mathbf{x}) = \mathbf{Ax}$</p>
+<p><strong>Examples of nonlinear functions</strong></p>
+<p><strong>Quadratic function</strong>: each <span class="math notranslate nohighlight">\(x_i \rightarrow x_{i}^2\)</span></p>
+<p>Consider</p>
+<div class="amsmath math notranslate nohighlight" id="equation-add91ae0-a6a0-4fd6-b943-a6dcc4ac48b1">
+<span class="eqno">(14.5)<a class="headerlink" href="#equation-add91ae0-a6a0-4fd6-b943-a6dcc4ac48b1" title="Permalink to this equation">#</a></span>\[\begin{align}
+\mathbf{f}(\mathbf{x}+\mathbf{y})&amp;= \left[ (x_0+y_0)^2,~~~~~~~~~~~~~~~~
+(x_1+y_1)^2, ~~~~~~~~~~~~
+\ldots \right] \\
+&amp;=\left[ x_{0}^{2} +2x_0 y_0+y_{0}^{2},~
+~ x_{1}^{2} +2x_1 y_1+y_{1}^{2},~~~
+\ldots\right]\\
+&amp;\ne \mathbf{f}(\mathbf{x})+ \mathbf{f}(\mathbf{y}) \\
+&amp;= \left[ x_{0}^{2} +y_{0}^{2},~~~~~~~~~~~~
+~ x_{1}^{2} +y_{1}^{2},~~~
+\ldots\right]\\
+\end{align}\]</div>
+<p><strong>Absolute Value</strong>  each <span class="math notranslate nohighlight">\(x_i \rightarrow |x_i|\)</span></p>
+<p>Consider <span class="math notranslate nohighlight">\(n=1\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-35952dd7-42bc-4a84-b25a-607542195c43">
+<span class="eqno">(14.6)<a class="headerlink" href="#equation-35952dd7-42bc-4a84-b25a-607542195c43" title="Permalink to this equation">#</a></span>\[\begin{align}
+f((-1)(1)+(0)(1))&amp;= |-1| \\
+&amp;= 1 \\
+&amp;\ne (-1) f(1) + (0) f(1) \\
+&amp;= (-1) |1| + (0) |1| \\
+&amp;=-1
+\end{align}\]</div>
+<p><strong>Sort</strong> consider the function <span class="math notranslate nohighlight">\(\mathbf{f}(\mathbf{x})\)</span> that sorts <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> in decreasing order:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a80b60fd-38d4-480d-a004-b572b6e5118f">
+<span class="eqno">(14.7)<a class="headerlink" href="#equation-a80b60fd-38d4-480d-a004-b572b6e5118f" title="Permalink to this equation">#</a></span>\[\begin{align}
+\mathbf{f}( [1,0]^T + [ 0,1]^T) &amp;=\mathbf{f}( [1,1]^T) \\
+&amp;=[1,1]^T \\
+&amp; \ne \mathbf{f}([1,0]^T) + \mathbf{f}([ 0,1]^T) \\
+&amp;= [1,0]^T + [1,0]^T \\
+&amp;=[2,0]^T
+\end{align}\]</div>
+<section id="affine-functions">
+<h3><span class="section-number">14.2.7.1. </span>Affine Functions<a class="headerlink" href="#affine-functions" title="Permalink to this heading">#</a></h3>
+<div class="alert-success">
+<p>A vector-function is <em>affine</em> if <span class="math notranslate nohighlight">\(\mathbf{f}(\mathbf{x}) = \mathbf{Ax} + \mathbf{b}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <span class="math notranslate nohighlight">\(m \times n\)</span> matrix and <span class="math notranslate nohighlight">\(b\)</span> is an <span class="math notranslate nohighlight">\(m\)</span>-vector</p>
+</div><p>Affine functions are often casually referred to as linear, but they are not linear unless <span class="math notranslate nohighlight">\(\mathbf{b} = \mathbf{0}\)</span> because superposition does not hold in general</p>
+<p>It can be shown that for affine functions, superposition holds in the special case that <span class="math notranslate nohighlight">\(\alpha+\beta=1\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b4ef0021-9109-4bda-8a81-5179518a4c7e">
+<span class="eqno">(14.8)<a class="headerlink" href="#equation-b4ef0021-9109-4bda-8a81-5179518a4c7e" title="Permalink to this equation">#</a></span>\[\begin{align}
+\mathbf{f}(\alpha \mathbf{x} + \beta \mathbf{y}) &amp;=
+\mathbf{A}(\alpha \mathbf{x} + \beta \mathbf{y}) +\mathbf{b} \\
+&amp;=\alpha \mathbf{A} \mathbf{x} + \beta \mathbf{A} \mathbf{y} +\mathbf{b} \\
+&amp;=\alpha \mathbf{f} (\mathbf{x}) + \beta \mathbf{f}(y) \\
+&amp;= \alpha \mathbf{A} \left(\mathbf{x} +\mathbf{b} \right) + \beta \left(\mathbf{A} \mathbf{y} +\mathbf{b} \right) \\
+&amp;= \alpha \mathbf{A} \mathbf{x} + \beta \mathbf{A} \mathbf{y} +(\alpha+\beta) \mathbf{b} \\
+&amp;= \alpha \mathbf{A} \mathbf{x} + \beta \mathbf{A} \mathbf{y} + \mathbf{b}
+\end{align}\]</div>
 </section>
-<section id="regression">
-<h2><span class="section-number">14.3.10. </span>Regression<a class="headerlink" href="#regression" title="Permalink to this heading">#</a></h2>
 </section>
-<section id="review">
-<h2><span class="section-number">14.3.11. </span>Review<a class="headerlink" href="#review" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="summary">
-<h2><span class="section-number">14.3.12. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<section id="systems-of-linear-equations">
+<h2><span class="section-number">14.2.8. </span>Systems of Linear Equations<a class="headerlink" href="#systems-of-linear-equations" title="Permalink to this heading">#</a></h2>
+<p>One of the most important applications of linear vector functions is to solve linear systems of equations</p>
+<p>Consider a system of <span class="math notranslate nohighlight">\(m\)</span> equations in <span class="math notranslate nohighlight">\(n\)</span> variables <span class="math notranslate nohighlight">\(x_0, x_1, \ldots, x_{n-1}\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-83edd393-76ef-4f0a-b394-a9787a5988ca">
+<span class="eqno">(14.9)<a class="headerlink" href="#equation-83edd393-76ef-4f0a-b394-a9787a5988ca" title="Permalink to this equation">#</a></span>\[\begin{align}
+A_{00}x_0 +A_{01}x_1 +···+A_{0,n-1}x_{n-1} &amp;=b_0 \\
+A_{10}x_0 +A_{11}x_1 +···+A_{0,n-1}x_{n-1} &amp;=b_1 \\
+\vdots\\
+A_{m-1,0}x_0 +A_{m-1,1}x_1 +···+A_{m-1,n-1}x_{n-1} &amp;=b_{m-1}, \\
+\end{align}\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A_{ij}\)</span> are numbers and are called <em>coefficients</em>, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_j\)</span> are numbers called <em>right-hand sides</em></p></li>
+</ul>
+<p>Then the system of linear equations can be written concisely in matrix notation as
+$<span class="math notranslate nohighlight">\(
+\mathbf{Ax} = \mathbf{b},
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\mathbf{x}= [x_0, x_1, x_{n-1}]^T$ is the vector of variables (unknowns)</p>
+<p>An <span class="math notranslate nohighlight">\(n\)</span>-vector of values <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a solution to the system of linear equations if <span class="math notranslate nohighlight">\(\mathbf{Ax}=\mathbf{b}\)</span> holds</p>
+<p>A system of linear equations may have:</p>
+<ul class="simple">
+<li><p>no solutions</p></li>
+<li><p>a unique solution</p></li>
+<li><p>many solutions</p></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Consider the set of equations</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d7cfee41-fefd-491e-bf8e-a3a94299b413">
+<span class="eqno">(14.10)<a class="headerlink" href="#equation-d7cfee41-fefd-491e-bf8e-a3a94299b413" title="Permalink to this equation">#</a></span>\[\begin{align}
+x_1 + x_2 &amp;=1\\
+x_1&amp;=-1\\
+x_1-x_2&amp;=0\\
+\end{align}\]</div>
+<p>In matrix form, we would write
+$$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1220f892-f4df-460d-b399-931c8adc012d">
+<span class="eqno">(14.11)<a class="headerlink" href="#equation-1220f892-f4df-460d-b399-931c8adc012d" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+1 &amp; 1 \\
+1 &amp; 0 \\
+1 &amp; -1 \\
+\end{bmatrix}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-74429bea-4a81-485d-b8c5-8b996f45c96b">
+<span class="eqno">(14.12)<a class="headerlink" href="#equation-74429bea-4a81-485d-b8c5-8b996f45c96b" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+x_1\\
+x_2\\
+\end{bmatrix}\]</div>
+<p>=</p>
+<div class="amsmath math notranslate nohighlight" id="equation-89623c59-a365-4e3f-9701-fef4682c1f93">
+<span class="eqno">(14.13)<a class="headerlink" href="#equation-89623c59-a365-4e3f-9701-fef4682c1f93" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+1\\
+-1\\
+0\\
+\end{bmatrix}\]</div>
+<p>$$</p>
+<p>This system of equations has no solution:</p>
+<ul class="simple">
+<li><p>If we use the first 2 equations, we have <span class="math notranslate nohighlight">\(x_1=-1\)</span> and <span class="math notranslate nohighlight">\(x_2=2\)</span></p></li>
+<li><p>If we use the second 2 equations, we have <span class="math notranslate nohighlight">\(x_1=-1\)</span> and <span class="math notranslate nohighlight">\(x_2=-1\)</span></p></li>
+<li><p>This set of equations is not <em>consistent</em>: they contradict eachother</p></li>
+</ul>
+<p>Consider the set of equations</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ebe9f967-852a-4c54-87e4-166575948c83">
+<span class="eqno">(14.14)<a class="headerlink" href="#equation-ebe9f967-852a-4c54-87e4-166575948c83" title="Permalink to this equation">#</a></span>\[\begin{align}
+x_1 + x_2 &amp;=1\\
+x_2+x_3&amp;=2\\
+\end{align}\]</div>
+<p>In matrix form, we would write
+$$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b394ef49-f91c-4737-844e-73cc015c882b">
+<span class="eqno">(14.15)<a class="headerlink" href="#equation-b394ef49-f91c-4737-844e-73cc015c882b" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+1 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 1\\
+\end{bmatrix}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-b0d5bfec-2cc4-4d2e-8a63-b75a7f78c8f6">
+<span class="eqno">(14.16)<a class="headerlink" href="#equation-b0d5bfec-2cc4-4d2e-8a63-b75a7f78c8f6" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+x_1\\
+x_2\\
+x_3
+\end{bmatrix}\]</div>
+<p>=</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a200a998-3f8f-4853-b7dc-e9fe43d67621">
+<span class="eqno">(14.17)<a class="headerlink" href="#equation-a200a998-3f8f-4853-b7dc-e9fe43d67621" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+1\\
+2\\
+\end{bmatrix}\]</div>
+<p>$$</p>
+<p>This system of equations has an infinite number of solutions. For instance <span class="math notranslate nohighlight">\(\mathbf{x} = [1,0,2]^T\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x} = [ 0, 1, 1]^T\)</span></p>
+<p>In the next class, we will begin to look at matrix techniques to solve systems of linear equations</p>
 </section>
 </section>
 
@@ -1224,17 +1607,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="matrix-ops.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="matrices.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">14.2. </span>Matrix Operations</p>
+            <p class="prev-next-title"><span class="section-number">14.1. </span>Introduction to Arrays and Matrices</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../15-multidim-dependence/outline.html" title="next page">
+    <a class='right-next' id="next-link" href="outline.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Working with Dependent Data in Multiple Dimensions (Outline)</p>
+        <p class="prev-next-title"><span class="section-number">14.3. </span>Remaining Sections (Outline)</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

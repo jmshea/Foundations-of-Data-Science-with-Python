@@ -6,19 +6,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-<meta property="og:title" content="11.8. Summary" />
+<meta property="og:title" content="12.5. Null Hypothesis Tests for Correlation" />
   
 <meta property="og:type" content="website" />
   
-<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/summary.html" />
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-vector-regression/nhst.html" />
   
-<meta property="og:description" content="In this chapter, we introduced vectors and vector operations. We used these vector operations to define a new summary statistic called covariance that measures how two data features vary together. ..." />
+<meta property="og:description" content="If a correlation is observed, how can we know that it it statistically significant? Particularly in the case of small data, the correlation coefficient between two vectors is likely to not be close..." />
   
 <meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
   
-<meta property="og:image:alt" content="11.8. Summary" />
+<meta property="og:image:alt" content="12.5. Null Hypothesis Tests for Correlation" />
   
-    <title>11.8. Summary &#8212; Foundations of Data Science with Python</title>
+    <title>12.5. Null Hypothesis Tests for Correlation &#8212; Foundations of Data Science with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -63,11 +63,13 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/summary.html" />
+    <script>window.MathJax = {"tex": {"macros": {"P": "\\operatorname{P}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/12-vector-regression/nhst.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12. Categorical Data and Tests for Dependence" href="../12-categorical-data/intro.html" />
-    <link rel="prev" title="11.7. Review" href="review.html" />
+    <link rel="next" title="12.6. Nonlinear Regression Tests" href="nonlinear-regression.html" />
+    <link rel="prev" title="12.4. Linear Regression" href="linear-regression.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -660,81 +662,91 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-categorical-data/intro.html">
+   11. Categorical Data, Tests for Dependence, and Goodness of Fit for Discrete Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/contingency-tables.html">
+     11.2. Tabulating Categorical Data and Creating a Test Statistic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/nhst.html">
+     11.3. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/goodness-of-fit.html">
+     11.4. Chi-Square Goodness-of-Fit Test
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/review.html">
+     11.5. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11-categorical-data/summary.html">
+     11.6. Summary
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="intro.html">
-   11. Multidimensional Data and Regression
+   12. Multidimensional Data: Vectors and Linear Regression
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="vectors.html">
-     11.1. Introduction to Vectors
+     12.1. Introduction to Vectors
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="vector-operations.html">
-     11.2. Vector Operations
+     12.2. Vector Operations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="vector-stats.html">
-     11.3. Summary Statistics for Vector Data
+     12.3. Summary Statistics for Vector Data
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="linear-regression.html">
-     11.4. Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="nhst.html">
-     11.5. Null Hypothesis Tests for Correlation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="nonlinear-regression.html">
-     11.6. Nonlinear Regression Tests
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="review.html">
-     11.7. Review
+     12.4. Linear Regression
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     11.8. Summary
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../12-categorical-data/intro.html">
-   12. Categorical Data and Tests for Dependence
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/contingency-tables.html">
-     12.1. Tabulating Categorical Data and Creating a Test Statistic
+     12.5. Null Hypothesis Tests for Correlation
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/nhst.html">
-     12.2. Null Hypothesis Significance Testing for Dependence in Contingency Tables
+    <a class="reference internal" href="nonlinear-regression.html">
+     12.6. Nonlinear Regression Tests
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../12-categorical-data/summary.html">
-     12.3. Summary
+    <a class="reference internal" href="review.html">
+     12.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="summary.html">
+     12.8. Summary
     </a>
    </li>
   </ul>
@@ -779,21 +791,48 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/feature-extraction.html">
+     13.6. Alternative Bases for Feature Extraction
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/review.html">
-     13.6. Review
+     13.7. Review
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../13-clustering-transforming/summary.html">
-     13.7. Summary
+     13.8. Summary
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../14-matrix-applications/outline.html">
-   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../14-matrix-applications/intro.html">
+   14. Matrices and Applications
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrices.html">
+     14.1. Introduction to Arrays and Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/matrix-ops.html">
+     14.2. Matrix Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../14-matrix-applications/outline.html">
+     14.3. Remaining Sections (Outline)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../15-multidim-dependence/outline.html">
@@ -869,7 +908,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/11-matrix-vector-regression/summary.ipynb"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/12-vector-regression/nhst.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -912,7 +951,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/11-matrix-vector-regression/summary.ipynb"
+        <a href="../_sources/12-vector-regression/nhst.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -949,23 +988,70 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resampling">
+   12.5.1. Resampling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analytical-tests">
+   12.5.2. Analytical Tests
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Summary</h1>
+                <h1>Null Hypothesis Tests for Correlation</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resampling">
+   12.5.1. Resampling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analytical-tests">
+   12.5.2. Analytical Tests
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -973,9 +1059,113 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="summary">
-<h1><span class="section-number">11.8. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
-<p>In this chapter, we introduced vectors and vector operations. We used these vector operations to define a new summary statistic called <em>covariance</em> that measures how two data features vary together. We showed how to find the best line of fit for data that consists of pairs of features, and we showed how that line of fit connects to the concept of correlation. Finding this line of fit is called <em>simple linear regression</em>. Finally, we showed that we can apply functions to either of the data features to use linear regression to find non-linear relations among pairs of data features. Unlike our previous statistical tests, these functional relationships allow us to create a predictor for data that is outside of our sample set.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="null-hypothesis-tests-for-correlation">
+<h1><span class="section-number">12.5. </span>Null Hypothesis Tests for Correlation<a class="headerlink" href="#null-hypothesis-tests-for-correlation" title="Permalink to this heading">#</a></h1>
+<p>If a correlation is observed, how can we know that it it statistically significant? Particularly in the case of small data, the correlation coefficient between two vectors is likely to not be close to zero just because of the randomness in the data. We can apply the concepts of null hypothesis significance testing (NHST) to determine whether an observed correlation is statistically significant.  As usual, the first step in NHST is to establish a null hypothesis, <span class="math notranslate nohighlight">\(H_0\)</span>. Since we are trying to assess whether the data is correlated, the null hypothesis is that the data is not correlated. We will consider two approaches: resampling and analytical techniques.</p>
+<section id="resampling">
+<h2><span class="section-number">12.5.1. </span>Resampling<a class="headerlink" href="#resampling" title="Permalink to this heading">#</a></h2>
+<p>Consider data vectors for two features <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. Under resampling, we wish to generate new samples from the same distributions as <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> but without the data being correlated.  We can understand how to draw data from these distributions with correlation in two ways:</p>
+<ol class="simple">
+<li><p>Any correlation in the data is because <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> vary together. If we draw bootstrap sample separately from <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, then the samples inherently do not vary together.</p></li>
+<li><p>Drawing bootstrap samples separately from <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> creates independent samples, and independent random variables are uncorrelated.</p></li>
+</ol>
+<p>So to apply a resampling NHST:</p>
+<ol class="simple">
+<li><p>Determine a number of simulation iterations to be run, a significance (<span class="math notranslate nohighlight">\(p\)</span>-value) threshold <span class="math notranslate nohighlight">\(\alpha\)</span>, and whether the test will be on-sided or two-sided.</p></li>
+<li><p>Initialize a counter to zero.</p></li>
+<li><p>In each simulation iteration:</p>
+<ol class="simple">
+<li><p>Use resampling (such as bootstrap) to separately draw vectors samples for each feature. The length of the vectors should be the same as the length of the original vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p></li>
+<li><p>Calculate the correlation coefficient for the vectors.</p></li>
+<li><p>If the correlation coefficient is larger than the observed correlation increment the counter. Here larger can either refer to one particular direction (for a one-sided test) or magnitude (for a two-sided test.</p></li>
+</ol>
+</li>
+<li><p>When all the simulation iterations are completed, divide the counter by the number of iterations to determine the <span class="math notranslate nohighlight">\(p\)</span>-value.</p></li>
+<li><p>Compare the <span class="math notranslate nohighlight">\(p\)</span>-value to <span class="math notranslate nohighlight">\(\alpha\)</span>.  If <span class="math notranslate nohighlight">\(p \le \alpha\)</span>, then the result is statistically significant and the null hypothesis is rejected. If <span class="math notranslate nohighlight">\(p &gt; \alpha\)</span>, then the data is not sufficient to  reject the null hypothesis.</p></li>
+</ol>
+<p>Let’s demonstrate this using the Covid data set:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">covid</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/covid-merged.csv&quot;</span>
+<span class="p">)</span>
+<span class="n">covid</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">covid</span><span class="p">[</span><span class="s2">&quot;cases_norm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">covid</span><span class="p">[</span><span class="s2">&quot;cases&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">covid</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span>
+
+<span class="n">urban</span> <span class="o">=</span><span class="n">covid</span><span class="p">[</span><span class="s1">&#39;urban&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">cases_norm</span> <span class="o">=</span> <span class="n">covid</span><span class="p">[</span><span class="s1">&#39;cases_norm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a reminder, the observed correlation is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">urban</span><span class="p">,</span><span class="n">cases_norm</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Observed correlation is rho = </span><span class="si">{</span><span class="n">rho</span><span class="si">:</span><span class="s1">.2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observed correlation is rho = 0.42
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before we carry out our test, we need to determine our significance threshold and whether we are going to perform a one-sided or two-sided test. We will use a significance threshold of <span class="math notranslate nohighlight">\(\alpha=0.05\)</span>, and we will carry out a two-sided test, which is more conservative than a one-sided test.  The code to implement the two-sided NHST is shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+
+<span class="n">num_sims</span> <span class="o">=</span> <span class="mi">20_000</span>
+
+<span class="n">num_large_correlation</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+  
+  <span class="c1"># Bootstrap resampling</span>
+  <span class="n">urban_sample</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">urban</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">urban</span><span class="p">))</span>
+  <span class="n">cases_norm_sample</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">cases_norm</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cases_norm</span><span class="p">))</span>
+    
+  <span class="c1"># Two-sided test</span>
+  <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">urban_sample</span><span class="p">,</span> <span class="n">cases_norm_sample</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">rho</span><span class="p">:</span>
+    <span class="n">num_large_correlation</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The probability of seeing a correlation&#39;</span>
+      <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39; as large as </span><span class="si">{</span><span class="n">rho</span><span class="si">:</span><span class="s1"> .2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;is approximately&#39;</span> <span class="o">+</span>
+      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">num_large_correlation</span> <span class="o">/</span> <span class="n">num_sims</span> <span class="si">:</span><span class="s1"> .2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The probability of seeing a correlation as large as  0.42
+is approximately 0.0019
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since the <span class="math notranslate nohighlight">\(p\)</span>-value is much less than 0.05, the observed correlation is statistically significant.</p>
+</section>
+<section id="analytical-tests">
+<h2><span class="section-number">12.5.2. </span>Analytical Tests<a class="headerlink" href="#analytical-tests" title="Permalink to this heading">#</a></h2>
+<p>The mathematics behind the analytical NHST are beyond the scope of this book, but <code class="docutils literal notranslate"><span class="pre">stats.linregress()</span></code> returns a value called <code class="docutils literal notranslate"><span class="pre">pvalue</span></code>. This is the <span class="math notranslate nohighlight">\(p\)</span>-value for a two-sided NHST in which the null hypothesis is that the features are uncorrelated. The <span class="math notranslate nohighlight">\(p\)</span>-value can be shown to be approximated as the tail of a Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution with <span class="math notranslate nohighlight">\(n-2\)</span> degrees of freedom.</p>
+<p>For our example, the <span class="math notranslate nohighlight">\(p\)</span>-value is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="n">regress</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">urban</span><span class="p">,</span> <span class="n">cases_norm</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The p-value for a correlation NHST is </span><span class="si">{</span><span class="n">regress</span><span class="o">.</span><span class="n">pvalue</span> <span class="si">:</span><span class="s1"> .2g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, the <span class="math notranslate nohighlight">\(p\)</span>-values generated by bootstrap simulation and analysis are approximately equal.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -991,7 +1181,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./11-matrix-vector-regression"
+            path: "./12-vector-regression"
         },
         predefinedOutput: true
     }
@@ -1005,17 +1195,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="review.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="linear-regression.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">11.7. </span>Review</p>
+            <p class="prev-next-title"><span class="section-number">12.4. </span>Linear Regression</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../12-categorical-data/intro.html" title="next page">
+    <a class='right-next' id="next-link" href="nonlinear-regression.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>Categorical Data and Tests for Dependence</p>
+        <p class="prev-next-title"><span class="section-number">12.6. </span>Nonlinear Regression Tests</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

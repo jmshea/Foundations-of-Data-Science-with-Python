@@ -6,19 +6,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-<meta property="og:title" content="11.7. Remaining Outline" />
+<meta property="og:title" content="14. Matrices and Applications" />
   
 <meta property="og:type" content="website" />
   
-<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/outline.html" />
+<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/14-matrix-applications/intro.html" />
   
-<meta property="og:description" content="Nonlinear Regression in Two Dimensions: Review: Summary:" />
+<meta property="og:description" content="In Chapter 12 and Chapter 13, we delved into vectors and their applications, and we saw that it is useful to stack vectors together into matrices (two-dimensional arrays). In this chapter, we explo..." />
   
 <meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
   
-<meta property="og:image:alt" content="11.7. Remaining Outline" />
+<meta property="og:image:alt" content="14. Matrices and Applications" />
   
-    <title>11.7. Remaining Outline &#8212; Foundations of Data Science with Python</title>
+    <title>14. Matrices and Applications &#8212; Foundations of Data Science with Python</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -63,11 +63,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/11-matrix-vector-regression/outline.html" />
+    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/14-matrix-applications/intro.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12. Tests of Independence for Categorical Data (Outline)" href="../12-categorical-data/outline.html" />
-    <link rel="prev" title="11.6. Nonlinear Regression Tests" href="nonlinear-regression.html" />
+    <link rel="next" title="14.1. Introduction to Arrays and Matrices" href="matrices.html" />
+    <link rel="prev" title="13.8. Summary" href="../13-clustering-transforming/summary.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -660,67 +660,177 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="intro.html">
-   11. Multidimensional Data and Regression
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11-categorical-data/intro.html">
+   11. Categorical Data, Tests for Dependence, and Goodness of Fit for Discrete Distributions
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
   <label for="toctree-checkbox-11">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="vectors.html">
-     11.1. Introduction to Vectors
+    <a class="reference internal" href="../11-categorical-data/contingency-tables.html">
+     11.2. Tabulating Categorical Data and Creating a Test Statistic
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="vector-operations.html">
-     11.2. Vector Operations
+    <a class="reference internal" href="../11-categorical-data/nhst.html">
+     11.3. Null Hypothesis Significance Testing for Dependence in Contingency Tables
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="vector-stats.html">
-     11.3. Summary Statistics for Vector Data
+    <a class="reference internal" href="../11-categorical-data/goodness-of-fit.html">
+     11.4. Chi-Square Goodness-of-Fit Test
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="linear-regression.html">
-     11.4. Linear Regression
+    <a class="reference internal" href="../11-categorical-data/review.html">
+     11.5. Review
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="nhst.html">
-     11.5. Null Hypothesis Tests for Correlation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="nonlinear-regression.html">
-     11.6. Nonlinear Regression Tests
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     11.7. Remaining Outline
+    <a class="reference internal" href="../11-categorical-data/summary.html">
+     11.6. Summary
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../12-categorical-data/outline.html">
-   12. Tests of Independence for Categorical Data (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12-vector-regression/intro.html">
+   12. Multidimensional Data: Vectors and Linear Regression
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/vectors.html">
+     12.1. Introduction to Vectors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/vector-operations.html">
+     12.2. Vector Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/vector-stats.html">
+     12.3. Summary Statistics for Vector Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/linear-regression.html">
+     12.4. Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/nhst.html">
+     12.5. Null Hypothesis Tests for Correlation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/nonlinear-regression.html">
+     12.6. Nonlinear Regression Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/review.html">
+     12.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12-vector-regression/summary.html">
+     12.8. Summary
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../13-clustering-transforming/outline.html">
-   13. Clustering and Transforming Multi-dimensional Data (Outline)
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../13-clustering-transforming/intro.html">
+   13. Clustering and Transforming Data
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/k-means.html">
+     13.1. Clustering Data: The
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+     -Means Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/vector-correlation.html">
+     13.2. Vector Correlation and Projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/spanningsets-bases.html">
+     13.3. Representing a Vector Using Projections: Spanning Sets and Bases
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/fft.html">
+     13.4. Universal Bases: The Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/gram-schmidt.html">
+     13.5. Set-Specific Bases: The Gram-Schmidt Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/feature-extraction.html">
+     13.6. Alternative Bases for Feature Extraction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/review.html">
+     13.7. Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../13-clustering-transforming/summary.html">
+     13.8. Summary
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../14-matrix-applications/outline.html">
-   14. Applications of Matrices to Solving Equations, Curve Fitting, and Regression (Outline)
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   14. Matrices and Applications
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="matrices.html">
+     14.1. Introduction to Arrays and Matrices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="matrix-ops.html">
+     14.2. Matrix Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="outline.html">
+     14.3. Remaining Sections (Outline)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../15-multidim-dependence/outline.html">
@@ -796,7 +906,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/11-matrix-vector-regression/outline.ipynb"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/14-matrix-applications/intro.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -839,7 +949,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/11-matrix-vector-regression/outline.ipynb"
+        <a href="../_sources/14-matrix-applications/intro.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -876,80 +986,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nonlinear-regression-in-two-dimensions">
-   11.7.1. Nonlinear Regression in Two Dimensions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#review">
-   11.7.2. Review
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   11.7.3. Summary
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Remaining Outline</h1>
+                <h1>Matrices and Applications</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nonlinear-regression-in-two-dimensions">
-   11.7.1. Nonlinear Regression in Two Dimensions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#review">
-   11.7.2. Review
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   11.7.3. Summary
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -957,18 +1010,16 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="remaining-outline">
-<h1><span class="section-number">11.7. </span>Remaining Outline<a class="headerlink" href="#remaining-outline" title="Permalink to this heading">#</a></h1>
-<!-- ## Introduction to Matrices via Stacked Vectors -->
-<section id="nonlinear-regression-in-two-dimensions">
-<h2><span class="section-number">11.7.1. </span>Nonlinear Regression in Two Dimensions<a class="headerlink" href="#nonlinear-regression-in-two-dimensions" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="review">
-<h2><span class="section-number">11.7.2. </span>Review<a class="headerlink" href="#review" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="summary">
-<h2><span class="section-number">11.7.3. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="matrices-and-applications">
+<h1><span class="section-number">14. </span>Matrices and Applications<a class="headerlink" href="#matrices-and-applications" title="Permalink to this heading">#</a></h1>
+<p>In <a class="reference internal" href="../12-vector-regression/intro.html"><span class="doc">Chapter 12</span></a> and <a class="reference internal" href="../13-clustering-transforming/intro.html"><span class="doc">Chapter 13</span></a> , we delved into vectors and their applications, and we saw that it is useful to stack vectors together into matrices (two-dimensional arrays). In this chapter, we explore arrays and the operations we define on them, and we explore applications of arrays to:</p>
+<ul class="simple">
+<li><p>change of bases (such as the discrete Fourier transform)</p></li>
+<li><p>solving systems of linear equations</p></li>
+<li><p>finding the solution to linear least-squares fitting problems, including regression.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -984,7 +1035,7 @@ title="Print to PDF"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./11-matrix-vector-regression"
+            path: "./14-matrix-applications"
         },
         predefinedOutput: true
     }
@@ -998,17 +1049,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="nonlinear-regression.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../13-clustering-transforming/summary.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">11.6. </span>Nonlinear Regression Tests</p>
+            <p class="prev-next-title"><span class="section-number">13.8. </span>Summary</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../12-categorical-data/outline.html" title="next page">
+    <a class='right-next' id="next-link" href="matrices.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>Tests of Independence for Categorical Data (Outline)</p>
+        <p class="prev-next-title"><span class="section-number">14.1. </span>Introduction to Arrays and Matrices</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
