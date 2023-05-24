@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/intro.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Learn probability and statistics, data visualization, and linear algebra using a modern, computational approach. Examples using real data on topics like Covid, the effects of graduate education on ..." />
+<meta property="og:description" content="Normal People- A plot that represents the probability associated with different heights for men by stacking images of people (from the Wee People font) at each possible height. The shape follows a ..." />
 <meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Learn probability and statistics, data visualization, and linear algebra using a modern, computational approach. Examples using real data on topics like Covid, the effects of graduate education on ..." />
+<meta name="description" content="Normal People- A plot that represents the probability associated with different heights for men by stacking images of people (from the Wee People font) at each possible height. The shape follows a ..." />
 
     <title>Foundations of Data Science with Python &#8212; Foundations of Data Science with Python</title>
   
@@ -176,6 +176,8 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="01-intro/intro.html">1. Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="01-intro/who-for.html">1.1. Who is this book for?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-intro/why-this-book.html">1.2. Why learn data science from this book?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-intro/what-is-data-science.html">1.3. What is data science?</a></li>
 </ul>
 </li>
 </ul>
@@ -325,6 +327,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flashcards">Flashcards</a></li>
 </ul>
             </nav>
         </div>
@@ -338,8 +341,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="foundations-of-data-science-with-python">
 <h1>Foundations of Data Science with Python<a class="headerlink" href="#foundations-of-data-science-with-python" title="Permalink to this heading">#</a></h1>
-<p><i>Learn probability and statistics, data visualization, and linear algebra using a modern,
-computational approach. Examples using real data on topics like Covid, the effects of graduate education on family wealth, and the effects of gun control laws on firearms deaths. </i></p>
 <a class="reference internal image-reference" href="_images/normal-people.png"><img alt="Normal People- A plot that represents the probability associated with different heights for men by stacking images of people (from the Wee People font) at each possible height. The shape follows a Normal density." class="align-center" src="_images/normal-people.png" style="width: 500px;" /></a>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
@@ -370,25 +371,34 @@ computational approach. Examples using real data on topics like Covid, the effec
 <li><p>Although the approach taken and the material covered is targeted toward engineers and scientists, I try to investigate questions that will appeal to most readers, and especially those that may appeal to college students.</p></li>
 </ul>
 </li>
-<li><p><strong>This book provides a unique set of online, interactive tools to help students learn the material</strong>, including:</p></li>
+<li><p><strong>This book provides a unique set of online, interactive tools to help students learn the material</strong>, including:</p>
+<ul>
+<li><p><strong>Interactive self-assessment quizzes via <a class="reference external" href="https://github.com/jmshea/jupyterquiz">JupyterQuiz</a></strong></p></li>
+<li><p><strong>Interactive flashcards to aid in learning terminology via <a class="reference external" href="https://github.com/jmshea/jupytercards">JupyterCards</a></strong> <span class="math notranslate nohighlight">\(\,\!\)</span></p></li>
 </ul>
-<p><strong>Interactive self-assessment quizzes via <a class="reference external" href="https://github.com/jmshea/jupyterquiz">JupyterQuiz</a></strong></p>
-<ul class="simple">
-<li><p>Click or tap to select your answer(s)</p></li>
+</li>
 </ul>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="jMnperlecAha" data-shufflequestions="False"
+<div class="output text_html"><div id="IhOQUrXkijmf" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
-               data-numquestions="1000000"> <style>:root {
-    --medium-slate-blue: #6f78ffff;
-    --orange-pantone: #f75c03ff;
-    --russian-violet: #392061ff;
-    --maximum-yellow-red: #ffc857ff;
-    --viridian-green: #119da4ff;
-    --incorrect-red: #c80202;
-    --correct-green: #009113;
+               data-numquestions="1000000"
+               data-maxwidth="600"
+               style="border-radius: 10px; text-align: left"> <style>
+#IhOQUrXkijmf {
+   --jq-multiple-choice-bg: #6f78ffff;
+   --jq-mc-button-bg: #fafafa;
+   --jq-mc-button-border: #e0e0e0e0;
+   --jq-mc-button-inset-shadow: #555555;
+   --jq-many-choice-bg: #f75c03ff;
+   --jq-numeric-bg: #392061ff;
+   --jq-numeric-input-bg: #c0c0c0;
+   --jq-numeric-input-label: #101010;
+   --jq-numeric-input-shadow: #999999;
+   --jq-incorrect-color: #c80202;
+   --jq-correct-color: #009113;
+   --jq-text-color: #fafafa;
 }
 
 .Quiz {
@@ -401,6 +411,7 @@ computational approach. Examples using real data on topics like Covid, the effec
     padding-top: 4px;
     line-height: 1.1;
     font-size: 16pt;
+    border-radius: inherit;
 }
 
 .QuizCode {
@@ -417,8 +428,9 @@ computational approach. Examples using real data on topics like Covid, the effec
 .Answer {
     margin: 10px 0;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
+    border-radius: inherit;
 }
 
 .Feedback {
@@ -437,8 +449,8 @@ computational approach. Examples using real data on topics like Covid, the effec
     margin: 10px;
     color: inherit;
     width: 140px;
-    background-color: #c0c0c0;
-    color: #fff;
+    background-color: var(--jq-numeric-input-bg);
+    color: var(--jq-text-color);
     padding: 5px;
     padding-left: 10px;
     font-family: inherit;
@@ -452,18 +464,21 @@ computational approach. Examples using real data on topics like Covid, the effec
 
 .Input-text:focus {
     outline: none;
-    background-color: #c0c0c0;
-    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem #999999;
+    background-color: var(--jq-numeric-input-bg);
+    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
 }
 
 .MCButton {
-    background: #fafafa;
-    border: 1px solid #eee;
-    border-radius: 10px;
+    background: var(--jq-mc-button-bg);
+    border: 1px solid var(--jq-mc-button-border);
+    border-radius: inherit;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .MCButton p {
@@ -472,23 +487,23 @@ computational approach. Examples using real data on topics like Covid, the effec
 
 .MultipleChoiceQn {
     padding: 10px;
-    background: var(--medium-slate-blue);
-    color: #fafafa;
-    border-radius: 10px;
+    background: var(--jq-multiple-choice-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
 }
 
 .ManyChoiceQn {
     padding: 10px;
-    background: var(--orange-pantone);
-    color: #fafafa;
-    border-radius: 10px;
+    background: var(--jq-many-choice-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
 }
 
 .NumericQn {
     padding: 10px;
-    background: var(--russian-violet);
-    color: #fafafa;
-    border-radius: 10px;
+    background: var(--jq-numeric-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
 }
 
 .NumericQn p {
@@ -499,164 +514,195 @@ computational approach. Examples using real data on topics like Covid, the effec
     line-height: 34px;
     float: left;
     margin-right: 10px;
-    color: #101010;
+    color: var(--jq-numeric-input-label);
     font-size: 15pt;
 }
 
 .incorrect {
-    color: var(--incorrect-red);
+    color: var(--jq-incorrect-color);
 }
 
 .correct {
-    color: var(--correct-green);
+    color: var(--jq-correct-color);
 }
 
 .correctButton {
     /*
-    background: var(--correct-green);
+    background: var(--jq-correct-color);
    */
     animation: correct-anim 0.6s ease;
     animation-fill-mode: forwards;
-    color: #fafafa;
-    box-shadow: inset 0px 0px 5px #555555;
+    color: var(--jq-text-color);
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
     outline: none;
 }
 
 .incorrectButton {
     animation: incorrect-anim 0.8s ease;
     animation-fill-mode: forwards;
-    color: #fafafa;
-    box-shadow: inset 0px 0px 5px #555555;
+    color: var(--jq-text-color);
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
     outline: none;
 }
 
 @keyframes incorrect-anim {
     100% {
-        background-color: var(--incorrect-red);
+        background-color: var(--jq-incorrect-color);
     }
 }
 
 @keyframes correct-anim {
     100% {
-        background-color: var(--correct-green);
+        background-color: var(--jq-correct-color);
     }
-}</style></div><script type="application/javascript">var questionsjMnperlecAha=[
-    {
-        "question": "Choose all of the following that are useful error metrics that can be minimized to create a summary statistic:",
-        "type": "many_choice",
-        "answers": [
-            {
-                "answer": "sum of absolute errors",
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "answer": "total number of errors",
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "answer": "sum of errors",
-                "correct": false,
-                "feedback": "There is no minimum value for this metric."
-            },
-            {
-                "answer": "sum of squared errors",
-                "correct": true,
-                "feedback": "Correct."
-            }
-        ]
-    },
-    {
-        "question": "Which of the following summary statistics minimizes the sum of squared errors to the data:",
-        "type": "multiple_choice",
-        "answers": [
-            {
-                "answer": "mode",
-                "correct": false,
-                "feedback": "Try again."
-            },
-            {
-                "answer": "median",
-                "correct": false,
-                "feedback": "Try again."
-            },
-            {
-                "answer": "average",
-                "correct": true,
-                "feedback": "Correct."
-            }
-        ]
-    },
-    {
-        "question": "Which of the following summary statistics minimizes the sum of absolute errors to the data:",
-        "type": "multiple_choice",
-        "answers": [
-            {
-                "answer": "average",
-                "correct": false,
-                "feedback": "Try again."
-            },
-            {
-                "answer": "median",
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "answer": "mode",
-                "correct": false,
-                "feedback": "Try again."
-            }
-        ]
-    },
-    {
-        "question": "Which of the following summary statistics minimizes the number of non-zero errors to the data:",
-        "type": "multiple_choice",
-        "answers": [
-            {
-                "answer": "mode",
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "answer": "average",
-                "correct": false,
-                "feedback": "Try again."
-            },
-            {
-                "answer": "median",
-                "correct": false,
-                "feedback": "Try again."
-            }
-        ]
-    },
-    {
-        "question": "Choose all of the following that are typical causes of outliers in data sets:",
-        "type": "many_choice",
-        "answers": [
-            {
-                "answer": "measurement errors",
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "answer": "different population characteristics",
-                "correct": false,
-                "feedback": "Different population characteristics often produce variations in data, but these are not erroneous values and not considered outliers."
-            },
-            {
-                "answer": "data entry errors",
-                "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "answer": "unit conversion errors",
-                "correct": true,
-                "feedback": "Correct."
-            }
-        ]
-    }
-];
+}
+</style></div><script type="application/javascript">var questionsIhOQUrXkijmf=[
+  {
+    "question": "What are summary statistics?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "Numerical values that summarize a dataset",
+        "correct": true
+      },
+      {
+        "answer": "Graphical representations of a dataset",
+        "correct": false
+      },
+      {
+        "answer": "Descriptive words that summarize a dataset",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What are the most common summary statistics?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "Mean, median, mode, range, variance, and standard deviation",
+        "correct": true
+      },
+      {
+        "answer": "Histogram, scatter plot, box plot, and bar chart",
+        "correct": false
+      },
+      {
+        "answer": "Correlation, regression, and hypothesis testing",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the mean?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The middle value of a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The most common value in a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The average value of a dataset",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "What is the median?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The middle value of a dataset",
+        "correct": true
+      },
+      {
+        "answer": "The most common value in a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The average value of a dataset",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the mode?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The middle value of a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The most common value in a dataset",
+        "correct": true
+      },
+      {
+        "answer": "The average value of a dataset",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the range?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The difference between the maximum and minimum values in a dataset",
+        "correct": true
+      },
+      {
+        "answer": "The sum of all values in a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The number of values in a dataset",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the variance?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "A measure of how spread out the data is",
+        "correct": true
+      },
+      {
+        "answer": "The difference between the maximum and minimum values in a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The middle value of a dataset",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the standard deviation?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The square root of the variance",
+        "correct": true
+      },
+      {
+        "answer": "The difference between the maximum and minimum values in a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The middle value of a dataset",
+        "correct": false
+      }
+    ]
+  }
+]
+;
     // Make a random ID
 function makeid(length) {
     var result = [];
@@ -1012,7 +1058,11 @@ function check_numeric(ths, event) {
             // if (answer.type=="value"){
             if ('value' in answer) {
                 if (submission == answer.value) {
-                    fb.textContent = jaxify(answer.feedback);
+                    if ("feedback" in answer) {
+                        fb.textContent = jaxify(answer.feedback);
+                    } else {
+                        fb.textContent = jaxify("Correct");
+                    }
                     correct = answer.correct;
                     //console.log(answer.correct);
                     done = true;
@@ -1253,6 +1303,7 @@ function show_questions(json, mydiv) {
     var shuffle_questions = mydiv.dataset.shufflequestions;
     var num_questions = mydiv.dataset.numquestions;
     var shuffle_answers = mydiv.dataset.shuffleanswers;
+    var max_width = mydiv.dataset.maxwidth;
 
     if (num_questions > json.length) {
         num_questions = json.length;
@@ -1282,21 +1333,23 @@ function show_questions(json, mydiv) {
         iDiv.id = 'quizWrap' + id;
         iDiv.className = 'Quiz';
         iDiv.setAttribute('data-qnum', index);
+        iDiv.style.maxWidth  =max_width+"px";
         mydiv.appendChild(iDiv);
         // iDiv.innerHTML=qa.question;
-
+        
         var outerqDiv = document.createElement('div');
         outerqDiv.id = "OuterquizQn" + id + index;
-
-        iDiv.append(outerqDiv);
-
         // Create div to contain question part
         var qDiv = document.createElement('div');
         qDiv.id = "quizQn" + id + index;
-        //qDiv.textContent=qa.question;
-        qDiv.innerHTML = jaxify(qa.question);
+        
+        if (qa.question) {
+            iDiv.append(outerqDiv);
 
-        outerqDiv.append(qDiv);
+            //qDiv.textContent=qa.question;
+            qDiv.innerHTML = jaxify(qa.question);
+            outerqDiv.append(qDiv);
+        }
 
         // Create div for code inside question
         var codeDiv;
@@ -1323,10 +1376,12 @@ function show_questions(json, mydiv) {
         //console.log(qa.type);
 
         var num_correct;
-        if (qa.type == "multiple_choice") {
+        if ((qa.type == "multiple_choice") || (qa.type == "many_choice") ) {
             num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
-        } else if (qa.type == "many_choice") {
-            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+            if ("answer_cols" in qa) {
+                //aDiv.style.gridTemplateColumns = 'auto '.repeat(qa.answer_cols);
+                aDiv.style.gridTemplateColumns = 'repeat(' + qa.answer_cols + ', 1fr)';
+            }
         } else if (qa.type == "numeric") {
             //console.log("numeric");
             make_numeric(qa, outerqDiv, qDiv, aDiv, id);
@@ -1388,7 +1443,21 @@ if (typeof version == 'undefined') {
     }
     return false;
 }
+/* This is to handle asynchrony issues in loading Jupyter notebooks
+           where the quiz has been previously run. The Javascript was generally
+           being run before the div was added to the DOM. I tried to do this
+           more elegantly using Mutation Observer, but I didn't get it to work.
 
+           Someone more knowledgeable could make this better ;-) */
+
+        function try_show() {
+          if(document.getElementById("IhOQUrXkijmf")) {
+            show_questions(questionsIhOQUrXkijmf,  IhOQUrXkijmf); 
+          } else {
+             setTimeout(try_show, 200);
+          }
+        };
+    
         //console.log(element);
         {
         const jmscontroller = new AbortController();
@@ -1396,20 +1465,19 @@ if (typeof version == 'undefined') {
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/questions/ch3.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/summary-stats.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, jMnperlecAha))
+        .then(json => show_questions(json, IhOQUrXkijmf))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsjMnperlecAha, jMnperlecAha);
+        show_questions(questionsIhOQUrXkijmf, IhOQUrXkijmf);
         });
         }
         </script></div>
 </div>
-<p><strong>Interactive flashcards to aid in learning terminology via <a class="reference external" href="https://github.com/jmshea/jupytercards">JupyterCards</a></strong> <span class="math notranslate nohighlight">\(\,\!\)</span></p>
-<ul class="simple">
-<li><p>Click or tap to flip the card. On mobile, you can swipe left to go to the next card. On desktop, use the Next button</p></li>
-</ul>
+</section>
+<section id="flashcards">
+<h2>Flashcards<a class="headerlink" href="#flashcards" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><style>
@@ -1431,8 +1499,9 @@ if (typeof version == 'undefined') {
 
 
 .flip-container.flip .flipper {
-	transform: rotateY(180deg);
-	/*transform: rotateY(180deg)  translateX(-10%); */
+    box-sizing: content-box;
+	  transform: rotateY(180deg);
+	/* transform: rotateY(180deg)  translateX(-6%);  */
 }
 
 
@@ -1440,6 +1509,7 @@ if (typeof version == 'undefined') {
     filter: brightness(90%);
     position:absolute;
     z-index: -20;
+    /* left: 20px; */
 }
 
 .flip-container.prepare .flipper.backcard {
@@ -1451,10 +1521,11 @@ if (typeof version == 'undefined') {
 
 .flip-container.slide .flipper.backcard {
     filter: brightness(115%);
-    height: 360px;
+    /* height: 360px; */
     opacity:1;
 	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
     z-index: 20;
+    /* left: -20px; */
 }
 
 
@@ -1475,8 +1546,8 @@ if (typeof version == 'undefined') {
 
 
 .flip-container, .front, .back {
-	  height: 300px;
-	  width: 100%;
+	  height: 200px;
+	  width: 95%;
 }
 
 
@@ -1508,12 +1579,12 @@ if (typeof version == 'undefined') {
     top: 0;
 	  transform-style: preserve-3d;
 	  transition: 0.6s;
-    width: 95%;
+    /* width: 95%; */
+    width: 100%;
 }
 
 .flashcardtext{
     color: var(--snow);
-    font-size: 20pt;
     margin-left:3%;
     position:absolute;
     text-align:center;
@@ -1522,6 +1593,11 @@ if (typeof version == 'undefined') {
     width:90%;
     font-size: 1.5em;
 }
+
+.back .flashcardtext{
+    font-size: 1.2em;
+}
+
 
 
 /* hide back of pane during swap */
@@ -1557,7 +1633,7 @@ if (typeof version == 'undefined') {
     cursor:pointer;
     font-size: 1.5em;
     /*left:90%; */
-    margin-left: 75%;
+    margin-left: 70%;
     width: 100pt;
     height: 22pt;
     opacity:0.3;
@@ -1594,35 +1670,72 @@ if (typeof version == 'undefined') {
   
 }
 
+.flashcardtext li{
+    text-align: left;
+}
+
 @media only screen and (min-width:1000px) {
+
     .flip-container, .front, .back {
 	      height: 300px;
 	      width: 640px;
     }
+
     .flipper {
-        cursor:pointer;
-	      height: 200px;
         margin-left:20px;
-	      position: absolute;
-        top: 0;
-	      transform-style: preserve-3d;
-	      transition: 0.6s;
-        width: 600px;
+	      height: 300px;
     }
+
     .flashcardtext{
         font-size: 20pt;
     }
+
     .next {
         font-size: 16pt;
-        left:442pt;
+        left:438pt;
         margin-left: 0;
         width: 100pt;
         height: 22pt;
+        top:-0.5em;
     }
+
+    .back .flashcardtext{
+        font-size: 1.5em;
+    }
+
 }
 
+@media only screen and (min-width:660px) and (max-width:999px) {
+    .next {
+        left:0;
+        margin-left: 80%;
+    }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="hbVygIiZapby" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="hbVygIiZapby-next" onclick="window.checkFlip('hbVygIiZapby')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+}
+
+@media only screen and (max-width:680px) and (min-height:376px) {
+    .flip-container, .front, .back {
+	      height: 300px;
+    }
+
+    .flipper {
+	      height: 300px;
+    }
+
+}
+
+@media only screen and (max-width:330px) and (max-height:600px) {
+
+    .back .flashcardtext{
+        font-size: 1em;
+    }
+    .next {
+        margin-left: 65%;
+    }
+
+}
+
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="fFZjCtCTYUTF" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="fFZjCtCTYUTF-next" onclick="window.checkFlip('fFZjCtCTYUTF')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1634,7 +1747,7 @@ if (typeof version == 'undefined') {
 
 function jaxify(string) {
     var mystring = string;
-    console.log(mystring);
+    //console.log(mystring);
 
     var count = 0;
     var loc = mystring.search(/([^\\]|^)(\$)/);
@@ -1672,23 +1785,24 @@ function jaxify(string) {
 }
 
 window.flipCard = function flipCard(ths) {
-    console.log(ths);
-    console.log(ths.id);
+    //console.log(ths);
+    //console.log(ths.id);
     ths.classList.toggle("flip"); 
+    ths.focus();
     var next=document.getElementById(ths.id+'-next');
     next.style.pointerEvents='none';
     /* ths.blur(); */
     next.classList.add('flipped');
     if (typeof MathJax != 'undefined') {
         var version = MathJax.version;
-        console.log('MathJax version', version);
+        //console.log('MathJax version', version);
         if (version[0] == "2") {
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         } else if (version[0] == "3") {
             MathJax.typeset([ths]);
         }
     } else {
-        console.log('MathJax not detected');
+        //console.log('MathJax not detected');
     }
 
 
@@ -1785,14 +1899,14 @@ function cleanup(container, frontcard, backcard, next) {
         next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
         if (typeof MathJax != 'undefined') {
             var version = MathJax.version;
-            console.log('MathJax version', version);
+            //console.log('MathJax version', version);
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
                 MathJax.typeset([next]);
             }
         } else {
-            console.log('MathJax not detected');
+            //console.log('MathJax not detected');
         }
 
 
@@ -1800,14 +1914,14 @@ function cleanup(container, frontcard, backcard, next) {
 
     if (typeof MathJax != 'undefined') {
         var version = MathJax.version;
-        console.log('MathJax version', version);
+        //console.log('MathJax version', version);
         if (version[0] == "2") {
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         } else if (version[0] == "3") {
             MathJax.typeset();
         }
     } else {
-        console.log('MathJax not detected');
+        //console.log('MathJax not detected');
     }
 
 
@@ -1829,11 +1943,10 @@ function cleanup(container, frontcard, backcard, next) {
 
 
 function createOneCard  (mydiv, frontCard, cards, cardnum) {
-    var colors=[
-        '--asparagus',
-        '--terra-cotta',
-        '--cyan-process'
-    ]
+    var colors=eval('frontColors'+mydiv.id);
+    var backColors=eval('backColors'+mydiv.id);
+    var textColors=eval('textColors'+mydiv.id);
+    //console.log(backColors)
 
     var flipper = document.createElement('div');
     if (frontCard){
@@ -1849,19 +1962,22 @@ function createOneCard  (mydiv, frontCard, cards, cardnum) {
     var frontSpan= document.createElement('span');
     frontSpan.className='flashcardtext';
     frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    frontSpan.style.color=textColors[cardnum % textColors.length];
     //frontSpan.textContent=jaxify(cards[cardnum]['front']);
-    front.style.background='var(' + colors[cardnum % colors.length] + ')';
-
+    //front.style.background='var(' + colors[cardnum % colors.length] + ')';
+    front.style.background=colors[cardnum % colors.length];
 
     front.append(frontSpan);
     flipper.append(front);
 
     var back = document.createElement('div');
     back.className='back flashcard';
+    back.style.background=backColors[cardnum % backColors.length];
 
     var backSpan= document.createElement('span');
     backSpan.className='flashcardtext';
     backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    backSpan.style.color=textColors[cardnum % textColors.length];
     back.append(backSpan);
 
     flipper.append(back);
@@ -1874,9 +1990,9 @@ function createOneCard  (mydiv, frontCard, cards, cardnum) {
 
 
 
-function createCards(id, keyControl) {
+function createCards(id, keyControl, grabFocus) {
     console.log(id);
-    
+
     var mydiv=document.getElementById(id);
     /*mydiv.onclick = window.flipCard(mydiv);*/
     /*
@@ -1884,15 +2000,15 @@ function createCards(id, keyControl) {
     mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
     */
     mydiv.onclick = function(){window.flipCard(mydiv);};
-    console.log(keyControl);
+    //console.log(keyControl);
     if (keyControl == "True"){
         mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
     }
     /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
     /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
 
-    console.log(mydiv);
-    
+    //console.log(mydiv);
+
     var cards=eval('cards'+id);
     mydiv.dataset.cardnum=0;
     mydiv.dataset.numCards=cards.length;
@@ -1955,7 +2071,8 @@ function createCards(id, keyControl) {
         next.innerHTML="Next >";
     }
 
-    mydiv.focus();
+    if (grabFocus == "True" )
+        mydiv.focus();
 
     return flipper;
 }
@@ -1964,22 +2081,37 @@ function createCards(id, keyControl) {
 
 
 
-var cardshbVygIiZapby=[
+        function try_create() {
+          if(document.getElementById("fFZjCtCTYUTF")) {
+            createCards("fFZjCtCTYUTF", "True", "False");
+          } else {
+             setTimeout(try_create, 200);
+          }
+        };
+    
+var cardsfFZjCtCTYUTF=[
     {
-        "front": "outcome (of a random experiment)",
-        "back": "An outcome of a random experiment is a result of the experiment that cannot be further decomposed."
+        "front": "statistical hypothesis",
+        "back": "An explanation for phenomena observed in a data set that can be formally tested using the data."
     },
     {
-        "front": "sample space, \\( S \\)",
-        "back": "The sample space of a random experiment is the set of all possible outcomes."
+        "front": "null hypothesis (for multiple groups)",
+        "back": "The hypothesis that the feature(s) being measured come from the same random phenomena; any observed differences come from issues related to random sampling, such as having sets that are too small to accurately measure the true value of some summary statistic."
     },
     {
-        "front": "event",
-        "back": "An event is a set of outcomes. The event occurs if the result of the experiment is any of the outcomes in the set. "
+        "front": "binary hypothesis test ",
+        "back": "A statistical test that decides between two competing statistical hypotheses."
+    },
+    {
+        "front": "resampling",
+        "back": "A type of statistical simulation in which new samples are repeatedly drawn from the existing data for each of the groups under consideration, and the statistical measures being used are evaluated for each of the new sample groups. "
     }
 ]
 ;
-    
+var frontColorsfFZjCtCTYUTF= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsfFZjCtCTYUTF= ["var(--dark-blue-gray)" ];
+var textColorsfFZjCtCTYUTF= ["var(--snow)" ];
+
 
         {
         const jmscontroller = new AbortController();
@@ -1987,12 +2119,12 @@ var cardshbVygIiZapby=[
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/outcomes-samplespaces-events.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/flashcards/hypothesis-testing.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("hbVygIiZapby", "True"))
+        .then(json => createCards("fFZjCtCTYUTF", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
-        createCards("hbVygIiZapby", "True");
+        try_create(); 
         });
         }
         </script></div>
@@ -2063,6 +2195,7 @@ var cardshbVygIiZapby=[
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flashcards">Flashcards</a></li>
 </ul>
   </nav></div>
 
