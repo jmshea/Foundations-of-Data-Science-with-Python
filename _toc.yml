@@ -13,3 +13,5 @@ sections:
   - file: 01-intro/intro-jupyter-and-python
   - file: 01-intro/jupyter-start
   - file: 01-intro/python-start
+  - file: 01-intro/review
+  - file: 01-intro/acknowledgments
