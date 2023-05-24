@@ -1,0 +1,6 @@
+[
+    {
+        "front": "outlier",
+        "back": "A value in a dataset that takes on a value that is not reasonable, based on the other values in the dataset or other domain knowledge. Outliers are often due to data entry, measurement, or unit conversion errors."
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "front": "statistical hypothesis",
+        "back": "An explanation for phenomena observed in a data set that can be formally tested using the data."
+    },
+    {
+        "front": "null hypothesis (for multiple groups)",
+        "back": "The hypothesis that the feature(s) being measured come from the same random phenomena; any observed differences come from issues related to random sampling, such as having sets that are too small to accurately measure the true value of some summary statistic."
+    },
+    {
+        "front": "binary hypothesis test ",
+        "back": "A statistical test that decides between two competing statistical hypotheses."
+    },
+    {
+        "front": "resampling",
+        "back": "A type of statistical simulation in which new samples are repeatedly drawn from the existing data for each of the groups under consideration, and the statistical measures being used are evaluated for each of the new sample groups. "
+    }
+]
