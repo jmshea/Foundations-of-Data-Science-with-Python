@@ -2,3 +2,7 @@ format: jb-article
 root: intro
 options:
   numbered: true
+sections:
+- file: 01-intro/intro
+  sections:
+  - file: 01-intro/who-for
