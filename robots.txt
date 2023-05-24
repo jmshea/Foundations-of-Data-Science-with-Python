@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://jmshea.github.io/Foundations-of-Data-Science-with-Python/sitemap.xml
