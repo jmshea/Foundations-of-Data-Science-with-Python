@@ -1,0 +1,244 @@
+[
+    {
+        "question": "Choose all of the following that can be included in Jupyter notebooks?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "Text and graphics output from Python",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Typeset mathematics",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Python executable code",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Formatted text",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Live snakes via Python",
+                "correct": false,
+                "feedback": "I hope not."
+            }
+        ]
+    },
+    {
+        "question": "Which of these are used to create formatted text in Jupyter notebooks?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Wiki markup",
+                "correct": false,
+                "feedback": "False."
+            },
+            {
+                "answer": "SVG",
+                "correct": false,
+                "feedback": "False."
+            },
+            {
+                "answer": "Markdown",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Rich Text",
+                "correct": false,
+                "feedback": "False."
+            }
+        ]
+    },
+    {
+        "question": "Which of these are used to typeset mathematics in Jupyter notebooks?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "SiliCoN",
+                "correct": false,
+                "feedback": "False."
+            },
+            {
+                "answer": "AcrYliC",
+                "correct": false,
+                "feedback": "False."
+            },
+            {
+                "answer": "MS Equation",
+                "correct": false,
+                "feedback": "False."
+            },
+            {
+                "answer": "LaTeX",
+                "correct": true,
+                "feedback": "Correct."
+            }
+        ]
+    },
+    {
+        "question": "Which of the following are used to create functional code blocks in Python?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "curly braces {}",
+                "correct": false,
+                "feedback": "Curly braces are used to group code in C, C++, and other languages, but not Python"
+            },
+            {
+                "answer": "parentheses ()",
+                "correct": false,
+                "feedback": "False."
+            },
+            {
+                "answer": "blank lines",
+                "correct": false,
+                "feedback": "Blank lines can help distinguish the end of code blocks visually, but do not affect the functional grouping"
+            },
+            {
+                "answer": "indentation",
+                "correct": true,
+                "feedback": "Correct."
+            }
+        ]
+    },
+    {
+        "question": "Choose all of the following that are used to create comments in Python:",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "//",
+                "correct": false,
+                "feedback": "Incorrect. This is the format of a single-line comment in C."
+            },
+            {
+                "answer": "# comment",
+                "correct": true,
+                "feedback": "Correct. A single hash is used to create a single-line comment"
+            },
+            {
+                "answer": "''' comment'''",
+                "correct": true,
+                "feedback": "Correct. This is used for multi-line comments."
+            },
+            {
+                "answer": "/* comment */",
+                "correct": false,
+                "feedback": "Incorrect. This is a C-style comment."
+            }
+        ]
+    },
+    {
+        "question": "Determine the output of the following Python code:",
+	      "code": "a=\"1\"\nb=\"2\"\nprint(a+b)",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "1",
+                "correct": false,
+                "feedback": "No. When strings are operated on by +, they are concatenated."
+            },
+            {
+                "answer": "2",
+                "correct": false,
+                "feedback": "No. When strings are operated on by +, they are concatenated."
+            },
+            {
+                "answer": "3",
+                "correct": false,
+                "feedback": "No. When strings are operated on by +, they are concatenated."
+            },
+            {
+                "answer": "12",
+                "correct": true,
+                "feedback": "Yes. The + operator will concatenate the strings \"1\" and \"2\"."
+            },
+            {
+                "answer": "error",
+                "correct": false,
+                "feedback": "No. The + operator for strings performs string concatenation."
+            }
+        ]
+    },
+    {
+        "question": "What is the output of the following Python program?",
+        "code": "dogs=['Amber', 'Madden', 'Roxy', 'Annie']\nprint(dogs[2])",
+        "answers": [
+            {
+                "answer": "Amber",
+                "correct": false,
+                "feedback": "Because of 0-based indexing, Amber would be dogs[0]"
+            },
+            {
+                "answer": "Madden",
+                "correct": false,
+                "feedback": "Because of 0-based indexing, Madden would be dogs[1]"
+            },
+            {
+                "answer": "Roxy",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Annie",
+                "correct": false,
+                "feedback": "Because of 0-based indexing, Annie would be dogs[3]"
+            }
+        ],
+        "type": "multiple_choice"
+    },
+    {
+        "question": "What numbers are printed by the following Python program?",
+        "code": "for k in range(3,9,3):\n    print(k)",
+        "answers": [
+            {
+                "answer": "0, 3",
+                "correct": false,
+                "feedback": "No. The first argument is the starting value for the range. Try again."
+            },
+            {
+                "answer": "3, 6",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "3, 6, 9",
+                "correct": false,
+                "feedback": "No. Although the second argument (9) is the end of this range, remember that the end values are not included in the range."
+            },
+            {
+                "answer": "3, 9",
+                "correct": false,
+                "feedback": "No. The second argument (9) is the end of this range, and the third argument (3) is the increment."
+            }
+        ],
+        "type": "multiple_choice"
+    },
+    {
+        "question": "The variable mylist is a Python list. Choose which code snippet will append the item 3 to mylist.",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "code": "mylist+=3",
+                "correct": false,
+                "feedback": "The Python + operator is not defined for a list and an integer."
+            },
+            {
+                "code": "mylist+=[3]",
+                "correct": true,
+                "feedback": "Correct. When operating on two lists, the Python + operator performs list concatenation."
+            },
+            {
+                "code": "mylist+={3}",
+                "correct": false,
+                "feedback": "False. In Python, {3} will be a set, and the + operator is not defined for a list and a set."
+            }
+        ]
+    }
+]
