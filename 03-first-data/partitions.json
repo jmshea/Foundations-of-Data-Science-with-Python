@@ -1,0 +1,84 @@
+[
+  {
+    "question": "Suppose sets $A$ and $B$ are non-empty subsets of some sample space $S$. If $A$ and $B$ are disjoint, which of the following are true?",
+    "type": "many_choice",
+    "answers": [
+      {
+        "answer": "Every element in $S$ is either in $A$ or $B$",
+        "correct": false,
+        "feedback": "No. This is only true if $A$ and $B$ are a partition for $S$."
+      },
+      {
+        "answer": "$A$ and $B$ have no elements in common",
+        "correct": true
+      },
+      {
+        "answer": "$A \\cap B = \\emptyset$",
+        "correct": true
+      },
+        {
+          "answer": "$A \\cup B = \\emptyset$",
+          "correct": false,
+          "feedback": "Since $A$ and $B$ are nonempty, their union will also be nonempty."
+      }
+    ]
+},
+    {
+    "question": "Which of these is true of a partition of a set $S$?",
+    "type": "many_choice",
+    "answers": [
+      {
+        "answer": "Every member of  the set $S$ must be in some subset of the partition.",
+        "correct": true
+      },
+      {
+        "answer": "The partition is a collection of subsets of $S$",
+        "correct": true
+      },
+      {
+        "answer": "Elements may belong to more than one of the subsets in the partition",
+        "correct": false
+      },
+        {
+          "answer": "No element in $S$ may belong to more than one of the subsets in the partition",
+          "correct": true
+      },
+        {
+          "answer": "The union of the subsets in the partition is equal to $S$",
+          "correct": true
+      },
+        {
+          "answer": "The intersection of the subsets in the partition is equal to $S$",
+          "correct": false
+      },
+        {
+          "answer": "The intersection of the subsets in the partition is equal to $\\emptyset$ ",
+          "correct": true
+      }
+    ]
+},
+    {
+    "question": "Which of the following is an example of a partition of the set {1, 2, 3, 4}?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "$\\{1, 2\\}, \\{3\\}, \\{4\\}$",
+        "correct": true
+      },
+      {
+          "answer": "$\\{1, 2\\}, \\{2, 3\\}, \\{4\\}$",
+          "correct": false,
+          "feedback": "No. The sets $\\{1,2\\}$ and $\\{2,3\\}$ are not disjoint."
+      },
+      {
+        "answer": "$\\{1\\}, \\{2\\}, \\{3\\}, \\{4\\}$",
+        "correct": true
+      },
+        {
+          "answer": "$\\{1, 2\\}, \\{4\\}, $",
+          "correct": false,
+          "feedback": "No. None of the sets in the partition contain the element $3$ from $S$, so this is not a partition. "
+      }
+    ]
+  }
+]

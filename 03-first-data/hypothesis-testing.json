@@ -1,0 +1,200 @@
+[
+  {
+    "question": "What is hypothesis testing?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "A statistical method used to determine whether a hypothesis about a population is likely to be true or not.",
+        "correct": true
+      },
+      {
+        "answer": "A method used to collect data about a population.",
+        "correct": false
+      },
+      {
+        "answer": "A method used to manipulate data to fit a desired outcome.",
+        "correct": false
+      },
+      {
+        "answer": "A method used to visualize data in a meaningful way.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the null hypothesis?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The assumption that there is no significant difference between a sample and the population it represents.",
+        "correct": true
+      },
+      {
+        "answer": "The assumption that there is a significant difference between a sample and the population it represents.",
+        "correct": false
+      },
+      {
+        "answer": "The opposite of the alternative hypothesis.",
+        "correct": false
+      },
+      {
+        "answer": "The hypothesis that is always rejected.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the alternative hypothesis?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The opposite of the null hypothesis.",
+        "correct": true
+      },
+      {
+        "answer": "The assumption that there is no significant difference between a sample and the population it represents.",
+        "correct": false
+      },
+      {
+        "answer": "The hypothesis that is always rejected.",
+        "correct": false
+      },
+      {
+        "answer": "The hypothesis that is always accepted.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the first step in hypothesis testing?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "Formulating a null hypothesis and an alternative hypothesis.",
+        "correct": true
+      },
+      {
+        "answer": "Collecting data.",
+        "correct": false
+      },
+      {
+        "answer": "Calculating a test statistic.",
+        "correct": false
+      },
+      {
+        "answer": "Comparing the test statistic to the critical value.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is a test statistic?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "A numerical value that measures the difference between the sample and the population.",
+        "correct": true
+      },
+      {
+        "answer": "A value that is always greater than the critical value.",
+        "correct": false
+      },
+      {
+        "answer": "A value that is always less than the critical value.",
+        "correct": false
+      },
+      {
+        "answer": "A value that is always equal to the critical value.",
+        "correct": false
+      }
+    ]
+  },
+    {
+      "question": "Which of these are advantages of the model-free approach?",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "It provides exact mathematical formula for probabilities",
+          "correct": false
+      },
+          {
+          "answer": "It does not require the data to be a certain size in order for the model to be accurate",
+          "correct": true
+      },
+          {
+          "answer": "It does not rely on mathematical formulas for determining factors such as statistical significance",
+          "correct": true
+      },
+          {
+          "answer": "It can often be implemented using simulation",
+          "correct": true
+      }
+      ]
+  },
+  {
+    "question": "What is a critical value?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "A value determined by the level of significance and the degrees of freedom.",
+        "correct": true
+      },
+      {
+        "answer": "A value that is always greater than the test statistic.",
+        "correct": false
+      },
+      {
+        "answer": "A value that is always less than the test statistic.",
+        "correct": false
+      },
+      {
+        "answer": "A value that is always equal to the test statistic.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "When is the null hypothesis rejected?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "When the test statistic is greater than the critical value.",
+        "correct": true
+      },
+      {
+        "answer": "When the test statistic is less than the critical value.",
+        "correct": false
+      },
+      {
+        "answer": "When the significance level is high.",
+        "correct": false
+      },
+      {
+        "answer": "When the alternative hypothesis is true.",
+        "correct": false
+      }
+    ]
+  },
+   {
+    "question": "What is the significance level?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The probability of rejecting the null hypothesis when it is actually true.",
+        "correct": true
+      },
+      {
+        "answer": "The probability of accepting the null hypothesis when it is actually false.",
+        "correct": false
+      },
+      {
+        "answer": "The probability of accepting the alternative hypothesis when it is actually false.",
+        "correct": false
+      },
+      {
+        "answer": "The probability of rejecting the alternative hypothesis when it is actually true.",
+        "correct": false
+      }
+    ]
+  }
+]

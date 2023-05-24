@@ -1,0 +1,146 @@
+[
+  {
+    "question": "What are summary statistics?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "Numerical values that summarize a dataset",
+        "correct": true
+      },
+      {
+        "answer": "Graphical representations of a dataset",
+        "correct": false
+      },
+      {
+        "answer": "Descriptive words that summarize a dataset",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What are the most common summary statistics?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "Mean, median, mode, range, variance, and standard deviation",
+        "correct": true
+      },
+      {
+        "answer": "Histogram, scatter plot, box plot, and bar chart",
+        "correct": false
+      },
+      {
+        "answer": "Correlation, regression, and hypothesis testing",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the mean?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The middle value of a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The most common value in a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The average value of a dataset",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "What is the median?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The middle value of a dataset",
+        "correct": true
+      },
+      {
+        "answer": "The most common value in a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The average value of a dataset",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the mode?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The middle value of a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The most common value in a dataset",
+        "correct": true
+      },
+      {
+        "answer": "The average value of a dataset",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the range?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The difference between the maximum and minimum values in a dataset",
+        "correct": true
+      },
+      {
+        "answer": "The sum of all values in a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The number of values in a dataset",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the variance?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "A measure of how spread out the data is",
+        "correct": true
+      },
+      {
+        "answer": "The difference between the maximum and minimum values in a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The middle value of a dataset",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the standard deviation?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The square root of the variance",
+        "correct": true
+      },
+      {
+        "answer": "The difference between the maximum and minimum values in a dataset",
+        "correct": false
+      },
+      {
+        "answer": "The middle value of a dataset",
+        "correct": false
+      }
+    ]
+  }
+]
