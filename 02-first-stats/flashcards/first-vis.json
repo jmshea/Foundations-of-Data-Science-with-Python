@@ -1,0 +1,14 @@
+[
+    {
+        "front": "scatter plot",
+        "back": "A (two-dimensional) scatter plot takes two sequences $\\mathbf{x}= (x_0, x_1, \\ldots)$ and $\\mathbf{y}=(y_0, y_1, \\ldots)$ and plots symbols (called <i>markers</i>) that represent the locations of the points $(x_0, y_0), (x_1, y_1), \\ldots$ in two dimensions. "
+    },
+    {
+        "front": "histogram",
+        "back": "a type of bar graph in which the heights of the bars is proportional to the number of occurrences of the outcomes spanned by the width of the bars "
+    },
+    {
+        "front": "relative frequency",
+        "back": "the proportion of times that we observe a result matching our criteria during repeated experiments (including simulation); i.e., the number of times that an event occurs divided by the number of times the experiment is conducted. "
+    }
+]

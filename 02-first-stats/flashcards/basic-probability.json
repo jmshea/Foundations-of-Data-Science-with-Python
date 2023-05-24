@@ -1,0 +1,26 @@
+[
+    {
+        "front": "random experiments ",
+        "back": "an experiment in which the result is not completely predictable to an observer based on the observer's knowledge of the system and its inputs."
+    },
+    {
+        "front": "outcome ",
+        "back": "An outcome is a non-decomposable result (or output) of a random experiment."
+    },
+    {
+        "front": "set",
+        "back": "an unordered collection of *unique* items"
+    },
+    {
+        "front": "event ",
+        "back": "any possible set of outcomes of an experiment to which we will assign probability"
+    },
+    {
+        "front": "event class",
+        "back": "A collection of all events to which we assign probability. For our purposes, it is a set of subsets of $S$. "
+    },
+    {
+        "front": "fair experiment",
+        "back": "an experiment is *fair* if every outcome has the same probability of occurring."
+    }
+]

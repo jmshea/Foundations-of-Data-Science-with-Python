@@ -1,0 +1,69 @@
+[
+  {
+    "question": "What is a scatter plot?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "A graph that plots a marker to representing two different values associated with each data point",
+        "correct": true
+      },
+      {
+          "answer": "A graph that shows the frequency distribution of some data",
+          "correct": false,
+          "feedback": "No. Histograms are used to show the frequency distribution of data"
+
+      },
+      {
+          "answer": "A graph that shows the statistics of some data",
+          "correct": false,
+          "feedback": "Scatter plots show the data values directly, rather than statistics of the data"
+      }
+    ]
+  },
+  {
+      "question": "What is a histogram? (Choose all correct answers.)",
+    "type": "many_choice",
+    "answers": [
+      {
+        "answer": "A graph that visualizes how some data is distributed",
+        "correct": true
+      },
+      {
+          "answer": "A graph that shows the relationship between two variables",
+          "correct": false,
+          "feedback": "The one-dimensional histograms we discuss in this section only provide information about one variable of a data set"
+      },
+      {
+          "answer": "A graph that plots a marker for each data point",
+          "correct": false,
+          "feedback": "Histograms do not use markers and do not produce separate graphics for each data point"
+      },
+      {
+          "answer": "A specialized type of bar graph",
+          "correct": true
+      }
+
+    ]
+  },
+    {
+      "question": "Which of the following is true of histograms",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Can only be used with discrete data",
+          "correct": false,
+          "feedback": "False. Histograms bin data together, and this allows it to be used with continuous data"
+      },
+          {
+          "answer": "Can only be used with continuous data",
+          "correct": false,
+          "feedback": "False. Histograms can be used to count discrete data, either with one value per bin or multiple values per bin"
+
+      },
+          {
+          "answer": "Can be used with continuous or discrete data",
+          "correct": true
+      }
+      ]
+  }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "front": "scatter plot",
+        "back": "A (two-dimensional) scatter plot takes two sequences $\\mathbf{x}= (x_0, x_1, \\ldots)$ and $\\mathbf{y}=(y_0, y_1, \\ldots)$ and plots symbols (called <i>markers</i>) that represent the locations of the points $(x_0, y_0), (x_1, y_1), \\ldots$ in two dimensions. "
+    },
+    {
+        "front": "histogram",
+        "back": "a type of bar graph in which the heights of the bars is proportional to the number of occurrences of the outcomes spanned by the width of the bars "
+    },
+    {
+        "front": "relative frequency",
+        "back": "the proportion of times that we observe a result matching our criteria during repeated experiments (including simulation); i.e., the number of times that an event occurs divided by the number of times the experiment is conducted. "
+    },
+    {
+        "front": "random experiments ",
+        "back": "an experiment in which the result is not completely predictable to an observer based on the observer's knowledge of the system and its inputs."
+    },
+    {
+        "front": "outcome ",
+        "back": "An outcome is a non-decomposable result (or output) of a random experiment."
+    },
+    {
+        "front": "set",
+        "back": "an unordered collection of <i>unique</i> items"
+    },
+    {
+        "front": "event ",
+        "back": "any possible set of outcomes of an experiment to which we will assign probability"
+    },
+    {
+        "front": "event class",
+        "back": "A collection of all events to which we assign probability. For our purposes, it is a set of subsets of $S$. "
+    },
+    {
+        "front": "fair experiment",
+        "back": "an experiment is <i>fair</i> if every outcome has the same probability of occurring."
+    },
+    {
+        "front": "probability",
+        "back": "a number between 0 and 1 that we assign to an event that is proportional to how likely that event is to occur"
+    }
+]
