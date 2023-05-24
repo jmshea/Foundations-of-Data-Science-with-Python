@@ -1,0 +1,26 @@
+[
+    {
+        "front": "data",
+        "back": "Collections of measurements, characteristics, or facts about a group."
+    },
+    {
+        "front": "data science",
+        "back": "The process of extracting meaning from data."
+    },
+    {
+        "front": "variable",
+        "back": "A particular characteristic, measurement, or fact about a particular member of a group."
+    },
+    {
+        "front": "quantitative data",
+        "back": "Numeric data."
+    },
+    {
+        "front": "qualitative data",
+        "back": "Non-numeric or categorical data."
+    },
+    {
+        "front": "research question",
+        "back": "A question that can be answered using research, including data collection and analysis."
+    }
+]
