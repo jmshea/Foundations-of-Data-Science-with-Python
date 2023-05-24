@@ -15,3 +15,7 @@ sections:
   - file: 01-intro/python-start
   - file: 01-intro/review
   - file: 01-intro/acknowledgments
+- file: 02-first-stats/intro
+  sections:
+  - file: 02-first-stats/motivating-problem
+  - file: 02-first-stats/first-sims
