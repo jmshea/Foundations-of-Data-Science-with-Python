@@ -1,0 +1,14 @@
+[
+    {
+        "front": "Type-I Error",
+        "back": "A <i>Type-I Error</i> is a <b>false positive</b> and is sometimes denoted by the Greek letter \\(\\alpha\\) (\"alpha\").  For NHST, a Type I error occurs if the null hypothesis is actually true, but it is rejected."
+    },
+    {
+        "front": "Type-II Error",
+        "back": "A <i>Type-II Error</i> is a <b>false negative</b> and is sometimes denoted by the Greek letter \\(\\beta\\) (\"beta\").  For NHST, a Type II error occurs if the alternative hypothesis is actually true, but the null hypothesis is not rejected."
+    },
+    {
+        "front": "Power",
+        "back": "The probability of rejecting the null hypothesis when the alternative hypothesis is true."
+    }
+]

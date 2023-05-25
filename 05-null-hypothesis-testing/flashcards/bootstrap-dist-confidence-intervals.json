@@ -1,0 +1,9 @@
+[
+    {
+        "front": "bootstrap distribution",
+        "back": "A characterization of the possible values of a statistic and the probabilities of those values that arises from creating values of that statistic via bootstrap sampling."},
+    {
+        "front": "confidence interval (CI)",
+        "back": "Given samples from a random distribution and a confidence level c%, the c% CI for some parameter is an interval that will contain the true value of the parameter c% of the time if the sampling process were repeated many times."
+    }
+]

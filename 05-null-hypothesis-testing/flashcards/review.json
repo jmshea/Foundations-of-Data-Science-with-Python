@@ -1,0 +1,114 @@
+[
+    {
+        "front": "Type-I Error",
+        "back": "A <i>Type-I Error</i> is a <b>false positive</b> and is sometimes denoted by the Greek letter \\(\\alpha\\) (\"alpha\").  For NHST, a Type I error occurs if the null hypothesis is actually true, but it is rejected."
+    },
+    {
+        "front": "Type-II Error",
+        "back": "A <i>Type-II Error</i> is a <b>false negative</b> and is sometimes denoted by the Greek letter \\(\\beta\\) (\"beta\").  For NHST, a Type II error occurs if the alternative hypothesis is actually true, but the null hypothesis is not rejected."
+    },
+    {
+        "front": "Power",
+        "back": "The probability of rejecting the null hypothesis when the alternative hypothesis is true."
+    },
+    {
+        "front": "exact permutation test",
+        "back": "The data is permuted among the groups in every possible order. (No data is repeated.)"
+    },
+    {
+        "front": "bootstrap distribution",
+        "back": "For some statistic of sample data, the <i>bootstrap distribution</i> is a characterization of the possible values of that statistic and the mapping of probability to those values that arises from creating values of that statistic via bootstrap sampling. Whereas the sampling distribution is based on samples from the original random distribution, the bootstrap distribution is based on resampling from a fixed set of data."
+    },
+    {
+        "front": "confidence interval (CI)",
+        "back": "Given samples from a random distribution and a confidence level c%, the c% CI for some parameter is an interval that will contain the true value of the parameter c% of the time if the sampling process were repeated many times."
+    },
+    {
+        "front": "statistical study",
+        "back": "A means to answer a research question using data."
+    },
+    {
+        "front": "experimental study or experiment",
+        "back": "A study in which the investigator controls one or more of the variables."
+    },
+    {
+        "front": "observational study",
+        "back": "A study in which data is collected about variables of interest for some participants without any attempt to control the variables for the participants. In particular, if some of the variables correspond to treatments, there is no attempt to randomize which participants receive which treatments. "
+    },
+    {
+        "front": "randomized control trial (RCT)",
+        "back": "An experiment involving participants that are <b>randomly assigned</b> to either a <i>control group</i> or one or more <i>treatment groups</i>. The control group receives no treatment or the standard treatment. The treatment group receives the novel treatment that is to be evaluated."
+    },
+    {
+        "front": "natural experiment",
+        "back": "An experiment in which some participants are exposed to a novel treatment, while others are exposed to a control treatment, in a way that approximates the random assignment of a randomized control trial. "
+    },
+    {
+        "front": "population",
+        "back": "<i>All members</i> of a group that share some common characteristic."
+    },
+    {
+        "front": "population study",
+        "back": "In a <i>population study</i>, data are gathered about a group (often people) whose members share some common characteristic(s)."
+    },
+    {
+        "front": "sample",
+        "back": "In a <i>population study</i>, a <i>sample</i> is a subset of the population for which data is collected. Ideally, the sample is large enough to provide statistical significance for issues being studied."
+    },
+    {
+        "front": "cross-sectional study",
+        "back": "A <i>cross-sectional study</i> is an observational study that collects data about some population at a single instance in time. "
+    },
+    {
+        "front": "longitudinal study",
+        "back": "A <i>longitudinal study</i>, involves collecting repeated observations over time for a population."
+    },
+    {
+        "front": "longitudinal cohort study",
+        "back": "A <i>longitudinal study</i>, involves collecting repeated observations over time for a particular set of members (called a cohort) of a population."
+    },
+    {
+        "front": "prospective study",
+        "back": "A study in which the research question is formulated <i>first</i> and used to formulate the design of the data collection (including not only what data is to be collected, but from what subjects, and how the data is to be collected). "
+    },
+    {
+        "front": "retrospective study",
+        "back": "A study that tries to answer a research question by using data that has already been collected."
+    },
+    {
+        "front": "post hoc analysis",
+        "back": "Retrospective analysis involving computing new statistics or searching for new effects that were not identified or hypothesized in formulating the study. "
+    },
+    {
+        "front": "selection bias",
+        "back": "Occurs when the sample is chosen in a way that causes it to differ from a random sample from the population being studied."
+    },
+    {
+        "front": "sampling distribution",
+        "back": "For some statistic of sample data, the <i>sampling distribution</i> characterizes the possible values of that statistic and the mapping of probability to those values, under some underlying assumption(s) on the population. The sampling distribution varies with the size(s) of the group(s) in the sample."
+    },
+    {
+        "front": "mode(s) of a distribution    ",
+        "back": "For a distribution of random values,  the value(s) with the maximum probability (or probability density -- see Chapter 8) are the <i>modes</i> of the distribution."
+    },
+    {
+        "front": "unimodal distribution    ",
+        "back": "A distribution of random values that has a single mode."
+    },
+    {
+        "front": "tail probability",
+        "back": "For a unimodal distribution in which the probabilities decrease as some function of the distance from the mode, a <i>tail probability</i> is the probability of being at least some distance from the mode."
+    },
+    {
+        "front": "right, or upper, tail",
+        "back": "For a random value $\\Delta$ that has a distribution with mode $M_\\Delta$, the <i>right tail</i> or <i>upper tail</i> is of the form $P(\\Delta > M_\\Delta +d)$  for some value $d>0$.."
+    },
+    {
+        "front": "left, or lower, tail",
+        "back": "For a random value $\\Delta$ that has a distribution with mode $M_\\Delta$, the <i>left tail</i> or <i>lower tail</i> is of the form $P(\\Delta < M_\\Delta -d)$ for some value $d>0$."
+    },
+    {
+        "front": "two-sided tail",
+        "back": "For a random value $\\Delta$ that has a distribution with mode $M_\\Delta$, a <i>two-sided tail</i> is of the form $P(|\\Delta - M_\\Delta| > d)$ for some value $d>0$."
+    }
+]

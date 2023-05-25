@@ -1,0 +1,6 @@
+[
+    {
+        "front": "exact permutation test",
+        "back": "The data is permuted among the groups in every possible order. (No data is repeated.)"
+    }
+]

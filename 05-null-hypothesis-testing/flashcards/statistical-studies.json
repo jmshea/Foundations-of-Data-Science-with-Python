@@ -1,0 +1,62 @@
+[
+    {
+        "front": "statistical study",
+        "back": "A means to answer a research question using data."
+    },
+    {
+        "front": "experimental study or experiment",
+        "back": "A study in which the investigator controls one or more of the variables."
+    },
+    {
+        "front": "observational study",
+        "back": "A study in which data is collected about variables of interest for some participants without any attempt to control the variables for the participants. In particular, if some of the variables correspond to treatments, there is no attempt to randomize which participants receive which treatments. "
+    },
+    {
+        "front": "randomized control trial (RCT)",
+        "back": "An experiment involving participants that are <b>randomly assigned</b> to either a <i>control group</i> or one or more <i>treatment groups</i>. The control group receives no treatment or the standard treatment. The treatment group receives the novel treatment that is to be evaluated."
+    },
+    {
+        "front": "natural experiment",
+        "back": "An experiment in which some participants are exposed to a novel treatment, while others are exposed to a control treatment, in a way that approximates the random assignment of a randomized control trial. "
+    },
+    {
+        "front": "population",
+        "back": "<i>All members</i> of a group that share some common characteristic."
+    },
+    {
+        "front": "population study",
+        "back": "In a <i>population study</i>, data are gathered about a group (often people) whose members share some common characteristic(s)."
+    },
+    {
+        "front": "sample",
+        "back": "In a <i>population study</i>, a <i>sample</i> is a subset of the population for which data is collected. Ideally, the sample is large enough to provide statistical significance for issues being studied."
+    },
+    {
+        "front": "cross-sectional study",
+        "back": "A <i>cross-sectional study</i> is an observational study that collects data about some population at a single instance in time. "
+    },
+    {
+        "front": "longitudinal study",
+        "back": "A <i>longitudinal study</i>, involves collecting repeated observations over time for a population."
+    },
+    {
+        "front": "longitudinal cohort study",
+        "back": "A <i>longitudinal study</i>, involves collecting repeated observations over time for a particular set of members (called a cohort) of a population."
+    },
+    {
+        "front": "prospective study",
+        "back": "A study in which the research question is formulated <i>first</i> and used to formulate the design of the data collection (including not only what data is to be collected, but from what subjects, and how the data is to be collected). "
+    },
+    {
+        "front": "retrospective study",
+        "back": "A study that tries to answer a research question by using data that has already been collected."
+    },
+    {
+        "front": "post hoc analysis",
+        "back": "Retrospective analysis involving computing new statistics or searching for new effects that were not identified or hypothesized in formulating the study. "
+    },
+    {
+        "front": "selection bias",
+        "back": "Occurs when the sample is chosen in a way that causes it to differ from a random sample from the population being studied."
+    }
+]
