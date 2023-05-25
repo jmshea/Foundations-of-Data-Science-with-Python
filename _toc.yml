@@ -22,3 +22,7 @@ sections:
   - file: 02-first-stats/first-vis
   - file: 02-first-stats/first-stats
   - file: 02-first-stats/review
+- file: 03-first-data/intro
+  sections:
+  - file: 03-first-data/pandas-start
+  - file: 03-first-data/visualization
