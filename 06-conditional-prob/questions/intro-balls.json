@@ -1,0 +1,92 @@
+[
+    {
+        "question": "A box contains 2 white balls and 1 black ball. I reach in the box and remove one ball. Without inspecting it, I place it in my pocket. I withdraw a second ball. What is the probability that the second ball is white?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "1/2",
+                "correct": false
+            },
+            {
+                "answer": "2/3",
+                "correct": true
+            },
+            {
+                "answer": "1/3",
+                "correct": false
+            },
+            {
+                "answer": "Impossible to know without knowing color of first ball",
+                "correct": false
+            },
+            {
+                "answer": "0",
+                "correct": false
+            },
+            {
+                "answer": "Something else",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "A box contains 2 white balls and 1 black ball. I reach in the box and remove one ball. Without inspecting it, I place it in my pocket. I withdraw a second ball. If the second ball is white, what is the probability that the ball in my pocket is white?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "1/2",
+                "correct": true
+            },
+            {
+                "answer": "2/3",
+                "correct": false
+            },
+            {
+                "answer": "1/3",
+                "correct": false
+            },
+            {
+                "answer": "Impossible to know without knowing color of first ball",
+                "correct": false
+            },
+            {
+                "answer": "0",
+                "correct": false
+            },
+            {
+                "answer": "Something else",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "A box contains 2 white balls and 1 black ball. I reach in the box and remove one ball. Without inspecting it, I place it in my pocket. I then look into the box and remove a white ball. What is the probability that the ball in my pocket is white?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "1/2",
+                "correct": false
+            },
+            {
+                "answer": "2/3",
+                "correct": true
+            },
+            {
+                "answer": "1/3",
+                "correct": false
+            },
+            {
+                "answer": "Impossible to know without knowing color of first ball",
+                "correct": false
+            },
+            {
+                "answer": "0",
+                "correct": false
+            },
+            {
+                "answer": "Something else",
+                "correct": false
+            }
+        ]
+    }
+]

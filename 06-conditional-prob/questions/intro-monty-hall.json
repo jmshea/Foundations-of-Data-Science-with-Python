@@ -1,0 +1,28 @@
+[
+    {
+        "question": "For the Monty Hall problem, does it matter if you switch doors?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "No. The car is behind any door with probability ${}^1{\\mskip -2.5mu/\\mskip -1mu}_3$",
+                "correct": false
+            },
+            {
+                "answer": "Yes. The host has eliminated a goat. The probability of selecting the car is now ${}^1{\\mskip -2.5mu/\\mskip -1mu}_2$",
+                "correct": false
+            },
+            {
+                "answer": "Yes. Switching can increase the probability of selecting the car to stricly more than ${}^1{\\mskip -2.5mu/\\mskip -1mu}_2$",
+                "correct": true
+            },
+            {
+                "answer": "No. Switching reduces the probability of selecting the car",
+                "correct": false
+            },
+            {
+                "answer": "Something else",
+                "correct": false
+            }
+        ]
+    }
+]
