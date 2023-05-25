@@ -1,0 +1,6 @@
+[
+    {
+        "front": "conditional probability",
+        "back": "The conditional probability of an event $A$ given that an event $B$ occurred, where $P(B) \\ne 0$, is \n $$ P(A|B) = \\frac{P \\left( A \\cap B \\right)}{P\\left(B\\right)}\n$$"
+    }
+]

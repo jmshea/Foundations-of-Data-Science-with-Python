@@ -1,0 +1,14 @@
+[
+    {
+        "front": "chain rules",
+        "back": "express the probability of an intersection of events in terms of a sequence of conditional probabilities involving those events"
+    },
+    {
+        "front": "partition (of the sample space)",
+        "back": " A collection of sets $A_1, A_2, \\ldots$ <i>partitions</i> the sample space $S$ if and only if \\begin{align*} S &= \\bigcup_i A_i,     \\mbox{ and } A_i \\cap A_j = \\emptyset, ~~~i \\ne j. \\end{align*}" 
+    },
+    {
+        "front": "Law of Total Probability",
+        "back": "Given an event $B \\subseteq S$ and a partition of $S$ denoted by $A_1, A_2, \\ldots$, \\begin{align*} P(B) = \\sum_i P(B|A_i)P(A_i).  \\end{align*}"
+    }
+]

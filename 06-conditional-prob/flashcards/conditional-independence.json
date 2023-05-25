@@ -1,0 +1,6 @@
+[
+    {
+        "front": "conditional independence (events)",
+        "back": "Events $A$ and $B$ are <i>conditionally independent</i> given an event $C$ iff $A$ and $B$ are independent under the conditional probability measure $P(\\cdot | C).$  I.e., $A$ and $B$ are conditionally independent iff<br>$$P(A \\cap B |C) = P(A|C) P(B|C).$$"
+    }
+]
