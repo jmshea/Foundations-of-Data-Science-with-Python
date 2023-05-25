@@ -1,0 +1,14 @@
+[
+    {
+        "front": "combinatorics",
+        "back": "the mathematics of counting"
+    },
+    {
+        "front": "cartesian product",
+        "back": "The _cartesian product_ of two sets $A$ and $B$ is denoted $A \\times B$ and is defined by \n\n$$A \\times B = \\{ (a,b) | a \\in A \\mbox{ and } b \\in B\\}.\n$$\nThat is, it is the set of all two-tuples with the first element from set $A$ and the second element from set $B$."
+    },
+    {
+        "front": "permutation",
+        "back": "an ordering (or reordering) of a set of objects"
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "front": "compound experiment",
+        "back": "An experiment that consists of multiple sub-experiments."
+    },
+    {
+        "front": "trial (compound experiments)",
+        "back": "A trial in a compound experiment is one of the sub-experiments that make up the composite experiment."
+    },
+    {
+        "front": "repeated experiment",
+        "back": "A repeated experiment is a compound experiment in which the trials are identical and independent of each other."
+    },
+    {
+        "front": "statistical regularity",
+        "back": "An experiment has statistical regularity if under repeated experiments, the relative frequencies converge (in some sense) to some fixed values. "
+    }
+]

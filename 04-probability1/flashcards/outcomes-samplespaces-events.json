@@ -1,0 +1,14 @@
+[
+    {
+        "front": "outcome (of a random experiment)",
+        "back": "An outcome of a random experiment is a result of the experiment that cannot be further decomposed."
+    },
+    {
+        "front": "sample space, \\( S \\)",
+        "back": "The sample space of a random experiment is the set of all possible outcomes."
+    },
+    {
+        "front": "event",
+        "back": "An event is a set of outcomes. The event occurs if the result of the experiment is any of the outcomes in the set. "
+    }
+]

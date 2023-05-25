@@ -1,0 +1,14 @@
+[
+    {
+        "front": "event class",
+        "back": "For a sample space $S$ and a probability measure $P$, the event class, denoted by $\\mathcal{F}$ is a collection of all subsets of $S$ to which we will assign probability (i.e., for which $P$ will be defined). The sets in $\\mathcal{F}$ are called events."
+    },
+    {
+        "front": "power set",
+        "back": "For a set $S$ with finite cardinality, $|S|=N < \\infty$, the power set is the set of all possible subsets. We will use the notation $2^S$ to denote the power set."
+    },
+    {
+        "front": "probability measure",
+        "back": "The probability measure, $P$, is a real-valued set function that maps every element of the event class to the real line."
+    }
+]
