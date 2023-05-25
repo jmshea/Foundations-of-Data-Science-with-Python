@@ -1,0 +1,153 @@
+[
+    {
+        "question": "Find the probability of 4 heads on 20 flips of a fair coin, $P(H_4)$ to 2 significant digits.",
+        "type": "numeric",
+        "precision": 4,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.0046,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000000001, 1000000000], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Find $|H_4|$ using the binomial coefficient and divide by the cardinality of $S$. "
+            }
+        ]
+    },
+    {
+        "question": "Find the probability of 6 heads on 20 flips of a fair coin, $P(H_6)$ to 2 significant digits.",
+        "type": "numeric",
+        "precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.037,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000000001, 1000000000], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Find $|H_6|$ using the binomial coefficient and divide by the cardinality of $S$. "
+            }
+
+        ]
+    },
+    {
+        "question": "Find the probability of 8 heads on 20 flips of a fair coin, $P(H_8)$ to 2 significant digits.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.12,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000000001, 1000000000], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Find $|H_8|$ using the binomial coefficient and divide by the cardinality of $S$. "
+            }
+        ]
+    },
+    {
+        "question": "Find the probability of 10 heads on 20 flips of a fair coin, $P(H_{10})$ to 2 significant digits.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.18,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000000001, 1000000000], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Find $|H_{10}|$ using the binomial coefficient and divide by the cardinality of $S$. "
+            }
+        ]
+    },
+    {
+        "question": "Find the probability of 12 heads on 20 flips of a fair coin, $P(H_{12})$ to 2 significant digits.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.12,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000000001, 1000000000], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Find $|H_{12}|$ using the binomial coefficient and divide by the cardinality of $S$. "
+            }
+        ]
+    }
+]

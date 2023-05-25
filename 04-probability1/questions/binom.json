@@ -1,0 +1,152 @@
+[
+    {
+        "question": "How many outcomes are in the event $H_4$ (there are 4 heads on 20 flips of a fair coin)?",
+        "type": "numeric",
+        "precision": 0,
+        "answers": [
+            {
+                "type": "value",
+                "value": 4845,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. We are counting a number of outcomes, so it cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1048577, 1000000000], 
+                "correct": false,
+                "feedback": "No. Recall that  the entire sample space only has 1048576 outcomes. $H_3$ cannot have more outcomes than $S$."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "The number of outcomes is 20 choose 4 and can be calculated using the binom() function of SciPy.special."
+            }
+        ]
+    },
+    {
+        "question": "How many outcomes are in the event $H_5$ (there are 5 heads on 20 flips of a fair coin)?",
+        "type": "numeric",
+        "precision": 0,
+        "answers": [
+            {
+                "type": "value",
+                "value": 15504,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. We are counting a number of outcomes, so it cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1048577, 1000000000], 
+                "correct": false,
+                "feedback": "No. Recall that  the entire sample space only has 1048576 outcomes. $H_3$ cannot have more outcomes than $S$."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "The number of outcomes is 20 choose 5 and can be calculated using the binom() function of SciPy.special."
+            }
+        ]
+    },
+    {
+        "question": "How many outcomes are in the event $H_6$ (there are 6 heads on 20 flips of a fair coin)?",
+        "type": "numeric",
+        "precision": 0,
+        "answers": [
+            {
+                "type": "value",
+                "value": 38760,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. We are counting a number of outcomes, so it cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1048577, 1000000000], 
+                "correct": false,
+                "feedback": "No. Recall that  the entire sample space only has 1048576 outcomes. $H_3$ cannot have more outcomes than $S$."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "The number of outcomes is 20 choose 6 and can be calculated using the binom() function of SciPy.special."
+            }
+        ]
+    },
+    {
+        "question": "How many outcomes are in the event $H_7$ (there are 7 heads on 20 flips of a fair coin)?",
+        "type": "numeric",
+        "precision": 0,
+        "answers": [
+            {
+                "type": "value",
+                "value": 77520,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. We are counting a number of outcomes, so it cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1048577, 1000000000], 
+                "correct": false,
+                "feedback": "No. Recall that  the entire sample space only has 1048576 outcomes. $H_3$ cannot have more outcomes than $S$."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "The number of outcomes is 20 choose 7 and can be calculated using the binom() function of SciPy.special."
+            }
+        ]
+    },
+    {
+        "question": "How many outcomes are in the event $H_8$ (there are 8 heads on 20 flips of a fair coin)?",
+        "type": "numeric",
+        "precision": 0,
+        "answers": [
+            {
+                "type": "value",
+                "value": 125970,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. We are counting a number of outcomes, so it cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1048577, 1000000000], 
+                "correct": false,
+                "feedback": "No. Recall that  the entire sample space only has 1048576 outcomes. $H_3$ cannot have more outcomes than $S$."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "The number of outcomes is 20 choose 8 and can be calculated using the binom() function of SciPy.special."
+            }
+        ]
+    }
+]
