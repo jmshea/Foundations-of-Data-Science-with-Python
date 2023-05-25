@@ -1,0 +1,117 @@
+[
+    {
+        "question": "Choose all of the following that are useful error metrics that can be minimized to create a summary statistic:",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "sum of absolute errors",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "total number of errors",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "sum of errors",
+                "correct": false,
+                "feedback": "There is no minimum value for this metric."
+            },
+            {
+                "answer": "sum of squared errors",
+                "correct": true,
+                "feedback": "Correct."
+            }
+        ]
+    },
+    {
+        "question": "Which of the following summary statistics minimizes the sum of squared errors to the data:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "mode",
+                "correct": false,
+                "feedback": "Try again."
+            },
+            {
+                "answer": "median",
+                "correct": false,
+                "feedback": "Try again."
+            },
+            {
+                "answer": "average",
+                "correct": true,
+                "feedback": "Correct."
+            }
+        ]
+    },
+    {
+        "question": "Which of the following summary statistics minimizes the sum of absolute errors to the data:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "average",
+                "correct": false,
+                "feedback": "Try again."
+            },
+            {
+                "answer": "median",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "mode",
+                "correct": false,
+                "feedback": "Try again."
+            }
+        ]
+    },
+    {
+        "question": "Which of the following summary statistics minimizes the number of non-zero errors to the data:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "mode",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "average",
+                "correct": false,
+                "feedback": "Try again."
+            },
+            {
+                "answer": "median",
+                "correct": false,
+                "feedback": "Try again."
+            }
+        ]
+    },
+    {
+        "question": "Choose all of the following that are typical causes of outliers in data sets:",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "measurement errors",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "different population characteristics",
+                "correct": false,
+                "feedback": "Different population characteristics often produce variations in data, but these are not erroneous values and not considered outliers."
+            },
+            {
+                "answer": "data entry errors",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "unit conversion errors",
+                "correct": true,
+                "feedback": "Correct."
+            }
+        ]
+    }
+]
