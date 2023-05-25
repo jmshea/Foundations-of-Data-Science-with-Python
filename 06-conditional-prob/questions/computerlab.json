@@ -1,0 +1,107 @@
+[
+    {
+        "question": "For the Defective Computers in a Lab problem, the sample space can be written as $$S=\\left\\{AD, AN, BD_1, BD_2, BN\\right\\}.$$ A user sits down at a computer at random. Find $P(E_A)$, the probability that the computer is from manufacturer $A$. ",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.4,
+                "correct": true,
+                "feedback": "Correct! Since there are two computers from manufacturer $A$ (i.e. $AD$ and $AN$) among the total 5 computers, $P(E_A)=2/5$."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. This is a fair experiment, so $$P(E_A)=\\frac{|E_A|}{|S|}.$$"
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be more than 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be less than 0."
+            }
+        ]
+    },
+    {
+        "question": "For the Defective Computers in a Lab problem, the sample space can be written as $$S=\\left\\{AD, AN, BD_1, BD_2, BN\\right\\}.$$ A user sits down at a computer at random. Find $P(E_B)$, the probability that the computer is from manufacturer $A$. ",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.6,
+                "correct": true,
+                "feedback": "Correct! Since there are three computers from manufacturer $B$ (i.e. $BD_1$, $BD_2$,  and $BN$) among the total 5 computers, $P(E_B)=3/5$."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. This is a fair experiment, so $$P(E_B)=\\frac{|E_B|}{|S|}.$$"
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be more than 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be less than 0."
+            }
+        ]
+    },
+    {
+        "question": "For the Defective Computers in a Lab problem, the sample space can be written as $$S=\\left\\{AD, AN, BD_1, BD_2, BN\\right\\}.$$ A user sits down at a computer at random. Find $P(E_D)$, the probability that the computer is defective. ",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.6,
+                "correct": true,
+                "feedback": "Correct! Since there are three defective computers (i.e. $AD$, $BD_1$, and $BD_2$) among the total 5 computers, $P(E_D)=3/5$."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. This is a fair experiment, so $$P(E_D)=\\frac{|E_D|}{|S|}.$$"
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be more than 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be less than 0."
+            }
+        ]
+    }
+]

@@ -1,0 +1,84 @@
+[
+    {
+        "question": "For the Defective Computers in a Lab problem, find the conditional probability that the chosen computer is defective given that it is from manfacturer $A$, $P(E_D|E_A)$.",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.5,
+                "correct": true,
+                "feedback": "Correct! You should have calculated this using the ratio of $P(E_D \\cap E_A)= 1/5$ and $P(E_A) = 2/5.$"
+            },
+            {
+                "type": "range",
+                "range": [0.33, 0.34],
+                "correct": true,
+                "feedback": "Note that $P(E_D|E_A) \\ne P(E_A|E_D)$. Use the definition of conditional probability to calculate  $P(E_D|E_A) = P(E_D \\cap E_A)/ P(E_A)$."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the definition of conditional probability to calculate $P(E_D|E_A) = P(E_D \\cap E_A)/ P(E_A)$."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be more than 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be less than 0."
+            }
+        ]
+    },
+    {
+        "question": "For the Defective Computers in a Lab problem, find the conditional probability that the chosen computer is defective given that it is from manfacturer $B$, $P(E_D|E_B)$.",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "range",
+                "range": [0.66, 0.67],
+                "correct": true,
+                "feedback": "Correct! You should have calculated this using the ratio of $P(E_D \\cap E_B)= 2/5$ and $P(E_B) = 3/5.$"
+            },
+            {
+                "type": "value",
+                "value": 0.5,
+                "correct": false,
+                "feedback": "Incorrect. Note that $P(E_D|E_B) \\ne P\\left(E_D\\left| \\overline{E_B} \\right. \\right)$. Use the definition of conditional probability to calculate $P(E_D|E_B) = P(E_D \\cap E_B)/ P(E_B)$."
+            },
+        {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the definition of conditional probability to calculate $P(E_D|E_B) = P(E_D \\cap E_B)/ P(E_B)$."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be more than 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be less than 0."
+            }
+        ]
+    }
+]

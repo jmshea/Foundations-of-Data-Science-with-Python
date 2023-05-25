@@ -1,0 +1,69 @@
+[
+    {
+        "question": "Suppose a magician has three coins: one is a fair coin, and two are two-headed coins. The magician chooses a coin at random and flips it. If the coin comes up heads, what is the probability it will come up heads on a second flip of the same coin?",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.83,
+                "correct": false,
+                "feedback": "Incorrect. Having 2 two-headed coins is going to increase the probability of getting heads on the second flip in comparison to when there is only one fair coin. If you are simulating this probability, you only need to add one new coin to the original coins list in the simulation."
+            },
+            {
+                "type": "value",
+                "value": 0.9,
+                "correct": true,
+                "feedback": "Correct. "
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "Remember that probabilities must be non-negative. You can try again."
+            },
+            {
+                "type": "range",
+                "range": [ 1, 1000000], 
+                "correct": false,
+                "feedback": "Remember that probabilities cannot be larger than 1. You can try again."
+            }
+        ]
+    },
+    {
+        "question": "Suppose a magician has three coins: two are fair, and one is a two-headed coin. The magician chooses a coin at random and flips it. If the coin comes up heads, what is the probability it will come up heads on a second flip of the same coin?",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.83,
+                "correct": true,
+                "feedback": "Incorrect. Having two fair coins is going to reduce the probability of getting heads on the second flip in comparison to when there is only one fair coin. If you are simulating this probability, you only need to add one new coin to the original coins list in the simulation."
+            },
+            {
+                "type": "value",
+                "value": 0.75,
+                "correct": true,
+                "feedback": "Correct. "
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "Remember that probabilities must be non-negative. You can try again."
+            },
+            {
+                "type": "range",
+                "range": [ 1, 1000000], 
+                "correct": false,
+                "feedback": "Remember that probabilities cannot be larger than 1. You can try again."
+            }
+        ]
+    }
+]
