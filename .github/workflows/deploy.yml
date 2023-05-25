@@ -26,6 +26,11 @@ jobs:
       run: |
         pip install -r requirements.txt
 
+    # Update the ImageMagick restrictions
+    - name: Remove ImageMagick restrictions
+      run: |
+        sudo sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
+
     # Build the book
     - name: Build the book
       run: |
@@ -35,11 +40,6 @@ jobs:
     - name: Remove _sources
       run: |
         rm -rf _build/html/_sources
-
-    # Update the ImageMagick restrictions
-    - name: Remove ImageMagick restrictions
-      run: |
-        sudo sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
 
     # Update robots.txt
     - name: Update robots.txt
