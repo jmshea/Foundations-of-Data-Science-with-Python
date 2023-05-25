@@ -1,0 +1,50 @@
+[
+    {
+        "question": "How many outcomes are in the event $H_3$ (there are 3 heads on 20 flips of a fair coin)?",
+        "type": "numeric",
+        "precision": 0,
+        "answers": [
+            {
+                "type": "value",
+                "value": 1140,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 6840,
+                "correct": false,
+                "feedback": "You may be overcounting different orders. Did you compute this using a triple summation, as suggested?"
+            },
+            {
+                "type": "value",
+                "value": 3420,
+                "correct": false,
+                "feedback": "You may be overcounting different orders. Did you compute this using a triple summation, as suggested?"
+            },
+            {
+                "type": "value",
+                "value": 1330,
+                "correct": false,
+                "feedback": "Check your bounds carefully. What is the last position that the first symbol could be in?"
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. We are counting a number of objects, so it cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1048577, 1000000000], 
+                "correct": false,
+                "feedback": "No. Recall that  the entire sample space only has 1048576 outcomes. $H_3$ cannot have more outcomes than $S$."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "You should have 3 for statements, with 3 different variables, and each of the nested for statements should have a range that depends on the index variable of the previous for statement."
+            }
+        ]
+    }
+]
