@@ -10,14 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 <meta property="og:title" content="Foundations of Data Science with Python" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/intro.html" />
+<meta property="og:url" content="https://www.fdsp.net/intro.html" />
 <meta property="og:site_name" content="Python" />
 <meta property="og:description" content="Normal People- A plot that represents the probability associated with different heights for men by stacking images of people (from the Wee People font) at each possible height. The shape follows a ..." />
-<meta property="og:image" content="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/_images/normal-people.png" />
+<meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
 <meta name="description" content="Normal People- A plot that represents the probability associated with different heights for men by stacking images of people (from the Wee People font) at each possible height. The shape follows a ..." />
 
-    <title>Foundations of Data Science with Python &#8212; Foundations of Data Science with Python</title>
+    <title>Foundations of Data Science with Python &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
   
   
   
@@ -43,6 +43,7 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -79,7 +80,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>window.MathJax = {"loader": {"load": ["[tex]/boldsymbol"]}, "tex": {"macros": {"P": "\\operatorname{P}"}, "packages": {"[+]": ["boldsymbol"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
-    <link rel="canonical" href="https://jmshea.github.io/Foundations-of-Data-Science-with-Python/intro.html" />
+    <link rel="canonical" href="https://www.fdsp.net/intro.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. Introduction" href="01-intro/intro.html" />
@@ -406,24 +407,24 @@ document.write(`
 </ul>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="IhOQUrXkijmf" data-shufflequestions="False"
+<div class="output text_html"><div id="NtdGmwCaiFoC" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#IhOQUrXkijmf {
-   --jq-multiple-choice-bg: #6f78ffff;
+#NtdGmwCaiFoC {
+   --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
    --jq-mc-button-inset-shadow: #555555;
-   --jq-many-choice-bg: #f75c03ff;
-   --jq-numeric-bg: #392061ff;
+   --jq-many-choice-bg: #e26d5a;
+   --jq-numeric-bg: #5bc0eb;
    --jq-numeric-input-bg: #c0c0c0;
    --jq-numeric-input-label: #101010;
    --jq-numeric-input-shadow: #999999;
-   --jq-incorrect-color: #c80202;
-   --jq-correct-color: #009113;
+   --jq-incorrect-color: #666666;
+   --jq-correct-color: #87a878;
    --jq-text-color: #fafafa;
 }
 
@@ -582,7 +583,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsIhOQUrXkijmf=[
+</style></div><script type="application/javascript">var questionsNtdGmwCaiFoC=[
   {
     "question": "What are summary statistics?",
     "type": "multiple_choice",
@@ -1477,8 +1478,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("IhOQUrXkijmf")) {
-            show_questions(questionsIhOQUrXkijmf,  IhOQUrXkijmf); 
+          if(document.getElementById("NtdGmwCaiFoC")) {
+            show_questions(questionsNtdGmwCaiFoC,  NtdGmwCaiFoC); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1493,10 +1494,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/summary-stats.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, IhOQUrXkijmf))
+        .then(json => show_questions(json, NtdGmwCaiFoC))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsIhOQUrXkijmf, IhOQUrXkijmf);
+        show_questions(questionsNtdGmwCaiFoC, NtdGmwCaiFoC);
         });
         }
         </script></div>
@@ -1761,7 +1762,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="fFZjCtCTYUTF" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="fFZjCtCTYUTF-next" onclick="window.checkFlip('fFZjCtCTYUTF')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="hnBtYzlKfxNZ" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="hnBtYzlKfxNZ-next" onclick="window.checkFlip('hnBtYzlKfxNZ')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2108,14 +2109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("fFZjCtCTYUTF")) {
-            createCards("fFZjCtCTYUTF", "True", "False");
+          if(document.getElementById("hnBtYzlKfxNZ")) {
+            createCards("hnBtYzlKfxNZ", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsfFZjCtCTYUTF=[
+var cardshnBtYzlKfxNZ=[
     {
         "front": "statistical hypothesis",
         "back": "An explanation for phenomena observed in a data set that can be formally tested using the data."
@@ -2134,9 +2135,9 @@ var cardsfFZjCtCTYUTF=[
     }
 ]
 ;
-var frontColorsfFZjCtCTYUTF= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsfFZjCtCTYUTF= ["var(--dark-blue-gray)" ];
-var textColorsfFZjCtCTYUTF= ["var(--snow)" ];
+var frontColorshnBtYzlKfxNZ= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorshnBtYzlKfxNZ= ["var(--dark-blue-gray)" ];
+var textColorshnBtYzlKfxNZ= ["var(--snow)" ];
 
 
         {
@@ -2147,7 +2148,7 @@ var textColorsfFZjCtCTYUTF= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/flashcards/hypothesis-testing.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("fFZjCtCTYUTF", "True", "False"))
+        .then(json => createCards("hnBtYzlKfxNZ", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
