@@ -32,3 +32,9 @@ sections:
   - file: 03-first-data/hypothesis-testing
   - file: 03-first-data/2d-statistics-preview.ipynb
   - file: 03-first-data/review
+- file: 04-probability1/intro
+  sections:
+  - file: 04-probability1/outcomes-samplespaces-events
+  - file: 04-probability1/relative-frequency
+  - file: 04-probability1/fair-experiments
+  - file: 04-probability1/axiomatic-prob
