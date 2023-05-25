@@ -1,0 +1,79 @@
+[
+    {
+        "question": "Which of these cannot be a probability?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "1",
+                "correct": false,
+                "feedback": "This is a number between 0 and 1 (inclusive of the end points), so it can be probability."
+            },
+            {
+                "answer": "-0.5",
+                "correct": true,
+                "feedback": "Correct! Probabilities must be numbers between 0 and 1."
+            },
+            {
+                "answer": "0",
+                "correct": false,
+                "feedback": "This is a number between 0 and 1 (inclusive of the end points), so it can be probability."
+            },
+            {
+                "answer": "0.5",
+                "correct": false,
+                "feedback": "This is a number between 0 and 1 (inclusive of the end points), so it can be probability."
+            }
+        ]
+    },
+    {
+        "question": "<b>True or False:</b> Relative frequencies can only take values  between 0 and 1.",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "True",
+                "correct": true,
+                "feedback": "Correct. Relative frequencies are a proportion of the total and thus (like probabilities) take values between 0 and 1."
+            },
+            {
+                "answer": "False",
+                "correct": false,
+                "feedback": "Incorrect. Relative frequencies are a proportion of the total and thus (like probabilities) take values between 0 and 1."
+            }
+        ]
+    },
+{
+        "question": "Determine the relative frequency of the outcome 3 in the following dataset:<p><p>2, 3, 5, 2, 3",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.4",
+                "correct": true,
+                "feedback": "Correct! The outcome 3 occurred 2 times out of 5 experiments, so the relative frequency is 2/5=0.4."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Relative frequency is the proportion of experiments in which an outcome occurs. Count the number of times that outcome 3 occurred and divide by the total number of experiments."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, 0], 
+                "correct": false,
+                "feedback": "Relative frequency is the proportion of experiments in which an outcome occurs. It is always between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Relative frequency is the proportion of experiments in which an outcome occurs. It is always between 0 and 1."
+            },
+            {
+                "type": "value",
+                "answer": "0",
+                "value": false,
+                "feedback": "Relative frequency is the proportion of experiments in which an outcome occurs. Since 3 occured, that proportion will not be 0."
+            }
+        ]
+    }
+]
