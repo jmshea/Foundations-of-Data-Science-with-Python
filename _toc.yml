@@ -26,3 +26,9 @@ sections:
   sections:
   - file: 03-first-data/pandas-start
   - file: 03-first-data/visualization
+  - file: 03-first-data/partitions
+  - file: 03-first-data/summary-stats
+  - file: 03-first-data/histogram
+  - file: 03-first-data/hypothesis-testing
+  - file: 03-first-data/2d-statistics-preview.ipynb
+  - file: 03-first-data/review
