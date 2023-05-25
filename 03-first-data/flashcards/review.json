@@ -33,11 +33,11 @@
     },
     {
         "front": "mode",
-        "back": "The *mode* of a data set is a value in the data set that appears most often. As there may be more than one most common value, the mode of a data set is not unique."
+        "back": "The <i>mode</i> of a data set is a value in the data set that appears most often. As there may be more than one most common value, the mode of a data set is not unique."
     },
     {
         "front": "median",
-        "back": "The *median* of a data set is a value $m$ such that the number of data points that are less than $m$ is equal to the number of data points that are greater than $m$. For some data sets, there may be multiple values that satisify this criterion, so the median is not always unique."
+        "back": "The <i>median</i> of a data set is a value $m$ such that the number of data points that are less than $m$ is equal to the number of data points that are greater than $m$. For some data sets, there may be multiple values that satisify this criterion, so the median is not always unique."
     },
     {
         "front": "<i>average</i> (or <i>sample mean</i>) of a data set",
