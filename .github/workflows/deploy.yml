@@ -36,6 +36,11 @@ jobs:
       run: |
         rm -rf _build/html/_sources
 
+    # Update the ImageMagick restrictions
+    - name: Remove ImageMagick restrictions
+      run: |
+        sudo sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
+
     # Update robots.txt
     - name: Update robots.txt
       run: |
