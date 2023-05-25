@@ -1,0 +1,413 @@
+[
+    {
+        "question": "If I roll a fair 6-sided die two times, what is the probability that at least one of those dice show a 1 on the top face? Answer as a fraction or a decimal with at least 2 significant digits.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.31,
+                "correct": true,
+                "feedback": "Correct! The exact answer is 11/36."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Suggestion: Use Corollary 5 or carefully count using the grid of all outcomes."
+            },
+            {
+                "type": "value",
+                "value": 0.33,
+                "correct": false,
+                "feedback": "The event of getting a 1 on die 1 and get a 1 on die 2 are not disjoint. Apply Corollary 5."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be more than 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be less than 0."
+            },
+            {
+                "type": "value",
+                "answer": "0",
+                "value": false,
+                "feedback": "Incorrect. A probability of 0 would imply that it is not possible to get a 1 on either die? Clearly, that is not true."
+            }
+        ]
+    },
+    {
+        "question": " I roll a fair 6-sided die two times, what is the probability of getting a 1 on both rolls of the die? Answer as a fraction or a decimal with at least 2 significant digits.",
+        "type": "numeric",
+        "precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.028,
+                "correct": true,
+                "feedback": "Correct! The exact answer is 1/36 because (1,1) corresponds to exactly one of the 36 possible outcomes from rolling 2 dice."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. What outcomes does this correspond to?"
+            },
+            {
+                "type": "value",
+                "value": 0.31,
+                "correct": false,
+                "feedback": "Incorrect. We are looking for BOTH dice to be a 1, not either of the dice being a 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be more than 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be less than 0."
+            },
+            {
+                "type": "value",
+                "answer": "0",
+                "value": false,
+                "feedback": "Incorrect. A probability of 0 would imply that it is not possible to get a 1 on either die? Clearly, that is not true."
+            }
+        ]
+    },
+    {
+        "question": "If I roll a fair 6-sided die two times, what is the probability that the sum of the top faces is less than or equal to 4? Answer as a fraction or a decimal with at least 2 significant digits.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.17,
+                "correct": true,
+                "feedback": "Correct! The exact answer is 1/6."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Suggestion: Write out all the outcomes in the event."
+            },
+            {
+                "type": "value",
+                "value": 0.08,
+                "correct": false,
+                "feedback": "Incorrect. You may have found the probability that the sum of the top faces is equal to 4, not less than or equal to 4."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be more than 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be less than 0."
+            },
+            {
+                "type": "value",
+                "answer": "0",
+                "value": false,
+                "feedback": "Incorrect. A probability of 0 would imply that it is not possible to get a 1 on either die? Clearly, that is not true."
+            }
+        ]
+    },
+    {
+        "question": "Poker dice is played by rolling five dice simultaneously.  How many ordered outcomes are there?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 7776,
+                "correct": true,
+                "feedback": "Correct! This is an example of sampling with ordering and with replacement."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. This is an example of sampling with replacement, where each subexperiment has a sample space with 6 outcomes."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1e-15,
+                    1
+                ],
+                "correct": false,
+                "feedback": "Incorrect. We are looking for a count of the number of outcomes, not a probability."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. The number of outcomes cannot be less than zero."
+            },
+            {
+                "type": "value",
+                "answer": "0",
+                "value": false,
+                "feedback": "Incorrect. There are many possible outcomes, such as (1,1,1,1,1) or (1,2,3,4,5)."
+            }
+        ]
+    },
+    {
+        "question": "If I roll a fair 6-sided die two times, what is the probability that the values on the top face of the dice are different? Answer as a fraction or a decimal with at least 2 significant digits.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.83,
+                "correct": true,
+                "feedback": "Correct! The exact answer is 5/6."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Suggestion: Write out all the outcomes in the event OR apply corollary 1 to make the problem simpler."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be more than 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be less than 0."
+            },
+            {
+                "type": "value",
+                "answer": "0",
+                "value": false,
+                "feedback": "Incorrect. A probability of 0 would imply that it is not possible for the two dice to have different values? Clearly, that is not true."
+            }
+        ]
+    },
+    {
+        "question": "Select all of the following that can be an outcome of a random experiment.",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "A number",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "A color",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "A tuple",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "A set.",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "An animal.",
+                "correct": true,
+                "feedback": "Correct."
+            }
+        ]
+    },
+    {
+        "question": "Select all of the following types of mathematical objects that can be a sample space.",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "A number",
+                "correct": false,
+                "feedback": "Incorrect. Sample spaces are _______s of outcomes."
+            },
+            {
+                "answer": "A tuple",
+                "correct": false,
+                "feedback": "Incorrect. Sample spaces are _______s of outcomes."
+            },
+            {
+                "answer": "A set",
+                "correct": true,
+                "feedback": "Correct. Sample spaces are sets of outcomes."
+            },
+            {
+                "answer": "A function",
+                "correct": false,
+                "feedback": "Incorrect. Sample spaces are _______s of outcomes."
+            }
+        ]
+    },
+    {
+        "question": "Which of the following types of mathematical objects can be an event class?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "A set of numbers",
+                "correct": false,
+                "feedback": "Incorrect. The event class contains events. Events are not just numbers..."
+            },
+            {
+                "answer": "A set of sets",
+                "correct": true,
+                "feedback": "Correct. For finite sample spaces, the event class can be taken to be the set of all subsets of the sample space."
+            },
+            {
+                "answer": "A set of functions",
+                "correct": false,
+                "feedback": "Incorrect. The event class contains events. Events are not just numbers..."
+            }
+        ]
+    },
+    {
+        "question": "Five cards are drawn from a deck of 52 cards (i.e., without jokers). Determine how many ways there are to get a hand with 4 aces if order IS NOT considered.",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 48,
+                "correct": true,
+                "feedback": "Correct! The answer is 48 because the 4 aces are determined, so the other card in the hand can be any of the other 48 cards in the deck."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. How many ways are there to choose the aces in the hand? The other card(s)?"
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Counts cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1e-15,
+                    1
+                ],
+                "correct": false,
+                "feedback": "Incorrect. We are looking for a count of the number of outcomes, not a probability."
+            }
+        ]
+    },
+    {
+        "question": "Five cards are drawn from a deck of 52 cards (i.e., without jokers). Determine how many ways there are to get a hand with 3 aces if order IS NOT considered.",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 4512,
+                "correct": true,
+                "feedback": "Correct!"
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. How many ways are there to choose the aces in the hand? The other card(s)?"
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Counts cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1e-15,
+                    1
+                ],
+                "correct": false,
+                "feedback": "Incorrect. We are looking for a count of the number of outcomes, not a probability."
+            }
+        ]
+    },
+    {
+        "question": "Which of the following are true of a probability measure? (Choose all that apply.)",
+        "answers": [
+            {
+                "answer": "values are non-negative",
+                "correct": true,
+                "feedback": "Correct. Probabilty measures return the probability of an event, and probabilities are non-negative ($\\ge 0$)."
+            },
+            {
+                "answer": "values are $\\le 1$",
+                "correct": true,
+                "feedback": "Correct. Probabilty measures return the probability of an event, and probabilities are $\\le 1$."
+            },
+            {
+                "answer": "one-to-one",
+                "correct": false,
+                "feedback": "Incorrect. One-to-one would mean that the probability measure produces different values for every event. But multiple events can have the same probability."
+            },
+            {
+                "answer": "maps from outcomes onto the real line",
+                "correct": false,
+                "feedback": "Incorrect. A probability measure measures events, not outcomes."
+            },
+            {
+                "answer": "maps from events onto the real line",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "additive:<p> for any two events $A,B$ in the event class,<p>$$P(A \\cup B) = P(A) +P(B)$$",
+                "correct": false,
+                "feedback": "Incorrect. This only holds if $A$ and $B$ are disjoint."
+            }
+        ],
+        "type": "multiple_choice"
+    }
+]
