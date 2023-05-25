@@ -26,10 +26,15 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    # Update the ImageMagick restrictions
-    - name: Remove ImageMagick restrictions
+    - name: Install ghostscript
+      run: sudo apt install ghostscript
+
+    - name: Change ImageMagick security policy
       run: |
-        sudo sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
+        DQT='"'
+        SRC="rights=${DQT}none${DQT} pattern=${DQT}PDF${DQT}"
+        RPL="rights=${DQT}read|write${DQT} pattern=${DQT}PDF${DQT}"
+        sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
 
     # Build the book
     - name: Build the book
