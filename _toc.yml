@@ -42,3 +42,14 @@ sections:
   - file: 04-probability1/combinatorics
   - file: 04-probability1/review
   - file: 04-probability1/summary
+- file: 05-null-hypothesis-testing/intro
+  sections:
+  - file: 05-null-hypothesis-testing/statistical-studies
+  - file: 05-null-hypothesis-testing/nhst
+  - file: 05-null-hypothesis-testing/calculating-p-values
+  - file: 05-null-hypothesis-testing/how-to-sample
+  - file: 05-null-hypothesis-testing/example-nhst
+  - file: 05-null-hypothesis-testing/bootstrap-dist-confidence-intervals
+  - file: 05-null-hypothesis-testing/errors-and-power
+  - file: 05-null-hypothesis-testing/review
+  - file: 05-null-hypothesis-testing/summary
