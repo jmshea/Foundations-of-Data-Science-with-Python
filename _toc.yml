@@ -38,3 +38,7 @@ sections:
   - file: 04-probability1/relative-frequency
   - file: 04-probability1/fair-experiments
   - file: 04-probability1/axiomatic-prob
+  - file: 04-probability1/corollaries
+  - file: 04-probability1/combinatorics
+  - file: 04-probability1/review
+  - file: 04-probability1/summary
