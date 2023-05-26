@@ -1,0 +1,10 @@
+[
+    {
+        "front": "mode (of a random variable)",
+        "back": "The value with the highest probability (for a discrete random variable) or the highest probability density (for a continuous random variable)."
+    },
+    {
+        "front": "median (of a random variable) ",
+        "back": "For a random variable $X$ with distribution function $F_X(x)$, the median is a value $\\tilde{X}$ such that $P\\left(X \\le \\tilde{X} \\right) = P\\left(X > \\tilde{X}\\right)$. An equivalent condition is $F_X\\left(\\tilde{X} \\right) = 1/2$. The median is not necessarily unique."
+    }
+]

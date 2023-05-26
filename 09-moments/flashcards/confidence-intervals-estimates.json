@@ -1,0 +1,6 @@
+[
+    {
+        "front": "standard error of the mean<br>SEM",
+        "back": " For $n$ samples from a random variable with known standard deviation $\\sigma_X$, the *standard error of the mean (SEM)* is the standard deviation of the mean estimator, \\begin{align*} \\sigma_{\\hat{X}} =  \\frac{\\sigma_X}{\\sqrt{n}}. \\end{align*}"
+    }
+]

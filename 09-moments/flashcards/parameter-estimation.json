@@ -1,0 +1,27 @@
+[
+    {
+        "front": "vector",
+        "back": "An ordered list of numbers, usually shown enclosed in square brackets and separated by commas."
+    },
+    {
+        "front": "estimate",
+        "back": "Given a vector of observed values $\\mathbf{x}$ from a single distribution, an <i>estimate</i> for a parameter $\\theta$ is a numerical value $\\hat{\\theta}$ that is a function of the observed data."
+    },
+    {
+        "front": "estimator",
+        "back": "Given a vector of random variables $\\mathbf{X}$ from a common distribution, an <i>estimator</i> for a parameter $\\theta$ of the distribution is a random variable $\\hat{\\Theta}$ that is a function of the random variables."
+    },
+    {
+        "front": "estimator error",
+        "back": "The difference between the estimator for a parameter and the true value, $\\hat{\\Theta} - \\theta$."
+    },
+    {
+        "front": "estimator bias",
+        "back": "The difference between the <b>mean</b> of an estimator and the true value, $ E[\\hat{\\Theta}] - \\theta$."
+    },
+    {
+        "front": "unbiased estimator",
+        "back": "$E[\\hat{\\theta}] = \\theta$<br> i.e., the estimator bias is zero."
+    }
+
+]

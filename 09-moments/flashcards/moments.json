@@ -1,0 +1,36 @@
+[
+    {
+        "front": "$n$th moment",
+        "back": "\\begin{equation*} E[X^n], ~~~ n=1,2,\\ldots \\end{equation*}"
+    },
+    {
+        "front": "Law of the Unconscious Statistician<br>(LOTUS)",
+        "back": "Let $g(x)$ be a real function. For discrete $X$, \\begin{equation*} E\\left[ g(X) \\right] = \\sum_x g(x) p_X(x).\\end{equation*} For continuous $X$, \\begin{equation*} E\\left[ g(X) \\right] = \\int_{-\\infty}^{\\infty} g(x) f_X(x)~dx.\\end{equation*} "
+    },
+    {
+        "front": "$n$th central moment",
+        "back": "\\begin{equation*}E[(X-\\mu_X)^n], ~~~ n=2,3,\\ldots \\end{equation*} "
+    },
+    {
+        "front": "variance<br>(random variable)",
+        "back": "The 2nd central moment, \\begin{equation*}\\operatorname{Var}(X) =\\sigma_{X}^{2} = E \\left[ \\left( X - \\mu_X \\right)^2 \\right]\\end{equation*}"
+    },
+    {
+        "front": "variance of a constant:<br>$\\operatorname{Var}[c]$",
+        "back": "zero:<br>$ \\operatorname{Var}[c]=0$"
+    },
+    {
+        "front": "variance when adding a constant<br>$\\operatorname{Var}[X+c]$",
+        "back": "unchanged:<br> $\\operatorname{Var}[X+c]= \\operatorname{Var}[X]$"
+    },
+    {
+        "front": "variance when multiplying by a constant<br>$\\operatorname{Var}[cX]$",
+        "back": "constant-squared times variance:<br> $\\operatorname{Var}[cX]= c^2 \\operatorname{Var}[X]$"
+    },
+    {
+        "front": "variance of sum of independent random variables<br> \\begin{equation*} \\operatorname{Var} \\left[ \\sum_{i=0}^{N-1} X_i \\right] \\end{equation*}",
+        "back": "sum of variances:<br>\\begin{equation*} \\operatorname{Var} \\left[ \\sum_{i=0}^{N-1} X_i \\right] =\\sum_{i=0}^{N-1} \\operatorname{Var} \\left[ X_i \\right] \\end{equation*}"
+    }
+
+
+]

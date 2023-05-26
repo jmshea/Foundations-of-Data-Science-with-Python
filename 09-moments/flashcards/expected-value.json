@@ -1,0 +1,10 @@
+[
+    {
+        "front": "expected value<br>(discrete random variable)",
+        "back": "\\begin{equation*} \\mu_X = E \\left[ X \\right] = \\sum x P_X (x). \\end{equation*}"
+    },
+    {
+        "front": "expected value<br>(continuous random variable)",
+        "back": "\\begin{equation*} \\mu_X = E \\left[ X \\right] = \\int_{-\\infty}^{\\infty} x f_X (x) ~dx. \\end{equation*}"
+    }
+]

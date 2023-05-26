@@ -1,0 +1,6 @@
+[
+    {
+        "front": "effect size",
+        "back": "One of many measures of separation between distributions. For a difference of means, Cohen's $d$ is standard: \\begin{equation*} d =\\frac{\\mu_X - \\mu_Y}{\\sigma} \\end{equation*}"
+    }
+]

@@ -1,0 +1,86 @@
+[
+    {
+        "front": "expected value<br>(discrete random variable)",
+        "back": "\\begin{equation*} \\mu_X = E \\left[ X \\right] = \\sum x P_X (x). \\end{equation*}"
+    },
+    {
+        "front": "expected value<br>(continuous random variable)",
+        "back": "\\begin{equation*} \\mu_X = E \\left[ X \\right] = \\int_{-\\infty}^{\\infty} x f_X (x) ~dx. \\end{equation*}"
+    },
+    {
+        "front": "mode (of a random variable)",
+        "back": "The value with the highest probability (for a discrete random variable) or the highest probability density (for a continuous random variable)."
+    },
+    {
+        "front": "median (of a random variable) ",
+        "back": "For a random variable $X$ with distribution function $F_X(x)$, the median is a value $\\tilde{X}$ such that $P\\left(X \\le \\tilde{X} \\right) = P\\left(X > \\tilde{X}\\right)$. An equivalent condition is $F_X\\left(\\tilde{X} \\right) = 1/2$. The median is not necessarily unique."
+    },
+    {
+        "front": "$n$th moment",
+        "back": "\\begin{equation*} E[X^n], ~~~ n=1,2,\\ldots \\end{equation*}"
+    },
+    {
+        "front": "Law of the Unconscious Statistician<br>(LOTUS)",
+        "back": "Let $g(x)$ be a real function. For discrete $X$, \\begin{equation*} E\\left[ g(X) \\right] = \\sum_x g(x) p_X(x).\\end{equation*} For continuous $X$, \\begin{equation*} E\\left[ g(X) \\right] = \\int_{-\\infty}^{\\infty} g(x) f_X(x)~dx.\\end{equation*} "
+    },
+    {
+        "front": "$n$th central moment",
+        "back": "\\begin{equation*}E[(X-\\mu_X)^n], ~~~ n=2,3,\\ldots \\end{equation*} "
+    },
+    {
+        "front": "variance<br>(random variable)",
+        "back": "The 2nd central moment, \\begin{equation*}\\operatorname{Var}(X) =\\sigma_{X}^{2} = E \\left[ \\left( X - \\mu_X \\right)^2 \\right]\\end{equation*}"
+    },
+    {
+        "front": "variance of a constant:<br>$\\operatorname{Var}[c]$",
+        "back": "zero:<br>$ \\operatorname{Var}[c]=0$"
+    },
+    {
+        "front": "variance when adding a constant<br>$\\operatorname{Var}[X+c]$",
+        "back": "unchanged:<br> $\\operatorname{Var}[X+c]= \\operatorname{Var}[X]$"
+    },
+    {
+        "front": "variance when multiplying by a constant<br>$\\operatorname{Var}[cX]$",
+        "back": "constant-squared times variance:<br> $\\operatorname{Var}[cX]= c^2 \\operatorname{Var}[X]$"
+    },
+    {
+        "front": "variance of sum of independent random variables<br> \\begin{equation*} \\operatorname{Var} \\left[ \\sum_{i=0}^{N-1} X_i \\right] \\end{equation*}",
+        "back": "sum of variances:<br>\\begin{equation*} \\operatorname{Var} \\left[ \\sum_{i=0}^{N-1} X_i \\right] =\\sum_{i=0}^{N-1} \\operatorname{Var} \\left[ X_i \\right] \\end{equation*}"
+    },
+    {
+        "front": "vector",
+        "back": "An ordered list of numbers, usually shown enclosed in square brackets and separated by commas."
+    },
+    {
+        "front": "estimate",
+        "back": "Given a vector of observed values $\\mathbf{x}$ from a single distribution, an <i>estimate</i> for a parameter $\\theta$ is a numerical value $\\hat{\\theta}$ that is a function of the observed data."
+    },
+    {
+        "front": "estimator",
+        "back": "Given a vector of random variables $\\mathbf{X}$ from a common distribution, an <i>estimator</i> for a parameter $\\theta$ of the distribution is a random variable $\\hat{\\Theta}$ that is a function of the random variables."
+    },
+    {
+        "front": "estimator error",
+        "back": "The difference between the estimator for a parameter and the true value, $\\hat{\\Theta} - \\theta$."
+    },
+    {
+        "front": "estimator bias",
+        "back": "The difference between the <b>mean</b> of an estimator and the true value, $ E[\\hat{\\Theta}] - \\theta$."
+    },
+    {
+        "front": "unbiased estimator",
+        "back": "$E[\\hat{\\theta}] = \\theta$<br> i.e., the estimator bias is zero."
+    },
+    {
+        "front": "standard error of the mean<br>SEM",
+        "back": " For $n$ samples from a random variable with known standard deviation $\\sigma_X$, the *standard error of the mean (SEM)* is the standard deviation of the mean estimator, \\begin{align*} \\sigma_{\\hat{X}} =  \\frac{\\sigma_X}{\\sqrt{n}}. \\end{align*}"
+    },
+    {
+        "front": "sampling distribution",
+        "back": "Given a vector of independent random variables $\\mathbf{X}$ and a parameter estimator $\\hat{\\Theta} = g(\\mathbf{X})$, the <i>sampling distribution</i> is the probability distribution of $\\hat{\\Theta}$."
+    },
+    {
+        "front": "effect size",
+        "back": "One of many measures of separation between distributions. For a difference of means, Cohen's $d$ is standard: \\begin{equation*} d =\\frac{\\mu_X - \\mu_Y}{\\sigma} \\end{equation*}"
+    }
+]

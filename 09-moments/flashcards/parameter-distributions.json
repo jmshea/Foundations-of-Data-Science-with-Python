@@ -1,0 +1,6 @@
+[
+    {
+        "front": "sampling distribution",
+        "back": "Given a vector of independent random variables $\\mathbf{X}$ and a parameter estimator $\\hat{\\Theta} = g(\\mathbf{X})$, the <i>sampling distribution</i> is the probability distribution of $\\hat{\\Theta}$."
+    }
+]
