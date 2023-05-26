@@ -1,0 +1,118 @@
+[
+    {
+        "question": "A magician has a fair coin and a two-headed coin. She chooses one at random and flips it three times.  what is the probability that all three outcomes are heads?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.5625",
+                "correct": true,
+                "feedback": "Correct! "
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use total probability, where you condition on both cases of the hidden state (whether the coin is fair)."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "A magician has a fair coin and a two-headed coin. She chooses one at random and flips it three times. If the first two outcomes are heads, what is the probability that third outcome will be heads?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.9",
+                "correct": true,
+                "feedback": "Correct!"
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the definition of conditional probability to rewrite this as the ratio of the probability of two different intersections of events, each of which you should already know at this point."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+{
+        "question": "A magician has 4 fair coins and 1 two-headed coin. She chooses one at random and flips it three times.  what is the probability that all three outcomes are heads?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.3",
+                "correct": true,
+                "feedback": "Correct! "
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use total probability, where you condition on both cases of the hidden state (whether the coin is fair)."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "A magician has 4 fair coins and 1 two-headed coin. She chooses one at random and flips it three times. If the first two outcomes are heads, what is the probability that third outcome will be heads?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.75",
+                "correct": true,
+                "feedback": "Correct!"
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the definition of conditional probability to rewrite this as the ratio of the probability of two different intersections of events, each of which can be found via total probability."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    }
+]
