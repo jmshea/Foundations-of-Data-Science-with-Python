@@ -8,16 +8,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="1.7. Getting Started in Jupyter" />
+<meta property="og:title" content="11.4. Null Hypothesis Significance Testing for Dependence in Contingency Tables" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.fdsp.net/01-intro/jupyter-start.html" />
+<meta property="og:url" content="https://www.fdsp.net/11-categorical-data/nhst.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="This page is a placeholder for interactive elements for Section 1.7 of Foundations of Data Science with Python. No interactive elements are available for this section at this time." />
+<meta property="og:description" content="This page is a placeholder for interactive elements for Section 11.2 of Foundations of Data Science with Python. No interactive elements are available for this section at this time." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="This page is a placeholder for interactive elements for Section 1.7 of Foundations of Data Science with Python. No interactive elements are available for this section at this time." />
+<meta name="description" content="This page is a placeholder for interactive elements for Section 11.2 of Foundations of Data Science with Python. No interactive elements are available for this section at this time." />
 
-    <title>1.7. Getting Started in Jupyter &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
+    <title>11.4. Null Hypothesis Significance Testing for Dependence in Contingency Tables &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
   
   
   
@@ -77,12 +77,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '01-intro/jupyter-start';</script>
-    <link rel="canonical" href="https://www.fdsp.net/01-intro/jupyter-start.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = '11-categorical-data/nhst';</script>
+    <link rel="canonical" href="https://www.fdsp.net/11-categorical-data/nhst.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.8. Getting Started in Python" href="python-start.html" />
-    <link rel="prev" title="1.6. Extremely Brief Intro to Jupyter and Python" href="intro-jupyter-and-python.html" />
+    <link rel="next" title="11.5. Chi-Square Goodness-of-Fit Test" href="goodness-of-fit.html" />
+    <link rel="prev" title="11.3. Tabulating Categorical Data and Creating a Test Statistic" href="contingency-tables.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,17 +174,17 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">1. Introduction</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="who-for.html">1.1. Who is this book for?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="why-this-book.html">1.2. Why learn data science from this book?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="what-is-data-science.html">1.3. What is data science?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="what-book-covers.html">1.4. What data science topics does this book cover?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="what-book-does-not-cover.html">1.5. What data science topics does this book <strong>not</strong> cover?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="intro-jupyter-and-python.html">1.6. Extremely Brief Intro to Jupyter and Python</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.7. Getting Started in Jupyter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="python-start.html">1.8. Getting Started in Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="review.html">1.9. Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="acknowledgments.html">1.10. Acknowledgments</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01-intro/intro.html">1. Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01-intro/who-for.html">1.1. Who is this book for?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01-intro/why-this-book.html">1.2. Why learn data science from this book?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01-intro/what-is-data-science.html">1.3. What is data science?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01-intro/what-book-covers.html">1.4. What data science topics does this book cover?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01-intro/what-book-does-not-cover.html">1.5. What data science topics does this book <strong>not</strong> cover?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01-intro/intro-jupyter-and-python.html">1.6. Extremely Brief Intro to Jupyter and Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01-intro/jupyter-start.html">1.7. Getting Started in Jupyter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01-intro/python-start.html">1.8. Getting Started in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01-intro/review.html">1.9. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01-intro/acknowledgments.html">1.10. Acknowledgments</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../02-first-stats/intro.html">2. First Simulations, Visualizations, and Statistical Tests</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -286,12 +286,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../10-conditional-stats/summary.html">10.5. Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../11-categorical-data/intro.html">11. Categorical Data, Tests for Dependence, and Goodness of Fit for Discrete Distributions</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../11-categorical-data/contingency-tables.html">11.3. Tabulating Categorical Data and Creating a Test Statistic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../11-categorical-data/nhst.html">11.4. Null Hypothesis Significance Testing for Dependence in Contingency Tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../11-categorical-data/goodness-of-fit.html">11.5. Chi-Square Goodness-of-Fit Test</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../11-categorical-data/review.html">11.6. Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../11-categorical-data/summary.html">11.7. Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">11. Categorical Data, Tests for Dependence, and Goodness of Fit for Discrete Distributions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="contingency-tables.html">11.3. Tabulating Categorical Data and Creating a Test Statistic</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">11.4. Null Hypothesis Significance Testing for Dependence in Contingency Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="goodness-of-fit.html">11.5. Chi-Square Goodness-of-Fit Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="review.html">11.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summary.html">11.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -348,7 +348,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/01-intro/jupyter-start.ipynb" target="_blank"
+      <li><a href="../_sources/11-categorical-data/nhst.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -428,7 +428,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Getting Started in Jupyter</h1>
+    <h1>Null Hypothesis Significance Testing for Dependence in Contingency Tables</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -442,9 +442,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="getting-started-in-jupyter">
-<h1><span class="section-number">1.7. </span>Getting Started in Jupyter<a class="headerlink" href="#getting-started-in-jupyter" title="Permalink to this heading">#</a></h1>
-<p>This page is a placeholder for interactive elements for Section 1.7 of <em>Foundations of Data Science with Python</em>.
+  <section class="tex2jax_ignore mathjax_ignore" id="null-hypothesis-significance-testing-for-dependence-in-contingency-tables">
+<h1><span class="section-number">11.4. </span>Null Hypothesis Significance Testing for Dependence in Contingency Tables<a class="headerlink" href="#null-hypothesis-significance-testing-for-dependence-in-contingency-tables" title="Permalink to this heading">#</a></h1>
+<p>This page is a placeholder for interactive elements for Section 11.2 of <em>Foundations of Data Science with Python</em>.
 No interactive elements are available for this section at this time.</p>
 </section>
 
@@ -461,7 +461,7 @@ No interactive elements are available for this section at this time.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./01-intro"
+            path: "./11-categorical-data"
         },
         predefinedOutput: true
     }
@@ -480,20 +480,20 @@ No interactive elements are available for this section at this time.</p>
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro-jupyter-and-python.html"
+       href="contingency-tables.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.6. </span>Extremely Brief Intro to Jupyter and Python</p>
+        <p class="prev-next-title"><span class="section-number">11.3. </span>Tabulating Categorical Data and Creating a Test Statistic</p>
       </div>
     </a>
     <a class="right-next"
-       href="python-start.html"
+       href="goodness-of-fit.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.8. </span>Getting Started in Python</p>
+        <p class="prev-next-title"><span class="section-number">11.5. </span>Chi-Square Goodness-of-Fit Test</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
