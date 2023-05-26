@@ -93,3 +93,8 @@ sections:
   - file: 09-moments/moments
   - file: 09-moments/parameter-estimation
   - file: 09-moments/confidence-intervals-estimates
+  - file: 09-moments/mean-hypothesis-testing
+  - file: 09-moments/parameter-distributions
+  - file: 09-moments/sample-size-selection
+  - file: 09-moments/review
+  - file: 09-moments/summary
