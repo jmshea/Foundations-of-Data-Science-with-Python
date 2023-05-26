@@ -118,3 +118,7 @@ sections:
   - file: 12-vector-regression/vector-operations
   - file: 12-vector-regression/vector-stats
   - file: 12-vector-regression/linear-regression
+  - file: 12-vector-regression/nhst
+  - file: 12-vector-regression/nonlinear-regression
+  - file: 12-vector-regression/review
+  - file: 12-vector-regression/summary
