@@ -435,9 +435,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-distribution-for-average-of-two-normal-random-variables">9.7.1.6. Sampling Distribution for Average of Two Normal Random Variables</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-distribution-of-an-estimator">9.7.2. Bootstrap Distribution of an Estimator</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-for-generating-images-of-bootstrap-samples-and-averages">9.7.3. Code For Generating Images of Bootstrap Samples and Averages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">9.7.4. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-for-generating-images-of-bootstrap-samples-and-averages">9.7.2. Code For Generating Images of Bootstrap Samples and Averages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">9.7.3. Terminology Review</a></li>
 </ul>
             </nav>
         </div>
@@ -19809,33 +19808,9 @@ AABYgEAHAMACBDoAABYg0AEAsACBDgCABQh0AAAs8P8AjoJoDmLUDQIAAAAASUVORK5CYII=\
 </div>
 </section>
 </section>
-<section id="bootstrap-distribution-of-an-estimator">
-<h2><span class="section-number">9.7.2. </span>Bootstrap Distribution of an Estimator<a class="headerlink" href="#bootstrap-distribution-of-an-estimator" title="Permalink to this heading">#</a></h2>
-<p>Next we consider the bootstrap distribution of an estimator.  For a given parameter, we can create bootstrap samples from observed data by resampling with replacement and then computing the parameter from the bootstrap samples, as we did to create confidence intervals in  <a class="reference internal" href="confidence-intervals-estimates.html"><span class="doc">Section 9.5</span></a>. Since the bootstrapped value of the parameter will depend on the bootstrap sample, which is randomly chosen, the bootstrap sample will be a random variable and thus its distribution can be characterized. Before we illustrate this with an example, let’s consider some observations about the bootstrap distribution:</p>
-<ol class="arabic simple">
-<li><p>The bootstrap distribution is inherently a discrete distribution. If there are <span class="math notranslate nohighlight">\(n\)</span> values in the original sample, then the number of ways to create a bootstrap sample is <span class="math notranslate nohighlight">\(n^n\)</span>. Note, however, that the number of possible values grows quickly with the number of values in the original sample. For instance, if there were <span class="math notranslate nohighlight">\(25\)</span> values in the original sample, then the number of possible values of the parameter estimator is as high as</p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">25</span> <span class="o">**</span> <span class="mi">25</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>88817841970012523233890533447265625
-</pre></div>
-</div>
-</div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>The minimum and maximum values of a bootstrap distribution are always finite. For instance, if the mean estimator is used, then the minimum possible value will occur when every value in the bootstrap sample is equal to the minimum value in the original data sample. Thus, the minimum possible value of the mean estimator is equal to the minimum value in the original data sample, and we can make a similar conclusion for the maximum.</p></li>
-</ol>
-<p>An implication of both these observations is that if the data comes from a continuous distribution, the bootstrap distribution will never converge to the sampling distribution as the number of bootstrap samples goes to infinity.</p>
-<p>Even with these limitations, the bootstrap distribution is usually used as an approximation of the sampling distribution. However, the bootstrap distribution is usually only a good approximation of the sampling distribution if the sample size is sufficiently large (at least 10s of data points in the sample).</p>
-<p>Below is an example showing a random sample of data from a Normal(<span class="math notranslate nohighlight">\(\mu=3,~ \sigma=2)\)</span> distribution. Below the data are plots that show 8 different bootstrap samples from the data, along with the computed average for each bootstrap sample.</p>
-</section>
 <section id="code-for-generating-images-of-bootstrap-samples-and-averages">
-<h2><span class="section-number">9.7.3. </span>Code For Generating Images of Bootstrap Samples and Averages<a class="headerlink" href="#code-for-generating-images-of-bootstrap-samples-and-averages" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.7.2. </span>Code For Generating Images of Bootstrap Samples and Averages<a class="headerlink" href="#code-for-generating-images-of-bootstrap-samples-and-averages" title="Permalink to this heading">#</a></h2>
+<p>The code for generating the image of bootstrap samples and averages was omitted from the text. I am including it here:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.gridspec</span> <span class="k">as</span> <span class="nn">gridspec</span>
@@ -19908,7 +19883,7 @@ AABYgEAHAMACBDoAABYg0AEAsACBDgCABQh0AAAs8P8AjoJoDmLUDQIAAAAASUVORK5CYII=\
 </div>
 </section>
 <section id="terminology-review">
-<h2><span class="section-number">9.7.4. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.7.3. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
@@ -20628,9 +20603,8 @@ var textColorspXdtWVrqbYyI= ["var(--snow)" ];
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-distribution-for-average-of-two-normal-random-variables">9.7.1.6. Sampling Distribution for Average of Two Normal Random Variables</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-distribution-of-an-estimator">9.7.2. Bootstrap Distribution of an Estimator</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-for-generating-images-of-bootstrap-samples-and-averages">9.7.3. Code For Generating Images of Bootstrap Samples and Averages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">9.7.4. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-for-generating-images-of-bootstrap-samples-and-averages">9.7.2. Code For Generating Images of Bootstrap Samples and Averages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">9.7.3. Terminology Review</a></li>
 </ul>
   </nav></div>
 
