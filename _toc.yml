@@ -86,3 +86,10 @@ sections:
   - file: 08-random-variables/conditioning-with-rvs
   - file: 08-random-variables/review
   - file: 08-random-variables/summary
+- file: 09-moments/intro
+  sections:
+  - file: 09-moments/expected-value
+  - file: 09-moments/expected-value-continuous
+  - file: 09-moments/moments
+  - file: 09-moments/parameter-estimation
+  - file: 09-moments/confidence-intervals-estimates
