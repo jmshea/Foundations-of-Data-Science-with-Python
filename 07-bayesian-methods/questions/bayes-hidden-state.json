@@ -1,0 +1,38 @@
+[
+    {
+        "question": "Suppose a magician has a fair coin and a two-headed coin in their pocket. They choose one at random and flip it 3 times. If it came up heads every time, what is the probability that it is the two-headed coin? Give your answer as a fraction or a decimal accurate to at least 2 decimal places.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.89,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.01
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative. Your work may contain a math error."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.01,
+                    1000000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1. Your work may contain a math error."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Apply Bayes' rule to write $P(\\overline{F}| H_1 \\cap H_2 \\cap H_3)$ in terms of likelihoods and <i>a priori</i> probabilities. "
+            }
+        ]
+    }
+]

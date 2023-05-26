@@ -1,0 +1,44 @@
+[
+    {
+        "question": "For a 40 year-old woman whose mammogram does <b>not</b> detect cancer, what is the probability that she actually has cancer? Use the data from the Bayes' Rule section.",
+        "type": "numeric",
+        "precision": 5,
+        "answers": [
+            {
+                "type": "value",
+                "value": 2.0e-4,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.1
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative. Your work may contain a math error."
+            },
+            {
+                "type": "value",
+                "value": 0.99,
+                "correct": false,
+                "feedback": "Note that $P(C|\\overline{D}) \\ne 1 - P(C|D)$. These are two different probability measures (since they have different conditional information)."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.1,
+                    1000000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1. Your work may contain a math error."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Apply Bayes' rule to write $P(C|\\overline{D})$ in terms of likelihoods and <i>a priori</i> probabilities."
+            }
+        ]
+    }
+]
