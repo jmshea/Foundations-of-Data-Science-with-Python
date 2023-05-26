@@ -112,3 +112,9 @@ sections:
   - file: 11-categorical-data/goodness-of-fit
   - file: 11-categorical-data/review
   - file: 11-categorical-data/summary
+- file: 12-vector-regression/intro
+  sections:
+  - file: 12-vector-regression/vectors
+  - file: 12-vector-regression/vector-operations
+  - file: 12-vector-regression/vector-stats
+  - file: 12-vector-regression/linear-regression
