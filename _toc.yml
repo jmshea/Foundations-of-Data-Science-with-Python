@@ -105,3 +105,10 @@ sections:
   - file: 10-conditional-stats/bayesian-decisions
   - file: 10-conditional-stats/review
   - file: 10-conditional-stats/summary
+- file: 11-categorical-data/intro
+  sections:
+  - file: 11-categorical-data/contingency-tables
+  - file: 11-categorical-data/nhst
+  - file: 11-categorical-data/goodness-of-fit
+  - file: 11-categorical-data/review
+  - file: 11-categorical-data/summary
