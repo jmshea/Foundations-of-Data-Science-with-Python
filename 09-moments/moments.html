@@ -8,16 +8,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="4.1. Outcomes, Sample Spaces, and Events" />
+<meta property="og:title" content="9.3. Moments" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.fdsp.net/04-probability1/outcomes-samplespaces-events.html" />
+<meta property="og:url" content="https://www.fdsp.net/09-moments/moments.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
+<meta property="og:description" content="Terminology and Properties Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
+<meta name="description" content="Terminology and Properties Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
 
-    <title>4.1. Outcomes, Sample Spaces, and Events &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
+    <title>9.3. Moments &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
   
   
   
@@ -79,12 +79,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"loader": {"load": ["[tex]/boldsymbol"]}, "tex": {"macros": {"P": "\\operatorname{P}"}, "packages": {"[+]": ["boldsymbol"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '04-probability1/outcomes-samplespaces-events';</script>
-    <link rel="canonical" href="https://www.fdsp.net/04-probability1/outcomes-samplespaces-events.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = '09-moments/moments';</script>
+    <link rel="canonical" href="https://www.fdsp.net/09-moments/moments.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.2. Relative Frequencies and Probabilities" href="relative-frequency.html" />
-    <link rel="prev" title="4. Introduction to Probability" href="intro.html" />
+    <link rel="next" title="9.4. Parameter Estimation" href="parameter-estimation.html" />
+    <link rel="prev" title="9.2. Expected Value of a Continuous Random Variable with SymPy" href="expected-value-continuous.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -208,15 +208,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../03-first-data/review.html">3.8. Review</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">4. Introduction to Probability</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.1. Outcomes, Sample Spaces, and Events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relative-frequency.html">4.2. Relative Frequencies and Probabilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fair-experiments.html">4.3. Fair Experiments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="axiomatic-prob.html">4.4. Axiomatic  Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="corollaries.html">4.5. Corollaries to the Axioms of Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="combinatorics.html">4.6. Combinatorics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="review.html">4.7. Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="summary.html">4.8. Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04-probability1/intro.html">4. Introduction to Probability</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04-probability1/outcomes-samplespaces-events.html">4.1. Outcomes, Sample Spaces, and Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04-probability1/relative-frequency.html">4.2. Relative Frequencies and Probabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04-probability1/fair-experiments.html">4.3. Fair Experiments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04-probability1/axiomatic-prob.html">4.4. Axiomatic  Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04-probability1/corollaries.html">4.5. Corollaries to the Axioms of Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04-probability1/combinatorics.html">4.6. Combinatorics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04-probability1/review.html">4.7. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04-probability1/summary.html">4.8. Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../05-null-hypothesis-testing/intro.html">5. Null Hypothesis Tests</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -267,12 +267,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../08-random-variables/summary.html">8.10. Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../09-moments/intro.html">9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/expected-value.html">9.1. Expected Value</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/expected-value-continuous.html">9.2. Expected Value of a Continuous Random Variable with SymPy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/moments.html">9.3. Moments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/parameter-estimation.html">9.4. Parameter Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">9.5. Confidence Intervals for Estimates</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="expected-value.html">9.1. Expected Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expected-value-continuous.html">9.2. Expected Value of a Continuous Random Variable with SymPy</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">9.3. Moments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter-estimation.html">9.4. Parameter Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="confidence-intervals-estimates.html">9.5. Confidence Intervals for Estimates</a></li>
 </ul>
 </li>
 </ul>
@@ -329,7 +329,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/04-probability1/outcomes-samplespaces-events.ipynb" target="_blank"
+      <li><a href="../_sources/09-moments/moments.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -411,7 +411,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Outcomes, Sample Spaces, and Events</h1>
+    <h1>Moments</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -421,7 +421,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">4.1.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-and-properties-review">9.3.1. Terminology and Properties Review</a></li>
 </ul>
             </nav>
         </div>
@@ -433,11 +433,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="outcomes-sample-spaces-and-events">
-<h1><span class="section-number">4.1. </span>Outcomes, Sample Spaces, and Events<a class="headerlink" href="#outcomes-sample-spaces-and-events" title="Permalink to this heading">#</a></h1>
-<section id="terminology-review">
-<h2><span class="section-number">4.1.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
-<p>Use the flashcards below to help you review the terminology introduced in this chapter.  <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="moments">
+<h1><span class="section-number">9.3. </span>Moments<a class="headerlink" href="#moments" title="Permalink to this heading">#</a></h1>
+<section id="terminology-and-properties-review">
+<h2><span class="section-number">9.3.1. </span>Terminology and Properties Review<a class="headerlink" href="#terminology-and-properties-review" title="Permalink to this heading">#</a></h2>
+<p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><style>
@@ -695,7 +695,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="sZpkEtBmIBIr" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="sZpkEtBmIBIr-next" onclick="window.checkFlip('sZpkEtBmIBIr')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="vnWvsqdffeFc" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="vnWvsqdffeFc-next" onclick="window.checkFlip('vnWvsqdffeFc')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1042,31 +1042,53 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("sZpkEtBmIBIr")) {
-            createCards("sZpkEtBmIBIr", "True", "False");
+          if(document.getElementById("vnWvsqdffeFc")) {
+            createCards("vnWvsqdffeFc", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardssZpkEtBmIBIr=[
+var cardsvnWvsqdffeFc=[
     {
-        "front": "outcome (of a random experiment)",
-        "back": "An outcome of a random experiment is a result of the experiment that cannot be further decomposed."
+        "front": "$n$th moment",
+        "back": "\\begin{equation*} E[X^n], ~~~ n=1,2,\\ldots \\end{equation*}"
     },
     {
-        "front": "sample space, \\( S \\)",
-        "back": "The sample space of a random experiment is the set of all possible outcomes."
+        "front": "Law of the Unconscious Statistician<br>(LOTUS)",
+        "back": "Let $g(x)$ be a real function. For discrete $X$, \\begin{equation*} E\\left[ g(X) \\right] = \\sum_x g(x) p_X(x).\\end{equation*} For continuous $X$, \\begin{equation*} E\\left[ g(X) \\right] = \\int_{-\\infty}^{\\infty} g(x) f_X(x)~dx.\\end{equation*} "
     },
     {
-        "front": "event",
-        "back": "An event is a set of outcomes. The event occurs if the result of the experiment is any of the outcomes in the set. "
+        "front": "$n$th central moment",
+        "back": "\\begin{equation*}E[(X-\\mu_X)^n], ~~~ n=2,3,\\ldots \\end{equation*} "
+    },
+    {
+        "front": "variance<br>(random variable)",
+        "back": "The 2nd central moment, \\begin{equation*}\\operatorname{Var}(X) =\\sigma_{X}^{2} = E \\left[ \\left( X - \\mu_X \\right)^2 \\right]\\end{equation*}"
+    },
+    {
+        "front": "variance of a constant:<br>$\\operatorname{Var}[c]$",
+        "back": "zero:<br>$ \\operatorname{Var}[c]=0$"
+    },
+    {
+        "front": "variance when adding a constant<br>$\\operatorname{Var}[X+c]$",
+        "back": "unchanged:<br> $\\operatorname{Var}[X+c]= \\operatorname{Var}[X]$"
+    },
+    {
+        "front": "variance when multiplying by a constant<br>$\\operatorname{Var}[cX]$",
+        "back": "constant-squared times variance:<br> $\\operatorname{Var}[cX]= c^2 \\operatorname{Var}[X]$"
+    },
+    {
+        "front": "variance of sum of independent random variables<br> \\begin{equation*} \\operatorname{Var} \\left[ \\sum_{i=0}^{N-1} X_i \\right] \\end{equation*}",
+        "back": "sum of variances:<br>\\begin{equation*} \\operatorname{Var} \\left[ \\sum_{i=0}^{N-1} X_i \\right] =\\sum_{i=0}^{N-1} \\operatorname{Var} \\left[ X_i \\right] \\end{equation*}"
     }
+
+
 ]
 ;
-var frontColorssZpkEtBmIBIr= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorssZpkEtBmIBIr= ["var(--dark-blue-gray)" ];
-var textColorssZpkEtBmIBIr= ["var(--snow)" ];
+var frontColorsvnWvsqdffeFc= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsvnWvsqdffeFc= ["var(--dark-blue-gray)" ];
+var textColorsvnWvsqdffeFc= ["var(--snow)" ];
 
 
         {
@@ -1075,9 +1097,9 @@ var textColorssZpkEtBmIBIr= ["var(--snow)" ];
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/outcomes-samplespaces-events.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/09-moments/flashcards/moments.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("sZpkEtBmIBIr", "True", "False"))
+        .then(json => createCards("vnWvsqdffeFc", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1101,7 +1123,7 @@ var textColorssZpkEtBmIBIr= ["var(--snow)" ];
         },
         kernelOptions: {
             name: "python3",
-            path: "./04-probability1"
+            path: "./09-moments"
         },
         predefinedOutput: true
     }
@@ -1120,20 +1142,20 @@ var textColorssZpkEtBmIBIr= ["var(--snow)" ];
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro.html"
+       href="expected-value-continuous.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Introduction to Probability</p>
+        <p class="prev-next-title"><span class="section-number">9.2. </span>Expected Value of a Continuous Random Variable with SymPy</p>
       </div>
     </a>
     <a class="right-next"
-       href="relative-frequency.html"
+       href="parameter-estimation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4.2. </span>Relative Frequencies and Probabilities</p>
+        <p class="prev-next-title"><span class="section-number">9.4. </span>Parameter Estimation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1155,7 +1177,7 @@ var textColorssZpkEtBmIBIr= ["var(--snow)" ];
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">4.1.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-and-properties-review">9.3.1. Terminology and Properties Review</a></li>
 </ul>
   </nav></div>
 
