@@ -1,0 +1,33 @@
+[
+    {
+        "question": "How are \"mutually exclusive\" and \"statistically independent\" related?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "If events are m.e., that implies that they will be s.i., except in some degenerate cases.",
+                "correct": false,
+                "feedback": "Incorrect. Try again."
+            },
+            {
+                "answer": "If events are s.i., that implies that they will be m.e., except in some degenerate cases.",
+                "correct": false,
+                "feedback": "Incorrect. Try again."
+            },
+            {
+                "answer": "Two events cannot be both s.i. and m.e., except in some degenerate cases.",
+                "correct": true,
+                "feedback": "Correct. Events cannot be both s.i. and m.e. unless at least one of those events has probability zero."
+            },
+            {
+                "answer": "Statistically independent and mutually exclusive are equivalent conditions, except in some degenerate cases.",
+                "correct": false,
+                "feedback": "Incorrect. Try again."
+            },
+            {
+                "answer": "None of the other choices.",
+                "correct": false,
+                "feedback": "Incorrect. Try again."
+            }
+        ]
+    }
+]

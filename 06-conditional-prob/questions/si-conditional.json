@@ -1,0 +1,33 @@
+[
+    {
+        "question": "Consider two events $A$ and $B$ with $P(A)>0$. If these events are independent, then we expect that implies that knowledge of one event does not influence the probabilities of the other. What should $P(B|A)$ simplify to?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "$P(B)$",
+                "correct": true,
+                "feedback": "Correct. Knowing that $A$ occurred should not alter the probability of $B$ if $B$ is independent of $A$."
+            },
+            {
+                "answer": "$P(A \\cap B)$",
+                "correct": false,
+                "feedback": "Incorrect. From the definition of conditional probability, this would imply $P(A)=1$."
+            },
+            {
+                "answer": "$P(A)$",
+                "correct": false,
+                "feedback": "Incorrect. If this were true, then $A$ could definitely be changing the probabilities for $B$."
+            },
+            {
+                "answer": "1",
+                "correct": false,
+                "feedback": "Incorrect. If this were true, then knowing that $A$ occurred would usually imply that $B$ occurred. So $A$ gives a lot of information about $B$."
+            },
+            {
+                "answer": "0",
+                "correct": false,
+                "feedback": "Incorrect. If this were true, then knowing $A$ occurred would generally imply that $B$ did not occur. So $A$ gives a lot of information about $B$."
+            }
+        ]
+    }
+]

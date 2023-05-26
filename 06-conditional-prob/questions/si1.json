@@ -1,0 +1,38 @@
+[
+    {
+        "question": "If you roll a fair six-sided die twice, what is the probability of getting a 3 on both dice?",
+        "type": "numeric",
+	"precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.028,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [0.166, 0.171],
+                "correct": false,
+                "feedback": "Getting a 3 on the first roll would have a probability of 1/6, so getting a 3 on both rolls must be have a smaller probability."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000000001, 1000000000], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the definition of statistical independence to make this problem easier to solve."
+            }
+        ]
+    }
+]
