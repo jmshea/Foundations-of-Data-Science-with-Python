@@ -59,3 +59,7 @@ sections:
   - file: 06-conditional-prob/notation-and-intuition
   - file: 06-conditional-prob/definition
   - file: 06-conditional-prob/relating-cond-uncond
+  - file: 06-conditional-prob/more-on-simulating
+  - file: 06-conditional-prob/independence
+  - file: 06-conditional-prob/fair-exps
+  - file: 06-conditional-prob/conditional-independence
