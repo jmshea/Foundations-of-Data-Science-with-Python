@@ -80,3 +80,9 @@ sections:
   - file: 08-random-variables/discrete-rvs
   - file: 08-random-variables/cdfs
   - file: 08-random-variables/important-discrete-rvs
+  - file: 08-random-variables/continuous-rvs
+  - file: 08-random-variables/important-continuous-rvs
+  - file: 08-random-variables/kernel-density-estimation
+  - file: 08-random-variables/conditioning-with-rvs
+  - file: 08-random-variables/review
+  - file: 08-random-variables/summary
