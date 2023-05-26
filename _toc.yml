@@ -66,3 +66,11 @@ sections:
   - file: 06-conditional-prob/chain-rules-total-prob
   - file: 06-conditional-prob/review
   - file: 06-conditional-prob/summary
+- file: 07-bayesian-methods/intro
+  sections:
+  - file: 07-bayesian-methods/bayes-rule
+  - file: 07-bayesian-methods/bayes-hidden-state
+  - file: 07-bayesian-methods/optimal-decisions
+  - file: 07-bayesian-methods/bayesian-hypothesis-testing
+  - file: 07-bayesian-methods/review
+  - file: 07-bayesian-methods/summary
