@@ -1,0 +1,28 @@
+[
+    {
+        "question": "Consider events $A$ and $B$ with both $P(A)>0$ and $P(B)>0$. Which of the following statements are true?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "$$P(A|B) \\ge P(A)$$ (I.e., given some information, the probability increases or remains the same.)",
+                "correct": false,
+                "feedback": "Incorrect. Try again."
+            },
+            {
+                "answer": "$$P(A|B) \\le P(A)$$ (I.e., given some information, the probability decreases or remains the same.)",
+                "correct": false,
+                "feedback": "Incorrect. Try again."
+            },
+            {
+                "answer": "$$P(A|B) = P(A)$$ (Conditional information does not change the probability of an event.)",
+                "correct": false,
+                "feedback": "Incorrect. You should have already seen multiple examples to disprove this in Chapter 5. If you believed this answer was correct when you chose it, you should review Chapter 5 from the beginning."
+            },
+            {
+                "answer": "$P(A|B)$ may be less than, equal to, or greater than $P(A)$, depending on the information given.",
+                "correct": true,
+                "feedback": "Correct. See the discussion below."
+            }
+        ]
+    }
+]
