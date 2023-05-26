@@ -1,0 +1,23 @@
+[
+    {
+        "front": "explanatory variable",
+        "back": "A variable or feature used to predict or explain differences in another variable. Sometimes called an independent variable, especially if this variable is a variable that is under an experimenter's control."
+    },
+    {
+        "front": "response variable",
+        "back": "A variable or feature that is to be predicted or explained using another variable. Sometimes called a dependent variable, especially if this variable is measured as the result of an experiment."
+    },
+    {
+        "front": "coefficient of determination<br>(simple linear regression)",
+        "back": "In simple linear regression between two data vectors $\\mathbf{x}$ and $\\mathbf{y}$ with Pearson's correlation coefficient $r$, the <i>coefficient of determination</i> is the value $r^2$ (pronounced \"R squared\"), which is also denoted $R^2$."
+    },
+
+    {
+        "front": "total variance<br>(simple linear regression)",
+        "back": "In simple linear regression between explanatory vector $\\mathbf{x}$ and response vector $\\mathbf{y}$, the total variance refers to the variance of the response vector, $\\sigma_{y}^{2}$, which is the variance without using the explanatory vector to predict the values in $\\mathbf{y}$."
+    },
+    {
+        "front": "explained variance<br>(simple linear regression)",
+        "back": "In simple linear regression between explanatory vector $\\mathbf{x}$ and response vector $\\mathbf{y}$, the explained variance is the variance in the response data after subtracting off the values predicted from the explanatory data. The explained variance is $r^2 \\sigma_{y}^{2}$, where $\\sigma_{y}^{2}$ is the variance of $\\mathbf{y}$ and $r^2$ is the coefficient of determination."
+    }
+]

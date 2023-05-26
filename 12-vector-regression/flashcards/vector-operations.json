@@ -1,0 +1,31 @@
+[
+    {
+        "front": "vector addition",
+        "back": "The sum of vectors $\\mathbf{a}$ and $\\mathbf{b}$ is a vector $\\mathbf{a+b}$ whose $i$th component is the sum of the $i$th components of $\\mathbf{a}$ and $\\mathbf{b}$; i.e. $\\mathbf{(a+b)}_i = a_i + b_i$."
+    }, 
+    {
+        "front": "scalar-vector multiplication",
+        "back": "Given a vector $\\mathbf{x}$ and a scalar $\\alpha$, $\\alpha \\mathbf{x}$ is the vector with components given by the components of $\\mathbf{x}$ multiplied by $\\alpha$: \\begin{equation*} \\alpha \\mathbf{x} = \\left[ \\alpha x_0, ~ \\alpha x_1, ~\\ldots, ~ \\alpha x_{n-1} \\right]^T. \\end{equation*}"
+    },
+    {
+        "front": "component-wise vector multiplication<br>(Hadamard product)",
+        "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <I>Hadamard product</I> or <I>Schur product</I> is \\begin{equation*} \\mathbf{x} \\odot \\mathbf{y} = \\left[ x_0 y_0, ~~ x_1 y_1, ~~ \\ldots,~~ x_{n-1} y_{n-1}  \\right]. \\end{equation*}" 
+    },
+
+    {
+        "front": "dot product/<br>inner product",
+        "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <I>dot product</I> or <I>inner product</I> is the <B>scalar value</B> given by multiplying corresponding components and summing them up: \\begin{equation*} \\mathbf{x} \\cdot \\mathbf{y} = \\sum_{i=0}^{n-1} x_i y_i. \\end{equation*}"
+    },
+    {
+        "front": "norm squared",
+        "back": "For a mathematical object $\\mathbf{x}$ with an inner product operator $\\langle , \\rangle$, the norm squared is denoted by $\\| x \\|^2$, and defined as \\begin{equation*} \\| x \\|^2 = \\langle x, x \\rangle .\\end{equation*}"
+    },
+    {
+        "front": "norm",
+        "back": "For a mathematical object $\\mathbf{x}$ with an inner product operator $\\langle , \\rangle$, the norm is denoted by $\\| x \\|$ and defined as \\begin{equation*} \\| x \\|^2 = \\sqrt{\\langle x, x \\rangle }.\\end{equation*}"
+    },
+    {
+        "front": "distance (vectors)",
+        "back": "The distance between two $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$ is the norm of the difference between the vectors,  $\\| \\mathbf{x} - \\mathbf{y} \\| = \\|\\mathbf{y} - \\mathbf{x} \\|.$"
+    }
+]

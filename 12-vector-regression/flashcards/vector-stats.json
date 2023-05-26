@@ -1,0 +1,23 @@
+[
+    {
+        "front": "transpose",
+        "back": "Interchange the rows and columns in a matrix. For a matrix $\\mathbf{M}$, the transpose is denoted by $\\mathbf{M}^{T}$ satisifies  \\begin{equation*} \\mathbf{M}^T [i,j] = \\mathbf{M}[j,i] ~~~ \\forall i,j.\\end{equation*}"
+    }, 
+    {
+        "front": "covariance<br>(random variables)",
+        "back": "For random variables $X$ and $Y$, the <i>covariance</i> is the joint moment \\begin{equation*} \\operatorname{Cov}(X, Y) = E \\left[ \\left( X - E[X]\\right) \\left( Y- E[Y]\\right) \\right]. \\end{equation*}"
+    },
+    {
+        "front": "covariance<br>(data vectors)",
+        "back": "For $n$-vectors  $\\mathbf{x}$ and $\\mathbf{y}$, the unbiased sample <i>covariance</i> is  \\begin{equation*} \\operatorname{Cov}( \\mathbf{x}, \\mathbf{y}) = \\frac{1}{n-1} \\sum_{i=0}^{n-1} \\left(x_i - \\overline{x}\\right) \\left(y_i - \\overline{y}\\right) . \\end{equation*}" 
+    },
+
+    {
+        "front": "correlation coefficient<br>(random variables)",
+        "back": "For random variables $X$ and $Y$, the <i>correlation coefficient</i> is \\begin{equation*} \\rho = \\frac{ \\operatorname{Cov}(X, Y)}{\\sigma_X \\sigma_Y}. \\end{equation*} "
+    },
+    {
+        "front": "correlation coefficient<br>(data vectors)",
+        "back": "For $n$-vectors  $\\mathbf{x}$ and $\\mathbf{y}$, the <i>correlation coefficient</i> or <i>Pearson's correlation coefficient</i> is  \\begin{equation*} r = \\frac{ \\operatorname{Cov}(\\mathbf{x}, \\mathbf{y})}{\\sigma_x \\sigma_y}. \\end{equation*} "
+    }
+]

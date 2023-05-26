@@ -1,0 +1,31 @@
+[
+    {
+        "front": "vector",
+        "back": "A one-dimensional, ordered list of numbers that has an accompanying notions of magnitude of a vector and  distance between two vectors."
+    }, 
+    {
+        "front": "component or element (vector)",
+        "back": "One of the numerical values that make up the vector."
+    },
+    {
+        "front": "scalar",
+        "back": "A singular numerical value." 
+    },
+
+    {
+        "front": "size (of a vector)",
+        "back": "The number of components a vector contains."
+    },
+    {
+        "front": "zero vector",
+        "back": "A vector of all zeros."
+    },
+    {
+        "front": "ones vector",
+        "back": "A vector of all ones. "
+    },
+    {
+        "front": "standard unit vector",
+        "back": "A vector of with all of its components equal to zero, except one element which is equal to one."
+    }
+]

@@ -1,0 +1,102 @@
+[
+    {
+        "front": "vector",
+        "back": "A one-dimensional, ordered list of numbers that has an accompanying notions of magnitude of a vector and  distance between two vectors."
+    }, 
+    {
+        "front": "component or element (vector)",
+        "back": "One of the numerical values that make up the vector."
+    },
+    {
+        "front": "scalar",
+        "back": "A singular numerical value." 
+    },
+
+    {
+        "front": "size (of a vector)",
+        "back": "The number of components a vector contains."
+    },
+    {
+        "front": "zero vector",
+        "back": "A vector of all zeros."
+    },
+    {
+        "front": "ones vector",
+        "back": "A vector of all ones. "
+    },
+    {
+        "front": "standard unit vector",
+        "back": "A vector of with all of its components equal to zero, except one element which is equal to one."
+    },
+    {
+        "front": "vector addition",
+        "back": "The sum of vectors $\\mathbf{a}$ and $\\mathbf{b}$ is a vector $\\mathbf{a+b}$ whose $i$th component is the sum of the $i$th components of $\\mathbf{a}$ and $\\mathbf{b}$; i.e. $\\mathbf{(a+b)}_i = a_i + b_i$."
+    }, 
+    {
+        "front": "scalar-vector multiplication",
+        "back": "Given a vector $\\mathbf{x}$ and a scalar $\\alpha$, $\\alpha \\mathbf{x}$ is the vector with components given by the components of $\\mathbf{x}$ multiplied by $\\alpha$: \\begin{equation*} \\alpha \\mathbf{x} = \\left[ \\alpha x_0, ~ \\alpha x_1, ~\\ldots, ~ \\alpha x_{n-1} \\right]^T. \\end{equation*}"
+    },
+    {
+        "front": "component-wise vector multiplication<br>(Hadamard product)",
+        "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <I>Hadamard product</I> or <I>Schur product</I> is \\begin{equation*} \\mathbf{x} \\odot \\mathbf{y} = \\left[ x_0 y_0, ~~ x_1 y_1, ~~ \\ldots,~~ x_{n-1} y_{n-1}  \\right]. \\end{equation*}" 
+    },
+
+    {
+        "front": "dot product/<br>inner product",
+        "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <I>dot product</I> or <I>inner product</I> is the <B>scalar value</B> given by multiplying corresponding components and summing them up: \\begin{equation*} \\mathbf{x} \\cdot \\mathbf{y} = \\sum_{i=0}^{n-1} x_i y_i. \\end{equation*}"
+    },
+    {
+        "front": "norm squared",
+        "back": "For a mathematical object $\\mathbf{x}$ with an inner product operator $\\langle , \\rangle$, the norm squared is denoted by $\\| x \\|^2$, and defined as \\begin{equation*} \\| x \\|^2 = \\langle x, x \\rangle .\\end{equation*}"
+    },
+    {
+        "front": "norm",
+        "back": "For a mathematical object $\\mathbf{x}$ with an inner product operator $\\langle , \\rangle$, the norm is denoted by $\\| x \\|$ and defined as \\begin{equation*} \\| x \\|^2 = \\sqrt{\\langle x, x \\rangle }.\\end{equation*}"
+    },
+    {
+        "front": "distance (vectors)",
+        "back": "The distance between two $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$ is the norm of the difference between the vectors,  $\\| \\mathbf{x} - \\mathbf{y} \\| = \\|\\mathbf{y} - \\mathbf{x} \\|.$"
+    },
+    {
+        "front": "transpose",
+        "back": "Interchange the rows and columns in a matrix. For a matrix $\\mathbf{M}$, the transpose is denoted by $\\mathbf{M}^{T}$ satisifies  \\begin{equation*} \\mathbf{M}^T [i,j] = \\mathbf{M}[j,i] ~~~ \\forall i,j.\\end{equation*}"
+    }, 
+    {
+        "front": "covariance<br>(random variables)",
+        "back": "For random variables $X$ and $Y$, the <i>covariance</i> is the joint moment \\begin{equation*} \\operatorname{Cov}(X, Y) = E \\left[ \\left( X - E[X]\\right) \\left( Y- E[Y]\\right) \\right]. \\end{equation*}"
+    },
+    {
+        "front": "covariance<br>(data vectors)",
+        "back": "For $n$-vectors  $\\mathbf{x}$ and $\\mathbf{y}$, the unbiased sample <i>covariance</i> is  \\begin{equation*} \\operatorname{Cov}( \\mathbf{x}, \\mathbf{y}) = \\frac{1}{n-1} \\sum_{i=0}^{n-1} \\left(x_i - \\overline{x}\\right) \\left(y_i - \\overline{y}\\right) . \\end{equation*}" 
+    },
+
+    {
+        "front": "correlation coefficient<br>(random variables)",
+        "back": "For random variables $X$ and $Y$, the <i>correlation coefficient</i> is \\begin{equation*} \\rho = \\frac{ \\operatorname{Cov}(X, Y)}{\\sigma_X \\sigma_Y}. \\end{equation*} "
+    },
+    {
+        "front": "correlation coefficient<br>(data vectors)",
+        "back": "For $n$-vectors  $\\mathbf{x}$ and $\\mathbf{y}$, the <i>correlation coefficient</i> or <i>Pearson's correlation coefficient</i> is  \\begin{equation*} r = \\frac{ \\operatorname{Cov}(\\mathbf{x}, \\mathbf{y})}{\\sigma_x \\sigma_y}. \\end{equation*} "
+    },
+    {
+        "front": "explanatory variable",
+        "back": "A variable or feature used to predict or explain differences in another variable. Sometimes called an independent variable, especially if this variable is a variable that is under an experimenter's control."
+    },
+    {
+        "front": "response variable",
+        "back": "A variable or feature that is to be predicted or explained using another variable. Sometimes called a dependent variable, especially if this variable is measured as the result of an experiment."
+    },
+    {
+        "front": "coefficient of determination<br>(simple linear regression)",
+        "back": "In simple linear regression between two data vectors $\\mathbf{x}$ and $\\mathbf{y}$ with Pearson's correlation coefficient $r$, the <i>coefficient of determination</i> is the value $r^2$ (pronounced \"R squared\"), which is also denoted $R^2$."
+    },
+
+    {
+        "front": "total variance<br>(simple linear regression)",
+        "back": "In simple linear regression between explanatory vector $\\mathbf{x}$ and response vector $\\mathbf{y}$, the total variance refers to the variance of the response vector, $\\sigma_{y}^{2}$, which is the variance without using the explanatory vector to predict the values in $\\mathbf{y}$."
+    },
+    {
+        "front": "explained variance<br>(simple linear regression)",
+        "back": "In simple linear regression between explanatory vector $\\mathbf{x}$ and response vector $\\mathbf{y}$, the explained variance is the variance in the response data after subtracting off the values predicted from the explanatory data. The explained variance is $r^2 \\sigma_{y}^{2}$, where $\\sigma_{y}^{2}$ is the variance of $\\mathbf{y}$ and $r^2$ is the coefficient of determination."
+    }
+]
