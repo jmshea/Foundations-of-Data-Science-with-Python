@@ -1,0 +1,60 @@
+[
+    {
+        "question": "For the scenario where a magician has a fair coin and a two-headed coin, what is the probability that the magician chooses the Fair coin and gets heads on the first two flips?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.125",
+                "correct": true,
+                "feedback": "Correct! We can write \\( P(F \\cap H_1 \\cap H_2) = P(H_1 \\cap H_2 |F) P(F)\\) \\(= P(H_1|F)P(H_2|F)P(F) = (1/2)(1/2)(1/2) = 1/8\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule where you condition on the hidden state."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "Consider a scenario where the magician has a 4 fair coins and 1 two-headed coin. A coin is chosen at random and flipped twice. What is the probability that the magician chooses the Fair coin and gets heads on the first two flips?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.2",
+                "correct": true,
+                "feedback": "Correct! We can write \\( P(F \\cap H_1 \\cap H_2) = P(H_1 \\cap H_2 |F) P(F)\\) \\(= P(H_1|F)P(H_2|F)P(F) = (1/2)(1/2)(4/5) = 1/5\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule where you condition on the hidden state. Note that there are four fair coins out of the five total coins."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    }
+]

@@ -1,0 +1,99 @@
+[
+    {
+        "question": "What is the probability of getting <b>two</b> consecutive face cards (J, Q, K) on two consecutive draws from a standard 52-card deck? Give your answer to 3 significant digits.",
+        "type": "numeric",
+        "precision": 4,
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.0498",
+                "correct": true,
+                "feedback": "Correct! The correct answer is \\( (11/51)(12/52) = 11/221 \\approx  0.0498\\)."
+            },
+            {
+                "type": "value",
+                "value": "0.0488",
+                "correct": false,
+                "feedback": "Incorrect. Be sure to update the denominator when you calculate the conditional probability."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule for the intersection of two events. When calculating the conditional probability, be sure to update both the numerator and denominator based on the conditioning (what happened on the first draw)."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "What is the probability of getting <b>three</b> consecutive face cards (J, Q, K) on three consecutive draws from a standard 52-card deck? Give your answer to 3 significant digits.",
+        "type": "numeric",
+        "precision": 5,
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.00995",
+                "correct": true,
+                "feedback": "Correct! The correct answer is \\( (10/50)(11/51)(12/52) = 11/1105 \\approx  0.00995\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule for the intersection of three events. When calculating the conditional probabilities, be sure to update both the numerator and denominator based on the conditioning (what happened on the first or second draw)."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": " A computer lab has 10 computers, 3 of which are malfunctioning. If you go into the lab and start trying computers until you find one that works, what is the probability that you have to try 3 or more computers? Give your answer to 2 significant digits.",
+        "type": "numeric",
+        "precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.067",
+                "correct": true,
+                "feedback": "Correct! The correct answer is \\( (2/9)(3/10) = 1/15 \\approx  0.067\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. The first step is to realize that you have to try 3 or more computers if the first two are defective. Thus the probability we are looking for is \\( P(D_1 \cap D_2)\\). Apply the chain rule."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    }
+
+]
