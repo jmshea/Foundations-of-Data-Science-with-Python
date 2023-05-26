@@ -98,3 +98,10 @@ sections:
   - file: 09-moments/sample-size-selection
   - file: 09-moments/review
   - file: 09-moments/summary
+- file: 10-conditional-stats/intro
+  sections:
+  - file: 10-conditional-stats/binary-decisions-nonbayesian
+  - file: 10-conditional-stats/point-conditioning
+  - file: 10-conditional-stats/bayesian-decisions
+  - file: 10-conditional-stats/review
+  - file: 10-conditional-stats/summary
