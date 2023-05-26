@@ -1,0 +1,113 @@
+[
+    {
+        "question": "How are \"mutually exclusive\" and \"statistically independent\" related?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "If events are m.e., that implies that they will be s.i., except in some degenerate cases.",
+                "correct": false,
+                "feedback": "Incorrect. Try again."
+            },
+            {
+                "answer": "If events are s.i., that implies that they will be m.e., except in some degenerate cases.",
+                "correct": false,
+                "feedback": "Incorrect. Try again."
+            },
+            {
+                "answer": "Two events cannot be both s.i. and m.e., except in some degenerate cases.",
+                "correct": true,
+                "feedback": "Correct. Events cannot be both s.i. and m.e. unless at least one of those events has probability zero."
+            },
+            {
+                "answer": "Statistically independent and mutually exclusive are equivalent conditions, except in some degenerate cases.",
+                "correct": false,
+                "feedback": "Incorrect. Try again."
+            },
+            {
+                "answer": "None of the other choices.",
+                "correct": false,
+                "feedback": "Incorrect. Try again."
+            }
+        ]
+    },
+    {
+        "question": "Highly reliable systems can be made from unreliable components. A high reliability computer is built using\n    four old hard drives that were found in the lab. The computer data is replicated to each hard drive. The\n    probability that a hard drive is working in any week is 0.75, 0.8, 0.85, and 0.9, respectively, for the four\n    different drives. If drives fail independently, what is the probability that the computer data is available on\n    at least one of the drives in a given week? Give your answer to 3 decimal places.",
+        "type": "numeric",
+        "precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.999,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -1e-10
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative. Your work may contain a math error."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000000001,
+                    1000000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1. Your work may contain a math error."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Use the relation between the probability of an event and its complement to convert the union into an intersection of independent events."
+            }
+        ]
+    },
+    {
+        "question": "Highly reliable systems can be made from unreliable components. A high reliability computer is to be built using\n    old hard drives that were found in a lab. Each hard drive has a probability of 0.7 of functioning properly in a given week, \n    and hard drive failures are independent. The system is built with data recorded redundantly across each of multiple \n    hard drives, such that the system will work properly as long as at least one of the hard drives is\n    functioning. How many hard drives should be used in the system for the system to work with probability of at \n    least 0.9999 in a given week?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 8,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -1e-10
+                ],
+                "correct": false,
+                "feedback": "No. We are looking for the number of hard drives needed; it cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [
+                    0,
+                    0.999999999999
+                ],
+                "correct": false,
+                "feedback": "No. We are looking for the number of hard drives needed (an integer value), not a probability."
+            },
+            {
+                "type": "range",
+                "range": [
+                    7.6,
+                    7.7
+                ],
+                "correct": false,
+                "feedback": "No. It looks like you are on the right track, but the number of hard drives should be an integer!"
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Let $n$ be the number of hard drives in the system and write a formula for the probability\n                that the system works as a function of $n$. Isolate $n$ and then take a logarithm of both sides to get $n$\n                out of the exponent."
+            }
+        ]
+    }
+]
