@@ -74,3 +74,9 @@ sections:
   - file: 07-bayesian-methods/bayesian-hypothesis-testing
   - file: 07-bayesian-methods/review
   - file: 07-bayesian-methods/summary
+- file: 08-random-variables/intro
+  sections:
+  - file: 08-random-variables/definition
+  - file: 08-random-variables/discrete-rvs
+  - file: 08-random-variables/cdfs
+  - file: 08-random-variables/important-discrete-rvs
