@@ -1,0 +1,10 @@
+[
+    {
+        "front": "contingency table",
+        "back": "For data consisting of two or more categorical features, a table that lists the number of occurrences (the counts) for each combination of feature outcomes. The totals across each category (rows and columns for a two-way table) are also usually computed and shown. Also called a <i>cross tabulation</i>. "
+    },
+    {
+        "front": "degrees of freedom<br>(contingency table)",
+        "back": "For a contingency table, the <i>number of degrees of freedom</i>, abbreviated dofs, is the number of values in the table that can be selected independently while satisfying the row and column totals. For a table with $r$ rows and $c$ columns, the number of dofs is \\begin{equation*} n_{dof} = (r-1)(c-1). \\end{equation*}"
+    }
+]

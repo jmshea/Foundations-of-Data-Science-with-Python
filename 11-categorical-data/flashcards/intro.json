@@ -1,0 +1,14 @@
+[
+    {
+        "front": "categorical data",
+        "back": "Data that does not take on a specific numerical value but instead takes on one of several categories."
+    },
+    {
+        "front": "ordinal data",
+        "back": "Categorical data for which the categories have a natural ordering."
+    },
+    {
+        "front": "nominal data",
+        "back": "Categorical data for which the categories have no natural ordering."
+    }
+]
