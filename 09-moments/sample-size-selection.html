@@ -8,16 +8,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="5.7. Types of Errors and Statistical Power" />
+<meta property="og:title" content="9.8. Effect Size, Power, and Sample Size Selection" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.fdsp.net/05-null-hypothesis-testing/errors-and-power.html" />
+<meta property="og:url" content="https://www.fdsp.net/09-moments/sample-size-selection.html" />
 <meta property="og:site_name" content="Python" />
 <meta property="og:description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
 <meta name="description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
 
-    <title>5.7. Types of Errors and Statistical Power &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
+    <title>9.8. Effect Size, Power, and Sample Size Selection &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
   
   
   
@@ -79,12 +79,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"loader": {"load": ["[tex]/boldsymbol"]}, "tex": {"macros": {"P": "\\operatorname{P}"}, "packages": {"[+]": ["boldsymbol"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '05-null-hypothesis-testing/errors-and-power';</script>
-    <link rel="canonical" href="https://www.fdsp.net/05-null-hypothesis-testing/errors-and-power.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = '09-moments/sample-size-selection';</script>
+    <link rel="canonical" href="https://www.fdsp.net/09-moments/sample-size-selection.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.8. Review" href="review.html" />
-    <link rel="prev" title="5.6. Bootstrap Distribution and Confidence Intervals" href="bootstrap-dist-confidence-intervals.html" />
+    <link rel="next" title="9.9. Review" href="review.html" />
+    <link rel="prev" title="9.7. Sampling and Bootstrap Distributions of Parameters" href="parameter-distributions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -219,16 +219,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../04-probability1/summary.html">4.8. Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">5. Null Hypothesis Tests</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="statistical-studies.html">5.1. Statistical Studies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nhst.html">5.2. General Resampling Approaches for Null Hypothesis Significance Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calculating-p-values.html">5.3. Calculating <span class="math notranslate nohighlight">\(p\)</span>-Values</a></li>
-<li class="toctree-l2"><a class="reference internal" href="how-to-sample.html">5.4. How to Sample from the Pooled Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example-nhst.html">5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bootstrap-dist-confidence-intervals.html">5.6. Bootstrap Distribution and Confidence Intervals</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.7. Types of Errors and Statistical Power</a></li>
-<li class="toctree-l2"><a class="reference internal" href="review.html">5.8. Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="summary.html">5.9. Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../05-null-hypothesis-testing/intro.html">5. Null Hypothesis Tests</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05-null-hypothesis-testing/statistical-studies.html">5.1. Statistical Studies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05-null-hypothesis-testing/nhst.html">5.2. General Resampling Approaches for Null Hypothesis Significance Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html">5.3. Calculating <span class="math notranslate nohighlight">\(p\)</span>-Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05-null-hypothesis-testing/how-to-sample.html">5.4. How to Sample from the Pooled Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05-null-hypothesis-testing/example-nhst.html">5.5. Example Null Hypothesis Significance Tests on Whether  Post-Baccalaureate Education Increases Family Wealth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05-null-hypothesis-testing/bootstrap-dist-confidence-intervals.html">5.6. Bootstrap Distribution and Confidence Intervals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05-null-hypothesis-testing/errors-and-power.html">5.7. Types of Errors and Statistical Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05-null-hypothesis-testing/review.html">5.8. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05-null-hypothesis-testing/summary.html">5.9. Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../06-conditional-prob/intro.html">6. Dependence and Independence</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -267,17 +267,17 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../08-random-variables/summary.html">8.10. Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../09-moments/intro.html">9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/expected-value.html">9.1. Expected Value</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/expected-value-continuous.html">9.2. Expected Value of a Continuous Random Variable with SymPy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/moments.html">9.3. Moments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/parameter-estimation.html">9.4. Parameter Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/confidence-intervals-estimates.html">9.5. Confidence Intervals for Estimates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/mean-hypothesis-testing.html">9.6. Testing a Difference of Means</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/parameter-distributions.html">9.7. Sampling and Bootstrap Distributions of Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/sample-size-selection.html">9.8. Effect Size, Power, and Sample Size Selection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/review.html">9.9. Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09-moments/summary.html">9.10. Summary</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="expected-value.html">9.1. Expected Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expected-value-continuous.html">9.2. Expected Value of a Continuous Random Variable with SymPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="moments.html">9.3. Moments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter-estimation.html">9.4. Parameter Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="confidence-intervals-estimates.html">9.5. Confidence Intervals for Estimates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mean-hypothesis-testing.html">9.6. Testing a Difference of Means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter-distributions.html">9.7. Sampling and Bootstrap Distributions of Parameters</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">9.8. Effect Size, Power, and Sample Size Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="review.html">9.9. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summary.html">9.10. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -334,7 +334,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/05-null-hypothesis-testing/errors-and-power.ipynb" target="_blank"
+      <li><a href="../_sources/09-moments/sample-size-selection.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -416,7 +416,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Types of Errors and Statistical Power</h1>
+    <h1>Effect Size, Power, and Sample Size Selection</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -426,7 +426,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">5.7.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">9.8.1. Terminology Review</a></li>
 </ul>
             </nav>
         </div>
@@ -438,13 +438,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="types-of-errors-and-statistical-power">
-<h1><span class="section-number">5.7. </span>Types of Errors and Statistical Power<a class="headerlink" href="#types-of-errors-and-statistical-power" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="effect-size-power-and-sample-size-selection">
+<h1><span class="section-number">9.8. </span>Effect Size, Power, and Sample Size Selection<a class="headerlink" href="#effect-size-power-and-sample-size-selection" title="Permalink to this heading">#</a></h1>
 <section id="terminology-review">
-<h2><span class="section-number">5.7.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">9.8.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <div class="output text_html"><style>
 :root{
   --asparagus: #87a878ff;
@@ -700,7 +703,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="CGuXESicmFZG" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="CGuXESicmFZG-next" onclick="window.checkFlip('CGuXESicmFZG')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="QdZvAuMGGhce" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="QdZvAuMGGhce-next" onclick="window.checkFlip('QdZvAuMGGhce')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1047,48 +1050,24 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("CGuXESicmFZG")) {
-            createCards("CGuXESicmFZG", "True", "False");
+          if(document.getElementById("QdZvAuMGGhce")) {
+            createCards("QdZvAuMGGhce", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsCGuXESicmFZG=[
+var cardsQdZvAuMGGhce=[
     {
-        "front": "Type-I Error",
-        "back": "A <i>Type-I Error</i> is a <b>false positive</b> and is sometimes denoted by the Greek letter \\(\\alpha\\) (\"alpha\").  For NHST, a Type I error occurs if the null hypothesis is actually true, but it is rejected."
-    },
-    {
-        "front": "Type-II Error",
-        "back": "A <i>Type-II Error</i> is a <b>false negative</b> and is sometimes denoted by the Greek letter \\(\\beta\\) (\"beta\").  For NHST, a Type II error occurs if the alternative hypothesis is actually true, but the null hypothesis is not rejected."
-    },
-    {
-        "front": "Power",
-        "back": "The probability of rejecting the null hypothesis when the alternative hypothesis is true."
+        "front": "effect size",
+        "back": "One of many measures of separation between distributions. For a difference of means, Cohen's $d$ is standard: \\begin{equation*} d =\\frac{\\mu_X - \\mu_Y}{\\sigma} \\end{equation*}"
     }
 ]
 ;
-var frontColorsCGuXESicmFZG= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsCGuXESicmFZG= ["var(--dark-blue-gray)" ];
-var textColorsCGuXESicmFZG= ["var(--snow)" ];
-
-
-        {
-        const jmscontroller = new AbortController();
-        const signal = jmscontroller.signal;
-
-        setTimeout(() => jmscontroller.abort(), 5000);
-
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/05-null-hypothesis-testing/flashcards/errors-and-power.json", {signal})
-        .then(response => response.json())
-        .then(json => createCards("CGuXESicmFZG", "True", "False"))
-        .catch(err => {
-        console.log("Fetch error or timeout");
-        try_create(); 
-        });
-        }
-        </script></div>
+var frontColorsQdZvAuMGGhce= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsQdZvAuMGGhce= ["var(--dark-blue-gray)" ];
+var textColorsQdZvAuMGGhce= ["var(--snow)" ];
+try_create(); </script></div>
 </div>
 </section>
 </section>
@@ -1106,7 +1085,7 @@ var textColorsCGuXESicmFZG= ["var(--snow)" ];
         },
         kernelOptions: {
             name: "python3",
-            path: "./05-null-hypothesis-testing"
+            path: "./09-moments"
         },
         predefinedOutput: true
     }
@@ -1125,12 +1104,12 @@ var textColorsCGuXESicmFZG= ["var(--snow)" ];
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="bootstrap-dist-confidence-intervals.html"
+       href="parameter-distributions.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5.6. </span>Bootstrap Distribution and Confidence Intervals</p>
+        <p class="prev-next-title"><span class="section-number">9.7. </span>Sampling and Bootstrap Distributions of Parameters</p>
       </div>
     </a>
     <a class="right-next"
@@ -1138,7 +1117,7 @@ var textColorsCGuXESicmFZG= ["var(--snow)" ];
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5.8. </span>Review</p>
+        <p class="prev-next-title"><span class="section-number">9.9. </span>Review</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1160,7 +1139,7 @@ var textColorsCGuXESicmFZG= ["var(--snow)" ];
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">5.7.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">9.8.1. Terminology Review</a></li>
 </ul>
   </nav></div>
 
