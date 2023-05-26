@@ -8,16 +8,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="6.8. Statistical Independence" />
+<meta property="og:title" content="6.11. Chain Rules and Total Probability" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.fdsp.net/06-conditional-prob/independence.html" />
+<meta property="og:url" content="https://www.fdsp.net/06-conditional-prob/chain-rules-total-prob.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Quiz 1: Conditional probabilities and independence: Based on the discussion above, try to answer the following question about what independence should mean for conditional probabilities. (Don’t wor..." />
+<meta property="og:description" content="Quiz 1: Using Chain Rules: Quiz 2: Chain Rules and the Magician’s Coin: Proofs Omitted in Text: Proof that all events B_j, ~B_k,~j \ne k are mutually exclusive$ B_j \cap B_k = (B \cap A_j) \cap (B ..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Quiz 1: Conditional probabilities and independence: Based on the discussion above, try to answer the following question about what independence should mean for conditional probabilities. (Don’t wor..." />
+<meta name="description" content="Quiz 1: Using Chain Rules: Quiz 2: Chain Rules and the Magician’s Coin: Proofs Omitted in Text: Proof that all events B_j, ~B_k,~j \ne k are mutually exclusive$ B_j \cap B_k = (B \cap A_j) \cap (B ..." />
 
-    <title>6.8. Statistical Independence &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
+    <title>6.11. Chain Rules and Total Probability &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
   
   
   
@@ -79,12 +79,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"loader": {"load": ["[tex]/boldsymbol"]}, "tex": {"macros": {"P": "\\operatorname{P}"}, "packages": {"[+]": ["boldsymbol"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '06-conditional-prob/independence';</script>
-    <link rel="canonical" href="https://www.fdsp.net/06-conditional-prob/independence.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = '06-conditional-prob/chain-rules-total-prob';</script>
+    <link rel="canonical" href="https://www.fdsp.net/06-conditional-prob/chain-rules-total-prob.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6.9. Conditional Probabilities and Independence in Fair Experiments" href="fair-exps.html" />
-    <link rel="prev" title="6.7. More on Simulating Conditional Probabilities" href="more-on-simulating.html" />
+    <link rel="next" title="6.12. Review" href="review.html" />
+    <link rel="prev" title="6.10. Conditioning and (In)dependence" href="conditional-independence.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -237,10 +237,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="definition.html">6.5. Formally Defining Conditional Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="relating-cond-uncond.html">6.6. Relating Conditional and Unconditional Probabilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="more-on-simulating.html">6.7. More on Simulating Conditional Probabilities</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">6.8. Statistical Independence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="independence.html">6.8. Statistical Independence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fair-exps.html">6.9. Conditional Probabilities and Independence in Fair Experiments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conditional-independence.html">6.10. Conditioning and (In)dependence</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chain-rules-total-prob.html">6.11. Chain Rules and Total Probability</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6.11. Chain Rules and Total Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="review.html">6.12. Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="summary.html">6.13. Summary</a></li>
 </ul>
@@ -299,7 +299,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/06-conditional-prob/independence.ipynb" target="_blank"
+      <li><a href="../_sources/06-conditional-prob/chain-rules-total-prob.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +381,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Statistical Independence</h1>
+    <h1>Chain Rules and Total Probability</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,11 +391,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-1-conditional-probabilities-and-independence">6.8.1. Quiz 1: Conditional probabilities and independence</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-2-applying-statistical-independence-to-unions">6.8.2. Quiz 2: Applying Statistical Independence to Unions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-3-more-on-independence-and-probabilities-of-unions">6.8.3. Quiz 3: More on Independence and Probabilities of Unions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-4-relating-statistical-independent-and-mutually-exclusive-events">6.8.4. Quiz 4: Relating Statistical Independent and Mutually Exclusive Events</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">6.8.5. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-1-using-chain-rules">6.11.1. Quiz 1: Using Chain Rules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-2-chain-rules-and-the-magicians-coin">6.11.2. Quiz 2: Chain Rules and the Magician’s Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proofs-omitted-in-text">6.11.3. Proofs Omitted in Text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-3-total-probability-and-the-magicians-coin">6.11.4. Quiz 3: Total Probability and the Magician’s Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">6.11.5. Terminology Review</a></li>
 </ul>
             </nav>
         </div>
@@ -407,20 +407,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="statistical-independence">
-<h1><span class="section-number">6.8. </span>Statistical Independence<a class="headerlink" href="#statistical-independence" title="Permalink to this heading">#</a></h1>
-<section id="quiz-1-conditional-probabilities-and-independence">
-<h2><span class="section-number">6.8.1. </span>Quiz 1: Conditional probabilities and independence<a class="headerlink" href="#quiz-1-conditional-probabilities-and-independence" title="Permalink to this heading">#</a></h2>
-<p>Based on the discussion above, try to answer the following question about what independence should mean for conditional probabilities. (Don’t worry if you don’t intuitively know the answer – you can keep trying if you don’t get it right at first!)  <span class="math notranslate nohighlight">\(~ \!\)</span></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chain-rules-and-total-probability">
+<h1><span class="section-number">6.11. </span>Chain Rules and Total Probability<a class="headerlink" href="#chain-rules-and-total-probability" title="Permalink to this heading">#</a></h1>
+<section id="quiz-1-using-chain-rules">
+<h2><span class="section-number">6.11.1. </span>Quiz 1: Using Chain Rules<a class="headerlink" href="#quiz-1-using-chain-rules" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="fPGUwwYtrCrp" data-shufflequestions="False"
+<div class="output text_html"><div id="IxNASSVePEQW" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#fPGUwwYtrCrp {
+#IxNASSVePEQW {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -590,2067 +589,106 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsfPGUwwYtrCrp=[
+</style></div><script type="application/javascript">var questionsIxNASSVePEQW=[
     {
-        "question": "Consider two events $A$ and $B$ with $P(A)>0$. If these events are independent, then we expect that implies that knowledge of one event does not influence the probabilities of the other. What should $P(B|A)$ simplify to?",
-        "type": "multiple_choice",
-        "answers": [
-            {
-                "answer": "$P(B)$",
-                "correct": true,
-                "feedback": "Correct. Knowing that $A$ occurred should not alter the probability of $B$ if $B$ is independent of $A$."
-            },
-            {
-                "answer": "$P(A \\cap B)$",
-                "correct": false,
-                "feedback": "Incorrect. From the definition of conditional probability, this would imply $P(A)=1$."
-            },
-            {
-                "answer": "$P(A)$",
-                "correct": false,
-                "feedback": "Incorrect. If this were true, then $A$ could definitely be changing the probabilities for $B$."
-            },
-            {
-                "answer": "1",
-                "correct": false,
-                "feedback": "Incorrect. If this were true, then knowing that $A$ occurred would usually imply that $B$ occurred. So $A$ gives a lot of information about $B$."
-            },
-            {
-                "answer": "0",
-                "correct": false,
-                "feedback": "Incorrect. If this were true, then knowing $A$ occurred would generally imply that $B$ did not occur. So $A$ gives a lot of information about $B$."
-            }
-        ]
-    }
-]
-;
-    // Make a random ID
-function makeid(length) {
-    var result = [];
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-        result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
-    }
-    return result.join('');
-}
-
-// Choose a random subset of an array. Can also be used to shuffle the array
-function getRandomSubarray(arr, size) {
-    var shuffled = arr.slice(0), i = arr.length, temp, index;
-    while (i--) {
-        index = Math.floor((i + 1) * Math.random());
-        temp = shuffled[index];
-        shuffled[index] = shuffled[i];
-        shuffled[i] = temp;
-    }
-    return shuffled.slice(0, size);
-}
-
-function printResponses(responsesContainer) {
-    var responses=JSON.parse(responsesContainer.dataset.responses);
-    var stringResponses='<B>IMPORTANT!</B>To preserve this answer sequence for submission, when you have finalized your answers: <ol> <li> Copy the text in this cell below "Answer String"</li> <li> Double click on the cell directly below the Answer String, labeled "Replace Me"</li> <li> Select the whole "Replace Me" text</li> <li> Paste in your answer string and press shift-Enter.</li><li>Save the notebook using the save icon or File->Save Notebook menu item</li></ul><br><br><br><b>Answer String:</b><br> ';
-    console.log(responses);
-    responses.forEach((response, index) => {
-        if (response) {
-            console.log(index + ': ' + response);
-            stringResponses+= index + ': ' + response +"<BR>";
-        }
-    });
-    responsesContainer.innerHTML=stringResponses;
-}
-function check_mc() {
-    var id = this.id.split('-')[0];
-    //var response = this.id.split('-')[1];
-    //console.log(response);
-    //console.log("In check_mc(), id="+id);
-    //console.log(event.srcElement.id)           
-    //console.log(event.srcElement.dataset.correct)   
-    //console.log(event.srcElement.dataset.feedback)
-
-    var label = event.srcElement;
-    //console.log(label, label.nodeName);
-    var depth = 0;
-    while ((label.nodeName != "LABEL") && (depth < 20)) {
-        label = label.parentElement;
-        console.log(depth, label);
-        depth++;
-    }
-
-
-
-    var answers = label.parentElement.children;
-
-    //console.log(answers);
-
-
-    // Split behavior based on multiple choice vs many choice:
-    var fb = document.getElementById("fb" + id);
-
-
-
-
-    if (fb.dataset.numcorrect == 1) {
-        // What follows is for the saved responses stuff
-        var outerContainer = fb.parentElement.parentElement;
-        var responsesContainer = document.getElementById("responses" + outerContainer.id);
-        if (responsesContainer) {
-            //console.log(responsesContainer);
-            var response = label.firstChild.innerText;
-            if (label.querySelector(".QuizCode")){
-                response+= label.querySelector(".QuizCode").firstChild.innerText;
-            }
-            console.log(response);
-            //console.log(document.getElementById("quizWrap"+id));
-            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
-            console.log("Question " + qnum);
-            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
-            var responses=JSON.parse(responsesContainer.dataset.responses);
-            console.log(responses);
-            responses[qnum]= response;
-            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
-            printResponses(responsesContainer);
-        }
-        // End code to preserve responses
-        
-        for (var i = 0; i < answers.length; i++) {
-            var child = answers[i];
-            //console.log(child);
-            child.className = "MCButton";
-        }
-
-
-
-        if (label.dataset.correct == "true") {
-            // console.log("Correct action");
-            if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
-            } else {
-                fb.textContent = "Correct!";
-            }
-            label.classList.add("correctButton");
-
-            fb.className = "Feedback";
-            fb.classList.add("correct");
-
-        } else {
-            if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
-            } else {
-                fb.textContent = "Incorrect -- try again.";
-            }
-            //console.log("Error action");
-            label.classList.add("incorrectButton");
-            fb.className = "Feedback";
-            fb.classList.add("incorrect");
-        }
-    }
-    else {
-        var reset = false;
-        var feedback;
-         if (label.dataset.correct == "true") {
-            if ("feedback" in label.dataset) {
-                feedback = jaxify(label.dataset.feedback);
-            } else {
-                feedback = "Correct!";
-            }
-            if (label.dataset.answered <= 0) {
-                if (fb.dataset.answeredcorrect < 0) {
-                    fb.dataset.answeredcorrect = 1;
-                    reset = true;
-                } else {
-                    fb.dataset.answeredcorrect++;
-                }
-                if (reset) {
-                    for (var i = 0; i < answers.length; i++) {
-                        var child = answers[i];
-                        child.className = "MCButton";
-                        child.dataset.answered = 0;
-                    }
-                }
-                label.classList.add("correctButton");
-                label.dataset.answered = 1;
-                fb.className = "Feedback";
-                fb.classList.add("correct");
-
-            }
-        } else {
-            if ("feedback" in label.dataset) {
-                feedback = jaxify(label.dataset.feedback);
-            } else {
-                feedback = "Incorrect -- try again.";
-            }
-            if (fb.dataset.answeredcorrect > 0) {
-                fb.dataset.answeredcorrect = -1;
-                reset = true;
-            } else {
-                fb.dataset.answeredcorrect--;
-            }
-
-            if (reset) {
-                for (var i = 0; i < answers.length; i++) {
-                    var child = answers[i];
-                    child.className = "MCButton";
-                    child.dataset.answered = 0;
-                }
-            }
-            label.classList.add("incorrectButton");
-            fb.className = "Feedback";
-            fb.classList.add("incorrect");
-        }
-        // What follows is for the saved responses stuff
-        var outerContainer = fb.parentElement.parentElement;
-        var responsesContainer = document.getElementById("responses" + outerContainer.id);
-        if (responsesContainer) {
-            //console.log(responsesContainer);
-            var response = label.firstChild.innerText;
-            if (label.querySelector(".QuizCode")){
-                response+= label.querySelector(".QuizCode").firstChild.innerText;
-            }
-            console.log(response);
-            //console.log(document.getElementById("quizWrap"+id));
-            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
-            console.log("Question " + qnum);
-            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
-            var responses=JSON.parse(responsesContainer.dataset.responses);
-            if (label.dataset.correct == "true") {
-                if (typeof(responses[qnum]) == "object"){
-                    if (!responses[qnum].includes(response))
-                        responses[qnum].push(response);
-                } else{
-                    responses[qnum]= [ response ];
-                }
-            } else {
-                responses[qnum]= response;
-            }
-            console.log(responses);
-            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
-            printResponses(responsesContainer);
-        }
-        // End save responses stuff
-
-
-
-        var numcorrect = fb.dataset.numcorrect;
-        var answeredcorrect = fb.dataset.answeredcorrect;
-        if (answeredcorrect >= 0) {
-            fb.textContent = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
-        } else {
-            fb.textContent = feedback + " [" + 0 + "/" + numcorrect + "]";
-        }
-
-
-    }
-
-    if (typeof MathJax != 'undefined') {
-        var version = MathJax.version;
-        console.log('MathJax version', version);
-        if (version[0] == "2") {
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        } else if (version[0] == "3") {
-            MathJax.typeset([fb]);
-        }
-    } else {
-        console.log('MathJax not detected');
-    }
-
-}
-
-function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
-    var shuffled;
-    if (shuffle_answers == "True") {
-        //console.log(shuffle_answers+" read as true");
-        shuffled = getRandomSubarray(qa.answers, qa.answers.length);
-    } else {
-        //console.log(shuffle_answers+" read as false");
-        shuffled = qa.answers;
-    }
-
-
-    var num_correct = 0;
-
-
-
-    shuffled.forEach((item, index, ans_array) => {
-        //console.log(answer);
-
-        // Make input element
-        var inp = document.createElement("input");
-        inp.type = "radio";
-        inp.id = "quizo" + id + index;
-        inp.style = "display:none;";
-        aDiv.append(inp);
-
-        //Make label for input element
-        var lab = document.createElement("label");
-        lab.className = "MCButton";
-        lab.id = id + '-' + index;
-        lab.onclick = check_mc;
-        var aSpan = document.createElement('span');
-        aSpan.classsName = "";
-        //qDiv.id="quizQn"+id+index;
-        if ("answer" in item) {
-            aSpan.innerHTML = jaxify(item.answer);
-            //aSpan.innerHTML=item.answer;
-        }
-        lab.append(aSpan);
-
-        // Create div for code inside question
-        var codeSpan;
-        if ("code" in item) {
-            codeSpan = document.createElement('span');
-            codeSpan.id = "code" + id + index;
-            codeSpan.className = "QuizCode";
-            var codePre = document.createElement('pre');
-            codeSpan.append(codePre);
-            var codeCode = document.createElement('code');
-            codePre.append(codeCode);
-            codeCode.innerHTML = item.code;
-            lab.append(codeSpan);
-            //console.log(codeSpan);
-        }
-
-        //lab.textContent=item.answer;
-
-        // Set the data attributes for the answer
-        lab.setAttribute('data-correct', item.correct);
-        if (item.correct) {
-            num_correct++;
-        }
-        if ("feedback" in item) {
-            lab.setAttribute('data-feedback', item.feedback);
-        }
-        lab.setAttribute('data-answered', 0);
-
-        aDiv.append(lab);
-
-    });
-
-    if (num_correct > 1) {
-        outerqDiv.className = "ManyChoiceQn";
-    } else {
-        outerqDiv.className = "MultipleChoiceQn";
-    }
-
-    return num_correct;
-
-}
-function check_numeric(ths, event) {
-
-    if (event.keyCode === 13) {
-        ths.blur();
-
-        var id = ths.id.split('-')[0];
-
-        var submission = ths.value;
-        if (submission.indexOf('/') != -1) {
-            var sub_parts = submission.split('/');
-            //console.log(sub_parts);
-            submission = sub_parts[0] / sub_parts[1];
-        }
-        //console.log("Reader entered", submission);
-
-        if ("precision" in ths.dataset) {
-            var precision = ths.dataset.precision;
-            // console.log("1:", submission)
-            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
-            // console.log("Rounded to ", submission, " precision=", precision  );
-        }
-
-
-        //console.log("In check_numeric(), id="+id);
-        //console.log(event.srcElement.id)           
-        //console.log(event.srcElement.dataset.feedback)
-
-        var fb = document.getElementById("fb" + id);
-        fb.style.display = "none";
-        fb.textContent = "Incorrect -- try again.";
-
-        var answers = JSON.parse(ths.dataset.answers);
-        //console.log(answers);
-
-        var defaultFB = "";
-        var correct;
-        var done = false;
-        answers.every(answer => {
-            //console.log(answer.type);
-
-            correct = false;
-            // if (answer.type=="value"){
-            if ('value' in answer) {
-                if (submission == answer.value) {
-                    if ("feedback" in answer) {
-                        fb.textContent = jaxify(answer.feedback);
-                    } else {
-                        fb.textContent = jaxify("Correct");
-                    }
-                    correct = answer.correct;
-                    //console.log(answer.correct);
-                    done = true;
-                }
-                // } else if (answer.type=="range") {
-            } else if ('range' in answer) {
-                //console.log(answer.range);
-                if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
-                    fb.textContent = jaxify(answer.feedback);
-                    correct = answer.correct;
-                    //console.log(answer.correct);
-                    done = true;
-                }
-            } else if (answer.type == "default") {
-                defaultFB = answer.feedback;
-            }
-            if (done) {
-                return false; // Break out of loop if this has been marked correct
-            } else {
-                return true; // Keep looking for case that includes this as a correct answer
-            }
-        });
-
-        if ((!done) && (defaultFB != "")) {
-            fb.innerHTML = jaxify(defaultFB);
-            //console.log("Default feedback", defaultFB);
-        }
-
-        fb.style.display = "block";
-        if (correct) {
-            ths.className = "Input-text";
-            ths.classList.add("correctButton");
-            fb.className = "Feedback";
-            fb.classList.add("correct");
-        } else {
-            ths.className = "Input-text";
-            ths.classList.add("incorrectButton");
-            fb.className = "Feedback";
-            fb.classList.add("incorrect");
-        }
-
-        // What follows is for the saved responses stuff
-        var outerContainer = fb.parentElement.parentElement;
-        var responsesContainer = document.getElementById("responses" + outerContainer.id);
-        if (responsesContainer) {
-            console.log(submission);
-            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
-            //console.log("Question " + qnum);
-            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
-            var responses=JSON.parse(responsesContainer.dataset.responses);
-            console.log(responses);
-            if (submission == ths.value){
-                responses[qnum]= submission;
-            } else {
-                responses[qnum]= ths.value + "(" + submission +")";
-            }
-            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
-            printResponses(responsesContainer);
-        }
-        // End code to preserve responses
-
-        if (typeof MathJax != 'undefined') {
-            var version = MathJax.version;
-            console.log('MathJax version', version);
-            if (version[0] == "2") {
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-            } else if (version[0] == "3") {
-                MathJax.typeset([fb]);
-            }
-        } else {
-            console.log('MathJax not detected');
-        }
-        return false;
-    }
-
-}
-
-function isValid(el, charC) {
-    //console.log("Input char: ", charC);
-    if (charC == 46) {
-        if (el.value.indexOf('.') === -1) {
-            return true;
-        } else if (el.value.indexOf('/') != -1) {
-            var parts = el.value.split('/');
-            if (parts[1].indexOf('.') === -1) {
-                return true;
-            }
-        }
-        else {
-            return false;
-        }
-    } else if (charC == 47) {
-        if (el.value.indexOf('/') === -1) {
-            if ((el.value != "") && (el.value != ".")) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    } else if (charC == 45) {
-        var edex = el.value.indexOf('e');
-        if (edex == -1) {
-            edex = el.value.indexOf('E');
-        }
-
-        if (el.value == "") {
-            return true;
-        } else if (edex == (el.value.length - 1)) { // If just after e or E
-            return true;
-        } else {
-            return false;
-        }
-    } else if (charC == 101) { // "e"
-        if ((el.value.indexOf('e') === -1) && (el.value.indexOf('E') === -1) && (el.value.indexOf('/') == -1)) {
-            // Prev symbol must be digit or decimal point:
-            if (el.value.slice(-1).search(/\d/) >= 0) {
-                return true;
-            } else if (el.value.slice(-1).search(/\./) >= 0) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    } else {
-        if (charC > 31 && (charC < 48 || charC > 57))
-            return false;
-    }
-    return true;
-}
-
-function numeric_keypress(evnt) {
-    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
-
-    if (charC == 13) {
-        check_numeric(this, evnt);
-    } else {
-        return isValid(this, charC);
-    }
-}
-
-
-
-
-
-function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
-
-
-
-    //console.log(answer);
-
-
-    outerqDiv.className = "NumericQn";
-    aDiv.style.display = 'block';
-
-    var lab = document.createElement("label");
-    lab.className = "InpLabel";
-    lab.textContent = "Type numeric answer here:";
-    aDiv.append(lab);
-
-    var inp = document.createElement("input");
-    inp.type = "text";
-    //inp.id="input-"+id;
-    inp.id = id + "-0";
-    inp.className = "Input-text";
-    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
-    if ("precision" in qa) {
-        inp.setAttribute('data-precision', qa.precision);
-    }
-    aDiv.append(inp);
-    //console.log(inp);
-
-    //inp.addEventListener("keypress", check_numeric);
-    //inp.addEventListener("keypress", numeric_keypress);
-    /*
-    inp.addEventListener("keypress", function(event) {
-        return numeric_keypress(this, event);
-    }
-                        );
-                        */
-    //inp.onkeypress="return numeric_keypress(this, event)";
-    inp.onkeypress = numeric_keypress;
-    inp.onpaste = event => false;
-
-    inp.addEventListener("focus", function (event) {
-        this.value = "";
-        return false;
-    }
-    );
-
-
-}
-function jaxify(string) {
-    var mystring = string;
-
-    var count = 0;
-    var loc = mystring.search(/([^\\]|^)(\$)/);
-
-    var count2 = 0;
-    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
-
-    //console.log(loc);
-
-    while ((loc >= 0) || (loc2 >= 0)) {
-
-        /* Have to replace all the double $$ first with current implementation */
-        if (loc2 >= 0) {
-            if (count2 % 2 == 0) {
-                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
-            } else {
-                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
-            }
-            count2++;
-        } else {
-            if (count % 2 == 0) {
-                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
-            } else {
-                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
-            }
-            count++;
-        }
-        loc = mystring.search(/([^\\]|^)(\$)/);
-        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
-        //console.log(mystring,", loc:",loc,", loc2:",loc2);
-    }
-
-    //console.log(mystring);
-    return mystring;
-}
-
-
-function show_questions(json, mydiv) {
-    console.log('show_questions');
-    //var mydiv=document.getElementById(myid);
-    var shuffle_questions = mydiv.dataset.shufflequestions;
-    var num_questions = mydiv.dataset.numquestions;
-    var shuffle_answers = mydiv.dataset.shuffleanswers;
-    var max_width = mydiv.dataset.maxwidth;
-
-    if (num_questions > json.length) {
-        num_questions = json.length;
-    }
-
-    var questions;
-    if ((num_questions < json.length) || (shuffle_questions == "True")) {
-        //console.log(num_questions+","+json.length);
-        questions = getRandomSubarray(json, num_questions);
-    } else {
-        questions = json;
-    }
-
-    //console.log("SQ: "+shuffle_questions+", NQ: " + num_questions + ", SA: ", shuffle_answers);
-
-    // Iterate over questions
-    questions.forEach((qa, index, array) => {
-        //console.log(qa.question); 
-
-        var id = makeid(8);
-        //console.log(id);
-
-
-        // Create Div to contain question and answers
-        var iDiv = document.createElement('div');
-        //iDiv.id = 'quizWrap' + id + index;
-        iDiv.id = 'quizWrap' + id;
-        iDiv.className = 'Quiz';
-        iDiv.setAttribute('data-qnum', index);
-        iDiv.style.maxWidth  =max_width+"px";
-        mydiv.appendChild(iDiv);
-        // iDiv.innerHTML=qa.question;
-        
-        var outerqDiv = document.createElement('div');
-        outerqDiv.id = "OuterquizQn" + id + index;
-        // Create div to contain question part
-        var qDiv = document.createElement('div');
-        qDiv.id = "quizQn" + id + index;
-        
-        if (qa.question) {
-            iDiv.append(outerqDiv);
-
-            //qDiv.textContent=qa.question;
-            qDiv.innerHTML = jaxify(qa.question);
-            outerqDiv.append(qDiv);
-        }
-
-        // Create div for code inside question
-        var codeDiv;
-        if ("code" in qa) {
-            codeDiv = document.createElement('div');
-            codeDiv.id = "code" + id + index;
-            codeDiv.className = "QuizCode";
-            var codePre = document.createElement('pre');
-            codeDiv.append(codePre);
-            var codeCode = document.createElement('code');
-            codePre.append(codeCode);
-            codeCode.innerHTML = qa.code;
-            outerqDiv.append(codeDiv);
-            //console.log(codeDiv);
-        }
-
-
-        // Create div to contain answer part
-        var aDiv = document.createElement('div');
-        aDiv.id = "quizAns" + id + index;
-        aDiv.className = 'Answer';
-        iDiv.append(aDiv);
-
-        //console.log(qa.type);
-
-        var num_correct;
-        if ((qa.type == "multiple_choice") || (qa.type == "many_choice") ) {
-            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
-            if ("answer_cols" in qa) {
-                //aDiv.style.gridTemplateColumns = 'auto '.repeat(qa.answer_cols);
-                aDiv.style.gridTemplateColumns = 'repeat(' + qa.answer_cols + ', 1fr)';
-            }
-        } else if (qa.type == "numeric") {
-            //console.log("numeric");
-            make_numeric(qa, outerqDiv, qDiv, aDiv, id);
-        }
-
-
-        //Make div for feedback
-        var fb = document.createElement("div");
-        fb.id = "fb" + id;
-        //fb.style="font-size: 20px;text-align:center;";
-        fb.className = "Feedback";
-        fb.setAttribute("data-answeredcorrect", 0);
-        fb.setAttribute("data-numcorrect", num_correct);
-        iDiv.append(fb);
-
-
-    });
-    var preserveResponses = mydiv.dataset.preserveresponses;
-    console.log(preserveResponses);
-    console.log(preserveResponses == "true");
-    if (preserveResponses == "true") {
-        console.log(preserveResponses);
-        // Create Div to contain record of answers
-        var iDiv = document.createElement('div');
-        iDiv.id = 'responses' + mydiv.id;
-        iDiv.className = 'JCResponses';
-        // Create a place to store responses as an empty array
-        iDiv.setAttribute('data-responses', '[]');
-
-        // Dummy Text
-        iDiv.innerHTML="<b>Select your answers and then follow the directions that will appear here.</b>"
-        //iDiv.className = 'Quiz';
-        mydiv.appendChild(iDiv);
-    }
-//console.log("At end of show_questions");
-    if (typeof MathJax != 'undefined') {
-        console.log("MathJax version", MathJax.version);
-        var version = MathJax.version;
-        setTimeout(function(){
-            var version = MathJax.version;
-            console.log('After sleep, MathJax version', version);
-            if (version[0] == "2") {
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-            } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
-            }
-        }, 500);
-if (typeof version == 'undefined') {
-        } else
-        {
-            if (version[0] == "2") {
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-            } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
-            } else {
-                console.log("MathJax not found");
-            }
-        }
-    }
-    return false;
-}
-/* This is to handle asynchrony issues in loading Jupyter notebooks
-           where the quiz has been previously run. The Javascript was generally
-           being run before the div was added to the DOM. I tried to do this
-           more elegantly using Mutation Observer, but I didn't get it to work.
-
-           Someone more knowledgeable could make this better ;-) */
-
-        function try_show() {
-          if(document.getElementById("fPGUwwYtrCrp")) {
-            show_questions(questionsfPGUwwYtrCrp,  fPGUwwYtrCrp); 
-          } else {
-             setTimeout(try_show, 200);
-          }
-        };
-    
-        //console.log(element);
-        {
-        const jmscontroller = new AbortController();
-        const signal = jmscontroller.signal;
-
-        setTimeout(() => jmscontroller.abort(), 5000);
-
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/si-conditional.json", {signal})
-        .then(response => response.json())
-        .then(json => show_questions(json, fPGUwwYtrCrp))
-        .catch(err => {
-        console.log("Fetch error or timeout");
-        show_questions(questionsfPGUwwYtrCrp, fPGUwwYtrCrp);
-        });
-        }
-        </script></div>
-</div>
-</section>
-<section id="quiz-2-applying-statistical-independence-to-unions">
-<h2><span class="section-number">6.8.2. </span>Quiz 2: Applying Statistical Independence to Unions<a class="headerlink" href="#quiz-2-applying-statistical-independence-to-unions" title="Permalink to this heading">#</a></h2>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<div class="output text_html"><div id="SkUplCZRLvmm" data-shufflequestions="False"
-               data-shuffleanswers="True"
-               data-preserveresponses="false"
-               data-numquestions="1000000"
-               data-maxwidth="600"
-               style="border-radius: 10px; text-align: left"> <style>
-#SkUplCZRLvmm {
-   --jq-multiple-choice-bg: #345995;
-   --jq-mc-button-bg: #fafafa;
-   --jq-mc-button-border: #e0e0e0e0;
-   --jq-mc-button-inset-shadow: #555555;
-   --jq-many-choice-bg: #e26d5a;
-   --jq-numeric-bg: #5bc0eb;
-   --jq-numeric-input-bg: #c0c0c0;
-   --jq-numeric-input-label: #101010;
-   --jq-numeric-input-shadow: #999999;
-   --jq-incorrect-color: #666666;
-   --jq-correct-color: #87a878;
-   --jq-text-color: #fafafa;
-}
-
-.Quiz {
-    max-width: 600px;
-    margin-top: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 15px;
-    padding-bottom: 4px;
-    padding-top: 4px;
-    line-height: 1.1;
-    font-size: 16pt;
-    border-radius: inherit;
-}
-
-.QuizCode {
-    font-size: 14pt;
-    margin-top: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.QuizCode>pre {
-    padding: 4px;
-}
-
-.Answer {
-    margin: 10px 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-    border-radius: inherit;
-}
-
-.Feedback {
-    font-size: 16pt;
-    text-align: center;
-    min-height: 2em;
-}
-
-.Input {
-    align: left;
-    font-size: 20pt;
-}
-
-.Input-text {
-    display: block;
-    margin: 10px;
-    color: inherit;
-    width: 140px;
-    background-color: var(--jq-numeric-input-bg);
-    color: var(--jq-text-color);
-    padding: 5px;
-    padding-left: 10px;
-    font-family: inherit;
-    font-size: 20px;
-    font-weight: inherit;
-    line-height: 20pt;
-    border: none;
-    border-radius: 0.2rem;
-    transition: box-shadow 0.1s);
-}
-
-.Input-text:focus {
-    outline: none;
-    background-color: var(--jq-numeric-input-bg);
-    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
-}
-
-.MCButton {
-    background: var(--jq-mc-button-bg);
-    border: 1px solid var(--jq-mc-button-border);
-    border-radius: inherit;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.MCButton p {
-    color: inherit;
-}
-
-.MultipleChoiceQn {
-    padding: 10px;
-    background: var(--jq-multiple-choice-bg);
-    color: var(--jq-text-color);
-    border-radius: inherit;
-}
-
-.ManyChoiceQn {
-    padding: 10px;
-    background: var(--jq-many-choice-bg);
-    color: var(--jq-text-color);
-    border-radius: inherit;
-}
-
-.NumericQn {
-    padding: 10px;
-    background: var(--jq-numeric-bg);
-    color: var(--jq-text-color);
-    border-radius: inherit;
-}
-
-.NumericQn p {
-    color: inherit;
-}
-
-.InpLabel {
-    line-height: 34px;
-    float: left;
-    margin-right: 10px;
-    color: var(--jq-numeric-input-label);
-    font-size: 15pt;
-}
-
-.incorrect {
-    color: var(--jq-incorrect-color);
-}
-
-.correct {
-    color: var(--jq-correct-color);
-}
-
-.correctButton {
-    /*
-    background: var(--jq-correct-color);
-   */
-    animation: correct-anim 0.6s ease;
-    animation-fill-mode: forwards;
-    color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
-}
-
-.incorrectButton {
-    animation: incorrect-anim 0.8s ease;
-    animation-fill-mode: forwards;
-    color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
-}
-
-@keyframes incorrect-anim {
-    100% {
-        background-color: var(--jq-incorrect-color);
-    }
-}
-
-@keyframes correct-anim {
-    100% {
-        background-color: var(--jq-correct-color);
-    }
-}
-</style></div><script type="application/javascript">var questionsSkUplCZRLvmm=[
-    {
-        "question": "If you roll a fair six-sided die twice, what is the probability of getting a 3 on both dice?",
+        "question": "What is the probability of getting <b>two</b> consecutive face cards (J, Q, K) on two consecutive draws from a standard 52-card deck? Give your answer to 3 significant digits.",
         "type": "numeric",
-	"precision": 3,
+        "precision": 4,
         "answers": [
             {
                 "type": "value",
-                "value": 0.028,
+                "value": "0.0498",
                 "correct": true,
-                "feedback": "Correct."
+                "feedback": "Correct! The correct answer is \\( (11/51)(12/52) = 11/221 \\approx  0.0498\\)."
             },
             {
-                "type": "range",
-                "range": [0.166, 0.171],
+                "type": "value",
+                "value": "0.0488",
                 "correct": false,
-                "feedback": "Getting a 3 on the first roll would have a probability of 1/6, so getting a 3 on both rolls must be have a smaller probability."
-            },
-            {
-                "type": "range",
-                "range": [ -1000000, 0], 
-                "correct": false,
-                "feedback": "No. Probabilities cannot be negative."
-            },
-            {
-                "type": "range",
-                "range": [ 1.0000000001, 1000000000], 
-                "correct": false,
-                "feedback": "No. Probabilities cannot be greater than 1."
+                "feedback": "Incorrect. Be sure to update the denominator when you calculate the conditional probability."
             },
             {
                 "type": "default",
                 "correct": false,
-                "feedback": "Incorrect. Use the definition of statistical independence to make this problem easier to solve."
+                "feedback": "Incorrect. Use the chain rule for the intersection of two events. When calculating the conditional probability, be sure to update both the numerator and denominator based on the conditioning (what happened on the first draw)."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
             }
         ]
-    }
-]
-;
-    // Make a random ID
-function makeid(length) {
-    var result = [];
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-        result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
-    }
-    return result.join('');
-}
-
-// Choose a random subset of an array. Can also be used to shuffle the array
-function getRandomSubarray(arr, size) {
-    var shuffled = arr.slice(0), i = arr.length, temp, index;
-    while (i--) {
-        index = Math.floor((i + 1) * Math.random());
-        temp = shuffled[index];
-        shuffled[index] = shuffled[i];
-        shuffled[i] = temp;
-    }
-    return shuffled.slice(0, size);
-}
-
-function printResponses(responsesContainer) {
-    var responses=JSON.parse(responsesContainer.dataset.responses);
-    var stringResponses='<B>IMPORTANT!</B>To preserve this answer sequence for submission, when you have finalized your answers: <ol> <li> Copy the text in this cell below "Answer String"</li> <li> Double click on the cell directly below the Answer String, labeled "Replace Me"</li> <li> Select the whole "Replace Me" text</li> <li> Paste in your answer string and press shift-Enter.</li><li>Save the notebook using the save icon or File->Save Notebook menu item</li></ul><br><br><br><b>Answer String:</b><br> ';
-    console.log(responses);
-    responses.forEach((response, index) => {
-        if (response) {
-            console.log(index + ': ' + response);
-            stringResponses+= index + ': ' + response +"<BR>";
-        }
-    });
-    responsesContainer.innerHTML=stringResponses;
-}
-function check_mc() {
-    var id = this.id.split('-')[0];
-    //var response = this.id.split('-')[1];
-    //console.log(response);
-    //console.log("In check_mc(), id="+id);
-    //console.log(event.srcElement.id)           
-    //console.log(event.srcElement.dataset.correct)   
-    //console.log(event.srcElement.dataset.feedback)
-
-    var label = event.srcElement;
-    //console.log(label, label.nodeName);
-    var depth = 0;
-    while ((label.nodeName != "LABEL") && (depth < 20)) {
-        label = label.parentElement;
-        console.log(depth, label);
-        depth++;
-    }
-
-
-
-    var answers = label.parentElement.children;
-
-    //console.log(answers);
-
-
-    // Split behavior based on multiple choice vs many choice:
-    var fb = document.getElementById("fb" + id);
-
-
-
-
-    if (fb.dataset.numcorrect == 1) {
-        // What follows is for the saved responses stuff
-        var outerContainer = fb.parentElement.parentElement;
-        var responsesContainer = document.getElementById("responses" + outerContainer.id);
-        if (responsesContainer) {
-            //console.log(responsesContainer);
-            var response = label.firstChild.innerText;
-            if (label.querySelector(".QuizCode")){
-                response+= label.querySelector(".QuizCode").firstChild.innerText;
-            }
-            console.log(response);
-            //console.log(document.getElementById("quizWrap"+id));
-            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
-            console.log("Question " + qnum);
-            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
-            var responses=JSON.parse(responsesContainer.dataset.responses);
-            console.log(responses);
-            responses[qnum]= response;
-            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
-            printResponses(responsesContainer);
-        }
-        // End code to preserve responses
-        
-        for (var i = 0; i < answers.length; i++) {
-            var child = answers[i];
-            //console.log(child);
-            child.className = "MCButton";
-        }
-
-
-
-        if (label.dataset.correct == "true") {
-            // console.log("Correct action");
-            if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
-            } else {
-                fb.textContent = "Correct!";
-            }
-            label.classList.add("correctButton");
-
-            fb.className = "Feedback";
-            fb.classList.add("correct");
-
-        } else {
-            if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
-            } else {
-                fb.textContent = "Incorrect -- try again.";
-            }
-            //console.log("Error action");
-            label.classList.add("incorrectButton");
-            fb.className = "Feedback";
-            fb.classList.add("incorrect");
-        }
-    }
-    else {
-        var reset = false;
-        var feedback;
-         if (label.dataset.correct == "true") {
-            if ("feedback" in label.dataset) {
-                feedback = jaxify(label.dataset.feedback);
-            } else {
-                feedback = "Correct!";
-            }
-            if (label.dataset.answered <= 0) {
-                if (fb.dataset.answeredcorrect < 0) {
-                    fb.dataset.answeredcorrect = 1;
-                    reset = true;
-                } else {
-                    fb.dataset.answeredcorrect++;
-                }
-                if (reset) {
-                    for (var i = 0; i < answers.length; i++) {
-                        var child = answers[i];
-                        child.className = "MCButton";
-                        child.dataset.answered = 0;
-                    }
-                }
-                label.classList.add("correctButton");
-                label.dataset.answered = 1;
-                fb.className = "Feedback";
-                fb.classList.add("correct");
-
-            }
-        } else {
-            if ("feedback" in label.dataset) {
-                feedback = jaxify(label.dataset.feedback);
-            } else {
-                feedback = "Incorrect -- try again.";
-            }
-            if (fb.dataset.answeredcorrect > 0) {
-                fb.dataset.answeredcorrect = -1;
-                reset = true;
-            } else {
-                fb.dataset.answeredcorrect--;
-            }
-
-            if (reset) {
-                for (var i = 0; i < answers.length; i++) {
-                    var child = answers[i];
-                    child.className = "MCButton";
-                    child.dataset.answered = 0;
-                }
-            }
-            label.classList.add("incorrectButton");
-            fb.className = "Feedback";
-            fb.classList.add("incorrect");
-        }
-        // What follows is for the saved responses stuff
-        var outerContainer = fb.parentElement.parentElement;
-        var responsesContainer = document.getElementById("responses" + outerContainer.id);
-        if (responsesContainer) {
-            //console.log(responsesContainer);
-            var response = label.firstChild.innerText;
-            if (label.querySelector(".QuizCode")){
-                response+= label.querySelector(".QuizCode").firstChild.innerText;
-            }
-            console.log(response);
-            //console.log(document.getElementById("quizWrap"+id));
-            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
-            console.log("Question " + qnum);
-            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
-            var responses=JSON.parse(responsesContainer.dataset.responses);
-            if (label.dataset.correct == "true") {
-                if (typeof(responses[qnum]) == "object"){
-                    if (!responses[qnum].includes(response))
-                        responses[qnum].push(response);
-                } else{
-                    responses[qnum]= [ response ];
-                }
-            } else {
-                responses[qnum]= response;
-            }
-            console.log(responses);
-            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
-            printResponses(responsesContainer);
-        }
-        // End save responses stuff
-
-
-
-        var numcorrect = fb.dataset.numcorrect;
-        var answeredcorrect = fb.dataset.answeredcorrect;
-        if (answeredcorrect >= 0) {
-            fb.textContent = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
-        } else {
-            fb.textContent = feedback + " [" + 0 + "/" + numcorrect + "]";
-        }
-
-
-    }
-
-    if (typeof MathJax != 'undefined') {
-        var version = MathJax.version;
-        console.log('MathJax version', version);
-        if (version[0] == "2") {
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        } else if (version[0] == "3") {
-            MathJax.typeset([fb]);
-        }
-    } else {
-        console.log('MathJax not detected');
-    }
-
-}
-
-function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
-    var shuffled;
-    if (shuffle_answers == "True") {
-        //console.log(shuffle_answers+" read as true");
-        shuffled = getRandomSubarray(qa.answers, qa.answers.length);
-    } else {
-        //console.log(shuffle_answers+" read as false");
-        shuffled = qa.answers;
-    }
-
-
-    var num_correct = 0;
-
-
-
-    shuffled.forEach((item, index, ans_array) => {
-        //console.log(answer);
-
-        // Make input element
-        var inp = document.createElement("input");
-        inp.type = "radio";
-        inp.id = "quizo" + id + index;
-        inp.style = "display:none;";
-        aDiv.append(inp);
-
-        //Make label for input element
-        var lab = document.createElement("label");
-        lab.className = "MCButton";
-        lab.id = id + '-' + index;
-        lab.onclick = check_mc;
-        var aSpan = document.createElement('span');
-        aSpan.classsName = "";
-        //qDiv.id="quizQn"+id+index;
-        if ("answer" in item) {
-            aSpan.innerHTML = jaxify(item.answer);
-            //aSpan.innerHTML=item.answer;
-        }
-        lab.append(aSpan);
-
-        // Create div for code inside question
-        var codeSpan;
-        if ("code" in item) {
-            codeSpan = document.createElement('span');
-            codeSpan.id = "code" + id + index;
-            codeSpan.className = "QuizCode";
-            var codePre = document.createElement('pre');
-            codeSpan.append(codePre);
-            var codeCode = document.createElement('code');
-            codePre.append(codeCode);
-            codeCode.innerHTML = item.code;
-            lab.append(codeSpan);
-            //console.log(codeSpan);
-        }
-
-        //lab.textContent=item.answer;
-
-        // Set the data attributes for the answer
-        lab.setAttribute('data-correct', item.correct);
-        if (item.correct) {
-            num_correct++;
-        }
-        if ("feedback" in item) {
-            lab.setAttribute('data-feedback', item.feedback);
-        }
-        lab.setAttribute('data-answered', 0);
-
-        aDiv.append(lab);
-
-    });
-
-    if (num_correct > 1) {
-        outerqDiv.className = "ManyChoiceQn";
-    } else {
-        outerqDiv.className = "MultipleChoiceQn";
-    }
-
-    return num_correct;
-
-}
-function check_numeric(ths, event) {
-
-    if (event.keyCode === 13) {
-        ths.blur();
-
-        var id = ths.id.split('-')[0];
-
-        var submission = ths.value;
-        if (submission.indexOf('/') != -1) {
-            var sub_parts = submission.split('/');
-            //console.log(sub_parts);
-            submission = sub_parts[0] / sub_parts[1];
-        }
-        //console.log("Reader entered", submission);
-
-        if ("precision" in ths.dataset) {
-            var precision = ths.dataset.precision;
-            // console.log("1:", submission)
-            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
-            // console.log("Rounded to ", submission, " precision=", precision  );
-        }
-
-
-        //console.log("In check_numeric(), id="+id);
-        //console.log(event.srcElement.id)           
-        //console.log(event.srcElement.dataset.feedback)
-
-        var fb = document.getElementById("fb" + id);
-        fb.style.display = "none";
-        fb.textContent = "Incorrect -- try again.";
-
-        var answers = JSON.parse(ths.dataset.answers);
-        //console.log(answers);
-
-        var defaultFB = "";
-        var correct;
-        var done = false;
-        answers.every(answer => {
-            //console.log(answer.type);
-
-            correct = false;
-            // if (answer.type=="value"){
-            if ('value' in answer) {
-                if (submission == answer.value) {
-                    if ("feedback" in answer) {
-                        fb.textContent = jaxify(answer.feedback);
-                    } else {
-                        fb.textContent = jaxify("Correct");
-                    }
-                    correct = answer.correct;
-                    //console.log(answer.correct);
-                    done = true;
-                }
-                // } else if (answer.type=="range") {
-            } else if ('range' in answer) {
-                //console.log(answer.range);
-                if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
-                    fb.textContent = jaxify(answer.feedback);
-                    correct = answer.correct;
-                    //console.log(answer.correct);
-                    done = true;
-                }
-            } else if (answer.type == "default") {
-                defaultFB = answer.feedback;
-            }
-            if (done) {
-                return false; // Break out of loop if this has been marked correct
-            } else {
-                return true; // Keep looking for case that includes this as a correct answer
-            }
-        });
-
-        if ((!done) && (defaultFB != "")) {
-            fb.innerHTML = jaxify(defaultFB);
-            //console.log("Default feedback", defaultFB);
-        }
-
-        fb.style.display = "block";
-        if (correct) {
-            ths.className = "Input-text";
-            ths.classList.add("correctButton");
-            fb.className = "Feedback";
-            fb.classList.add("correct");
-        } else {
-            ths.className = "Input-text";
-            ths.classList.add("incorrectButton");
-            fb.className = "Feedback";
-            fb.classList.add("incorrect");
-        }
-
-        // What follows is for the saved responses stuff
-        var outerContainer = fb.parentElement.parentElement;
-        var responsesContainer = document.getElementById("responses" + outerContainer.id);
-        if (responsesContainer) {
-            console.log(submission);
-            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
-            //console.log("Question " + qnum);
-            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
-            var responses=JSON.parse(responsesContainer.dataset.responses);
-            console.log(responses);
-            if (submission == ths.value){
-                responses[qnum]= submission;
-            } else {
-                responses[qnum]= ths.value + "(" + submission +")";
-            }
-            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
-            printResponses(responsesContainer);
-        }
-        // End code to preserve responses
-
-        if (typeof MathJax != 'undefined') {
-            var version = MathJax.version;
-            console.log('MathJax version', version);
-            if (version[0] == "2") {
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-            } else if (version[0] == "3") {
-                MathJax.typeset([fb]);
-            }
-        } else {
-            console.log('MathJax not detected');
-        }
-        return false;
-    }
-
-}
-
-function isValid(el, charC) {
-    //console.log("Input char: ", charC);
-    if (charC == 46) {
-        if (el.value.indexOf('.') === -1) {
-            return true;
-        } else if (el.value.indexOf('/') != -1) {
-            var parts = el.value.split('/');
-            if (parts[1].indexOf('.') === -1) {
-                return true;
-            }
-        }
-        else {
-            return false;
-        }
-    } else if (charC == 47) {
-        if (el.value.indexOf('/') === -1) {
-            if ((el.value != "") && (el.value != ".")) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    } else if (charC == 45) {
-        var edex = el.value.indexOf('e');
-        if (edex == -1) {
-            edex = el.value.indexOf('E');
-        }
-
-        if (el.value == "") {
-            return true;
-        } else if (edex == (el.value.length - 1)) { // If just after e or E
-            return true;
-        } else {
-            return false;
-        }
-    } else if (charC == 101) { // "e"
-        if ((el.value.indexOf('e') === -1) && (el.value.indexOf('E') === -1) && (el.value.indexOf('/') == -1)) {
-            // Prev symbol must be digit or decimal point:
-            if (el.value.slice(-1).search(/\d/) >= 0) {
-                return true;
-            } else if (el.value.slice(-1).search(/\./) >= 0) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    } else {
-        if (charC > 31 && (charC < 48 || charC > 57))
-            return false;
-    }
-    return true;
-}
-
-function numeric_keypress(evnt) {
-    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
-
-    if (charC == 13) {
-        check_numeric(this, evnt);
-    } else {
-        return isValid(this, charC);
-    }
-}
-
-
-
-
-
-function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
-
-
-
-    //console.log(answer);
-
-
-    outerqDiv.className = "NumericQn";
-    aDiv.style.display = 'block';
-
-    var lab = document.createElement("label");
-    lab.className = "InpLabel";
-    lab.textContent = "Type numeric answer here:";
-    aDiv.append(lab);
-
-    var inp = document.createElement("input");
-    inp.type = "text";
-    //inp.id="input-"+id;
-    inp.id = id + "-0";
-    inp.className = "Input-text";
-    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
-    if ("precision" in qa) {
-        inp.setAttribute('data-precision', qa.precision);
-    }
-    aDiv.append(inp);
-    //console.log(inp);
-
-    //inp.addEventListener("keypress", check_numeric);
-    //inp.addEventListener("keypress", numeric_keypress);
-    /*
-    inp.addEventListener("keypress", function(event) {
-        return numeric_keypress(this, event);
-    }
-                        );
-                        */
-    //inp.onkeypress="return numeric_keypress(this, event)";
-    inp.onkeypress = numeric_keypress;
-    inp.onpaste = event => false;
-
-    inp.addEventListener("focus", function (event) {
-        this.value = "";
-        return false;
-    }
-    );
-
-
-}
-function jaxify(string) {
-    var mystring = string;
-
-    var count = 0;
-    var loc = mystring.search(/([^\\]|^)(\$)/);
-
-    var count2 = 0;
-    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
-
-    //console.log(loc);
-
-    while ((loc >= 0) || (loc2 >= 0)) {
-
-        /* Have to replace all the double $$ first with current implementation */
-        if (loc2 >= 0) {
-            if (count2 % 2 == 0) {
-                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
-            } else {
-                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
-            }
-            count2++;
-        } else {
-            if (count % 2 == 0) {
-                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
-            } else {
-                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
-            }
-            count++;
-        }
-        loc = mystring.search(/([^\\]|^)(\$)/);
-        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
-        //console.log(mystring,", loc:",loc,", loc2:",loc2);
-    }
-
-    //console.log(mystring);
-    return mystring;
-}
-
-
-function show_questions(json, mydiv) {
-    console.log('show_questions');
-    //var mydiv=document.getElementById(myid);
-    var shuffle_questions = mydiv.dataset.shufflequestions;
-    var num_questions = mydiv.dataset.numquestions;
-    var shuffle_answers = mydiv.dataset.shuffleanswers;
-    var max_width = mydiv.dataset.maxwidth;
-
-    if (num_questions > json.length) {
-        num_questions = json.length;
-    }
-
-    var questions;
-    if ((num_questions < json.length) || (shuffle_questions == "True")) {
-        //console.log(num_questions+","+json.length);
-        questions = getRandomSubarray(json, num_questions);
-    } else {
-        questions = json;
-    }
-
-    //console.log("SQ: "+shuffle_questions+", NQ: " + num_questions + ", SA: ", shuffle_answers);
-
-    // Iterate over questions
-    questions.forEach((qa, index, array) => {
-        //console.log(qa.question); 
-
-        var id = makeid(8);
-        //console.log(id);
-
-
-        // Create Div to contain question and answers
-        var iDiv = document.createElement('div');
-        //iDiv.id = 'quizWrap' + id + index;
-        iDiv.id = 'quizWrap' + id;
-        iDiv.className = 'Quiz';
-        iDiv.setAttribute('data-qnum', index);
-        iDiv.style.maxWidth  =max_width+"px";
-        mydiv.appendChild(iDiv);
-        // iDiv.innerHTML=qa.question;
-        
-        var outerqDiv = document.createElement('div');
-        outerqDiv.id = "OuterquizQn" + id + index;
-        // Create div to contain question part
-        var qDiv = document.createElement('div');
-        qDiv.id = "quizQn" + id + index;
-        
-        if (qa.question) {
-            iDiv.append(outerqDiv);
-
-            //qDiv.textContent=qa.question;
-            qDiv.innerHTML = jaxify(qa.question);
-            outerqDiv.append(qDiv);
-        }
-
-        // Create div for code inside question
-        var codeDiv;
-        if ("code" in qa) {
-            codeDiv = document.createElement('div');
-            codeDiv.id = "code" + id + index;
-            codeDiv.className = "QuizCode";
-            var codePre = document.createElement('pre');
-            codeDiv.append(codePre);
-            var codeCode = document.createElement('code');
-            codePre.append(codeCode);
-            codeCode.innerHTML = qa.code;
-            outerqDiv.append(codeDiv);
-            //console.log(codeDiv);
-        }
-
-
-        // Create div to contain answer part
-        var aDiv = document.createElement('div');
-        aDiv.id = "quizAns" + id + index;
-        aDiv.className = 'Answer';
-        iDiv.append(aDiv);
-
-        //console.log(qa.type);
-
-        var num_correct;
-        if ((qa.type == "multiple_choice") || (qa.type == "many_choice") ) {
-            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
-            if ("answer_cols" in qa) {
-                //aDiv.style.gridTemplateColumns = 'auto '.repeat(qa.answer_cols);
-                aDiv.style.gridTemplateColumns = 'repeat(' + qa.answer_cols + ', 1fr)';
-            }
-        } else if (qa.type == "numeric") {
-            //console.log("numeric");
-            make_numeric(qa, outerqDiv, qDiv, aDiv, id);
-        }
-
-
-        //Make div for feedback
-        var fb = document.createElement("div");
-        fb.id = "fb" + id;
-        //fb.style="font-size: 20px;text-align:center;";
-        fb.className = "Feedback";
-        fb.setAttribute("data-answeredcorrect", 0);
-        fb.setAttribute("data-numcorrect", num_correct);
-        iDiv.append(fb);
-
-
-    });
-    var preserveResponses = mydiv.dataset.preserveresponses;
-    console.log(preserveResponses);
-    console.log(preserveResponses == "true");
-    if (preserveResponses == "true") {
-        console.log(preserveResponses);
-        // Create Div to contain record of answers
-        var iDiv = document.createElement('div');
-        iDiv.id = 'responses' + mydiv.id;
-        iDiv.className = 'JCResponses';
-        // Create a place to store responses as an empty array
-        iDiv.setAttribute('data-responses', '[]');
-
-        // Dummy Text
-        iDiv.innerHTML="<b>Select your answers and then follow the directions that will appear here.</b>"
-        //iDiv.className = 'Quiz';
-        mydiv.appendChild(iDiv);
-    }
-//console.log("At end of show_questions");
-    if (typeof MathJax != 'undefined') {
-        console.log("MathJax version", MathJax.version);
-        var version = MathJax.version;
-        setTimeout(function(){
-            var version = MathJax.version;
-            console.log('After sleep, MathJax version', version);
-            if (version[0] == "2") {
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-            } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
-            }
-        }, 500);
-if (typeof version == 'undefined') {
-        } else
-        {
-            if (version[0] == "2") {
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-            } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
-            } else {
-                console.log("MathJax not found");
-            }
-        }
-    }
-    return false;
-}
-/* This is to handle asynchrony issues in loading Jupyter notebooks
-           where the quiz has been previously run. The Javascript was generally
-           being run before the div was added to the DOM. I tried to do this
-           more elegantly using Mutation Observer, but I didn't get it to work.
-
-           Someone more knowledgeable could make this better ;-) */
-
-        function try_show() {
-          if(document.getElementById("SkUplCZRLvmm")) {
-            show_questions(questionsSkUplCZRLvmm,  SkUplCZRLvmm); 
-          } else {
-             setTimeout(try_show, 200);
-          }
-        };
-    
-        //console.log(element);
-        {
-        const jmscontroller = new AbortController();
-        const signal = jmscontroller.signal;
-
-        setTimeout(() => jmscontroller.abort(), 5000);
-
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/si1.json", {signal})
-        .then(response => response.json())
-        .then(json => show_questions(json, SkUplCZRLvmm))
-        .catch(err => {
-        console.log("Fetch error or timeout");
-        show_questions(questionsSkUplCZRLvmm, SkUplCZRLvmm);
-        });
-        }
-        </script></div>
-</div>
-</section>
-<section id="quiz-3-more-on-independence-and-probabilities-of-unions">
-<h2><span class="section-number">6.8.3. </span>Quiz 3: More on Independence and Probabilities of Unions<a class="headerlink" href="#quiz-3-more-on-independence-and-probabilities-of-unions" title="Permalink to this heading">#</a></h2>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<div class="output text_html"><div id="btEPsjnQRTVT" data-shufflequestions="False"
-               data-shuffleanswers="True"
-               data-preserveresponses="false"
-               data-numquestions="1000000"
-               data-maxwidth="600"
-               style="border-radius: 10px; text-align: left"> <style>
-#btEPsjnQRTVT {
-   --jq-multiple-choice-bg: #345995;
-   --jq-mc-button-bg: #fafafa;
-   --jq-mc-button-border: #e0e0e0e0;
-   --jq-mc-button-inset-shadow: #555555;
-   --jq-many-choice-bg: #e26d5a;
-   --jq-numeric-bg: #5bc0eb;
-   --jq-numeric-input-bg: #c0c0c0;
-   --jq-numeric-input-label: #101010;
-   --jq-numeric-input-shadow: #999999;
-   --jq-incorrect-color: #666666;
-   --jq-correct-color: #87a878;
-   --jq-text-color: #fafafa;
-}
-
-.Quiz {
-    max-width: 600px;
-    margin-top: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 15px;
-    padding-bottom: 4px;
-    padding-top: 4px;
-    line-height: 1.1;
-    font-size: 16pt;
-    border-radius: inherit;
-}
-
-.QuizCode {
-    font-size: 14pt;
-    margin-top: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.QuizCode>pre {
-    padding: 4px;
-}
-
-.Answer {
-    margin: 10px 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-    border-radius: inherit;
-}
-
-.Feedback {
-    font-size: 16pt;
-    text-align: center;
-    min-height: 2em;
-}
-
-.Input {
-    align: left;
-    font-size: 20pt;
-}
-
-.Input-text {
-    display: block;
-    margin: 10px;
-    color: inherit;
-    width: 140px;
-    background-color: var(--jq-numeric-input-bg);
-    color: var(--jq-text-color);
-    padding: 5px;
-    padding-left: 10px;
-    font-family: inherit;
-    font-size: 20px;
-    font-weight: inherit;
-    line-height: 20pt;
-    border: none;
-    border-radius: 0.2rem;
-    transition: box-shadow 0.1s);
-}
-
-.Input-text:focus {
-    outline: none;
-    background-color: var(--jq-numeric-input-bg);
-    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
-}
-
-.MCButton {
-    background: var(--jq-mc-button-bg);
-    border: 1px solid var(--jq-mc-button-border);
-    border-radius: inherit;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.MCButton p {
-    color: inherit;
-}
-
-.MultipleChoiceQn {
-    padding: 10px;
-    background: var(--jq-multiple-choice-bg);
-    color: var(--jq-text-color);
-    border-radius: inherit;
-}
-
-.ManyChoiceQn {
-    padding: 10px;
-    background: var(--jq-many-choice-bg);
-    color: var(--jq-text-color);
-    border-radius: inherit;
-}
-
-.NumericQn {
-    padding: 10px;
-    background: var(--jq-numeric-bg);
-    color: var(--jq-text-color);
-    border-radius: inherit;
-}
-
-.NumericQn p {
-    color: inherit;
-}
-
-.InpLabel {
-    line-height: 34px;
-    float: left;
-    margin-right: 10px;
-    color: var(--jq-numeric-input-label);
-    font-size: 15pt;
-}
-
-.incorrect {
-    color: var(--jq-incorrect-color);
-}
-
-.correct {
-    color: var(--jq-correct-color);
-}
-
-.correctButton {
-    /*
-    background: var(--jq-correct-color);
-   */
-    animation: correct-anim 0.6s ease;
-    animation-fill-mode: forwards;
-    color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
-}
-
-.incorrectButton {
-    animation: incorrect-anim 0.8s ease;
-    animation-fill-mode: forwards;
-    color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
-}
-
-@keyframes incorrect-anim {
-    100% {
-        background-color: var(--jq-incorrect-color);
-    }
-}
-
-@keyframes correct-anim {
-    100% {
-        background-color: var(--jq-correct-color);
-    }
-}
-</style></div><script type="application/javascript">var questionsbtEPsjnQRTVT=[
+    },
     {
-        "question": "Highly reliable systems can be made from unreliable components. A high reliability computer is built using\n    four old hard drives that were found in the lab. The computer data is replicated to each hard drive. The\n    probability that a hard drive is working in any week is 0.75, 0.8, 0.85, and 0.9, respectively, for the four\n    different drives. If drives fail independently, what is the probability that the computer data is available on\n    at least one of the drives in a given week? Give your answer to 3 decimal places.",
+        "question": "What is the probability of getting <b>three</b> consecutive face cards (J, Q, K) on three consecutive draws from a standard 52-card deck? Give your answer to 3 significant digits.",
+        "type": "numeric",
+        "precision": 5,
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.00995",
+                "correct": true,
+                "feedback": "Correct! The correct answer is \\( (10/50)(11/51)(12/52) = 11/1105 \\approx  0.00995\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule for the intersection of three events. When calculating the conditional probabilities, be sure to update both the numerator and denominator based on the conditioning (what happened on the first or second draw)."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": " A computer lab has 10 computers, 3 of which are malfunctioning. If you go into the lab and start trying computers until you find one that works, what is the probability that you have to try 3 or more computers? Give your answer to 2 significant digits.",
         "type": "numeric",
         "precision": 3,
         "answers": [
             {
                 "type": "value",
-                "value": 0.999,
+                "value": "0.067",
                 "correct": true,
-                "feedback": "Correct."
-            },
-            {
-                "type": "range",
-                "range": [
-                    -1000000,
-                    -1e-10
-                ],
-                "correct": false,
-                "feedback": "No. Probabilities cannot be negative. Your work may contain a math error."
-            },
-            {
-                "type": "range",
-                "range": [
-                    1.0000000001,
-                    1000000000
-                ],
-                "correct": false,
-                "feedback": "No. Probabilities cannot be greater than 1. Your work may contain a math error."
+                "feedback": "Correct! The correct answer is \\( (2/9)(3/10) = 1/15 \\approx  0.067\\)."
             },
             {
                 "type": "default",
                 "correct": false,
-                "feedback": "Use the relation between the probability of an event and its complement to convert the union into an intersection of independent events."
-            }
-        ]
-    },
-    {
-        "question": "Highly reliable systems can be made from unreliable components. A high reliability computer is to be built using\n    old hard drives that were found in a lab. Each hard drive has a probability of 0.7 of functioning properly in a given week, \n    and hard drive failures are independent. The system is built with data recorded redundantly across each of multiple \n    hard drives, such that the system will work properly as long as at least one of the hard drives is\n    functioning. How many hard drives should be used in the system for the system to work with probability of at \n    least 0.9999 in a given week?",
-        "type": "numeric",
-        "answers": [
-            {
-                "type": "value",
-                "value": 8,
-                "correct": true,
-                "feedback": "Correct."
+                "feedback": "Incorrect. The first step is to realize that you have to try 3 or more computers if the first two are defective. Thus the probability we are looking for is \\( P(D_1 \cap D_2)\\). Apply the chain rule."
             },
             {
                 "type": "range",
-                "range": [
-                    -1000000,
-                    -1e-10
-                ],
+                "range": [ -100000000, -0.000000000001], 
                 "correct": false,
-                "feedback": "No. We are looking for the number of hard drives needed; it cannot be negative."
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
             },
             {
                 "type": "range",
-                "range": [
-                    0,
-                    0.999999999999
-                ],
+                "range": [ 1.0000001, 100000000], 
                 "correct": false,
-                "feedback": "No. We are looking for the number of hard drives needed (an integer value), not a probability."
-            },
-            {
-                "type": "range",
-                "range": [
-                    7.6,
-                    7.7
-                ],
-                "correct": false,
-                "feedback": "No. It looks like you are on the right track, but the number of hard drives should be an integer!"
-            },
-            {
-                "type": "default",
-                "correct": false,
-                "feedback": "Let $n$ be the number of hard drives in the system and write a formula for the probability\n                that the system works as a function of $n$. Isolate $n$ and then take a logarithm of both sides to get $n$\n                out of the exponent."
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
             }
         ]
     }
-];
+
+]
+;
     // Make a random ID
 function makeid(length) {
     var result = [];
@@ -3399,8 +1437,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("btEPsjnQRTVT")) {
-            show_questions(questionsbtEPsjnQRTVT,  btEPsjnQRTVT); 
+          if(document.getElementById("IxNASSVePEQW")) {
+            show_questions(questionsIxNASSVePEQW,  IxNASSVePEQW); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -3413,28 +1451,28 @@ if (typeof version == 'undefined') {
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/si-unions.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/chain-rules.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, btEPsjnQRTVT))
+        .then(json => show_questions(json, IxNASSVePEQW))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsbtEPsjnQRTVT, btEPsjnQRTVT);
+        show_questions(questionsIxNASSVePEQW, IxNASSVePEQW);
         });
         }
         </script></div>
 </div>
 </section>
-<section id="quiz-4-relating-statistical-independent-and-mutually-exclusive-events">
-<h2><span class="section-number">6.8.4. </span>Quiz 4: Relating Statistical Independent and Mutually Exclusive Events<a class="headerlink" href="#quiz-4-relating-statistical-independent-and-mutually-exclusive-events" title="Permalink to this heading">#</a></h2>
+<section id="quiz-2-chain-rules-and-the-magicians-coin">
+<h2><span class="section-number">6.11.2. </span>Quiz 2: Chain Rules and the Magician’s Coin<a class="headerlink" href="#quiz-2-chain-rules-and-the-magicians-coin" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="uhOFHvgDrOJM" data-shufflequestions="False"
+<div class="output text_html"><div id="WcBlpPYmNopp" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#uhOFHvgDrOJM {
+#WcBlpPYmNopp {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -3604,35 +1642,62 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsuhOFHvgDrOJM=[
+</style></div><script type="application/javascript">var questionsWcBlpPYmNopp=[
     {
-        "question": "How are \"mutually exclusive\" and \"statistically independent\" related?",
-        "type": "multiple_choice",
+        "question": "For the scenario where a magician has a fair coin and a two-headed coin, what is the probability that the magician chooses the Fair coin and gets heads on the first two flips?",
+        "type": "numeric",
         "answers": [
             {
-                "answer": "If events are m.e., that implies that they will be s.i., except in some degenerate cases.",
-                "correct": false,
-                "feedback": "Incorrect. Try again."
-            },
-            {
-                "answer": "If events are s.i., that implies that they will be m.e., except in some degenerate cases.",
-                "correct": false,
-                "feedback": "Incorrect. Try again."
-            },
-            {
-                "answer": "Two events cannot be both s.i. and m.e., except in some degenerate cases.",
+                "type": "value",
+                "value": "0.125",
                 "correct": true,
-                "feedback": "Correct. Events cannot be both s.i. and m.e. unless at least one of those events has probability zero."
+                "feedback": "Correct! We can write \\( P(F \\cap H_1 \\cap H_2) = P(H_1 \\cap H_2 |F) P(F)\\) \\(= P(H_1|F)P(H_2|F)P(F) = (1/2)(1/2)(1/2) = 1/8\\)."
             },
             {
-                "answer": "Statistically independent and mutually exclusive are equivalent conditions, except in some degenerate cases.",
+                "type": "default",
                 "correct": false,
-                "feedback": "Incorrect. Try again."
+                "feedback": "Incorrect. Use the chain rule where you condition on the hidden state."
             },
             {
-                "answer": "None of the other choices.",
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
                 "correct": false,
-                "feedback": "Incorrect. Try again."
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "Consider a scenario where the magician has a 4 fair coins and 1 two-headed coin. A coin is chosen at random and flipped twice. What is the probability that the magician chooses the Fair coin and gets heads on the first two flips?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.2",
+                "correct": true,
+                "feedback": "Correct! We can write \\( P(F \\cap H_1 \\cap H_2) = P(H_1 \\cap H_2 |F) P(F)\\) \\(= P(H_1|F)P(H_2|F)P(F) = (1/2)(1/2)(4/5) = 1/5\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule where you condition on the hidden state. Note that there are four fair coins out of the five total coins."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
             }
         ]
     }
@@ -4386,8 +2451,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("uhOFHvgDrOJM")) {
-            show_questions(questionsuhOFHvgDrOJM,  uhOFHvgDrOJM); 
+          if(document.getElementById("WcBlpPYmNopp")) {
+            show_questions(questionsWcBlpPYmNopp,  WcBlpPYmNopp); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -4400,20 +2465,1044 @@ if (typeof version == 'undefined') {
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/si-me.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/chain-rules2.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, uhOFHvgDrOJM))
+        .then(json => show_questions(json, WcBlpPYmNopp))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsuhOFHvgDrOJM, uhOFHvgDrOJM);
+        show_questions(questionsWcBlpPYmNopp, WcBlpPYmNopp);
+        });
+        }
+        </script></div>
+</div>
+</section>
+<section id="proofs-omitted-in-text">
+<h2><span class="section-number">6.11.3. </span>Proofs Omitted in Text<a class="headerlink" href="#proofs-omitted-in-text" title="Permalink to this heading">#</a></h2>
+<p>Proof that all events <span class="math notranslate nohighlight">\(B_j, ~B_k,~j \ne k\)</span> are mutually exclusive
+$<span class="math notranslate nohighlight">\(
+B_j \cap B_k = (B \cap A_j) \cap (B \cap A_k) = B \cap (A_j \cap A_k) = B \cap \emptyset =\emptyset.
+\)</span>$</p>
+<p>Proof that the union of all events <span class="math notranslate nohighlight">\(B_j\)</span> is equal to <span class="math notranslate nohighlight">\(B\)</span>
+$<span class="math notranslate nohighlight">\(
+\bigcup_j B_j = \bigcup_j \left(A_j \cap B\right )  = B \cap \left( \bigcup_j A_j \right) = B \cap S = B.
+\)</span>$</p>
+</section>
+<section id="quiz-3-total-probability-and-the-magicians-coin">
+<h2><span class="section-number">6.11.4. </span>Quiz 3: Total Probability and the Magician’s Coin<a class="headerlink" href="#quiz-3-total-probability-and-the-magicians-coin" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="gmYEijbErYWM" data-shufflequestions="False"
+               data-shuffleanswers="True"
+               data-preserveresponses="false"
+               data-numquestions="1000000"
+               data-maxwidth="600"
+               style="border-radius: 10px; text-align: left"> <style>
+#gmYEijbErYWM {
+   --jq-multiple-choice-bg: #345995;
+   --jq-mc-button-bg: #fafafa;
+   --jq-mc-button-border: #e0e0e0e0;
+   --jq-mc-button-inset-shadow: #555555;
+   --jq-many-choice-bg: #e26d5a;
+   --jq-numeric-bg: #5bc0eb;
+   --jq-numeric-input-bg: #c0c0c0;
+   --jq-numeric-input-label: #101010;
+   --jq-numeric-input-shadow: #999999;
+   --jq-incorrect-color: #666666;
+   --jq-correct-color: #87a878;
+   --jq-text-color: #fafafa;
+}
+
+.Quiz {
+    max-width: 600px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    line-height: 1.1;
+    font-size: 16pt;
+    border-radius: inherit;
+}
+
+.QuizCode {
+    font-size: 14pt;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.QuizCode>pre {
+    padding: 4px;
+}
+
+.Answer {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    border-radius: inherit;
+}
+
+.Feedback {
+    font-size: 16pt;
+    text-align: center;
+    min-height: 2em;
+}
+
+.Input {
+    align: left;
+    font-size: 20pt;
+}
+
+.Input-text {
+    display: block;
+    margin: 10px;
+    color: inherit;
+    width: 140px;
+    background-color: var(--jq-numeric-input-bg);
+    color: var(--jq-text-color);
+    padding: 5px;
+    padding-left: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: inherit;
+    line-height: 20pt;
+    border: none;
+    border-radius: 0.2rem;
+    transition: box-shadow 0.1s);
+}
+
+.Input-text:focus {
+    outline: none;
+    background-color: var(--jq-numeric-input-bg);
+    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
+}
+
+.MCButton {
+    background: var(--jq-mc-button-bg);
+    border: 1px solid var(--jq-mc-button-border);
+    border-radius: inherit;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MCButton p {
+    color: inherit;
+}
+
+.MultipleChoiceQn {
+    padding: 10px;
+    background: var(--jq-multiple-choice-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
+}
+
+.ManyChoiceQn {
+    padding: 10px;
+    background: var(--jq-many-choice-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
+}
+
+.NumericQn {
+    padding: 10px;
+    background: var(--jq-numeric-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
+}
+
+.NumericQn p {
+    color: inherit;
+}
+
+.InpLabel {
+    line-height: 34px;
+    float: left;
+    margin-right: 10px;
+    color: var(--jq-numeric-input-label);
+    font-size: 15pt;
+}
+
+.incorrect {
+    color: var(--jq-incorrect-color);
+}
+
+.correct {
+    color: var(--jq-correct-color);
+}
+
+.correctButton {
+    /*
+    background: var(--jq-correct-color);
+   */
+    animation: correct-anim 0.6s ease;
+    animation-fill-mode: forwards;
+    color: var(--jq-text-color);
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
+    outline: none;
+}
+
+.incorrectButton {
+    animation: incorrect-anim 0.8s ease;
+    animation-fill-mode: forwards;
+    color: var(--jq-text-color);
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
+    outline: none;
+}
+
+@keyframes incorrect-anim {
+    100% {
+        background-color: var(--jq-incorrect-color);
+    }
+}
+
+@keyframes correct-anim {
+    100% {
+        background-color: var(--jq-correct-color);
+    }
+}
+</style></div><script type="application/javascript">var questionsgmYEijbErYWM=[
+    {
+        "question": "For the scenario where a magician has a fair coin and a two-headed coin, what is the probability that the magician chooses the Fair coin and gets heads on the first two flips?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.125",
+                "correct": true,
+                "feedback": "Correct! We can write \\( P(F \\cap H_1 \\cap H_2) = P(H_1 \\cap H_2 |F) P(F)\\) \\(= P(H_1|F)P(H_2|F)P(F) = (1/2)(1/2)(1/2) = 1/8\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule where you condition on the hidden state."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "Consider a scenario where the magician has a 4 fair coins and 1 two-headed coin. A coin is chosen at random and flipped twice. What is the probability that the magician chooses the Fair coin and gets heads on the first two flips?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": "0.2",
+                "correct": true,
+                "feedback": "Correct! We can write \\( P(F \\cap H_1 \\cap H_2) = P(H_1 \\cap H_2 |F) P(F)\\) \\(= P(H_1|F)P(H_2|F)P(F) = (1/2)(1/2)(4/5) = 1/5\\)."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use the chain rule where you condition on the hidden state. Note that there are four fair coins out of the five total coins."
+            },
+            {
+                "type": "range",
+                "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    }
+]
+;
+    // Make a random ID
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+    }
+    return result.join('');
+}
+
+// Choose a random subset of an array. Can also be used to shuffle the array
+function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}
+
+function printResponses(responsesContainer) {
+    var responses=JSON.parse(responsesContainer.dataset.responses);
+    var stringResponses='<B>IMPORTANT!</B>To preserve this answer sequence for submission, when you have finalized your answers: <ol> <li> Copy the text in this cell below "Answer String"</li> <li> Double click on the cell directly below the Answer String, labeled "Replace Me"</li> <li> Select the whole "Replace Me" text</li> <li> Paste in your answer string and press shift-Enter.</li><li>Save the notebook using the save icon or File->Save Notebook menu item</li></ul><br><br><br><b>Answer String:</b><br> ';
+    console.log(responses);
+    responses.forEach((response, index) => {
+        if (response) {
+            console.log(index + ': ' + response);
+            stringResponses+= index + ': ' + response +"<BR>";
+        }
+    });
+    responsesContainer.innerHTML=stringResponses;
+}
+function check_mc() {
+    var id = this.id.split('-')[0];
+    //var response = this.id.split('-')[1];
+    //console.log(response);
+    //console.log("In check_mc(), id="+id);
+    //console.log(event.srcElement.id)           
+    //console.log(event.srcElement.dataset.correct)   
+    //console.log(event.srcElement.dataset.feedback)
+
+    var label = event.srcElement;
+    //console.log(label, label.nodeName);
+    var depth = 0;
+    while ((label.nodeName != "LABEL") && (depth < 20)) {
+        label = label.parentElement;
+        console.log(depth, label);
+        depth++;
+    }
+
+
+
+    var answers = label.parentElement.children;
+
+    //console.log(answers);
+
+
+    // Split behavior based on multiple choice vs many choice:
+    var fb = document.getElementById("fb" + id);
+
+
+
+
+    if (fb.dataset.numcorrect == 1) {
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            responses[qnum]= response;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+        
+        for (var i = 0; i < answers.length; i++) {
+            var child = answers[i];
+            //console.log(child);
+            child.className = "MCButton";
+        }
+
+
+
+        if (label.dataset.correct == "true") {
+            // console.log("Correct action");
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Correct!";
+            }
+            label.classList.add("correctButton");
+
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+
+        } else {
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Incorrect -- try again.";
+            }
+            //console.log("Error action");
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+    }
+    else {
+        var reset = false;
+        var feedback;
+         if (label.dataset.correct == "true") {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Correct!";
+            }
+            if (label.dataset.answered <= 0) {
+                if (fb.dataset.answeredcorrect < 0) {
+                    fb.dataset.answeredcorrect = 1;
+                    reset = true;
+                } else {
+                    fb.dataset.answeredcorrect++;
+                }
+                if (reset) {
+                    for (var i = 0; i < answers.length; i++) {
+                        var child = answers[i];
+                        child.className = "MCButton";
+                        child.dataset.answered = 0;
+                    }
+                }
+                label.classList.add("correctButton");
+                label.dataset.answered = 1;
+                fb.className = "Feedback";
+                fb.classList.add("correct");
+
+            }
+        } else {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Incorrect -- try again.";
+            }
+            if (fb.dataset.answeredcorrect > 0) {
+                fb.dataset.answeredcorrect = -1;
+                reset = true;
+            } else {
+                fb.dataset.answeredcorrect--;
+            }
+
+            if (reset) {
+                for (var i = 0; i < answers.length; i++) {
+                    var child = answers[i];
+                    child.className = "MCButton";
+                    child.dataset.answered = 0;
+                }
+            }
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            if (label.dataset.correct == "true") {
+                if (typeof(responses[qnum]) == "object"){
+                    if (!responses[qnum].includes(response))
+                        responses[qnum].push(response);
+                } else{
+                    responses[qnum]= [ response ];
+                }
+            } else {
+                responses[qnum]= response;
+            }
+            console.log(responses);
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End save responses stuff
+
+
+
+        var numcorrect = fb.dataset.numcorrect;
+        var answeredcorrect = fb.dataset.answeredcorrect;
+        if (answeredcorrect >= 0) {
+            fb.textContent = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
+        } else {
+            fb.textContent = feedback + " [" + 0 + "/" + numcorrect + "]";
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([fb]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+}
+
+function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
+    var shuffled;
+    if (shuffle_answers == "True") {
+        //console.log(shuffle_answers+" read as true");
+        shuffled = getRandomSubarray(qa.answers, qa.answers.length);
+    } else {
+        //console.log(shuffle_answers+" read as false");
+        shuffled = qa.answers;
+    }
+
+
+    var num_correct = 0;
+
+
+
+    shuffled.forEach((item, index, ans_array) => {
+        //console.log(answer);
+
+        // Make input element
+        var inp = document.createElement("input");
+        inp.type = "radio";
+        inp.id = "quizo" + id + index;
+        inp.style = "display:none;";
+        aDiv.append(inp);
+
+        //Make label for input element
+        var lab = document.createElement("label");
+        lab.className = "MCButton";
+        lab.id = id + '-' + index;
+        lab.onclick = check_mc;
+        var aSpan = document.createElement('span');
+        aSpan.classsName = "";
+        //qDiv.id="quizQn"+id+index;
+        if ("answer" in item) {
+            aSpan.innerHTML = jaxify(item.answer);
+            //aSpan.innerHTML=item.answer;
+        }
+        lab.append(aSpan);
+
+        // Create div for code inside question
+        var codeSpan;
+        if ("code" in item) {
+            codeSpan = document.createElement('span');
+            codeSpan.id = "code" + id + index;
+            codeSpan.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeSpan.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = item.code;
+            lab.append(codeSpan);
+            //console.log(codeSpan);
+        }
+
+        //lab.textContent=item.answer;
+
+        // Set the data attributes for the answer
+        lab.setAttribute('data-correct', item.correct);
+        if (item.correct) {
+            num_correct++;
+        }
+        if ("feedback" in item) {
+            lab.setAttribute('data-feedback', item.feedback);
+        }
+        lab.setAttribute('data-answered', 0);
+
+        aDiv.append(lab);
+
+    });
+
+    if (num_correct > 1) {
+        outerqDiv.className = "ManyChoiceQn";
+    } else {
+        outerqDiv.className = "MultipleChoiceQn";
+    }
+
+    return num_correct;
+
+}
+function check_numeric(ths, event) {
+
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+
+        var submission = ths.value;
+        if (submission.indexOf('/') != -1) {
+            var sub_parts = submission.split('/');
+            //console.log(sub_parts);
+            submission = sub_parts[0] / sub_parts[1];
+        }
+        //console.log("Reader entered", submission);
+
+        if ("precision" in ths.dataset) {
+            var precision = ths.dataset.precision;
+            // console.log("1:", submission)
+            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
+            // console.log("Rounded to ", submission, " precision=", precision  );
+        }
+
+
+        //console.log("In check_numeric(), id="+id);
+        //console.log(event.srcElement.id)           
+        //console.log(event.srcElement.dataset.feedback)
+
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.textContent = "Incorrect -- try again.";
+
+        var answers = JSON.parse(ths.dataset.answers);
+        //console.log(answers);
+
+        var defaultFB = "";
+        var correct;
+        var done = false;
+        answers.every(answer => {
+            //console.log(answer.type);
+
+            correct = false;
+            // if (answer.type=="value"){
+            if ('value' in answer) {
+                if (submission == answer.value) {
+                    if ("feedback" in answer) {
+                        fb.textContent = jaxify(answer.feedback);
+                    } else {
+                        fb.textContent = jaxify("Correct");
+                    }
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+                // } else if (answer.type=="range") {
+            } else if ('range' in answer) {
+                //console.log(answer.range);
+                if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+            } else if (answer.type == "default") {
+                defaultFB = answer.feedback;
+            }
+            if (done) {
+                return false; // Break out of loop if this has been marked correct
+            } else {
+                return true; // Keep looking for case that includes this as a correct answer
+            }
+        });
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+            //console.log("Default feedback", defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            console.log(submission);
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            //console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            if (submission == ths.value){
+                responses[qnum]= submission;
+            } else {
+                responses[qnum]= ths.value + "(" + submission +")";
+            }
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        return false;
+    }
+
+}
+
+function isValid(el, charC) {
+    //console.log("Input char: ", charC);
+    if (charC == 46) {
+        if (el.value.indexOf('.') === -1) {
+            return true;
+        } else if (el.value.indexOf('/') != -1) {
+            var parts = el.value.split('/');
+            if (parts[1].indexOf('.') === -1) {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    } else if (charC == 47) {
+        if (el.value.indexOf('/') === -1) {
+            if ((el.value != "") && (el.value != ".")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else if (charC == 45) {
+        var edex = el.value.indexOf('e');
+        if (edex == -1) {
+            edex = el.value.indexOf('E');
+        }
+
+        if (el.value == "") {
+            return true;
+        } else if (edex == (el.value.length - 1)) { // If just after e or E
+            return true;
+        } else {
+            return false;
+        }
+    } else if (charC == 101) { // "e"
+        if ((el.value.indexOf('e') === -1) && (el.value.indexOf('E') === -1) && (el.value.indexOf('/') == -1)) {
+            // Prev symbol must be digit or decimal point:
+            if (el.value.slice(-1).search(/\d/) >= 0) {
+                return true;
+            } else if (el.value.slice(-1).search(/\./) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        if (charC > 31 && (charC < 48 || charC > 57))
+            return false;
+    }
+    return true;
+}
+
+function numeric_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_numeric(this, evnt);
+    } else {
+        return isValid(this, charC);
+    }
+}
+
+
+
+
+
+function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
+
+
+
+    //console.log(answer);
+
+
+    outerqDiv.className = "NumericQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.textContent = "Type numeric answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    //inp.id="input-"+id;
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    if ("precision" in qa) {
+        inp.setAttribute('data-precision', qa.precision);
+    }
+    aDiv.append(inp);
+    //console.log(inp);
+
+    //inp.addEventListener("keypress", check_numeric);
+    //inp.addEventListener("keypress", numeric_keypress);
+    /*
+    inp.addEventListener("keypress", function(event) {
+        return numeric_keypress(this, event);
+    }
+                        );
+                        */
+    //inp.onkeypress="return numeric_keypress(this, event)";
+    inp.onkeypress = numeric_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    }
+    );
+
+
+}
+function jaxify(string) {
+    var mystring = string;
+
+    var count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    var count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+
+function show_questions(json, mydiv) {
+    console.log('show_questions');
+    //var mydiv=document.getElementById(myid);
+    var shuffle_questions = mydiv.dataset.shufflequestions;
+    var num_questions = mydiv.dataset.numquestions;
+    var shuffle_answers = mydiv.dataset.shuffleanswers;
+    var max_width = mydiv.dataset.maxwidth;
+
+    if (num_questions > json.length) {
+        num_questions = json.length;
+    }
+
+    var questions;
+    if ((num_questions < json.length) || (shuffle_questions == "True")) {
+        //console.log(num_questions+","+json.length);
+        questions = getRandomSubarray(json, num_questions);
+    } else {
+        questions = json;
+    }
+
+    //console.log("SQ: "+shuffle_questions+", NQ: " + num_questions + ", SA: ", shuffle_answers);
+
+    // Iterate over questions
+    questions.forEach((qa, index, array) => {
+        //console.log(qa.question); 
+
+        var id = makeid(8);
+        //console.log(id);
+
+
+        // Create Div to contain question and answers
+        var iDiv = document.createElement('div');
+        //iDiv.id = 'quizWrap' + id + index;
+        iDiv.id = 'quizWrap' + id;
+        iDiv.className = 'Quiz';
+        iDiv.setAttribute('data-qnum', index);
+        iDiv.style.maxWidth  =max_width+"px";
+        mydiv.appendChild(iDiv);
+        // iDiv.innerHTML=qa.question;
+        
+        var outerqDiv = document.createElement('div');
+        outerqDiv.id = "OuterquizQn" + id + index;
+        // Create div to contain question part
+        var qDiv = document.createElement('div');
+        qDiv.id = "quizQn" + id + index;
+        
+        if (qa.question) {
+            iDiv.append(outerqDiv);
+
+            //qDiv.textContent=qa.question;
+            qDiv.innerHTML = jaxify(qa.question);
+            outerqDiv.append(qDiv);
+        }
+
+        // Create div for code inside question
+        var codeDiv;
+        if ("code" in qa) {
+            codeDiv = document.createElement('div');
+            codeDiv.id = "code" + id + index;
+            codeDiv.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeDiv.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = qa.code;
+            outerqDiv.append(codeDiv);
+            //console.log(codeDiv);
+        }
+
+
+        // Create div to contain answer part
+        var aDiv = document.createElement('div');
+        aDiv.id = "quizAns" + id + index;
+        aDiv.className = 'Answer';
+        iDiv.append(aDiv);
+
+        //console.log(qa.type);
+
+        var num_correct;
+        if ((qa.type == "multiple_choice") || (qa.type == "many_choice") ) {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+            if ("answer_cols" in qa) {
+                //aDiv.style.gridTemplateColumns = 'auto '.repeat(qa.answer_cols);
+                aDiv.style.gridTemplateColumns = 'repeat(' + qa.answer_cols + ', 1fr)';
+            }
+        } else if (qa.type == "numeric") {
+            //console.log("numeric");
+            make_numeric(qa, outerqDiv, qDiv, aDiv, id);
+        }
+
+
+        //Make div for feedback
+        var fb = document.createElement("div");
+        fb.id = "fb" + id;
+        //fb.style="font-size: 20px;text-align:center;";
+        fb.className = "Feedback";
+        fb.setAttribute("data-answeredcorrect", 0);
+        fb.setAttribute("data-numcorrect", num_correct);
+        iDiv.append(fb);
+
+
+    });
+    var preserveResponses = mydiv.dataset.preserveresponses;
+    console.log(preserveResponses);
+    console.log(preserveResponses == "true");
+    if (preserveResponses == "true") {
+        console.log(preserveResponses);
+        // Create Div to contain record of answers
+        var iDiv = document.createElement('div');
+        iDiv.id = 'responses' + mydiv.id;
+        iDiv.className = 'JCResponses';
+        // Create a place to store responses as an empty array
+        iDiv.setAttribute('data-responses', '[]');
+
+        // Dummy Text
+        iDiv.innerHTML="<b>Select your answers and then follow the directions that will appear here.</b>"
+        //iDiv.className = 'Quiz';
+        mydiv.appendChild(iDiv);
+    }
+//console.log("At end of show_questions");
+    if (typeof MathJax != 'undefined') {
+        console.log("MathJax version", MathJax.version);
+        var version = MathJax.version;
+        setTimeout(function(){
+            var version = MathJax.version;
+            console.log('After sleep, MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            }
+        }, 500);
+if (typeof version == 'undefined') {
+        } else
+        {
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            } else {
+                console.log("MathJax not found");
+            }
+        }
+    }
+    return false;
+}
+/* This is to handle asynchrony issues in loading Jupyter notebooks
+           where the quiz has been previously run. The Javascript was generally
+           being run before the div was added to the DOM. I tried to do this
+           more elegantly using Mutation Observer, but I didn't get it to work.
+
+           Someone more knowledgeable could make this better ;-) */
+
+        function try_show() {
+          if(document.getElementById("gmYEijbErYWM")) {
+            show_questions(questionsgmYEijbErYWM,  gmYEijbErYWM); 
+          } else {
+             setTimeout(try_show, 200);
+          }
+        };
+    
+        //console.log(element);
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/chain-rules2.json", {signal})
+        .then(response => response.json())
+        .then(json => show_questions(json, gmYEijbErYWM))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        show_questions(questionsgmYEijbErYWM, gmYEijbErYWM);
         });
         }
         </script></div>
 </div>
 </section>
 <section id="terminology-review">
-<h2><span class="section-number">6.8.5. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
-<p>Use the flashcards below to help you review the terminology introduced in this section.</p>
+<h2><span class="section-number">6.11.5. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><style>
@@ -4671,7 +3760,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="sUscZVJOWmCI" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="sUscZVJOWmCI-next" onclick="window.checkFlip('sUscZVJOWmCI')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="fmXfbqNLszet" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="fmXfbqNLszet-next" onclick="window.checkFlip('fmXfbqNLszet')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -5018,35 +4107,31 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("sUscZVJOWmCI")) {
-            createCards("sUscZVJOWmCI", "True", "False");
+          if(document.getElementById("fmXfbqNLszet")) {
+            createCards("fmXfbqNLszet", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardssUscZVJOWmCI=[
+var cardsfmXfbqNLszet=[
     {
-        "front": "statistically independent <br>(two events)",
-        "back": "Given a probability space $S, \\mathcal{F}, P$ and two events $A\\in \\mathcal{F}$ and $B \\in \\mathcal{F}$, $A$ and $B$ are  <i>statistically independent</i> if and only if (iff) <br><br> $$ P(A \\cap B) = P(A)P(B).$$ "
+        "front": "chain rules",
+        "back": "express the probability of an intersection of events in terms of a sequence of conditional probabilities involving those events"
     },
     {
-        "front": "statistically independent<br>(any number of events)",
-        "back": "Given a probability space $S, \\mathcal{F}, P$, events $E_0, E_1, \\ldots E_{n-1}$ in $\\mathcal{F}$ are <i>statistically independent</i> iff \n \\begin{align} &P(E_i \\cap E_j)  = P(E_i) P(E_j), ~~ \\scriptstyle \\forall i \\ne j \\\\ \n &  P(E_i \\cap E_j \\cap E_k) = P(E_i) P(E_j) P(E_k), ~~ \\scriptstyle \\forall i \\ne j \\ne k \\\\ \n &  \\scriptstyle \\ldots \\\\ \n & \\scriptstyle P(E_0 \\cap E_1 \\cap \\ldots \\cap E_{n-1}) \\, = \\, P(E_0) P(E_1) \\cdots P(E_{n-1}), \\\\ \n \\end{align}"
+        "front": "partition (of the sample space)",
+        "back": " A collection of sets $A_1, A_2, \\ldots$ <i>partitions</i> the sample space $S$ if and only if \\begin{align*} S &= \\bigcup_i A_i,     \\mbox{ and } A_i \\cap A_j = \\emptyset, ~~~i \\ne j. \\end{align*}" 
     },
     {
-        "front": "pairwise statistically independent ",
-        "back": "Given a probability space $S, \\mathcal{F}, P$, a collection of events $E_0, E_1, \\ldots E_{n-1}$ in $\\mathcal{F}$ are <i>pairwise statistically independent</i> iff \\begin{align} P(E_i \\cap E_j) &= P(E_i) P(E_j), ~~ \\forall i \\ne j \\end{align}" 
-    },
-    {
-            "front": "statistically independent (s.i.)<br>vs<br>mutually exclusive (m.e.)",
-            "back": "Remember:<br> m.e. is a <b>set relation</b><br>s.i. is a <b>probability relation</b><br>Events cannot be both s.i. and m.e. unless at least one has prob. zero."
+        "front": "Law of Total Probability",
+        "back": "Given an event $B \\subseteq S$ and a partition of $S$ denoted by $A_1, A_2, \\ldots$, \\begin{align*} P(B) = \\sum_i P(B|A_i)P(A_i).  \\end{align*}"
     }
 ]
 ;
-var frontColorssUscZVJOWmCI= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorssUscZVJOWmCI= ["var(--dark-blue-gray)" ];
-var textColorssUscZVJOWmCI= ["var(--snow)" ];
+var frontColorsfmXfbqNLszet= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsfmXfbqNLszet= ["var(--dark-blue-gray)" ];
+var textColorsfmXfbqNLszet= ["var(--snow)" ];
 
 
         {
@@ -5055,9 +4140,9 @@ var textColorssUscZVJOWmCI= ["var(--snow)" ];
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/flashcards/independence.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/flashcards/chain-rules-total-prob.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("sUscZVJOWmCI", "True", "False"))
+        .then(json => createCards("fmXfbqNLszet", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -5100,20 +4185,20 @@ var textColorssUscZVJOWmCI= ["var(--snow)" ];
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="more-on-simulating.html"
+       href="conditional-independence.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">6.7. </span>More on Simulating Conditional Probabilities</p>
+        <p class="prev-next-title"><span class="section-number">6.10. </span>Conditioning and (In)dependence</p>
       </div>
     </a>
     <a class="right-next"
-       href="fair-exps.html"
+       href="review.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6.9. </span>Conditional Probabilities and Independence in Fair Experiments</p>
+        <p class="prev-next-title"><span class="section-number">6.12. </span>Review</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -5135,11 +4220,11 @@ var textColorssUscZVJOWmCI= ["var(--snow)" ];
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-1-conditional-probabilities-and-independence">6.8.1. Quiz 1: Conditional probabilities and independence</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-2-applying-statistical-independence-to-unions">6.8.2. Quiz 2: Applying Statistical Independence to Unions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-3-more-on-independence-and-probabilities-of-unions">6.8.3. Quiz 3: More on Independence and Probabilities of Unions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-4-relating-statistical-independent-and-mutually-exclusive-events">6.8.4. Quiz 4: Relating Statistical Independent and Mutually Exclusive Events</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">6.8.5. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-1-using-chain-rules">6.11.1. Quiz 1: Using Chain Rules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-2-chain-rules-and-the-magicians-coin">6.11.2. Quiz 2: Chain Rules and the Magician’s Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proofs-omitted-in-text">6.11.3. Proofs Omitted in Text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-3-total-probability-and-the-magicians-coin">6.11.4. Quiz 3: Total Probability and the Magician’s Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">6.11.5. Terminology Review</a></li>
 </ul>
   </nav></div>
 
