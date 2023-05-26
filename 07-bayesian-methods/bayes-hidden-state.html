@@ -12,8 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/07-bayesian-methods/bayes-hidden-state.html" />
 <meta property="og:site_name" content="Python" />
+<meta property="og:description" content="Quiz on Applying Bayes’ Rule to the Magician’s Coin Problem: Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ \mbox{ }" />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
+<meta name="description" content="Quiz on Applying Bayes’ Rule to the Magician’s Coin Problem: Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ \mbox{ }" />
 
     <title>7.2. Bayes’ Rule in Systems with Hidden State &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
   
@@ -75,6 +77,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/boldsymbol"]}, "tex": {"macros": {"P": "\\operatorname{P}"}, "packages": {"[+]": ["boldsymbol"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '07-bayesian-methods/bayes-hidden-state';</script>
     <link rel="canonical" href="https://www.fdsp.net/07-bayesian-methods/bayes-hidden-state.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -276,6 +280,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../09-moments/summary.html">9.10. Summary</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../10-conditional-stats/intro.html">10. Decision Making with Observations from Continuous Distributions</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../10-conditional-stats/binary-decisions-nonbayesian.html">10.1. Binary Decisions from Continuous Data: Non-Bayesian Approaches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10-conditional-stats/point-conditioning.html">10.2. Point Conditioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10-conditional-stats/bayesian-decisions.html">10.3. Optimal Bayesian Decision Making with Continuous Random Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10-conditional-stats/review.html">10.4. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../10-conditional-stats/summary.html">10.5. Summary</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -399,7 +411,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -415,6 +429,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-on-applying-bayes-rule-to-the-magicians-coin-problem">7.2.1. Quiz on Applying Bayes’ Rule to the Magician’s Coin Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">7.2.2. Terminology Review</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -426,6 +449,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayes-rule-in-systems-with-hidden-state">
 <span id="index-0"></span><h1><span class="section-number">7.2. </span>Bayes’ Rule in Systems with Hidden State<a class="headerlink" href="#bayes-rule-in-systems-with-hidden-state" title="Permalink to this heading">#</a></h1>
+<section id="quiz-on-applying-bayes-rule-to-the-magicians-coin-problem">
+<h2><span class="section-number">7.2.1. </span>Quiz on Applying Bayes’ Rule to the Magician’s Coin Problem<a class="headerlink" href="#quiz-on-applying-bayes-rule-to-the-magicians-coin-problem" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><div id="nizQqoHMfTbf" data-shufflequestions="False"
@@ -1415,6 +1440,10 @@ if (typeof version == 'undefined') {
         }
         </script></div>
 </div>
+</section>
+<section id="terminology-review">
+<h2><span class="section-number">7.2.2. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~ \mbox{   }\)</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><style>
@@ -2055,6 +2084,7 @@ var textColorsXRxSvlRfTWPR= ["var(--snow)" ];
         </script></div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2114,6 +2144,21 @@ var textColorsXRxSvlRfTWPR= ["var(--snow)" ];
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-on-applying-bayes-rule-to-the-magicians-coin-problem">7.2.1. Quiz on Applying Bayes’ Rule to the Magician’s Coin Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">7.2.2. Terminology Review</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
