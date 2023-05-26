@@ -1,0 +1,14 @@
+[
+    {
+        "front": "uninformative prior",
+        "back": "A collection of <i>a priori</i> probabilities that do not give preference to any of the outcomes; usually flat (constant) across the set of outcomes."
+    },
+    {
+        "front": "informative prior",
+        "back": "A collection of <i>a priori</i> probabilities that are based on information that are external to the data and that are usually not flat (constant) across the set of outcomes."
+    },
+    {
+        "front": "credible interval", 
+        "back": "A $C$% <i>credible interval</i> is an interval of values that contains $C$% of the <i>a posteriori</i> probability."
+    }
+]

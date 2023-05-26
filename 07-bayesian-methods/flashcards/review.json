@@ -1,0 +1,52 @@
+[
+    {
+        "front": "stochastic system",
+        "back": "A stochastic system with one or more inputs and one or more outputs, for which the output(s) is(are) not a deterministic function of the output(s)"
+    },
+    {
+        "front": "likelihoods<br>(discrete stochastic systems)",
+        "back": "For a stochastic system with a discrete input events $\\{ A_0, A_i, \\ldots \\}$ and  discrete output events $\\{B_0, B_1, \\ldots\\}$,  the <I>likelihoods</I> are the conditional probabilities of the output events given the input events:\n \\[ P(B_j| A_i). \\]"
+    },
+    {
+        "front": "<I>a posteriori</I> probability<br>(discrete stochastic system)",
+        "back": "For a stochastic system with discrete input events $\\{ A_0, A_i, \\ldots \\}$ and discrete output events $\\{B_0, B_1, \\ldots\\}$,  the <I>a posterior probabilities</I> (APPs) are the conditional probabilities of the input events given the observed outputs:\n \\[ P(A_i | B_j). \\]"},
+    {
+        "front": "<I>a priori</i> probability<br>(discrete stochastic system)",
+        "back": "For a stochastic system with discrete input events $\\{ A_0, A_i, \\ldots \\}$,  the <I>a priori probabilities</I> are the probabilities of the input events before any output is observed:\n \\[ P(A_i). \\]"
+    },
+    {
+        "front": "Bayes' Rule<br>(discrete stochastic system)",
+        "back": "Given likelihoods $P(B_j|A_i)$ and <I>a prioris</I> $P(A_i)$, the <I>a posteriori</I> probabilities (APPs) can be written as \n \\[ P(A_i|B_j) = \\frac{P\\left(B_j \\left \\vert A_i \\right. \\right) P\\left( A_i \\right)} { \\sum_i P\\left(B_j \\left \\vert A_i \\right. \\right) P\\left( A_i \\right)} \\]"
+    },
+    {
+        "front": "base rate fallacy",
+        "back": "Assuming the likelihoods will determine the probabilities and negelecting the <I>a prioris</I>, which give some <B>base rate</B> at which one of the phenomena occurs."
+    },
+    {
+        "front": "hidden state",
+        "back": "An internal state (for example, memory contents) of a system that can affect outputs but that is not directly observable."
+    },
+    {
+        "front": "decision rule<br>(discrete stochastic system)",
+        "back": "For a discrete stochastic system with inputs (or hidden states) $\\{A_i\\}$ and outputs $\\{B_j\\}$, a <I>decision rule</I> for an observation $B_j$ gives a choice of corresponding input event $A_i$.<br> The decision rule may be chosen to optimize some function of the inputs and outputs (e.g., likelihood or APP)."
+    },
+    {
+        "front": "maximum likelihood (ML) rule<br>(discrete stochastic system)",
+        "back": "For a stochastic system with a discrete input events $\\{ A_0, A_i, \\ldots \\}$ and  discrete output events $\\{B_0, B_1, \\ldots\\}$,  the <I>maximum likelihood</I> decision rule given $B_j$ was received is <br> $$ \\hat{A}_i, \\mbox{ where } i = \\arg \\max_{i \\in \\{0,1\\}} P(B_j|A_i). $$ "
+    },
+    {
+        "front": "MAP rule<br>(discrete stochastic system)",
+        "back": "For a stochastic system with a discrete input events $\\{ A_0, A_i, \\ldots \\}$ and  discrete output events $\\{B_0, B_1, \\ldots\\}$,  the <I>maximum a posteriori (MAP)</I> decision rule given $B_j$ was received is <br> $$ \\hat{A}_i, \\mbox{ where } i = \\arg \\max_{i \\in \\{0,1\\}} P(A_i|B_j). $$ "},
+    {
+        "front": "uninformative prior",
+        "back": "A collection of <i>a priori</i> probabilities that do not give preference to any of the outcomes; usually flat (constant) across the set of outcomes."
+    },
+    {
+        "front": "informative prior",
+        "back": "A collection of <i>a priori</i> probabilities that are based on information that are external to the data and that are usually not flat (constant) across the set of outcomes."
+    },
+    {
+        "front": "credible interval", 
+        "back": "A $C$% <i>credible interval</i> is an interval of values that contains $C$% of the <i>a posteriori</i> probability."
+    }
+]
