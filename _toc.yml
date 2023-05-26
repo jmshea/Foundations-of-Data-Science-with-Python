@@ -53,3 +53,9 @@ sections:
   - file: 05-null-hypothesis-testing/errors-and-power
   - file: 05-null-hypothesis-testing/review
   - file: 05-null-hypothesis-testing/summary
+- file: 06-conditional-prob/intro
+  sections:
+  - file: 06-conditional-prob/simulating-cond-probs
+  - file: 06-conditional-prob/notation-and-intuition
+  - file: 06-conditional-prob/definition
+  - file: 06-conditional-prob/relating-cond-uncond
