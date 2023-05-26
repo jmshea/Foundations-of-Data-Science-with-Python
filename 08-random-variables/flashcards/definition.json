@@ -1,0 +1,18 @@
+[
+    {
+     "front": "Borel sets (of $\\mathbb{R}$)",
+     "back": "The collection of all countable unions, intersections, and complements of intervals."
+    },
+    {
+        "front": "Borel field or Borel $\\sigma$-algebra",
+        "back": "The collection of Borel sets."
+    },
+    {
+        "front": "Random variable",
+        "back": "A <i>function</i> that maps from the sample space $S$ to the real line $\\mathbb{R}$."
+    },
+    {
+        "front": "Range (of a random variable)",
+        "back": "The set of values a random variable can take on."
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "front": "(Continuous) Uniform RV",
+        "back": "An RV on an interval $[a,b]$ that has the same probability density at every point in that interval, \\[f_U(u) = \\frac{1}{b-a}, ~~ u \\in [a,b] \\]"
+    },
+    {
+        "front": "Exponential RV",
+        "back": "RV with single parameter $\\lambda$ that controls exponential roll-off of density. The pdf is \\[ f_X(x) = \\lambda e^{-\\lambda x} u(x) \\] "
+    },
+    {
+        "front": "Inverse CDF",
+        "back": "Given probability $p$, returns value of $x$ such that $F_X(x)=p$. Can denote as $F_{X}^{-1}(p)$. Also called the <i>quantile function</i> of <i>percent-point function</i>."
+    },
+    {
+        "front": "Normal (Gaussian) RV",
+        "back": "RV that often arises from aggregation of random effects. Has parameters $\\mu$ (mean) and $\\sigma$ (standard deviation) and pdf \\[f_X(x)  = \\frac{1}{\\sigma \\sqrt{ 2 \\pi }} \\exp \\left\\{ - \\frac {1} {2}\\left[\\frac{x-\\mu}{\\sigma}\\right]^2   \\right\\},\\]  \\[-\\infty < x < \\infty \\] "
+    },
+    {
+        "front": "Chi-squared RV",
+        "back": "A chi-squared random variable with $M$ degrees of freedom is equivalent to the sum of the squares of $M$ independent, standard Normal random variables."
+    },
+    {
+        "front": "Student's $t$ RV",
+        "back": "RV similar to standard Normal but has probability spread further from the mean. Spread away from mean increases as degrees of freedom parameter decreases."
+    }
+]

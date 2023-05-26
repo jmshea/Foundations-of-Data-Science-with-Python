@@ -1,0 +1,93 @@
+[
+    {
+     "front": "Borel sets (of $\\mathbb{R}$)",
+     "back": "The collection of all countable unions, intersections, and complements of intervals."
+    },
+    {
+        "front": "Borel field or Borel $\\sigma$-algebra",
+        "back": "The collection of Borel sets."
+    },
+    {
+        "front": "Random variable",
+        "back": "A <i>function</i> that maps from the sample space $S$ to the real line $\\mathbb{R}$."
+    },
+    {
+        "front": "Range (of a random variable)",
+        "back": "The set of values a random variable can take on."
+    },
+    {"front": "discrete random variable",
+     "back": "RV with a finite or countably infinite range"
+    },
+    {
+        "front": "probability mass function (PMF)",
+        "back": "Function from range of a discrete RV $X$ to probabilities, $p_X(x) = \\operatorname{Pr}( X=x)$."
+    },
+    {
+        "front": "cumulative distribution function (CDF)",
+        "back": "Let $(S,\\mathcal{F},P)$ be a probability space and $X$ be a real RV on $S$. Then the <i>cumulative distribution function (CDF)</i> is the real function $F_X(x) =P (X\\le x)$. "
+    },
+    {
+        "front": "staircase function",
+        "back": "A staircase function is a piecewise constant function of its argument that has at most a countable number of pieces."
+    },
+    {
+        "front": "survival function (SF)",
+        "back": "Let $(S,\\mathcal{F},P)$ be a probability space and $X$ be a real RV on $S$. Then the <i>survival function(SF)</i> is the real function $S_X(x) =P (X > x)= 1 -F_X(x)$."
+    },
+    {
+        "front": "Discrete uniform random variable",
+        "back": "RV with a finite number of values, all of which have the same probability"
+    },
+    {
+        "front": "Bernoulli random variable",
+        "back": "RV with two values. Usually 0 and 1, with $p$ such that $P(B=1) = p$ and $P(B=0) = 1-p$."
+    },
+    {
+        "front": "Binomial random variable",
+        "back": "RV representing number of successes on $N$ independent Bernoulli($p$) trials. $P(N=k) = \\binom{N}{k} p^k (1-p)^{N-k}$, $k=0,1,\\dots,N$ "
+    },
+    {
+        "front": "Geometric random variable",
+        "back": "For repeated, independent Binomial($p$) trials, RV $G$ is number of trials to first success.  $p_G(k) = p(1-p)^{k-1}$, $k=1,2,\\ldots$"
+    },
+    {
+        "front": "Poisson random variable",
+        "back": "Models events that occur randomly over time (or space). If average of $\\alpha$ events in observation window, \\[p_X(k) = \\frac{\\alpha^k}{k!} e^{- \\alpha},~~k = 0, 1, \\ldots\\]"
+    },
+    {
+        "front": "Continuous uniform random variable",
+        "back": "RV with uncountably infinite range and continuous CDF"
+    },
+    {
+        "front": "Probability density function (pdf)",
+        "back": "For a continuous RV $X$, \\[f_X(x) = \\frac{d}{dx} F_X(x)\\] "
+    },
+    {
+        "front": "Piecewise function",
+        "back": "A function that has a different functional relationship on different regions of its variable(s)."
+    },
+    {
+        "front": "(Continuous) Uniform RV",
+        "back": "An RV on an interval $[a,b]$ that has the same probability density at every point in that interval, \\[f_U(u) = \\frac{1}{b-a}, ~~ u \\in [a,b] \\]"
+    },
+    {
+        "front": "Exponential RV",
+        "back": "RV with single parameter $\\lambda$ that controls exponential roll-off of density. The pdf is \\[ f_X(x) = \\lambda e^{-\\lambda x} u(x) \\] "
+    },
+    {
+        "front": "Inverse CDF",
+        "back": "Given probability $p$, returns value of $x$ such that $F_X(x)=p$. Can denote as $F_{X}^{-1}(p)$. Also called the <i>quantile function</i> of <i>percent-point function</i>."
+    },
+    {
+        "front": "Normal (Gaussian) RV",
+        "back": "RV that often arises from aggregation of random effects. Has parameters $\\mu$ (mean) and $\\sigma$ (standard deviation) and pdf \\[f_X(x)  = \\frac{1}{\\sigma \\sqrt{ 2 \\pi }} \\exp \\left\\{ - \\frac {1} {2}\\left[\\frac{x-\\mu}{\\sigma}\\right]^2   \\right\\},\\]  \\[-\\infty < x < \\infty \\] "
+    },
+    {
+        "front": "Chi-squared RV",
+        "back": "A chi-squared random variable with $M$ degrees of freedom is equivalent to the sum of the squares of $M$ independent, standard Normal random variables."
+    },
+    {
+        "front": "Student's $t$ RV",
+        "back": "RV similar to standard Normal but has probability spread further from the mean. Spread away from mean increases as degrees of freedom parameter decreases."
+    }
+]

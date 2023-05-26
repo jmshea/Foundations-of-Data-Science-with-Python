@@ -1,0 +1,14 @@
+[
+    {
+        "front": "Continuous uniform random variable",
+        "back": "RV with uncountably infinite range and continuous CDF"
+    },
+    {
+        "front": "Probability density function (pdf)",
+        "back": "For a continuous RV $X$, \\[f_X(x) = \\frac{d}{dx} F_X(x)\\] "
+    },
+    {
+        "front": "Piecewise function",
+        "back": "A function that has a different functional relationship on different regions of its variable(s)."
+    }
+]

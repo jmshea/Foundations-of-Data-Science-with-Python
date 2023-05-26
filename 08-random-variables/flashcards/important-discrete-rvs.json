@@ -1,0 +1,22 @@
+[
+    {
+        "front": "Discrete uniform random variable",
+        "back": "RV with a finite number of values, all of which have the same probability"
+    },
+    {
+        "front": "Bernoulli random variable",
+        "back": "RV with two values. Usually 0 and 1, with $p$ such that $P(B=1) = p$ and $P(B=0) = 1-p$."
+    },
+    {
+        "front": "Binomial random variable",
+        "back": "RV representing number of successes on $N$ independent Bernoulli($p$) trials. $P(N=k) = \\binom{N}{k} p^k (1-p)^{N-k}$, $k=0,1,\\dots,N$ "
+    },
+    {
+        "front": "Geometric random variable",
+        "back": "For repeated, independent Binomial($p$) trials, RV $G$ is number of trials to first success.  $p_G(k) = p(1-p)^{k-1}$, $k=1,2,\\ldots$"
+    },
+    {
+        "front": "Poisson random variable",
+        "back": "Models events that occur randomly over time (or space). If average of $\\alpha$ events in observation window, \\[p_X(k) = \\frac{\\alpha^k}{k!} e^{- \\alpha},~~k = 0, 1, \\ldots\\]"
+    }
+]

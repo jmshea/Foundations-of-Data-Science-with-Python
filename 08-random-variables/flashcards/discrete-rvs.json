@@ -1,0 +1,9 @@
+[
+    {"front": "discrete random variable",
+     "back": "RV with a finite or countably infinite range"
+    },
+    {
+        "front": "probability mass function (PMF)",
+        "back": "Function from range of a discrete RV $X$ to probabilities, $p_X(x) = \\operatorname{Pr}( X=x)$."
+    }
+]
