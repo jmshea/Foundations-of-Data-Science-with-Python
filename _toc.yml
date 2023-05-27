@@ -127,3 +127,8 @@ sections:
   - file: 13-clustering-transforming/k-means
   - file: 13-clustering-transforming/vector-correlation
   - file: 13-clustering-transforming/spanningsets-bases
+  - file: 13-clustering-transforming/fft
+  - file: 13-clustering-transforming/gram-schmidt
+  - file: 13-clustering-transforming/feature-extraction
+  - file: 13-clustering-transforming/review
+  - file: 13-clustering-transforming/summary
