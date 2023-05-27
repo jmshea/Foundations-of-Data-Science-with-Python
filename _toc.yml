@@ -122,3 +122,8 @@ sections:
   - file: 12-vector-regression/nonlinear-regression
   - file: 12-vector-regression/review
   - file: 12-vector-regression/summary
+- file: 13-clustering-transforming/intro
+  sections:
+  - file: 13-clustering-transforming/k-means
+  - file: 13-clustering-transforming/vector-correlation
+  - file: 13-clustering-transforming/spanningsets-bases
