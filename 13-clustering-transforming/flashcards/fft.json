@@ -1,0 +1,10 @@
+[
+    {
+        "front": "time-series data",
+        "back": "Data that is collected over time, usually at regular intervals. Each data point is associated with a timestamp indicating when the data was collected."
+    }, 
+    {
+        "front": "power spectral density<br>(of a vector)",
+        "back": "For a $n$-vector $\\mathbf{x}$ with DFT $\\mathbf{X}$, the power spectral density is the power at each frequency component and is given by \\begin{equation*} P[k] = \\frac{1}{n} \\| \\mathbf{X}[n]\\|^2. \\end{equation*}"
+    }
+]

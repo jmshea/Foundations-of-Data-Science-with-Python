@@ -1,0 +1,39 @@
+[
+    {
+        "front": "supervised learning",
+        "back": "Machine learning from a training set that consists of <i>labeled</i> data points."
+    }, 
+    {
+        "front": "unsupervised learning",
+        "back": "Machine learning from a set of <i>unlabeled</i> data points."
+    },
+    {
+        "front": "classification",
+        "back": "The application of <i>supervised learning</i> to find a function that can map data points to a set of labels." 
+    },
+
+    {
+        "front": "clustering",
+        "back": "The application of <i>unsupervised learning</i> to find a function that can map data points to a set of labels."
+    },
+    {
+        "front": "$K$-means algorithm",
+        "back": "An iterative algorithm to partition the points in a data set based on Euclidean distance. Each set of data points is said to be assigned to a <i>cluster</i>, and the cluster is represented by its mean, which is also called its <i>centroid</i>.  The clusters and centroids are refined over the iterations."
+    },
+    {
+        "front": "centroid<br>($K$-means)",
+        "back": "The mean of the points assigned to a cluster. In the assignment step of the $K$-Means algorithm, points are assigned to the nearest centroid. "
+    },
+    {
+        "front": "data compression",
+        "back": "A data set is replaced by a representation of that data set that uses fewer bits and thus is easier to store or transmit over a channel."
+    },
+    {
+        "front": "lossy data compression",
+        "back": "A data set is replaced by a representation of that data set that uses fewer bits but <b>does not allow exact reconstruction</b> of the original data."
+    },
+    {
+        "front": "lossless data compression",
+        "back": "A data set is replaced by a representation of that data set that uses fewer bits but that <b>allows exact reconstruction</b> of the original data."
+    }
+]

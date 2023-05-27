@@ -1,0 +1,22 @@
+[
+    {
+        "front": "signal-space representation",
+        "back": "Representation of a set of signals (or vectors) in terms of an orthonormal basis."
+    }, 
+    {
+        "front": "linearly dependent vectors",
+        "back": "A set of vectors  are <i>linearly dependent</i> if any of the vectors can be written as a linear combination of the others."
+    }, 
+    {
+        "front": "linearly independent vectors",
+        "back": " A set of vectors that is not linearly dependent. None of the vectors can be written as a linear combination of the other vectors."
+    }, 
+    {
+        "front": "rank<br>(of a matrix)",
+        "back": "Given a matrix $\\mathbf{M}$, the rank is equal to the maximum number of linearly independent columns (or, equivalently, the maximum number of linearly independent rows). It is denoted by $\\operatorname{rank} \\mathbf{M}$."
+    }, 
+    {
+        "front": "full rank matrix",
+        "back": "A matrix with the maximum possible rank, which is equal to the minimum of the number of rows and the number of columns."
+    }
+]
