@@ -1,0 +1,42 @@
+[
+    {
+    "front": "solution set",
+    "back": "Given an equation the *solution set* is the set of all points that satisfy the equation. For a collection of equations, the solution set is the set of all points that simultaneously satisfy all of the equations."
+    },
+    {
+    "front": "linear equation",
+    "back": "An polynomial in one or more variables, in which all the variables have degree 1. For example, \\begin{equation*} \\sum_{i=0}^{n-1} a_i x_i = c. \\end{equation*}"
+    },
+    {
+    "front": "system of linear equations",
+    "back": "A collection of linear equations on a common $n$-dimensional space (typically $\\mathbb{R}^n$) that are interpreted together, typically with the purpose of finding the subset of the space that satisfies all of the equations simultaneously."
+    },
+    {
+        "front": "overdetermined<br>(system of equations)",
+        "back": "A system of equations is <i>overdetermined</i> if there are more equations than unknowns."
+    },
+    {
+        "front": "underdetermined<br>(system of equations)",
+        "back": "A system of equations is <i>underdetermined</i> if there are fewer equations than unknowns."
+    },
+    {
+        "front": "augmented matrix",
+        "back": "For a system of linear equations that can be expressed in matrix form $\\mathbf{A} \\mathbf{x} = \\mathbf{b}$, the <i>augmented matrix</i> $(\\mathbf{A} | \\mathbf{b})$ is the matrix created by concatenating the columns of $\\mathbf{A}$ and $\\mathbf{b}$."
+    },
+    {
+        "front": "row echelon form<br>(REF)",
+        "back": "A matrix is in row echelon form if<ol><li>The first non-zero entry in each row, called the <i>leading coefficient</i>, is to the <b>right</b> of the leading coefficient in any row above it, and</li><li>Any all-zero rows are at the bottom of the matrix.</li></ol>"
+    },
+    {
+        "front": "reduced row echelon form<br>(RREF)",
+        "back": "A matrix is in <b>reduced</b> row echelon form if it is in row echelon form and <ol><li>The leading coefficients are all 1.</li> <li>For any column containing a leading coefficient, that leading coefficient is the only nonzero value in that column.</li></ol>"
+    },
+    {
+        "front": "row operation",
+        "back": "The following operations on the rows of a matrix are called <i>row operations</i>:<ol><li>Swapping two rows.</li><li>Multiplying or dividing a row by a constant.</li><li>Adding any linear combination of the other rows to a row.</li></ol> "
+    },
+    {
+        "front": "Gaussian elimination",
+        "back": "A systematic algorithm for transforming a matrix into row-reduced echelon form. "
+    }
+]

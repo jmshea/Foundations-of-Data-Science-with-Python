@@ -1,0 +1,6 @@
+[
+    {
+    "front": "determinant",
+    "back": "For a square matrix $\\mathbf{M}$, the determinant is a scalar value that is related to how $\\mathbf{M}$ stretches or compresses space if it is used as a linear transformation. It is denoted by $\\det \\mathbf{M}$ or $|\\mathbf{M}|$. The determinant may be positive, negative, or zero."
+    }
+]

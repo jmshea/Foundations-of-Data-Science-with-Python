@@ -1,0 +1,26 @@
+[
+    {
+    "front": "linear combination",
+    "back": "For a matrix $M$, a row $m_{k*}$ is a  <i>linear combination</i> of the other rows if there are constants $c_i$ such that \\begin{equation*} \\mathbf{m}_{k*} = \\sum_{i \\ne k} c_i \\mathbf{m}_{i*} . \\end{equation*} An equivalent definition applies to columns."
+    },
+    {
+        "front": "linearly dependent",
+        "back": "A collection of vectors $\\mathbf{v}_0, \\mathbf{v}_1, \\ldots \\mathbf{v}_{n-1}$ is <i>linearly dependent</i> if at least one of $\\mathbf{v}_k$ can be written as a linear combination of the other vectors."
+    },
+    {
+        "front": "linearly independent",
+        "back": "A collection of vectors $\\mathbf{v}_0, \\mathbf{v}_1, \\ldots \\mathbf{v}_{n-1}$ is <i>linearly independent</i> if none of the vectors can be written as a linear combination of the other vectors."
+    },
+    {
+        "front": "rank<br>(matrix)",
+        "back": "The number of linearly independent rows and columns of a matrix."
+    },
+    {
+        "front": "full rank<br>(matrix)",
+        "back": "A matrix that has the maximum possible rank (equal to the minimum of the number of rows and number of columns). "
+    },
+    {
+        "front": "rank deficient",
+        "back": "A matrix that is not full rank: its rank is smaller than the maximum possible."
+    }
+]

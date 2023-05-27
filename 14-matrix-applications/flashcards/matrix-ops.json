@@ -1,0 +1,22 @@
+[
+    {
+    "front": "dot product/<br>inner product",
+    "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <i>dot product</i> or <i>inner product</i> is denoted $\\mathbf{x} \\cdot \\mathbf{y}$ or $\\mathbf{x}^T \\mathbf{y}$ and is the <b>scalar value</b> given by multiplying corresponding components and summing them up: \\begin{equation*} \\mathbf{x} \\cdot \\mathbf{y} = \\sum_{i=0}^{n-1} x_i y_i. \\end{equation*}"
+    }, 
+    {
+        "front": "matrix multiplication",
+        "back": "$\\mathbf{A} \\mathbf{B}$ is defined if the inner dimensions agree, and the output is a $k \\times m$ matrix $\\mathbf{C} = \\mathbf{A} \\mathbf{B}$, where the $k,m$th entry of $\\mathbf{C}$ is given by $c_{k,m} = \\mathbf{a}_{k*} \\cdot \\mathbf{b}_m$."
+    },
+    {
+        "front": "orthogonal matrix",
+        "back": "A (real) square matrix whose columns are a set of orthonormal vectors."
+    },
+    {
+        "front": "Gram matrix",
+        "back": "For a matrix $\\mathbf{A}$, the Gram matrix is the matrix whose $i,j$th entry is the dot product of columns $i$ and $j$ of $\\mathbf{A}$. The Gram matrix can be calculated as $\\mathbf{A}^T \\mathbf{A}$."
+    },
+    {
+        "front": "symmetric matrix",
+        "back": "A matrix $\\mathbf{M}$ is symmetric if the $i,j$th element is equal to the $j,i$th element for any valid $i$ and $j$. Equivalently, $\\mathbf{M}^T = \\mathbf{M}$."
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+    "front": "array",
+    "back": "A multi-dimensional table of numbers that supports a standard set of operations."
+    },
+    {
+        "front": "matrix",
+        "back": "A two-dimensional array. If the matrix has $m$ rows and $n$ columns, we say it is an $m \\times n$ matrix or $m \\times n$ array."
+    }, 
+    {
+        "front": "diagonal matrix",
+        "back": "A square matrix (two-dimensional array) for which the only non-zero entries are along the main diagonal."
+    }, 
+    {
+        "front": "upper triangular matrix",
+        "back": "A square $m \\times m$ matrix (two-dimensional array) is an <i>upper triangular matrix</i> if its only nonzero elements are in the main diagonal and above; in other words, the only nonzero elements are those at positions $k,l$ that satisfy $l \\ge k$."
+    }, 
+    {
+        "front": "lower triangular matrix",
+        "back": "A square $m \\times m$ matrix (two-dimensional array) is an <i>upper triangular matrix</i> if its only nonzero elements are in the main diagonal and below; in other words, the only nonzero elements are those at positions $k,l$ that satisfy $l \\le k$."
+    }, 
+    {
+        "front": "triangular matrix",
+        "back": "A square $m \\times m$ matrix (two-dimensional array) that is an upper triangular matrix or lower triangular matrix."
+    }, 
+    {
+        "front": "zeros matrix",
+        "back": "A matrix of all zeros."
+    }, 
+    {
+        "front": "ones matrix",
+        "back": "A matrix of all ones."
+    }, 
+    {
+        "front": "identity matrix",
+        "back": "A diagonal matrix with 1s on the diagonal. The $m \\times m$ identity matrix is denoted $\\mathbf{I}_m$."
+    }
+]

@@ -1,0 +1,146 @@
+[
+    {
+    "front": "array",
+    "back": "A multi-dimensional table of numbers that supports a standard set of operations."
+    },
+    {
+        "front": "matrix",
+        "back": "A two-dimensional array. If the matrix has $m$ rows and $n$ columns, we say it is an $m \\times n$ matrix or $m \\times n$ array."
+    }, 
+    {
+        "front": "diagonal matrix",
+        "back": "A square matrix (two-dimensional array) for which the only non-zero entries are along the main diagonal."
+    }, 
+    {
+        "front": "upper triangular matrix",
+        "back": "A square $m \\times m$ matrix (two-dimensional array) is an <i>upper triangular matrix</i> if its only nonzero elements are in the main diagonal and above; in other words, the only nonzero elements are those at positions $k,l$ that satisfy $l \\ge k$."
+    }, 
+    {
+        "front": "lower triangular matrix",
+        "back": "A square $m \\times m$ matrix (two-dimensional array) is an <i>upper triangular matrix</i> if its only nonzero elements are in the main diagonal and below; in other words, the only nonzero elements are those at positions $k,l$ that satisfy $l \\le k$."
+    }, 
+    {
+        "front": "triangular matrix",
+        "back": "A square $m \\times m$ matrix (two-dimensional array) that is an upper triangular matrix or lower triangular matrix."
+    }, 
+    {
+        "front": "zeros matrix",
+        "back": "A matrix of all zeros."
+    }, 
+    {
+        "front": "ones matrix",
+        "back": "A matrix of all ones."
+    }, 
+    {
+        "front": "identity matrix",
+        "back": "A diagonal matrix with 1s on the diagonal. The $m \\times m$ identity matrix is denoted $\\mathbf{I}_m$."
+    },
+    {
+    "front": "dot product/<br>inner product",
+    "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <i>dot product</i> or <i>inner product</i> is denoted $\\mathbf{x} \\cdot \\mathbf{y}$ or $\\mathbf{x}^T \\mathbf{y}$ and is the <b>scalar value</b> given by multiplying corresponding components and summing them up: \\begin{equation*} \\mathbf{x} \\cdot \\mathbf{y} = \\sum_{i=0}^{n-1} x_i y_i. \\end{equation*}"
+    }, 
+    {
+        "front": "matrix multiplication",
+        "back": "$\\mathbf{A} \\mathbf{B}$ is defined if the inner dimensions agree, and the output is a $k \\times m$ matrix $\\mathbf{C} = \\mathbf{A} \\mathbf{B}$, where the $k,m$th entry of $\\mathbf{C}$ is given by $c_{k,m} = \\mathbf{a}_{k*} \\cdot \\mathbf{b}_m$."
+    },
+    {
+        "front": "orthogonal matrix",
+        "back": "A (real) square matrix whose columns are a set of orthonormal vectors."
+    },
+    {
+        "front": "Gram matrix",
+        "back": "For a matrix $\\mathbf{A}$, the Gram matrix is the matrix whose $i,j$th entry is the dot product of columns $i$ and $j$ of $\\mathbf{A}$. The Gram matrix can be calculated as $\\mathbf{A}^T \\mathbf{A}$."
+    },
+    {
+        "front": "symmetric matrix",
+        "back": "A matrix $\\mathbf{M}$ is symmetric if the $i,j$th element is equal to the $j,i$th element for any valid $i$ and $j$. Equivalently, $\\mathbf{M}^T = \\mathbf{M}$."
+    },
+    {
+    "front": "determinant",
+    "back": "For a square matrix $\\mathbf{M}$, the determinant is a scalar value that is related to how $\\mathbf{M}$ stretches or compresses space if it is used as a linear transformation. It is denoted by $\\det \\mathbf{M}$ or $|\\mathbf{M}|$. The determinant may be positive, negative, or zero."
+    },
+    {
+    "front": "solution set",
+    "back": "Given an equation the *solution set* is the set of all points that satisfy the equation. For a collection of equations, the solution set is the set of all points that simultaneously satisfy all of the equations."
+    },
+    {
+    "front": "linear equation",
+    "back": "An polynomial in one or more variables, in which all the variables have degree 1. For example, \\begin{equation*} \\sum_{i=0}^{n-1} a_i x_i = c. \\end{equation*}"
+    },
+    {
+    "front": "system of linear equations",
+    "back": "A collection of linear equations on a common $n$-dimensional space (typically $\\mathbb{R}^n$) that are interpreted together, typically with the purpose of finding the subset of the space that satisfies all of the equations simultaneously."
+    },
+    {
+        "front": "overdetermined<br>(system of equations)",
+        "back": "A system of equations is <i>overdetermined</i> if there are more equations than unknowns."
+    },
+    {
+        "front": "underdetermined<br>(system of equations)",
+        "back": "A system of equations is <i>underdetermined</i> if there are fewer equations than unknowns."
+    },
+    {
+        "front": "augmented matrix",
+        "back": "For a system of linear equations that can be expressed in matrix form $\\mathbf{A} \\mathbf{x} = \\mathbf{b}$, the <i>augmented matrix</i> $(\\mathbf{A} | \\mathbf{b})$ is the matrix created by concatenating the columns of $\\mathbf{A}$ and $\\mathbf{b}$."
+    },
+    {
+        "front": "row echelon form<br>(REF)",
+        "back": "A matrix is in row echelon form if<ol><li>The first non-zero entry in each row, called the <i>leading coefficient</i>, is to the <b>right</b> of the leading coefficient in any row above it, and</li><li>Any all-zero rows are at the bottom of the matrix.</li></ol>"
+    },
+    {
+        "front": "reduced row echelon form<br>(RREF)",
+        "back": "A matrix is in <b>reduced</b> row echelon form if it is in row echelon form and <ol><li>The leading coefficients are all 1.</li> <li>For any column containing a leading coefficient, that leading coefficient is the only nonzero value in that column.</li></ol>"
+    },
+    {
+        "front": "row operation",
+        "back": "The following operations on the rows of a matrix are called <i>row operations</i>:<ol><li>Swapping two rows.</li><li>Multiplying or dividing a row by a constant.</li><li>Adding any linear combination of the other rows to a row.</li></ol> "
+    },
+    {
+        "front": "Gaussian elimination",
+        "back": "A systematic algorithm for transforming a matrix into row-reduced echelon form. "
+    },
+    {
+    "front": "linear combination",
+    "back": "For a matrix $M$, a row $m_{k*}$ is a  <i>linear combination</i> of the other rows if there are constants $c_i$ such that \\begin{equation*} \\mathbf{m}_{k*} = \\sum_{i \\ne k} c_i \\mathbf{m}_{i*} . \\end{equation*} An equivalent definition applies to columns."
+    },
+    {
+        "front": "linearly dependent",
+        "back": "A collection of vectors $\\mathbf{v}_0, \\mathbf{v}_1, \\ldots \\mathbf{v}_{n-1}$ is <i>linearly dependent</i> if at least one of $\\mathbf{v}_k$ can be written as a linear combination of the other vectors."
+    },
+    {
+        "front": "linearly independent",
+        "back": "A collection of vectors $\\mathbf{v}_0, \\mathbf{v}_1, \\ldots \\mathbf{v}_{n-1}$ is <i>linearly independent</i> if none of the vectors can be written as a linear combination of the other vectors."
+    },
+    {
+        "front": "rank<br>(matrix)",
+        "back": "The number of linearly independent rows and columns of a matrix."
+    },
+    {
+        "front": "full rank<br>(matrix)",
+        "back": "A matrix that has the maximum possible rank (equal to the minimum of the number of rows and number of columns). "
+    },
+    {
+        "front": "rank deficient",
+        "back": "A matrix that is not full rank: its rank is smaller than the maximum possible."
+    },
+    {
+    "front": "inverse<br>(of a matrix)",
+    "back": "Given a $n \\times n$ square matrix $\\mathbf{A}$, the <i>inverse</i> matrix (if it is exists) is a $n \\times n$ matrix denoted $\\mathbf{A}^{-1}$  such that \\begin{equation*} \\mathbf{A}^{-1} \\mathbf{A} = \\mathbf{I}. \\end{equation*}"
+    },
+    {
+        "front": "invertible<br>(matrix)",
+        "back": " A square matrix $\\mathbf{A}$ is <i>invertible</i> if its inverse $\\mathbf{A}^{-1}$ exists; this corresponds to $\\mathbf{A}$ having full rank."
+    },
+    {
+    "front": "tall matrix",
+    "back": "An $m \\times n$ matrix $\\mathbf{A}$ is <i>tall</i> if $m >n$; i.e., the number of rows is greater than the number of columns."
+},
+    {
+    "front": "wide matrix",
+    "back": "An $m \\times n$ matrix $\\mathbf{A}$ is <i>wide</i> if $n > m$; i.e., the number of columns is greater than the number of rows."
+},
+    {
+    "front": "pseudoinverse",
+    "back": "For an $m \\times n$ matrix real $\\mathbf{A}$ with $m>n$  (i.e., $\\mathbf{A}$ is tall) and linearly independent columns, the <i>Moore-Penrose pseudoinverse</i> of $\\mathbf{A}$ is denoted by $\\mathbf{A}^\\dagger$ and given by \\begin{equation*} \\mathbf{A}^\\dagger = ( \\mathbf{A}^T \\mathbf{A})^{-1} \\mathbf{A}^T \\end{equation*}"
+}
+]

@@ -1,0 +1,14 @@
+[
+    {
+    "front": "tall matrix",
+    "back": "An $m \\times n$ matrix $\\mathbf{A}$ is <i>tall</i> if $m >n$; i.e., the number of rows is greater than the number of columns."
+},
+    {
+    "front": "wide matrix",
+    "back": "An $m \\times n$ matrix $\\mathbf{A}$ is <i>wide</i> if $n > m$; i.e., the number of columns is greater than the number of rows."
+},
+    {
+    "front": "pseudoinverse",
+    "back": "For an $m \\times n$ matrix real $\\mathbf{A}$ with $m>n$  (i.e., $\\mathbf{A}$ is tall) and linearly independent columns, the <i>Moore-Penrose pseudoinverse</i> of $\\mathbf{A}$ is denoted by $\\mathbf{A}^\\dagger$ and given by \\begin{equation*} \\mathbf{A}^\\dagger = ( \\mathbf{A}^T \\mathbf{A})^{-1} \\mathbf{A}^T \\end{equation*}"
+}
+]
