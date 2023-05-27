@@ -8,16 +8,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="12.1. Introduction to Vectors" />
+<meta property="og:title" content="13.2. Vector Correlation and Projection" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.fdsp.net/12-vector-regression/vectors.html" />
+<meta property="og:url" content="https://www.fdsp.net/13-clustering-transforming/vector-correlation.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="plotvec() function: I recommend you use the current version available via pip. I am including this here as a backup: Terminology Review: Use the flashcards below to help you review the terminology ..." />
+<meta property="og:description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ \mbox{ }" />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="plotvec() function: I recommend you use the current version available via pip. I am including this here as a backup: Terminology Review: Use the flashcards below to help you review the terminology ..." />
+<meta name="description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ \mbox{ }" />
 
-    <title>12.1. Introduction to Vectors &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
+    <title>13.2. Vector Correlation and Projection &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
   
   
   
@@ -79,12 +79,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"loader": {"load": ["[tex]/boldsymbol"]}, "tex": {"macros": {"P": "\\operatorname{P}"}, "packages": {"[+]": ["boldsymbol"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '12-vector-regression/vectors';</script>
-    <link rel="canonical" href="https://www.fdsp.net/12-vector-regression/vectors.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = '13-clustering-transforming/vector-correlation';</script>
+    <link rel="canonical" href="https://www.fdsp.net/13-clustering-transforming/vector-correlation.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12.2. Vector Operations" href="vector-operations.html" />
-    <link rel="prev" title="12. Multidimensional Data: Vectors and Linear Regression" href="intro.html" />
+    <link rel="next" title="13.3. Representing a Vector Using Projections: Spanning Sets and Bases" href="spanningsets-bases.html" />
+    <link rel="prev" title="13.1. Clustering Data: The \(K\)-Means Algorithm" href="k-means.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -296,21 +296,21 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../11-categorical-data/summary.html">11.5. Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">12. Multidimensional Data: Vectors and Linear Regression</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">12.1. Introduction to Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vector-operations.html">12.2. Vector Operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vector-stats.html">12.3. Summary Statistics for Vector Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linear-regression.html">12.4. Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nhst.html">12.5. Null Hypothesis Tests for Correlation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nonlinear-regression.html">12.6. Nonlinear Regression Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="review.html">12.7. Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="summary.html">12.8. Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../12-vector-regression/intro.html">12. Multidimensional Data: Vectors and Linear Regression</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/vectors.html">12.1. Introduction to Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/vector-operations.html">12.2. Vector Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/vector-stats.html">12.3. Summary Statistics for Vector Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/linear-regression.html">12.4. Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/nhst.html">12.5. Null Hypothesis Tests for Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/nonlinear-regression.html">12.6. Nonlinear Regression Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/review.html">12.7. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/summary.html">12.8. Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../13-clustering-transforming/intro.html">13. Clustering and Transforming Data</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../13-clustering-transforming/k-means.html">13.1. Clustering Data: The <span class="math notranslate nohighlight">\(K\)</span>-Means Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../13-clustering-transforming/vector-correlation.html">13.2. Vector Correlation and Projection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../13-clustering-transforming/spanningsets-bases.html">13.3. Representing a Vector Using Projections: Spanning Sets and Bases</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">13. Clustering and Transforming Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="k-means.html">13.1. Clustering Data: The <span class="math notranslate nohighlight">\(K\)</span>-Means Algorithm</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">13.2. Vector Correlation and Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spanningsets-bases.html">13.3. Representing a Vector Using Projections: Spanning Sets and Bases</a></li>
 </ul>
 </li>
 </ul>
@@ -367,7 +367,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/12-vector-regression/vectors.ipynb" target="_blank"
+      <li><a href="../_sources/13-clustering-transforming/vector-correlation.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -449,7 +449,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to Vectors</h1>
+    <h1>Vector Correlation and Projection</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -459,8 +459,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotvec-function">12.1.1. plotvec() function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">12.1.2. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">13.2.1. Terminology Review</a></li>
 </ul>
             </nav>
         </div>
@@ -472,128 +471,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-vectors">
-<h1><span class="section-number">12.1. </span>Introduction to Vectors<a class="headerlink" href="#introduction-to-vectors" title="Permalink to this heading">#</a></h1>
-<section id="plotvec-function">
-<h2><span class="section-number">12.1.1. </span>plotvec() function<a class="headerlink" href="#plotvec-function" title="Permalink to this heading">#</a></h2>
-<p>I recommend you use the current version available via <code class="docutils literal notranslate"><span class="pre">pip</span></code>. I am including this here as a backup:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## version 1.3.5</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="k">def</span> <span class="nf">plotvec</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">,</span> <span class="n">chain</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">newfig</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">legendloc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-            <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">square_aspect_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot; plot a sequence of 2-d vectors</span>
-
-<span class="sd">  Uses Matplotlib to plot 2-d vectors as directional arrows. Allows</span>
-<span class="sd">  chaining sequence of vectors for effects like sums of vectors, and</span>
-<span class="sd">  allows labeling and color shifting (to coordinate colors of multiple</span>
-<span class="sd">  calls to plotvec).</span>
-
-<span class="sd">  Parameters</span>
-<span class="sd">  ----------</span>
-<span class="sd">  *argv: lists or NumPy vectors</span>
-<span class="sd">         One or more 2-d vectors</span>
-
-<span class="sd">  chain: bool, default: False</span>
-<span class="sd">         Whether to place tail of vector at head of previous vector</span>
-
-<span class="sd">  labels: list, tuple, or bool, default: False</span>
-<span class="sd">         Labels for each vector for use in legend, or False for no labels</span>
-
-<span class="sd">  newfig: bool, default: True</span>
-<span class="sd">         Whether to open a new figure for this plot (else plot on current fig)</span>
-
-<span class="sd">  legendloc: string or int, default: &#39;best&#39;</span>
-<span class="sd">         Argument for legend location passed to Matplotlib</span>
-
-<span class="sd">  colors: list or tuple</span>
-<span class="sd">         A list or tuple of colors acceptable to Matplotlib. Must be of same</span>
-<span class="sd">         size as number of vectors to plot</span>
-
-<span class="sd">  color_offset: int, default: 0</span>
-<span class="sd">         Shift color sequence by fixed value</span>
-
-<span class="sd">  alpha: numeric or list or tuple of numeric</span>
-<span class="sd">         Transparency alpha(s), should be between 0 (fully transparent) and 1 (solid).</span>
-<span class="sd">         If numeric, then same value is applied to all vectors. Otherwise, alpha for</span>
-<span class="sd">         each vector must be specified</span>
-
-<span class="sd">  width: None or number</span>
-<span class="sd">         Width of arrow shaft, also affects head size. Typically float around</span>
-<span class="sd">         0.005 times the width of the plot.</span>
-
-<span class="sd">  square_aspect_ratio: book, default: True</span>
-<span class="sd">         If True (default), make plots square; otherwise, default aspect ratio</span>
-
-<span class="sd">  Returns</span>
-<span class="sd">  ----------</span>
-<span class="sd">  None</span>
-
-<span class="sd">  &quot;&quot;&quot;</span>
-
-  <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span>
-  <span class="n">xmax</span><span class="o">=-</span><span class="mi">1000000</span>
-  <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span>
-  <span class="n">ymax</span><span class="o">=-</span><span class="mi">1000000</span>
-  <span class="n">origin</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-  <span class="k">if</span> <span class="n">newfig</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-
-  <span class="k">if</span> <span class="ow">not</span> <span class="n">colors</span><span class="p">:</span>
-    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">color_offset</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">))]</span>
-
-
-  <span class="c1"># Plot the vectors</span>
-  <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
-    <span class="n">my_labels</span><span class="o">=</span><span class="n">labels</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">my_labels</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
-
-  <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">==</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="n">alphas</span> <span class="o">=</span> <span class="p">[</span><span class="n">alpha</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">alphas</span> <span class="o">=</span> <span class="n">alpha</span>
-
-  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">head</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
-      <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> 
-               <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-               <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alphas</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-               <span class="n">label</span><span class="o">=</span><span class="n">my_labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="n">xmin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">xmax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">xmax</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">ymin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">ymax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">ymax</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">chain</span><span class="p">:</span>
-      <span class="n">origin</span> <span class="o">=</span> <span class="n">head</span>
-
-
-  <span class="c1"># Set limits based on vector dimensions and add axis lines</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">xmax</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ymin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ymax</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">xmax</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ymin</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ymax</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-
-  <span class="c1"># Set aspect ratio to square if requested</span>
-  <span class="k">if</span> <span class="n">square_aspect_ratio</span><span class="p">:</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
-
-  <span class="c1"># Add legend if user passed labels</span>
-  <span class="k">if</span> <span class="n">labels</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">legendloc</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="vector-correlation-and-projection">
+<h1><span class="section-number">13.2. </span>Vector Correlation and Projection<a class="headerlink" href="#vector-correlation-and-projection" title="Permalink to this heading">#</a></h1>
 <section id="terminology-review">
-<h2><span class="section-number">12.1.2. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">13.2.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~ \mbox{    }\)</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
@@ -852,7 +733,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="MMvPGTEjKzGH" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="MMvPGTEjKzGH-next" onclick="window.checkFlip('MMvPGTEjKzGH')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="WYqqtmljgrZH" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="WYqqtmljgrZH-next" onclick="window.checkFlip('WYqqtmljgrZH')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1199,48 +1080,43 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("MMvPGTEjKzGH")) {
-            createCards("MMvPGTEjKzGH", "True", "False");
+          if(document.getElementById("WYqqtmljgrZH")) {
+            createCards("WYqqtmljgrZH", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsMMvPGTEjKzGH=[
+var cardsWYqqtmljgrZH=[
     {
-        "front": "vector",
-        "back": "A one-dimensional, ordered list of numbers that has an accompanying notions of magnitude of a vector and  distance between two vectors."
+        "front": "vector correlation",
+        "back": "The <i>correlation</i> between $n$-vectors $\\mathbf{a}$ and $\\mathbf{b}$ is \\begin{equation*} r=  \\frac{{\\mathbf{a}} \\cdot \\mathbf{{b}} }{ \\Vert\\mathbf{{a}}\\Vert \\,\\Vert\\mathbf{{b}}\\Vert}. \\end{equation*}"
     }, 
     {
-        "front": "component or element (vector)",
-        "back": "One of the numerical values that make up the vector."
+        "front": "angle between vectors",
+        "back": "The <i>angle</i> between $n$-vectors $\\mathbf{a}$ and $\\mathbf{b}$ is \\begin{equation*} \\theta = \\cos^{-1} \\left( \\frac{{\\mathbf{a}} \\cdot \\mathbf{{b}} }{ \\Vert\\mathbf{{a}}\\Vert \\,\\Vert\\mathbf{{b}}\\Vert}\\right). \\end{equation*}"
     },
     {
-        "front": "scalar",
-        "back": "A singular numerical value." 
-    },
-
-    {
-        "front": "size (of a vector)",
-        "back": "The number of components a vector contains."
+        "front": "orthogonal vectors",
+        "back": "Vectors $\\mathbf{a}$ and $\\mathbf{b}$ are <i>orthogonal</i> if and only if \\begin{equation*} \\mathbf{a} \\cdot \\mathbf{b} = 0. \\end{equation*}" 
     },
     {
-        "front": "zero vector",
-        "back": "A vector of all zeros."
+        "front": "scalar projection",
+        "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <i>scalar projection</i> of $\\mathbf{y}$ onto $\\mathbf{x}$ has magnitude equal to the length of the vector in the direction of $\\mathbf{x}$ and is given by \\begin{equation*} \\frac{ \\mathbf{y}  \\cdot \\mathbf{x}}{ \\| \\mathbf{x} \\|}. \\end{equation*}"
     },
     {
-        "front": "ones vector",
-        "back": "A vector of all ones. "
+        "front": "unit vector",
+        "back": "A vector $\\mathbf{x}$ is a <i>unit vector</i> if $\\| \\mathbf{x} \\| =1.$"
     },
     {
-        "front": "standard unit vector",
-        "back": "A vector of with all of its components equal to zero, except one element which is equal to one."
+        "front": "vector projection",
+        "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <i>vector projection</i> of $\\mathbf{y}$ onto $\\mathbf{x}$ is the vector in the direction of $\\mathbf{x}$ that minimizes the error to $\\mathbf{y}$ and is given by \\begin{equation*} \\frac{\\mathbf{y} \\cdot  \\mathbf{x}_i } { \\left \\Vert \\mathbf{x}_i \\right \\Vert ^2} \\mathbf{x}_i. \\end{equation*}"
     }
 ]
 ;
-var frontColorsMMvPGTEjKzGH= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsMMvPGTEjKzGH= ["var(--dark-blue-gray)" ];
-var textColorsMMvPGTEjKzGH= ["var(--snow)" ];
+var frontColorsWYqqtmljgrZH= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsWYqqtmljgrZH= ["var(--dark-blue-gray)" ];
+var textColorsWYqqtmljgrZH= ["var(--snow)" ];
 
 
         {
@@ -1249,9 +1125,9 @@ var textColorsMMvPGTEjKzGH= ["var(--snow)" ];
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/12-vector-regression/flashcards/vectors.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/13-clustering-transforming/flashcards/vector-correlation.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("MMvPGTEjKzGH", "True", "False"))
+        .then(json => createCards("WYqqtmljgrZH", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1275,7 +1151,7 @@ var textColorsMMvPGTEjKzGH= ["var(--snow)" ];
         },
         kernelOptions: {
             name: "python3",
-            path: "./12-vector-regression"
+            path: "./13-clustering-transforming"
         },
         predefinedOutput: true
     }
@@ -1294,20 +1170,20 @@ var textColorsMMvPGTEjKzGH= ["var(--snow)" ];
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro.html"
+       href="k-means.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>Multidimensional Data: Vectors and Linear Regression</p>
+        <p class="prev-next-title"><span class="section-number">13.1. </span>Clustering Data: The <span class="math notranslate nohighlight">\(K\)</span>-Means Algorithm</p>
       </div>
     </a>
     <a class="right-next"
-       href="vector-operations.html"
+       href="spanningsets-bases.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">12.2. </span>Vector Operations</p>
+        <p class="prev-next-title"><span class="section-number">13.3. </span>Representing a Vector Using Projections: Spanning Sets and Bases</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1329,8 +1205,7 @@ var textColorsMMvPGTEjKzGH= ["var(--snow)" ];
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotvec-function">12.1.1. plotvec() function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">12.1.2. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">13.2.1. Terminology Review</a></li>
 </ul>
   </nav></div>
 
