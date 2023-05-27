@@ -1,0 +1,10 @@
+[
+    {
+        "front": "feature selection",
+        "back": "In <i>feature selection</i>, only a subset of the features present in the data is used."
+    }, 
+    {
+        "front": "feature extraction",
+        "back": "In <i>feature extraction</i>, a reduced set of features is created, where the new features are functions of the original features."
+    }
+]
