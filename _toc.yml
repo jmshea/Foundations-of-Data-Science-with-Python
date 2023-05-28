@@ -154,4 +154,3 @@ sections:
     - file: 15-multidim-dependence/review
     - file: 15-multidim-dependence/summary
 - file: 16-next-steps/next-steps
-- file: genindex
