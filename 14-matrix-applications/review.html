@@ -701,7 +701,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: min(100%, 640px);
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -715,9 +715,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(70%, 438pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -758,7 +758,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="gmIJbmrLXafR" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="gmIJbmrLXafR-next" onclick="window.checkFlip('gmIJbmrLXafR')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="fbcNpqrmAvHO" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="fbcNpqrmAvHO-next" onclick="window.checkFlip('fbcNpqrmAvHO')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1105,14 +1105,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("gmIJbmrLXafR")) {
-            createCards("gmIJbmrLXafR", "True", "False");
+          if(document.getElementById("fbcNpqrmAvHO")) {
+            createCards("fbcNpqrmAvHO", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsgmIJbmrLXafR=[
+var cardsfbcNpqrmAvHO=[
     {
     "front": "array",
     "back": "A multi-dimensional table of numbers that supports a standard set of operations."
@@ -1259,9 +1259,9 @@ var cardsgmIJbmrLXafR=[
 }
 ]
 ;
-var frontColorsgmIJbmrLXafR= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsgmIJbmrLXafR= ["var(--dark-blue-gray)" ];
-var textColorsgmIJbmrLXafR= ["var(--snow)" ];
+var frontColorsfbcNpqrmAvHO= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsfbcNpqrmAvHO= ["var(--dark-blue-gray)" ];
+var textColorsfbcNpqrmAvHO= ["var(--snow)" ];
 
 
         {
@@ -1272,7 +1272,7 @@ var textColorsgmIJbmrLXafR= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/14-matrix-applications/flashcards/review.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("gmIJbmrLXafR", "True", "False"))
+        .then(json => createCards("fbcNpqrmAvHO", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
