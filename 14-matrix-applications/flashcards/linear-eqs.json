@@ -1,7 +1,7 @@
 [
     {
     "front": "solution set",
-    "back": "Given an equation the *solution set* is the set of all points that satisfy the equation. For a collection of equations, the solution set is the set of all points that simultaneously satisfy all of the equations."
+    "back": "Given an equation the <i>solution set</i> is the set of all points that satisfy the equation. For a collection of equations, the solution set is the set of all points that simultaneously satisfy all of the equations."
     },
     {
     "front": "linear equation",
