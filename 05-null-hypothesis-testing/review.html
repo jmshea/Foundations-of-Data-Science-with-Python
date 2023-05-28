@@ -661,7 +661,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -705,7 +705,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -719,9 +719,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -762,7 +762,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="iuqWiacPsxCN" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="iuqWiacPsxCN-next" onclick="window.checkFlip('iuqWiacPsxCN')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="YuoHUttWcLOH" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="YuoHUttWcLOH-next" onclick="window.checkFlip('YuoHUttWcLOH')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1109,14 +1109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("iuqWiacPsxCN")) {
-            createCards("iuqWiacPsxCN", "True", "False");
+          if(document.getElementById("YuoHUttWcLOH")) {
+            createCards("YuoHUttWcLOH", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsiuqWiacPsxCN=[
+var cardsYuoHUttWcLOH=[
     {
         "front": "Type-I Error",
         "back": "A <i>Type-I Error</i> is a <b>false positive</b> and is sometimes denoted by the Greek letter \\(\\alpha\\) (\"alpha\").  For NHST, a Type I error occurs if the null hypothesis is actually true, but it is rejected."
@@ -1231,9 +1231,9 @@ var cardsiuqWiacPsxCN=[
     }
 ]
 ;
-var frontColorsiuqWiacPsxCN= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsiuqWiacPsxCN= ["var(--dark-blue-gray)" ];
-var textColorsiuqWiacPsxCN= ["var(--snow)" ];
+var frontColorsYuoHUttWcLOH= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsYuoHUttWcLOH= ["var(--dark-blue-gray)" ];
+var textColorsYuoHUttWcLOH= ["var(--snow)" ];
 
 
         {
@@ -1244,7 +1244,7 @@ var textColorsiuqWiacPsxCN= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/05-null-hypothesis-testing/flashcards/review.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("iuqWiacPsxCN", "True", "False"))
+        .then(json => createCards("YuoHUttWcLOH", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

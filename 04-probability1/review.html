@@ -661,7 +661,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -705,7 +705,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -719,9 +719,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -762,7 +762,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="YlZWpMbPDjmx" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="YlZWpMbPDjmx-next" onclick="window.checkFlip('YlZWpMbPDjmx')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="PPtpBmDPgoeg" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="PPtpBmDPgoeg-next" onclick="window.checkFlip('PPtpBmDPgoeg')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1109,14 +1109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("YlZWpMbPDjmx")) {
-            createCards("YlZWpMbPDjmx", "True", "False");
+          if(document.getElementById("PPtpBmDPgoeg")) {
+            createCards("PPtpBmDPgoeg", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsYlZWpMbPDjmx=[
+var cardsPPtpBmDPgoeg=[
     {
         "front": "event class",
         "back": "For a sample space $S$ and a probability measure $P,$ the event class, denoted by $\\mathcal{F}$ is a collection of all subsets of $S$ to which we will assign probability (i.e., for which $P$ will be defined). The sets in $\\mathcal{F}$ are called events."
@@ -1175,9 +1175,9 @@ var cardsYlZWpMbPDjmx=[
     }
 ]
 ;
-var frontColorsYlZWpMbPDjmx= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsYlZWpMbPDjmx= ["var(--dark-blue-gray)" ];
-var textColorsYlZWpMbPDjmx= ["var(--snow)" ];
+var frontColorsPPtpBmDPgoeg= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsPPtpBmDPgoeg= ["var(--dark-blue-gray)" ];
+var textColorsPPtpBmDPgoeg= ["var(--snow)" ];
 
 
         {
@@ -1188,7 +1188,7 @@ var textColorsYlZWpMbPDjmx= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/review.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("YlZWpMbPDjmx", "True", "False"))
+        .then(json => createCards("PPtpBmDPgoeg", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1202,13 +1202,13 @@ var textColorsYlZWpMbPDjmx= ["var(--snow)" ];
 <p>Answer the questions below to assess your understanding of the material in this chapter.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="SALLQIRSiyfB" data-shufflequestions="False"
+<div class="output text_html"><div id="rboylZANTOTs" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#SALLQIRSiyfB {
+#rboylZANTOTs {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1378,7 +1378,7 @@ var textColorsYlZWpMbPDjmx= ["var(--snow)" ];
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsSALLQIRSiyfB=[
+</style></div><script type="application/javascript">var questionsrboylZANTOTs=[
     {
         "question": "If I roll a fair 6-sided die two times, what is the probability that at least one of those dice show a 1 on the top face? Answer as a fraction or a decimal with at least 2 significant digits.",
         "type": "numeric",
@@ -2540,8 +2540,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("SALLQIRSiyfB")) {
-            show_questions(questionsSALLQIRSiyfB,  SALLQIRSiyfB); 
+          if(document.getElementById("rboylZANTOTs")) {
+            show_questions(questionsrboylZANTOTs,  rboylZANTOTs); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2556,23 +2556,23 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/questions/review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, SALLQIRSiyfB))
+        .then(json => show_questions(json, rboylZANTOTs))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsSALLQIRSiyfB, SALLQIRSiyfB);
+        show_questions(questionsrboylZANTOTs, rboylZANTOTs);
         });
         }
         </script></div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="qvmtHILYOtGe" data-shufflequestions="False"
+<div class="output text_html"><div id="ooieveWZyotM" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="3"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#qvmtHILYOtGe {
+#ooieveWZyotM {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -2742,7 +2742,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsqvmtHILYOtGe=[
+</style></div><script type="application/javascript">var questionsooieveWZyotM=[
     {
         "question": "Choose all of the following that are useful error metrics that can be minimized to create a summary statistic:",
         "type": "many_choice",
@@ -3607,8 +3607,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("qvmtHILYOtGe")) {
-            show_questions(questionsqvmtHILYOtGe,  qvmtHILYOtGe); 
+          if(document.getElementById("ooieveWZyotM")) {
+            show_questions(questionsooieveWZyotM,  ooieveWZyotM); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -3623,23 +3623,23 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, qvmtHILYOtGe))
+        .then(json => show_questions(json, ooieveWZyotM))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsqvmtHILYOtGe, qvmtHILYOtGe);
+        show_questions(questionsooieveWZyotM, ooieveWZyotM);
         });
         }
         </script></div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="COsXvRBUpHwU" data-shufflequestions="False"
+<div class="output text_html"><div id="mHeNzfNwjIJs" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="2"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#COsXvRBUpHwU {
+#mHeNzfNwjIJs {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -3809,7 +3809,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsCOsXvRBUpHwU=[
+</style></div><script type="application/javascript">var questionsmHeNzfNwjIJs=[
     {
         "question": "Which of these cannot be a probability?",
         "type": "multiple_choice",
@@ -4637,8 +4637,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("COsXvRBUpHwU")) {
-            show_questions(questionsCOsXvRBUpHwU,  COsXvRBUpHwU); 
+          if(document.getElementById("mHeNzfNwjIJs")) {
+            show_questions(questionsmHeNzfNwjIJs,  mHeNzfNwjIJs); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -4653,23 +4653,23 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/questions/review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, COsXvRBUpHwU))
+        .then(json => show_questions(json, mHeNzfNwjIJs))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsCOsXvRBUpHwU, COsXvRBUpHwU);
+        show_questions(questionsmHeNzfNwjIJs, mHeNzfNwjIJs);
         });
         }
         </script></div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="sCxPxAckUMnu" data-shufflequestions="False"
+<div class="output text_html"><div id="qJCHAbcMBxix" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#sCxPxAckUMnu {
+#qJCHAbcMBxix {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -4839,7 +4839,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionssCxPxAckUMnu=[
+</style></div><script type="application/javascript">var questionsqJCHAbcMBxix=[
     {
         "question": "Choose all of the following that can be included in Jupyter notebooks?",
         "type": "many_choice",
@@ -5832,8 +5832,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("sCxPxAckUMnu")) {
-            show_questions(questionssCxPxAckUMnu,  sCxPxAckUMnu); 
+          if(document.getElementById("qJCHAbcMBxix")) {
+            show_questions(questionsqJCHAbcMBxix,  qJCHAbcMBxix); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -5848,10 +5848,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/questions/review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, sCxPxAckUMnu))
+        .then(json => show_questions(json, qJCHAbcMBxix))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionssCxPxAckUMnu, sCxPxAckUMnu);
+        show_questions(questionsqJCHAbcMBxix, qJCHAbcMBxix);
         });
         }
         </script></div>

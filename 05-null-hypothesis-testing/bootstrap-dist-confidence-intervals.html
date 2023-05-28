@@ -660,7 +660,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -704,7 +704,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -718,9 +718,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -761,7 +761,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="xsTqFGucoHXC" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="xsTqFGucoHXC-next" onclick="window.checkFlip('xsTqFGucoHXC')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="KJfwgQCUYYFr" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="KJfwgQCUYYFr-next" onclick="window.checkFlip('KJfwgQCUYYFr')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1108,14 +1108,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("xsTqFGucoHXC")) {
-            createCards("xsTqFGucoHXC", "True", "False");
+          if(document.getElementById("KJfwgQCUYYFr")) {
+            createCards("KJfwgQCUYYFr", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsxsTqFGucoHXC=[
+var cardsKJfwgQCUYYFr=[
     {
         "front": "bootstrap distribution",
         "back": "A characterization of the possible values of a statistic and the probabilities of those values that arises from creating values of that statistic via bootstrap sampling."},
@@ -1125,9 +1125,9 @@ var cardsxsTqFGucoHXC=[
     }
 ]
 ;
-var frontColorsxsTqFGucoHXC= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsxsTqFGucoHXC= ["var(--dark-blue-gray)" ];
-var textColorsxsTqFGucoHXC= ["var(--snow)" ];
+var frontColorsKJfwgQCUYYFr= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsKJfwgQCUYYFr= ["var(--dark-blue-gray)" ];
+var textColorsKJfwgQCUYYFr= ["var(--snow)" ];
 
 
         {
@@ -1138,7 +1138,7 @@ var textColorsxsTqFGucoHXC= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/05-null-hypothesis-testing/flashcards/bootstrap-dist-confidence-intervals.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("xsTqFGucoHXC", "True", "False"))
+        .then(json => createCards("KJfwgQCUYYFr", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
