@@ -1,0 +1,14 @@
+[
+    {
+    "front": "dimensionality reduction",
+    "back": "The process of going from a high-dimensionality data set to a lower-dimensionality data set, while preserving as much important information as possible."
+},
+    {
+    "front": "Karhunen-Loève Transform<br>(KLT)",
+    "back": "Suppose  $\\mathbf{X}$ has non-singular covariance matrix $\\mathbf{K}_X$, with eigendecomposition $\\mathbf{K}_X = \\mathbf{U} \\boldsymbol{\\Lambda}\\mathbf{U}^T$. Then $\\mathbf{Y} = \\mathbf{U}^T \\mathbf{X}$ consists of uncorrelated random variables and $\\mathbf{K}_Y = \\boldsymbol{\\Lambda}.$"
+},
+    {
+    "front": "principal components analysis<br>(PCA)",
+    "back": "Given a multi-dimensional data set, <I>PCA</I> is the process by which the data is decorrelated using the modal matrix of the <B>sample covariance matrix</B>. "
+}
+]

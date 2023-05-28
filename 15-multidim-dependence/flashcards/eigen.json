@@ -1,0 +1,26 @@
+[
+    {
+    "front": "eigenvector",
+    "back": "Given a $n \\times n$ matrix $\\mathbf{M}$,  a non-zero vector $\\mathbf{v}$ is an <i>eigenvector</i> of $\\mathbf{M}$ if \\begin{equation*} \\mathbf{M} \\mathbf{v} = \\lambda \\mathbf{v} \\end{equation*} for some constant $\\lambda$."
+},
+    {
+    "front": "eigenvalue",
+    "back": "Given a $n \\times n$ matrix $\\mathbf{M}$, if  $\\mathbf{v}$ is an eigenvector of $\\mathbf{M}$, then the corresponding <i>eigenvalue</i> is the constant $\\lambda$ such that \\begin{equation*} \\mathbf{M} \\mathbf{v} = \\lambda \\mathbf{v}. \\end{equation*}"
+},
+    {
+    "front": "characteristic equation",
+    "back": "Given a $n \\times n$ matrix $\\mathbf{M}$, the <i>characteristic equation</i> is \\begin{equation*} \\det \\left(\\mathbf{M} - \\lambda \\mathbf{I} \\right) =0, \\end{equation*} which can be used to solve for the eigenvalues ($\\lambda$)."
+},
+    {
+    "front": "modal matrix",
+    "back": "For a square matrix $\\mathbf{M}$, the matrix whose columns are the eigenvectors of $\\mathbf{M}$. "
+},
+    {
+    "front": "eigendecomposition",
+    "back": " Suppose $\\mathbf{M}$ is a real $n \\times n$ matrix with modal matrix $\\mathbf{V}$ and eigenvalue matrix $\\boldsymbol{\\Lambda}$. If $\\mathbf{V}$ has full rank, then the <i>eigendecomposition</i> (diagonalization) of $\\mathbf{M}$ is \\begin{equation*} \\mathbf{M}= \\mathbf{V} \\boldsymbol{\\Lambda}\\mathbf{V}^{-1} . \\end{equation*}    "
+},
+    {
+    "front": "relating determinant and eigenvalues",
+    "back": " If $\\mathbf{M}$ has an eigendecomposition with eigenvalues $\\lambda_i$ then \\begin{equation*} \\det \\mathbf{M} = \\prod_{i} \\lambda_{i} . \\end{equation*}"
+}
+]

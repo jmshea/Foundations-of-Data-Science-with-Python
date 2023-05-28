@@ -1,0 +1,50 @@
+[
+    {
+    "front": "joint probability mass function<br>(pair of random variables)",
+    "back": "For a pair of random variables $(X,Y)$, the joint <i>probability mass function</i> (PMF) defines the probability that $(X,Y)$ takes on each value $(x,y) \\in \\mathbb{R}^2$, \\begin{align*} P_{X,Y} (x,y) &= P\\left[  \\left\\{ s \\left| X(s) = x, Y(s) =y \\right. \\right\\} \\right] \\\\ &= P \\left[  X=x, Y=y \\right]. \\end{align*}"
+},
+    {
+    "front": "joint cumulative distribution function<br>(pair of random variables)",
+    "back": "For a pair of random variables $(X,Y)$, the joint <i>cumulative distribution function</i> (CDF) is \\begin{align*} F_{XY} (x,y) &= P\\left[  \\left\\{ s \\left| X(s) \\le x, Y(s) \\le y \\right. \\right\\} \\right] \\\\ &= P \\left[  X \\le x, Y \\le y \\right]. \\end{align*}"
+},
+    {
+    "front": "joint probability density function<br>(pair of random variables)",
+    "back": "For a pair of random variables $(X,Y)$, the joint <i>probability density function</i> (pdf) is \\begin{align*} f_{XY} (x,y) &= \\frac{\\partial^2}{\\partial x ~\\partial y} F_{XY} (x,y). \\end{align*}"
+},
+    {
+    "front": "marginal probability density function<br>(pair of random variables)",
+    "back": "For a pair of random variables $(X,Y)$ with joint pdf $f_{XY} (x,y)$, the <i>marginal density</i> functions of $X$ and $Y$ are the individual pdfs $f_X(x)$ and $f_Y(y)$. They can be calculated from the joint pdf as \\begin{align*} f_X(x) &=  \\int_{-\\infty}^{\\infty} f_{XY} (x,y) dy , \\mbox{ and}\\\\ f_Y(y) &=  \\int_{-\\infty}^{\\infty} f_{XY} (x,y) dx . \\end{align*}"
+},
+    {
+    "front": "contour of equal probability density<br>(pair of random variables)",
+    "back": "Given some value $a$ that the joint density takes on, the corresponding <i>contour of equal probability density</i> $\\mathcal{C}_a$ is defined as the set of $(x,y)$ values that achieve that density. I.e., if the joint density is $f_{XY}(x,y)$, then \\begin{align*} \\mathcal{C}_a = \\left\\{ (x,y) ~\\vert~ f(x,y) =c \\right\\}. \\end{align*}"
+},
+    {
+    "front": "random vector",
+    "back": "A random vector $\\mathbf{X}= \\left[X_0, X_1, \\ldots, X_{n-1}\\right]^T$ is an ordered collection of random variables. Formally, a random vector is defined on a  probability space $(S, \\mathcal{F}, P)$ and is a function $\\mathbf{X}(s)$ that maps from the sample space to $\\mathbf{R}^n$."
+},
+    {
+    "front": "mean vector",
+    "back": "For a random vector $\\mathbf{X}= \\left[X_0, X_1, \\ldots, X_{n-1}\\right]^T$, the <i>mean vector</i> $\\boldsymbol{\\mu}$ is the $n$-dimensional vector whose $i$th entry is the mean of $X_i$; i.e. $\\boldsymbol{\\mu}_i = E\\left[X_i\\right]$."
+},
+   {
+    "front": "covariance matrix",
+    "back": "For a random vector $\\mathbf{X}= \\left[X_0, X_1, \\ldots, X_{n-1}\\right]$, the <i>covariance matrix</i> $K$ is the $n \\times n$ matrix whose $i,j$th entry is \\begin{align*} \\mathbf{K}_{ij} &= \\operatorname{Cov}(X_i, X_j) \\\\ &= E \\left[ \\left(X_i - \\mu_i \\right) \\left(X_j - \\mu_j\\right) \\right]. \\end{align*}"
+},
+    {
+    "front": "correlation coefficient<br>(random variables)",
+    "back": "For jointly distributed random variables $X$ and $Y$, the <i>correlation coefficient</i> is \\begin{align*} \\rho &= \\frac{\\operatorname{Cov}(X, Y)}{\\sigma_X \\sigma_y}, \\end{align*} where $\\sigma_{X}^{2}$ and $\\sigma_{Y}^{2}$ are the variances of $X$ and $Y$."
+},
+    {
+    "front": "uncorrelated",
+    "back": "Jointly distributed random variables $X$ and $Y$ are uncorrelated if and only if $\\rho=0$, or equivalently $\\operatorname{Cov}(X,Y) =0$."
+},
+    {
+    "front": "correlation matrix",
+    "back": "For a random vector $\\mathbf{X}= \\left[X_0, X_1, \\ldots, X_{n-1}\\right]$, the <i>correlation matrix</i> $\\mathbf{R}$ is the $n \\times n$ matrix whose $i,j$th entry is \\begin{align*} \\mathbf{R}_{ij} &= \\rho_{i,j} \\\\ &= \\frac{\\operatorname{Cov}\\left(X_i, X_j\\right)}{\\sigma_i \\sigma_j}. \\end{align*}"
+},
+    {
+    "front": "iid",
+    "back": "Random variables are <i>independent and identically distributed (iid)</i> if they have the same distributions and are independent."
+}
+]
