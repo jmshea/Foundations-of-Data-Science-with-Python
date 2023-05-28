@@ -335,6 +335,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/joint-rvs.html">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/linear-transforms.html">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/eigen.html">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -715,7 +719,7 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:min(70%, 438pt);
+        left:min(80%, 450pt);
         margin-left: 0;
         width: 55pt;
         height: 22pt;
@@ -758,7 +762,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="fbcNpqrmAvHO" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="fbcNpqrmAvHO-next" onclick="window.checkFlip('fbcNpqrmAvHO')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="LQGdPLmrVEKp" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="LQGdPLmrVEKp-next" onclick="window.checkFlip('LQGdPLmrVEKp')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1105,14 +1109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("fbcNpqrmAvHO")) {
-            createCards("fbcNpqrmAvHO", "True", "False");
+          if(document.getElementById("LQGdPLmrVEKp")) {
+            createCards("LQGdPLmrVEKp", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsfbcNpqrmAvHO=[
+var cardsLQGdPLmrVEKp=[
     {
     "front": "array",
     "back": "A multi-dimensional table of numbers that supports a standard set of operations."
@@ -1259,9 +1263,9 @@ var cardsfbcNpqrmAvHO=[
 }
 ]
 ;
-var frontColorsfbcNpqrmAvHO= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsfbcNpqrmAvHO= ["var(--dark-blue-gray)" ];
-var textColorsfbcNpqrmAvHO= ["var(--snow)" ];
+var frontColorsLQGdPLmrVEKp= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsLQGdPLmrVEKp= ["var(--dark-blue-gray)" ];
+var textColorsLQGdPLmrVEKp= ["var(--snow)" ];
 
 
         {
@@ -1272,7 +1276,7 @@ var textColorsfbcNpqrmAvHO= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/14-matrix-applications/flashcards/review.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("fbcNpqrmAvHO", "True", "False"))
+        .then(json => createCards("LQGdPLmrVEKp", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

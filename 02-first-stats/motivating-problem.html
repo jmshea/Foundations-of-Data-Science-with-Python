@@ -333,6 +333,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/joint-rvs.html">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/linear-transforms.html">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/eigen.html">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -519,8 +523,9 @@ document.write(`
 
 
 .flip-container.flip .flipper {
-	transform: rotateY(180deg);
-	/*transform: rotateY(180deg)  translateX(-10%); */
+    box-sizing: content-box;
+	  transform: rotateY(180deg);
+	/* transform: rotateY(180deg)  translateX(-6%);  */
 }
 
 
@@ -528,6 +533,7 @@ document.write(`
     filter: brightness(90%);
     position:absolute;
     z-index: -20;
+    /* left: 20px; */
 }
 
 .flip-container.prepare .flipper.backcard {
@@ -539,10 +545,11 @@ document.write(`
 
 .flip-container.slide .flipper.backcard {
     filter: brightness(115%);
-    height: 360px;
+    /* height: 360px; */
     opacity:1;
 	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
     z-index: 20;
+    /* left: -20px; */
 }
 
 
@@ -564,7 +571,7 @@ document.write(`
 
 .flip-container, .front, .back {
 	  height: 200px;
-	  width: 100%;
+	  width: 95%;
 }
 
 
@@ -596,7 +603,8 @@ document.write(`
     top: 0;
 	  transform-style: preserve-3d;
 	  transition: 0.6s;
-    width: 95%;
+    /* width: 95%; */
+    width: 100%;
 }
 
 .flashcardtext{
@@ -650,7 +658,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -686,17 +694,20 @@ document.write(`
   
 }
 
+.flashcardtext li{
+    text-align: left;
+}
+
 @media only screen and (min-width:1000px) {
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
         margin-left:20px;
 	      height: 300px;
-        width: 600px;
     }
 
     .flashcardtext{
@@ -705,9 +716,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -748,7 +759,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="LRHTuZxJISUy" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="LRHTuZxJISUy-next" onclick="window.checkFlip('LRHTuZxJISUy')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="ihIDJwyvNcSr" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="ihIDJwyvNcSr-next" onclick="window.checkFlip('ihIDJwyvNcSr')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -760,7 +771,7 @@ document.write(`
 
 function jaxify(string) {
     var mystring = string;
-    console.log(mystring);
+    //console.log(mystring);
 
     var count = 0;
     var loc = mystring.search(/([^\\]|^)(\$)/);
@@ -798,23 +809,24 @@ function jaxify(string) {
 }
 
 window.flipCard = function flipCard(ths) {
-    console.log(ths);
-    console.log(ths.id);
+    //console.log(ths);
+    //console.log(ths.id);
     ths.classList.toggle("flip"); 
+    ths.focus();
     var next=document.getElementById(ths.id+'-next');
     next.style.pointerEvents='none';
     /* ths.blur(); */
     next.classList.add('flipped');
     if (typeof MathJax != 'undefined') {
         var version = MathJax.version;
-        console.log('MathJax version', version);
+        //console.log('MathJax version', version);
         if (version[0] == "2") {
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         } else if (version[0] == "3") {
             MathJax.typeset([ths]);
         }
     } else {
-        console.log('MathJax not detected');
+        //console.log('MathJax not detected');
     }
 
 
@@ -911,14 +923,14 @@ function cleanup(container, frontcard, backcard, next) {
         next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
         if (typeof MathJax != 'undefined') {
             var version = MathJax.version;
-            console.log('MathJax version', version);
+            //console.log('MathJax version', version);
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
                 MathJax.typeset([next]);
             }
         } else {
-            console.log('MathJax not detected');
+            //console.log('MathJax not detected');
         }
 
 
@@ -926,14 +938,14 @@ function cleanup(container, frontcard, backcard, next) {
 
     if (typeof MathJax != 'undefined') {
         var version = MathJax.version;
-        console.log('MathJax version', version);
+        //console.log('MathJax version', version);
         if (version[0] == "2") {
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         } else if (version[0] == "3") {
             MathJax.typeset();
         }
     } else {
-        console.log('MathJax not detected');
+        //console.log('MathJax not detected');
     }
 
 
@@ -955,11 +967,10 @@ function cleanup(container, frontcard, backcard, next) {
 
 
 function createOneCard  (mydiv, frontCard, cards, cardnum) {
-    var colors=[
-        '--asparagus',
-        '--terra-cotta',
-        '--cyan-process'
-    ]
+    var colors=eval('frontColors'+mydiv.id);
+    var backColors=eval('backColors'+mydiv.id);
+    var textColors=eval('textColors'+mydiv.id);
+    //console.log(backColors)
 
     var flipper = document.createElement('div');
     if (frontCard){
@@ -975,19 +986,22 @@ function createOneCard  (mydiv, frontCard, cards, cardnum) {
     var frontSpan= document.createElement('span');
     frontSpan.className='flashcardtext';
     frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    frontSpan.style.color=textColors[cardnum % textColors.length];
     //frontSpan.textContent=jaxify(cards[cardnum]['front']);
-    front.style.background='var(' + colors[cardnum % colors.length] + ')';
-
+    //front.style.background='var(' + colors[cardnum % colors.length] + ')';
+    front.style.background=colors[cardnum % colors.length];
 
     front.append(frontSpan);
     flipper.append(front);
 
     var back = document.createElement('div');
     back.className='back flashcard';
+    back.style.background=backColors[cardnum % backColors.length];
 
     var backSpan= document.createElement('span');
     backSpan.className='flashcardtext';
     backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    backSpan.style.color=textColors[cardnum % textColors.length];
     back.append(backSpan);
 
     flipper.append(back);
@@ -1000,9 +1014,9 @@ function createOneCard  (mydiv, frontCard, cards, cardnum) {
 
 
 
-function createCards(id, keyControl) {
+function createCards(id, keyControl, grabFocus) {
     console.log(id);
-    
+
     var mydiv=document.getElementById(id);
     /*mydiv.onclick = window.flipCard(mydiv);*/
     /*
@@ -1010,15 +1024,15 @@ function createCards(id, keyControl) {
     mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
     */
     mydiv.onclick = function(){window.flipCard(mydiv);};
-    console.log(keyControl);
+    //console.log(keyControl);
     if (keyControl == "True"){
         mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
     }
     /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
     /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
 
-    console.log(mydiv);
-    
+    //console.log(mydiv);
+
     var cards=eval('cards'+id);
     mydiv.dataset.cardnum=0;
     mydiv.dataset.numCards=cards.length;
@@ -1081,7 +1095,8 @@ function createCards(id, keyControl) {
         next.innerHTML="Next >";
     }
 
-    mydiv.focus();
+    if (grabFocus == "True" )
+        mydiv.focus();
 
     return flipper;
 }
@@ -1090,13 +1105,24 @@ function createCards(id, keyControl) {
 
 
 
-var cardsLRHTuZxJISUy=[
+        function try_create() {
+          if(document.getElementById("ihIDJwyvNcSr")) {
+            createCards("ihIDJwyvNcSr", "True", "False");
+          } else {
+             setTimeout(try_create, 200);
+          }
+        };
+    
+var cardsihIDJwyvNcSr=[
     {
         "front": "probability",
         "back": "a number between 0 and 1 that we assign to an event that is proportional to how likely that event is to occur"
     }
 ];
-    
+var frontColorsihIDJwyvNcSr= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsihIDJwyvNcSr= ["var(--dark-blue-gray)" ];
+var textColorsihIDJwyvNcSr= ["var(--snow)" ];
+
 
         {
         const jmscontroller = new AbortController();
@@ -1106,10 +1132,10 @@ var cardsLRHTuZxJISUy=[
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/flashcards/motivating-problem.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("LRHTuZxJISUy", "True"))
+        .then(json => createCards("ihIDJwyvNcSr", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
-        createCards("LRHTuZxJISUy", "True");
+        try_create(); 
         });
         }
         </script></div>

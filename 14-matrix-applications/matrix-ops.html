@@ -335,6 +335,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/joint-rvs.html">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/linear-transforms.html">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/eigen.html">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -701,7 +705,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -715,9 +719,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -758,7 +762,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="aChnqzHgEDut" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="aChnqzHgEDut-next" onclick="window.checkFlip('aChnqzHgEDut')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="nVinQxMQvOZW" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="nVinQxMQvOZW-next" onclick="window.checkFlip('nVinQxMQvOZW')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1105,14 +1109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("aChnqzHgEDut")) {
-            createCards("aChnqzHgEDut", "True", "False");
+          if(document.getElementById("nVinQxMQvOZW")) {
+            createCards("nVinQxMQvOZW", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsaChnqzHgEDut=[
+var cardsnVinQxMQvOZW=[
     {
     "front": "dot product/<br>inner product",
     "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <i>dot product</i> or <i>inner product</i> is denoted $\\mathbf{x} \\cdot \\mathbf{y}$ or $\\mathbf{x}^T \\mathbf{y}$ and is the <b>scalar value</b> given by multiplying corresponding components and summing them up: \\begin{equation*} \\mathbf{x} \\cdot \\mathbf{y} = \\sum_{i=0}^{n-1} x_i y_i. \\end{equation*}"
@@ -1135,9 +1139,9 @@ var cardsaChnqzHgEDut=[
     }
 ]
 ;
-var frontColorsaChnqzHgEDut= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsaChnqzHgEDut= ["var(--dark-blue-gray)" ];
-var textColorsaChnqzHgEDut= ["var(--snow)" ];
+var frontColorsnVinQxMQvOZW= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsnVinQxMQvOZW= ["var(--dark-blue-gray)" ];
+var textColorsnVinQxMQvOZW= ["var(--snow)" ];
 
 
         {
@@ -1148,7 +1152,7 @@ var textColorsaChnqzHgEDut= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/14-matrix-applications/flashcards/matrix-ops.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("aChnqzHgEDut", "True", "False"))
+        .then(json => createCards("nVinQxMQvOZW", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

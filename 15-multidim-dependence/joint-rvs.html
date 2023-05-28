@@ -335,6 +335,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear-transforms.html">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eigen.html">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -657,7 +661,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -701,7 +705,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -715,9 +719,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -758,7 +762,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="XoOVSIXamqUb" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="XoOVSIXamqUb-next" onclick="window.checkFlip('XoOVSIXamqUb')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="bcajcCZJxWvc" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="bcajcCZJxWvc-next" onclick="window.checkFlip('bcajcCZJxWvc')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1105,14 +1109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("XoOVSIXamqUb")) {
-            createCards("XoOVSIXamqUb", "True", "False");
+          if(document.getElementById("bcajcCZJxWvc")) {
+            createCards("bcajcCZJxWvc", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsXoOVSIXamqUb=[
+var cardsbcajcCZJxWvc=[
     {
     "front": "joint probability mass function<br>(pair of random variables)",
     "back": "For a pair of random variables $(X,Y)$, the joint <i>probability mass function</i> (PMF) defines the probability that $(X,Y)$ takes on each value $(x,y) \\in \\mathbb{R}^2$, \\begin{align*} P_{X,Y} (x,y) &= P\\left[  \\left\\{ s \\left| X(s) = x, Y(s) =y \\right. \\right\\} \\right] \\\\ &= P \\left[  X=x, Y=y \\right]. \\end{align*}"
@@ -1163,9 +1167,9 @@ var cardsXoOVSIXamqUb=[
 }
 ]
 ;
-var frontColorsXoOVSIXamqUb= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsXoOVSIXamqUb= ["var(--dark-blue-gray)" ];
-var textColorsXoOVSIXamqUb= ["var(--snow)" ];
+var frontColorsbcajcCZJxWvc= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsbcajcCZJxWvc= ["var(--dark-blue-gray)" ];
+var textColorsbcajcCZJxWvc= ["var(--snow)" ];
 
 
         {
@@ -1176,7 +1180,7 @@ var textColorsXoOVSIXamqUb= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/15-multidim-dependence/flashcards/joint-rvs.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("XoOVSIXamqUb", "True", "False"))
+        .then(json => createCards("bcajcCZJxWvc", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

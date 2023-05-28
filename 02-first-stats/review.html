@@ -335,6 +335,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/joint-rvs.html">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/linear-transforms.html">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/eigen.html">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -659,7 +663,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -703,7 +707,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -717,9 +721,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -760,7 +764,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="VczIwVPjiuuW" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="VczIwVPjiuuW-next" onclick="window.checkFlip('VczIwVPjiuuW')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="EGtsCXJQRXAd" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="EGtsCXJQRXAd-next" onclick="window.checkFlip('EGtsCXJQRXAd')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1107,14 +1111,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("VczIwVPjiuuW")) {
-            createCards("VczIwVPjiuuW", "True", "False");
+          if(document.getElementById("EGtsCXJQRXAd")) {
+            createCards("EGtsCXJQRXAd", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsVczIwVPjiuuW=[
+var cardsEGtsCXJQRXAd=[
     {
         "front": "scatter plot",
         "back": "A (two-dimensional) scatter plot takes two sequences $\\mathbf{x}= (x_0, x_1, \\ldots)$ and $\\mathbf{y}=(y_0, y_1, \\ldots)$ and plots symbols (called <i>markers</i>) that represent the locations of the points $(x_0, y_0), (x_1, y_1), \\ldots$ in two dimensions. "
@@ -1157,9 +1161,9 @@ var cardsVczIwVPjiuuW=[
     }
 ]
 ;
-var frontColorsVczIwVPjiuuW= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsVczIwVPjiuuW= ["var(--dark-blue-gray)" ];
-var textColorsVczIwVPjiuuW= ["var(--snow)" ];
+var frontColorsEGtsCXJQRXAd= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsEGtsCXJQRXAd= ["var(--dark-blue-gray)" ];
+var textColorsEGtsCXJQRXAd= ["var(--snow)" ];
 
 
         {
@@ -1170,7 +1174,7 @@ var textColorsVczIwVPjiuuW= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/flashcards/ch2.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("VczIwVPjiuuW", "True", "False"))
+        .then(json => createCards("EGtsCXJQRXAd", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1185,19 +1189,19 @@ var textColorsVczIwVPjiuuW= ["var(--snow)" ];
 <p>The following questions can be used to check your understanding of the material covered in this chapter:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="IbeqeCQKCfhf" data-shufflequestions="False"
+<div class="output text_html"><div id="JDkHBENaQlyj" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#IbeqeCQKCfhf {
+#JDkHBENaQlyj {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
    --jq-mc-button-inset-shadow: #555555;
    --jq-many-choice-bg: #e26d5a;
-   --Jq-numeric-bg: #5bc0eb;
+   --jq-numeric-bg: #5bc0eb;
    --jq-numeric-input-bg: #c0c0c0;
    --jq-numeric-input-label: #101010;
    --jq-numeric-input-shadow: #999999;
@@ -1361,7 +1365,7 @@ var textColorsVczIwVPjiuuW= ["var(--snow)" ];
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsIbeqeCQKCfhf=[
+</style></div><script type="application/javascript">var questionsJDkHBENaQlyj=[
     {
         "question": "Which of these cannot be a probability?",
         "type": "multiple_choice",
@@ -2189,8 +2193,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("IbeqeCQKCfhf")) {
-            show_questions(questionsIbeqeCQKCfhf,  IbeqeCQKCfhf); 
+          if(document.getElementById("JDkHBENaQlyj")) {
+            show_questions(questionsJDkHBENaQlyj,  JDkHBENaQlyj); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2205,10 +2209,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/questions/review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, IbeqeCQKCfhf))
+        .then(json => show_questions(json, JDkHBENaQlyj))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsIbeqeCQKCfhf, IbeqeCQKCfhf);
+        show_questions(questionsJDkHBENaQlyj, JDkHBENaQlyj);
         });
         }
         </script></div>
@@ -2220,19 +2224,19 @@ if (typeof version == 'undefined') {
 <p>The spaced repetition questions are drawn randomly when the page is constructed. If you want to do additional review, just force a reload of the page in your browser, and a new set of random questions will be chosen.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="neKCDzapKCWP" data-shufflequestions="False"
+<div class="output text_html"><div id="xUKNvmnnvuWa" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="4"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#neKCDzapKCWP {
+#xUKNvmnnvuWa {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
    --jq-mc-button-inset-shadow: #555555;
    --jq-many-choice-bg: #e26d5a;
-   --Jq-numeric-bg: #5bc0eb;
+   --jq-numeric-bg: #5bc0eb;
    --jq-numeric-input-bg: #c0c0c0;
    --jq-numeric-input-label: #101010;
    --jq-numeric-input-shadow: #999999;
@@ -2396,7 +2400,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsneKCDzapKCWP=[
+</style></div><script type="application/javascript">var questionsxUKNvmnnvuWa=[
     {
         "question": "Choose all of the following that can be included in Jupyter notebooks?",
         "type": "many_choice",
@@ -3389,8 +3393,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("neKCDzapKCWP")) {
-            show_questions(questionsneKCDzapKCWP,  neKCDzapKCWP); 
+          if(document.getElementById("xUKNvmnnvuWa")) {
+            show_questions(questionsxUKNvmnnvuWa,  xUKNvmnnvuWa); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -3405,10 +3409,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/questions/review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, neKCDzapKCWP))
+        .then(json => show_questions(json, xUKNvmnnvuWa))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsneKCDzapKCWP, neKCDzapKCWP);
+        show_questions(questionsxUKNvmnnvuWa, xUKNvmnnvuWa);
         });
         }
         </script></div>

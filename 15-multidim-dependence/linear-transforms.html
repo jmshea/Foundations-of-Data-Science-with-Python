@@ -335,6 +335,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="joint-rvs.html">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eigen.html">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -701,7 +705,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -715,9 +719,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -758,7 +762,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="HucpUkCfVRcl" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="HucpUkCfVRcl-next" onclick="window.checkFlip('HucpUkCfVRcl')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="VrDRyHFcLITD" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="VrDRyHFcLITD-next" onclick="window.checkFlip('VrDRyHFcLITD')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1105,14 +1109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("HucpUkCfVRcl")) {
-            createCards("HucpUkCfVRcl", "True", "False");
+          if(document.getElementById("VrDRyHFcLITD")) {
+            createCards("VrDRyHFcLITD", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsHucpUkCfVRcl=[
+var cardsVrDRyHFcLITD=[
     {
     "front": "broadcasting",
     "back": "In NumPy, a smaller array is <i>broadcast</i> across a larger array in such a way that the dimensions of the two arrays will match. "
@@ -1123,9 +1127,9 @@ var cardsHucpUkCfVRcl=[
 }
 ]
 ;
-var frontColorsHucpUkCfVRcl= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsHucpUkCfVRcl= ["var(--dark-blue-gray)" ];
-var textColorsHucpUkCfVRcl= ["var(--snow)" ];
+var frontColorsVrDRyHFcLITD= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsVrDRyHFcLITD= ["var(--dark-blue-gray)" ];
+var textColorsVrDRyHFcLITD= ["var(--snow)" ];
 
 
         {
@@ -1136,7 +1140,7 @@ var textColorsHucpUkCfVRcl= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/15-multidim-dependence/flashcards/linear-transforms.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("HucpUkCfVRcl", "True", "False"))
+        .then(json => createCards("VrDRyHFcLITD", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

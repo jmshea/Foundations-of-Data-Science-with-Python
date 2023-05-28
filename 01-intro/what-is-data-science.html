@@ -333,6 +333,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/joint-rvs.html">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/linear-transforms.html">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/eigen.html">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -642,7 +646,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -686,7 +690,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -700,9 +704,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -743,7 +747,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="ORaCCtURqkDx" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="ORaCCtURqkDx-next" onclick="window.checkFlip('ORaCCtURqkDx')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="oqYPkELCjhGp" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="oqYPkELCjhGp-next" onclick="window.checkFlip('oqYPkELCjhGp')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1090,14 +1094,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("ORaCCtURqkDx")) {
-            createCards("ORaCCtURqkDx", "True", "False");
+          if(document.getElementById("oqYPkELCjhGp")) {
+            createCards("oqYPkELCjhGp", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsORaCCtURqkDx=[
+var cardsoqYPkELCjhGp=[
     {
         "front": "data",
         "back": "Collections of measurements, characteristics, or facts about a group."
@@ -1124,9 +1128,9 @@ var cardsORaCCtURqkDx=[
     }
 ]
 ;
-var frontColorsORaCCtURqkDx= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsORaCCtURqkDx= ["var(--dark-blue-gray)" ];
-var textColorsORaCCtURqkDx= ["var(--snow)" ];
+var frontColorsoqYPkELCjhGp= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsoqYPkELCjhGp= ["var(--dark-blue-gray)" ];
+var textColorsoqYPkELCjhGp= ["var(--snow)" ];
 
 
         {
@@ -1137,7 +1141,7 @@ var textColorsORaCCtURqkDx= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/flashcards/what-is-data-science.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("ORaCCtURqkDx", "True", "False"))
+        .then(json => createCards("oqYPkELCjhGp", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

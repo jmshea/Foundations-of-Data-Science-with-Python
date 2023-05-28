@@ -83,6 +83,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://www.fdsp.net/15-multidim-dependence/eigen.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="15.4. Decorrelating Random Vectors and Multi-Dimensional Data" href="decorrelation.html" />
     <link rel="prev" title="15.2. Standardization and Linear Transformation of Numerical Data" href="linear-transforms.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -334,6 +335,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="joint-rvs.html">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear-transforms.html">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -700,7 +705,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -714,9 +719,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -757,7 +762,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="ZZIUJOLrlMCJ" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="ZZIUJOLrlMCJ-next" onclick="window.checkFlip('ZZIUJOLrlMCJ')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="bnHjzUcriWfP" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="bnHjzUcriWfP-next" onclick="window.checkFlip('bnHjzUcriWfP')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1104,14 +1109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("ZZIUJOLrlMCJ")) {
-            createCards("ZZIUJOLrlMCJ", "True", "False");
+          if(document.getElementById("bnHjzUcriWfP")) {
+            createCards("bnHjzUcriWfP", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsZZIUJOLrlMCJ=[
+var cardsbnHjzUcriWfP=[
     {
     "front": "eigenvector",
     "back": "Given a $n \\times n$ matrix $\\mathbf{M}$,  a non-zero vector $\\mathbf{v}$ is an <i>eigenvector</i> of $\\mathbf{M}$ if \\begin{equation*} \\mathbf{M} \\mathbf{v} = \\lambda \\mathbf{v} \\end{equation*} for some constant $\\lambda$."
@@ -1138,9 +1143,9 @@ var cardsZZIUJOLrlMCJ=[
 }
 ]
 ;
-var frontColorsZZIUJOLrlMCJ= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsZZIUJOLrlMCJ= ["var(--dark-blue-gray)" ];
-var textColorsZZIUJOLrlMCJ= ["var(--snow)" ];
+var frontColorsbnHjzUcriWfP= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsbnHjzUcriWfP= ["var(--dark-blue-gray)" ];
+var textColorsbnHjzUcriWfP= ["var(--snow)" ];
 
 
         {
@@ -1151,7 +1156,7 @@ var textColorsZZIUJOLrlMCJ= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/15-multidim-dependence/flashcards/eigen.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("ZZIUJOLrlMCJ", "True", "False"))
+        .then(json => createCards("bnHjzUcriWfP", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1201,6 +1206,15 @@ var textColorsZZIUJOLrlMCJ= ["var(--snow)" ];
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title"><span class="section-number">15.2. </span>Standardization and Linear Transformation of Numerical Data</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="decorrelation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">15.4. </span>Decorrelating Random Vectors and Multi-Dimensional Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   

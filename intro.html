@@ -334,6 +334,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="15-multidim-dependence/joint-rvs.html">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="15-multidim-dependence/linear-transforms.html">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="15-multidim-dependence/eigen.html">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15-multidim-dependence/decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15-multidim-dependence/pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15-multidim-dependence/review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15-multidim-dependence/summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -536,13 +540,13 @@ document.write(`
 </ul>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="NtdGmwCaiFoC" data-shufflequestions="False"
+<div class="output text_html"><div id="pUMhgrEPuMKp" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#NtdGmwCaiFoC {
+#pUMhgrEPuMKp {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -712,7 +716,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsNtdGmwCaiFoC=[
+</style></div><script type="application/javascript">var questionspUMhgrEPuMKp=[
   {
     "question": "What are summary statistics?",
     "type": "multiple_choice",
@@ -1607,8 +1611,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("NtdGmwCaiFoC")) {
-            show_questions(questionsNtdGmwCaiFoC,  NtdGmwCaiFoC); 
+          if(document.getElementById("pUMhgrEPuMKp")) {
+            show_questions(questionspUMhgrEPuMKp,  pUMhgrEPuMKp); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1623,10 +1627,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/summary-stats.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, NtdGmwCaiFoC))
+        .then(json => show_questions(json, pUMhgrEPuMKp))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsNtdGmwCaiFoC, NtdGmwCaiFoC);
+        show_questions(questionspUMhgrEPuMKp, pUMhgrEPuMKp);
         });
         }
         </script></div>
@@ -1790,7 +1794,7 @@ if (typeof version == 'undefined') {
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -1834,7 +1838,7 @@ if (typeof version == 'undefined') {
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -1848,9 +1852,9 @@ if (typeof version == 'undefined') {
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -1891,7 +1895,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="hnBtYzlKfxNZ" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="hnBtYzlKfxNZ-next" onclick="window.checkFlip('hnBtYzlKfxNZ')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="oOKzBahQIzQM" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="oOKzBahQIzQM-next" onclick="window.checkFlip('oOKzBahQIzQM')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2238,14 +2242,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("hnBtYzlKfxNZ")) {
-            createCards("hnBtYzlKfxNZ", "True", "False");
+          if(document.getElementById("oOKzBahQIzQM")) {
+            createCards("oOKzBahQIzQM", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardshnBtYzlKfxNZ=[
+var cardsoOKzBahQIzQM=[
     {
         "front": "statistical hypothesis",
         "back": "An explanation for phenomena observed in a data set that can be formally tested using the data."
@@ -2264,9 +2268,9 @@ var cardshnBtYzlKfxNZ=[
     }
 ]
 ;
-var frontColorshnBtYzlKfxNZ= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorshnBtYzlKfxNZ= ["var(--dark-blue-gray)" ];
-var textColorshnBtYzlKfxNZ= ["var(--snow)" ];
+var frontColorsoOKzBahQIzQM= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsoOKzBahQIzQM= ["var(--dark-blue-gray)" ];
+var textColorsoOKzBahQIzQM= ["var(--snow)" ];
 
 
         {
@@ -2277,7 +2281,7 @@ var textColorshnBtYzlKfxNZ= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/flashcards/hypothesis-testing.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("hnBtYzlKfxNZ", "True", "False"))
+        .then(json => createCards("oOKzBahQIzQM", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

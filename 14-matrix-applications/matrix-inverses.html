@@ -335,6 +335,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/joint-rvs.html">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/linear-transforms.html">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/eigen.html">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -701,7 +705,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -715,9 +719,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -758,7 +762,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="ZnNCRdjAfKin" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="ZnNCRdjAfKin-next" onclick="window.checkFlip('ZnNCRdjAfKin')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="TgQiQfscUgKC" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="TgQiQfscUgKC-next" onclick="window.checkFlip('TgQiQfscUgKC')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1105,14 +1109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("ZnNCRdjAfKin")) {
-            createCards("ZnNCRdjAfKin", "True", "False");
+          if(document.getElementById("TgQiQfscUgKC")) {
+            createCards("TgQiQfscUgKC", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsZnNCRdjAfKin=[
+var cardsTgQiQfscUgKC=[
     {
     "front": "inverse<br>(of a matrix)",
     "back": "Given a $n \\times n$ square matrix $\\mathbf{A}$, the <i>inverse</i> matrix (if it is exists) is a $n \\times n$ matrix denoted $\\mathbf{A}^{-1}$  such that \\begin{equation*} \\mathbf{A}^{-1} \\mathbf{A} = \\mathbf{I}. \\end{equation*}"
@@ -1123,9 +1127,9 @@ var cardsZnNCRdjAfKin=[
     }
 ]
 ;
-var frontColorsZnNCRdjAfKin= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsZnNCRdjAfKin= ["var(--dark-blue-gray)" ];
-var textColorsZnNCRdjAfKin= ["var(--snow)" ];
+var frontColorsTgQiQfscUgKC= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsTgQiQfscUgKC= ["var(--dark-blue-gray)" ];
+var textColorsTgQiQfscUgKC= ["var(--snow)" ];
 
 
         {
@@ -1136,7 +1140,7 @@ var textColorsZnNCRdjAfKin= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/14-matrix-applications/flashcards/matrix-inverses.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("ZnNCRdjAfKin", "True", "False"))
+        .then(json => createCards("TgQiQfscUgKC", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

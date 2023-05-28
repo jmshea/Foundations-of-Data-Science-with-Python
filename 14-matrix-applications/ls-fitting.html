@@ -335,6 +335,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/joint-rvs.html">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/linear-transforms.html">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/eigen.html">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -701,7 +705,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -715,9 +719,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -758,7 +762,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="XsSHFBSWBjpP" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="XsSHFBSWBjpP-next" onclick="window.checkFlip('XsSHFBSWBjpP')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="hbDFEVJlBXAO" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="hbDFEVJlBXAO-next" onclick="window.checkFlip('hbDFEVJlBXAO')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1105,14 +1109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("XsSHFBSWBjpP")) {
-            createCards("XsSHFBSWBjpP", "True", "False");
+          if(document.getElementById("hbDFEVJlBXAO")) {
+            createCards("hbDFEVJlBXAO", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsXsSHFBSWBjpP=[
+var cardshbDFEVJlBXAO=[
     {
     "front": "tall matrix",
     "back": "An $m \\times n$ matrix $\\mathbf{A}$ is <i>tall</i> if $m >n$; i.e., the number of rows is greater than the number of columns."
@@ -1127,9 +1131,9 @@ var cardsXsSHFBSWBjpP=[
 }
 ]
 ;
-var frontColorsXsSHFBSWBjpP= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsXsSHFBSWBjpP= ["var(--dark-blue-gray)" ];
-var textColorsXsSHFBSWBjpP= ["var(--snow)" ];
+var frontColorshbDFEVJlBXAO= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorshbDFEVJlBXAO= ["var(--dark-blue-gray)" ];
+var textColorshbDFEVJlBXAO= ["var(--snow)" ];
 
 
         {
@@ -1140,7 +1144,7 @@ var textColorsXsSHFBSWBjpP= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/14-matrix-applications/flashcards/ls-interpolation.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("XsSHFBSWBjpP", "True", "False"))
+        .then(json => createCards("hbDFEVJlBXAO", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

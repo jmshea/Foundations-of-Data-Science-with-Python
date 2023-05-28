@@ -333,6 +333,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/joint-rvs.html">15.1. Jointly Distributed Pairs of Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/linear-transforms.html">15.2. Standardization and Linear Transformation of Numerical Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/eigen.html">15.3. Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/decorrelation.html">15.4. Decorrelating Random Vectors and Multi-Dimensional Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/pca.html">15.5. Principal Components Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/review.html">15.6. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../15-multidim-dependence/summary.html">15.7. Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -506,19 +510,19 @@ document.write(`
 <p>The following questions can be used to check your understanding of the material covered in this chapter:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="vzXHPxMUIUmK" data-shufflequestions="False"
+<div class="output text_html"><div id="iCExWvGpVszW" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#vzXHPxMUIUmK {
+#iCExWvGpVszW {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
    --jq-mc-button-inset-shadow: #555555;
    --jq-many-choice-bg: #e26d5a;
-   --Jq-numeric-bg: #5bc0eb;
+   --jq-numeric-bg: #5bc0eb;
    --jq-numeric-input-bg: #c0c0c0;
    --jq-numeric-input-label: #101010;
    --jq-numeric-input-shadow: #999999;
@@ -682,7 +686,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsvzXHPxMUIUmK=[
+</style></div><script type="application/javascript">var questionsiCExWvGpVszW=[
   {
     "question": "What is a scatter plot?",
     "type": "multiple_choice",
@@ -1500,8 +1504,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("vzXHPxMUIUmK")) {
-            show_questions(questionsvzXHPxMUIUmK,  vzXHPxMUIUmK); 
+          if(document.getElementById("iCExWvGpVszW")) {
+            show_questions(questionsiCExWvGpVszW,  iCExWvGpVszW); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1516,10 +1520,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/questions/first-vis.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, vzXHPxMUIUmK))
+        .then(json => show_questions(json, iCExWvGpVszW))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsvzXHPxMUIUmK, vzXHPxMUIUmK);
+        show_questions(questionsiCExWvGpVszW, iCExWvGpVszW);
         });
         }
         </script></div>
@@ -1680,7 +1684,7 @@ if (typeof version == 'undefined') {
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -1724,7 +1728,7 @@ if (typeof version == 'undefined') {
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -1738,9 +1742,9 @@ if (typeof version == 'undefined') {
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -1781,7 +1785,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="KAWbmzfYmvaU" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="KAWbmzfYmvaU-next" onclick="window.checkFlip('KAWbmzfYmvaU')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="dzaVdRdvLutD" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="dzaVdRdvLutD-next" onclick="window.checkFlip('dzaVdRdvLutD')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2128,14 +2132,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("KAWbmzfYmvaU")) {
-            createCards("KAWbmzfYmvaU", "True", "False");
+          if(document.getElementById("dzaVdRdvLutD")) {
+            createCards("dzaVdRdvLutD", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsKAWbmzfYmvaU=[
+var cardsdzaVdRdvLutD=[
     {
         "front": "scatter plot",
         "back": "A (two-dimensional) scatter plot takes two sequences $\\mathbf{x}= (x_0, x_1, \\ldots)$ and $\\mathbf{y}=(y_0, y_1, \\ldots)$ and plots symbols (called <i>markers</i>) that represent the locations of the points $(x_0, y_0), (x_1, y_1), \\ldots$ in two dimensions. "
@@ -2150,9 +2154,9 @@ var cardsKAWbmzfYmvaU=[
     }
 ]
 ;
-var frontColorsKAWbmzfYmvaU= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsKAWbmzfYmvaU= ["var(--dark-blue-gray)" ];
-var textColorsKAWbmzfYmvaU= ["var(--snow)" ];
+var frontColorsdzaVdRdvLutD= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsdzaVdRdvLutD= ["var(--dark-blue-gray)" ];
+var textColorsdzaVdRdvLutD= ["var(--snow)" ];
 
 
         {
@@ -2163,7 +2167,7 @@ var textColorsKAWbmzfYmvaU= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/flashcards/first-vis.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("KAWbmzfYmvaU", "True", "False"))
+        .then(json => createCards("dzaVdRdvLutD", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
