@@ -149,3 +149,9 @@ sections:
     - file: 15-multidim-dependence/joint-rvs
     - file: 15-multidim-dependence/linear-transforms
     - file: 15-multidim-dependence/eigen
+    - file: 15-multidim-dependence/decorrelation
+    - file: 15-multidim-dependence/pca
+    - file: 15-multidim-dependence/review
+    - file: 15-multidim-dependence/summary
+- file: 16-next-steps/next-steps
+- file: genindex
