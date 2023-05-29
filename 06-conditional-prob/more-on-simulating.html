@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="6.7. More on Simulating Conditional Probabilities" />
+<meta property="og:title" content="6.5. More on Simulating Conditional Probabilities" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/06-conditional-prob/more-on-simulating.html" />
 <meta property="og:site_name" content="Python" />
@@ -17,7 +17,7 @@
 <meta property="og:image:alt" content="Python" />
 <meta name="description" content="This page is a placeholder for interactive elements for Section 6.5 of Foundations of Data Science with Python. No interactive elements are available for this section at this time." />
 
-    <title>6.7. More on Simulating Conditional Probabilities &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
+    <title>6.5. More on Simulating Conditional Probabilities &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
   
   
   
@@ -81,8 +81,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://www.fdsp.net/06-conditional-prob/more-on-simulating.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6.8. Statistical Independence" href="independence.html" />
-    <link rel="prev" title="6.6. Relating Conditional and Unconditional Probabilities" href="relating-cond-uncond.html" />
+    <link rel="next" title="6.6. Statistical Independence" href="independence.html" />
+    <link rel="prev" title="6.4. Relating Conditional and Unconditional Probabilities" href="relating-cond-uncond.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -230,17 +230,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">6. Dependence and Independence</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="simulating-cond-probs.html">6.3. Simulating and Counting Conditional Probabilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notation-and-intuition.html">6.4. Conditional Probability: Notation and Intuition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="definition.html">6.5. Formally Defining Conditional Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relating-cond-uncond.html">6.6. Relating Conditional and Unconditional Probabilities</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">6.7. More on Simulating Conditional Probabilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="independence.html">6.8. Statistical Independence</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fair-exps.html">6.9. Conditional Probabilities and Independence in Fair Experiments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conditional-independence.html">6.10. Conditioning and (In)dependence</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chain-rules-total-prob.html">6.11. Chain Rules and Total Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="review.html">6.12. Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="summary.html">6.13. Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulating-cond-probs.html">6.1. Simulating and Counting Conditional Probabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notation-and-intuition.html">6.2. Conditional Probability: Notation and Intuition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definition.html">6.3. Formally Defining Conditional Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relating-cond-uncond.html">6.4. Relating Conditional and Unconditional Probabilities</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6.5. More on Simulating Conditional Probabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="independence.html">6.6. Statistical Independence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fair-exps.html">6.7. Conditional Probabilities and Independence in Fair Experiments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditional-independence.html">6.8. Conditioning and (In)dependence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chain-rules-total-prob.html">6.9. Chain Rules and Total Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="review.html">6.10. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summary.html">6.11. Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../07-bayesian-methods/intro.html">7. Introduction to Bayesian Methods</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -489,7 +489,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="more-on-simulating-conditional-probabilities">
-<h1><span class="section-number">6.7. </span>More on Simulating Conditional Probabilities<a class="headerlink" href="#more-on-simulating-conditional-probabilities" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">6.5. </span>More on Simulating Conditional Probabilities<a class="headerlink" href="#more-on-simulating-conditional-probabilities" title="Permalink to this heading">#</a></h1>
 <p>This page is a placeholder for interactive elements for Section 6.5 of Foundations of Data Science with Python. No interactive elements are available for this section at this time.</p>
 </section>
 
@@ -530,7 +530,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">6.6. </span>Relating Conditional and Unconditional Probabilities</p>
+        <p class="prev-next-title"><span class="section-number">6.4. </span>Relating Conditional and Unconditional Probabilities</p>
       </div>
     </a>
     <a class="right-next"
@@ -538,7 +538,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6.8. </span>Statistical Independence</p>
+        <p class="prev-next-title"><span class="section-number">6.6. </span>Statistical Independence</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="6.11. Chain Rules and Total Probability" />
+<meta property="og:title" content="6.9. Chain Rules and Total Probability" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/06-conditional-prob/chain-rules-total-prob.html" />
 <meta property="og:site_name" content="Python" />
@@ -17,7 +17,7 @@
 <meta property="og:image:alt" content="Python" />
 <meta name="description" content="Quiz 1: Using Chain Rules: Quiz 2: Chain Rules and the Magician’s Coin: Proofs Omitted in Text: Proof that all events B_j, ~B_k,~j \ne k are mutually exclusive$ B_j \cap B_k = (B \cap A_j) \cap (B ..." />
 
-    <title>6.11. Chain Rules and Total Probability &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
+    <title>6.9. Chain Rules and Total Probability &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
   
   
   
@@ -83,8 +83,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://www.fdsp.net/06-conditional-prob/chain-rules-total-prob.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6.12. Review" href="review.html" />
-    <link rel="prev" title="6.10. Conditioning and (In)dependence" href="conditional-independence.html" />
+    <link rel="next" title="6.10. Review" href="review.html" />
+    <link rel="prev" title="6.8. Conditioning and (In)dependence" href="conditional-independence.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -232,17 +232,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">6. Dependence and Independence</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="simulating-cond-probs.html">6.3. Simulating and Counting Conditional Probabilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notation-and-intuition.html">6.4. Conditional Probability: Notation and Intuition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="definition.html">6.5. Formally Defining Conditional Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relating-cond-uncond.html">6.6. Relating Conditional and Unconditional Probabilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="more-on-simulating.html">6.7. More on Simulating Conditional Probabilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="independence.html">6.8. Statistical Independence</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fair-exps.html">6.9. Conditional Probabilities and Independence in Fair Experiments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conditional-independence.html">6.10. Conditioning and (In)dependence</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">6.11. Chain Rules and Total Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="review.html">6.12. Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="summary.html">6.13. Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulating-cond-probs.html">6.1. Simulating and Counting Conditional Probabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notation-and-intuition.html">6.2. Conditional Probability: Notation and Intuition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="definition.html">6.3. Formally Defining Conditional Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relating-cond-uncond.html">6.4. Relating Conditional and Unconditional Probabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="more-on-simulating.html">6.5. More on Simulating Conditional Probabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="independence.html">6.6. Statistical Independence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fair-exps.html">6.7. Conditional Probabilities and Independence in Fair Experiments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditional-independence.html">6.8. Conditioning and (In)dependence</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6.9. Chain Rules and Total Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="review.html">6.10. Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summary.html">6.11. Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../07-bayesian-methods/intro.html">7. Introduction to Bayesian Methods</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -488,11 +488,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-1-using-chain-rules">6.11.1. Quiz 1: Using Chain Rules</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-2-chain-rules-and-the-magicians-coin">6.11.2. Quiz 2: Chain Rules and the Magician’s Coin</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proofs-omitted-in-text">6.11.3. Proofs Omitted in Text</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-3-total-probability-and-the-magicians-coin">6.11.4. Quiz 3: Total Probability and the Magician’s Coin</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">6.11.5. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-1-using-chain-rules">6.9.1. Quiz 1: Using Chain Rules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-2-chain-rules-and-the-magicians-coin">6.9.2. Quiz 2: Chain Rules and the Magician’s Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proofs-omitted-in-text">6.9.3. Proofs Omitted in Text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-3-total-probability-and-the-magicians-coin">6.9.4. Quiz 3: Total Probability and the Magician’s Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">6.9.5. Terminology Review</a></li>
 </ul>
             </nav>
         </div>
@@ -505,9 +505,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="chain-rules-and-total-probability">
-<h1><span class="section-number">6.11. </span>Chain Rules and Total Probability<a class="headerlink" href="#chain-rules-and-total-probability" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">6.9. </span>Chain Rules and Total Probability<a class="headerlink" href="#chain-rules-and-total-probability" title="Permalink to this heading">#</a></h1>
 <section id="quiz-1-using-chain-rules">
-<h2><span class="section-number">6.11.1. </span>Quiz 1: Using Chain Rules<a class="headerlink" href="#quiz-1-using-chain-rules" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.9.1. </span>Quiz 1: Using Chain Rules<a class="headerlink" href="#quiz-1-using-chain-rules" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><div id="mhmlnvERqpNI" data-shufflequestions="False"
@@ -1560,7 +1560,7 @@ if (typeof version == 'undefined') {
 </div>
 </section>
 <section id="quiz-2-chain-rules-and-the-magicians-coin">
-<h2><span class="section-number">6.11.2. </span>Quiz 2: Chain Rules and the Magician’s Coin<a class="headerlink" href="#quiz-2-chain-rules-and-the-magicians-coin" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.9.2. </span>Quiz 2: Chain Rules and the Magician’s Coin<a class="headerlink" href="#quiz-2-chain-rules-and-the-magicians-coin" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><div id="gaOFDCueVVjx" data-shufflequestions="False"
@@ -2574,7 +2574,7 @@ if (typeof version == 'undefined') {
 </div>
 </section>
 <section id="proofs-omitted-in-text">
-<h2><span class="section-number">6.11.3. </span>Proofs Omitted in Text<a class="headerlink" href="#proofs-omitted-in-text" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.9.3. </span>Proofs Omitted in Text<a class="headerlink" href="#proofs-omitted-in-text" title="Permalink to this heading">#</a></h2>
 <p>Proof that all events <span class="math notranslate nohighlight">\(B_j, ~B_k,~j \ne k\)</span> are mutually exclusive
 $<span class="math notranslate nohighlight">\(
 B_j \cap B_k = (B \cap A_j) \cap (B \cap A_k) = B \cap (A_j \cap A_k) = B \cap \emptyset =\emptyset.
@@ -2585,7 +2585,7 @@ $<span class="math notranslate nohighlight">\(
 \)</span>$</p>
 </section>
 <section id="quiz-3-total-probability-and-the-magicians-coin">
-<h2><span class="section-number">6.11.4. </span>Quiz 3: Total Probability and the Magician’s Coin<a class="headerlink" href="#quiz-3-total-probability-and-the-magicians-coin" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.9.4. </span>Quiz 3: Total Probability and the Magician’s Coin<a class="headerlink" href="#quiz-3-total-probability-and-the-magicians-coin" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><div id="IgOVXgpVZJIz" data-shufflequestions="False"
@@ -3599,7 +3599,7 @@ if (typeof version == 'undefined') {
 </div>
 </section>
 <section id="terminology-review">
-<h2><span class="section-number">6.11.5. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.9.5. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><style>
@@ -4287,7 +4287,7 @@ var textColorstwfQpgQrNUeY= ["var(--snow)" ];
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">6.10. </span>Conditioning and (In)dependence</p>
+        <p class="prev-next-title"><span class="section-number">6.8. </span>Conditioning and (In)dependence</p>
       </div>
     </a>
     <a class="right-next"
@@ -4295,7 +4295,7 @@ var textColorstwfQpgQrNUeY= ["var(--snow)" ];
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6.12. </span>Review</p>
+        <p class="prev-next-title"><span class="section-number">6.10. </span>Review</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -4317,11 +4317,11 @@ var textColorstwfQpgQrNUeY= ["var(--snow)" ];
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-1-using-chain-rules">6.11.1. Quiz 1: Using Chain Rules</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-2-chain-rules-and-the-magicians-coin">6.11.2. Quiz 2: Chain Rules and the Magician’s Coin</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proofs-omitted-in-text">6.11.3. Proofs Omitted in Text</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-3-total-probability-and-the-magicians-coin">6.11.4. Quiz 3: Total Probability and the Magician’s Coin</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">6.11.5. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-1-using-chain-rules">6.9.1. Quiz 1: Using Chain Rules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-2-chain-rules-and-the-magicians-coin">6.9.2. Quiz 2: Chain Rules and the Magician’s Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proofs-omitted-in-text">6.9.3. Proofs Omitted in Text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-3-total-probability-and-the-magicians-coin">6.9.4. Quiz 3: Total Probability and the Magician’s Coin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">6.9.5. Terminology Review</a></li>
 </ul>
   </nav></div>
 
