@@ -12,8 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/06-conditional-prob/relating-cond-uncond.html" />
 <meta property="og:site_name" content="Python" />
+<meta property="og:description" content="The following question asks about how having additional conditional information changes probabilities.~~~~ ~~~~ ~~~~ \mbox{ }" />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
+<meta name="description" content="The following question asks about how having additional conditional information changes probabilities.~~~~ ~~~~ ~~~~ \mbox{ }" />
 
     <title>6.4. Relating Conditional and Unconditional Probabilities &#8212; Foundations of Data Science with Python &amp;mdash; Interactives</title>
   
@@ -75,6 +77,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/boldsymbol"]}, "tex": {"macros": {"P": "\\operatorname{P}"}, "packages": {"[+]": ["boldsymbol"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '06-conditional-prob/relating-cond-uncond';</script>
     <link rel="canonical" href="https://www.fdsp.net/06-conditional-prob/relating-cond-uncond.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -488,15 +492,17 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="relating-conditional-and-unconditional-probabilities">
 <h1><span class="section-number">6.4. </span>Relating Conditional and Unconditional Probabilities<a class="headerlink" href="#relating-conditional-and-unconditional-probabilities" title="Permalink to this heading">#</a></h1>
+<p>The following question asks about how having additional conditional
+information changes probabilities. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~ \mbox{   }\)</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="hkiWFEVBDHYt" data-shufflequestions="False"
+<div class="output text_html"><div id="RhhMPoPJMoVH" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#hkiWFEVBDHYt {
+#RhhMPoPJMoVH {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -666,9 +672,9 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionshkiWFEVBDHYt=[
+</style></div><script type="application/javascript">var questionsRhhMPoPJMoVH=[
     {
-        "question": "Consider events $A$ and $B$ with both $P(A)>0$ and $P(B)>0$. Which of the following statements are true?",
+        "question": "Consider events $A$ and $B$ with both $P(A)>0$ and $P(B)>0.$ Which of the following statements are true?",
         "type": "multiple_choice",
         "answers": [
             {
@@ -687,7 +693,7 @@ document.write(`
                 "feedback": "Incorrect. You should have already seen multiple examples to disprove this in Chapter 5. If you believed this answer was correct when you chose it, you should review Chapter 5 from the beginning."
             },
             {
-                "answer": "$P(A|B)$ may be less than, equal to, or greater than $P(A)$, depending on the information given.",
+                "answer": "$P(A|B)$ may be less than, equal to, or greater than $P(A),$ depending on the information given.",
                 "correct": true,
                 "feedback": "Correct. See the discussion below."
             }
@@ -1443,8 +1449,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("hkiWFEVBDHYt")) {
-            show_questions(questionshkiWFEVBDHYt,  hkiWFEVBDHYt); 
+          if(document.getElementById("RhhMPoPJMoVH")) {
+            show_questions(questionsRhhMPoPJMoVH,  RhhMPoPJMoVH); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1457,12 +1463,12 @@ if (typeof version == 'undefined') {
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/cond-vs-uncond-prob.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/flashcards/cond-vs-uncond-prob.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, hkiWFEVBDHYt))
+        .then(json => show_questions(json, RhhMPoPJMoVH))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionshkiWFEVBDHYt, hkiWFEVBDHYt);
+        show_questions(questionsRhhMPoPJMoVH, RhhMPoPJMoVH);
         });
         }
         </script></div>
