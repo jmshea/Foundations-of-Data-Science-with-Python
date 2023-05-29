@@ -660,7 +660,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -704,7 +704,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -718,9 +718,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -761,7 +761,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="ULjlKMHxgbAc" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="ULjlKMHxgbAc-next" onclick="window.checkFlip('ULjlKMHxgbAc')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="uURgTcLdCidk" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="uURgTcLdCidk-next" onclick="window.checkFlip('uURgTcLdCidk')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1108,23 +1108,23 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("ULjlKMHxgbAc")) {
-            createCards("ULjlKMHxgbAc", "True", "False");
+          if(document.getElementById("uURgTcLdCidk")) {
+            createCards("uURgTcLdCidk", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsULjlKMHxgbAc=[
+var cardsuURgTcLdCidk=[
     {
         "front": "one-way table",
         "back": "A table that shows the relative frequencies for a single categorical variable.  Also called a <i>one-way frequency table</i> or <i>one-way contingency table</i>."
     }
 ]
 ;
-var frontColorsULjlKMHxgbAc= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsULjlKMHxgbAc= ["var(--dark-blue-gray)" ];
-var textColorsULjlKMHxgbAc= ["var(--snow)" ];
+var frontColorsuURgTcLdCidk= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsuURgTcLdCidk= ["var(--dark-blue-gray)" ];
+var textColorsuURgTcLdCidk= ["var(--snow)" ];
 
 
         {
@@ -1135,7 +1135,7 @@ var textColorsULjlKMHxgbAc= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/11-categorical-data/flashcards/goodness-of-fit.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("ULjlKMHxgbAc", "True", "False"))
+        .then(json => createCards("uURgTcLdCidk", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

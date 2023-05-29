@@ -661,7 +661,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -705,7 +705,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -719,9 +719,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -762,7 +762,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="kxKgVeHZroSl" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="kxKgVeHZroSl-next" onclick="window.checkFlip('kxKgVeHZroSl')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="nOaDuqQazVib" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="nOaDuqQazVib-next" onclick="window.checkFlip('nOaDuqQazVib')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1109,14 +1109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("kxKgVeHZroSl")) {
-            createCards("kxKgVeHZroSl", "True", "False");
+          if(document.getElementById("nOaDuqQazVib")) {
+            createCards("nOaDuqQazVib", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardskxKgVeHZroSl=[
+var cardsnOaDuqQazVib=[
     {
         "front": "conditional probability",
         "back": "The conditional probability of an event $A$ given that an event $B$ occurred, where $P(B) \\ne 0$, is \n $$ P(A|B) = \\frac{P \\left( A \\cap B \\right)}{P\\left(B\\right)}\n$$"
@@ -1143,9 +1143,9 @@ var cardskxKgVeHZroSl=[
     }
 ]
 ;
-var frontColorskxKgVeHZroSl= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorskxKgVeHZroSl= ["var(--dark-blue-gray)" ];
-var textColorskxKgVeHZroSl= ["var(--snow)" ];
+var frontColorsnOaDuqQazVib= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsnOaDuqQazVib= ["var(--dark-blue-gray)" ];
+var textColorsnOaDuqQazVib= ["var(--snow)" ];
 
 
         {
@@ -1156,7 +1156,7 @@ var textColorskxKgVeHZroSl= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/flashcards/review.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("kxKgVeHZroSl", "True", "False"))
+        .then(json => createCards("nOaDuqQazVib", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1170,13 +1170,13 @@ var textColorskxKgVeHZroSl= ["var(--snow)" ];
 <p>Answer the questions below to assess your understanding of the material in this chapter.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="oTbvxHuKALCR" data-shufflequestions="False"
+<div class="output text_html"><div id="FJrTQUlsfmcU" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#oTbvxHuKALCR {
+#FJrTQUlsfmcU {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1346,7 +1346,7 @@ var textColorskxKgVeHZroSl= ["var(--snow)" ];
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsoTbvxHuKALCR=[
+</style></div><script type="application/javascript">var questionsFJrTQUlsfmcU=[
     {
         "question": "How are \"mutually exclusive\" and \"statistically independent\" related?",
         "type": "multiple_choice",
@@ -2208,8 +2208,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("oTbvxHuKALCR")) {
-            show_questions(questionsoTbvxHuKALCR,  oTbvxHuKALCR); 
+          if(document.getElementById("FJrTQUlsfmcU")) {
+            show_questions(questionsFJrTQUlsfmcU,  FJrTQUlsfmcU); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2224,10 +2224,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, oTbvxHuKALCR))
+        .then(json => show_questions(json, FJrTQUlsfmcU))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsoTbvxHuKALCR, oTbvxHuKALCR);
+        show_questions(questionsFJrTQUlsfmcU, FJrTQUlsfmcU);
         });
         }
         </script></div>

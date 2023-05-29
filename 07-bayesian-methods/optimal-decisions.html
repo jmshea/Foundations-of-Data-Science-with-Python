@@ -660,7 +660,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -704,7 +704,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -718,9 +718,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -761,7 +761,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="owXvlRQgRCjU" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="owXvlRQgRCjU-next" onclick="window.checkFlip('owXvlRQgRCjU')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="btDZJuVwsNlj" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="btDZJuVwsNlj-next" onclick="window.checkFlip('btDZJuVwsNlj')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1108,14 +1108,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("owXvlRQgRCjU")) {
-            createCards("owXvlRQgRCjU", "True", "False");
+          if(document.getElementById("btDZJuVwsNlj")) {
+            createCards("btDZJuVwsNlj", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsowXvlRQgRCjU=[
+var cardsbtDZJuVwsNlj=[
     {
         "front": "decision rule<br>(discrete stochastic system)",
         "back": "For a discrete stochastic system with inputs (or hidden states) $\\{A_i\\}$ and outputs $\\{B_j\\}$, a <I>decision rule</I> for an observation $B_j$ gives a choice of corresponding input event $A_i$.<br> The decision rule may be chosen to optimize some function of the inputs and outputs (e.g., likelihood or APP)."
@@ -1129,9 +1129,9 @@ var cardsowXvlRQgRCjU=[
         "back": "For a stochastic system with a discrete input events $\\{ A_0, A_i, \\ldots \\}$ and  discrete output events $\\{B_0, B_1, \\ldots\\}$,  the <I>maximum a posteriori (MAP)</I> decision rule given $B_j$ was received is <br> $$ \\hat{A}_i, \\mbox{ where } i = \\arg \\max_{i \\in \\{0,1\\}} P(A_i|B_j). $$ "}
 ]
 ;
-var frontColorsowXvlRQgRCjU= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsowXvlRQgRCjU= ["var(--dark-blue-gray)" ];
-var textColorsowXvlRQgRCjU= ["var(--snow)" ];
+var frontColorsbtDZJuVwsNlj= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsbtDZJuVwsNlj= ["var(--dark-blue-gray)" ];
+var textColorsbtDZJuVwsNlj= ["var(--snow)" ];
 
 
         {
@@ -1142,7 +1142,7 @@ var textColorsowXvlRQgRCjU= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/flashcards/optimal-decisions.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("owXvlRQgRCjU", "True", "False"))
+        .then(json => createCards("btDZJuVwsNlj", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

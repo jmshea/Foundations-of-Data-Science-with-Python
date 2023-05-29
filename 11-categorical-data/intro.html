@@ -649,7 +649,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -693,7 +693,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -707,9 +707,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -750,7 +750,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="crQydZnPhYvU" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="crQydZnPhYvU-next" onclick="window.checkFlip('crQydZnPhYvU')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="yqsMbmgBVgpT" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="yqsMbmgBVgpT-next" onclick="window.checkFlip('yqsMbmgBVgpT')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1097,14 +1097,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("crQydZnPhYvU")) {
-            createCards("crQydZnPhYvU", "True", "False");
+          if(document.getElementById("yqsMbmgBVgpT")) {
+            createCards("yqsMbmgBVgpT", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardscrQydZnPhYvU=[
+var cardsyqsMbmgBVgpT=[
     {
         "front": "categorical data",
         "back": "Data that does not take on a specific numerical value but instead takes on one of several categories."
@@ -1119,9 +1119,9 @@ var cardscrQydZnPhYvU=[
     }
 ]
 ;
-var frontColorscrQydZnPhYvU= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorscrQydZnPhYvU= ["var(--dark-blue-gray)" ];
-var textColorscrQydZnPhYvU= ["var(--snow)" ];
+var frontColorsyqsMbmgBVgpT= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsyqsMbmgBVgpT= ["var(--dark-blue-gray)" ];
+var textColorsyqsMbmgBVgpT= ["var(--snow)" ];
 
 
         {
@@ -1132,7 +1132,7 @@ var textColorscrQydZnPhYvU= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/11-categorical-data/flashcards/intro.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("crQydZnPhYvU", "True", "False"))
+        .then(json => createCards("yqsMbmgBVgpT", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

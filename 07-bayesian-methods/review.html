@@ -661,7 +661,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -705,7 +705,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -719,9 +719,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -762,7 +762,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="SczIWxPQOiYs" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="SczIWxPQOiYs-next" onclick="window.checkFlip('SczIWxPQOiYs')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="jXBIcuFzrcwm" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="jXBIcuFzrcwm-next" onclick="window.checkFlip('jXBIcuFzrcwm')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1109,14 +1109,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("SczIWxPQOiYs")) {
-            createCards("SczIWxPQOiYs", "True", "False");
+          if(document.getElementById("jXBIcuFzrcwm")) {
+            createCards("jXBIcuFzrcwm", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsSczIWxPQOiYs=[
+var cardsjXBIcuFzrcwm=[
     {
         "front": "stochastic system",
         "back": "A stochastic system with one or more inputs and one or more outputs, for which the output(s) is(are) not a deterministic function of the output(s)"
@@ -1169,9 +1169,9 @@ var cardsSczIWxPQOiYs=[
     }
 ]
 ;
-var frontColorsSczIWxPQOiYs= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsSczIWxPQOiYs= ["var(--dark-blue-gray)" ];
-var textColorsSczIWxPQOiYs= ["var(--snow)" ];
+var frontColorsjXBIcuFzrcwm= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsjXBIcuFzrcwm= ["var(--dark-blue-gray)" ];
+var textColorsjXBIcuFzrcwm= ["var(--snow)" ];
 
 
         {
@@ -1182,7 +1182,7 @@ var textColorsSczIWxPQOiYs= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/flashcards/review.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("SczIWxPQOiYs", "True", "False"))
+        .then(json => createCards("jXBIcuFzrcwm", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

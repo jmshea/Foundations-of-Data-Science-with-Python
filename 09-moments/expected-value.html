@@ -660,7 +660,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -704,7 +704,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -718,9 +718,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -761,7 +761,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="yxEJiHsouRad" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="yxEJiHsouRad-next" onclick="window.checkFlip('yxEJiHsouRad')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="PQvealdTKTRX" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="PQvealdTKTRX-next" onclick="window.checkFlip('PQvealdTKTRX')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1108,14 +1108,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("yxEJiHsouRad")) {
-            createCards("yxEJiHsouRad", "True", "False");
+          if(document.getElementById("PQvealdTKTRX")) {
+            createCards("PQvealdTKTRX", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsyxEJiHsouRad=[
+var cardsPQvealdTKTRX=[
     {
         "front": "expected value<br>(discrete random variable)",
         "back": "\\begin{equation*} \\mu_X = E \\left[ X \\right] = \\sum x P_X (x). \\end{equation*}"
@@ -1126,9 +1126,9 @@ var cardsyxEJiHsouRad=[
     }
 ]
 ;
-var frontColorsyxEJiHsouRad= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsyxEJiHsouRad= ["var(--dark-blue-gray)" ];
-var textColorsyxEJiHsouRad= ["var(--snow)" ];
+var frontColorsPQvealdTKTRX= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsPQvealdTKTRX= ["var(--dark-blue-gray)" ];
+var textColorsPQvealdTKTRX= ["var(--snow)" ];
 
 
         {
@@ -1139,7 +1139,7 @@ var textColorsyxEJiHsouRad= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/09-moments/flashcards/expected-value.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("yxEJiHsouRad", "True", "False"))
+        .then(json => createCards("PQvealdTKTRX", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

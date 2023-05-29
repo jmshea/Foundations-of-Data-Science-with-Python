@@ -660,7 +660,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -704,7 +704,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -718,9 +718,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -761,7 +761,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="jUEfgtrsaOIn" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="jUEfgtrsaOIn-next" onclick="window.checkFlip('jUEfgtrsaOIn')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="wGMxrIKORbjx" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="wGMxrIKORbjx-next" onclick="window.checkFlip('wGMxrIKORbjx')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1108,14 +1108,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("jUEfgtrsaOIn")) {
-            createCards("jUEfgtrsaOIn", "True", "False");
+          if(document.getElementById("wGMxrIKORbjx")) {
+            createCards("wGMxrIKORbjx", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsjUEfgtrsaOIn=[
+var cardswGMxrIKORbjx=[
     {
         "front": "Discrete uniform random variable",
         "back": "RV with a finite number of values, all of which have the same probability"
@@ -1138,9 +1138,9 @@ var cardsjUEfgtrsaOIn=[
     }
 ]
 ;
-var frontColorsjUEfgtrsaOIn= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsjUEfgtrsaOIn= ["var(--dark-blue-gray)" ];
-var textColorsjUEfgtrsaOIn= ["var(--snow)" ];
+var frontColorswGMxrIKORbjx= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorswGMxrIKORbjx= ["var(--dark-blue-gray)" ];
+var textColorswGMxrIKORbjx= ["var(--snow)" ];
 
 
         {
@@ -1151,7 +1151,7 @@ var textColorsjUEfgtrsaOIn= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/08-random-variables/flashcards/important-discrete-rvs.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("jUEfgtrsaOIn", "True", "False"))
+        .then(json => createCards("wGMxrIKORbjx", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

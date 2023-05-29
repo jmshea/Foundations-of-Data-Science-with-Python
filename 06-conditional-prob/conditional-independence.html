@@ -643,7 +643,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -687,7 +687,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -701,9 +701,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -744,7 +744,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="yvGwsdMrgvLS" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="yvGwsdMrgvLS-next" onclick="window.checkFlip('yvGwsdMrgvLS')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="fqBEdIWtDXOH" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="fqBEdIWtDXOH-next" onclick="window.checkFlip('fqBEdIWtDXOH')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1091,23 +1091,23 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("yvGwsdMrgvLS")) {
-            createCards("yvGwsdMrgvLS", "True", "False");
+          if(document.getElementById("fqBEdIWtDXOH")) {
+            createCards("fqBEdIWtDXOH", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsyvGwsdMrgvLS=[
+var cardsfqBEdIWtDXOH=[
     {
         "front": "conditional independence (events)",
         "back": "Events $A$ and $B$ are <i>conditionally independent</i> given an event $C$ iff $A$ and $B$ are independent under the conditional probability measure $P(\\cdot | C).$  I.e., $A$ and $B$ are conditionally independent iff<br>$$P(A \\cap B |C) = P(A|C) P(B|C).$$"
     }
 ]
 ;
-var frontColorsyvGwsdMrgvLS= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsyvGwsdMrgvLS= ["var(--dark-blue-gray)" ];
-var textColorsyvGwsdMrgvLS= ["var(--snow)" ];
+var frontColorsfqBEdIWtDXOH= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsfqBEdIWtDXOH= ["var(--dark-blue-gray)" ];
+var textColorsfqBEdIWtDXOH= ["var(--snow)" ];
 
 
         {
@@ -1118,7 +1118,7 @@ var textColorsyvGwsdMrgvLS= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/flashcards/conditional-independence.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("yvGwsdMrgvLS", "True", "False"))
+        .then(json => createCards("fqBEdIWtDXOH", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

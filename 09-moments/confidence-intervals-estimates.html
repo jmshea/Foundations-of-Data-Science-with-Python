@@ -676,7 +676,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -720,7 +720,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -734,9 +734,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -777,7 +777,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="cHTVSZtQCHxv" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="cHTVSZtQCHxv-next" onclick="window.checkFlip('cHTVSZtQCHxv')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="fyEapPpIslkR" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="fyEapPpIslkR-next" onclick="window.checkFlip('fyEapPpIslkR')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1124,23 +1124,23 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("cHTVSZtQCHxv")) {
-            createCards("cHTVSZtQCHxv", "True", "False");
+          if(document.getElementById("fyEapPpIslkR")) {
+            createCards("fyEapPpIslkR", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardscHTVSZtQCHxv=[
+var cardsfyEapPpIslkR=[
     {
-        "front": "standard error of the mean<br>SEM",
-        "back": " For $n$ samples from a random variable with known standard deviation $\\sigma_X$, the *standard error of the mean (SEM)* is the standard deviation of the mean estimator, \\begin{align*} \\sigma_{\\hat{X}} =  \\frac{\\sigma_X}{\\sqrt{n}}. \\end{align*}"
+        "front": "standard error of the mean<br>(SEM)",
+        "back": " For $n$ samples from a random variable with known standard deviation $\\sigma_X$, the <i>standard error of the mean (SEM)</i> is the standard deviation of the mean estimator, \\begin{align*} \\sigma_{\\hat{X}} =  \\frac{\\sigma_X}{\\sqrt{n}}. \\end{align*}"
     }
 ]
 ;
-var frontColorscHTVSZtQCHxv= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorscHTVSZtQCHxv= ["var(--dark-blue-gray)" ];
-var textColorscHTVSZtQCHxv= ["var(--snow)" ];
+var frontColorsfyEapPpIslkR= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsfyEapPpIslkR= ["var(--dark-blue-gray)" ];
+var textColorsfyEapPpIslkR= ["var(--snow)" ];
 
 
         {
@@ -1151,7 +1151,7 @@ var textColorscHTVSZtQCHxv= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/09-moments/flashcards/confidence-intervals-estimates.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("cHTVSZtQCHxv", "True", "False"))
+        .then(json => createCards("fyEapPpIslkR", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

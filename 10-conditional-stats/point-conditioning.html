@@ -660,7 +660,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -704,7 +704,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -718,9 +718,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -761,7 +761,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="XawddyKIgSza" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="XawddyKIgSza-next" onclick="window.checkFlip('XawddyKIgSza')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="jrdIhhiXjoFb" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="jrdIhhiXjoFb-next" onclick="window.checkFlip('jrdIhhiXjoFb')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1108,14 +1108,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("XawddyKIgSza")) {
-            createCards("XawddyKIgSza", "True", "False");
+          if(document.getElementById("jrdIhhiXjoFb")) {
+            createCards("jrdIhhiXjoFb", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsXawddyKIgSza=[
+var cardsjrdIhhiXjoFb=[
     {
         "front": "point conditioning",
         "back": "Point conditioning occurs when the conditioning  event is that a continuous random variable is equal to a particular value. I.e., $P(A|X=x)$, where $X$ is a continuous random variable."
@@ -1143,9 +1143,9 @@ var cardsXawddyKIgSza=[
     }
 ]
 ;
-var frontColorsXawddyKIgSza= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsXawddyKIgSza= ["var(--dark-blue-gray)" ];
-var textColorsXawddyKIgSza= ["var(--snow)" ];
+var frontColorsjrdIhhiXjoFb= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsjrdIhhiXjoFb= ["var(--dark-blue-gray)" ];
+var textColorsjrdIhhiXjoFb= ["var(--snow)" ];
 
 
         {
@@ -1156,7 +1156,7 @@ var textColorsXawddyKIgSza= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/10-conditional-stats/flashcards/point-conditioning.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("XawddyKIgSza", "True", "False"))
+        .then(json => createCards("jrdIhhiXjoFb", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
