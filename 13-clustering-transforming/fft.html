@@ -660,7 +660,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -704,7 +704,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -718,9 +718,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -761,7 +761,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="fUDSosfklpeF" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="fUDSosfklpeF-next" onclick="window.checkFlip('fUDSosfklpeF')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="MHSCUgtEDVBi" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="MHSCUgtEDVBi-next" onclick="window.checkFlip('MHSCUgtEDVBi')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1108,14 +1108,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("fUDSosfklpeF")) {
-            createCards("fUDSosfklpeF", "True", "False");
+          if(document.getElementById("MHSCUgtEDVBi")) {
+            createCards("MHSCUgtEDVBi", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsfUDSosfklpeF=[
+var cardsMHSCUgtEDVBi=[
     {
         "front": "time-series data",
         "back": "Data that is collected over time, usually at regular intervals. Each data point is associated with a timestamp indicating when the data was collected."
@@ -1126,9 +1126,9 @@ var cardsfUDSosfklpeF=[
     }
 ]
 ;
-var frontColorsfUDSosfklpeF= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsfUDSosfklpeF= ["var(--dark-blue-gray)" ];
-var textColorsfUDSosfklpeF= ["var(--snow)" ];
+var frontColorsMHSCUgtEDVBi= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsMHSCUgtEDVBi= ["var(--dark-blue-gray)" ];
+var textColorsMHSCUgtEDVBi= ["var(--snow)" ];
 
 
         {
@@ -1139,7 +1139,7 @@ var textColorsfUDSosfklpeF= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/13-clustering-transforming/flashcards/fft.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("fUDSosfklpeF", "True", "False"))
+        .then(json => createCards("MHSCUgtEDVBi", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

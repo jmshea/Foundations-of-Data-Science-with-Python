@@ -660,7 +660,7 @@ document.write(`
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -704,7 +704,7 @@ document.write(`
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -718,9 +718,9 @@ document.write(`
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -761,7 +761,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="RHeammoulnMK" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="RHeammoulnMK-next" onclick="window.checkFlip('RHeammoulnMK')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="JRIUvuuAkpiL" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="JRIUvuuAkpiL-next" onclick="window.checkFlip('JRIUvuuAkpiL')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1108,14 +1108,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("RHeammoulnMK")) {
-            createCards("RHeammoulnMK", "True", "False");
+          if(document.getElementById("JRIUvuuAkpiL")) {
+            createCards("JRIUvuuAkpiL", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsRHeammoulnMK=[
+var cardsJRIUvuuAkpiL=[
     {
         "front": "vector addition",
         "back": "The sum of vectors $\\mathbf{a}$ and $\\mathbf{b}$ is a vector $\\mathbf{a+b}$ whose $i$th component is the sum of the $i$th components of $\\mathbf{a}$ and $\\mathbf{b}$; i.e. $\\mathbf{(a+b)}_i = a_i + b_i$."
@@ -1147,9 +1147,9 @@ var cardsRHeammoulnMK=[
     }
 ]
 ;
-var frontColorsRHeammoulnMK= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsRHeammoulnMK= ["var(--dark-blue-gray)" ];
-var textColorsRHeammoulnMK= ["var(--snow)" ];
+var frontColorsJRIUvuuAkpiL= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsJRIUvuuAkpiL= ["var(--dark-blue-gray)" ];
+var textColorsJRIUvuuAkpiL= ["var(--snow)" ];
 
 
         {
@@ -1160,7 +1160,7 @@ var textColorsRHeammoulnMK= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/12-vector-regression/flashcards/vector-operations.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("RHeammoulnMK", "True", "False"))
+        .then(json => createCards("JRIUvuuAkpiL", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
