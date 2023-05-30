@@ -51,10 +51,6 @@ jobs:
       run: |
         echo -e "User-agent: *\n\nSitemap: https://jmshea.github.io/Foundations-of-Data-Science-with-Python/sitemap.xml" > _build/html/robots.txt
 
-    # Deploy .htaccess
-    - name: Copy in .htacces
-      run: cp htaccess _build/html/.htaccess
- 
     # Deploy the book's HTML to gh-pages branch
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.9.0
