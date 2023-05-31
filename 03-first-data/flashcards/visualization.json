@@ -1,5 +1,9 @@
 [
     {
+        "front": "plot legend",
+        "back": "A <i>plot legend</i> is a key that shows which visual indicators (such as marker styles, line styles, and colors) correspond to which data variable."
+    },
+    {
         "front": "outlier",
         "back": "A value in a dataset that takes on a value that is not reasonable, based on the other values in the dataset or other domain knowledge. Outliers are often due to data entry, measurement, or unit conversion errors."
     }
