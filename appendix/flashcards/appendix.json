@@ -44,15 +44,15 @@
 "back": "Given a set $S$, the <I>power set</I> of $S$, denoted $2^S$, is the set of all subsets of $S$. Both $\\emptyset$ and $S$ are included in the power set."
 },
 {
-"front": "union  ($\\bigcup$)",
+"front": "union  $\\left( \\bigcup \\right)$",
 "back": "Given sets $A$ and $B$, the <I>union</I> of $A$ and $B$, denoted $A \\cup B$, is a set that contains all elements that are in either $A$, $B$, or both. Mathematically, we say that if $x \\in A$ or $x \\in B$, then $x \\in A \\cup B$."
 },
 {
-"front": "intersection ($\\bigcap$)",
+"front": "intersection $ \\left( \\bigcap \\right)$",
 "back": "Given sets $A$ and $B$, the <I>intersection</I> of $A$ and $B$, denoted $A \\cap B$, is a set that contains all elements that are in $A$ and in  $B$. Mathematically, we say that if then $x \\in A \\cap B$, then $x \\in A$ and $x  \\in B$."
 },
 {
-"front": "complement ($\\overline{A}$)",
+"front": "complement $ \\left( \\overline{A} \\right)$",
 "back": "Given some universal set $S$ and a set $A \\subset S$, the <I>complement</I> of $A$, denoted $\\overline{A}$ or $A^c$ is the set of elements in $S$ that are <B>not</B> in A. Mathematically, we can say that $\\overline{A}$ contains all $x \\in S$ such that $x \\notin A$."
 },
 {
