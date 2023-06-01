@@ -4,55 +4,55 @@
     "back": "An <B>unordered</B> collection of <B>unique</B> items."
 },
 {
-"front": "element or member (of a set)",
+"front": "element or member<br>(of a set)",
 "back": "Any one of the unique items contained in a set."
 },
 {
-"front": "set membership ($\\in$)",
+"front": "set membership<br>($\\in$)",
 "back": "The symbol $\\in$ indicates <I>set membership</I>.  Thus if $x \\in A$, then $x$ is an element of the set $A$."
 },
 {
-"front": "cardinality (of a set)",
+"front": "cardinality<br>(of a set)",
 "back": "The number of elements in a set. For a set $S$, the cardinality of $S$ is denoted $\\lvert S \\rvert$."
 },
 {
-"front": "finite (set)",
+"front": "finite<br>(set)",
 "back": "A set $S$ is finite if there is a mapping from the elements in $S$ to a subset of the counting numbers of the form $\\{1,2,\\ldots,N\\}$, for some $N < \\infty$."
 },
 {
-"front": "countably infinite (set)",
+"front": "countably infinite<br>(set)",
 "back": "A set $S$ is <I>countably infinite</I> if there is a mapping from the elements in $S$ to the counting numbers $\\mathbb{N}$."
 },
 {
-"front": "uncountably infinite (set)",
+"front": "uncountably infinite<br>(set)",
 "back": "A set $S$ is <I>uncountably infinite</I> if $\\lvert S \\rvert = \\infty$ and it is not possible to create a mapping between the elements in $S$ and the counting numbers $\\mathbb{N}$."
 },
 {
-"front": "subset  ($\\subset$)",
+"front": "subset<br>($\\subset$)",
 "back": "A set $A$ is a subset of a set $B$, denoted $A \\subset B$ if $B$ contains every element in $A$. Mathematically, we say $A \\subset B$ if and only if $x \\in A$ implies that $x \\in B$."
 },
 {
-"front": "interval (of the real line)",
+"front": "interval<br>(of the real line)",
 "back": "Consider a set $I \\subset \\mathbb{R}$ and any $a \\in I$ and $b \\in I$, where $b>a$. Then $I$ is an interval if for every $x$ satisfying $a \\le x \\le b $, $x \\in I$."
 },
 {
-"front": "empty set ($\\emptyset$)",
+"front": "empty set<br>($\\emptyset$)",
 "back": "The  empty set, denoted $\\emptyset$, is the set with no elements: $\\emptyset = \\{ \\}$."
 },
 {
-"front": "power set ($2^S$)",
+"front": "power set<br>($2^S$)",
 "back": "Given a set $S$, the <I>power set</I> of $S$, denoted $2^S$, is the set of all subsets of $S$. Both $\\emptyset$ and $S$ are included in the power set."
 },
 {
-"front": "union  $\\left( \\bigcup \\right)$",
+"front": "union<br>$\\left( \\bigcup \\right)$",
 "back": "Given sets $A$ and $B$, the <I>union</I> of $A$ and $B$, denoted $A \\cup B$, is a set that contains all elements that are in either $A$, $B$, or both. Mathematically, we say that if $x \\in A$ or $x \\in B$, then $x \\in A \\cup B$."
 },
 {
-"front": "intersection $ \\left( \\bigcap \\right)$",
+"front": "intersection<br>$ \\left( \\bigcap \\right)$",
 "back": "Given sets $A$ and $B$, the <I>intersection</I> of $A$ and $B$, denoted $A \\cap B$, is a set that contains all elements that are in $A$ and in  $B$. Mathematically, we say that if then $x \\in A \\cap B$, then $x \\in A$ and $x  \\in B$."
 },
 {
-"front": "complement $ \\left( \\overline{A} \\right)$",
+"front": "complement<br>$ \\left( \\overline{A} \\right)$",
 "back": "Given some universal set $S$ and a set $A \\subset S$, the <I>complement</I> of $A$, denoted $\\overline{A}$ or $A^c$ is the set of elements in $S$ that are <B>not</B> in A. Mathematically, we can say that $\\overline{A}$ contains all $x \\in S$ such that $x \\notin A$."
 },
 {
