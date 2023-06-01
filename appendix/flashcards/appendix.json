@@ -25,7 +25,7 @@
 },
 {
 "front": "uncountably infinite (set)",
-"back": "A set $S$ is <I>uncountably infinite</I> if $\\lvert S \\rvert| = \\infty$ and there it is not possible to create a mapping between the elements in $S$ and the counting numbers $\\mathbb{N}$."
+"back": "A set $S$ is <I>uncountably infinite</I> if $\\lvert S \\rvert = \\infty$ and there it is not possible to create a mapping between the elements in $S$ and the counting numbers $\\mathbb{N}$."
 },
 {
 "front": "subset  ($\\subset$)",
