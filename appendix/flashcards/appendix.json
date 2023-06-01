@@ -53,7 +53,7 @@
 },
 {
 "front": "complement<br>$ \\left( \\overline{A} \\right)$",
-"back": "Given some universal set $S$ and a set $A \\subset S$, the <I>complement</I> of $A$, denoted $\\overline{A}$ or $A^c$ is the set of elements in $S$ that are <B>not</B> in A. Mathematically, we can say that $\\overline{A}$ contains all $x \\in S$ such that $x \\notin A$."
+"back": "Given some universal set $S$ and a set $A \\subset S$, the <I>complement</I> of $A$, denoted $\\overline{A}$ or $A^c$, is the set of elements in $S$ that are <B>not</B> in A. Mathematically, we can say that $\\overline{A}$ contains all $x \\in S$ such that $x \\notin A$."
 },
 {
 "front": "Distributive Laws",
