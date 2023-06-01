@@ -1,0 +1,66 @@
+[
+{
+    "front": "set",
+    "back": "An <B>unordered</B> collection of <B>unique</B> items."
+},
+{
+"front": "element or member (of a set)",
+"back": "Any one of the unique items contained in a set."
+},
+{
+"front": "set membership ($\\in$)",
+"back": "The symbol $\\in$ indicates <I>set membership</I>.  Thus if $x \\in A$, then $x$ is an element of the set $A$."
+},
+{
+"front": "cardinality (of a set)",
+"back": "The number of elements in a set. For a set $S$, the cardinality of $S$ is denoted $\\lvert S \\rvert$."
+},
+{
+"front": "finite (set)",
+"back": "A set $S$ is finite if there is a mapping from the elements in $S$ to a subset of the counting numbers of the form $\\{1,2,\\ldots,N\\}$, for some $N < \\infty$."
+},
+{
+"front": "countably infinite (set)",
+"back": "A set $S$ is <I>countably infinite</I> if there is a mapping from the elements in $S$ to the counting numbers $\\mathbb{N}$."
+},
+{
+"front": "uncountably infinite (set)",
+"back": "A set $S$ is <I>uncountably infinite</I> if $\\lvert S \\rvert| = \\infty$ and there it is not possible to create a mapping between the elements in $S$ and the counting numbers $\\mathbb{N}$."
+},
+{
+"front": "subset  ($\\subset$)",
+"back": "A set $A$ is a subset of a set $B$, denoted $A \\subset B$ if $B$ contains every element in $A$. Mathematically, we say $A \\subset B$ if and only if $x \\in A$ implies that $x \\in B$."
+},
+{
+"front": "interval (of the real line)",
+"back": "Consider a set $I \\subset \\mathbb{R}$ and any $a \\in I$ and $b \\in I$, where $b>a$. Then $I$ is an interval if for every $x$ satisfying $a \\le x \\le b $, $x \\in I$."
+},
+{
+"front": "empty set ($\\emptyset$)",
+"back": "The  empty set, denoted $\\emptyset$, is the set with no elements: $\\emptyset = \\{ \\}$."
+},
+{
+"front": "power set ($2^S$)",
+"back": "Given a set $S$, the <I>power set</I> of $S$, denoted $2^S$, is the set of all subsets of $S$. Both $\\emptyset$ and $S$ are included in the power set."
+},
+{
+"front": "union  ($\\bigcup$)",
+"back": "Given sets $A$ and $B$, the <I>union</I> of $A$ and $B$, denoted $A \\cup B$, is a set that contains all elements that are in either $A$, $B$, or both. Mathematically, we say that if $x \\in A$ or $x \\in B$, then $x \\in A \\cup B$."
+},
+{
+"front": "intersection ($\\bigcap$)",
+"back": "Given sets $A$ and $B$, the <I>intersection</I> of $A$ and $B$, denoted $A \\cap B$, is a set that contains all elements that are in $A$ and in  $B$. Mathematically, we say that if then $x \\in A \\cap B$, then $x \\in A$ and $x  \\in B$."
+},
+{
+"front": "complement ($\\overline{A}$)",
+"back": "Given some universal set $S$ and a set $A \\subset S$, the <I>complement</I> of $A$, denoted $\\overline{A}$ or $A^c$ is the set of elements in $S$ that are <B>not</B> in A. Mathematically, we can say that $\\overline{A}$ contains all $x \\in S$ such that $x \\notin A$."
+},
+{
+"front": "Distributive Laws",
+"back": "Given sets $A$, $B$, $C$, the following distributive laws hold: \\begin{align*} A \\cap (B \\cup C) &= ( A \\cap B) \\cup (A \\cap C), \\mbox{ and}  \\\\ A \\cup (B \\cap C) &= ( A \\cup B) \\cap (A \\cup C).\\\\ \\end{align*}"
+},
+{
+"front": "DeMorgan's Laws",
+"back": "Given sets $A$, $B$, $C$, the following hold: \\begin{align*} \\overline{ \\left( A \\cup B \\cup C \\right) } &= \\overline{A} \\cap \\overline{B} \\cap \\overline{C}, \\mbox{ and}\\\\ \\overline{ \\left( A \\cap B \\cap C \\right) } &= \\overline{A} \\cup \\overline{B} \\cup \\overline{C}. \\end{align*}"
+}
+]
