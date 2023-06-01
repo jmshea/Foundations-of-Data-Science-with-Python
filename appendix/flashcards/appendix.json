@@ -40,7 +40,7 @@
 "back": "The  empty set, denoted $\\emptyset$, is the set with no elements: $\\emptyset = \\{ \\}$."
 },
 {
-"front": "power set<br>($2^S$)",
+"front": "power set<br>$\\left( 2^S \\right)$",
 "back": "Given a set $S$, the <I>power set</I> of $S$, denoted $2^S$, is the set of all subsets of $S$. Both $\\emptyset$ and $S$ are included in the power set."
 },
 {
