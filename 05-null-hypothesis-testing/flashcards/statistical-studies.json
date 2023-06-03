@@ -8,16 +8,16 @@
         "back": "A study in which the investigator controls one or more of the variables."
     },
     {
-        "front": "blinding",
-        "back": "A technique that prevents some of the researchers in an experimental study from knowing which patients received which treatment until the study is complete and the data is to be analyzed."
-    },
-    {
         "front": "observational study",
         "back": "A study in which data is collected about variables of interest for some participants without any attempt to control the variables for the participants. In particular, if some of the variables correspond to treatments, there is no attempt to randomize which participants receive which treatments. "
     },
     {
         "front": "randomized control trial (RCT)",
         "back": "An experiment involving participants that are <b>randomly assigned</b> to either a <i>control group</i> or one or more <i>treatment groups</i>. The control group receives no treatment or the standard treatment. The treatment group receives the novel treatment that is to be evaluated."
+    },
+    {
+        "front": "blinding",
+        "back": "A technique that prevents some of the researchers in an experimental study from knowing which patients received which treatment until the study is complete and the data is to be analyzed."
     },
     {
         "front": "natural experiment",
