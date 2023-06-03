@@ -10,5 +10,9 @@
     {
         "front": "codebook (statistical data)",
         "back": "A guide that provides information about the meanings of labels for different features, as well as how the values are encoded for those features."
+    },
+    {
+        "front": "data cleaning",
+        "back": "A process to deal with incorrect, duplicate, missing, corrupt, or incomplete data. "
     }
 ]
