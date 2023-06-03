@@ -8,6 +8,10 @@
         "back": "A study in which the investigator controls one or more of the variables."
     },
     {
+        "front": "blinding",
+        "back": "A technique that prevents some of the researchers in an experimental study from knowing which patients received which treatment until the study is complete and the data is to be analyzed."
+    },
+    {
         "front": "observational study",
         "back": "A study in which data is collected about variables of interest for some participants without any attempt to control the variables for the participants. In particular, if some of the variables correspond to treatments, there is no attempt to randomize which participants receive which treatments. "
     },
@@ -29,7 +33,7 @@
     },
     {
         "front": "sample",
-        "back": "In a <i>population study</i>, a <i>sample</i> is a subset of the population for which data is collected. Ideally, the sample is large enough to provide statistical significance for issues being studied."
+        "back": "In a population study, a <i>sample</i> is a subset of the population for which data is collected. Ideally, the sample is large enough to provide statistical significance for issues being studied."
     },
     {
         "front": "cross-sectional study",
