@@ -36,6 +36,14 @@
         "back": "In a population study, a <i>sample</i> is a subset of the population for which data is collected. Ideally, the sample is large enough to provide statistical significance for issues being studied."
     },
     {
+        "front": "random sampling",
+        "back": "In <I>random sampling</I>, the sample is chosen randomly from the population."
+    },
+    {
+        "front": "convenience sampling",
+        "back": "In <I>convenience sampling</I>, the sample is chosen based on access to a subset of the population."
+    },
+    {
         "front": "cross-sectional study",
         "back": "A <i>cross-sectional study</i> is an observational study that collects data about some population at a single instance in time. "
     },
