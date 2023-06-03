@@ -1,7 +1,7 @@
 [
     {
-        "front": "mode(s) of a distribution    ",
-        "back": "For a distribution of random values,  the value(s) with the maximum probability (or probability density -- see Chapter 8) are the <i>modes</i> of the distribution."
+        "front": "mode(s) of a random distribution    ",
+        "back": "The value(s) with the maximum probability (or probability density)."
     },
     {
         "front": "unimodal distribution    ",
