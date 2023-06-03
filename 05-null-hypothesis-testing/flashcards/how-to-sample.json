@@ -1,6 +1,14 @@
 [
     {
-        "front": "exact permutation test",
-        "back": "The data is permuted among the groups in every possible order. (No data is repeated.)"
+        "front": "bootstrapping",
+        "back":  "A resampling technique that approximates sampling from the distribution of a population by drawing samples <B>with replacement</B> from the original data."
+    },
+    {
+        "front": "permutation testing",
+        "back":  "A statistical technique that uses every mapping (i.e., permutation) from the original data to the test samples."
+    },
+    {
+        "front": "Monte Carlo permutation testing",
+        "back":  "A resampling technique that approximates a permutation test by drawing samples <B>without replacement</B> from the original data."
     }
 ]
