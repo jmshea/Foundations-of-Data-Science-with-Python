@@ -1,0 +1,10 @@
+[
+    {
+        "front": "empirical pdf",
+        "back": "A pdf created from data, for instance by dividing the range of the data into bins and assigning probability density to a bin that is proportional to the relative frequency of points in the bin and inversely proportional to the bin's width."
+    },
+    {
+        "front": "kernel density estimation",
+        "back": "A technique for estimating the pdf of a data set under the assumption that the pdf is smooth. The estimated pdf can be constructed by taking a smooth shape, call a kernel, centering a copy of the kernel at each data point, adding all of the copies, and normalizing the result."
+    }
+]
