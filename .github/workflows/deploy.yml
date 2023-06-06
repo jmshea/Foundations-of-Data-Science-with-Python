@@ -66,11 +66,20 @@ jobs:
         publish_dir: redirects
         keep_files: true
 
-    # Deploy the redirects to gh-pages branch
+    # Deploy the data to gh-pages branch
     - name: GitHub Pages action redirects
       uses: peaceiris/actions-gh-pages@v3.9.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: data
         destination_dir: data
+        keep_files: true
+
+    # Deploy the notebooks to gh-pages branch
+    - name: GitHub Pages action redirects
+      uses: peaceiris/actions-gh-pages@v3.9.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: notebooks
+        destination_dir: notebooks
         keep_files: true
