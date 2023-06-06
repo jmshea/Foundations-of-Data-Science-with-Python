@@ -4,8 +4,12 @@
         "back": "Let $(S,\\mathcal{F},P)$ be a probability space and $X$ be a real RV on $S$. Then the <i>cumulative distribution function (CDF)</i> is the real function $F_X(x) =P (X\\le x)$. "
     },
     {
+        "front": "piecewise function",
+        "back": "A function that has a different functional relationship on different regions of its variable(s)."
+    } ,
+    {
         "front": "staircase function",
-        "back": "A staircase function is a piecewise constant function of its argument that has at most a countable number of pieces."
+        "back": "A staircase function is a piecewise-constant, nondecreasing function of its argument that has at most a countable number of pieces."
     },
     {
         "front": "survival function (SF)",
