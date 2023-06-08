@@ -12,6 +12,10 @@
     "back": "A collection of linear equations on a common $n$-dimensional space (typically $\\mathbb{R}^n$) that are interpreted together, typically with the purpose of finding the subset of the space that satisfies all of the equations simultaneously."
     },
     {
+    "front": "inconsistent (linear equations)",
+    "back": "A system of linear equations is *inconsistent* if there is are no points that simultaneously satisfy all of the equations."
+    },
+    {
         "front": "overdetermined<br>(system of equations)",
         "back": "A system of equations is <i>overdetermined</i> if there are more equations than unknowns."
     },
