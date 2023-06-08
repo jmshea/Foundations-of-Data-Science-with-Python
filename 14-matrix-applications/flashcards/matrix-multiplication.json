@@ -1,0 +1,18 @@
+[
+    {
+        "front": "matrix multiplication",
+        "back": "$\\mathbf{A} \\mathbf{B}$ is defined if the inner dimensions agree, and the output is a $k \\times m$ matrix $\\mathbf{C} = \\mathbf{A} \\mathbf{B}$, where the $k,m$th entry of $\\mathbf{C}$ is given by $c_{k,m} = \\mathbf{a}_{k*} \\cdot \\mathbf{b}_m$."
+    },
+    {
+        "front": "orthogonal matrix",
+        "back": "A (real) square matrix whose columns are a set of orthonormal vectors."
+    },
+    {
+        "front": "Gram matrix",
+        "back": "For a matrix $\\mathbf{A}$, the Gram matrix is the matrix whose $i,j$th entry is the dot product of columns $i$ and $j$ of $\\mathbf{A}$. The Gram matrix can be calculated as $\\mathbf{A}^T \\mathbf{A}$."
+    },
+    {
+        "front": "symmetric matrix",
+        "back": "A matrix $\\mathbf{M}$ is symmetric if the $i,j$th element is equal to the $j,i$th element for any valid $i$ and $j$. Equivalently, $\\mathbf{M}^T = \\mathbf{M}$."
+    }
+]
