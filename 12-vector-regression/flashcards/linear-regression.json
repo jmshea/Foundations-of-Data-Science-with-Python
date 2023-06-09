@@ -19,5 +19,9 @@
     {
         "front": "explained variance<br>(simple linear regression)",
         "back": "In simple linear regression between explanatory vector $\\mathbf{x}$ and response vector $\\mathbf{y}$, the explained variance is the variance in the response data after subtracting off the values predicted from the explanatory data. The explained variance is $r^2 \\sigma_{y}^{2}$, where $\\sigma_{y}^{2}$ is the variance of $\\mathbf{y}$ and $r^2$ is the coefficient of determination."
+    },
+    {
+        "front": "time-series data",
+        "back": "Data that is collected over time, usually at regular intervals. Each data point is associated with a timestamp indicating when the data was collected."
     }
 ]
