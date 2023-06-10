@@ -10,5 +10,13 @@
     {
     "front": "pseudoinverse",
     "back": "For an $m \\times n$ matrix real $\\mathbf{A}$ with $m>n$  (i.e., $\\mathbf{A}$ is tall) and linearly independent columns, the <i>Moore-Penrose pseudoinverse</i> of $\\mathbf{A}$ is denoted by $\\mathbf{A}^\\dagger$ and given by \\begin{equation*} \\mathbf{A}^\\dagger = ( \\mathbf{A}^T \\mathbf{A})^{-1} \\mathbf{A}^T \\end{equation*}"
-}
+    },
+    {
+    "front": "ordinary least squares (OLS)",
+    "back": "For a system of linear equations $\\mathbf{A}\\mathbf{x} = \\mathbf{b}$, OLS gives the $\\mathbf{X}$ that minimizes the norm of the error, $$ \\hat{\\mathbf{x}} =  \\mathbf{A}^\\dagger \\mathbf{b}.$$ "
+    },
+    {
+    "front": "multiple linear regression",
+    "back": "Regression that finds a linear relation between multiple explanatory variables and the response variable."
+    }
 ]
