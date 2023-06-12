@@ -13,8 +13,9 @@ sections:
   - file: 01-intro/intro-jupyter-and-python
   - file: 01-intro/jupyter-start
   - file: 01-intro/python-start
-  - file: 01-intro/review
   - file: 01-intro/acknowledgments
+  - file: 01-intro/review
+  - file: 01-intro/summary
 - file: 02-first-stats/intro
   sections:
   - file: 02-first-stats/motivating-problem
@@ -22,6 +23,7 @@ sections:
   - file: 02-first-stats/first-vis
   - file: 02-first-stats/first-stats
   - file: 02-first-stats/review
+  - file: 02-first-stats/summary
 - file: 03-first-data/intro
   sections:
   - file: 03-first-data/pandas-start
@@ -30,8 +32,9 @@ sections:
   - file: 03-first-data/summary-stats
   - file: 03-first-data/histogram
   - file: 03-first-data/hypothesis-testing
-  - file: 03-first-data/2d-statistics-preview.ipynb
+  - file: 03-first-data/2d-statistics-preview
   - file: 03-first-data/review
+  - file: 03-first-data/summary
 - file: 04-probability1/intro
   sections:
   - file: 04-probability1/outcomes-samplespaces-events
@@ -136,6 +139,7 @@ sections:
   sections:
   - file: 14-matrix-applications/matrices
   - file: 14-matrix-applications/matrix-ops
+  - file: 14-matrix-applications/matrix-multiplication
   - file: 14-matrix-applications/determinant
   - file: 14-matrix-applications/linear-eqs
   - file: 14-matrix-applications/linear-eqs2
