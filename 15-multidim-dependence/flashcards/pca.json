@@ -8,7 +8,7 @@
     "back": "In dimensionality reduction, the <I>explained variance</I> is the ratio of the total variance after dimensionality reduction to the total variance of the original data set."
 },
     {
-    "front": "test-train split",
+    "front": "train-test split",
     "back": "The data is randomly partitioned into a training set and a testing set. The training set is used to train an algorithm or develop a model and usually uses the majority of the data; typical values are 75% of the total data. The testing set is used to make sure that the algorithm or model is not overfit; it consists of all the data not in the training set."
 }
 ]
