@@ -13,7 +13,7 @@
 },
     {
     "front": "modal matrix",
-    "back": "For a square matrix $\\mathbf{M}$, the matrix whose columns are the eigenvectors of $\\mathbf{M}$. "
+    "back": "For a square matrix $\\mathbf{M}$, the matrix whose columns are the normalized eigenvectors of $\\mathbf{M}$. "
 },
     {
     "front": "eigendecomposition",
