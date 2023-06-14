@@ -4,10 +4,6 @@
         "back": "Point conditioning occurs when the conditioning  event is that a continuous random variable is equal to a particular value. I.e., $P(A|X=x)$, where $X$ is a continuous random variable."
     }, 
     {
-        "front": "likelihood for discrete-input, continuous-output systems",
-        "back": "A conditional density in a form like $f_X(x|A_i)$"
-    },
-    {
         "front": "<it>a posteriori</it> probability for discrete-input, continuous-output systems",
         "back": "A conditional probability in a point-conditioning form like $P(A|X=x)$" 
     },
