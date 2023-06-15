@@ -8,8 +8,16 @@
         "back": "The process of extracting meaning from data."
     },
     {
-        "front": "variable",
-        "back": "A particular characteristic, measurement, or fact about a particular member of a group."
+        "front": "data point",
+        "back": "A collection of one or more pieces of information collected about a single individual or entity."
+    },
+    {
+        "front": "variables",
+        "back": "Particular characteristics, measurements, or facts that make up a data point."
+    },
+    {
+        "front": "features",
+        "back": "Individual piece of information in a data set. While a variable typically represents unprocessed or raw data, features can include both variables and processed versions of the variables."
     },
     {
         "front": "quantitative data",
