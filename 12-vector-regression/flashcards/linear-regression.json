@@ -8,6 +8,14 @@
         "back": "A variable or feature that is to be predicted or explained using another variable. Sometimes called a dependent variable, especially if this variable is measured as the result of an experiment."
     },
     {
+        "front": "linear regression",
+        "back": "A technique for determining a linear relationship between one or more explanatory variables and a response variable, where the parameters of the linear relationship are estimated from the data."
+    },
+    {
+        "front": "simple linear regression",
+        "back": "Linear regression with a single explanatory variable."
+    },
+    {
         "front": "coefficient of determination<br>(simple linear regression)",
         "back": "In simple linear regression between two data vectors $\\mathbf{x}$ and $\\mathbf{y}$ with Pearson's correlation coefficient $r$, the <i>coefficient of determination</i> is the value $r^2$ (pronounced \"R squared\"), which is also denoted $R^2$."
     },
