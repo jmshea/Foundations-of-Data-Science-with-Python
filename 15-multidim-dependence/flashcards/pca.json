@@ -4,7 +4,7 @@
     "back": "In PCA, a <I>scree plot</I> is a line plot that illustrates the eigenvalues of the covariance matrix of a multidimensional dataset."
 },
     {
-    "front": "explained variance",
+    "front": "explained variance<br>(dimensionality reduction)",
     "back": "In dimensionality reduction, the <I>explained variance</I> is the ratio of the total variance after dimensionality reduction to the total variance of the original data set."
 },
     {
