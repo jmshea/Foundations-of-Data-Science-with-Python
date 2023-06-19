@@ -1,5 +1,9 @@
 [
     {
+        "front": "random experiment",
+        "back": "An experiment for which the outcome cannot be predicted with certainty."
+    },
+    {
         "front": "probability",
         "back": "A number between 0 and 1 that we assign to an event that is proportional to how likely that event is to occur."
     }
