@@ -1,5 +1,9 @@
 [
     {
+        "front": "summary statistic",
+        "back": "A numerical value calculated from data that measures some characteristic of the data."
+    },
+    {
         "front": "<i>mode</i> of a data set",
         "back": "A value in the data set that appears most often. As there may be more than one most common value, the mode of a data set is not unique."
     },
