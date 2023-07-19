@@ -1,161 +1,137 @@
-format: jb-article
+format: jb-book
 root: intro
-options:
+parts:
+- caption: Online Resources for Book Chapters
   numbered: true
-sections:
-- file: 01-intro/intro
-  sections:
-  - file: 01-intro/who-for
-  - file: 01-intro/why-this-book
-  - file: 01-intro/what-is-data-science
-  - file: 01-intro/what-book-covers
-  - file: 01-intro/what-book-does-not-cover
-  - file: 01-intro/intro-jupyter-and-python
-  - file: 01-intro/jupyter-start
-  - file: 01-intro/python-start
-  - file: 01-intro/acknowledgments
-  - file: 01-intro/review
-  - file: 01-intro/summary
-- file: 02-first-stats/intro
-  sections:
-  - file: 02-first-stats/motivating-problem
-  - file: 02-first-stats/first-sims
-  - file: 02-first-stats/first-vis
-  - file: 02-first-stats/first-stats
-  - file: 02-first-stats/review
-  - file: 02-first-stats/summary
-- file: 03-first-data/intro
-  sections:
-  - file: 03-first-data/pandas-start
-  - file: 03-first-data/visualization
-  - file: 03-first-data/partitions
-  - file: 03-first-data/summary-stats
-  - file: 03-first-data/histogram
-  - file: 03-first-data/hypothesis-testing
-  - file: 03-first-data/2d-statistics-preview
-  - file: 03-first-data/review
-  - file: 03-first-data/summary
-- file: 04-probability1/intro
-  sections:
-  - file: 04-probability1/outcomes-samplespaces-events
-  - file: 04-probability1/relative-frequency
-  - file: 04-probability1/fair-experiments
-  - file: 04-probability1/axiomatic-prob
-  - file: 04-probability1/corollaries
-  - file: 04-probability1/combinatorics
-  - file: 04-probability1/review
-  - file: 04-probability1/summary
-- file: 05-null-hypothesis-testing/intro
-  sections:
-  - file: 05-null-hypothesis-testing/statistical-studies
-  - file: 05-null-hypothesis-testing/nhst
-  - file: 05-null-hypothesis-testing/calculating-p-values
-  - file: 05-null-hypothesis-testing/how-to-sample
-  - file: 05-null-hypothesis-testing/example-nhst
-  - file: 05-null-hypothesis-testing/bootstrap-dist-confidence-intervals
-  - file: 05-null-hypothesis-testing/errors-and-power
-  - file: 05-null-hypothesis-testing/review
-  - file: 05-null-hypothesis-testing/summary
-- file: 06-conditional-prob/intro
-  sections:
-  - file: 06-conditional-prob/simulating-cond-probs
-  - file: 06-conditional-prob/notation-and-intuition
-  - file: 06-conditional-prob/definition
-  - file: 06-conditional-prob/relating-cond-uncond
-  - file: 06-conditional-prob/more-on-simulating
-  - file: 06-conditional-prob/independence
-  - file: 06-conditional-prob/fair-exps
-  - file: 06-conditional-prob/conditional-independence
-  - file: 06-conditional-prob/chain-rules-total-prob
-  - file: 06-conditional-prob/review
-  - file: 06-conditional-prob/summary
-- file: 07-bayesian-methods/intro
-  sections:
-  - file: 07-bayesian-methods/bayes-rule
-  - file: 07-bayesian-methods/bayes-hidden-state
-  - file: 07-bayesian-methods/optimal-decisions
-  - file: 07-bayesian-methods/bayesian-hypothesis-testing
-  - file: 07-bayesian-methods/review
-  - file: 07-bayesian-methods/summary
-- file: 08-random-variables/intro
-  sections:
-  - file: 08-random-variables/definition
-  - file: 08-random-variables/discrete-rvs
-  - file: 08-random-variables/cdfs
-  - file: 08-random-variables/important-discrete-rvs
-  - file: 08-random-variables/continuous-rvs
-  - file: 08-random-variables/important-continuous-rvs
-  - file: 08-random-variables/kernel-density-estimation
-  - file: 08-random-variables/conditioning-with-rvs
-  - file: 08-random-variables/review
-  - file: 08-random-variables/summary
-- file: 09-moments/intro
-  sections:
-  - file: 09-moments/expected-value
-  - file: 09-moments/expected-value-continuous
-  - file: 09-moments/moments
-  - file: 09-moments/parameter-estimation
-  - file: 09-moments/confidence-intervals-estimates
-  - file: 09-moments/mean-hypothesis-testing
-  - file: 09-moments/parameter-distributions
-  - file: 09-moments/sample-size-selection
-  - file: 09-moments/review
-  - file: 09-moments/summary
-- file: 10-conditional-stats/intro
-  sections:
-  - file: 10-conditional-stats/binary-decisions-nonbayesian
-  - file: 10-conditional-stats/point-conditioning
-  - file: 10-conditional-stats/bayesian-decisions
-  - file: 10-conditional-stats/review
-  - file: 10-conditional-stats/summary
-- file: 11-categorical-data/intro
-  sections:
-  - file: 11-categorical-data/contingency-tables
-  - file: 11-categorical-data/nhst
-  - file: 11-categorical-data/goodness-of-fit
-  - file: 11-categorical-data/review
-  - file: 11-categorical-data/summary
-- file: 12-vector-regression/intro
-  sections:
-  - file: 12-vector-regression/vectors
-  - file: 12-vector-regression/vector-operations
-  - file: 12-vector-regression/vector-stats
-  - file: 12-vector-regression/linear-regression
-  - file: 12-vector-regression/nhst
-  - file: 12-vector-regression/nonlinear-regression
-  - file: 12-vector-regression/review
-  - file: 12-vector-regression/summary
-- file: 13-clustering-transforming/intro
-  sections:
-  - file: 13-clustering-transforming/k-means
-  - file: 13-clustering-transforming/vector-correlation
-  - file: 13-clustering-transforming/spanningsets-bases
-  - file: 13-clustering-transforming/fft
-  - file: 13-clustering-transforming/gram-schmidt
-  - file: 13-clustering-transforming/feature-extraction
-  - file: 13-clustering-transforming/review
-  - file: 13-clustering-transforming/summary
-- file: 14-matrix-applications/intro
-  sections:
-  - file: 14-matrix-applications/matrices
-  - file: 14-matrix-applications/matrix-ops
-  - file: 14-matrix-applications/matrix-multiplication
-  - file: 14-matrix-applications/determinant
-  - file: 14-matrix-applications/linear-eqs
-  - file: 14-matrix-applications/linear-eqs2
-  - file: 14-matrix-applications/matrix-inverses
-  - file: 14-matrix-applications/polynomial-interpolation
-  - file: 14-matrix-applications/ls-fitting
-  - file: 14-matrix-applications/review
-  - file: 14-matrix-applications/summary
-- file: 15-multidim-dependence/intro
-  sections:
-    - file: 15-multidim-dependence/joint-rvs
-    - file: 15-multidim-dependence/linear-transforms
-    - file: 15-multidim-dependence/eigen
-    - file: 15-multidim-dependence/decorrelation
-    - file: 15-multidim-dependence/pca
-    - file: 15-multidim-dependence/review
-    - file: 15-multidim-dependence/summary
-- file: 16-next-steps/next-steps
-- file: appendix/appendix
+  chapters:
+  - file: 01-intro/intro
+    sections:
+    - file: 01-intro/who-for
+    - file: 01-intro/why-this-book
+    - file: 01-intro/what-is-data-science
+    - file: 01-intro/what-book-covers
+    - file: 01-intro/what-book-does-not-cover
+    - file: 01-intro/intro-jupyter-and-python
+    - file: 01-intro/jupyter-start
+    - file: 01-intro/python-start
+    - file: 01-intro/review
+    - file: 01-intro/summary
+  - file: 02-first-stats/intro
+    sections:
+    - file: 02-first-stats/motivating-problem
+    - file: 02-first-stats/first-sims
+    - file: 02-first-stats/first-vis
+    - file: 02-first-stats/first-stats
+    - file: 02-first-stats/review
+    - file: 02-first-stats/summary
+    - file: 03-first-data/intro
+    sections:
+    - file: 03-first-data/pandas-start
+    - file: 03-first-data/visualization
+    - file: 03-first-data/partitions
+    - file: 03-first-data/summary-stats
+    - file: 03-first-data/histogram
+    - file: 03-first-data/hypothesis-testing
+    - file: 03-first-data/2d-statistics-preview
+    - file: 03-first-data/review
+    - file: 03-first-data/summary
+  - file: 04-probability1/intro
+    sections:
+    - file: 04-probability1/outcomes-samplespaces-events
+    - file: 04-probability1/relative-frequency
+    - file: 04-probability1/fair-experiments
+    - file: 04-probability1/axiomatic-prob
+    - file: 04-probability1/corollaries
+    - file: 04-probability1/combinatorics
+    - file: 04-probability1/review
+    - file: 04-probability1/summary
+  - file: 05-null-hypothesis-testing/intro
+    sections:
+    - file: 05-null-hypothesis-testing/statistical-studies
+    - file: 05-null-hypothesis-testing/nhst
+    - file: 05-null-hypothesis-testing/calculating-p-values
+    - file: 05-null-hypothesis-testing/how-to-sample
+    - file: 05-null-hypothesis-testing/example-nhst
+    - file: 05-null-hypothesis-testing/bootstrap-dist-confidence-intervals
+    - file: 05-null-hypothesis-testing/errors-and-power
+    - file: 05-null-hypothesis-testing/review
+    - file: 05-null-hypothesis-testing/summary
+  - file: 06-conditional-prob/intro
+    sections:
+    - file: 06-conditional-prob/simulating-cond-probs
+    - file: 06-conditional-prob/notation-and-intuition
+    - file: 06-conditional-prob/definition
+    - file: 06-conditional-prob/relating-cond-uncond
+    - file: 06-conditional-prob/more-on-simulating
+    - file: 06-conditional-prob/independence
+    - file: 06-conditional-prob/fair-exps
+    - file: 06-conditional-prob/conditional-independence
+    - file: 06-conditional-prob/chain-rules-total-prob
+    - file: 06-conditional-prob/review
+    - file: 06-conditional-prob/summary
+  - file: 07-bayesian-methods/intro
+    sections:
+    - file: 07-bayesian-methods/bayes-rule
+    - file: 07-bayesian-methods/bayes-hidden-state
+    - file: 07-bayesian-methods/optimal-decisions
+    - file: 07-bayesian-methods/bayesian-hypothesis-testing
+    - file: 07-bayesian-methods/review
+    - file: 07-bayesian-methods/summary
+  - file: 08-random-variables/intro
+    sections:
+    - file: 08-random-variables/definition
+    - file: 08-random-variables/discrete-rvs
+    - file: 08-random-variables/cdfs
+    - file: 08-random-variables/important-discrete-rvs
+    - file: 08-random-variables/continuous-rvs
+    - file: 08-random-variables/important-continuous-rvs
+    - file: 08-random-variables/kernel-density-estimation
+    - file: 08-random-variables/conditioning-with-rvs
+    - file: 08-random-variables/review
+    - file: 08-random-variables/summary
+  - file: 09-moments/intro
+    sections:
+    - file: 09-moments/expected-value
+    - file: 09-moments/expected-value-continuous
+    - file: 09-moments/moments
+    - file: 09-moments/parameter-estimation
+    - file: 09-moments/confidence-intervals-estimates
+    - file: 09-moments/mean-hypothesis-testing
+    - file: 09-moments/parameter-distributions
+    - file: 09-moments/sample-size-selection
+    - file: 09-moments/review
+    - file: 09-moments/summary
+  - file: 10-conditional-stats/intro
+    sections:
+    - file: 10-conditional-stats/binary-decisions-nonbayesian
+    - file: 10-conditional-stats/point-conditioning
+    - file: 10-conditional-stats/bayesian-decisions
+    - file: 10-conditional-stats/review
+    - file: 10-conditional-stats/summary
+  - file: 11-categorical-data/intro
+    sections:
+    - file: 11-categorical-data/contingency-tables
+    - file: 11-categorical-data/nhst
+    - file: 11-categorical-data/goodness-of-fit
+    - file: 11-categorical-data/review
+    - file: 11-categorical-data/summary
+  - file: 12-vector-regression/intro
+    sections:
+    - file: 12-vector-regression/vector-stats
+    - file: 12-vector-regression/linear-regression
+    - file: 12-vector-regression/nhst
+    - file: 12-vector-regression/nonlinear-regression
+    - file: 12-vector-regression/review
+    - file: 12-vector-regression/summary
+  - file: 15-multidim-dependence/intro
+    sections:
+      - file: 15-multidim-dependence/joint-rvs
+      - file: 15-multidim-dependence/linear-transforms
+      - file: 15-multidim-dependence/decorrelation
+      - file: 15-multidim-dependence/pca
+      - file: 15-multidim-dependence/review
+      - file: 15-multidim-dependence/summary
+- caption: Online Resources for Book Chapters
+  chapters:
+  - file: 16-next-steps/next-steps
+  - file: appendix/appendix
