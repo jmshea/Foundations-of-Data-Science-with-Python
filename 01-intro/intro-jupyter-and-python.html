@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/01-intro/intro-jupyter-and-python.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="This page is a placeholder for interactive elements for Section 1.6 of Foundations of Data Science with Python. No interactive elements are available for this section at this time." />
+<meta property="og:description" content="Getting Started in Jupyter: Let’s begin exploring JupyterLab using an existing notebook: 1) Download a Jupyter notebook file. We will use the file “jupyter-intro.ipynb”, which is available by click..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="This page is a placeholder for interactive elements for Section 1.6 of Foundations of Data Science with Python. No interactive elements are available for this section at this time." />
+<meta name="description" content="Getting Started in Jupyter: Let’s begin exploring JupyterLab using an existing notebook: 1) Download a Jupyter notebook file. We will use the file “jupyter-intro.ipynb”, which is available by click..." />
 
     <title>1.6. Extremely Brief Intro to Jupyter and Python &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -77,11 +77,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/boldsymbol"]}, "tex": {"macros": {"P": "\\operatorname{P}"}, "packages": {"[+]": ["boldsymbol"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '01-intro/intro-jupyter-and-python';</script>
     <link rel="canonical" href="https://www.fdsp.net/01-intro/intro-jupyter-and-python.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.7. Getting Started in Jupyter" href="jupyter-start.html" />
+    <link rel="next" title="2. First Simulations, Visualizations, and Statistical Tests" href="../02-first-stats/intro.html" />
     <link rel="prev" title="1.5. What data science topics does this book not cover?" href="what-book-does-not-cover.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -182,9 +184,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="what-book-covers.html">1.4. What data science topics does this book cover?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="what-book-does-not-cover.html">1.5. What data science topics does this book <strong>not</strong> cover?</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">1.6. Extremely Brief Intro to Jupyter and Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jupyter-start.html">1.7. Getting Started in Jupyter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="python-start.html">1.8. Getting Started in Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="review.html">1.9. Review</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../02-first-stats/intro.html">2. First Simulations, Visualizations, and Statistical Tests</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -432,7 +431,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -448,6 +449,50 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-in-jupyter">1.6.1. Getting Started in Jupyter</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-the-basics-of-jupyterlab">1.6.1.1. Learn the basics of JupyterLab</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-structure">1.6.1.1.1. Notebook structure</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab-interface-modes">1.6.1.1.2. JupyterLab interface modes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-cells">1.6.1.2. More on cells</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-markdown-in-jupyter">1.6.1.3. Intro to Markdown in Jupyter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-notebooks-into-and-out-of-jupyterlab">1.6.1.4. Getting Notebooks Into and Out of JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-magics">1.6.1.5. Jupyter Magics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-your-work-closing-notebooks-and-closing-jupyterlab">1.6.1.6. Saving Your Work, Closing Notebooks, and Closing JupyterLab</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-in-python">1.6.2. Getting Started in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">1.6.2.1. Hello World!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">1.6.2.2. Comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-variables-and-types">1.6.2.3. Python Variables and Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-data-types">1.6.2.4. Basic Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-variables">1.6.2.5. Copying Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indentation-and-line-breaks-in-python">1.6.2.6. Indentation and Line Breaks in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loops-and-conditionals">1.6.2.7. Loops and Conditionals</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-in-statements">1.6.2.7.1. <code class="docutils literal notranslate"><span class="pre">for</span></code>… <code class="docutils literal notranslate"><span class="pre">in</span></code> Statements</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statements">1.6.2.7.2. <code class="docutils literal notranslate"><span class="pre">if</span></code> Statements</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#while-statements">1.6.2.7.3. <code class="docutils literal notranslate"><span class="pre">while</span></code> Statements</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">1.6.2.8. Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help-and-completion">1.6.2.9. Getting Help and Completion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-modules-and-namespaces">1.6.2.10. Python Modules and Namespaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-arrays">1.6.2.10.1. NumPy Arrays</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-errors-and-rounding">1.6.2.11. Numerical Errors and Rounding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-big-numbers-in-python">1.6.2.12. Writing Big Numbers in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-other-resources">1.6.2.13. Summary and Other Resources</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -459,8 +504,2094 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="extremely-brief-intro-to-jupyter-and-python">
 <h1><span class="section-number">1.6. </span>Extremely Brief Intro to Jupyter and Python<a class="headerlink" href="#extremely-brief-intro-to-jupyter-and-python" title="Permalink to this heading">#</a></h1>
-<p>This page is a placeholder for interactive elements for Section 1.6 of <em>Foundations of Data Science with Python</em>.
-No interactive elements are available for this section at this time.</p>
+<section id="getting-started-in-jupyter">
+<h2><span class="section-number">1.6.1. </span>Getting Started in Jupyter<a class="headerlink" href="#getting-started-in-jupyter" title="Permalink to this heading">#</a></h2>
+<p>Let’s begin exploring JupyterLab using an existing notebook:</p>
+<p><strong>1) Download a Jupyter notebook file.</strong></p>
+<p>We will use the file “jupyter-intro.ipynb”, which is available by clicking on the link below or typing the link into your browser:</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/jupyter-intro.ipynb">https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/jupyter-intro.ipynb</a></p>
+<p>If your browser displays the notebook as text, you will need to tell it to save it as a file. You can usually do this by right-clicking or control-clicking in the browser window and choosing to save the page as a file. For instance, in Safari 14, choose the “Save Page As…” menu item. Be sure to name your file with a <em>.ipynb</em> ending.</p>
+<p><em>Hint:</em> If your file was saved to your default Downloads folder, be sure to move it to an appropriate folder in your <code class="docutils literal notranslate"><span class="pre">data-science</span></code> folder to keep things organized!</p>
+<p><strong>2) Start JupyterLab.</strong></p>
+<p>JupyterLab can be started from the Anaconda-Navigator program that is installed with the Anaconda distribution. Start Anaconda-Navigator, scroll to find JupyterLab, and then click the <em>Launch</em> button under JupyterLab. JupyterLab should start up in your browser.</p>
+<p><em>Alternative for command-line users:</em> From the command prompt, you can start JupyterLab by typing <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> (provided the Anaconda bin directory is on the command line search path). Because setting this up is specialized to each operating system and command shell, the details are omitted. However, details of how to set up the path for Anaconda can be found at many sites online.</p>
+<p>Your JupyterLab should open to a view that looks something like the one below:</p>
+<figure class="align-default" id="jupyter-lab-start">
+<a class="reference internal image-reference" href="01-intro/jupyter-lab-start.png"><img alt="01-intro/jupyter-lab-start.png" src="01-intro/jupyter-lab-start.png" style="height: 5in;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.1 </span><span class="caption-text">The JupyterLab interface.</span><a class="headerlink" href="#jupyter-lab-start" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you have used JupyterLab before, it may not look like this – it will pick up where you left off!</p>
+</div>
+<p>The JupyterLab interface has many different parts:</p>
+<ol class="arabic simple">
+<li><p>The <strong>menu bar</strong> is across the very top of the JupyterLab app. I will introduce the use of menus later in this lesson.</p></li>
+<li><p>The <strong>left sidebar</strong> occupies the left side below the menu bar. It includes several different tabs, which you can switch between by clicking the various icons on the very far left of the left sidebar. In <a class="reference internal" href="#jupyter-lab-start"><span class="std std-numref">Fig. 1.1</span></a>, the folder icon is highlighted, which indicates that the file browser is selected. For this book, we will use the left sidebar only to access the file browser.</p></li>
+<li><p>The <strong>main work area</strong> is to the right of the left sidebar. The main work area will usually show whatever document you are working on. However, if you have not opened any document yet, it will show you different types of notebooks that you can open and other tools that you can access. To start a completely new Jupyter notebook file that can run Python 3 code, you could click on the Python 3 icon under <code class="docutils literal notranslate"><span class="pre">Notebooks</span></code>. For now, you do not need to do that.</p></li>
+</ol>
+<p>Detailed documentation for JupyterLab is available at <a class="reference external" href="https://jupyterlab.readthedocs.io/">https://jupyterlab.readthedocs.io/</a>.</p>
+<p><strong>3) Navigate to the downloaded notebook.</strong></p>
+<p>Use the file browser in the left sidebar of JupyterLab to navigate to the downloaded file.</p>
+<p><em>If the file browser is not already showing your files, click on the folder icon (on the very left-hand side of the window) to switch to it.</em></p>
+<p>Navigation using the file browser should be similar to navigating in most file selection boxes:</p>
+<ul class="simple">
+<li><p>Single click on items to select them.</p></li>
+<li><p>Double click on a folder to navigate into it.</p></li>
+<li><p>Double click on a file to open it.</p></li>
+<li><p>As you navigate into folders, the current path (relative to your starting path) is shown above the file list. You can navigate back out of a folder by clicking on the parent folder’s <em>name</em> in the current path.</p></li>
+</ul>
+<p>If you downloaded the file <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> to the <code class="docutils literal notranslate"><span class="pre">chapter1</span></code> subdirectory of the <code class="docutils literal notranslate"><span class="pre">data-science</span></code> directory, which lies in your home directory, then  you would:</p>
+<ul class="simple">
+<li><p>Double click on the <code class="docutils literal notranslate"><span class="pre">data-science</span></code> folder.</p></li>
+<li><p>Double click on the <code class="docutils literal notranslate"><span class="pre">chapter1</span></code> folder.</p></li>
+<li><p>Double click on the file <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code>.</p></li>
+</ul>
+<p>The file <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> should open in the main work area.</p>
+<section id="learn-the-basics-of-jupyterlab">
+<h3><span class="section-number">1.6.1.1. </span>Learn the basics of JupyterLab<a class="headerlink" href="#learn-the-basics-of-jupyterlab" title="Permalink to this heading">#</a></h3>
+<p>After opening the <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> notebook, take a minute to scroll through the notebook before interacting with it.
+Note that the notebook includes formatted text, graphics, mathematics, and Python programming code.
+You will learn to use all of these features as you work through this book.</p>
+<section id="notebook-structure">
+<h4><span class="section-number">1.6.1.1.1. </span>Notebook structure<a class="headerlink" href="#notebook-structure" title="Permalink to this heading">#</a></h4>
+<p>Jupyter notebooks are subdivided into parts called <strong>cells</strong>. Each cell can be used for different purposes; we will use them for either Python code or for Markdown.  Markdown is a simple markup language that allows the creation of formatted text with math and graphics. Code cells are subdivided into Input and Output parts. Single click on any part of the <code class="docutils literal notranslate"><span class="pre">intro.ipynb</span></code> notebook to select a cell. The selected cell will be indicated by a color bar along the entire left side of the cell.</p>
+</section>
+<section id="jupyterlab-interface-modes">
+<span id="index-0"></span><h4><span class="section-number">1.6.1.1.2. </span>JupyterLab interface modes<a class="headerlink" href="#jupyterlab-interface-modes" title="Permalink to this heading">#</a></h4>
+<p>The JupyterLab user interface can be in one of two modes, and these modes affect what you can do with a cell:</p>
+<ul class="simple">
+<li><p>In <strong>Edit Mode</strong>, the focus is on one cell, which will be outlined in color (blue on my computer with the default theme), and the cursor will contain a blinking cursor indicating where typed text will appear.</p></li>
+<li><p>In <strong>Command Mode</strong>, you cannot edit or enter text into a cell. Instead, you can navigate among cells and use keyboard shortcuts to act on them, including running cells, selecting groups of cells, and copying/cutting/pasting or deleting cells.</p></li>
+</ul>
+<p>There are several ways to switch between modes:</p>
+<p>In <strong>Command Mode</strong>, here are two ways to switch to <strong>Edit Mode</strong> and begin editing a cell:</p>
+<ul class="simple">
+<li><p>Double-click on a cell.</p></li>
+<li><p>Select a cell using the cursor keys and then press Enter.</p></li>
+</ul>
+<p>In <strong>Edit Mode</strong>, here are two ways to switch to <strong>Command Mode</strong>:</p>
+<ul class="simple">
+<li><p>Press the ESC key. The current cell is <em>not evaluated</em>, but it will be selected in <strong>Command Mode</strong>.</p></li>
+<li><p>If editing a cell that is <em>not</em> the last cell in the notebook, press Shift-Enter to <em>evaluate</em> the current cell and return to <strong>Command Mode</strong>. (If you are in the last cell of the notebook, Shift-Enter will evaluate the current cell, create a new cell below it, and remain in <strong>Edit Mode</strong> in the newly created cell.)</p></li>
+</ul>
+</section>
+</section>
+<section id="more-on-cells">
+<h3><span class="section-number">1.6.1.2. </span>More on cells<a class="headerlink" href="#more-on-cells" title="Permalink to this heading">#</a></h3>
+<p>In <strong>Edit Mode</strong>, code or Markdown can be typed into a cell. Remember that each cell has a <em>cell type</em> associated with it. The cell type does not limit what can be entered into a cell.  The cell type <strong>determines how a cell is evaluated</strong>.  When a cell is evaluated, the contents are parsed by either a Markdown render (for a Markdown cell) or the Python kernel (for a Code cell).
+A <em>kernel</em> is a process that can run code that has been entered in the notebook. JupyterLab supports different kernels, but we will only use a Python kernel.
+Cells may be evaluated in many different ways. Here are a few of the typical ways that we will use:</p>
+<ul class="simple">
+<li><p>Most commonly, we will evaluate the current cell by pressing <code class="docutils literal notranslate"><span class="pre">Shift-Enter</span></code> on the keyboard. This will always evaluate the current cell. If this is the last cell in the notebook, it will also insert a new cell below the current cell, making it easy to continue building the notebook.</p></li>
+<li><p>It is also possible to evaluate a cell using the toolbar at the top of the notebook.  Use the triangular “play” button (pointed to by the red arrow in the image below) to execute the currently selected cell or cells.
+<img alt="Play button to evaluate a notebook cell" src="01-intro/play-button.png" /></p></li>
+<li><p>Sometimes we wish to make changes in the middle of an existing notebook. To evaluate the current cell and insert a new cell below it, press <code class="docutils literal notranslate"><span class="pre">Alt-Enter</span></code> on the computer keyboard.</p></li>
+<li><p>Cells can also be run by some of the commands in the <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> menu in the JupyterLab menu. For example, it is always best to reset the Python kernel and run all the cells in a notebook from top to bottom before sharing a Jupyter notebook with someone else (for example, before submitting an assignment). To do this, click on the <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> menu and choose the <code class="docutils literal notranslate"><span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells...</span></code> menu item.</p></li>
+</ul>
+<p>If you enter Markdown into a Code cell or Python into a Markdown cell, the results will not be what you intend. For instance, most Markdown is not valid Python, and so if Markdown is entered into a Code cell, a syntax error will be displayed when the cell is evaluated.  Fortunately, you can change the cell type afterward to make it evaluate properly.</p>
+<div class="warning admonition">
+<p class="admonition-title">Important!</p>
+<p>New cells, including the starting cell of a new notebook, start as <em>Code</em> cells.</p>
+</div>
+<p>Cells start as <em>Code</em> cells, but we often want to enter Markdown instead. We also may wish to switch a <em>Markdown</em> cell back to a <em>Code</em> cell. There are three easy ways to change the cell type:</p>
+<ul class="simple">
+<li><p>As seen below, you can use the drop-down menu at the top of the notebook to set the cell type to <em>Code</em>, <em>Markdown</em>, or <em>Raw</em>.</p></li>
+</ul>
+<p><img alt="" src="01-intro/cell-type-dropdown.png" /></p>
+<ul class="simple">
+<li><p>If you are in command mode, you can use a keyboard shortcut to change the type of a selected cell. The standard keyboard shortcuts are <code class="docutils literal notranslate"><span class="pre">m</span></code> for <em>Markdown</em> and <code class="docutils literal notranslate"><span class="pre">y</span></code> for <em>Code</em>.</p></li>
+<li><p>If you are not in command mode, you can still use a keyboard shortcut, but you will need to press <code class="docutils literal notranslate"><span class="pre">Control-m</span></code> first, and then press either <code class="docutils literal notranslate"><span class="pre">m</span></code> for <em>Markdown</em> or <code class="docutils literal notranslate"><span class="pre">y</span></code> for <em>Code</em>.</p></li>
+</ul>
+</section>
+<section id="intro-to-markdown-in-jupyter">
+<h3><span class="section-number">1.6.1.3. </span>Intro to Markdown in Jupyter<a class="headerlink" href="#intro-to-markdown-in-jupyter" title="Permalink to this heading">#</a></h3>
+<p>In this book, you will use Jupyter both to perform data analysis and to create documents that describe the results of your analysis.
+Although we will use code to process the data and generate graphs, that is usually not enough to tell the story to a reader of your document. Markdown is used to add text, heading, mathematics, and other graphics.</p>
+<p>The example notebook <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> demonstrates the main features of Markdown that we will need in this book. Recall that you can double click on any cell in the notebook to see the Markdown source. The <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> notebook  illustrates several features of Markdown:</p>
+<p><strong>1. Headings</strong></p>
+<p>The first cell (starting with “Intro to Markdown”) illustrates how to use Markdown to format headings.
+Headings are entered by prefacing text with one or more # (usually pronounced “hash”) symbols followed by a space. If you know any HTML, then <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Title</span></code> is equivalent to a <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;Title&lt;/h1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">###</span> <span class="pre">Subtitle</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">&lt;h2&gt;Subtitle&lt;/h2&gt;</span></code>, etc. Note that you must put a space between the hashes and the text for it to be recognized as a heading.</p>
+<p><strong>2. Text and paragraphs</strong></p>
+<p>The second cell shows paragraphs of text. Regular text can be entered as normal.
+Blank lines between text indicate the start of a new paragraph; press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> twice
+at the end of a paragraph to leave such a blank line.
+Other line breaks do not create a new paragraph and can be used
+to avoid over-long lines of text or to separate sentences so they can be
+more easily reordered in the future.</p>
+<p><strong>3. Emphasis</strong></p>
+<p>The third cell (labeled “<em><strong>Emphasis</strong></em>”) illustrates how to make text italicized or bold.  Double click on the cell (to view the source text).</p>
+<ul class="simple">
+<li><p>Text can be italicized by surrounding it with single asterisks, like <code class="docutils literal notranslate"><span class="pre">*italicize</span> <span class="pre">text*</span></code>: <em>italicize text</em>.</p></li>
+<li><p>Similarly, text can be bolded by surrounding it with double asterisks, like <code class="docutils literal notranslate"><span class="pre">**bold</span> <span class="pre">text**</span></code>: <strong>bold text</strong>.</p></li>
+<li><p>Text can be both italicized and bolded by surrounding it with triple asterisks, like <code class="docutils literal notranslate"><span class="pre">***bold</span> <span class="pre">and</span> <span class="pre">italics***</span></code>: <em><strong>bold and italics</strong></em>.</p></li>
+</ul>
+<p><strong>4. Bulleted and Numbered Lists</strong></p>
+<p>The fourth cell illustrates how to make bulleted and numbered lists.</p>
+<p><strong>Bulleted lists</strong> can be created by starting a line with an asterisk and a space, followed by the text of the bulleted item. Bulleted sub-lists can be created by tab-indenting a bulleted list under a bulleted item. For example,</p>
+<pre>
+* Item 1
+    * Item 1.1
+    * Item 1.2
+    
+*Item 2
+</pre>
+<p>formats as</p>
+<ul class="simple">
+<li><p>Item 1</p>
+<ul>
+<li><p>Item 1.1</p></li>
+<li><p>Item 1.2
+*Item 2</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Numbered lists</strong> can be created by starting a line with a number, a period, and a space, followed by the item to be numbered. <em>Note that the first number you use in a sequence of numbered items will determine the starting point for numbering, but later values are ignored. It is a good habit to use 1 for every numbered item because then you can rearrange the items via cut-and-paste without worrying about upsetting the overall list numbering.</em>  Numbered sub-lists can be created by tab-indenting a numbered list under a numbered item. For example,</p>
+<pre>
+1. Item 1
+    1. Item 1.1
+    1. Item 1.2
+3. Item 2
+</pre>
+<p>formats as</p>
+<ol class="arabic simple">
+<li><p>Item 1</p>
+<ol class="arabic simple">
+<li><p>Item 1.1</p></li>
+<li><p>Item 1.2</p></li>
+</ol>
+</li>
+<li><p>Item 2</p></li>
+</ol>
+<p><strong>5. Links and images</strong></p>
+<p>The fifth cell gives an example of a link and an image.</p>
+<p><strong>Links</strong> are easily created by putting the link text in square brackets, followed by the link URL in parentheses, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Example</span> <span class="n">link</span><span class="p">](</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which is rendered as</p>
+<p><a class="reference external" href="http://google.com">Example link</a></p>
+<p><strong>Images</strong> are entered in a very similar way to URLs. Just put an exclamation point (!) before the square brackets. The text in the square brackets will be used as the “alt text”, which is used by screen readers or displayed when hovering the mouse over the image. Images can also be inserted by dragging them from your file manager into a cell. After the Markdown code is inserted, you can edit the alt-text to something more meaningful.</p>
+<p><strong>6. Mathematics</strong></p>
+<p id="index-1">The sixth cell (labeled “Mathematics”) illustrates formatted mathematics.   Markdown in Jupyter supports sophisticated formatting of mathematics using
+LaTeX (pronounced <em>lay tek</em>) notation.   For inline equations (those that will appear in-line with text, include the</p>
+<!-- $\LaTeX$ -->
+<p>LaTeX notation between dollar signs, like <code class="docutils literal notranslate"><span class="pre">$\sin^2</span> <span class="pre">x$</span></code> renders as <span class="math notranslate nohighlight">\(\sin^2 x\)</span>.
+Longer equations should be displayed on lines separate from the text and can be created by enclosing them between pairs of dollar signs. For example,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$
+\int_{0}^{\infty} e^{-x}~dx = 1
+$$
+</pre></div>
+</div>
+<p>is rendered as</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{0}^{\infty} e^{-x}~dx = 1
+\]</div>
+<p><strong>7. Other Markdown formatting</strong></p>
+<p>Markdown has many other features that we will not cover, such as horizontal rules, block quotes, syntax highlighting, and tables.
+A good reference for Markdown syntax is
+<a class="reference external" href="https://www.markdownguide.org/extended-syntax/">Markdown Guide (https://www.markdownguide.org/extended-syntax/)</a></p>
+</section>
+<section id="getting-notebooks-into-and-out-of-jupyterlab">
+<h3><span class="section-number">1.6.1.4. </span>Getting Notebooks Into and Out of JupyterLab<a class="headerlink" href="#getting-notebooks-into-and-out-of-jupyterlab" title="Permalink to this heading">#</a></h3>
+<p>There are several ways to get notebooks into JupyterLab:</p>
+<ul class="simple">
+<li><p>As previously mentioned, you can use the left-hand files pane to navigate to the current location of a file. Note that you will be constrained to only navigating to files in the directory in which  Jupyter was started or in any subdirectory below that. One disadvantage of this approach is that your work will be saved wherever that file currently resides. For instance, if you have downloaded a notebook from the internet into your <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> folder, your work on that notebook will remain in the <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> folder.</p></li>
+<li><p>You can use drag-and-drop to copy any file into a directory that you are currently browsing using JupyterLab’s files pane. To do this:</p>
+<ul>
+<li><p>Open the files panel in Jupyter and navigate to the directory where you want to work.</p></li>
+<li><p>In your operating system’s file manager (e.g., Windows Explorer or Mac Finder), open the folder containing the file you want to copy.</p></li>
+<li><p>Position and resize the folder and your web browser’s window so you can see both simultaneously.</p></li>
+<li><p>Click and hold on the Jupyter notebook file that you want to move. Then drag it onto the files panel.</p></li>
+<li><p>When the Jupyter notebook is over JupyterLab’s files panel, the outline of the files panel will change to indicate that it is ready for you to drop the file. Release the mouse button or trackpad to copy the file into the selected directory.</p></li>
+<li><p><strong>Note that this makes a copy of the file from its original location.</strong></p></li>
+</ul>
+</li>
+<li><p>As an alternative to drag-and-drop, you can click on the upload icon (an arrow with a line under it) at the very top of the files panel. This will bring up a file selector that you can use to copy a file from anywhere on your computer.</p></li>
+</ul>
+</section>
+<section id="jupyter-magics">
+<h3><span class="section-number">1.6.1.5. </span>Jupyter Magics<a class="headerlink" href="#jupyter-magics" title="Permalink to this heading">#</a></h3>
+<p>Code cells can also contain special instructions intended for JupyterLab itself, rather than the
+Python kernel. These are called <em>magics</em>. For instance, to output your current directory, you can use the
+<code class="docutils literal notranslate"><span class="pre">%pwd</span></code> magic:</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pwd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">'~/data-science/chapter1'</span></code></p>
+<p>You can use the “%cd” magic to change your directory (recall that~ is a shortcut for your home user directory):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jshea
+</pre></div>
+</div>
+</div>
+</div>
+<p>Changing directories is often useful to switch to a directory where data is stored.</p>
+<p>You can get a list of magics and other information about Jupyter using the <code class="docutils literal notranslate"><span class="pre">%quickref</span></code> magic. The output of <code class="docutils literal notranslate"><span class="pre">%quickref</span></code> is long, so I am only including a screenshot of the top of its output.</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">quickref</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="Top of output for %quickref" src="../_images/quickref.png" /></p>
+</section>
+<section id="saving-your-work-closing-notebooks-and-closing-jupyterlab">
+<h3><span class="section-number">1.6.1.6. </span>Saving Your Work, Closing Notebooks, and Closing JupyterLab<a class="headerlink" href="#saving-your-work-closing-notebooks-and-closing-jupyterlab" title="Permalink to this heading">#</a></h3>
+<p>You can save your work by choosing <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Notebook</span></code> in JupyterLab’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu or by pressing the keyboard sequence listed next to that item in the menu. When you manually save your work in this way, Jupyter actually saves two copies of your work: it updates the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file that you see in the file list, and it also updates a <em>hidden</em> checkpoint file.  When you are editing or running your notebook file, Jupyter will also autosave your work periodically – the default is every 120s. When Jupyter autosaves, it only updates the .ipynb file. If Jupyter crashes or you quit it without saving your notebooks, your last autosaved work will be what you see in the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files. However, you can always revert to the version you purposefully saved by using the <code class="docutils literal notranslate"><span class="pre">Revert</span> <span class="pre">Notebook</span> <span class="pre">to</span> <span class="pre">Checkpoint</span></code> item in the File menu.</p>
+<p>When starting new Jupyter notebooks, their initial name will be “Untitled.ipynb”. You can easily rename your notebook in a couple of ways. First, you can choose the <code class="docutils literal notranslate"><span class="pre">Rename</span> <span class="pre">Notebook...</span></code> option from the file menu. As an alternative, you can right-click on the notebook in the left-hand Files panel and
+choose <code class="docutils literal notranslate"><span class="pre">Rename</span></code>. In both cases, be sure to change only the part of the notebook name that is in front of the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> extension. Jupyter uses that file extension to recognize Jupyter notebook files.</p>
+<p>When you are finished working with a Jupyter notebook, I recommend you perform the following steps:</p>
+<ol class="arabic simple">
+<li><p>First, from the <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> menu, choose <code class="docutils literal notranslate"><span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells...</span></code> This will clear the previous output from your work and rerun every cell from the top down.</p></li>
+<li><p>Check over your notebook carefully to make sure you have not introduced any errors or produced any unexpected results from having executed cells out of order or from deleting cells or their content. By performing these first two steps, you help make sure that someone else loading your notebook file will be able to reproduce your work.</p></li>
+<li><p>Check the notebook file name and update it if necessary.</p></li>
+<li><p>Save the notebook.</p></li>
+<li><p>Choose <code class="docutils literal notranslate"><span class="pre">Close</span> <span class="pre">and</span> <span class="pre">Shutdown</span> <span class="pre">Notebook</span></code> from Jupyter’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu.</p></li>
+<li><p>If you are finished working in JupyterLab, then choose <code class="docutils literal notranslate"><span class="pre">Shut</span> <span class="pre">Down</span></code> from JupyterLab’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu.</p></li>
+</ol>
+<p>Another common workflow in JupyterLab is to use an existing notebook as a starting point for a new notebook. Again, there are several ways to do this:</p>
+<ul class="simple">
+<li><p>If you already have the existing notebook open, then you can save it under a new name by choosing <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Notebook</span> <span class="pre">As...</span></code> from Jupyter’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu and giving the notebook a new name. <strong>Note that after you use this option, the notebook that is open in the main work will be the notebook with the new name. You will no longer be working on the original notebook.</strong></p></li>
+<li><p>You can also duplicate a notebook by right-clicking on the notebook’s name in the File panel on the left-hand side and choosing <code class="docutils literal notranslate"><span class="pre">Duplicate</span></code>. A copy of the notebook will be created with the name of the existing notebook appended with a suffix like <code class="docutils literal notranslate"><span class="pre">-Copy1</span></code> before the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="getting-started-in-python">
+<h2><span class="section-number">1.6.2. </span>Getting Started in Python<a class="headerlink" href="#getting-started-in-python" title="Permalink to this heading">#</a></h2>
+<p>Python is an interpreted language, which means that when any Code cell in a Jupyter notebook is evaluated, the Python code will be executed. Any output or error messages will appear in a new output portion of the cell that will appear just after the input portion of the cell (that contains the Python code).</p>
+<p>At the bottom of the <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> notebook, there is an empty cell where you can start entering Python code. If there is not already an empty cell there, click on the last cell and press <code class="docutils literal notranslate"><span class="pre">Alt-Enter</span></code>.</p>
+<section id="hello-world">
+<h3><span class="section-number">1.6.2.1. </span>Hello World!<a class="headerlink" href="#hello-world" title="Permalink to this heading">#</a></h3>
+<p>Let’s start with the canonical example that appears in almost every programming book, which is to write “Hello World!” to the screen/output.</p>
+<p>To print output in Python, use the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function, which is a built-in function in Python 3. Here a <em>function</em> is used to denote a <em>named</em> set of Python instructions that can be called on demand. Python functions are called by using the function name with parentheses after it. Functions can accept <em>arguments</em>, which are variables and values that the function can act on. The arguments for a function are put inside the parentheses, with commas separating different items.</p>
+<p>To output text using <code class="docutils literal notranslate"><span class="pre">print()</span></code>, put it as an argument inside single or double quotation marks. I will generally use single quotation marks because they do not require using the shift key to type.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello World!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’s  <code class="docutils literal notranslate"><span class="pre">print()</span></code> function knows how to handle most standard data types. Unlike <code class="docutils literal notranslate"><span class="pre">printf</span></code> in C, explicit formatting instructions do not have to be given – just pass the thing to be printed as an argument to <code class="docutils literal notranslate"><span class="pre">print</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16]
+</pre></div>
+</div>
+</div>
+</div>
+<p>To print multiple items, just pass all the items as arguments to the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function, but separate the items by commas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world!&#39;</span><span class="p">,</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello world! 15 [1, 4, 9, 16]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Code cells may contain multiple Python statements. All statements in a cell will be run sequentially when the cell is run. The results of every <code class="docutils literal notranslate"><span class="pre">print</span></code> statement will be shown after the <em>input</em> part of the cell:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;World!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello 
+World!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some Python statements return results, and these will appear in a special <em>output</em> part of the cell:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">+</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, if a cell contains multiple statements, the output will be the result of the <strong>last</strong> statement:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">+</span> <span class="mi">10</span>
+<span class="mi">5</span> <span class="o">*</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50
+</pre></div>
+</div>
+</div>
+</div>
+<p>The last statement in a cell may produce no output. Then there is no output from the cell. Note that printed items are not outputs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">+</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hello
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are several different ways to get the output of multiple statements. One easy way is just to print all the results you want to see:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15
+50
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes you want to run a command that produces an output but <strong>not</strong> have the output appear after the code cell. The most typical case of this is when using Matplotlib to plot, many of the commands modify the plot but also return a value at the output of the code cell. To suppress this output, append a semicolon (;) to the last statement in the cell:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+<span class="mi">5</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>I will introduce some more powerful features of the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function after introducing other important features of the Python language.</p>
+</section>
+<section id="comments">
+<h3><span class="section-number">1.6.2.2. </span>Comments<a class="headerlink" href="#comments" title="Permalink to this heading">#</a></h3>
+<p>Comments are text in your Python code that are ignored by the Python interpreter.
+Documentation is usually used to convey what you intend
+for your code to be doing – which is not always what it is actually doing!
+Documentation is both for others who may need to read your code and for your future self, who
+may need help remembering what you meant for a block of code to do.</p>
+<p>Anything that follows a # (hash) symbol is a comment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># It is important to use comments to document your thinking on big assignments</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is not really a multi-line comment in Python (like /* */ in C). One way to make a multi-line comment is to make a multi-line string that is not assigned to any variable.  Multi-line strings are delimited by triple-ticks (‘’’) or triple-quotes(“””). Here is an example with triple-quotes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; This is a</span>
+<span class="sd">multi-line comment,</span>
+<span class="sd">okay?&quot;&quot;&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The multi-line string above will not produce any output because it is not the last command in this cell.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The multi-line string above will not produce any output because it is not the last command in this cell.
+</pre></div>
+</div>
+</div>
+</div>
+<p>When making custom functions, a multi-line string directly after the function definition serves as the documentation string  (docstring) for that function.</p>
+</section>
+<section id="python-variables-and-types">
+<h3><span class="section-number">1.6.2.3. </span>Python Variables and Types<a class="headerlink" href="#python-variables-and-types" title="Permalink to this heading">#</a></h3>
+<p>Variables are named entities that store values for future reference. In Python, variable names consist of alphanumeric characters (a-z, A-Z, 0-9) and underscores, but they cannot start with a number. Variable names are case-sensitive.  Detailed descriptions of naming conventions for Python are given in <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/%5D">PEP 8 – Style Guide for Python Code</a>. Generally, we will follow these conventions:</p>
+<ul class="simple">
+<li><p>Names should be descriptive, except when used as a simple index.</p></li>
+<li><p>Variable and function names should be lowercase, with underscores separating different words.</p></li>
+<li><p>Variables should not duplicate the names of modules or Python functions/methods.</p></li>
+</ul>
+<p>Variables are created by assigning a value to a valid variable name:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python uses implicit typing, which means that you do not have to define a variable’s type (i.e., what type of data it holds). The type is determined by the interpreter at the time of assignment. You can determine a variable’s type by passing the variable as the argument of the <code class="docutils literal notranslate"><span class="pre">type()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<p>The type of a variable can change whenever new data is assigned to it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">10.5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>float
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;Hello World!&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<p>When a variable is passed as an argument to the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function, the value of the variable is printed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello World!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python knows how to perform many different operations on different data types and will usually do the <em>right thing</em> based on the type of the variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+</pre></div>
+</div>
+</div>
+</div>
+<p>We often want to combine some fixed text and some variable output. To do this, we will use <em>f</em>-strings, which were added to Python in version 3.6. An <em>f</em>-string is a special string that is created by prefixing the delimiter with the letter <code class="docutils literal notranslate"><span class="pre">f</span></code>.  Any part of an <em>f</em>-string contained within curly braces {} will be evaluated before the string is used. Thus, if we wanted to write more about the product of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>, we could do it like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The product of a and b is </span><span class="si">{</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The product of a and b is 12
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can have multiple substitutions in a single <em>f</em>-string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The product of </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> and </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The product of 3 and 4 is 12
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’s f-strings also support formatting the output, and I will use a variety of different formatting techniques in this book to make the output look nice. The details of these approaches are beyond the scope of this book, but I will introduce one that occurs frequently. For a floating point variable, suppose you want to only print <code class="docutils literal notranslate"><span class="pre">X</span></code> digits after the decimal point, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is a placeholder for some non-negative integer. Then after the variable (but still inside the curly braces), put <code class="docutils literal notranslate"><span class="pre">:</span> <span class="pre">.Xf</span></code> after the variable. Here is an example where I set the variable <code class="docutils literal notranslate"><span class="pre">s</span></code> equal to 1/6 and print the variable to 3 decimal places:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;s = </span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="si">:</span><span class="s1"> .3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s =  0.167
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Exponentiation is performed using two asterisks between the number or variable to be operated on and the exponent. The carat operator (^) is reserved for bitwise exclusive-or (XOR).</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">**</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will often need to add to an existing value, and Python provides a shortcut notation for this (similar to C). The notation <code class="docutils literal notranslate"><span class="pre">+=</span></code> indicates to add to the variable on the left-hand side of the expression. For instance, here is the usual way we write incrementing a counter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Most operators in Python try to do the most logical operation for their input types. Therefore, if we try to add strings with +, the operator actually performs string concatenation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;Hello &#39;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;World&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello World
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">4.1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.1 &lt;class &#39;float&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, Python cannot read minds, and its rules may create unexpected results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;4&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>34
+7
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that in the first case, the variables are strings, so the + operator performs string concatenation. This can be a subtle problem when we load data from files because items that look like numbers may actually be loaded as strings.</p>
+<p>The multiplication operator performs repetition on a string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>33333
+15
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-data-types">
+<h3><span class="section-number">1.6.2.4. </span>Basic Data Types<a class="headerlink" href="#basic-data-types" title="Permalink to this heading">#</a></h3>
+<p>Python has many data types built-in, and we have already seen a few of these: <em>int</em>, <em>float</em>, and <em>str</em> (string). In this book, we will also use a few other of Python’s built-in types.</p>
+<p>Boolean values are stored in <em>bool</em> variables that take on either <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>. Note that exact capitalization is required for these values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can check if two variables have the same values using <code class="docutils literal notranslate"><span class="pre">==</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result of a comparison (using ==) can be stored in variable (using =):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">b</span> <span class="o">==</span> <span class="n">c</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not equals is written as <code class="docutils literal notranslate"><span class="pre">!=</span></code>. Other comparisons are written in the usual ways (&lt;, &gt;, &lt;=, &gt;=).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">b</span> <span class="o">!=</span> <span class="n">c</span><span class="p">,</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python has a variety of different <em>sequence</em> types for containing an ordered  collection of values. Values can be retrieved by index from a sequence-type variable by putting the index number in square brackets after the variable name.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Like C, C++, and JavaScript, indexing in Python starts at 0. This means that in a sequence of <span class="math notranslate nohighlight">\(n\)</span> items, the first item is at index 0, and the last item is at index <span class="math notranslate nohighlight">\(n-1\)</span>. MATLAB and many textbooks use indexing starting at 1.</p>
+</div>
+<p>The <em>list</em> type is a <strong>mutable</strong> container of values. <em>Mutable</em> means the values in the list can be changed. Lists are delimited by square brackets, and list items are separated by commas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dogs&#39;</span><span class="p">,</span> <span class="s1">&#39;cats&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;dogs&#39;, &#39;cats&#39;, 3, 7.0]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cats
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because lists are mutable, values can be updated:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;puppies&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;puppies&#39;, &#39;cats&#39;, 3, 7.0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <em>tuple</em> is an <strong>immutable</strong> sequence type. The values in a tuple cannot be changed. Tuples are often used to contain multiple values returned from a function. Tuples are delimited by parentheses: (). To create a tuple containing only one value, include a comma after the value. As with lists, tuples can contain a variety of values. Trying to change a value in an immutable type results in an error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuple1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;nine&#39;</span><span class="p">)</span>
+<span class="n">tuple2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tuple1</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nine
+</pre></div>
+</div>
+</div>
+</div>
+<p>Trying to change a value in an immutable type results in an error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuple1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;one&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">43</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">tuple1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;one&#39;</span>
+
+<span class="ne">TypeError</span>: &#39;tuple&#39; object does not support item assignment
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <em>range</em> type is an <strong>immutable</strong> sequence of numbers that is usually used in looping (especially <code class="docutils literal notranslate"><span class="pre">for</span></code> loops). A range object can be created using the <code class="docutils literal notranslate"><span class="pre">range()</span></code> function in the following ways:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">range(stop)</span></code> creates a sequence of <em>stop</em> values starting at 0. Thus, the values are 0, 1, 2, <span class="math notranslate nohighlight">\(\ldots,\)</span> <em>stop</em>-1. Note that the Python convention is that the <em>stop</em> value is not included in the range.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">range(start,</span> <span class="pre">stop)</span></code> creates a sequence of values that starts at <em>start</em> and ends at <em>stop</em>-1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">range(start,</span> <span class="pre">stop,</span> <span class="pre">step)</span></code> creates a sequence of values that starts at <em>start</em>, increments by <em>step</em>, and ends at <em>stop</em>-1.</p></li>
+</ul>
+<p>You can iterate over ranges using a <code class="docutils literal notranslate"><span class="pre">for</span></code>…<code class="docutils literal notranslate"><span class="pre">in</span></code> statement, which is discussed in the next section.</p>
+<p>Python also contains one <em>mapping</em> type:</p>
+<ul class="simple">
+<li><p><em>dict</em> is a dictionary object that provides a map between key-value pairs.
+As with lists and tuples, keys and values can be any data types, but the keys must be unique.
+Dictionaries are delimited by curly braces: { }. Each entry in a dictionary is written in the form <code class="docutils literal notranslate"><span class="pre">key:value</span></code>, and different key-value pairs are separated by commas. The value for a particular key can be retrieved by putting the key in square brackets after the dictionary variable’s name.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squares</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">16</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">squares</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">misc</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cats&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;dogs&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">misc</span><span class="p">[</span><span class="s1">&#39;cats&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">misc</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+test
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python variables are actually much more powerful than variables in many languages because they are actually <em>objects</em>. Python is an object-oriented programming (OOP) language. To make the content of this book more accessible to people with a wide range of programming experience, this book does not generally use an object-oriented approach. However, you will need to know some fundamentals about <strong>objects</strong> and <strong>classes</strong>:</p>
+<ul class="simple">
+<li><p><em>Objects</em> are special data types that have <em>methods</em> associated with them to work on those objects. Methods are similar to functions, except they are specialized to the <em>objects</em> to which they belong. Methods are called by giving the variable/object name, adding a period, specifying the method name, and then adding parentheses, with any arguments provided in parentheses.</p></li>
+<li><p>A <em>class</em> is a template for an object that defines how an object stores information and defines its methods.</p></li>
+</ul>
+<p>For instance, since <em>list</em> is a mutable type, a list can be sorted in place. The <em>list</em> object defines a sorting method to achieve this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
+<span class="n">new_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 3, 5, 7, 13]
+</pre></div>
+</div>
+</div>
+</div>
+<p>For dictionaries, we often need to retrieve the keys or values. We can do this using methods provided by the dictionary type:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">misc</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cats&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;dogs&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">misc</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;cats&#39;, &#39;dogs&#39;, 3])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">misc</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_values([0, 1, &#39;test&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">keys</span></code> and <code class="docutils literal notranslate"><span class="pre">values</span></code> methods return special objects of type <code class="docutils literal notranslate"><span class="pre">dict_keys</span></code> and <code class="docutils literal notranslate"><span class="pre">dict_values</span></code>, respectively, but for our purposes, we can treat these like lists. An example is shown in the section <span class="xref std std-ref">python-intro:loops</span>.</p>
+</section>
+<section id="copying-variables">
+<h3><span class="section-number">1.6.2.5. </span>Copying Variables<a class="headerlink" href="#copying-variables" title="Permalink to this heading">#</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>You have to be careful when copying variables in Python, or you may get some unexpected results.</strong></p>
+</div>
+<p>Suppose you have a variable c that contains a list, and you want to copy it to a variable d:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">c</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Everything works as expected. Now, let’s change the value in position 1 in <code class="docutils literal notranslate"><span class="pre">d</span></code> and print out both <code class="docutils literal notranslate"><span class="pre">c</span></code> and <code class="docutils literal notranslate"><span class="pre">d</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;d=&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;c=&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d= [0, 2]
+c= [0, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Changing the value of <code class="docutils literal notranslate"><span class="pre">d[1]</span></code> also changed the value of <code class="docutils literal notranslate"><span class="pre">c[1]</span></code>! This is because when <code class="docutils literal notranslate"><span class="pre">c</span></code> is made, <code class="docutils literal notranslate"><span class="pre">c</span></code> is a variable that points to the list <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>. When we set <code class="docutils literal notranslate"><span class="pre">d=c</span></code>, Python sets the variable <code class="docutils literal notranslate"><span class="pre">d</span></code> to point to the <strong>same</strong> list <code class="docutils literal notranslate"><span class="pre">[0,1]</span></code>.</p>
+<p>To make a copy of the list <code class="docutils literal notranslate"><span class="pre">c</span></code>, we can use the list’s <code class="docutils literal notranslate"><span class="pre">copy()</span></code> method to create a new list with the same contents as <code class="docutils literal notranslate"><span class="pre">c</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;e=&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;c=&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>e= [0, 3]
+c= [0, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can check if two variables point to the same data using Python’s <code class="docutils literal notranslate"><span class="pre">is</span></code> command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="ow">is</span> <span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>If two variables point to the same data, then they will have the same values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">==</span> <span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, the opposite is not true. If we make a new copy of <code class="docutils literal notranslate"><span class="pre">c</span></code>, it will point to a different list object, but the contents will be the same:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span> <span class="ow">is</span> <span class="n">c</span><span class="p">,</span> <span class="n">f</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indentation-and-line-breaks-in-python">
+<h3><span class="section-number">1.6.2.6. </span>Indentation and Line Breaks in Python<a class="headerlink" href="#indentation-and-line-breaks-in-python" title="Permalink to this heading">#</a></h3>
+<p>Line breaks in Python are usually used to distinguish different Python statements, and we will often use this convention in this book. Exceptions to this include:</p>
+<ul class="simple">
+<li><p>When a statement includes arguments in parentheses, line breaks can be used within the parentheses to improve readability. The statement will not terminate until the closing parenthesis, which should be followed by a line break.</p></li>
+<li><p>As previously introduced, strings that include line breaks can be created using triple quotes.</p></li>
+<li><p>If a line ends in a backslash <code class="docutils literal notranslate"><span class="pre">\</span></code>, it will be interpreted as continuing onto the next line.</p></li>
+<li><p>Multiple statements can be put onto a single line by separating them by semicolons (;), but this is not encouraged and will not be used in this book.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;Amelia!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello Amelia!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Goodbye, </span>
+<span class="sd">Amelia!&#39;&#39;&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Goodbye, 
+Amelia!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here is an example of using a backslash to break up a line into smaller parts:</span>
+<span class="n">A</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> \
+  <span class="o">+</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">6</span>
+<span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21
+</pre></div>
+</div>
+</div>
+</div>
+<p>Programming languages usually have some convention to indicate which statements belong together. For instance, if a statement starts a loop (such as <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code>), there must be a way to indicate which of the following statements should be executed in each iteration of the loop and which should be executed after loop iteration. In many languages, such as C, C++, Java, and Javascript, code blocks are surrounded by curly braces: { }.</p>
+<p>In Python, indentation is used to deliminate code blocks. The languages mentioned above use indentation as a <em>convention</em> that indicates meaning to humans working on code. Python uses indentation to <em>define</em> code blocks and convey meaning to the Python interpreter.</p>
+<p>Either tabs or spaces can be used to denote code blocks, but the PEP-8 standard is to use 4 spaces per indent level. Jupyter inserts 4 spaces when <code class="docutils literal notranslate"><span class="pre">Tab</span></code> is pressed in a code block.<a class="footnote-reference brackets" href="#tabspaces" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+</section>
+<section id="loops-and-conditionals">
+<h3><span class="section-number">1.6.2.7. </span>Loops and Conditionals<a class="headerlink" href="#loops-and-conditionals" title="Permalink to this heading">#</a></h3>
+<section id="for-in-statements">
+<h4><span class="section-number">1.6.2.7.1. </span><code class="docutils literal notranslate"><span class="pre">for</span></code>… <code class="docutils literal notranslate"><span class="pre">in</span></code> Statements<a class="headerlink" href="#for-in-statements" title="Permalink to this heading">#</a></h4>
+<p>In data science, we often need to either iterate over data or carry out iterations of a simulation. For both purposes, we will usually rely on Python’s <code class="docutils literal notranslate"><span class="pre">for</span></code>…<code class="docutils literal notranslate"><span class="pre">in</span></code> statement. This is a type of <em>compound</em> statement. Compound statements consist of a <em>header</em> and a <em>suite</em> (Python’s terminology) or <em>body</em>. The header always ends in a colon, and the <em>suite</em> is one more statements that are run consecutively according to conditions in the header. For our purposes, we will always create the suite as a set of statements that are indented one more level than the corresponding header, with each statement on a new line.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">for</span></code>…<code class="docutils literal notranslate"><span class="pre">in</span></code> compound statement takes a variable after the <code class="docutils literal notranslate"><span class="pre">for</span></code> keyword. This variable will hold the current iteration value. After the <code class="docutils literal notranslate"><span class="pre">in</span></code> keyword  there needs to be an <em>iterable</em> object, which is any object that can be iterated over. The typical one we will use is the <code class="docutils literal notranslate"><span class="pre">range</span></code> object that we have just introduced:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+4
+6
+8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another example of an iterable object is a list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fruit</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apples&#39;</span><span class="p">,</span> <span class="s1">&#39;bananas&#39;</span><span class="p">,</span> <span class="s1">&#39;cherries&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">kind</span> <span class="ow">in</span> <span class="n">fruit</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>apples
+bananas
+cherries
+</pre></div>
+</div>
+</div>
+</div>
+<p>When iterating over objects like a list, it is often helpful to keep track of the iteration index. One easy way to do this is to use the <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> function that returns a tuple of the current iteration index and the item:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">kind</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fruit</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+apples
+
+1
+bananas
+
+2
+cherries
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the previous example, I purposefully split the printing into different lines to show a multi-statement suite.</p>
+<p>We can <em>nest</em> ‘for’ statements, which means that one <code class="docutils literal notranslate"><span class="pre">for</span></code> statement is inside of another <code class="docutils literal notranslate"><span class="pre">for</span></code> statement. For each iteration of the outer loop, the inner loop will run through all its iterations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0
+0 1
+
+1 0
+1 1
+
+2 0
+2 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="if-statements">
+<h4><span class="section-number">1.6.2.7.2. </span><code class="docutils literal notranslate"><span class="pre">if</span></code> Statements<a class="headerlink" href="#if-statements" title="Permalink to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">if</span></code> statement is used to run code conditionally. It will often be the case that <code class="docutils literal notranslate"><span class="pre">if</span></code> statements are used inside  loop or other conditional statements. For instance, to print out only the even numbers from 1 to 10, we can use an <code class="docutils literal notranslate"><span class="pre">if</span></code> inside a <code class="docutils literal notranslate"><span class="pre">for</span></code> statement:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+4
+6
+8
+10
+</pre></div>
+</div>
+</div>
+</div>
+<p>More generally, an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement may also have <code class="docutils literal notranslate"><span class="pre">elif</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> clauses.  <em>Elif</em> is short for “else if”, and these headers act like <code class="docutils literal notranslate"><span class="pre">if</span></code> headers but will be evaluated only if the above <code class="docutils literal notranslate"><span class="pre">if</span></code> or <code class="docutils literal notranslate"><span class="pre">elif</span></code> headers did not have their conditions satisfied. There can only be one <code class="docutils literal notranslate"><span class="pre">else</span></code> clause, and its suite will be executed if the <code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">elif</span></code> clauses did not have their conditions satisfied.  Note that the <code class="docutils literal notranslate"><span class="pre">elif</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> headers must be at the same indentation level as the corresponding <code class="docutils literal notranslate"><span class="pre">if</span></code> header, and these headers must also end with a colon (:). The statements that belong to the suites for these headers  go on separate lines below the header and are indented to one greater level.</p>
+<p>As a simple example, suppose we want to identify the even numbers from 1 to 10, but if a number is NOT even, we wish to determine if it is divisible by 3. Otherwise, we just want to print an asterisk:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> is even&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> is not even but divides by 3&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*
+2 is even
+3 is not even but divides by 3
+4 is even
+*
+6 is even
+*
+8 is even
+9 is not even but divides by 3
+10 is even
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note how indentation changes meaning in the following two examples, which differ only by one Tab:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a=2&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;b=2&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a=2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a=2&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;b=2&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a=2
+2 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will generally iterate over dictionaries by iterating over their keys:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squares</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">16</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">squares</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">**2 = </span><span class="si">{</span><span class="n">squares</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1**2 = 1
+2**2 = 4
+3**2 = 9
+4**2 = 16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="while-statements">
+<h4><span class="section-number">1.6.2.7.3. </span><code class="docutils literal notranslate"><span class="pre">while</span></code> Statements<a class="headerlink" href="#while-statements" title="Permalink to this heading">#</a></h4>
+<p>A <code class="docutils literal notranslate"><span class="pre">while</span></code> loop combines looping and a conditional statement for determining whether looping should continue. It operates similarly to <code class="docutils literal notranslate"><span class="pre">while</span></code> loops in other programming languages. The loop will continue as long as the condition specified in the <code class="docutils literal notranslate"><span class="pre">while</span></code> statement is satisfied:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+4
+6
+8
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="functions">
+<h3><span class="section-number">1.6.2.8. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h3>
+<p>We have already used built-in functions, like <code class="docutils literal notranslate"><span class="pre">print()</span></code> and <code class="docutils literal notranslate"><span class="pre">type()</span></code>.
+In this book, we will also often create new functions. As with the built-in functions,
+user-defined functions can take arguments and can return values. Functions are declared
+using the Python keyword <code class="docutils literal notranslate"><span class="pre">def</span></code> followed by the function name and then parentheses.
+Inside the parenthesis, list any variables that will receive arguments, separated by commas.  Here is a simple
+example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">say_hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function name and parameter list are called the <em>function signature</em>. User-defined functions are called in the same way as built-in functions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">say_hello</span><span class="p">(</span><span class="s1">&#39;Charlotte&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello, Charlotte!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Functions can also return values by placing them after the Python <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword. If multiple values are to be returned, they should be separated by commas. If more than one value is returned, it will be returned as a tuple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square_and_cube</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">square_and_cube</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(16, 64)
+</pre></div>
+</div>
+</div>
+</div>
+<p>When storing returned values from a function into multiple variables, you do not have to explicitly use the parentheses around the tuple of variables. You can just separate the variables by commas, as shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">four2</span><span class="p">,</span> <span class="n">four3</span> <span class="o">=</span> <span class="n">square_and_cube</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">four2</span><span class="p">,</span> <span class="n">four3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16 64
+</pre></div>
+</div>
+</div>
+</div>
+<p>As mentioned when we introduced strings, you can provide a docstring for a function as
+a string that directly follows the function definition. For example, let’s define a function
+that returns the squared error between its inputs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">squared_error</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the squared error (the squared difference) of the arguments</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squared_error</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squared_error</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python allows you to specify default values for function arguments that will be used if the user does not pass a value for the argument. When defining a function, specify the default value for an argument by writing the parameter name, followed by an equal sign, followed by the default value in the function signature.</p>
+<p>Let’s make a new version of <code class="docutils literal notranslate"><span class="pre">squared_error</span></code> function that sets the default value of <code class="docutils literal notranslate"><span class="pre">y</span></code> to 0:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">squared_error2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the squared error between the two arguments, with a default value of 0</span>
+<span class="sd">    for the second argument</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squared_error2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>If the user passes a value, the default value is not used:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squared_error2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that we can use the names of the parameters (instead of parameter order) to pass values to those parameters. This is very commonly used in functions that have lots of parameters that are optional.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squared_error2</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Parameters can be passed using a mix of order and parameter names. However, any parameters passed by order must come before those passed by name.</p>
+<p>We will see in the next section how to get help on a function.</p>
+</section>
+<section id="getting-help-and-completion">
+<h3><span class="section-number">1.6.2.9. </span>Getting Help and Completion<a class="headerlink" href="#getting-help-and-completion" title="Permalink to this heading">#</a></h3>
+<p>Python has built-in help for almost every function and object. This help can be retrieved in several ways. For instance, consider the built-in <code class="docutils literal notranslate"><span class="pre">sum</span></code> command. Here are several ways to get help in Jupyter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on built-in function sum in module builtins:
+
+sum(iterable, /, start=0)
+    Return the sum of a &#39;start&#39; value (default: 0) plus an iterable of numbers
+    
+    When the iterable is empty, return the start value.
+    This function is intended specifically for use with numeric values and may
+    reject non-numeric types.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>sum
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Signature:</span> sum<span class=" -Color -Color-Blue">(</span>iterable<span class=" -Color -Color-Blue">,</span> <span class=" -Color -Color-Blue">/,</span> start<span class=" -Color -Color-Blue">=</span><span class=" -Color -Color-Cyan">0</span><span class=" -Color -Color-Blue">)</span>
+<span class=" -Color -Color-Red">Docstring:</span>
+Return the sum of a &#39;start&#39; value (default: 0) plus an iterable of numbers
+
+When the iterable is empty, return the start value.
+This function is intended specifically for use with numeric values and may
+reject non-numeric types.
+<span class=" -Color -Color-Red">Type:</span>      builtin_function_or_method
+</pre></div>
+</div>
+</div>
+</div>
+<p>For user-defined functions, ‘help’ will display the docstring you wrote. The following assumes that you have defined the function <code class="docutils literal notranslate"><span class="pre">squared_errors</span></code> from Section <span class="xref std std-ref">python-intro:functions</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>squared_error
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Signature:</span> squared_error<span class=" -Color -Color-Blue">(</span>x<span class=" -Color -Color-Blue">,</span> y<span class=" -Color -Color-Blue">)</span>
+<span class=" -Color -Color-Red">Docstring:</span> Returns the squared error (the squared difference) of the arguments
+<span class=" -Color -Color-Red">File:</span>      /var/folders/gz/d_8lq2wn23x2lmhfh63cfl3400010v/T/ipykernel_93458/1368254984.py
+<span class=" -Color -Color-Red">Type:</span>      function
+</pre></div>
+</div>
+</div>
+</div>
+<p>If a function’s Python source code is available, it can be retrieved in Jupyter using <code class="docutils literal notranslate"><span class="pre">??</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">??</span>squared_error
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Signature:</span> squared_error<span class=" -Color -Color-Blue">(</span>x<span class=" -Color -Color-Blue">,</span> y<span class=" -Color -Color-Blue">)</span>
+<span class=" -Color -Color-Red">Source:</span>   
+<span class=" -Color -Color-Green">def</span> squared_error<span class=" -Color -Color-Blue">(</span>x<span class=" -Color -Color-Blue">,</span> y<span class=" -Color -Color-Blue">):</span>
+    <span class=" -Color -Color-Blue">&quot;&quot;&quot;</span>
+<span class=" -Color -Color-Blue">    Returns the squared error (the squared difference) of the arguments</span>
+<span class=" -Color -Color-Blue">    &quot;&quot;&quot;</span>
+
+    <span class=" -Color -Color-Green">return</span> <span class=" -Color -Color-Blue">(</span>x <span class=" -Color -Color-Blue">-</span> y<span class=" -Color -Color-Blue">)</span> <span class=" -Color -Color-Blue">**</span> <span class=" -Color -Color-Cyan">2</span>
+<span class=" -Color -Color-Red">File:</span>      /var/folders/gz/d_8lq2wn23x2lmhfh63cfl3400010v/T/ipykernel_93458/1368254984.py
+<span class=" -Color -Color-Red">Type:</span>      function
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s look at the help for a variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">squares</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">16</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>squares
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Type:</span>        dict
+<span class=" -Color -Color-Red">String form:</span> {1: 1, 2: 4, 3: 9, 4: 16}
+<span class=" -Color -Color-Red">Length:</span>      4
+<span class=" -Color -Color-Red">Docstring:</span>  
+dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object&#39;s
+    (key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+    in the keyword argument list.  For example:  dict(one=1, two=2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should also try <code class="docutils literal notranslate"><span class="pre">help(x)</span></code>, but I have omitted that because it provides help for every method of the <code class="docutils literal notranslate"><span class="pre">dict</span></code> object, which results in a lot of output.</p>
+<p>You can also try <code class="docutils literal notranslate"><span class="pre">help()</span></code> with no argument to get an interactive help session.</p>
+<p>Jupyter also provides many features to help you during programming. Assuming you have run the command defining <code class="docutils literal notranslate"><span class="pre">squares</span></code> above, try the following in a new Jupyter notebook cell:</p>
+<ol class="arabic simple">
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">sum(</span></code>. When you type the open parenthesis, Jupyter should automatically insert a pair of parentheses.</p></li>
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">shift-Tab</span></code>. You should see the call signature and doc string for the <code class="docutils literal notranslate"><span class="pre">sum</span></code> function in a pop-over box. You can press the <code class="docutils literal notranslate"><span class="pre">Esc</span></code> key to close the pop-over box.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">sq</span></code> and press <code class="docutils literal notranslate"><span class="pre">Tab</span></code>. You should see a list of variables and functions that begin with <code class="docutils literal notranslate"><span class="pre">sq</span></code>. Use the cursor keys to scroll to <code class="docutils literal notranslate"><span class="pre">squares</span></code> and press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to insert it without having to type the full name of the squares dictionary.</p></li>
+<li><p>Let’s sum the values in the <code class="docutils literal notranslate"><span class="pre">squares</span></code> dictionary. Type a period and then press <code class="docutils literal notranslate"><span class="pre">Tab</span></code> again to see a list of methods for a <code class="docutils literal notranslate"><span class="pre">dict</span></code> object. Select <code class="docutils literal notranslate"><span class="pre">values</span></code> using the keyboard or mouse.</p></li>
+<li><p>Don’t forget that we need parentheses to call the <code class="docutils literal notranslate"><span class="pre">values</span></code> method. Press <code class="docutils literal notranslate"><span class="pre">(</span></code> and a pair of parentheses should appear.</p></li>
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">shift-Enter</span></code> to run the cell.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">squares</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="python-modules-and-namespaces">
+<h3><span class="section-number">1.6.2.10. </span>Python Modules and Namespaces<a class="headerlink" href="#python-modules-and-namespaces" title="Permalink to this heading">#</a></h3>
+<p>Python has many useful modules that extend Python’s basic functionality. Some of these are included with the base Python distribution, and many others are included in the Anaconda distribution. Many more can be installed over the Internet.</p>
+<p>To use a module, you must import it into your Python working environment. The most basic way to do this is to type <code class="docutils literal notranslate"><span class="pre">import</span></code> followed by the name of the module to be imported:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we have imported NumPy (usually pronounced “Numb Pie”), one of the most important Python modules for working with numerical functions and arrays. When a module is imported, its functions and classes will be available in Python, but they are imported into their own <em>namespace</em>. To access something in a different namespace, type the name of the namespace, followed by a period, followed by the name of the thing you are trying to access.</p>
+<p>For instance, the value of <span class="math notranslate nohighlight">\(\pi\)</span> is a constant object named <code class="docutils literal notranslate"><span class="pre">pi</span></code> in NumPy. Now that we have imported NumPy, we can access that value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
+</pre></div>
+</div>
+</div>
+</div>
+<p>NumPy has many typical mathematical functions, which we can call using the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> namespace:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7071067811865475
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7071067811865476
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can control the namespace into which the contents of a module is imported. Because many modules, like NumPy, are commonly used, the community often uses community-standardized namespaces that are shorter than the full module name. To do this, type <code class="docutils literal notranslate"><span class="pre">import</span></code>, followed by the module name, followed by the <code class="docutils literal notranslate"><span class="pre">as</span></code> keyword, followed by the desired namespace.</p>
+<p>For NumPy, the data science community typically uses <code class="docutils literal notranslate"><span class="pre">np</span></code>, so the import statement is as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is possible to import the contents of a module into the <em>global</em> namespace, which means that the namespace does not have to be specified before each function, class, or object. However, this practice is strongly discouraged because it often results in conflicts. For instance, both Matplotlib (a plotting module) and SymPy (a symbolic algebra module) have a <code class="docutils literal notranslate"><span class="pre">plot</span></code> function. If you were to import both <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">sympy</span></code> into the global namespace, you could not be sure which <code class="docutils literal notranslate"><span class="pre">plot</span></code> you were calling, unless you kept track of which module was imported last.</p>
+</div>
+<p>Importing into namespaces is such good practice that we will not give an example of how to import an entire module into the global namespace. However, on occasion, it may be helpful to import just a single function from a module, and in this case, it is reasonable to import it into the global namespace if we can be confident that there will not be any collisions. An example follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">factorial</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factorial</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3628800.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Why is factorial returning a float? Let’s check the docstring:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>factorial
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Signature:</span> factorial<span class=" -Color -Color-Blue">(</span>n<span class=" -Color -Color-Blue">,</span> exact<span class=" -Color -Color-Blue">=</span><span class=" -Color -Color-Green">False</span><span class=" -Color -Color-Blue">)</span>
+<span class=" -Color -Color-Red">Docstring:</span>
+The factorial of a number or array of numbers.
+
+The factorial of non-negative integer `n` is the product of all
+positive integers less than or equal to `n`::
+
+    n! = n * (n - 1) * (n - 2) * ... * 1
+
+Parameters
+----------
+n : int or array_like of ints
+    Input values.  If ``n &lt; 0``, the return value is 0.
+exact : bool, optional
+    If True, calculate the answer exactly using long integer arithmetic.
+    If False, result is approximated in floating point rapidly using the
+    `gamma` function.
+    Default is False.
+
+Returns
+-------
+nf : float or int or ndarray
+    Factorial of `n`, as integer or float depending on `exact`.
+
+Notes
+-----
+For arrays with ``exact=True``, the factorial is computed only once, for
+the largest input, with each other result computed in the process.
+The output dtype is increased to ``int64`` or ``object`` if necessary.
+
+With ``exact=False`` the factorial is approximated using the gamma
+function:
+
+.. math:: n! = \Gamma(n+1)
+
+Examples
+--------
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; from scipy.special import factorial
+&gt;&gt;&gt; arr = np.array([3, 4, 5])
+&gt;&gt;&gt; factorial(arr, exact=False)
+array([   6.,   24.,  120.])
+&gt;&gt;&gt; factorial(arr, exact=True)
+array([  6,  24, 120])
+&gt;&gt;&gt; factorial(5, exact=True)
+120
+<span class=" -Color -Color-Red">File:</span>      /Applications/anaconda3/lib/python3.9/site-packages/scipy/special/_basic.py
+<span class=" -Color -Color-Red">Type:</span>      function
+</pre></div>
+</div>
+</div>
+</div>
+<p>By inspecting the docstring, we can see that if we want the exact value, we need to set the parameter <code class="docutils literal notranslate"><span class="pre">exact</span></code> to True. This is typically done using the parameter name because anyone reading the function call will understand what the value of <code class="docutils literal notranslate"><span class="pre">True</span></code> is being used for:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factorial</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3628800
+</pre></div>
+</div>
+</div>
+</div>
+<section id="numpy-arrays">
+<h4><span class="section-number">1.6.2.10.1. </span>NumPy Arrays<a class="headerlink" href="#numpy-arrays" title="Permalink to this heading">#</a></h4>
+<p>NumPy provides a <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> container for holding one-dimensional or multi-dimensional collections of numbers. Most engineers will have some familiarity with vectors or matrices.  For our purposes, we will use the following definitions of these mathematical objects:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-vector">vector<a class="headerlink" href="#term-vector" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A one-dimensional, ordered list of numbers that has an accompanying notion of magnitude of a vector and distance between two vectors.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>Vectors are usually shown enclosed in square brackets. When writing as mathematics notation, we will use bold, lowercase letters to denote a vector. In mathematics, a vector may either be a <em>column vector</em> or a <em>row vector</em>. If not otherwise specified, <em>vector</em> will refer to a column vector; for instance, here is an example of defining a vector of the first five counting numbers:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{x} =
+\begin{bmatrix}
+1 \\
+2 \\
+3 \\
+4 \\
+5 \\
+\end{bmatrix}.
+%\mathbf{x} = \left[ 1,2,3,4,5 \right].
+\end{split}\]</div>
+<p>NumPy vectors do not have any notion of direction (column or row) but are usually displayed as a row and are interpreted as a row by some NumPy operations. To make a NumPy vector, call <code class="docutils literal notranslate"><span class="pre">np.array()</span></code> with the vector elements enclosed in square brackets and separated by commas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Arrays extend the concept of a vector to multiple dimensions:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-array">array<a class="headerlink" href="#term-array" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">A multi-dimensional table of numbers that supports a standard set of operations, including multiplication of matrices.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="simple glossary">
+<dt id="term-matrix">matrix<a class="headerlink" href="#term-matrix" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">An alternate term for a two-dimensional array.</p>
+</dd>
+</dl>
+</div>
+</div>
+<p>Note that an array can have one dimension, in which case it is a vector; in such cases, I will always refer to it as a vector. I will use <em>array</em> for higher dimensions, even though we will generally only consider two-dimensional arrays. Mathematically, two-dimensional arrays are shown as a table of numbers, organized into rows and columns, and enclosed in large square brackets.  For example, the array below has rows that contain consecutive powers (1, 2, and 3) of the first five elements:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+1 &amp;2 &amp;3 &amp;4 &amp;5 \\
+1 &amp; 4 &amp; 9 &amp; 16 &amp; 25 \\
+1 &amp; 8 &amp; 27 &amp; 64 &amp; 125 \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>The majority of our work on vectors, arrays, and their mathematics (linear algebra) will be deferred to <span class="xref std std-doc">Chapter 12</span> and <span class="xref std std-doc">Chapter 14</span>. However, arrays are very helpful for doing basic data manipulation and storing numerical values for simulations, so we review some basics here.</p>
+<p>In Python, arrays can be created using NumPy’s <code class="docutils literal notranslate"><span class="pre">np.array()</span></code> function.
+Two-dimensional arrays can be created by passing a list  whose contents are equal-length lists of numbers. Each of the interior lists of numbers represents one row of the array. This will be most clear with an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+  <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+   <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3, 4],
+       [8, 7, 6, 5]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>To make the definition of <code class="docutils literal notranslate"><span class="pre">B</span></code> more clear, I have put each row of the array onto different lines in the Python code. Because Python is waiting for closing parentheses and square brackets, these different lines will be processed as a single statement. I strongly encourage you to use this approach to make your array definitions more clear.</p>
+<p>We will also be using methods that return NumPy arrays of random values.</p>
+<p>NumPy arrays offer many advantages over lists. Two primary ones are:</p>
+<ol class="arabic simple">
+<li><p>It is easy to perform numerical operations on the elements of NumPy arrays.</p></li>
+<li><p>NumPy arrays provide a variety of built-in methods that we will find useful.</p></li>
+</ol>
+<p>To illustrate these, consider the array <span class="math notranslate nohighlight">\(A\)</span> defined above and a Python <code class="docutils literal notranslate"><span class="pre">list</span></code> <span class="math notranslate nohighlight">\(L\)</span> containing the same numbers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The NumPy array makes it easy to multiply all the elements in the array by a value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">*</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 5, 10, 15, 20],
+       [40, 35, 30, 25]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare the result with the effect of the multiplication operator on a list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">*</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<p>An example of a built-in method is <code class="docutils literal notranslate"><span class="pre">sum()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Python <code class="docutils literal notranslate"><span class="pre">list</span></code> object does not have a built-in <code class="docutils literal notranslate"><span class="pre">sum()</span></code> method, but Python does offer a general <code class="docutils literal notranslate"><span class="pre">sum</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">111</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">L</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="ne">AttributeError</span>: &#39;list&#39; object has no attribute &#39;sum&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will introduce other methods of the <code class="docutils literal notranslate"><span class="pre">array</span></code> type and other NumPy functions that work on and/or return arrays as we introduce more data-science techniques.</p>
+</section>
+</section>
+<section id="numerical-errors-and-rounding">
+<h3><span class="section-number">1.6.2.11. </span>Numerical Errors and Rounding<a class="headerlink" href="#numerical-errors-and-rounding" title="Permalink to this heading">#</a></h3>
+<p>Python is not able to store all numbers exactly internally, and mathematical operations on numbers can also produce numerical errors. Let’s illustrate this with a simple example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="o">*</span><span class="mf">0.1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.30000000000000004
+</pre></div>
+</div>
+</div>
+</div>
+<p>Based on this, you might conclude that the internal representation of 0.1 is actually a little larger than 0.1, and answers involving sums or multiples of 0.1 might sometimes come out a little too large. However, the truth is much more subtle, as shown by this example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+  <span class="nb">sum</span><span class="o">+=</span><span class="mf">0.1</span>
+  <span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1
+0.2
+0.30000000000000004
+0.4
+0.5
+0.6
+0.7
+0.7999999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<p>These are <em>computational errors</em>, and we will occasionally round the outputs of functions to reveal the true values. We can use the NumPy function <code class="docutils literal notranslate"><span class="pre">np.round()</span></code>, which takes two arguments: 1) the number or array to be rounded, and 2) the number of digits of precision to preserve:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+  <span class="nb">sum</span><span class="o">+=</span><span class="mf">0.1</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+</pre></div>
+</div>
+</div>
+</div>
+<p>I will generally round to 10 digits of precision, as that is usually enough to remove any computational error while preserving any decimal values that are not caused by computational error.</p>
+</section>
+<section id="writing-big-numbers-in-python">
+<h3><span class="section-number">1.6.2.12. </span>Writing Big Numbers in Python<a class="headerlink" href="#writing-big-numbers-in-python" title="Permalink to this heading">#</a></h3>
+<p>We will be building simulations in Python that require looping thousands or millions of times. Thus, we will often be writing a <code class="docutils literal notranslate"><span class="pre">range</span></code> that has an argument with many zeros. The <code class="docutils literal notranslate"><span class="pre">range</span></code> function will not take a <code class="docutils literal notranslate"><span class="pre">float</span></code> value, and numbers written in scientific notation (like <code class="docutils literal notranslate"><span class="pre">1e6</span></code>) will be treated as floats. This results in using integers that are very hard to read, like 10000000. We can’t use commas in the numbers because that would create a tuple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="p">,</span> <span class="mi">000</span><span class="p">,</span> <span class="mi">000</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 0, 0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fortunately, Python provides a simple way to make large numbers like these more readable. Instead of using commas as a delimiter between every third digit, use underscores (_). Doing this makes it much easier to interpret large numbers, like ten million:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">10_000_000</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary-and-other-resources">
+<h3><span class="section-number">1.6.2.13. </span>Summary and Other Resources<a class="headerlink" href="#summary-and-other-resources" title="Permalink to this heading">#</a></h3>
+<p>Do not worry too much about absorbing all these details about Python now. This book contains many examples to get you started, and you can refer back to this section for reference. Some additional features of the Python programming language will be introduced as needed.</p>
+<p>For users who want to learn more about Python, the following resources are recommended:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jakevdp.github.io/WhirlwindTourOfPython/"><em>A Whirlwind Tour of Python</em> (https://jakevdp.github.io/WhirlwindTourOfPython/)</a> by Jake VanderPlas is a free eBook that covers all the major syntax and features of Python.</p></li>
+<li><p><a class="reference external" href="https://scrimba.com/learn/python">Learn Python for Free (https://scrimba.com/learn/python)</a> is a free 5-hour online introduction to Python (signup required).</p></li>
+<li><p>The Python documentation includes a <a class="reference external" href="https://docs.python.org/3/tutorial/">Python Tutorial (https://docs.python.org/3/tutorial/)</a>.</p></li>
+</ul>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="tabspaces" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Some text editors can be set up to insert a prescribed number of spaces when tab is used or convert tabs to spaces upon saving.</p>
+</aside>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -504,11 +2635,11 @@ No interactive elements are available for this section at this time.</p>
       </div>
     </a>
     <a class="right-next"
-       href="jupyter-start.html"
+       href="../02-first-stats/intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.7. </span>Getting Started in Jupyter</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>First Simulations, Visualizations, and Statistical Tests</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -521,6 +2652,56 @@ No interactive elements are available for this section at this time.</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-in-jupyter">1.6.1. Getting Started in Jupyter</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-the-basics-of-jupyterlab">1.6.1.1. Learn the basics of JupyterLab</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-structure">1.6.1.1.1. Notebook structure</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab-interface-modes">1.6.1.1.2. JupyterLab interface modes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-cells">1.6.1.2. More on cells</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-markdown-in-jupyter">1.6.1.3. Intro to Markdown in Jupyter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-notebooks-into-and-out-of-jupyterlab">1.6.1.4. Getting Notebooks Into and Out of JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-magics">1.6.1.5. Jupyter Magics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-your-work-closing-notebooks-and-closing-jupyterlab">1.6.1.6. Saving Your Work, Closing Notebooks, and Closing JupyterLab</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-in-python">1.6.2. Getting Started in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">1.6.2.1. Hello World!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">1.6.2.2. Comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-variables-and-types">1.6.2.3. Python Variables and Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-data-types">1.6.2.4. Basic Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-variables">1.6.2.5. Copying Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indentation-and-line-breaks-in-python">1.6.2.6. Indentation and Line Breaks in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loops-and-conditionals">1.6.2.7. Loops and Conditionals</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-in-statements">1.6.2.7.1. <code class="docutils literal notranslate"><span class="pre">for</span></code>… <code class="docutils literal notranslate"><span class="pre">in</span></code> Statements</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#if-statements">1.6.2.7.2. <code class="docutils literal notranslate"><span class="pre">if</span></code> Statements</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#while-statements">1.6.2.7.3. <code class="docutils literal notranslate"><span class="pre">while</span></code> Statements</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">1.6.2.8. Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help-and-completion">1.6.2.9. Getting Help and Completion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-modules-and-namespaces">1.6.2.10. Python Modules and Namespaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-arrays">1.6.2.10.1. NumPy Arrays</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-errors-and-rounding">1.6.2.11. Numerical Errors and Rounding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-big-numbers-in-python">1.6.2.12. Writing Big Numbers in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-other-resources">1.6.2.13. Summary and Other Resources</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
