@@ -12,9 +12,6 @@ parts:
     - file: 01-intro/what-book-covers
     - file: 01-intro/what-book-does-not-cover
     - file: 01-intro/intro-jupyter-and-python
-    - file: 01-intro/jupyter-start
-    - file: 01-intro/python-start
-    - file: 01-intro/review
     - file: 01-intro/summary
   - file: 02-first-stats/intro
     sections:
