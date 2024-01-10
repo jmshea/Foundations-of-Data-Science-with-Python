@@ -8,16 +8,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="8.10. Summary" />
+<meta property="og:title" content="8.9. Chapter Summary" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/08-random-variables/summary.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="This page is a placeholder for interactive elements for Section 8.10 of Foundations of Data Science with Python. No interactive elements are available for this section at this time." />
+<meta property="og:description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ Key Take-Aways: Definition of Random Variables A random variables X is defi..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="This page is a placeholder for interactive elements for Section 8.10 of Foundations of Data Science with Python. No interactive elements are available for this section at this time." />
+<meta name="description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ Key Take-Aways: Definition of Random Variables A random variables X is defi..." />
 
-    <title>8.10. Summary &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
+    <title>8.9. Chapter Summary &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
   
   
@@ -78,12 +78,14 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/boldsymbol"]}, "tex": {"macros": {"P": "\\operatorname{P}"}, "packages": {"[+]": ["boldsymbol"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '08-random-variables/summary';</script>
     <link rel="canonical" href="https://www.fdsp.net/08-random-variables/summary.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means" href="../09-moments/intro.html" />
-    <link rel="prev" title="8.9. Review" href="review.html" />
+    <link rel="prev" title="8.8. Conditioning with Random Variables" href="conditioning-with-rvs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -267,8 +269,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="important-continuous-rvs.html">8.6. Important Continuous Random Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kernel-density-estimation.html">8.7. Histograms of Continuous Random Variables and Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="conditioning-with-rvs.html">8.8. Conditioning with Random Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="review.html">8.9. Review</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">8.10. Summary</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">8.9. Chapter Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../09-moments/intro.html">9. Moments, Parameter Estimation, and Binary Hypothesis Tests on Sample Means</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -448,7 +449,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -459,11 +462,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Summary</h1>
+    <h1>Chapter Summary</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">8.9.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">8.9.2. Key Take-Aways</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -473,10 +485,843 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="summary">
-<h1><span class="section-number">8.10. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
-<p>This page is a placeholder for interactive elements for Section 8.10 of <em>Foundations of Data Science with Python</em>.
-No interactive elements are available for this section at this time.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-summary">
+<h1><span class="section-number">8.9. </span>Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permalink to this heading">#</a></h1>
+<section id="terminology-review">
+<h2><span class="section-number">8.9.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+    box-sizing: content-box;
+	  transform: rotateY(180deg);
+	/* transform: rotateY(180deg)  translateX(-6%);  */
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+    /* left: 20px; */
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transition: display 0s;
+    transform:  translateX(20px); 
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    /* height: 360px; */
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+    /* left: -20px; */
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 200px;
+	  width: 95%;
+}
+
+
+
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:10px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    /* width: 95%; */
+    width: 100%;
+}
+
+.flashcardtext{
+    color: var(--snow);
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+    font-size: 1.5em;
+}
+
+.back .flashcardtext{
+    font-size: 1.2em;
+}
+
+
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.jp-OutputArea-output .back {
+	  transform: rotateY(180deg) translateX(7.5%);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 1.5em;
+    /*left:90%; */
+    margin-left: 70%;
+    width: 55pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:-1em;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    outline: none;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+  
+}
+
+.flashcardtext li{
+    text-align: left;
+}
+
+@media only screen and (min-width:1000px) {
+
+    .flip-container, .front, .back {
+	      height: 300px;
+	      width: min(95%, 640px);
+    }
+
+    .flipper {
+        margin-left:20px;
+	      height: 300px;
+    }
+
+    .flashcardtext{
+        font-size: 20pt;
+    }
+
+    .next {
+        font-size: 16pt;
+        left:min(80%, 450pt);
+        margin-left: 0;
+        width: 55pt;
+        height: 22pt;
+        top:-0.5em;
+    }
+
+    .back .flashcardtext{
+        font-size: 1.5em;
+    }
+
+}
+
+@media only screen and (min-width:660px) and (max-width:999px) {
+    .next {
+        left:0;
+        margin-left: 80%;
+    }
+
+}
+
+@media only screen and (max-width:680px) and (min-height:376px) {
+    .flip-container, .front, .back {
+	      height: 300px;
+    }
+
+    .flipper {
+	      height: 300px;
+    }
+
+}
+
+@media only screen and (max-width:330px) and (max-height:600px) {
+
+    .back .flashcardtext{
+        font-size: 1em;
+    }
+    .next {
+        margin-left: 65%;
+    }
+
+}
+
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="chsxoZWLEwJl" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="chsxoZWLEwJl-next" onclick="window.checkFlip('chsxoZWLEwJl')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    //console.log(mystring);
+
+    var count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    var count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+window.flipCard = function flipCard(ths) {
+    //console.log(ths);
+    //console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    ths.focus();
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    /* ths.blur(); */
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        //console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        //console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 600, ths, next);
+}
+
+window.checkKey = function checkKey(container, event) {
+    event.stopPropagation();
+    /*
+    console.log(container);
+    console.log(event.key);
+    console.log(event.code);
+    */
+    /* JMS:  Working here*/
+    var next=document.getElementById(container.id+'-next');
+    /* Only react if not already sliding */
+    if (! next.classList.contains("hide")) {
+        if ((event.key == "j") || (event.key == "Enter") || (event.key == "ArrowRight")) {
+            window.checkFlip(container.id);
+        }
+        if (event.key == " ") {
+            window.flipCard(container);
+        }
+    }
+    event.preventDefault();
+}
+
+
+function reenableNext(ths, next) {
+    next.style.pointerEvents='auto';
+    /* ths.tabIndex= 0;*/
+    /* ths.focus(); */
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    /* container.removeAttribute("tabindex");*/
+    /* container.blur(); */
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+    
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+    
+}
+
+
+window.checkFlip = function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 550, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            //console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            //console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        //console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        //console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    /* container.tabIndex= 0; */
+    /* container.focus(); */
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    var colors=eval('frontColors'+mydiv.id);
+    var backColors=eval('backColors'+mydiv.id);
+    var textColors=eval('textColors'+mydiv.id);
+    //console.log(backColors)
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    frontSpan.style.color=textColors[cardnum % textColors.length];
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    //front.style.background='var(' + colors[cardnum % colors.length] + ')';
+    front.style.background=colors[cardnum % colors.length];
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+    back.style.background=backColors[cardnum % backColors.length];
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    backSpan.style.color=textColors[cardnum % textColors.length];
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id, keyControl, grabFocus) {
+    console.log(id);
+
+    var mydiv=document.getElementById(id);
+    /*mydiv.onclick = window.flipCard(mydiv);*/
+    /*
+    mydiv.addEventListener('click', function(){window.flipCard(mydiv);}, false);
+    mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
+    */
+    mydiv.onclick = function(){window.flipCard(mydiv);};
+    //console.log(keyControl);
+    if (keyControl == "True"){
+        mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
+    }
+    /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
+    /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
+
+    //console.log(mydiv);
+
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+    
+    for (var i=0; i<2; i++) {
+    
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    if (grabFocus == "True" )
+        mydiv.focus();
+
+    return flipper;
+}
+
+
+
+
+
+        function try_create() {
+          if(document.getElementById("chsxoZWLEwJl")) {
+            createCards("chsxoZWLEwJl", "True", "False");
+          } else {
+             setTimeout(try_create, 200);
+          }
+        };
+    
+var cardschsxoZWLEwJl=[
+    {
+     "front": "Borel sets (of $\\mathbb{R}$)",
+     "back": "The collection of all countable unions, intersections, and complements of intervals."
+    },
+    {
+        "front": "Borel field or Borel $\\sigma$-algebra",
+        "back": "The collection of Borel sets."
+    },
+    {
+        "front": "Random variable",
+        "back": "A <i>function</i> that maps from the sample space $S$ to the real line $\\mathbb{R}$."
+    },
+    {
+        "front": "Range (of a random variable)",
+        "back": "The set of values a random variable can take on."
+    },
+    {"front": "discrete random variable",
+     "back": "RV with a finite or countably infinite range"
+    },
+    {
+        "front": "probability mass function (PMF)",
+        "back": "Function from range of a discrete RV $X$ to probabilities, $p_X(x) = \\operatorname{Pr}( X=x)$."
+    },
+    {
+        "front": "cumulative distribution function (CDF)",
+        "back": "Let $(S,\\mathcal{F},P)$ be a probability space and $X$ be a real RV on $S$. Then the <i>cumulative distribution function (CDF)</i> is the real function $F_X(x) =P (X\\le x)$. "
+    },
+    {
+        "front": "staircase function",
+        "back": "A staircase function is a piecewise constant function of its argument that has at most a countable number of pieces."
+    },
+    {
+        "front": "survival function (SF)",
+        "back": "Let $(S,\\mathcal{F},P)$ be a probability space and $X$ be a real RV on $S$. Then the <i>survival function(SF)</i> is the real function $S_X(x) =P (X > x)= 1 -F_X(x)$."
+    },
+    {
+        "front": "Discrete uniform random variable",
+        "back": "RV with a finite number of values, all of which have the same probability"
+    },
+    {
+        "front": "Bernoulli random variable",
+        "back": "RV with two values. Usually 0 and 1, with $p$ such that $P(B=1) = p$ and $P(B=0) = 1-p$."
+    },
+    {
+        "front": "Binomial random variable",
+        "back": "RV representing number of successes on $N$ independent Bernoulli($p$) trials. $P(N=k) = \\binom{N}{k} p^k (1-p)^{N-k}$, $k=0,1,\\dots,N$ "
+    },
+    {
+        "front": "Geometric random variable",
+        "back": "For repeated, independent Binomial($p$) trials, RV $G$ is number of trials to first success.  $p_G(k) = p(1-p)^{k-1}$, $k=1,2,\\ldots$"
+    },
+    {
+        "front": "Poisson random variable",
+        "back": "Models events that occur randomly over time (or space). If average of $\\alpha$ events in observation window, \\[p_X(k) = \\frac{\\alpha^k}{k!} e^{- \\alpha},~~k = 0, 1, \\ldots\\]"
+    },
+    {
+        "front": "Continuous uniform random variable",
+        "back": "RV with uncountably infinite range and continuous CDF"
+    },
+    {
+        "front": "Probability density function (pdf)",
+        "back": "For a continuous RV $X$, \\[f_X(x) = \\frac{d}{dx} F_X(x)\\] "
+    },
+    {
+        "front": "Piecewise function",
+        "back": "A function that has a different functional relationship on different regions of its variable(s)."
+    },
+    {
+        "front": "(Continuous) Uniform RV",
+        "back": "An RV on an interval $[a,b]$ that has the same probability density at every point in that interval, \\[f_U(u) = \\frac{1}{b-a}, ~~ u \\in [a,b] \\]"
+    },
+    {
+        "front": "Exponential RV",
+        "back": "RV with single parameter $\\lambda$ that controls exponential roll-off of density. The pdf is \\[ f_X(x) = \\lambda e^{-\\lambda x} u(x) \\] "
+    },
+    {
+        "front": "Inverse CDF",
+        "back": "Given probability $p$, returns value of $x$ such that $F_X(x)=p$. Can denote as $F_{X}^{-1}(p)$. Also called the <i>quantile function</i> of <i>percent-point function</i>."
+    },
+    {
+        "front": "Normal (Gaussian) RV",
+        "back": "RV that often arises from aggregation of random effects. Has parameters $\\mu$ (mean) and $\\sigma$ (standard deviation) and pdf \\[f_X(x)  = \\frac{1}{\\sigma \\sqrt{ 2 \\pi }} \\exp \\left\\{ - \\frac {1} {2}\\left[\\frac{x-\\mu}{\\sigma}\\right]^2   \\right\\},\\]  \\[-\\infty < x < \\infty \\] "
+    },
+    {
+        "front": "Chi-squared RV",
+        "back": "A chi-squared random variable with $M$ degrees of freedom is equivalent to the sum of the squares of $M$ independent, standard Normal random variables."
+    },
+    {
+        "front": "Student's $t$ RV",
+        "back": "RV similar to standard Normal but has probability spread further from the mean. Spread away from mean increases as degrees of freedom parameter decreases."
+    }
+]
+;
+var frontColorschsxoZWLEwJl= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorschsxoZWLEwJl= ["var(--dark-blue-gray)" ];
+var textColorschsxoZWLEwJl= ["var(--snow)" ];
+
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/08-random-variables/flashcards/review.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("chsxoZWLEwJl", "True", "False"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        try_create(); 
+        });
+        }
+        </script></div>
+</div>
+</section>
+<section id="key-take-aways">
+<h2><span class="section-number">8.9.2. </span>Key Take-Aways<a class="headerlink" href="#key-take-aways" title="Permalink to this heading">#</a></h2>
+<p><strong>Definition of Random Variables</strong></p>
+<ul class="simple">
+<li><p>A random variables <span class="math notranslate nohighlight">\(X\)</span> is defined on a probability space <span class="math notranslate nohighlight">\((S, P, \mathcal{F})\)</span> as a function from <span class="math notranslate nohighlight">\(S\)</span> to the real line. Formally, we write the random variable as <span class="math notranslate nohighlight">\(X(s)\)</span>.</p></li>
+<li><p>Random variables are written as uppercase letters (like <span class="math notranslate nohighlight">\(X\)</span> or <span class="math notranslate nohighlight">\(Y\)</span>), and values of random variables are written as the corresponding lowercase letters (like <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>).</p></li>
+<li><p>Random variables defined on the same sample space can have different ranges and different distributions of probability.</p></li>
+<li><p>For a random variable, every Borel set must correspond to an event in the event class.</p></li>
+</ul>
+<p><strong>Discrete Random Variables</strong></p>
+<ul class="simple">
+<li><p>A discrete random variable takes values on a finite or countable range.</p></li>
+<li><p>The probability mass function (PMF) is a way to write the probabilities of a discrete random variable as a function that is defined for all real values.</p></li>
+<li><p>We use stem plots to illustrate PMFs.</p></li>
+<li><p>A discrete random variable may have an infinite number of values with nonzero probabilities.</p></li>
+</ul>
+<p><strong>Cumulative Distribution Functions</strong></p>
+<ul class="simple">
+<li><p>The cumulative distribution function (CDF) of a random variable <span class="math notranslate nohighlight">\(X\)</span> has the form</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_X(x) = \operatorname{Pr} \bigl( \left\{s \vert X(s) \le x\right\} \bigr).
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p>We abbreviate the CDF as <span class="math notranslate nohighlight">\(F_X(x) = P(X \le x)\)</span>.</p></li>
+<li><p>CDFs are often piecewise functions. In Python, we can use <code class="docutils literal notranslate"><span class="pre">np.piecewise()</span></code> to define a piecewise function.</p></li>
+<li><p>The CDF for any discrete random variable is a staircase function, meaning that it is a piecewise-constant, nondecreasing function.</p></li>
+<li><p>The height of the jump at a point in the CDF of a discrete random variable is the probability at that point.</p></li>
+<li><p>CDFs are helpful because they can be used to calculate probabilities over intervals.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(F_X(x)\)</span> is a CDF, then <span class="math notranslate nohighlight">\(0 \le F_X(x) \le 1\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> because the CDF evaluates back to the probability of some event in the probability space  over which the random variable is defined.</p></li>
+<li><p><span class="math notranslate nohighlight">\(F(-\infty) = 0\)</span>, <span class="math notranslate nohighlight">\(F(+ \infty) =1\)</span>, and <span class="math notranslate nohighlight">\(F_X(x)\)</span> is monotonically nondecreasing in between.</p></li>
+<li><p>The survival function of a random variable is <span class="math notranslate nohighlight">\(S_X(x) = 1-F_X(x)\)</span>.</p></li>
+</ul>
+<p><strong>Important Discrete Random Variables</strong></p>
+<ul class="simple">
+<li><p>A Discrete Uniform random variable has equal probability at each of a finite set of values, which are usually consecutive integers.</p></li>
+<li><p>A Bernoulli (<span class="math notranslate nohighlight">\(p\)</span>) random variable <span class="math notranslate nohighlight">\(B\)</span> takes on values of 0 or 1, where  <span class="math notranslate nohighlight">\(P(B=1) = p\)</span>.</p></li>
+<li><p>A Binomial (<span class="math notranslate nohighlight">\(N,p\)</span>) random variable is the number of successes (i.e., 1 values) on  <span class="math notranslate nohighlight">\(N\)</span> Bernoulli (<span class="math notranslate nohighlight">\(p\)</span>) trials.</p></li>
+<li><p>A Geometric (<span class="math notranslate nohighlight">\(p\)</span>) random variable is the number of Bernoulli (<span class="math notranslate nohighlight">\(p\)</span>) trials until the first success. Unlike the RVs above, it has a countably infinite range.</p></li>
+<li><p>A Poisson (<span class="math notranslate nohighlight">\(\alpha\)</span>) random variable models the number of occurrences in some observation interval with average number of occurrences <span class="math notranslate nohighlight">\(\alpha\)</span>.</p></li>
+<li><p>SciPy.stats has functions to create objects for all of these types of random variables and many more. The objects have methods to return the range, PMF values, CDF values, and many more properties and functions related to the corresponding random variable.</p></li>
+</ul>
+<p><strong>Continuous Random Variables</strong></p>
+<ul class="simple">
+<li><p>A continuous random variable has a CDF that is a continuous function.</p></li>
+<li><p>All of the values of a continuous RV have zero probability; instead, they have nonzero probability density. Zero probability does not mean that the values do not occur. Probabilities of the random variable taking a value in intervals are usually nonzero.</p></li>
+<li><p>The probability density function (pdf) is</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x) = \frac{d}{dx} F_X(x).
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p>The CDF can be computed from the pdf by integrating:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_X(x) = \int_{-\infty}^{x} f_X(u) ~du.
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p>Be sure to use a variable of integration, or you will not be able to evaluate the integral correctly.</p></li>
+<li><p>SymPy is a Python library for performing symbol mathematics. In particular, it has <code class="docutils literal notranslate"><span class="pre">diff()</span></code> and <code class="docutils literal notranslate"><span class="pre">integrate()</span></code> functions for performing differentiation and integration, respectively.</p></li>
+<li><p>Some important properties of pdfs are:</p>
+<ul>
+<li><p>They are nonnegative, but unlike CDFs, they can be arbitrarily large. They are not probabilities; they are only densities of probabilities.</p></li>
+<li><p>The area under the pdf for some interval (i.e., the integral over that interval) is the probability that the random variable takes a value in that interval. This can be extended to Borel sets.</p></li>
+<li><p>The area under the entire pdf is 1. I.e., a pdf integrates to 1.</p></li>
+<li><p>Almost any nonnegative function that integrates to 1 is a valid pdf for some random variable.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Important Continuous Random Variables</strong></p>
+<ul class="simple">
+<li><p>A Uniform random variable models complete lack of knowledge on a fixed interval; i.e., the density is uniformly distributed across the interval, so every point in the interval is equally likely.</p></li>
+<li><p>Exponential random variables model the time between Poisson arrivals and the lifetime of devices. They are the only continuous RVs with the memoryless property.</p></li>
+<li><p>Normal random variables model aggregate phenomena and show up often in statistics and data science. The pdf depends on the mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> and is</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x) = \frac{1}{\sigma \sqrt{2 \pi}} \exp \left[ - \frac 1 2  \left( \frac{x- \mu}{\sigma} \right)^2 \right].
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p>A standard Normal random variable us <span class="math notranslate nohighlight">\(\mu=0\)</span> and <span class="math notranslate nohighlight">\(\sigma=1\)</span>.</p></li>
+<li><p>The CDF of a Normal random variable can only be written as an integral. For a standard Normal random variable, the CDF is called <span class="math notranslate nohighlight">\(\Phi(x)\)</span>, and the survival function is called <span class="math notranslate nohighlight">\(Q(x)\)</span>.</p></li>
+<li><p>The  probability of a tail of a Normal random variable can always be expressed as <span class="math notranslate nohighlight">\(Q(d/\sigma)\)</span>, where <span class="math notranslate nohighlight">\(d\)</span> is the distance from the mean to the tail. The <span class="math notranslate nohighlight">\(Q()\)</span> function can be evaluated using SciPy.stat’s <code class="docutils literal notranslate"><span class="pre">norm.sf()</span></code> function.</p></li>
+<li><p>The Central Limit Theorem says that the CDF of the average of almost any types of random variables converges to a Normal distribution.</p></li>
+<li><p>A chi-squared random variable can be created as the sum of squares of independent zero-mean Normal random variables. It is characterized by the degrees of freedom, which corresponds to the number of squared Normal RVs added together. A special case is when dof=2, the random variable is Exponential.</p></li>
+<li><p>Student’s <span class="math notranslate nohighlight">\(t\)</span> random variable is similar to the standard Normal but its density is spread further away from 0.</p></li>
+</ul>
+<p><strong>Histograms of Continuous Densities and Kernel Density Estimation</strong></p>
+<ul class="simple">
+<li><p>Normalized histograms of continuous densities approximate the pdf when the size of the bins is small, and the number of samples of the random variable is large.</p></li>
+<li><p>Kernel Density Estimation (KDE) uses a smooth kernel function to better approximate the pdf for random variables with continuous pdfs.</p></li>
+<li><p>The quality of the KDE estimate depends on the shape of the kernel. The usual kernel is the Gaussian (Normal) kernel but the value of <span class="math notranslate nohighlight">\(\sigma\)</span> (typically called the <em>bandwidth</em>) must still be chosen.</p></li>
+<li><p>SciPy.stats has a <code class="docutils literal notranslate"><span class="pre">gaussian_kde()</span></code> function that performs KDE and automatically chooses the kernel bandwidth.</p></li>
+</ul>
+<p><strong>Conditioning with Random Variables</strong></p>
+<ul class="simple">
+<li><p>We can use the usual definition of conditional probability to create conditional CDFs when conditioning on events with nonzero probability.</p></li>
+<li><p>Conditional pdfs are defined as the derivative of the corresponding conditional CDFs.</p></li>
+<li><p>The Law of Total Probability and Bayes’ rule can be used with conditional CDFs.</p></li>
+<li><p>If we want to condition on an observed value of a continuous random variable, then all our previous approaches to conditional probabilities break down.</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -510,12 +1355,12 @@ No interactive elements are available for this section at this time.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="review.html"
+       href="conditioning-with-rvs.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">8.9. </span>Review</p>
+        <p class="prev-next-title"><span class="section-number">8.8. </span>Conditioning with Random Variables</p>
       </div>
     </a>
     <a class="right-next"
@@ -533,6 +1378,21 @@ No interactive elements are available for this section at this time.</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">8.9.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">8.9.2. Key Take-Aways</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
