@@ -48,7 +48,6 @@ parts:
     - file: 05-null-hypothesis-testing/example-nhst
     - file: 05-null-hypothesis-testing/bootstrap-dist-confidence-intervals
     - file: 05-null-hypothesis-testing/errors-and-power
-    - file: 05-null-hypothesis-testing/review
     - file: 05-null-hypothesis-testing/summary
   - file: 06-conditional-prob/intro
     sections:
