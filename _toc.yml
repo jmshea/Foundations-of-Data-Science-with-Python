@@ -38,7 +38,6 @@ parts:
     - file: 04-probability1/axiomatic-prob
     - file: 04-probability1/corollaries
     - file: 04-probability1/combinatorics
-    - file: 04-probability1/review
     - file: 04-probability1/summary
   - file: 05-null-hypothesis-testing/intro
     sections:
