@@ -67,7 +67,6 @@ parts:
     - file: 07-bayesian-methods/bayes-hidden-state
     - file: 07-bayesian-methods/optimal-decisions
     - file: 07-bayesian-methods/bayesian-hypothesis-testing
-    - file: 07-bayesian-methods/review
     - file: 07-bayesian-methods/summary
   - file: 08-random-variables/intro
     sections:
