@@ -19,7 +19,6 @@ parts:
     - file: 02-first-stats/first-sims
     - file: 02-first-stats/first-vis
     - file: 02-first-stats/first-stats
-    - file: 02-first-stats/review
     - file: 02-first-stats/summary
   - file: 03-first-data/intro
     sections:
@@ -30,7 +29,6 @@ parts:
     - file: 03-first-data/histogram
     - file: 03-first-data/hypothesis-testing
     - file: 03-first-data/2d-statistics-preview
-    - file: 03-first-data/review
     - file: 03-first-data/summary
   - file: 04-probability1/intro
     sections:
