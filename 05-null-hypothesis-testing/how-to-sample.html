@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/05-null-hypothesis-testing/how-to-sample.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
+<meta property="og:description" content="Permutation Tests: Code and additional discussion for Section 5.4.2 are included here. When we carried out the bootstrap test, we observed that almost every row had repeated values of the data. Thi..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
+<meta name="description" content="Permutation Tests: Code and additional discussion for Section 5.4.2 are included here. When we carried out the bootstrap test, we observed that almost every row had repeated values of the data. Thi..." />
 
     <title>5.4. How to Sample from the Pooled Data &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -489,6 +489,159 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="how-to-sample-from-the-pooled-data">
 <h1><span class="section-number">5.4. </span>How to Sample from the Pooled Data<a class="headerlink" href="#how-to-sample-from-the-pooled-data" title="Permalink to this heading">#</a></h1>
+<p><strong>Permutation Tests: Code and additional discussion for Section 5.4.2 are included here.</strong></p>
+<p>When we carried out the bootstrap test, we observed that almost every row had repeated values of the data.  This is attributable to resampling with replacement, and the probability of at least one repeated value increases as the size of the data increases.  There is also nothing preventing the sample groups from repeating in different iterations, although the probability of repeated sample groups decreases with the size of the data.</p>
+<p>If our goal is to conduct a statistical test that directly breaks any dependence on the assignment of the data to the two groups, then it makes more sense to consider simply shuffling, or <em>permuting</em>, the data among the groups, with no repetitions allowed.  When the data is small, we can simply try every permutation of the data across the two groups. This is a permutation test.</p>
+<p>For instance, with six data points, the number of permutations is <span class="math notranslate nohighlight">\(6! = 720\)</span>. If we want to carry out a NHST, we first compute the test difference for each permutation. Then, we determine the proportion of permutations that result in sample test statistics greater than our observed test difference. This proportion is the <span class="math notranslate nohighlight">\(p\)</span>-value under the permutation test.</p>
+<p>We will use the <code class="docutils literal notranslate"><span class="pre">itertools</span></code> library to find every permutation of the data across the two groups. Let’s first see how to get every permutation of a list of sequential integers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 1, 2)
+(0, 2, 1)
+(1, 0, 2)
+(1, 2, 0)
+(2, 0, 1)
+(2, 1, 0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>For three values, we expect <span class="math notranslate nohighlight">\(3!=6\)</span> permutations, which is what we observe.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">itertools.permutations()</span></code> returns a special object that can be iterated over but that you can’t directly get individual values from.
+Thus, we will always use <code class="docutils literal notranslate"><span class="pre">itertools.permutations()</span></code> in a <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span> </code> statement.</p>
+</div>
+<p>To map permutations into two groups, we first permute the entire pooled data and then partition it according to the size of the two groups. For instance, here are the first ten permutations of the pooled data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">perm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">)</span> <span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(74.1, 74.5, 79.4, 79.0, 78.4, 79.3)
+(74.1, 74.5, 79.4, 79.0, 79.3, 78.4)
+(74.1, 74.5, 79.4, 78.4, 79.0, 79.3)
+(74.1, 74.5, 79.4, 78.4, 79.3, 79.0)
+(74.1, 74.5, 79.4, 79.3, 79.0, 78.4)
+(74.1, 74.5, 79.4, 79.3, 78.4, 79.0)
+(74.1, 74.5, 79.0, 79.4, 78.4, 79.3)
+(74.1, 74.5, 79.0, 79.4, 79.3, 78.4)
+(74.1, 74.5, 79.0, 78.4, 79.4, 79.3)
+(74.1, 74.5, 79.0, 78.4, 79.3, 79.4)
+(74.1, 74.5, 79.0, 79.3, 79.4, 78.4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>To partition the data, we can simply split each returned tuple using indexing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">perm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">)</span> <span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)],</span> <span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">):])</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(74.1, 74.5) (79.4, 79.0, 78.4, 79.3)
+(74.1, 74.5) (79.4, 79.0, 79.3, 78.4)
+(74.1, 74.5) (79.4, 78.4, 79.0, 79.3)
+(74.1, 74.5) (79.4, 78.4, 79.3, 79.0)
+(74.1, 74.5) (79.4, 79.3, 79.0, 78.4)
+(74.1, 74.5) (79.4, 79.3, 78.4, 79.0)
+(74.1, 74.5) (79.0, 79.4, 78.4, 79.3)
+(74.1, 74.5) (79.0, 79.4, 79.3, 78.4)
+(74.1, 74.5) (79.0, 78.4, 79.4, 79.3)
+(74.1, 74.5) (79.0, 78.4, 79.3, 79.4)
+(74.1, 74.5) (79.0, 79.3, 79.4, 78.4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can carry out a NHST by determining the proportion of permutations that result in a sample test statistic as large as the observed test difference:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_perms</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">observed_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">):</span>
+  <span class="n">num_perms</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="c1"># Split the permuted data across the two sample groups</span>
+  <span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)]</span> <span class="p">)</span>
+  <span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">:</span> <span class="p">]</span> <span class="p">)</span>
+  <span class="c1"># Compute the test statistic</span>
+  <span class="n">sample_diff</span> <span class="o">=</span> <span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  
+  <span class="c1"># Count if at least as large as observed test difference</span>
+  <span class="k">if</span> <span class="n">sample_diff</span> <span class="o">&gt;=</span> <span class="n">observed_diff</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;After </span><span class="si">{</span><span class="n">num_perms</span><span class="si">}</span><span class="s1"> permutations:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Proportion of events with difference &gt;= &#39;</span>
+      <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">observed_diff</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">count</span><span class="o">/</span><span class="n">num_perms</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>After 720 permutations:
+Proportion of events with difference &gt;= 4.725 is 0.067
+</pre></div>
+</div>
+</div>
+</div>
+<p>The proportion of permutations with a test difference as large as that observed in the data is 6.67%, so the null hypothesis cannot be rejected at the <span class="math notranslate nohighlight">\(\alpha=0.05\)</span> level. Note that the calculated <span class="math notranslate nohighlight">\(p\)</span>-value is larger than for the bootstrap test; this is typical of permutation tests. They are more conservative in the sense that the null hypothesis is less likely to be rejected than if a bootstrap test were applied.</p>
+<p>One problem with exact permutation tests is that the number of possible permutations grows exponentially with the length of the data. For 6 data points, there are only 720 permutations, but for 60 data points, there are approximately <span class="math notranslate nohighlight">\(8.3 \times 10^{81}\)</span> permutations, which is too large to enumerate. As an alternative, we can use a Monte Carlo permutation test. As previously mentioned, this is usually implemented by performing resampling <em>without replacement</em>,  which we can do in Python using <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code> with the keyword parameter <code class="docutils literal notranslate"><span class="pre">replace</span> <span class="pre">=</span> <span class="pre">False</span></code>.</p>
+<p>The simulation for a Monte Carlo permutation test is a hybrid between the simulation for bootstrapping and that for the exact permutation test. We draw the data using <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code>, but we get a full permutation of the data and then split it among the two sample groups. An example is shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">observed_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+  <span class="c1"># Get a random permutation of the pooled data:</span>
+  <span class="n">perm</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pooled</span><span class="p">),</span> <span class="n">replace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> 
+  <span class="c1"># Split the permuted data across the two sample groups</span>
+  <span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)]</span> <span class="p">)</span>
+  <span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">:</span> <span class="p">]</span> <span class="p">)</span>
+  <span class="n">sample_diff</span> <span class="o">=</span> <span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  
+  <span class="c1"># Count if at least as large as observed test difference</span>
+  <span class="k">if</span> <span class="n">sample_diff</span> <span class="o">&gt;=</span> <span class="n">observed_diff</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Relative frequency of events with difference &gt;= &#39;</span>
+      <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">observed_diff</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">count</span><span class="o">/</span><span class="n">num_sims</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Relative frequency of events with difference &gt;= 4.725 is 0.065
+</pre></div>
+</div>
+</div>
+</div>
+<p>The relative frequency of the Monte Carlo test is very similar to the exact test. In this case, we have a lot of repetitions of the same permutations because there are only 720 unique permutations, but we are drawing 100,000 permutations at random. The computed relative frequency is an estimate of the proportion of permutations that meet the specified criteria.</p>
 <section id="terminology-review">
 <h2><span class="section-number">5.4.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
