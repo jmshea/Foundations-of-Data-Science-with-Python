@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/06-conditional-prob/chain-rules-total-prob.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Quiz 1: Using Chain Rules: Quiz 2: Chain Rules and the Magician’s Coin: Proofs Omitted in Text: Proof that all events B_j, ~B_k,~j \ne k are mutually exclusive$ B_j \cap B_k = (B \cap A_j) \cap (B ..." />
+<meta property="og:description" content="If\{ A_i \} is a partition of S and B \subset S is an event, then A_i \cap A_j = \emptyset also implies that B_i \cap B_j = (B \cap A_i) \cap (B \cap A_j) = B \cap (A_i \cap A_j) = B \cap \emptyset..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Quiz 1: Using Chain Rules: Quiz 2: Chain Rules and the Magician’s Coin: Proofs Omitted in Text: Proof that all events B_j, ~B_k,~j \ne k are mutually exclusive$ B_j \cap B_k = (B \cap A_j) \cap (B ..." />
+<meta name="description" content="If\{ A_i \} is a partition of S and B \subset S is an event, then A_i \cap A_j = \emptyset also implies that B_i \cap B_j = (B \cap A_i) \cap (B \cap A_j) = B \cap (A_i \cap A_j) = B \cap \emptyset..." />
 
     <title>6.9. Chain Rules and Total Probability &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -492,6 +492,17 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="chain-rules-and-total-probability">
 <h1><span class="section-number">6.9. </span>Chain Rules and Total Probability<a class="headerlink" href="#chain-rules-and-total-probability" title="Permalink to this heading">#</a></h1>
+<p>If <span class="math notranslate nohighlight">\(\{ A_i \}\)</span> is a partition of <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(B \subset S\)</span> is an event, then <span class="math notranslate nohighlight">\(A_i \cap A_j = \emptyset\)</span> also implies that</p>
+<div class="math notranslate nohighlight">
+\[
+B_i \cap B_j = (B \cap A_i) \cap (B \cap A_j) = B \cap (A_i \cap A_j) = B \cap \emptyset =\emptyset,
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\bigcup_i B_i = \bigcup_i \left(A_i \cap B\right )  = B \cap \left( \bigcup_i A_i \right) = B \cap S = B.
+\]</div>
+<p>These two properties imply that <span class="math notranslate nohighlight">\(B_0, B_1, \ldots, B_{n-1}\)</span> are a partition for <span class="math notranslate nohighlight">\(B\)</span>.</p>
 <section id="quiz-1-using-chain-rules">
 <h2><span class="section-number">6.9.1. </span>Quiz 1: Using Chain Rules<a class="headerlink" href="#quiz-1-using-chain-rules" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
