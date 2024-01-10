@@ -8,16 +8,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="4.7. Summary" />
+<meta property="og:title" content="4.7. Chapter Summary" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/04-probability1/summary.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Coming soon! Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ Self Assessment Exercises: Answer the questions below to asses..." />
+<meta property="og:description" content="The primary purpose of this chapter is to formalize our language and techniques for dealing with random phenomena. Our framework for doing that is a probability space(S, \mathcal{F}, P), which cons..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Coming soon! Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ Self Assessment Exercises: Answer the questions below to asses..." />
+<meta name="description" content="The primary purpose of this chapter is to formalize our language and techniques for dealing with random phenomena. Our framework for doing that is a probability space(S, \mathcal{F}, P), which cons..." />
 
-    <title>4.7. Summary &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
+    <title>4.7. Chapter Summary &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
   
   
@@ -225,7 +225,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="axiomatic-prob.html">4.4. Axiomatic  Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="corollaries.html">4.5. Corollaries to the Axioms of Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="combinatorics.html">4.6. Combinatorics</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.7. Summary</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.7. Chapter Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../05-null-hypothesis-testing/intro.html">5. Null Hypothesis Tests</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -466,7 +466,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Summary</h1>
+    <h1>Chapter Summary</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -478,6 +478,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">4.7.1. Terminology Review</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-assessment-exercises">4.7.2. Self Assessment Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">4.7.3. Key take-aways:</a></li>
 </ul>
             </nav>
         </div>
@@ -489,9 +490,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="summary">
-<h1><span class="section-number">4.7. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
-<p>Coming soon!</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-summary">
+<h1><span class="section-number">4.7. </span>Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permalink to this heading">#</a></h1>
+<p>The primary purpose of this chapter is to formalize our language and techniques for dealing with random phenomena. Our framework for doing that is a probability space <span class="math notranslate nohighlight">\((S, \mathcal{F}, P)\)</span>, which
+consists of:</p>
+<ul class="simple">
+<li><p>A sample space <span class="math notranslate nohighlight">\(S\)</span>, which contains all of the outcomes for a random experiment.</p></li>
+<li><p>An event class, <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>,  which contains sets of events to which we will assign probability.</p></li>
+<li><p>A probability measure, <span class="math notranslate nohighlight">\(P\)</span>, which is a set function that assigns probabilities to the events.
+The event class has to be a <span class="math notranslate nohighlight">\(\sigma\)</span>-algebra, which basically means that we can combine any events using set operations and the result will still be in the event class.   The properties of the probability measure come from the three Axioms of Probability.</p></li>
+</ul>
+<p>We showed how to calculate probabilities for fair experiments using counting. However, counting the number of outcomes in an event is sometimes nontrivial, and I introduced several counting techniques from combinatorics to help with this.</p>
+<p>We will see some of these same formulas again when we introduce random variables in Chapter 8.</p>
+<p>Now that we have better terminology and tools, we take a deep dive into null hypothesis testing with resampling in Chapter 5.</p>
 <section id="terminology-review">
 <h2><span class="section-number">4.7.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
@@ -752,7 +763,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="sahJwANBZBmA" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="sahJwANBZBmA-next" onclick="window.checkFlip('sahJwANBZBmA')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="CZCUzNQxmSIa" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="CZCUzNQxmSIa-next" onclick="window.checkFlip('CZCUzNQxmSIa')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1143,14 +1154,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("sahJwANBZBmA")) {
-            createCards("sahJwANBZBmA", "True", "False");
+          if(document.getElementById("CZCUzNQxmSIa")) {
+            createCards("CZCUzNQxmSIa", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardssahJwANBZBmA=[
+var cardsCZCUzNQxmSIa=[
     {
         "front": "event class",
         "back": "For a sample space $S$ and a probability measure $P,$ the event class, denoted by $\\mathcal{F}$ is a collection of all subsets of $S$ to which we will assign probability (i.e., for which $P$ will be defined). The sets in $\\mathcal{F}$ are called events."
@@ -1209,9 +1220,9 @@ var cardssahJwANBZBmA=[
     }
 ]
 ;
-var frontColorssahJwANBZBmA= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorssahJwANBZBmA= ["var(--dark-blue-gray)" ];
-var textColorssahJwANBZBmA= ["var(--snow)" ];
+var frontColorsCZCUzNQxmSIa= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsCZCUzNQxmSIa= ["var(--dark-blue-gray)" ];
+var textColorsCZCUzNQxmSIa= ["var(--snow)" ];
 
 
         {
@@ -1222,7 +1233,7 @@ var textColorssahJwANBZBmA= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/review.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("sahJwANBZBmA", "True", "False"))
+        .then(json => createCards("CZCUzNQxmSIa", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1236,13 +1247,13 @@ var textColorssahJwANBZBmA= ["var(--snow)" ];
 <p>Answer the questions below to assess your understanding of the material in this chapter.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="AsAJkXKbSOaj" data-shufflequestions="False"
+<div class="output text_html"><div id="RDlvEwatpofS" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#AsAJkXKbSOaj {
+#RDlvEwatpofS {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1412,7 +1423,7 @@ var textColorssahJwANBZBmA= ["var(--snow)" ];
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsAsAJkXKbSOaj=[
+</style></div><script type="application/javascript">var questionsRDlvEwatpofS=[
     {
         "question": "If I roll a fair 6-sided die two times, what is the probability that at least one of those dice show a 1 on the top face? Answer as a fraction or a decimal with at least 2 significant digits.",
         "type": "numeric",
@@ -2574,8 +2585,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("AsAJkXKbSOaj")) {
-            show_questions(questionsAsAJkXKbSOaj,  AsAJkXKbSOaj); 
+          if(document.getElementById("RDlvEwatpofS")) {
+            show_questions(questionsRDlvEwatpofS,  RDlvEwatpofS); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2590,23 +2601,23 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/questions/review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, AsAJkXKbSOaj))
+        .then(json => show_questions(json, RDlvEwatpofS))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsAsAJkXKbSOaj, AsAJkXKbSOaj);
+        show_questions(questionsRDlvEwatpofS, RDlvEwatpofS);
         });
         }
         </script></div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="uwSeccqApekt" data-shufflequestions="False"
+<div class="output text_html"><div id="zQIAyFSODoMG" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="3"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#uwSeccqApekt {
+#zQIAyFSODoMG {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -2776,7 +2787,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsuwSeccqApekt=[
+</style></div><script type="application/javascript">var questionszQIAyFSODoMG=[
     {
         "question": "Choose all of the following that are useful error metrics that can be minimized to create a summary statistic:",
         "type": "many_choice",
@@ -3641,8 +3652,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("uwSeccqApekt")) {
-            show_questions(questionsuwSeccqApekt,  uwSeccqApekt); 
+          if(document.getElementById("zQIAyFSODoMG")) {
+            show_questions(questionszQIAyFSODoMG,  zQIAyFSODoMG); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -3657,23 +3668,23 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, uwSeccqApekt))
+        .then(json => show_questions(json, zQIAyFSODoMG))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsuwSeccqApekt, uwSeccqApekt);
+        show_questions(questionszQIAyFSODoMG, zQIAyFSODoMG);
         });
         }
         </script></div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="rDCzNgvkmvHP" data-shufflequestions="False"
+<div class="output text_html"><div id="FWxEJLjEwKRQ" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="2"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#rDCzNgvkmvHP {
+#FWxEJLjEwKRQ {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -3843,7 +3854,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsrDCzNgvkmvHP=[
+</style></div><script type="application/javascript">var questionsFWxEJLjEwKRQ=[
     {
         "question": "Which of these cannot be a probability?",
         "type": "multiple_choice",
@@ -4671,8 +4682,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("rDCzNgvkmvHP")) {
-            show_questions(questionsrDCzNgvkmvHP,  rDCzNgvkmvHP); 
+          if(document.getElementById("FWxEJLjEwKRQ")) {
+            show_questions(questionsFWxEJLjEwKRQ,  FWxEJLjEwKRQ); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -4687,23 +4698,23 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/questions/review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, rDCzNgvkmvHP))
+        .then(json => show_questions(json, FWxEJLjEwKRQ))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsrDCzNgvkmvHP, rDCzNgvkmvHP);
+        show_questions(questionsFWxEJLjEwKRQ, FWxEJLjEwKRQ);
         });
         }
         </script></div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="dSYFmFgdqXiB" data-shufflequestions="False"
+<div class="output text_html"><div id="GyhQOacPQTQK" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#dSYFmFgdqXiB {
+#GyhQOacPQTQK {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -4873,7 +4884,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsdSYFmFgdqXiB=[
+</style></div><script type="application/javascript">var questionsGyhQOacPQTQK=[
     {
         "question": "Choose all of the following that can be included in Jupyter notebooks?",
         "type": "many_choice",
@@ -5866,8 +5877,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("dSYFmFgdqXiB")) {
-            show_questions(questionsdSYFmFgdqXiB,  dSYFmFgdqXiB); 
+          if(document.getElementById("GyhQOacPQTQK")) {
+            show_questions(questionsGyhQOacPQTQK,  GyhQOacPQTQK); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -5882,14 +5893,90 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/questions/review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, dSYFmFgdqXiB))
+        .then(json => show_questions(json, GyhQOacPQTQK))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsdSYFmFgdqXiB, dSYFmFgdqXiB);
+        show_questions(questionsGyhQOacPQTQK, GyhQOacPQTQK);
         });
         }
         </script></div>
 </div>
+</section>
+<section id="key-take-aways">
+<h2><span class="section-number">4.7.3. </span>Key take-aways:<a class="headerlink" href="#key-take-aways" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Probability can be defined in several ways. Three considered in this chapter are:</p>
+<ol class="arabic simple">
+<li><p>Using relative frequency</p></li>
+<li><p>Using analysis for fair experiments</p></li>
+<li><p>Using Axiomatic Theory</p></li>
+</ol>
+</li>
+<li><p>Axiomatic Theory is the most general and powerful of these.</p></li>
+</ul>
+<p><strong>Outcomes, Sample Spaces, and Events</strong></p>
+<ul class="simple">
+<li><p>An <em>outcome</em> is a result of a random experiment that cannot be further decomposed.</p></li>
+<li><p>The <em>sample space</em> of a random experiment is the set of all outcomes.</p></li>
+<li><p>An <em>event</em> is a set of outcomes. The event occurs if any of the outcomes in that set occcurs.</p></li>
+</ul>
+<p><strong>Relative Frequencies and Probabilities</strong></p>
+<ul class="simple">
+<li><p>A <em>compound experiment</em> consists of multiple sub-experiments.</p></li>
+<li><p>A <em>trial</em> is one of the sub-experiments in a compound experiment.</p></li>
+<li><p>A <em>repeated experiment</em> is a compound experiment in which the trials are identical and independent of each other.</p></li>
+<li><p>The <em>relative frequency</em> of an event is defined over some number of repeated trials.  It is the proportion of times that event is seen during those trials.</p></li>
+<li><p>Relative frequencies take values between 0 and 1. The relative frequencies of the outcomes of an experiment sum to 1.</p></li>
+<li><p>An experiment possesses <em>statistical regularity</em> if the relative frequencies converge to some fixed values.</p></li>
+<li><p>If the relative frequencies converge to fixed values, we define those fixed values as the probabilities of the corresponding events.</p></li>
+<li><p>Probabilities defined in this way satisfy the same properties as relative frequencies: probabilities take values between 0 and 1, and the probabilities of the outcomes sum to 1.</p></li>
+<li><p>There are many types of experiments that can’t be repeated, and the limit cannot be defined in a formal mathematical sense. Thus, this approach to defining probabilities is limiting.</p></li>
+</ul>
+<p><strong>Fair Experiments</strong></p>
+<ul class="simple">
+<li><p>An experiment is <em>fair</em> if the outcomes are equally likely (have equal probability of occurring).</p></li>
+<li><p>For fair experiments, we can define probabilities analytically. Let <span class="math notranslate nohighlight">\(S\)</span> be the sample space, where <span class="math notranslate nohighlight">\(|S| &lt; \infty\)</span>. Then:</p></li>
+<li><p>The probability of any outcome is <span class="math notranslate nohighlight">\( 1/|S|\)</span>.</p></li>
+<li><p>The probability of an event <span class="math notranslate nohighlight">\(E\)</span> is <span class="math notranslate nohighlight">\(P(E) = |E|/|S|\)</span>.</p></li>
+</ul>
+<p><strong>Axiomatic Probability</strong></p>
+<ul class="simple">
+<li><p>A <em>probability space</em> is a triple <span class="math notranslate nohighlight">\((S, \mathcal{F}, P)\)</span>, where <span class="math notranslate nohighlight">\(S\)</span> is the sample space, <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is the event class, and <span class="math notranslate nohighlight">\(P\)</span> is the probability measure.</p></li>
+<li><p>The <em>event class</em> is a collection of events to which we will assign probability.</p></li>
+<li><p>The event class must contain the sample space and be closed under finite unions and intersections.</p></li>
+<li><p>For finite sample spaces, the event class is usually the power set of the sample space, <span class="math notranslate nohighlight">\(2^S\)</span>.</p></li>
+<li><p>A <em>probability measure</em> is a set function that assigns a probability to every event in <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>.</p></li>
+<li><p>The probability measure must obey the 3 Axioms of Probability:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(P(E) \ge 0\)</span> (probabilities are non-negative)</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(S)=1\)</span> (the probability that some outcome occurs is equal to 1)</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(E \cup F) = P(E) + P(F)\)</span> if <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(F\)</span> are disjoint events</p></li>
+</ol>
+</li>
+</ul>
+<p><strong>Corollaries to the Axioms of Probability</strong></p>
+<ul class="simple">
+<li><p>There are many Corollaries of Probability, which can be used to help solve problems.</p></li>
+</ul>
+<p><strong>Combinatorics</strong></p>
+<ul class="simple">
+<li><p><em>Combinatorics</em> is the mathematics of counting.</p></li>
+<li><p>Combinatorics is often helpful in determining the cardinalities of sample spaces and events.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">itertools</span></code> Python library can be used to enumerate sample spaces and events.</p></li>
+<li><p>In sampling <span class="math notranslate nohighlight">\(k\)</span> items from a set of <span class="math notranslate nohighlight">\(N\)</span> items <em>with replacement and with ordering</em>, there are <span class="math notranslate nohighlight">\(N^k\)</span> possible samples.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(k\)</span> items, there are <span class="math notranslate nohighlight">\(k!\)</span> orderings, called <em>permutations</em>.</p></li>
+<li><p>In Python,  factorial value can be computed using the <code class="docutils literal notranslate"><span class="pre">factorial()</span></code> function form SciPy.special. To get an exact (integer) result, pass the keyword argument <code class="docutils literal notranslate"><span class="pre">exact=True</span></code>.</p></li>
+<li><p>In sampling <span class="math notranslate nohighlight">\(k\)</span> items from a set of <span class="math notranslate nohighlight">\(N\)</span> items <em>without replacement and with ordering</em>, there are <span class="math notranslate nohighlight">\(N!/k!\)</span> possible samples.</p></li>
+<li><p>In sampling <span class="math notranslate nohighlight">\(k\)</span> items from a set of <span class="math notranslate nohighlight">\(N\)</span> items <em>without replacement and without ordering</em>, there are <span class="math notranslate nohighlight">\(\binom{N}{k}\)</span>  possible samples, where</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\binom{N}{k} = \frac{N!}{(N-k)!~k!} .
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p>In Python, the binomial coefficient can be computed using the <code class="docutils literal notranslate"><span class="pre">binom()</span></code> function from SciPy.special.</p></li>
+<li><p>Combinatorics can be quite tricky in practice. A common problem is overcounting, in which some equivalent results are counted more than one time.</p></li>
+</ul>
 </section>
 </section>
 
@@ -5958,6 +6045,7 @@ if (typeof version == 'undefined') {
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">4.7.1. Terminology Review</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-assessment-exercises">4.7.2. Self Assessment Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">4.7.3. Key take-aways:</a></li>
 </ul>
   </nav></div>
 
