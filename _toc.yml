@@ -60,7 +60,6 @@ parts:
     - file: 06-conditional-prob/fair-exps
     - file: 06-conditional-prob/conditional-independence
     - file: 06-conditional-prob/chain-rules-total-prob
-    - file: 06-conditional-prob/review
     - file: 06-conditional-prob/summary
   - file: 07-bayesian-methods/intro
     sections:
