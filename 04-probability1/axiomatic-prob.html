@@ -492,7 +492,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="axiomatic-probability">
 <span id="index-0"></span><h1><span class="section-number">4.4. </span>Axiomatic  Probability<a class="headerlink" href="#axiomatic-probability" title="Permalink to this heading">#</a></h1>
 <p>Here is the code to generate the tables of outcomes and events for the examples of rolling a fair die twice. This first table shows the event <span class="math notranslate nohighlight">\(E_1\)</span> in blue:</p>
-<div class="cell tag_remove-output docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">termcolor</span> <span class="kn">import</span> <span class="n">colored</span>
 <span class="n">bold</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[1m&#39;</span>
@@ -508,9 +508,20 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outcomes in E1 are in bold and blue:
+<span class=" -Color -Color-Bold -Color-Bold-Blue">(1, 1)   (1, 2)   (1, 3)   (1, 4)   (1, 5)   (1, 6)   </span>
+<span class=" -Color -Color-Bold -Color-Bold-Blue">(2, 1)   (2, 2)   (2, 3)   (2, 4)   (2, 5)   (2, 6)   </span>
+(3, 1)   (3, 2)   (3, 3)   (3, 4)   (3, 5)   (3, 6)   
+(4, 1)   (4, 2)   (4, 3)   (4, 4)   (4, 5)   (4, 6)   
+(5, 1)   (5, 2)   (5, 3)   (5, 4)   (5, 5)   (5, 6)   
+(6, 1)   (6, 2)   (6, 3)   (6, 4)   (6, 5)   (6, 6)   
+</pre></div>
+</div>
+</div>
 </div>
 <p>Table with <span class="math notranslate nohighlight">\(E_2\)</span> highlighted in green:</p>
-<div class="cell tag_remove-output docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Outcomes in E2 are in bold and green:&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
@@ -523,9 +534,20 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outcomes in E2 are in bold and green:
+<span class=" -Color -Color-Bold -Color-Bold-Green">(1, 1)   (1, 2)   </span>(1, 3)   (1, 4)   (1, 5)   (1, 6)   
+<span class=" -Color -Color-Bold -Color-Bold-Green">(2, 1)   (2, 2)   </span>(2, 3)   (2, 4)   (2, 5)   (2, 6)   
+<span class=" -Color -Color-Bold -Color-Bold-Green">(3, 1)   (3, 2)   </span>(3, 3)   (3, 4)   (3, 5)   (3, 6)   
+<span class=" -Color -Color-Bold -Color-Bold-Green">(4, 1)   (4, 2)   </span>(4, 3)   (4, 4)   (4, 5)   (4, 6)   
+<span class=" -Color -Color-Bold -Color-Bold-Green">(5, 1)   (5, 2)   </span>(5, 3)   (5, 4)   (5, 5)   (5, 6)   
+<span class=" -Color -Color-Bold -Color-Bold-Green">(6, 1)   (6, 2)   </span>(6, 3)   (6, 4)   (6, 5)   (6, 6)   
+</pre></div>
+</div>
+</div>
 </div>
 <p>Table with the outcomes that are in both <span class="math notranslate nohighlight">\(E_1\)</span> and <span class="math notranslate nohighlight">\(E_2\)</span> shown highlighted in red:</p>
-<div class="cell tag_remove-output docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Outcomes in both E1 and E2 are in bold and red:&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
@@ -538,9 +560,20 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outcomes in both E1 and E2 are in bold and red:
+<span class=" -Color -Color-Bold -Color-Bold-Red">(1, 1)   (1, 2)   </span>(1, 3)   (1, 4)   (1, 5)   (1, 6)   
+<span class=" -Color -Color-Bold -Color-Bold-Red">(2, 1)   (2, 2)   </span>(2, 3)   (2, 4)   (2, 5)   (2, 6)   
+(3, 1)   (3, 2)   (3, 3)   (3, 4)   (3, 5)   (3, 6)   
+(4, 1)   (4, 2)   (4, 3)   (4, 4)   (4, 5)   (4, 6)   
+(5, 1)   (5, 2)   (5, 3)   (5, 4)   (5, 5)   (5, 6)   
+(6, 1)   (6, 2)   (6, 3)   (6, 4)   (6, 5)   (6, 6)   
+</pre></div>
+</div>
+</div>
 </div>
 <p>Table with all the outcomes that belong to <span class="math notranslate nohighlight">\(E_1 \cup E_2\)</span> shown highlighted with a yellow background.</p>
-<div class="cell tag_remove-output docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Outcomes in  E1 union E2 are bold on a yellow background:&#39;</span><span class="p">)</span>
 <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
@@ -558,6 +591,19 @@ document.write(`
 
 <span class="nb">print</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of outcomes in E1 OR E2 is&#39;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outcomes in  E1 union E2 are bold on a yellow background:
+<span class=" -Color -Color-Bold -Color-Bold-BGYellow">(1, 1)   (1, 2)   (1, 3)   (1, 4)   (1, 5)   (1, 6)   </span>
+<span class=" -Color -Color-Bold -Color-Bold-BGYellow">(2, 1)   (2, 2)   (2, 3)   (2, 4)   (2, 5)   (2, 6)   </span>
+<span class=" -Color -Color-Bold -Color-Bold-BGYellow">(3, 1)   (3, 2)   </span>(3, 3)   (3, 4)   (3, 5)   (3, 6)   
+<span class=" -Color -Color-Bold -Color-Bold-BGYellow">(4, 1)   (4, 2)   </span>(4, 3)   (4, 4)   (4, 5)   (4, 6)   
+<span class=" -Color -Color-Bold -Color-Bold-BGYellow">(5, 1)   (5, 2)   </span>(5, 3)   (5, 4)   (5, 5)   (5, 6)   
+<span class=" -Color -Color-Bold -Color-Bold-BGYellow">(6, 1)   (6, 2)   </span>(6, 3)   (6, 4)   (6, 5)   (6, 6)   
+
+Number of outcomes in E1 OR E2 is 20
 </pre></div>
 </div>
 </div>
@@ -822,7 +868,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="MPGBRAuDIFxz" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="MPGBRAuDIFxz-next" onclick="window.checkFlip('MPGBRAuDIFxz')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="poZrMLbjoGOw" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="poZrMLbjoGOw-next" onclick="window.checkFlip('poZrMLbjoGOw')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1213,14 +1259,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("MPGBRAuDIFxz")) {
-            createCards("MPGBRAuDIFxz", "True", "False");
+          if(document.getElementById("poZrMLbjoGOw")) {
+            createCards("poZrMLbjoGOw", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsMPGBRAuDIFxz=[
+var cardspoZrMLbjoGOw=[
     {
         "front": "probability space",
         "back": "An tuple $ (S, \\mathcal{F}, P),$ consisting of the *sample space*, the *event class*, and the *probability measure*, respectively."
@@ -1239,9 +1285,9 @@ var cardsMPGBRAuDIFxz=[
     }
 ]
 ;
-var frontColorsMPGBRAuDIFxz= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsMPGBRAuDIFxz= ["var(--dark-blue-gray)" ];
-var textColorsMPGBRAuDIFxz= ["var(--snow)" ];
+var frontColorspoZrMLbjoGOw= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorspoZrMLbjoGOw= ["var(--dark-blue-gray)" ];
+var textColorspoZrMLbjoGOw= ["var(--snow)" ];
 
 
         {
@@ -1252,7 +1298,7 @@ var textColorsMPGBRAuDIFxz= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/axiomatic-prob.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("MPGBRAuDIFxz", "True", "False"))
+        .then(json => createCards("poZrMLbjoGOw", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
