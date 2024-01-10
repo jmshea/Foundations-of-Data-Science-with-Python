@@ -78,7 +78,6 @@ parts:
     - file: 08-random-variables/important-continuous-rvs
     - file: 08-random-variables/kernel-density-estimation
     - file: 08-random-variables/conditioning-with-rvs
-    - file: 08-random-variables/review
     - file: 08-random-variables/summary
   - file: 09-moments/intro
     sections:
