@@ -531,14 +531,42 @@ document.write(`
 <span class="c1"># Plot the repeated value at -1 as a second marker:</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span> <span class="o">+</span> <span class="mi">7</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Summary statistic, $\nu$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Summary statistic, ν&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error function value&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d41805c5b1b57aab55261157307c46a279f84fb576048f0d1898f1d8fe48d073.png" src="../_images/d41805c5b1b57aab55261157307c46a279f84fb576048f0d1898f1d8fe48d073.png" />
+<img alt="../_images/367c1d596274035bc4ff15760f14f6b39c5bd2ba88a3c73929329b5c139fe345.png" src="../_images/367c1d596274035bc4ff15760f14f6b39c5bd2ba88a3c73929329b5c139fe345.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nu_e</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">sum_errors</span><span class="p">)]</span>
+<span class="n">nu_0</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">num_nonzero_errors</span><span class="p">)]</span>
+<span class="n">nu_1</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">sum_abs_errors</span><span class="p">)]</span>
+<span class="n">nu_2</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">sum_square_errors</span><span class="p">)]</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;         Metric         |     Minimizing value of nu&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;____________________________________________________&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;Sum of errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_e</span><span class="p">)</span><span class="si">:</span><span class="s1">^30</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;No. nonzero errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_0</span><span class="p">)</span><span class="si">:</span><span class="s1">^29</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;Sum of abs errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_1</span><span class="p">)</span><span class="si">:</span><span class="s1">^30</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;Sum of squared errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_2</span><span class="p">)</span><span class="si">:</span><span class="s1">^30</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Metric         |     Minimizing value of nu
+____________________________________________________
+     Sum of errors      |             6.0              
+   No. nonzero errors   |            -1.0             
+   Sum of abs errors    |             0.0              
+ Sum of squared errors  |             1.0              
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -566,14 +594,14 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span> <span class="o">+</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
 
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Summary statistic, $\nu$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Summary statistic, ν&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error function value&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/50f98470b02532c2c6c64e16a51a1c6776707f9d2a587eb97a637f725a0f630e.png" src="../_images/50f98470b02532c2c6c64e16a51a1c6776707f9d2a587eb97a637f725a0f630e.png" />
+<img alt="../_images/d87ee2bf168711c5176e268fd5fb62ec8e4532986fe9bc5db28422c2dfa914d5.png" src="../_images/d87ee2bf168711c5176e268fd5fb62ec8e4532986fe9bc5db28422c2dfa914d5.png" />
 </div>
 </div>
 <section id="terminology-review">
@@ -836,7 +864,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="QKmcCppbCIKM" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="QKmcCppbCIKM-next" onclick="window.checkFlip('QKmcCppbCIKM')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="DGnmFNzqKUNC" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="DGnmFNzqKUNC-next" onclick="window.checkFlip('DGnmFNzqKUNC')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1143,6 +1171,26 @@ function createCards(id, keyControl, grabFocus) {
                     if (version[0] == "2") {
                         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                     } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
                         MathJax.typeset([flipper]);
                     }
                 }, 500);
@@ -1151,7 +1199,31 @@ function createCards(id, keyControl, grabFocus) {
                 if (version[0] == "2") {
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 } else if (version[0] == "3") {
-                    MathJax.typeset([flipper]);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
+                        MathJax.typeset([flipper]);
+                    }
                 }
             }
         } else {
@@ -1183,14 +1255,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("QKmcCppbCIKM")) {
-            createCards("QKmcCppbCIKM", "True", "False");
+          if(document.getElementById("DGnmFNzqKUNC")) {
+            createCards("DGnmFNzqKUNC", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsQKmcCppbCIKM=[
+var cardsDGnmFNzqKUNC=[
     {
         "front": "summary statistic",
         "back": "A numerical value calculated from data that measures some characteristic of the data."
@@ -1209,9 +1281,9 @@ var cardsQKmcCppbCIKM=[
     }
 ]
 ;
-var frontColorsQKmcCppbCIKM= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsQKmcCppbCIKM= ["var(--dark-blue-gray)" ];
-var textColorsQKmcCppbCIKM= ["var(--snow)" ];
+var frontColorsDGnmFNzqKUNC= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsDGnmFNzqKUNC= ["var(--dark-blue-gray)" ];
+var textColorsDGnmFNzqKUNC= ["var(--snow)" ];
 
 
         {
@@ -1222,7 +1294,7 @@ var textColorsQKmcCppbCIKM= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/flashcards/summary-stats.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("QKmcCppbCIKM", "True", "False"))
+        .then(json => createCards("DGnmFNzqKUNC", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
