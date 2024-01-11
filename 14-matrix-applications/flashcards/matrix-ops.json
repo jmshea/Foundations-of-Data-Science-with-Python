@@ -1,6 +1,0 @@
-[
-    {
-    "front": "dot product/<br>inner product",
-    "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <i>dot product</i> or <i>inner product</i> is denoted $\\mathbf{x} \\cdot \\mathbf{y}$ or $\\mathbf{x}^T \\mathbf{y}$ and is the <b>scalar value</b> given by multiplying corresponding components and summing them up: \\begin{equation*} \\mathbf{x} \\cdot \\mathbf{y} = \\sum_{i=0}^{n-1} x_i y_i. \\end{equation*}"
-    }
-] 

@@ -1,6 +1,0 @@
-[
-    {
-    "front": "linear combination",
-    "back": "For a matrix $M$, a row $m_{k*}$ is a  <i>linear combination</i> of the other rows if there are constants $c_i$ such that \\begin{equation*} \\mathbf{m}_{k*} = \\sum_{i \\ne k} c_i \\mathbf{m}_{i*} . \\end{equation*} An equivalent definition applies to columns."
-    }
-]
