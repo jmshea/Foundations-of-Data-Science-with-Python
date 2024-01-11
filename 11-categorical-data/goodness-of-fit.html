@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/11-categorical-data/goodness-of-fit.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ \mbox{ }" />
+<meta property="og:description" content="Here, I show a more elegant way to count the number of birth per month by using the groupby() method of a Pandas dataframe. Let’s start by loading the births data: Here is how we A more elegant app..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ \mbox{ }" />
+<meta name="description" content="Here, I show a more elegant way to count the number of birth per month by using the groupby() method of a Pandas dataframe. Let’s start by loading the births data: Here is how we A more elegant app..." />
 
     <title>11.3. Chi-Square Goodness-of-Fit Test &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -303,8 +303,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/linear-regression.html">12.2. Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/nhst.html">12.3. Null Hypothesis Tests for Correlation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/nonlinear-regression.html">12.4. Nonlinear Regression Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/review.html">12.5. Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/summary.html">12.6. Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12-vector-regression/summary.html">12.5. Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../15-multidim-dependence/intro.html">13. Working with Dependent Data in Multiple Dimensions</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -483,6 +482,60 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="chi-square-goodness-of-fit-test">
 <h1><span class="section-number">11.3. </span>Chi-Square Goodness-of-Fit Test<a class="headerlink" href="#chi-square-goodness-of-fit-test" title="Permalink to this heading">#</a></h1>
+<p>Here, I show a more elegant way to count the number of birth per month by using the <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> method of a Pandas dataframe. Let’s start by loading the births data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">births</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://www.fdsp.net/data/births.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is how we</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">births_by_month</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">month</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">months</span><span class="p">):</span>
+  <span class="n">births_by_month</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> \
+    <span class="n">births</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;month==&quot;&#39;</span> <span class="o">+</span> <span class="n">month</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">births_by_month</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6906798. 6448725. 7080880. 6788266. 7112239. 7059986. 7461489. 7552007.
+ 7365904. 7220646. 6813037. 7079453.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>A more elegant approach to doing this uses the dataframe’s <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">births</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>month
+Apr    6788266
+Aug    7552007
+Dec    7079453
+Feb    6448725
+Jan    6906798
+Jul    7461489
+Jun    7059986
+Mar    7080880
+May    7112239
+Nov    6813037
+Oct    7220646
+Sep    7365904
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will not use the output of this statement that uses <code class="docutils literal notranslate"><span class="pre">groupby()</span></code> and <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, but if we were to use that, we would need to be sure to properly index that data to align it with the player birth months, which are in numerical order.</p>
 <section id="terminology-review">
 <h2><span class="section-number">11.3.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~ \mbox{    }\)</span></p>

@@ -8,16 +8,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="12.6. Summary" />
+<meta property="og:title" content="12.5. Summary" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/12-vector-regression/summary.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="This page is a placeholder for interactive elements for Section 10.3 of Foundations of Data Science with Python. No interactive elements are available for this section at this time." />
+<meta property="og:description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in Chapter 12: Multidimensional Data: Vector Moments and Linear Regression of Foundations of Data Science ..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="This page is a placeholder for interactive elements for Section 10.3 of Foundations of Data Science with Python. No interactive elements are available for this section at this time." />
+<meta name="description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in Chapter 12: Multidimensional Data: Vector Moments and Linear Regression of Foundations of Data Science ..." />
 
-    <title>12.6. Summary &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
+    <title>12.5. Summary &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
   
   
@@ -78,12 +78,14 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/boldsymbol"]}, "tex": {"macros": {"P": "\\operatorname{P}"}, "packages": {"[+]": ["boldsymbol"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '12-vector-regression/summary';</script>
     <link rel="canonical" href="https://www.fdsp.net/12-vector-regression/summary.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="13. Working with Dependent Data in Multiple Dimensions" href="../15-multidim-dependence/intro.html" />
-    <link rel="prev" title="12.5. Review" href="review.html" />
+    <link rel="prev" title="12.4. Nonlinear Regression Tests" href="nonlinear-regression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -301,8 +303,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="linear-regression.html">12.2. Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nhst.html">12.3. Null Hypothesis Tests for Correlation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nonlinear-regression.html">12.4. Nonlinear Regression Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="review.html">12.5. Review</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">12.6. Summary</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">12.5. Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../15-multidim-dependence/intro.html">13. Working with Dependent Data in Multiple Dimensions</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -444,7 +445,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -460,6 +463,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">12.5.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">12.5.2. Key take-aways</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -470,9 +482,845 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="summary">
-<h1><span class="section-number">12.6. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
-<p>This page is a placeholder for interactive elements for Section 10.3 of <em>Foundations of Data Science with Python</em>.
-No interactive elements are available for this section at this time.</p>
+<h1><span class="section-number">12.5. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
+<section id="terminology-review">
+<h2><span class="section-number">12.5.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<p>Use the flashcards below to help you review the terminology introduced in Chapter 12: Multidimensional Data: Vector Moments and Linear Regression of <em>Foundations of Data Science with Python</em> <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~ \mbox{   }\)</span></p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+:root{
+  --asparagus: #87a878ff;
+  --terra-cotta: #e26d5aff;
+  --cyan-process: #5bc0ebff;
+  --dark-blue-gray: #666a86ff;
+  --snow: #fffafbff;
+  --rich-black-fogra-39: #090c08ff;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000px;
+  touch-action: pinch-zoom pan-y;
+}
+
+
+.flip-container.flip .flipper {
+    box-sizing: content-box;
+	  transform: rotateY(180deg);
+	/* transform: rotateY(180deg)  translateX(-6%);  */
+}
+
+
+.flip-container.slide .flipper.frontcard {
+    filter: brightness(90%);
+    position:absolute;
+    z-index: -20;
+    /* left: 20px; */
+}
+
+.flip-container.prepare .flipper.backcard {
+    opacity:1;
+    transition: display 0s;
+    transform:  translateX(20px); 
+}
+
+
+.flip-container.slide .flipper.backcard {
+    filter: brightness(115%);
+    /* height: 360px; */
+    opacity:1;
+	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
+    z-index: 20;
+    /* left: -20px; */
+}
+
+
+
+
+.flip-container.slideback .flipper.backcard {
+    filter: brightness(100%);
+    opacity: 1;
+	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
+    z-index: 10;
+}
+
+.flip-container.slideback .flipper.frontcard {
+    filter: brightness(90%);
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+.flip-container, .front, .back {
+	  height: 200px;
+	  width: 95%;
+}
+
+
+
+
+.flipper.frontcard {
+    position:absolute;
+	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
+    z-index: 10;
+}
+
+.flipper.backcard {
+    filter: brightness(90%);
+    opacity:0;
+    position:absolute;
+    transform: translateX(0px) translateZ(-20px);
+    z-index: -10;
+}
+
+
+
+
+/* flip speed goes here */
+.flipper {
+    cursor:pointer;
+	  height: 200px;
+    margin-left:10px;
+	  position: absolute;
+    top: 0;
+	  transform-style: preserve-3d;
+	  transition: 0.6s;
+    /* width: 95%; */
+    width: 100%;
+}
+
+.flashcardtext{
+    color: var(--snow);
+    margin-left:3%;
+    position:absolute;
+    text-align:center;
+    top: 50%;
+    transform: translate(0, -50%);
+    width:90%;
+    font-size: 1.5em;
+}
+
+.back .flashcardtext{
+    font-size: 1.2em;
+}
+
+
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  left: 0;
+	  position: absolute;
+	  top: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	  backface-visibility: hidden;
+    background: var(--asparagus);
+    transform: rotateY(0deg);
+	  z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	  backface-visibility: hidden;
+    background: var(--dark-blue-gray);
+	  transform: rotateY(180deg);
+}
+
+.jp-OutputArea-output .back {
+	  transform: rotateY(180deg) translateX(7.5%);
+}
+
+.next {
+    color: var(--rich-black-fogra-39);
+    cursor:pointer;
+    font-size: 1.5em;
+    /*left:90%; */
+    margin-left: 70%;
+    width: 55pt;
+    height: 22pt;
+    opacity:0.3;
+    position:relative; 
+    top:-1em;
+}
+
+.next svg {
+    height:16pt;
+    width:16pt;
+    position:relative;
+    top:-2pt;
+}
+
+.jp-OutputArea-output .next svg {
+    top: 1pt;
+}
+
+.next.flipped {
+    opacity:1;
+}
+
+.next.hide {
+    opacity:0;
+}
+
+
+.flashcard{
+    border-radius: 10px;
+    outline: none;
+    color: #fafafa;
+    display:block;
+    padding:10px;
+  
+}
+
+.flashcardtext li{
+    text-align: left;
+}
+
+@media only screen and (min-width:1000px) {
+
+    .flip-container, .front, .back {
+	      height: 300px;
+	      width: min(95%, 640px);
+    }
+
+    .flipper {
+        margin-left:20px;
+	      height: 300px;
+    }
+
+    .flashcardtext{
+        font-size: 20pt;
+    }
+
+    .next {
+        font-size: 16pt;
+        left:min(80%, 450pt);
+        margin-left: 0;
+        width: 55pt;
+        height: 22pt;
+        top:-0.5em;
+    }
+
+    .back .flashcardtext{
+        font-size: 1.5em;
+    }
+
+}
+
+@media only screen and (min-width:660px) and (max-width:999px) {
+    .next {
+        left:0;
+        margin-left: 80%;
+    }
+
+}
+
+@media only screen and (max-width:680px) and (min-height:376px) {
+    .flip-container, .front, .back {
+	      height: 300px;
+    }
+
+    .flipper {
+	      height: 300px;
+    }
+
+}
+
+@media only screen and (max-width:330px) and (max-height:600px) {
+
+    .back .flashcardtext{
+        font-size: 1em;
+    }
+    .next {
+        margin-left: 65%;
+    }
+
+}
+
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="odaQNEtQyApg" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="odaQNEtQyApg-next" onclick="window.checkFlip('odaQNEtQyApg')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+ * swiped-events.js - v1.1.4
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function jaxify(string) {
+    var mystring = string;
+    //console.log(mystring);
+
+    var count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    var count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+window.flipCard = function flipCard(ths) {
+    //console.log(ths);
+    //console.log(ths.id);
+    ths.classList.toggle("flip"); 
+    ths.focus();
+    var next=document.getElementById(ths.id+'-next');
+    next.style.pointerEvents='none';
+    /* ths.blur(); */
+    next.classList.add('flipped');
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        //console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([ths]);
+        }
+    } else {
+        //console.log('MathJax not detected');
+    }
+
+
+    setTimeout(reenableNext, 600, ths, next);
+}
+
+window.checkKey = function checkKey(container, event) {
+    event.stopPropagation();
+    /*
+    console.log(container);
+    console.log(event.key);
+    console.log(event.code);
+    */
+    /* JMS:  Working here*/
+    var next=document.getElementById(container.id+'-next');
+    /* Only react if not already sliding */
+    if (! next.classList.contains("hide")) {
+        if ((event.key == "j") || (event.key == "Enter") || (event.key == "ArrowRight")) {
+            window.checkFlip(container.id);
+        }
+        if (event.key == " ") {
+            window.flipCard(container);
+        }
+    }
+    event.preventDefault();
+}
+
+
+function reenableNext(ths, next) {
+    next.style.pointerEvents='auto';
+    /* ths.tabIndex= 0;*/
+    /* ths.focus(); */
+}
+
+
+
+function slide2(containerId) {
+    var container = document.getElementById(containerId);
+    var next=document.getElementById(containerId+'-next');
+    var frontcard = container.children[0];
+    var backcard = container.children[1];
+    container.style.pointerEvents='none';
+    /* container.removeAttribute("tabindex");*/
+    /* container.blur(); */
+    //backcard.style.pointerEvents='none';
+    next.style.pointerEvents='none';
+    next.classList.remove('flipped');
+    next.classList.add('hide');
+
+    //container.classList.add("prepare");
+    
+    container.className="flip-container slide";
+    backcard.parentElement.removeChild(frontcard);
+    backcard.parentElement.appendChild(frontcard);
+    setTimeout(slideback, 600, container, frontcard, backcard, next);
+    
+}
+
+
+window.checkFlip = function checkFlip(containerId) {
+    var container = document.getElementById(containerId);
+
+
+    if (container.classList.contains('flip')) {
+        container.classList.remove('flip');
+        setTimeout(slide2, 600, containerId);
+    } 
+    else {
+        slide2(containerId);
+    }
+}
+
+
+function slideback(container, frontcard, backcard, next) {
+    container.className="flip-container slideback";
+    setTimeout(cleanup, 550, container, frontcard, backcard, next);
+}
+
+function cleanup(container, frontcard, backcard, next) {
+    container.removeChild(frontcard);
+    backcard.className="flipper frontcard";
+    container.className="flip-container";
+
+    var cardnum=parseInt(container.dataset.cardnum);
+    var cards=eval('cards'+container.id);
+    var flipper=createOneCard(container, false, cards, cardnum);
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    container.dataset.cardnum=cardnum;
+    if (cardnum != 1){
+        next.innerHTML="Next >";
+    } else {
+        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
+        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            //console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([next]);
+            }
+        } else {
+            //console.log('MathJax not detected');
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        //console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset();
+        }
+    } else {
+        //console.log('MathJax not detected');
+    }
+
+
+    next.style.pointerEvents='auto';
+    container.style.pointerEvents='auto';
+    /* container.tabIndex= 0; */
+    /* container.focus(); */
+    next.classList.remove('hide');
+    container.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(container.id);
+    }, {once: true });
+
+
+}
+
+
+function createOneCard  (mydiv, frontCard, cards, cardnum) {
+    var colors=eval('frontColors'+mydiv.id);
+    var backColors=eval('backColors'+mydiv.id);
+    var textColors=eval('textColors'+mydiv.id);
+    //console.log(backColors)
+
+    var flipper = document.createElement('div');
+    if (frontCard){
+        flipper.className="flipper frontcard";    
+    }
+    else {
+        flipper.className="flipper backcard";   
+    }
+
+    var front = document.createElement('div');
+    front.className='front flashcard';
+
+    var frontSpan= document.createElement('span');
+    frontSpan.className='flashcardtext';
+    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
+    frontSpan.style.color=textColors[cardnum % textColors.length];
+    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
+    //front.style.background='var(' + colors[cardnum % colors.length] + ')';
+    front.style.background=colors[cardnum % colors.length];
+
+    front.append(frontSpan);
+    flipper.append(front);
+
+    var back = document.createElement('div');
+    back.className='back flashcard';
+    back.style.background=backColors[cardnum % backColors.length];
+
+    var backSpan= document.createElement('span');
+    backSpan.className='flashcardtext';
+    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
+    backSpan.style.color=textColors[cardnum % textColors.length];
+    back.append(backSpan);
+
+    flipper.append(back);
+
+    return flipper;
+
+}
+
+
+
+
+
+function createCards(id, keyControl, grabFocus) {
+    console.log(id);
+
+    var mydiv=document.getElementById(id);
+    /*mydiv.onclick = window.flipCard(mydiv);*/
+    /*
+    mydiv.addEventListener('click', function(){window.flipCard(mydiv);}, false);
+    mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
+    */
+    mydiv.onclick = function(){window.flipCard(mydiv);};
+    //console.log(keyControl);
+    if (keyControl == "True"){
+        mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
+    }
+    /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
+    /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
+
+    //console.log(mydiv);
+
+    var cards=eval('cards'+id);
+    mydiv.dataset.cardnum=0;
+    mydiv.dataset.numCards=cards.length;
+    mydiv.addEventListener('swiped-left', function(e) {
+        /*
+          console.log(e.detail);
+          console.log(id);
+        */
+        checkFlip(id);
+    }, {once: true});
+
+    var cardnum=0;
+    
+    for (var i=0; i<2; i++) {
+    
+        var flipper;
+        if (i==0){
+            flipper=createOneCard(mydiv, true, cards, cardnum);
+        }
+        else {
+            flipper=createOneCard(mydiv, false, cards, cardnum);
+        }
+
+        mydiv.append(flipper);
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (typeof version == 'undefined') {
+                setTimeout(function(){
+                    var version = MathJax.version;
+                    console.log('After sleep, MathJax version', version);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        MathJax.typeset([flipper]);
+                    }
+                }, 500);
+            } else{
+                console.log('MathJax version', version);
+                if (version[0] == "2") {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                } else if (version[0] == "3") {
+                    MathJax.typeset([flipper]);
+                }
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+
+
+        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
+    }
+    mydiv.dataset.cardnum = cardnum;
+
+    var next=document.getElementById(id+'-next');
+    if (cards.length==1) {
+        // Don't show next if no other cards!
+        next.style.pointerEvents='none';
+        next.classList.add('hide');
+    } else {
+        next.innerHTML="Next >";
+    }
+
+    if (grabFocus == "True" )
+        mydiv.focus();
+
+    return flipper;
+}
+
+
+
+
+
+        function try_create() {
+          if(document.getElementById("odaQNEtQyApg")) {
+            createCards("odaQNEtQyApg", "True", "False");
+          } else {
+             setTimeout(try_create, 200);
+          }
+        };
+    
+var cardsodaQNEtQyApg=[
+    {
+        "front": "vector",
+        "back": "A one-dimensional, ordered list of numbers that has an accompanying notions of magnitude of a vector and  distance between two vectors."
+    }, 
+    {
+        "front": "component or element (vector)",
+        "back": "One of the numerical values that make up the vector."
+    },
+    {
+        "front": "scalar",
+        "back": "A singular numerical value." 
+    },
+
+    {
+        "front": "size (of a vector)",
+        "back": "The number of components a vector contains."
+    },
+    {
+        "front": "zero vector",
+        "back": "A vector of all zeros."
+    },
+    {
+        "front": "ones vector",
+        "back": "A vector of all ones. "
+    },
+    {
+        "front": "standard unit vector",
+        "back": "A vector of with all of its components equal to zero, except one element which is equal to one."
+    },
+    {
+        "front": "vector addition",
+        "back": "The sum of vectors $\\mathbf{a}$ and $\\mathbf{b}$ is a vector $\\mathbf{a+b}$ whose $i$th component is the sum of the $i$th components of $\\mathbf{a}$ and $\\mathbf{b}$; i.e. $\\mathbf{(a+b)}_i = a_i + b_i$."
+    }, 
+    {
+        "front": "scalar-vector multiplication",
+        "back": "Given a vector $\\mathbf{x}$ and a scalar $\\alpha$, $\\alpha \\mathbf{x}$ is the vector with components given by the components of $\\mathbf{x}$ multiplied by $\\alpha$: \\begin{equation*} \\alpha \\mathbf{x} = \\left[ \\alpha x_0, ~ \\alpha x_1, ~\\ldots, ~ \\alpha x_{n-1} \\right]^T. \\end{equation*}"
+    },
+    {
+        "front": "component-wise vector multiplication<br>(Hadamard product)",
+        "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <I>Hadamard product</I> or <I>Schur product</I> is \\begin{equation*} \\mathbf{x} \\odot \\mathbf{y} = \\left[ x_0 y_0, ~~ x_1 y_1, ~~ \\ldots,~~ x_{n-1} y_{n-1}  \\right]. \\end{equation*}" 
+    },
+
+    {
+        "front": "dot product/<br>inner product",
+        "back": "Given $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$, the <I>dot product</I> or <I>inner product</I> is the <B>scalar value</B> given by multiplying corresponding components and summing them up: \\begin{equation*} \\mathbf{x} \\cdot \\mathbf{y} = \\sum_{i=0}^{n-1} x_i y_i. \\end{equation*}"
+    },
+    {
+        "front": "norm squared",
+        "back": "For a mathematical object $\\mathbf{x}$ with an inner product operator $\\langle , \\rangle$, the norm squared is denoted by $\\| x \\|^2$, and defined as \\begin{equation*} \\| x \\|^2 = \\langle x, x \\rangle .\\end{equation*}"
+    },
+    {
+        "front": "norm",
+        "back": "For a mathematical object $\\mathbf{x}$ with an inner product operator $\\langle , \\rangle$, the norm is denoted by $\\| x \\|$ and defined as \\begin{equation*} \\| x \\|^2 = \\sqrt{\\langle x, x \\rangle }.\\end{equation*}"
+    },
+    {
+        "front": "distance (vectors)",
+        "back": "The distance between two $n$-vectors $\\mathbf{x}$ and $\\mathbf{y}$ is the norm of the difference between the vectors,  $\\| \\mathbf{x} - \\mathbf{y} \\| = \\|\\mathbf{y} - \\mathbf{x} \\|.$"
+    },
+    {
+        "front": "transpose",
+        "back": "Interchange the rows and columns in a matrix. For a matrix $\\mathbf{M}$, the transpose is denoted by $\\mathbf{M}^{T}$ satisifies  \\begin{equation*} \\mathbf{M}^T [i,j] = \\mathbf{M}[j,i] ~~~ \\forall i,j.\\end{equation*}"
+    }, 
+    {
+        "front": "covariance<br>(random variables)",
+        "back": "For random variables $X$ and $Y$, the <i>covariance</i> is the joint moment \\begin{equation*} \\operatorname{Cov}(X, Y) = E \\left[ \\left( X - E[X]\\right) \\left( Y- E[Y]\\right) \\right]. \\end{equation*}"
+    },
+    {
+        "front": "covariance<br>(data vectors)",
+        "back": "For $n$-vectors  $\\mathbf{x}$ and $\\mathbf{y}$, the unbiased sample <i>covariance</i> is  \\begin{equation*} \\operatorname{Cov}( \\mathbf{x}, \\mathbf{y}) = \\frac{1}{n-1} \\sum_{i=0}^{n-1} \\left(x_i - \\overline{x}\\right) \\left(y_i - \\overline{y}\\right) . \\end{equation*}" 
+    },
+
+    {
+        "front": "correlation coefficient<br>(random variables)",
+        "back": "For random variables $X$ and $Y$, the <i>correlation coefficient</i> is \\begin{equation*} \\rho = \\frac{ \\operatorname{Cov}(X, Y)}{\\sigma_X \\sigma_Y}. \\end{equation*} "
+    },
+    {
+        "front": "correlation coefficient<br>(data vectors)",
+        "back": "For $n$-vectors  $\\mathbf{x}$ and $\\mathbf{y}$, the <i>correlation coefficient</i> or <i>Pearson's correlation coefficient</i> is  \\begin{equation*} r = \\frac{ \\operatorname{Cov}(\\mathbf{x}, \\mathbf{y})}{\\sigma_x \\sigma_y}. \\end{equation*} "
+    },
+    {
+        "front": "explanatory variable",
+        "back": "A variable or feature used to predict or explain differences in another variable. Sometimes called an independent variable, especially if this variable is a variable that is under an experimenter's control."
+    },
+    {
+        "front": "response variable",
+        "back": "A variable or feature that is to be predicted or explained using another variable. Sometimes called a dependent variable, especially if this variable is measured as the result of an experiment."
+    },
+    {
+        "front": "coefficient of determination<br>(simple linear regression)",
+        "back": "In simple linear regression between two data vectors $\\mathbf{x}$ and $\\mathbf{y}$ with Pearson's correlation coefficient $r$, the <i>coefficient of determination</i> is the value $r^2$ (pronounced \"R squared\"), which is also denoted $R^2$."
+    },
+
+    {
+        "front": "total variance<br>(simple linear regression)",
+        "back": "In simple linear regression between explanatory vector $\\mathbf{x}$ and response vector $\\mathbf{y}$, the total variance refers to the variance of the response vector, $\\sigma_{y}^{2}$, which is the variance without using the explanatory vector to predict the values in $\\mathbf{y}$."
+    },
+    {
+        "front": "explained variance<br>(simple linear regression)",
+        "back": "In simple linear regression between explanatory vector $\\mathbf{x}$ and response vector $\\mathbf{y}$, the explained variance is the variance in the response data after subtracting off the values predicted from the explanatory data. The explained variance is $r^2 \\sigma_{y}^{2}$, where $\\sigma_{y}^{2}$ is the variance of $\\mathbf{y}$ and $r^2$ is the coefficient of determination."
+    }
+]
+;
+var frontColorsodaQNEtQyApg= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsodaQNEtQyApg= ["var(--dark-blue-gray)" ];
+var textColorsodaQNEtQyApg= ["var(--snow)" ];
+
+
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
+
+        setTimeout(() => jmscontroller.abort(), 5000);
+
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/12-vector-regression/flashcards/review.json", {signal})
+        .then(response => response.json())
+        .then(json => createCards("odaQNEtQyApg", "True", "False"))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        try_create(); 
+        });
+        }
+        </script></div>
+</div>
+</section>
+<section id="key-take-aways">
+<h2><span class="section-number">12.5.2. </span>Key take-aways<a class="headerlink" href="#key-take-aways" title="Permalink to this heading">#</a></h2>
+<p><strong>Introduction to Vectors</strong></p>
+<ul class="simple">
+<li><p><em>Vectors</em> are one-dimensional lists of <em>components</em> (or <em>elements</em>).</p></li>
+<li><p>In this book, vectors are denoted by bold, lowercase letters. Another notation used in some domains is to indicate vectors with this type of arrow: <span class="math notranslate nohighlight">\(\overset{\rightharpoonup}{a}\)</span>.</p></li>
+<li><p>Components can be numbers or variables representing numbers.</p></li>
+<li><p>Vectors usually refer to column vectors, in which the components form a single column.</p></li>
+<li><p><em>Scalars</em> are single numerical values.</p></li>
+<li><p>Scalars and vectors both have lengths, but only vectors have direction.</p></li>
+<li><p>The <em>size</em> of a vector is the number of components.</p></li>
+<li><p><em>Standard unit vectors</em> consist of all zeros, except for one component that takes on the value 1.</p></li>
+<li><p>Two-dimension vectors are often visualized as arrows indicating a displacement, which is often referenced from the origin.</p></li>
+</ul>
+<p><strong>Vector Operations</strong></p>
+<ul class="simple">
+<li><p><em>Vector addition</em> and <em>vector subtraction</em> of equal-length vectors are defined component-wise and adopt standard properties of scalar addition: these operations are commutative, associative, and have the zeros vector as the identity.</p></li>
+<li><p><em>Scalar-vector multiplication</em> is carried out via broadcasting: the scalar multiplies every element of the vector. Multiplication by a scalar changes the length of a vector, and a negative scalar can reverse the direction of the vector. Multiplication cannot otherwise change the direction of a vector.</p></li>
+<li><p>The <em>Hadamard product</em> is the component-wise multiplication of two vectors and is denoted using the symbol <span class="math notranslate nohighlight">\(\odot\)</span>. In NumPy, the Hadamard product is carried out using the standard multiplication operator <code class="docutils literal notranslate"><span class="pre">*</span></code>.</p></li>
+<li><p>The <em>inner product</em> or <em>dot product</em> of vectors is the sum of the elements in the Hadamard product. Dot product is denoted by <span class="math notranslate nohighlight">\(\mathbf{a} \cdot \mathbf{b}\)</span> or <span class="math notranslate nohighlight">\(\mathbf{a}^T \mathbf{b}\)</span>.</p></li>
+<li><p>The <em>length</em> or <em>magnitude</em> of a vector is denoted <span class="math notranslate nohighlight">\(\left \Vert \mathbf{a} \right \Vert\)</span> and defined by</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\left \Vert \mathbf{a} \right \Vert = \sqrt{ \sum_{i} a_{i}^{2} }
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p>The length of a vector can be generalized to the <em>norm</em> of any object with an inner product operator, in which case the norm is defined as</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\left \Vert x \right \Vert = \sqrt{ \langle x,~x \rangle}
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p>The <em>distance</em> between vectors is</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+d(\mathbf{a}, \mathbf{b}) = \| \mathbf{a} - \mathbf{b} \| = \|\mathbf{b} - \mathbf{a} \|.
+\end{equation*}\]</div>
+<p><strong>Summary Statistics for Vector Data</strong></p>
+<ul class="simple">
+<li><p>Vectors of data can be stored in Pandas dataframes or NumPy arrays.</p></li>
+<li><p>For a Pandas dataframe, the mean, median, and variance of all of the columns can be computed using <code class="docutils literal notranslate"><span class="pre">df.mean()</span></code>, <code class="docutils literal notranslate"><span class="pre">df.median()</span></code>, and <code class="docutils literal notranslate"><span class="pre">df.var()</span></code>, respectively.</p></li>
+<li><p>The mean and variance of the columns of a NumPy array <code class="docutils literal notranslate"><span class="pre">my_array</span></code> can be computed using <code class="docutils literal notranslate"><span class="pre">my_array.mean(axis=0)</span></code> and <code class="docutils literal notranslate"><span class="pre">my_array.var(axis=0)</span></code>, respectively. The medians can be computed using <code class="docutils literal notranslate"><span class="pre">np.median(my_array,</span> <span class="pre">axis=0)</span></code>.</p></li>
+<li><p>The variance estimate computed by Pandas is the unbiased estimate <span class="math notranslate nohighlight">\(s_{n-1}^{2}\)</span>. The variance estimate computed using NumPy is the biased estimate <span class="math notranslate nohighlight">\(s_{n}^{2}\)</span>. To get the unbiased estimate in NumPy, use the keyword argument <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>.</p></li>
+<li><p>The <em>covariance</em> for random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is <span class="math notranslate nohighlight">\(E\left[\left(X- \mu_X\right)\left(Y-\mu_y \right)\right]\)</span>.</p></li>
+<li><p>Positive covariance indicates that the mean-centered values of the random variables tend to have the same sign.</p></li>
+<li><p>The <em>covariance for data vectors</em> <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\operatorname{Cov}( \mathbf{x}, \mathbf{y}) = \frac{1}{n-1} \sum_{i=0}^{n-1} \left(x_i - \overline{x}\right) \left(y_i - \overline{y}\right) .
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p>The <em>correlation coefficient</em> is a normalized covariance that takes values between -1 and 1.</p></li>
+<li><p>The correlation coefficient for random variables is</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\rho = \frac{ \operatorname{Cov}(X, Y)}{\sigma_X \sigma_Y}.
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p>The correlation coefficient (also called <em>Pearson’s correlation coefficient</em>) for data vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+r = \frac{ \operatorname{Cov}(\mathbf{x}, \mathbf{y})}{\sigma_x \sigma_y}.
+\end{equation*}\]</div>
+<p><strong>Linear Regression</strong></p>
+<ul class="simple">
+<li><p>Variables are often classified as either explanatory or response:</p>
+<ul>
+<li><p><em>Explanatory</em> variables are used to predict another variable. Sometimes these are called independent variables, especially if they are under the experimenter’s control.</p></li>
+<li><p><em>Response</em> variables are to be predicted or explained using another variable.</p></li>
+</ul>
+</li>
+<li><p><em>Linear regression</em> is the process of creating a predictor for a response variable that is a linear function of one or more explanatory variables.</p></li>
+<li><p><em>Simple linear regression</em> is linear regression with one explanatory variable and one response variable.</p></li>
+<li><p>In <em>ordinary least squares (OLS)</em>, the coefficients of linear regression are chosen to minimize the mean-square error.</p></li>
+<li><p>For simple linear regression, the OLS solution can be found using calculus.</p></li>
+<li><p>The SciPy.stats function <code class="docutils literal notranslate"><span class="pre">stats.linregress()</span></code> performs simple linear regression when passed two vectors.</p></li>
+<li><p>The <em>coefficient of determination</em> in simple linear regression is the value <span class="math notranslate nohighlight">\(r^2\)</span>.</p></li>
+<li><p>The <em>explained variance</em> is <span class="math notranslate nohighlight">\(r^2 \sigma_{y}^{2}\)</span>, where <span class="math notranslate nohighlight">\(\sigma_{y}^2\)</span> is the total variance (the original variance in the response variable <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>.</p></li>
+<li><p>If two variables are correlated, they can be used to predict each other. We say they are <em>associated</em>. We cannot say anything about why they are associated or about any causal relationship between the variables.  A common phrase is “Correlation is not causation.”</p></li>
+</ul>
+<p><strong>Null Hypothesis Tests for Correlation</strong></p>
+<ul class="simple">
+<li><p>We can conduct a NHST for correlation among two vectors using either a resampling test or an analytical test.</p></li>
+<li><p>The null hypothesis, <span class="math notranslate nohighlight">\(H_0\)</span>, is that the two variables are not correlated.</p></li>
+<li><p>In resampling, the values from the two vectors are drawn independently to break any potential correlation between the variables.</p></li>
+<li><p>The analytical <span class="math notranslate nohighlight">\(p\)</span>-value can be found using <code class="docutils literal notranslate"><span class="pre">stats.linregress()</span></code>.</p></li>
+</ul>
+<p><strong>Nonlinear Regression Tests</strong></p>
+<ul class="simple">
+<li><p>In nonlinear regression, the response variable is predicted using a nonlinear function of the explanatory variable.</p></li>
+<li><p>Nonlinear regression can often be performed by transforming either the explanatory variable or the response variable using a nonlinear function. Then the linear regression solution for the transformed variables is found. The result is a nonlinear regression solution.</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -506,12 +1354,12 @@ No interactive elements are available for this section at this time.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="review.html"
+       href="nonlinear-regression.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">12.5. </span>Review</p>
+        <p class="prev-next-title"><span class="section-number">12.4. </span>Nonlinear Regression Tests</p>
       </div>
     </a>
     <a class="right-next"
@@ -529,6 +1377,21 @@ No interactive elements are available for this section at this time.</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">12.5.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">12.5.2. Key take-aways</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
