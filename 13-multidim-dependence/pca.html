@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/13-multidim-dependence/pca.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ \mbox{ }" />
+<meta property="og:description" content="Code for Figures 13.20-13.22: Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ \mbox{ }" />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ \mbox{ }" />
+<meta name="description" content="Code for Figures 13.20-13.22: Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ \mbox{ }" />
 
     <title>13.4. Principal Components Analysis &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -467,7 +467,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">13.4.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-for-figures-13-20-13-22">13.4.1. Code for Figures 13.20-13.22</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">13.4.2. Terminology Review</a></li>
 </ul>
             </nav>
         </div>
@@ -481,8 +482,113 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="principal-components-analysis">
 <h1><span class="section-number">13.4. </span>Principal Components Analysis<a class="headerlink" href="#principal-components-analysis" title="Permalink to this heading">#</a></h1>
+<section id="code-for-figures-13-20-13-22">
+<h2><span class="section-number">13.4.1. </span>Code for Figures 13.20-13.22<a class="headerlink" href="#code-for-figures-13-20-13-22" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+
+
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+ 
+<span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">(</span><span class="n">n_class</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">mnist</span> <span class="o">=</span>  <span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kmnist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">mnist</span><span class="p">)</span>
+
+<span class="n">lam1</span><span class="p">,</span> <span class="n">U1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">Kmnist</span><span class="p">)</span>
+<span class="n">lam1_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">lam1</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">lam_mnist</span> <span class="o">=</span> <span class="n">lam1</span><span class="p">[</span><span class="n">lam1_order</span><span class="p">]</span>
+<span class="n">U_mnist</span> <span class="o">=</span> <span class="n">U1</span><span class="p">[:,</span> <span class="n">lam1_order</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">digits_pca</span> <span class="o">=</span> <span class="n">U_mnist</span><span class="o">.</span><span class="n">T</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">@</span> <span class="n">mnist</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">markers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">digit_value</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+  <span class="n">targets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">digit_value</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">digits_pca</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">targets</span><span class="p">],</span> <span class="n">digits_pca</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">targets</span><span class="p">],</span>
+              <span class="n">c</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">digit_value</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">digit_value</span><span class="p">],</span> 
+              <span class="n">label</span><span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Digit </span><span class="si">{</span><span class="n">digit_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Output feature 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Output feature 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;MNIST data reduced to 2 dimensions via PCA&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/42543d8a2e095591bbfc05fd0a1d4d30beb1450b232dd84672a8a83c84b516fc.png" src="../_images/42543d8a2e095591bbfc05fd0a1d4d30beb1450b232dd84672a8a83c84b516fc.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basis0</span> <span class="o">=</span> <span class="n">U_mnist</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">basis1</span> <span class="o">=</span> <span class="n">U_mnist</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">basis0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.32</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.22</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Heatmap of basis function 0</span><span class="se">\n</span><span class="s1">&#39;</span>
+          <span class="o">+</span> <span class="s1">&#39;for MNIST data&#39;</span><span class="p">);</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">basis1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.32</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.22</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Heatmap of basis function 1</span><span class="se">\n</span><span class="s1">&#39;</span>
+          <span class="o">+</span> <span class="s1">&#39;for MNIST data&#39;</span><span class="p">);</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">cbar_ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cbar_ax</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x13c2253d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/ac3559073e2fe622821ce14da189361e397257b7631a4ad552a7d8b763e814e1.png" src="../_images/ac3559073e2fe622821ce14da189361e397257b7631a4ad552a7d8b763e814e1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">basis0</span> <span class="o">+</span> <span class="n">basis1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Sum of basis functions</span><span class="se">\n</span><span class="s1">&#39;</span>
+                 <span class="o">+</span><span class="s1">&#39;for MNIST data&#39;</span><span class="p">);</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">basis1</span> <span class="o">-</span> <span class="n">basis0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Difference of basis functions</span><span class="se">\n</span><span class="s1">&#39;</span>
+                 <span class="o">+</span><span class="s1">&#39;for MNIST data&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e94a2b7b533a9b2e83c901fa5b511f6cc24e258567c794b865c0e831b27640e2.png" src="../_images/e94a2b7b533a9b2e83c901fa5b511f6cc24e258567c794b865c0e831b27640e2.png" />
+</div>
+</div>
+</section>
 <section id="terminology-review">
-<h2><span class="section-number">13.4.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">13.4.2. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <p>Use the flashcards below to help you review the terminology introduced in this chapter.
 <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~ \mbox{   }\)</span></p>
 <div class="cell tag_remove-input docutils container">
@@ -742,7 +848,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="VSdtqEUaHoEV" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="VSdtqEUaHoEV-next" onclick="window.checkFlip('VSdtqEUaHoEV')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="CmCYZPkEhyQZ" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="CmCYZPkEhyQZ-next" onclick="window.checkFlip('CmCYZPkEhyQZ')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1049,6 +1155,26 @@ function createCards(id, keyControl, grabFocus) {
                     if (version[0] == "2") {
                         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                     } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
                         MathJax.typeset([flipper]);
                     }
                 }, 500);
@@ -1057,7 +1183,31 @@ function createCards(id, keyControl, grabFocus) {
                 if (version[0] == "2") {
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 } else if (version[0] == "3") {
-                    MathJax.typeset([flipper]);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
+                        MathJax.typeset([flipper]);
+                    }
                 }
             }
         } else {
@@ -1089,31 +1239,31 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("VSdtqEUaHoEV")) {
-            createCards("VSdtqEUaHoEV", "True", "False");
+          if(document.getElementById("CmCYZPkEhyQZ")) {
+            createCards("CmCYZPkEhyQZ", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsVSdtqEUaHoEV=[
+var cardsCmCYZPkEhyQZ=[
     {
     "front": "scree plot",
     "back": "In PCA, a <I>scree plot</I> is a line plot that illustrates the eigenvalues of the covariance matrix of a multidimensional dataset."
 },
     {
-    "front": "explained variance",
+    "front": "explained variance<br>(dimensionality reduction)",
     "back": "In dimensionality reduction, the <I>explained variance</I> is the ratio of the total variance after dimensionality reduction to the total variance of the original data set."
 },
     {
-    "front": "test-train split",
+    "front": "train-test split",
     "back": "The data is randomly partitioned into a training set and a testing set. The training set is used to train an algorithm or develop a model and usually uses the majority of the data; typical values are 75% of the total data. The testing set is used to make sure that the algorithm or model is not overfit; it consists of all the data not in the training set."
 }
 ]
 ;
-var frontColorsVSdtqEUaHoEV= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsVSdtqEUaHoEV= ["var(--dark-blue-gray)" ];
-var textColorsVSdtqEUaHoEV= ["var(--snow)" ];
+var frontColorsCmCYZPkEhyQZ= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsCmCYZPkEhyQZ= ["var(--dark-blue-gray)" ];
+var textColorsCmCYZPkEhyQZ= ["var(--snow)" ];
 
 
         {
@@ -1122,9 +1272,9 @@ var textColorsVSdtqEUaHoEV= ["var(--snow)" ];
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/15-multidim-dependence/flashcards/pca.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/13-multidim-dependence/flashcards/pca.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("VSdtqEUaHoEV", "True", "False"))
+        .then(json => createCards("CmCYZPkEhyQZ", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1198,7 +1348,8 @@ var textColorsVSdtqEUaHoEV= ["var(--snow)" ];
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">13.4.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-for-figures-13-20-13-22">13.4.1. Code for Figures 13.20-13.22</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">13.4.2. Terminology Review</a></li>
 </ul>
   </nav></div>
 
