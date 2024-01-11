@@ -108,7 +108,6 @@ parts:
     - file: 12-vector-regression/linear-regression
     - file: 12-vector-regression/nhst
     - file: 12-vector-regression/nonlinear-regression
-    - file: 12-vector-regression/review
     - file: 12-vector-regression/summary
   - file: 15-multidim-dependence/intro
     sections:
