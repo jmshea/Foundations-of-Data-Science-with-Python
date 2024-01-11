@@ -467,9 +467,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">3.8.1. Terminology Review</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-assessment-questions">3.8.2. Self-Assessment Questions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spaced-repetition-review">3.8.3. Spaced Repetition Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">3.8.1. Key Take-aways:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">3.8.2. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-assessment-questions">3.8.3. Self-Assessment Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spaced-repetition-review">3.8.4. Spaced Repetition Review</a></li>
 </ul>
             </nav>
         </div>
@@ -484,8 +485,94 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="chapter-summary">
 <h1><span class="section-number">3.8. </span>Chapter Summary<a class="headerlink" href="#chapter-summary" title="Permalink to this heading">#</a></h1>
 <p>In this Chapter, we started working with real data, introduced Pandas and dataframes, partitions, summary statistics, binary hypothesis testing via bootstrap resampling, and two-dimensional statistics. <span class="math notranslate nohighlight">\(~~\!\!\)</span></p>
+<section id="key-take-aways">
+<h2><span class="section-number">3.8.1. </span>Key Take-aways:<a class="headerlink" href="#key-take-aways" title="Permalink to this heading">#</a></h2>
+<p><strong>Introduction to Pandas</strong></p>
+<ul class="simple">
+<li><p>Pandas stores data in dataframes, which
+store tabular data, like spreadsheets or database tables.</p></li>
+<li><p>The community standard is to import Pandas into the <code class="docutils literal notranslate"><span class="pre">pd</span></code> namespace.</p></li>
+<li><p>Pandas can import data from standard file formats, including comma-separated value (CSV) files and Excel files.</p></li>
+</ul>
+<p><strong>Visualizing Multiple Data Sets – Part 1: Scatter Plots</strong></p>
+<ul class="simple">
+<li><p>Matplotlib is one of the most common modules used for creating plots in Python.</p></li>
+<li><p>The community standard is to import the Matplotlib.pyplot module into the <code class="docutils literal notranslate"><span class="pre">plt</span></code> namespace.</p></li>
+<li><p><em>Outliers</em> are values in a data set that are not reasonable.</p></li>
+<li><p>Outliers may be due to measurement errors, unit-conversion errors, or data-entry errors.</p></li>
+<li><p>Scatter plots are useful for initial data exploration and identifying outliers.</p></li>
+<li><p>When plotting two variables that represent different types of data on the same axis, it can be helpful to create a second <span class="math notranslate nohighlight">\(y\)</span>-axis to deal with differences in the scales for the two variables.</p></li>
+<li><p>Before plots are communicated to others, they should be properly labeled, including <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(y\)</span>-axis labels, a title (or caption), and a legend (if needed).</p></li>
+</ul>
+<p><strong>Partitions</strong></p>
+<ul class="simple">
+<li><p>Sets are <em>disjoint</em> if they have no members in common; their intersection is the null set.</p></li>
+<li><p><em>Partitions</em> divide data into disjoint subsets.</p></li>
+<li><p>If a group of sets <span class="math notranslate nohighlight">\(A_0, A_1, \ldots\)</span> partitions a set <span class="math notranslate nohighlight">\(S\)</span>, then <span class="math notranslate nohighlight">\(A_i \cap A_j\)</span> for all <span class="math notranslate nohighlight">\(i \ne j\)</span> and <span class="math notranslate nohighlight">\(A_0 \cup A_1 \cup \ldots = S\)</span>.</p></li>
+</ul>
+<p><strong>Summary Statistics</strong></p>
+<ul class="simple">
+<li><p>Summary statistics represent a group of data by a single number.</p></li>
+<li><p>Common summary statistics minimize a measure of error from the summary statistic to the data:</p>
+<ul>
+<li><p>The <em>mode</em> minimizes the <em>error count</em>.</p></li>
+<li><p>The <em>median</em> minimizes the <em>sum of absolute errors</em>.</p></li>
+<li><p>The <em>average</em>, or <em>sample mean</em>, minimizes the <em>sum of squared errors</em>.</p></li>
+</ul>
+</li>
+<li><p>A data set’s mode, median, and average can all be different values.</p></li>
+<li><p>The median is often considered a more robust statistic than the average because it is less sensitive to outliers.</p></li>
+</ul>
+<p><strong>Visualizing Multiple Data Sets – Part 2:</strong></p>
+<ul class="simple">
+<li><p>When histograms of two variables are  plotted on the same axes, it is important to use the same bins.</p></li>
+<li><p>Transparency can be used to allow histograms for two variables to be shown on the same plot and still be able to see the values for each variable in every bin.</p></li>
+</ul>
+<p><strong>Null Hypothesis Testing with Real Data</strong></p>
+<ul class="simple">
+<li><p>A <em>statistical hypothesis</em> is a hypothesis that is testable using data.</p></li>
+<li><p>A <em>test statistic</em> is a single numerical value that can be used in a statistical test.</p></li>
+<li><p>A <em>null hypothesis</em> for multiple groups is that there is no underlying differences among the groups (in the statistic being measured).</p></li>
+<li><p>An <em>alternative hypothesis</em> is that the observed differences or effects represent real differences among the groups or data.</p></li>
+<li><p>The null hypothesis and alternative hypothesis are usually denoted by <span class="math notranslate nohighlight">\(H_0\)</span> and <span class="math notranslate nohighlight">\(H_a\)</span>, respectively.</p></li>
+<li><p>A <em>binary hypothesis test</em> is a statistical test that decides between two competing statistical hypotheses.</p></li>
+<li><p>A <em>null hypothesis significance test (NHST)</em> estimates the probability that the observed effect could have occurred under a null hypothesis.</p></li>
+<li><p>In a NHST:</p>
+<ul>
+<li><p>A statistical test is used to determine how often we would see such a large value of the test statistic under the null hypothesis. The probability of seeing such a large value under <span class="math notranslate nohighlight">\(H_0\)</span> is called the <span class="math notranslate nohighlight">\(p\)</span>-value</p>
+<ul>
+<li><p>Test statistics may be used in one-sided or two-sided tests. This will be discussed more in <a class="reference internal" href="../05-null-hypothesis-testing/calculating-p-values.html"><span class="doc">Section 5.3</span></a></p></li>
+</ul>
+</li>
+<li><p>The typical threshold for determining statistical significance is <span class="math notranslate nohighlight">\(p &lt; 0.05\)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\(p&lt;0.05\)</span>, we say that we <em>reject the null hypothesis</em>. We cannot say that the alternative hypothesis is true.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(p \ge 0.05\)</span>, we say that we <em>fail to reject the null hypothesis</em>. We cannot say that the null hypothesis is false. Often we may fail to reject the null hypothesis because we do not have enough data.</p></li>
+</ul>
+</li>
+<li><p>Statistical tests can be characterized as model-based or model-free.</p></li>
+<li><p>In <em>model-based</em> techniques, the data is assumed to come from a known statistical distribution. Such techniques allow the use of analytical methods.</p></li>
+<li><p>In <em>model-free</em> techniques, no assumption is made about the data fitting to some statistical model. Analytical methods are not possible.</p></li>
+<li><p><em>Resampling</em> is a model-free technique that draws new samples from the data for use in statistical testing.</p></li>
+<li><p>When resampling is used with a NHST for data from two groups, the data is <em>pooled</em> (collected into one group) before resampling.</p></li>
+<li><p><em>Bootstrap resampling</em> is when data is drawn from the pooled data with replacement.</p></li>
+<li><p>When performing bootstrap resampling to get samples to represent multiple groups, the sizes of the samples must match the sizes of the groups in the original data set.</p></li>
+<li><p>To conduct a NHST with resampling:</p>
+<ul>
+<li><p>Each simulation iteration draws new groups of sample data from the pooled data.</p></li>
+<li><p>The sample test statistic is computed.</p></li>
+<li><p>The sample test statistic is compared to the observed value of that test statistic, and a counter is incremented if the sample value is at least as large as the observed value.</p></li>
+<li><p>After all the iterations, the relative frequency of seeing a test-statistic value at least as extreme as that observed in the data, under <span class="math notranslate nohighlight">\(H_0\)</span>, is computed. That is the <span class="math notranslate nohighlight">\(p\)</span>-value, and it is compared to the predetermined <span class="math notranslate nohighlight">\(p\)</span>-value threshold.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>A Quick Preview of Two-Dimensional Statistical Methods</strong></p>
+<ul class="simple">
+<li><p><em>Two-dimensional statistical methods can be used to work directly with pairs of data</em> through techniques such as curve fitting.</p></li>
+<li><p>How well a curve (equation) fits the data can be assessed by comparing the predicted values from the curve to the actual values and computing the total squared error.</p></li>
+</ul>
+</section>
 <section id="terminology-review">
-<h2><span class="section-number">3.8.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.8.2. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><style>
@@ -1167,7 +1254,7 @@ var textColorsmCOOdsTnecXC= ["var(--snow)" ];
 </div>
 </section>
 <section id="self-assessment-questions">
-<h2><span class="section-number">3.8.2. </span>Self-Assessment Questions<a class="headerlink" href="#self-assessment-questions" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.8.3. </span>Self-Assessment Questions<a class="headerlink" href="#self-assessment-questions" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><div id="cEvpyInOcMWA" data-shufflequestions="False"
@@ -2237,7 +2324,7 @@ if (typeof version == 'undefined') {
 </div>
 </section>
 <section id="spaced-repetition-review">
-<h2><span class="section-number">3.8.3. </span>Spaced Repetition Review<a class="headerlink" href="#spaced-repetition-review" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.8.4. </span>Spaced Repetition Review<a class="headerlink" href="#spaced-repetition-review" title="Permalink to this heading">#</a></h2>
 <p>Answer these questions to check your retention on knowledge from Chapters 1 and 2:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
@@ -4530,9 +4617,10 @@ if (typeof version == 'undefined') {
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">3.8.1. Terminology Review</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-assessment-questions">3.8.2. Self-Assessment Questions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spaced-repetition-review">3.8.3. Spaced Repetition Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">3.8.1. Key Take-aways:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">3.8.2. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-assessment-questions">3.8.3. Self-Assessment Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spaced-repetition-review">3.8.4. Spaced Repetition Review</a></li>
 </ul>
   </nav></div>
 
