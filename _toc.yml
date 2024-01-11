@@ -101,7 +101,6 @@ parts:
     - file: 11-categorical-data/contingency-tables
     - file: 11-categorical-data/nhst
     - file: 11-categorical-data/goodness-of-fit
-    - file: 11-categorical-data/review
     - file: 11-categorical-data/summary
   - file: 12-vector-regression/intro
     sections:
