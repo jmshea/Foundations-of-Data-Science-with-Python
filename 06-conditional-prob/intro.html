@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/06-conditional-prob/intro.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="ML-generated image for prompt &quot;Dependence and Independence&quot; Interactive Quiz About Balls in a Box Interactive Quiz for the Monty Hall Problem Links to Other Interactive Materials for Chapter 6 Sect..." />
+<meta property="og:description" content="\mbox{ } ~~~~~~ Interactive Quiz About Balls in a Box Interactive Quiz for the Monty Hall Problem Links to Other Interactive Materials for Chapter 6 Section 6.1: Simulating and Counting Conditional..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="ML-generated image for prompt &quot;Dependence and Independence&quot; Interactive Quiz About Balls in a Box Interactive Quiz for the Monty Hall Problem Links to Other Interactive Materials for Chapter 6 Sect..." />
+<meta name="description" content="\mbox{ } ~~~~~~ Interactive Quiz About Balls in a Box Interactive Quiz for the Monty Hall Problem Links to Other Interactive Materials for Chapter 6 Section 6.1: Simulating and Counting Conditional..." />
 
     <title>6. Dependence and Independence &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -78,6 +78,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/boldsymbol"]}, "tex": {"macros": {"P": "\\operatorname{P}"}, "packages": {"[+]": ["boldsymbol"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '06-conditional-prob/intro';</script>
     <link rel="canonical" href="https://www.fdsp.net/06-conditional-prob/intro.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -469,17 +471,17 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dependence-and-independence">
 <h1><span class="section-number">6. </span>Dependence and Independence<a class="headerlink" href="#dependence-and-independence" title="Permalink to this heading">#</a></h1>
-<p><img alt="ML-generated image for prompt &quot;Dependence and Independence&quot;" src="../_images/dependence-and-independence.jpg" /></p>
+<p><span class="math notranslate nohighlight">\(\mbox{ } ~~~~~~\)</span></p>
 <p><strong>Interactive Quiz About Balls in a Box</strong></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="bYcQExwuQKmH" data-shufflequestions="False"
+<div class="output text_html"><div id="juoQNemVTqCy" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#bYcQExwuQKmH {
+#juoQNemVTqCy {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -649,7 +651,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsbYcQExwuQKmH=[
+</style></div><script type="application/javascript">var questionsjuoQNemVTqCy=[
     {
         "question": "A box contains 2 white balls and 1 black ball. I reach in the box and remove one ball. Without inspecting it, I place it in my pocket. I withdraw a second ball. What is the probability that the second ball is white?",
         "type": "multiple_choice",
@@ -1464,7 +1466,26 @@ function show_questions(json, mydiv) {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             }
         }, 500);
 if (typeof version == 'undefined') {
@@ -1473,7 +1494,26 @@ if (typeof version == 'undefined') {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             } else {
                 console.log("MathJax not found");
             }
@@ -1489,8 +1529,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("bYcQExwuQKmH")) {
-            show_questions(questionsbYcQExwuQKmH,  bYcQExwuQKmH); 
+          if(document.getElementById("juoQNemVTqCy")) {
+            show_questions(questionsjuoQNemVTqCy,  juoQNemVTqCy); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1505,10 +1545,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/flashcards/intro-balls.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, bYcQExwuQKmH))
+        .then(json => show_questions(json, juoQNemVTqCy))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsbYcQExwuQKmH, bYcQExwuQKmH);
+        show_questions(questionsjuoQNemVTqCy, juoQNemVTqCy);
         });
         }
         </script></div>
@@ -1516,13 +1556,13 @@ if (typeof version == 'undefined') {
 <p><strong>Interactive Quiz for the Monty Hall Problem</strong></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="qdsTWyBHgdMj" data-shufflequestions="False"
+<div class="output text_html"><div id="uspwIEWTvvny" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#qdsTWyBHgdMj {
+#uspwIEWTvvny {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1692,7 +1732,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsqdsTWyBHgdMj=[
+</style></div><script type="application/javascript">var questionsuspwIEWTvvny=[
     {
         "question": "For the Monty Hall problem, does it matter if you switch doors?",
         "type": "multiple_choice",
@@ -2443,7 +2483,26 @@ function show_questions(json, mydiv) {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             }
         }, 500);
 if (typeof version == 'undefined') {
@@ -2452,7 +2511,26 @@ if (typeof version == 'undefined') {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             } else {
                 console.log("MathJax not found");
             }
@@ -2468,8 +2546,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("qdsTWyBHgdMj")) {
-            show_questions(questionsqdsTWyBHgdMj,  qdsTWyBHgdMj); 
+          if(document.getElementById("uspwIEWTvvny")) {
+            show_questions(questionsuspwIEWTvvny,  uspwIEWTvvny); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2484,10 +2562,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/flashcards/intro-monty-hall.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, qdsTWyBHgdMj))
+        .then(json => show_questions(json, uspwIEWTvvny))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsqdsTWyBHgdMj, qdsTWyBHgdMj);
+        show_questions(questionsuspwIEWTvvny, uspwIEWTvvny);
         });
         }
         </script></div>
