@@ -95,7 +95,6 @@ parts:
     - file: 10-conditional-stats/binary-decisions-nonbayesian
     - file: 10-conditional-stats/point-conditioning
     - file: 10-conditional-stats/bayesian-decisions
-    - file: 10-conditional-stats/review
     - file: 10-conditional-stats/summary
   - file: 11-categorical-data/intro
     sections:
