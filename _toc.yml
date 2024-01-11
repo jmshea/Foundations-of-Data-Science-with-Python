@@ -109,14 +109,13 @@ parts:
     - file: 12-vector-regression/nhst
     - file: 12-vector-regression/nonlinear-regression
     - file: 12-vector-regression/summary
-  - file: 15-multidim-dependence/intro
+  - file: 13-multidim-dependence/intro
     sections:
-      - file: 15-multidim-dependence/joint-rvs
-      - file: 15-multidim-dependence/linear-transforms
-      - file: 15-multidim-dependence/decorrelation
-      - file: 15-multidim-dependence/pca
-      - file: 15-multidim-dependence/review
-      - file: 15-multidim-dependence/summary
+      - file: 13-multidim-dependence/joint-rvs
+      - file: 13-multidim-dependence/linear-transforms
+      - file: 13-multidim-dependence/decorrelation
+      - file: 13-multidim-dependence/pca
+      - file: 13-multidim-dependence/summary
 - caption: Online Resources for Book Chapters
   chapters:
   - file: 16-next-steps/next-steps
