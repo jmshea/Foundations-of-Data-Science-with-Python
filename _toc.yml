@@ -89,7 +89,6 @@ parts:
     - file: 09-moments/mean-hypothesis-testing
     - file: 09-moments/parameter-distributions
     - file: 09-moments/sample-size-selection
-    - file: 09-moments/review
     - file: 09-moments/summary
   - file: 10-conditional-stats/intro
     sections:
