@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/09-moments/sample-size-selection.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
+<meta property="og:description" content="This section considers one aspect of experimental design: how to select the sample size for an experiment. That value will depend on characteristics of the underlying data (which are at least parti..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
+<meta name="description" content="This section considers one aspect of experimental design: how to select the sample size for an experiment. That value will depend on characteristics of the underlying data (which are at least parti..." />
 
     <title>9.8. Effect Size, Power, and Sample Size Selection &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -481,6 +481,355 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="effect-size-power-and-sample-size-selection">
 <h1><span class="section-number">9.8. </span>Effect Size, Power, and Sample Size Selection<a class="headerlink" href="#effect-size-power-and-sample-size-selection" title="Permalink to this heading">#</a></h1>
+<p>This section considers one aspect of experimental design: how to select the sample size for an experiment. That value will depend on characteristics of the underlying data (which are at least partially unknown) and on performance criteria, including the acceptable probabilities of Type I and Type II errors.</p>
+<p>We consider only sample size selection for the case of testing a difference of means between two populations with standard deviations that are equal and known. In particular, consider two populations with (unknown) means <span class="math notranslate nohighlight">\(\mu_X\)</span> and <span class="math notranslate nohighlight">\(\mu_Y\)</span>, respectively, and common (but unknown) standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>. Suppose we observe <span class="math notranslate nohighlight">\(n_X\)</span> random values <span class="math notranslate nohighlight">\(\mathbf{X} = \left[ X_0, X_1, \ldots, X_{n_X-1} \right]\)</span> and <span class="math notranslate nohighlight">\(n_Y\)</span> random values <span class="math notranslate nohighlight">\(\mathbf{Y} = \left[ Y_0, Y_1, \ldots, Y_{n_Y-1} \right]\)</span> from these two distributions.  Let <span class="math notranslate nohighlight">\(\hat{\mu}_X\)</span> and <span class="math notranslate nohighlight">\(\hat{\mu}_Y\)</span> be the mean estimators that are computed from <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Y}\)</span>. By the Central Limit Theorem, if <span class="math notranslate nohighlight">\(n_X\)</span> and <span class="math notranslate nohighlight">\(n_Y\)</span> are sufficiently large (at least 10), then  <span class="math notranslate nohighlight">\(\hat{\mu}_X\)</span> and <span class="math notranslate nohighlight">\(\hat{\mu}_Y\)</span> can be modeled as Normal random variables such that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\hat{\mu}_X &amp;\sim \mbox{Normal}\left(\mu_X, \frac{\sigma}{n_X} \right) \\
+\hat{\mu}_Y &amp;\sim \mbox{Normal}\left(\mu_Y, \frac{\sigma}{n_Y} \right) .
+\end{align*}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(T\)</span> be a test statistic for a difference of means, where <span class="math notranslate nohighlight">\(T =  \hat{\mu}_X -\hat{\mu}_Y\)</span>. Then our previous results show that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+T &amp;\sim \mbox{Normal}\left(\mu_X - \mu_y , \sigma \sqrt {\frac{1}{n_X} + \frac{1}{n_Y}} \right) .
+\end{align*}\]</div>
+<p>For convenience, let</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\sigma_T = \sigma \sqrt {\frac{1}{n_X} + \frac{1}{n_Y}} .
+\end{align*}\]</div>
+<p>Under <span class="math notranslate nohighlight">\(H_0\)</span>, <span class="math notranslate nohighlight">\(T \sim \mbox{Normal}\left(0, \sigma_T \right)\)</span>. A Type I error is rejecting <span class="math notranslate nohighlight">\(H_0\)</span> when it is true. I will present the analysis for a one-sided test because it results in a straightforward analysis that can be easily solved without approximation for one special case. I will also present the final result for a two-sided test, along with an approximation that makes it easier to solve. We will consider the one-sided test for <span class="math notranslate nohighlight">\(\mu_X &gt; \mu_Y\)</span>, under which <span class="math notranslate nohighlight">\(H_0\)</span> will be rejected if <span class="math notranslate nohighlight">\(T\)</span> is much larger than 0; i.e., <span class="math notranslate nohighlight">\(T&gt;\gamma\)</span> for some threshold <span class="math notranslate nohighlight">\(\gamma\)</span>.  Then</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(T &gt; \gamma) =  Q \left( \frac{\gamma}{\sigma_T}\right).
+\end{align*}\]</div>
+<p>Note, however, that this probability depends on <span class="math notranslate nohighlight">\(\sigma_T\)</span>, which depends <span class="math notranslate nohighlight">\(n_X\)</span> and <span class="math notranslate nohighlight">\(n_Y\)</span>.  Since <span class="math notranslate nohighlight">\(n_X\)</span> and <span class="math notranslate nohighlight">\(n_Y\)</span> are sample sizes that we wish to choose, this may seem like we are going in circles. However, we will find that we can put this together with other information to determine the necessary sample sizes.</p>
+<p>Let the acceptable probability of Type I error be denoted by <span class="math notranslate nohighlight">\(\alpha\)</span>. Then we can solve for the threshold <span class="math notranslate nohighlight">\(\gamma\)</span> as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+  Q \left( \frac{\gamma}{\sigma_T}\right) &amp; = \alpha \\
+  \frac{\gamma}{\sigma_T} &amp;=  Q^{-1} \left( \alpha \right) \\
+\gamma &amp;= \sigma_t Q^{-1} \left( \alpha \right).
+\end{align*}\]</div>
+<p>Now consider the probability of Type II error, which is the probability of failing to reject the <span class="math notranslate nohighlight">\(H_0\)</span> when <span class="math notranslate nohighlight">\(H_a\)</span> is true. Let <span class="math notranslate nohighlight">\(\beta\)</span> denote the acceptable probability of Type II error. Usually, the value of <span class="math notranslate nohighlight">\(\beta\)</span> is not specified directly; instead, the <em>power</em> of the test is specified, which is <span class="math notranslate nohighlight">\(1-\beta\)</span>. A typical target value for statistical power is 80%, but higher values are sometimes used.</p>
+<p>Under <span class="math notranslate nohighlight">\(H_a\)</span>, the expected value of <span class="math notranslate nohighlight">\(T\)</span> is <span class="math notranslate nohighlight">\(\mu_a- \mu_b\)</span>, which is greater than zero for our one-sided test. Then a visualization of  <span class="math notranslate nohighlight">\(P(T \leq \gamma)\)</span> is shown below.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/111bc33598c4c8f0b007810088ea4234546be7f69f3819c48e59d68f56b68334.png" src="../_images/111bc33598c4c8f0b007810088ea4234546be7f69f3819c48e59d68f56b68334.png" />
+</div>
+</div>
+<p>Then we can express the probability of Type II error as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+P(T \le \gamma) = Q\left (\frac{\mu_X - \mu_Y - \gamma}{\sigma_T} \right).
+\end{align*}\]</div>
+<p>Setting this equal to <span class="math notranslate nohighlight">\(\beta\)</span> and solving for <span class="math notranslate nohighlight">\(\gamma\)</span> yields</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+ Q\left (\frac{\mu_X - \mu_Y - \gamma}{\sigma_T} \right) &amp; = \beta \\
+\frac{\mu_X - \mu_Y - \gamma}{\sigma_T}  &amp; =   Q^{-1}\left (\beta \right)\\
+\mu_X - \mu_Y - \gamma  &amp; =  \sigma_T Q^{-1}\left (\beta \right)\\
+ \gamma  &amp; =  \mu_X - \mu_Y - \sigma_T Q^{-1}\left (\beta \right).
+\end{align*}\]</div>
+<p>Combining this with the result for Type I error, we have</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\sigma_T \left[Q^{-1} \left( \alpha \right)
++ Q^{-1}\left[ (\beta \right) \right]
+&amp; =  \mu_X - \mu_Y.
+\end{align*}\]</div>
+<p>Substituting the value for <span class="math notranslate nohighlight">\(\sigma_T\)</span> yields</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\sigma \sqrt{\frac{1}{n_X} + \frac{1}{n_Y} } 
+\left[Q^{-1} \left( \alpha \right) + Q^{-1}\left[ (\beta \right) \right]
+&amp; =  \mu_X - \mu_Y \\
+ \sqrt{\frac{n_X + n_Y}{n_X n_Y}  } 
+\left[Q^{-1} \left( \alpha \right) + Q^{-1}\left[ (\beta \right) \right]
+&amp; =  \frac{\mu_X - \mu_Y}{\sigma}. \\
+\end{align*}\]</div>
+<p>Let</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+d =\frac{\mu_X - \mu_Y}{\sigma}
+\end{align*}\]</div>
+<p>be <em>Cohen’s <span class="math notranslate nohighlight">\(d\)</span></em>, which is a type of <em>effect size</em>:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-header docutils">
+<p class="sd-card-text">DEFINITION</p>
+</div>
+<div class="sd-card-body docutils">
+<dl class="glossary">
+<dt id="term-effect-size">effect size <a class="headerlink" href="#term-effect-size" title="Permalink to this term">#</a></dt><dd><p class="sd-card-text">One of many measures of separation between distributions. For a difference of means, Cohen’s <span class="math notranslate nohighlight">\(d\)</span> is standard:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+d =\frac{\mu_X - \mu_Y}{\sigma}.
+\end{equation*}\]</div>
+</dd>
+</dl>
+</div>
+</div>
+<p>Cohen’s <span class="math notranslate nohighlight">\(d\)</span> is the normalized difference in the means between the two groups. In practice, the effect size is not known before the experiment, but it is often practical to make some assumption about the effect size. We can either use information from other studies to estimate the effect size, or for intervention tests (for instance, medical drugs), the intervention may only be worth pursuing if it has a significant effect compared to no intervention. Effect sizes are also often specified by descriptors, which are adjectives that indicate the relative effect size and which have been specified in the statistics literature according to the table below.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cohen’s <span class="math notranslate nohighlight">\(d\)</span></p></th>
+<th class="head"><p>Effect size descriptor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0.01</p></td>
+<td><p>Very small</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.2</p></td>
+<td><p>Small</p></td>
+</tr>
+<tr class="row-even"><td><p>0.5</p></td>
+<td><p>Medium</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.8</p></td>
+<td><p>Large</p></td>
+</tr>
+<tr class="row-even"><td><p>1.2</p></td>
+<td><p>Very large</p></td>
+</tr>
+<tr class="row-odd"><td><p>2.0</p></td>
+<td><p>Huge</p></td>
+</tr>
+</tbody>
+</table>
+<p>Using the definition of Cohen’s <span class="math notranslate nohighlight">\(d\)</span> and reorganizing the equation yields the following relation that can be solved for <span class="math notranslate nohighlight">\(n_X\)</span> and <span class="math notranslate nohighlight">\(n_Y\)</span> in terms of <span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span>, and <span class="math notranslate nohighlight">\(d\)</span>,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{n_X n_Y}{n_X + n_Y}  &amp;=
+\frac{ \left[Q^{-1} \left( \alpha \right)
++ Q^{-1}(\beta) \right] ^2 }{d^2}.
+\end{align*}\]</div>
+<p>In general, multiple possible solutions can be found using a computer. If we consider equal sample sizes, <span class="math notranslate nohighlight">\(n_X = n_Y\)</span>, then the formula simplifies to</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+n_X  &amp;= 
+\frac{ 2 \left[Q^{-1} \left( \alpha \right)
++ Q^{-1}(\beta) \right] ^2 }{d^2}.
+\end{align*}\]</div>
+<p>A function to calculate the size of two equal-sized groups given the values of the significance level (<span class="math notranslate nohighlight">\(\alpha\)</span>), power (<span class="math notranslate nohighlight">\(1-\beta\)</span>), and the effect size (<span class="math notranslate nohighlight">\(d\)</span>) is below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="k">def</span> <span class="nf">qinv</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">group_size_1sided</span><span class="p">(</span><span class="n">significance</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">effect_size</span><span class="p">):</span>
+  <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">qinv</span><span class="p">(</span><span class="n">significance</span><span class="p">)</span> <span class="o">+</span> 
+          <span class="n">qinv</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">power</span><span class="p">))</span> <span class="o">**</span><span class="mi">2</span> <span class="o">/</span><span class="p">(</span><span class="n">effect_size</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example, for a statistical significance of 0.05, power of 0.8, and effect size of 0.8, the size of each group should be at least</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_size_1sided</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19.32049135006178
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we cannot use fractionally sized groups, we will generally have to round up to the next largest integer, so groups of size 20 will be required, for 40 total participants.</p>
+<p>Let’s test this result for a simple data set, where the groups come from uniform distributions on intervals of length 10. Let the random variables that the data from the two groups be denoted by <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, respectively.  Let <span class="math notranslate nohighlight">\(Y\)</span> represent the data from our control group and assume <span class="math notranslate nohighlight">\(Y \sim\)</span> Uniform[0,10].</p>
+<p>To evaluate the probability of false alarm and the probability of miss, we have to create two different distributions for <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<ul class="simple">
+<li><p>When <span class="math notranslate nohighlight">\(H_0\)</span> is true, then <span class="math notranslate nohighlight">\(X\)</span> should have the same distribution as <span class="math notranslate nohighlight">\(Y\)</span>. Let <code class="docutils literal notranslate"><span class="pre">X0</span></code> have distribution <span class="math notranslate nohighlight">\([0,10]\)</span>.</p></li>
+<li><p>When <span class="math notranslate nohighlight">\(H_a\)</span> is true, then <span class="math notranslate nohighlight">\(X\)</span> should have a distribution that differs from <span class="math notranslate nohighlight">\(Y\)</span> at some effect size. Assuming a “Large” effect size, the normalized mean of <span class="math notranslate nohighlight">\(X\)</span> should differ from the mean of <span class="math notranslate nohighlight">\(Y\)</span> by 0.8. Thus, let <code class="docutils literal notranslate"><span class="pre">X1</span></code> have distribution that is shifted by <span class="math notranslate nohighlight">\(0.8 \sigma\)</span>, where <span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation of a uniform random variable on an interval of length 10.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X0</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">stdX</span><span class="o">=</span><span class="n">X0</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">stdX</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.8867513459481287
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then the interval should be shifted by</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.8</span><span class="o">*</span><span class="n">stdX</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.309401076758503
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">2.31</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">Y</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.8867513459481287
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we are assuming that the standard deviation of the distributions is known, we can calculate the threshold <span class="math notranslate nohighlight">\(\gamma\)</span> based on the significance <span class="math notranslate nohighlight">\(\alpha=0.05\)</span> as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\gamma &amp;= \sigma_t Q^{-1} \left( \alpha \right).
+\end{align*}\]</div>
+<p>If <span class="math notranslate nohighlight">\(\sigma\)</span> is the original standard deviation, then</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\sigma_T &amp;= \sqrt{\frac{\sigma^2}{n} + \frac{\sigma^2}{n} } \\
+&amp;=\sigma  \sqrt{\frac{2}{n} } \\
+\end{align*}\]</div>
+<p>Then the threshold <span class="math notranslate nohighlight">\(\gamma\)</span> is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">n</span><span class="o">=</span><span class="mi">20</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">stdX</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">qinv</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">gamma</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.501539058792515
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run a simulation to determine achieved alpha</span>
+<span class="n">num_sims</span> <span class="o">=</span> <span class="mi">10_000</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">X0</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+  <span class="n">t</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;=</span> <span class="n">gamma</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="o">/</span><span class="n">num_sims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0492
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run a simulation to determine achieved beta</span>
+<span class="n">num_sims</span> <span class="o">=</span> <span class="mi">10_000</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">X1</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+  <span class="n">t</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">gamma</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="o">/</span><span class="n">num_sims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1912
+</pre></div>
+</div>
+</div>
+</div>
+<p>The achieved <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are very close to the target values, even though the actual sampling distribution of <span class="math notranslate nohighlight">\(\hat{\mu}_X\)</span> and <span class="math notranslate nohighlight">\(\hat{\mu}_Y\)</span> will not be exactly Normal.</p>
+<p>Note that the smaller the effect size, the larger the groups must be. For instance, if the effect size is only <span class="math notranslate nohighlight">\(d=0.2\)</span>, the required group sizes for <span class="math notranslate nohighlight">\(\alpha=0.05\)</span> and <span class="math notranslate nohighlight">\(\mbox{power}=0.8\)</span> are</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_size_1sided</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>309.12786160098847
+</pre></div>
+</div>
+</div>
+</div>
+<p>Although we may be able to obtain statistical significance with such large groups, the meaningfulness of that result may be reduced because the two groups are not very different from each other in terms of their means relative to their standard deviations.</p>
+<p><strong>Two-Sided Tests</strong></p>
+<p>For a two-sided NHST, the values of <span class="math notranslate nohighlight">\(n_X\)</span> and <span class="math notranslate nohighlight">\(n_y\)</span> must satisfy</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+2 Q \left( \frac{\gamma}{\sigma_T} \right) = \alpha, \mbox{ and} \\
+Q \left( \frac{\mu_X - \mu_Y - \gamma}{\sigma_T} \right) -
+Q \left( \frac{\mu_X - \mu_Y + \gamma}{\sigma_T} \right) = \beta.
+\end{align*}\]</div>
+<p>The form of the second equation prevents us from solving for <span class="math notranslate nohighlight">\(\gamma\)</span>, but the second term in that equation is usually much, much smaller than the first term and thus can be neglected. After simplification, we get a form that is almost identical to the result for a one-sided test:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{n_X n_Y}{n_X + n_Y}  &amp;=
+\frac{ \left[Q^{-1} \left( \alpha/2 \right)
++ Q^{-1}(\beta) \right] ^2 }{d^2},
+\end{align*}\]</div>
+<p>which for equal group sizes simplifies to</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+n_X  &amp;= 
+\frac{ 2 \left[Q^{-1} \left( \alpha/2 \right)
++ Q^{-1}(\beta) \right] ^2 }{d^2}.
+\end{align*}\]</div>
+<p>A function to calculate group sizes for the two-sided test is below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">group_size_2sided</span><span class="p">(</span><span class="n">significance</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">effect_size</span><span class="p">):</span>
+  <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">qinv</span><span class="p">(</span><span class="n">significance</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> 
+          <span class="n">qinv</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">power</span><span class="p">))</span> <span class="o">**</span><span class="mi">2</span> <span class="o">/</span><span class="p">(</span><span class="n">effect_size</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example, for the two-sided test with significance level <span class="math notranslate nohighlight">\(\alpha=0.05\)</span>, power <span class="math notranslate nohighlight">\(1-\beta = 0.8\)</span>, and effect size <span class="math notranslate nohighlight">\(d=0.8\)</span>, the necessary group sizes are</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_size_2sided</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24.527749169840906
+</pre></div>
+</div>
+</div>
+</div>
+<p>For more general cases of determining group sizes, such as unequal group sizes and unknown or unequal standard deviations among the groups, the <code class="docutils literal notranslate"><span class="pre">statsmodels.stats.power</span></code> library provides a variety of functions to calculate necessary group sizes.</p>
+<p>Thus, power and effect size can be combined with the statistical significance threshold to estimate the number of participants that will be needed for an experiment.</p>
 <section id="terminology-review">
 <h2><span class="section-number">9.8.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
@@ -744,7 +1093,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="YbesmfKieBgG" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="YbesmfKieBgG-next" onclick="window.checkFlip('YbesmfKieBgG')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="iHPiQxtnKMnX" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="iHPiQxtnKMnX-next" onclick="window.checkFlip('iHPiQxtnKMnX')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1051,6 +1400,26 @@ function createCards(id, keyControl, grabFocus) {
                     if (version[0] == "2") {
                         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                     } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
                         MathJax.typeset([flipper]);
                     }
                 }, 500);
@@ -1059,7 +1428,31 @@ function createCards(id, keyControl, grabFocus) {
                 if (version[0] == "2") {
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 } else if (version[0] == "3") {
-                    MathJax.typeset([flipper]);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
+                        MathJax.typeset([flipper]);
+                    }
                 }
             }
         } else {
@@ -1091,23 +1484,23 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("YbesmfKieBgG")) {
-            createCards("YbesmfKieBgG", "True", "False");
+          if(document.getElementById("iHPiQxtnKMnX")) {
+            createCards("iHPiQxtnKMnX", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsYbesmfKieBgG=[
+var cardsiHPiQxtnKMnX=[
     {
         "front": "effect size",
         "back": "One of many measures of separation between distributions. For a difference of means, Cohen's $d$ is standard: \\begin{equation*} d =\\frac{\\mu_X - \\mu_Y}{\\sigma} \\end{equation*}"
     }
 ]
 ;
-var frontColorsYbesmfKieBgG= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsYbesmfKieBgG= ["var(--dark-blue-gray)" ];
-var textColorsYbesmfKieBgG= ["var(--snow)" ];
+var frontColorsiHPiQxtnKMnX= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsiHPiQxtnKMnX= ["var(--dark-blue-gray)" ];
+var textColorsiHPiQxtnKMnX= ["var(--snow)" ];
 try_create(); </script></div>
 </div>
 </section>
