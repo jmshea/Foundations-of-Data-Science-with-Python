@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/05-null-hypothesis-testing/summary.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="This page is a placeholder for interactive elements for Section 5.8 of Foundations of Data Science with Python. No interactive elements are available for this section at this time. Terminology Revi..." />
+<meta property="og:description" content="Key take-aways: Statistical Studies Statistical studies use data to try to answer a research question., There are many different types of statistical studies, and each has its benefits and drawback..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="This page is a placeholder for interactive elements for Section 5.8 of Foundations of Data Science with Python. No interactive elements are available for this section at this time. Terminology Revi..." />
+<meta name="description" content="Key take-aways: Statistical Studies Statistical studies use data to try to answer a research question., There are many different types of statistical studies, and each has its benefits and drawback..." />
 
     <title>5.8. Summary &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -467,8 +467,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">5.8.1. Terminology Review</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">5.8.2. Key take-aways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">5.8.1. Key take-aways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">5.8.2. Terminology Review</a></li>
 </ul>
             </nav>
         </div>
@@ -482,10 +482,62 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="summary">
 <h1><span class="section-number">5.8. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
-<p>This page is a placeholder for interactive elements for Section 5.8 of <em>Foundations of Data Science with Python</em>.
-No interactive elements are available for this section at this time.</p>
+<section id="key-take-aways">
+<h2><span class="section-number">5.8.1. </span>Key take-aways<a class="headerlink" href="#key-take-aways" title="Permalink to this heading">#</a></h2>
+<p><strong>Statistical Studies</strong></p>
+<ul class="simple">
+<li><p>Statistical studies use data to try to answer a research question.</p></li>
+<li><p>There are many different types of statistical studies, and each has its benefits and drawbacks.</p></li>
+</ul>
+<p><strong>Null Hypothesis Significance Tests (NHSTs)</strong></p>
+<ul class="simple">
+<li><p>NHSTs are  used to determine whether an observed effect could be attributed to random sampling. If an effect is unlikely to be attributable to random sampling, then it may be called <em>statistically significant</em>.</p></li>
+<li><p>The null hypothesis, denoted <span class="math notranslate nohighlight">\(H_0\)</span>, is that the observed effect is not caused by any real difference in the underlying distributions of the data (i.e., it can be attributed to random sampling).</p></li>
+<li><p>The alternative hypothesis, <span class="math notranslate nohighlight">\(H_a\)</span>, is that the observed effect is caused by differences in the distributions of the data across groups.</p></li>
+<li><p>In a NHST, the <span class="math notranslate nohighlight">\(p\)</span>-value is the probability of seeing a test statistic at least as extreme as that observed in the data when <span class="math notranslate nohighlight">\(H_0\)</span> is true.</p></li>
+<li><p>The two possible outcomes of a NHST are either:</p>
+<ul>
+<li><p>the null hypothesis is rejected, or</p></li>
+<li><p>the null hypothesis fails to be rejected.</p></li>
+</ul>
+</li>
+</ul>
+<p>We never say that the alternative hypothesis is accepted or true. Because a NHST assumes that <span class="math notranslate nohighlight">\(H_0\)</span> is true, any conclusion can only be about <span class="math notranslate nohighlight">\(H_0\)</span>.</p>
+<ul class="simple">
+<li><p>If the null hypothesis is not rejected, that does not mean that the observed effect is not attributable to a real difference in the underlying distributions of the data.  There may just be too little data to have sufficient confidence that the effect could not be caused by randomness in the samples.</p></li>
+<li><p>NHSTs may be one-tailed or two-tailed. The choice should usually depend on the specific wording of the research question. If the research question does not imply a one-tailed test, a two-tailed test should be used.</p></li>
+</ul>
+<p><strong>Resampling in NHSTs</strong></p>
+<ul class="simple">
+<li><p>NHSTs can be conducted using resampling, in which the sampling distribution is approximated by drawing  test samples from the original data.</p></li>
+<li><p>When using resampling to conduct an NHST, the data is usually <em>pooled</em>, meaning that it is grouped together, since the null hypothesis usually corresponds to the assumption that all of the data comes from the same distribution.</p></li>
+<li><p>In bootstrap resampling (or bootstrapping), test samples are drawn from the pooled data <strong>with replacement</strong>.</p></li>
+<li><p>For implementing NHST with resampling, bootstrap resampling is usually used.</p></li>
+<li><p>Alternatives to bootstrapping include permutation tests and Monte Carlo permutation tests.</p></li>
+<li><p>Monte Carlo permutation test can be implemented almost identically to bootstrap resampling, except that sampling is done <strong>without replacement</strong>.</p></li>
+<li><p>Permutation tests are usually more conservative (less likely to assign significance to an observed effect) than bootstrapping.</p></li>
+</ul>
+<p><strong>Bootstrap Distribution and Confidence Intervals (CIs)</strong></p>
+<ul class="simple">
+<li><p>Bootstrap distributions characterize the distribution of  a statistic generated using bootstrapping.</p></li>
+<li><p>CIs are a way of summarizing information about a statistic’s sampling distribution or bootstrap distribution.</p></li>
+<li><p>Fo NHSTs, CIs  can be used as an alternative to <span class="math notranslate nohighlight">\(p\)</span>-values.</p></li>
+<li><p>When using resampling, CIs are easily visualized using normalized cumulative histograms but are easiest to find using percentiles in the bootstrap samples of the test statistic.</p></li>
+<li><p>CIs are often misinterpreted. A c% CI does not mean that there is a c% chance that the true value is in a given CI; instead, it means that were the data drawn many times and CIs created for each set of data, then the true value would be in c% of those CIs.</p></li>
+</ul>
+<p><strong>Error Types and Power</strong></p>
+<ul class="simple">
+<li><p>Statisticians and data scientists often refer to Type-I and Type-II errors. Type-I errors are false alarms; the probability of false alarm is often denoted by <span class="math notranslate nohighlight">\(\alpha\)</span>. Type-II errors are false negatives; the probability of false negative is often denoted by <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+<ul>
+<li><p>A good way to remember Type I vs Type II errors is the story of the boy who cried wolf. The first time he cried wolf, there was no wolf, but the townspeople believe there was a wolf. This was a false positive, or Type I error. The second time he cried wolf, there was a wolf, but the townspeople did not believe there was a wolf. This was a false negative, or Type II error.</p></li>
+</ul>
+</li>
+<li><p>For a NHST, an acceptable level is chosen for <span class="math notranslate nohighlight">\(\alpha\)</span>; this value is the significance threshold to which the <span class="math notranslate nohighlight">\(p\)</span>-value is compared.</p></li>
+<li><p><em>Power</em> is the probability of rejecting the null hypothesis when the alternative hypothesis is true; it is equal to <span class="math notranslate nohighlight">\(1-\beta\)</span>. Because NHSTs assume <span class="math notranslate nohighlight">\(H_0\)</span> is true and make no assumptions about <span class="math notranslate nohighlight">\(H_a\)</span>, they cannot provide any information about power or <span class="math notranslate nohighlight">\(\beta\)</span>.</p></li>
+</ul>
+</section>
 <section id="terminology-review">
-<h2><span class="section-number">5.8.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.8.2. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
 <p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
@@ -744,7 +796,7 @@ No interactive elements are available for this section at this time.</p>
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="YuoHUttWcLOH" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="YuoHUttWcLOH-next" onclick="window.checkFlip('YuoHUttWcLOH')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="DuofTbXwQDfu" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="DuofTbXwQDfu-next" onclick="window.checkFlip('DuofTbXwQDfu')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1051,6 +1103,26 @@ function createCards(id, keyControl, grabFocus) {
                     if (version[0] == "2") {
                         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                     } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
                         MathJax.typeset([flipper]);
                     }
                 }, 500);
@@ -1059,7 +1131,31 @@ function createCards(id, keyControl, grabFocus) {
                 if (version[0] == "2") {
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 } else if (version[0] == "3") {
-                    MathJax.typeset([flipper]);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
+                        MathJax.typeset([flipper]);
+                    }
                 }
             }
         } else {
@@ -1091,14 +1187,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("YuoHUttWcLOH")) {
-            createCards("YuoHUttWcLOH", "True", "False");
+          if(document.getElementById("DuofTbXwQDfu")) {
+            createCards("DuofTbXwQDfu", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsYuoHUttWcLOH=[
+var cardsDuofTbXwQDfu=[
     {
         "front": "Type-I Error",
         "back": "A <i>Type-I Error</i> is a <b>false positive</b> and is sometimes denoted by the Greek letter \\(\\alpha\\) (\"alpha\").  For NHST, a Type I error occurs if the null hypothesis is actually true, but it is rejected."
@@ -1213,9 +1309,9 @@ var cardsYuoHUttWcLOH=[
     }
 ]
 ;
-var frontColorsYuoHUttWcLOH= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsYuoHUttWcLOH= ["var(--dark-blue-gray)" ];
-var textColorsYuoHUttWcLOH= ["var(--snow)" ];
+var frontColorsDuofTbXwQDfu= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsDuofTbXwQDfu= ["var(--dark-blue-gray)" ];
+var textColorsDuofTbXwQDfu= ["var(--snow)" ];
 
 
         {
@@ -1226,7 +1322,7 @@ var textColorsYuoHUttWcLOH= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/05-null-hypothesis-testing/flashcards/review.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("YuoHUttWcLOH", "True", "False"))
+        .then(json => createCards("DuofTbXwQDfu", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1234,60 +1330,6 @@ var textColorsYuoHUttWcLOH= ["var(--snow)" ];
         }
         </script></div>
 </div>
-</section>
-<section id="key-take-aways">
-<h2><span class="section-number">5.8.2. </span>Key take-aways<a class="headerlink" href="#key-take-aways" title="Permalink to this heading">#</a></h2>
-<p><strong>Statistical Studies</strong></p>
-<ul class="simple">
-<li><p>Statistical studies use data to try to answer a research question.</p></li>
-<li><p>There are many different types of statistical studies, and each has its benefits and drawbacks.</p></li>
-</ul>
-<p><strong>Null Hypothesis Significance Tests (NHSTs)</strong></p>
-<ul class="simple">
-<li><p>NHSTs are  used to determine whether an observed effect could be attributed to random sampling. If an effect is unlikely to be attributable to random sampling, then it may be called <em>statistically significant</em>.</p></li>
-<li><p>The null hypothesis, denoted <span class="math notranslate nohighlight">\(H_0\)</span>, is that the observed effect is not caused by any real difference in the underlying distributions of the data (i.e., it can be attributed to random sampling).</p></li>
-<li><p>The alternative hypothesis, <span class="math notranslate nohighlight">\(H_a\)</span>, is that the observed effect is caused by differences in the distributions of the data across groups.</p></li>
-<li><p>In a NHST, the <span class="math notranslate nohighlight">\(p\)</span>-value is the probability of seeing a test statistic at least as extreme as that observed in the data when <span class="math notranslate nohighlight">\(H_0\)</span> is true.</p></li>
-<li><p>The two possible outcomes of a NHST are either:</p>
-<ul>
-<li><p>the null hypothesis is rejected, or</p></li>
-<li><p>the null hypothesis fails to be rejected.</p></li>
-</ul>
-</li>
-</ul>
-<p>We never say that the alternative hypothesis is accepted or true. Because a NHST assumes that <span class="math notranslate nohighlight">\(H_0\)</span> is true, any conclusion can only be about <span class="math notranslate nohighlight">\(H_0\)</span>.</p>
-<ul class="simple">
-<li><p>If the null hypothesis is not rejected, that does not mean that the observed effect is not attributable to a real difference in the underlying distributions of the data.  There may just be too little data to have sufficient confidence that the effect could not be caused by randomness in the samples.</p></li>
-<li><p>NHSTs may be one-tailed or two-tailed. The choice should usually depend on the specific wording of the research question. If the research question does not imply a one-tailed test, a two-tailed test should be used.</p></li>
-</ul>
-<p><strong>Resampling in NHSTs</strong></p>
-<ul class="simple">
-<li><p>NHSTs can be conducted using resampling, in which the sampling distribution is approximated by drawing  test samples from the original data.</p></li>
-<li><p>When using resampling to conduct an NHST, the data is usually <em>pooled</em>, meaning that it is grouped together, since the null hypothesis usually corresponds to the assumption that all of the data comes from the same distribution.</p></li>
-<li><p>In bootstrap resampling (or bootstrapping), test samples are drawn from the pooled data <strong>with replacement</strong>.</p></li>
-<li><p>For implementing NHST with resampling, bootstrap resampling is usually used.</p></li>
-<li><p>Alternatives to bootstrapping include permutation tests and Monte Carlo permutation tests.</p></li>
-<li><p>Monte Carlo permutation test can be implemented almost identically to bootstrap resampling, except that sampling is done <strong>without replacement</strong>.</p></li>
-<li><p>Permutation tests are usually more conservative (less likely to assign significance to an observed effect) than bootstrapping.</p></li>
-</ul>
-<p><strong>Bootstrap Distribution and Confidence Intervals (CIs)</strong></p>
-<ul class="simple">
-<li><p>Bootstrap distributions characterize the distribution of  a statistic generated using bootstrapping.</p></li>
-<li><p>CIs are a way of summarizing information about a statistic’s sampling distribution or bootstrap distribution.</p></li>
-<li><p>Fo NHSTs, CIs  can be used as an alternative to <span class="math notranslate nohighlight">\(p\)</span>-values.</p></li>
-<li><p>When using resampling, CIs are easily visualized using normalized cumulative histograms but are easiest to find using percentiles in the bootstrap samples of the test statistic.</p></li>
-<li><p>CIs are often misinterpreted. A c% CI does not mean that there is a c% chance that the true value is in a given CI; instead, it means that were the data drawn many times and CIs created for each set of data, then the true value would be in c% of those CIs.</p></li>
-</ul>
-<p><strong>Error Types and Power</strong></p>
-<ul class="simple">
-<li><p>Statisticians and data scientists often refer to Type-I and Type-II errors. Type-I errors are false alarms; the probability of false alarm is often denoted by <span class="math notranslate nohighlight">\(\alpha\)</span>. Type-II errors are false negatives; the probability of false negative is often denoted by <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
-<ul>
-<li><p>A good way to remember Type I vs Type II errors is the story of the boy who cried wolf. The first time he cried wolf, there was no wolf, but the townspeople believe there was a wolf. This was a false positive, or Type I error. The second time he cried wolf, there was a wolf, but the townspeople did not believe there was a wolf. This was a false negative, or Type II error.</p></li>
-</ul>
-</li>
-<li><p>For a NHST, an acceptable level is chosen for <span class="math notranslate nohighlight">\(\alpha\)</span>; this value is the significance threshold to which the <span class="math notranslate nohighlight">\(p\)</span>-value is compared.</p></li>
-<li><p><em>Power</em> is the probability of rejecting the null hypothesis when the alternative hypothesis is true; it is equal to <span class="math notranslate nohighlight">\(1-\beta\)</span>. Because NHSTs assume <span class="math notranslate nohighlight">\(H_0\)</span> is true and make no assumptions about <span class="math notranslate nohighlight">\(H_a\)</span>, they cannot provide any information about power or <span class="math notranslate nohighlight">\(\beta\)</span>.</p></li>
-</ul>
 </section>
 </section>
 
@@ -1354,8 +1396,8 @@ var textColorsYuoHUttWcLOH= ["var(--snow)" ];
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">5.8.1. Terminology Review</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">5.8.2. Key take-aways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-take-aways">5.8.1. Key take-aways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">5.8.2. Terminology Review</a></li>
 </ul>
   </nav></div>
 
