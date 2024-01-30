@@ -1,6 +1,6 @@
 [
     {
-    "question": "According to Section 1.5 of \"Foundations of Data Science with Python\", which of these topics are covered in the book?",
+    "question": "According to Section 1.5 of \"Foundations of Data Science with Python\", which of these topics are <b>not</b> covered in the book?",
         "type": "many_choice",
         "answers": [
             {
