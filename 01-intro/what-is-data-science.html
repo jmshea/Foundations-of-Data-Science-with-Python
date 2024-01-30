@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/01-intro/what-is-data-science.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Self-Assessment: The following questions can be used to check your understanding of the material covered in this chapter: The flashcards below are for reviewing terminology introduced in Section 1...." />
+<meta property="og:description" content="Self-Assessment: The following questions can be used to check your understanding of the material covered in Section 1.3 of Foundations of Data Science with Python. The flashcards below are for revi..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Self-Assessment: The following questions can be used to check your understanding of the material covered in this chapter: The flashcards below are for reviewing terminology introduced in Section 1...." />
+<meta name="description" content="Self-Assessment: The following questions can be used to check your understanding of the material covered in Section 1.3 of Foundations of Data Science with Python. The flashcards below are for revi..." />
 
     <title>1.3. What is data science? &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -472,16 +472,16 @@ document.write(`
 <div class="cell tag_remove-input docutils container">
 </div>
 <p><strong>Self-Assessment:</strong></p>
-<p>The following questions can be used to check your understanding of the material covered in this chapter:</p>
+<p>The following questions can be used to check your understanding of the material covered in Section 1.3 of <em>Foundations of Data Science with Python</em>.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="bVNLzPyKMmtX" data-shufflequestions="False"
+<div class="output text_html"><div id="GvMPYQKJoNON" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#bVNLzPyKMmtX {
+#GvMPYQKJoNON {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -652,7 +652,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsbVNLzPyKMmtX=[
+</style></div><script type="application/javascript">var questionsGvMPYQKJoNON=[
     {
         "question": "Choose all of the following that are <b>quantitative</b> variables.",
         "type": "many_choice",
@@ -1503,8 +1503,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("bVNLzPyKMmtX")) {
-            show_questions(questionsbVNLzPyKMmtX,  bVNLzPyKMmtX); 
+          if(document.getElementById("GvMPYQKJoNON")) {
+            show_questions(questionsGvMPYQKJoNON,  GvMPYQKJoNON); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1519,15 +1519,15 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/questions/what-is-data-science.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, bVNLzPyKMmtX))
+        .then(json => show_questions(json, GvMPYQKJoNON))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsbVNLzPyKMmtX, bVNLzPyKMmtX);
+        show_questions(questionsGvMPYQKJoNON, GvMPYQKJoNON);
         });
         }
         </script></div>
 </div>
-<p>The flashcards below are for reviewing terminology introduced in Section 1.3 of <em>Foundations of Data Science with Python</em>.</p>
+<p>The flashcards below are for reviewing terminology introduced in this section:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><style>
@@ -1785,7 +1785,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="oqYPkELCjhGp" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="oqYPkELCjhGp-next" onclick="window.checkFlip('oqYPkELCjhGp')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="PUTVQzEmqpny" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="PUTVQzEmqpny-next" onclick="window.checkFlip('PUTVQzEmqpny')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2092,6 +2092,26 @@ function createCards(id, keyControl, grabFocus) {
                     if (version[0] == "2") {
                         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                     } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
                         MathJax.typeset([flipper]);
                     }
                 }, 500);
@@ -2100,7 +2120,31 @@ function createCards(id, keyControl, grabFocus) {
                 if (version[0] == "2") {
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 } else if (version[0] == "3") {
-                    MathJax.typeset([flipper]);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
+                        MathJax.typeset([flipper]);
+                    }
                 }
             }
         } else {
@@ -2132,14 +2176,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("oqYPkELCjhGp")) {
-            createCards("oqYPkELCjhGp", "True", "False");
+          if(document.getElementById("PUTVQzEmqpny")) {
+            createCards("PUTVQzEmqpny", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsoqYPkELCjhGp=[
+var cardsPUTVQzEmqpny=[
     {
         "front": "data",
         "back": "Collections of measurements, characteristics, or facts about a group."
@@ -2149,8 +2193,16 @@ var cardsoqYPkELCjhGp=[
         "back": "The process of extracting meaning from data."
     },
     {
-        "front": "variable",
-        "back": "A particular characteristic, measurement, or fact about a particular member of a group."
+        "front": "data point",
+        "back": "A collection of one or more pieces of information collected about a single individual or entity."
+    },
+    {
+        "front": "variables",
+        "back": "Particular characteristics, measurements, or facts that make up a data point."
+    },
+    {
+        "front": "features",
+        "back": "Individual piece of information in a data set. While a variable typically represents unprocessed or raw data, features can include both variables and processed versions of the variables."
     },
     {
         "front": "quantitative data",
@@ -2166,9 +2218,9 @@ var cardsoqYPkELCjhGp=[
     }
 ]
 ;
-var frontColorsoqYPkELCjhGp= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsoqYPkELCjhGp= ["var(--dark-blue-gray)" ];
-var textColorsoqYPkELCjhGp= ["var(--snow)" ];
+var frontColorsPUTVQzEmqpny= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsPUTVQzEmqpny= ["var(--dark-blue-gray)" ];
+var textColorsPUTVQzEmqpny= ["var(--snow)" ];
 
 
         {
@@ -2179,7 +2231,7 @@ var textColorsoqYPkELCjhGp= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/flashcards/what-is-data-science.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("oqYPkELCjhGp", "True", "False"))
+        .then(json => createCards("PUTVQzEmqpny", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
