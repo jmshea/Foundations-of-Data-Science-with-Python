@@ -6,7 +6,7 @@
             {
                 "answer": "machine learning",
                 "correct": false,
-            "feedback": "Although machine learning is a popular and important data science topic, \"Foundations of Data Science with Python\" focuses on <b>Foundations</b>, which are more fundamental topics."
+            "feedback": "Although machine learning is a popular and important data science topic, \"Foundations of Data Science with Python\" focuses on *Foundations*, meaning more fundamental topics."
             },
             {
                 "answer": "data manipulation",
