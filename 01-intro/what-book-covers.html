@@ -475,13 +475,13 @@ document.write(`
 <p>The following questions can be used to check your understanding of the material covered in this chapter:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="uGLJHzLkfQoh" data-shufflequestions="False"
+<div class="output text_html"><div id="ElbtlOvBDauh" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#uGLJHzLkfQoh {
+#ElbtlOvBDauh {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -652,7 +652,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsuGLJHzLkfQoh=[
+</style></div><script type="application/javascript">var questionsElbtlOvBDauh=[
     {
     "question": "According to Section 1.4 of <i>Foundations of Data Science with Python</i>, which of these topics are covered in the book?",
         "type": "many_choice",
@@ -1472,8 +1472,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("uGLJHzLkfQoh")) {
-            show_questions(questionsuGLJHzLkfQoh,  uGLJHzLkfQoh); 
+          if(document.getElementById("ElbtlOvBDauh")) {
+            show_questions(questionsElbtlOvBDauh,  ElbtlOvBDauh); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1488,10 +1488,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/questions/what-book-covers.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, uGLJHzLkfQoh))
+        .then(json => show_questions(json, ElbtlOvBDauh))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsuGLJHzLkfQoh, uGLJHzLkfQoh);
+        show_questions(questionsElbtlOvBDauh, ElbtlOvBDauh);
         });
         }
         </script></div>
