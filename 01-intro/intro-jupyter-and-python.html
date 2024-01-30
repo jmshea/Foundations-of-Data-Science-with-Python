@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/01-intro/intro-jupyter-and-python.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Getting Started in Jupyter: Let’s begin exploring JupyterLab using an existing notebook: 1) Download a Jupyter notebook file. We will use the file “jupyter-intro.ipynb”, which is available by click..." />
+<meta property="og:description" content="Getting Started in Jupyter: Here is a link to the jupyter-intro.ipynb file used in this section: https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/jupyt..." />
 <meta property="og:image" content="https://www.fdsp.net/_images/normal-people.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Getting Started in Jupyter: Let’s begin exploring JupyterLab using an existing notebook: 1) Download a Jupyter notebook file. We will use the file “jupyter-intro.ipynb”, which is available by click..." />
+<meta name="description" content="Getting Started in Jupyter: Here is a link to the jupyter-intro.ipynb file used in this section: https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/jupyt..." />
 
     <title>1.6. Extremely Brief Intro to Jupyter and Python &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -468,16 +468,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-in-jupyter">1.6.1. Getting Started in Jupyter</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-the-basics-of-jupyterlab">1.6.1.1. Learn the basics of JupyterLab</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-structure">1.6.1.1.1. Notebook structure</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab-interface-modes">1.6.1.1.2. JupyterLab interface modes</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-cells">1.6.1.2. More on cells</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-markdown-in-jupyter">1.6.1.3. Intro to Markdown in Jupyter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-notebooks-into-and-out-of-jupyterlab">1.6.1.4. Getting Notebooks Into and Out of JupyterLab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-magics">1.6.1.5. Jupyter Magics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-your-work-closing-notebooks-and-closing-jupyterlab">1.6.1.6. Saving Your Work, Closing Notebooks, and Closing JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-markdown-in-jupyter">1.6.1.1. Intro to Markdown in Jupyter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-magics">1.6.1.2. Jupyter Magics</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-in-python">1.6.2. Getting Started in Python</a><ul class="nav section-nav flex-column">
@@ -519,111 +511,13 @@ document.write(`
 <h1><span class="section-number">1.6. </span>Extremely Brief Intro to Jupyter and Python<a class="headerlink" href="#extremely-brief-intro-to-jupyter-and-python" title="Permalink to this heading">#</a></h1>
 <section id="getting-started-in-jupyter">
 <h2><span class="section-number">1.6.1. </span>Getting Started in Jupyter<a class="headerlink" href="#getting-started-in-jupyter" title="Permalink to this heading">#</a></h2>
-<p>Let’s begin exploring JupyterLab using an existing notebook:</p>
-<p><strong>1) Download a Jupyter notebook file.</strong></p>
-<p>We will use the file “jupyter-intro.ipynb”, which is available by clicking on the link below or typing the link into your browser:</p>
+<p>Here is a link to the <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> file used in this section:</p>
 <p><a class="reference external" href="https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/jupyter-intro.ipynb">https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/jupyter-intro.ipynb</a></p>
 <p>If your browser displays the notebook as text, you will need to tell it to save it as a file. You can usually do this by right-clicking or control-clicking in the browser window and choosing to save the page as a file. For instance, in Safari 14, choose the “Save Page As…” menu item. Be sure to name your file with a <em>.ipynb</em> ending.</p>
 <p><em>Hint:</em> If your file was saved to your default Downloads folder, be sure to move it to an appropriate folder in your <code class="docutils literal notranslate"><span class="pre">data-science</span></code> folder to keep things organized!</p>
-<p><strong>2) Start JupyterLab.</strong></p>
-<p>JupyterLab can be started from the Anaconda-Navigator program that is installed with the Anaconda distribution. Start Anaconda-Navigator, scroll to find JupyterLab, and then click the <em>Launch</em> button under JupyterLab. JupyterLab should start up in your browser.</p>
-<p><em>Alternative for command-line users:</em> From the command prompt, you can start JupyterLab by typing <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> (provided the Anaconda bin directory is on the command line search path). Because setting this up is specialized to each operating system and command shell, the details are omitted. However, details of how to set up the path for Anaconda can be found at many sites online.</p>
-<p>Your JupyterLab should open to a view that looks something like the one below:</p>
-<figure class="align-default" id="jupyter-lab-start">
-<a class="reference internal image-reference" href="../_images/jupyter-lab-start.png"><img alt="../_images/jupyter-lab-start.png" src="../_images/jupyter-lab-start.png" style="height: 5in;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1.1 </span><span class="caption-text">The JupyterLab interface.</span><a class="headerlink" href="#jupyter-lab-start" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you have used JupyterLab before, it may not look like this – it will pick up where you left off!</p>
-</div>
-<p>The JupyterLab interface has many different parts:</p>
-<ol class="arabic simple">
-<li><p>The <strong>menu bar</strong> is across the very top of the JupyterLab app. I will introduce the use of menus later in this lesson.</p></li>
-<li><p>The <strong>left sidebar</strong> occupies the left side below the menu bar. It includes several different tabs, which you can switch between by clicking the various icons on the very far left of the left sidebar. In <a class="reference internal" href="#jupyter-lab-start"><span class="std std-numref">Fig. 1.1</span></a>, the folder icon is highlighted, which indicates that the file browser is selected. For this book, we will use the left sidebar only to access the file browser.</p></li>
-<li><p>The <strong>main work area</strong> is to the right of the left sidebar. The main work area will usually show whatever document you are working on. However, if you have not opened any document yet, it will show you different types of notebooks that you can open and other tools that you can access. To start a completely new Jupyter notebook file that can run Python 3 code, you could click on the Python 3 icon under <code class="docutils literal notranslate"><span class="pre">Notebooks</span></code>. For now, you do not need to do that.</p></li>
-</ol>
-<p>Detailed documentation for JupyterLab is available at <a class="reference external" href="https://jupyterlab.readthedocs.io/">https://jupyterlab.readthedocs.io/</a>.</p>
-<p><strong>3) Navigate to the downloaded notebook.</strong></p>
-<p>Use the file browser in the left sidebar of JupyterLab to navigate to the downloaded file.</p>
-<p><em>If the file browser is not already showing your files, click on the folder icon (on the very left-hand side of the window) to switch to it.</em></p>
-<p>Navigation using the file browser should be similar to navigating in most file selection boxes:</p>
-<ul class="simple">
-<li><p>Single click on items to select them.</p></li>
-<li><p>Double click on a folder to navigate into it.</p></li>
-<li><p>Double click on a file to open it.</p></li>
-<li><p>As you navigate into folders, the current path (relative to your starting path) is shown above the file list. You can navigate back out of a folder by clicking on the parent folder’s <em>name</em> in the current path.</p></li>
-</ul>
-<p>If you downloaded the file <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> to the <code class="docutils literal notranslate"><span class="pre">chapter1</span></code> subdirectory of the <code class="docutils literal notranslate"><span class="pre">data-science</span></code> directory, which lies in your home directory, then  you would:</p>
-<ul class="simple">
-<li><p>Double click on the <code class="docutils literal notranslate"><span class="pre">data-science</span></code> folder.</p></li>
-<li><p>Double click on the <code class="docutils literal notranslate"><span class="pre">chapter1</span></code> folder.</p></li>
-<li><p>Double click on the file <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code>.</p></li>
-</ul>
-<p>The file <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> should open in the main work area.</p>
-<section id="learn-the-basics-of-jupyterlab">
-<h3><span class="section-number">1.6.1.1. </span>Learn the basics of JupyterLab<a class="headerlink" href="#learn-the-basics-of-jupyterlab" title="Permalink to this heading">#</a></h3>
-<p>After opening the <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> notebook, take a minute to scroll through the notebook before interacting with it.
-Note that the notebook includes formatted text, graphics, mathematics, and Python programming code.
-You will learn to use all of these features as you work through this book.</p>
-<section id="notebook-structure">
-<h4><span class="section-number">1.6.1.1.1. </span>Notebook structure<a class="headerlink" href="#notebook-structure" title="Permalink to this heading">#</a></h4>
-<p>Jupyter notebooks are subdivided into parts called <strong>cells</strong>. Each cell can be used for different purposes; we will use them for either Python code or for Markdown.  Markdown is a simple markup language that allows the creation of formatted text with math and graphics. Code cells are subdivided into Input and Output parts. Single click on any part of the <code class="docutils literal notranslate"><span class="pre">intro.ipynb</span></code> notebook to select a cell. The selected cell will be indicated by a color bar along the entire left side of the cell.</p>
-</section>
-<section id="jupyterlab-interface-modes">
-<span id="index-0"></span><h4><span class="section-number">1.6.1.1.2. </span>JupyterLab interface modes<a class="headerlink" href="#jupyterlab-interface-modes" title="Permalink to this heading">#</a></h4>
-<p>The JupyterLab user interface can be in one of two modes, and these modes affect what you can do with a cell:</p>
-<ul class="simple">
-<li><p>In <strong>Edit Mode</strong>, the focus is on one cell, which will be outlined in color (blue on my computer with the default theme), and the cursor will contain a blinking cursor indicating where typed text will appear.</p></li>
-<li><p>In <strong>Command Mode</strong>, you cannot edit or enter text into a cell. Instead, you can navigate among cells and use keyboard shortcuts to act on them, including running cells, selecting groups of cells, and copying/cutting/pasting or deleting cells.</p></li>
-</ul>
-<p>There are several ways to switch between modes:</p>
-<p>In <strong>Command Mode</strong>, here are two ways to switch to <strong>Edit Mode</strong> and begin editing a cell:</p>
-<ul class="simple">
-<li><p>Double-click on a cell.</p></li>
-<li><p>Select a cell using the cursor keys and then press Enter.</p></li>
-</ul>
-<p>In <strong>Edit Mode</strong>, here are two ways to switch to <strong>Command Mode</strong>:</p>
-<ul class="simple">
-<li><p>Press the ESC key. The current cell is <em>not evaluated</em>, but it will be selected in <strong>Command Mode</strong>.</p></li>
-<li><p>If editing a cell that is <em>not</em> the last cell in the notebook, press Shift-Enter to <em>evaluate</em> the current cell and return to <strong>Command Mode</strong>. (If you are in the last cell of the notebook, Shift-Enter will evaluate the current cell, create a new cell below it, and remain in <strong>Edit Mode</strong> in the newly created cell.)</p></li>
-</ul>
-</section>
-</section>
-<section id="more-on-cells">
-<h3><span class="section-number">1.6.1.2. </span>More on cells<a class="headerlink" href="#more-on-cells" title="Permalink to this heading">#</a></h3>
-<p>In <strong>Edit Mode</strong>, code or Markdown can be typed into a cell. Remember that each cell has a <em>cell type</em> associated with it. The cell type does not limit what can be entered into a cell.  The cell type <strong>determines how a cell is evaluated</strong>.  When a cell is evaluated, the contents are parsed by either a Markdown render (for a Markdown cell) or the Python kernel (for a Code cell).
-A <em>kernel</em> is a process that can run code that has been entered in the notebook. JupyterLab supports different kernels, but we will only use a Python kernel.
-Cells may be evaluated in many different ways. Here are a few of the typical ways that we will use:</p>
-<ul class="simple">
-<li><p>Most commonly, we will evaluate the current cell by pressing <code class="docutils literal notranslate"><span class="pre">Shift-Enter</span></code> on the keyboard. This will always evaluate the current cell. If this is the last cell in the notebook, it will also insert a new cell below the current cell, making it easy to continue building the notebook.</p></li>
-<li><p>It is also possible to evaluate a cell using the toolbar at the top of the notebook.  Use the triangular “play” button (pointed to by the red arrow in the image below) to execute the currently selected cell or cells.
-<img alt="Play button to evaluate a notebook cell" src="../_images/play-button.png" /></p></li>
-<li><p>Sometimes we wish to make changes in the middle of an existing notebook. To evaluate the current cell and insert a new cell below it, press <code class="docutils literal notranslate"><span class="pre">Alt-Enter</span></code> on the computer keyboard.</p></li>
-<li><p>Cells can also be run by some of the commands in the <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> menu in the JupyterLab menu. For example, it is always best to reset the Python kernel and run all the cells in a notebook from top to bottom before sharing a Jupyter notebook with someone else (for example, before submitting an assignment). To do this, click on the <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> menu and choose the <code class="docutils literal notranslate"><span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells...</span></code> menu item.</p></li>
-</ul>
-<p>If you enter Markdown into a Code cell or Python into a Markdown cell, the results will not be what you intend. For instance, most Markdown is not valid Python, and so if Markdown is entered into a Code cell, a syntax error will be displayed when the cell is evaluated.  Fortunately, you can change the cell type afterward to make it evaluate properly.</p>
-<div class="warning admonition">
-<p class="admonition-title">Important!</p>
-<p>New cells, including the starting cell of a new notebook, start as <em>Code</em> cells.</p>
-</div>
-<p>Cells start as <em>Code</em> cells, but we often want to enter Markdown instead. We also may wish to switch a <em>Markdown</em> cell back to a <em>Code</em> cell. There are three easy ways to change the cell type:</p>
-<ul class="simple">
-<li><p>As seen below, you can use the drop-down menu at the top of the notebook to set the cell type to <em>Code</em>, <em>Markdown</em>, or <em>Raw</em>.</p></li>
-</ul>
-<p><img alt="" src="../_images/cell-type-dropdown.png" /></p>
-<ul class="simple">
-<li><p>If you are in command mode, you can use a keyboard shortcut to change the type of a selected cell. The standard keyboard shortcuts are <code class="docutils literal notranslate"><span class="pre">m</span></code> for <em>Markdown</em> and <code class="docutils literal notranslate"><span class="pre">y</span></code> for <em>Code</em>.</p></li>
-<li><p>If you are not in command mode, you can still use a keyboard shortcut, but you will need to press <code class="docutils literal notranslate"><span class="pre">Control-m</span></code> first, and then press either <code class="docutils literal notranslate"><span class="pre">m</span></code> for <em>Markdown</em> or <code class="docutils literal notranslate"><span class="pre">y</span></code> for <em>Code</em>.</p></li>
-</ul>
-</section>
 <section id="intro-to-markdown-in-jupyter">
-<h3><span class="section-number">1.6.1.3. </span>Intro to Markdown in Jupyter<a class="headerlink" href="#intro-to-markdown-in-jupyter" title="Permalink to this heading">#</a></h3>
-<p>In this book, you will use Jupyter both to perform data analysis and to create documents that describe the results of your analysis.
-Although we will use code to process the data and generate graphs, that is usually not enough to tell the story to a reader of your document. Markdown is used to add text, heading, mathematics, and other graphics.</p>
-<p>The example notebook <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> demonstrates the main features of Markdown that we will need in this book. Recall that you can double click on any cell in the notebook to see the Markdown source. The <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> notebook  illustrates several features of Markdown:</p>
+<h3><span class="section-number">1.6.1.1. </span>Intro to Markdown in Jupyter<a class="headerlink" href="#intro-to-markdown-in-jupyter" title="Permalink to this heading">#</a></h3>
+<p>The example notebook <code class="docutils literal notranslate"><span class="pre">jupyter-intro.ipynb</span></code> demonstrates the main features of Markdown that are used in the book. This section provides a more detailed description than could be included in the book itself:</p>
 <p><strong>1. Headings</strong></p>
 <p>The first cell (starting with “Intro to Markdown”) illustrates how to use Markdown to format headings.
 Headings are entered by prefacing text with one or more # (usually pronounced “hash”) symbols followed by a space. If you know any HTML, then <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Title</span></code> is equivalent to a <code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;Title&lt;/h1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">###</span> <span class="pre">Subtitle</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">&lt;h2&gt;Subtitle&lt;/h2&gt;</span></code>, etc. Note that you must put a space between the hashes and the text for it to be recognized as a heading.</p>
@@ -688,7 +582,7 @@ more easily reordered in the future.</p>
 <p><a class="reference external" href="http://google.com">Example link</a></p>
 <p><strong>Images</strong> are entered in a very similar way to URLs. Just put an exclamation point (!) before the square brackets. The text in the square brackets will be used as the “alt text”, which is used by screen readers or displayed when hovering the mouse over the image. Images can also be inserted by dragging them from your file manager into a cell. After the Markdown code is inserted, you can edit the alt-text to something more meaningful.</p>
 <p><strong>6. Mathematics</strong></p>
-<p id="index-1">The sixth cell (labeled “Mathematics”) illustrates formatted mathematics.   Markdown in Jupyter supports sophisticated formatting of mathematics using
+<p id="index-0">The sixth cell (labeled “Mathematics”) illustrates formatted mathematics.   Markdown in Jupyter supports sophisticated formatting of mathematics using
 LaTeX (pronounced <em>lay tek</em>) notation.   For inline equations (those that will appear in-line with text, include the</p>
 <!-- $\LaTeX$ -->
 <p>LaTeX notation between dollar signs, like <code class="docutils literal notranslate"><span class="pre">$\sin^2</span> <span class="pre">x$</span></code> renders as <span class="math notranslate nohighlight">\(\sin^2 x\)</span>.
@@ -708,26 +602,8 @@ $$
 A good reference for Markdown syntax is
 <a class="reference external" href="https://www.markdownguide.org/extended-syntax/">Markdown Guide (https://www.markdownguide.org/extended-syntax/)</a></p>
 </section>
-<section id="getting-notebooks-into-and-out-of-jupyterlab">
-<h3><span class="section-number">1.6.1.4. </span>Getting Notebooks Into and Out of JupyterLab<a class="headerlink" href="#getting-notebooks-into-and-out-of-jupyterlab" title="Permalink to this heading">#</a></h3>
-<p>There are several ways to get notebooks into JupyterLab:</p>
-<ul class="simple">
-<li><p>As previously mentioned, you can use the left-hand files pane to navigate to the current location of a file. Note that you will be constrained to only navigating to files in the directory in which  Jupyter was started or in any subdirectory below that. One disadvantage of this approach is that your work will be saved wherever that file currently resides. For instance, if you have downloaded a notebook from the internet into your <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> folder, your work on that notebook will remain in the <code class="docutils literal notranslate"><span class="pre">Downloads</span></code> folder.</p></li>
-<li><p>You can use drag-and-drop to copy any file into a directory that you are currently browsing using JupyterLab’s files pane. To do this:</p>
-<ul>
-<li><p>Open the files panel in Jupyter and navigate to the directory where you want to work.</p></li>
-<li><p>In your operating system’s file manager (e.g., Windows Explorer or Mac Finder), open the folder containing the file you want to copy.</p></li>
-<li><p>Position and resize the folder and your web browser’s window so you can see both simultaneously.</p></li>
-<li><p>Click and hold on the Jupyter notebook file that you want to move. Then drag it onto the files panel.</p></li>
-<li><p>When the Jupyter notebook is over JupyterLab’s files panel, the outline of the files panel will change to indicate that it is ready for you to drop the file. Release the mouse button or trackpad to copy the file into the selected directory.</p></li>
-<li><p><strong>Note that this makes a copy of the file from its original location.</strong></p></li>
-</ul>
-</li>
-<li><p>As an alternative to drag-and-drop, you can click on the upload icon (an arrow with a line under it) at the very top of the files panel. This will bring up a file selector that you can use to copy a file from anywhere on your computer.</p></li>
-</ul>
-</section>
 <section id="jupyter-magics">
-<h3><span class="section-number">1.6.1.5. </span>Jupyter Magics<a class="headerlink" href="#jupyter-magics" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.6.1.2. </span>Jupyter Magics<a class="headerlink" href="#jupyter-magics" title="Permalink to this heading">#</a></h3>
 <p>Code cells can also contain special instructions intended for JupyterLab itself, rather than the
 Python kernel. These are called <em>magics</em>. For instance, to output your current directory, you can use the
 <code class="docutils literal notranslate"><span class="pre">%pwd</span></code> magic:</p>
@@ -762,26 +638,6 @@ Python kernel. These are called <em>magics</em>. For instance, to output your cu
 </div>
 </div>
 <p><img alt="Top of output for %quickref" src="../_images/quickref.png" /></p>
-</section>
-<section id="saving-your-work-closing-notebooks-and-closing-jupyterlab">
-<h3><span class="section-number">1.6.1.6. </span>Saving Your Work, Closing Notebooks, and Closing JupyterLab<a class="headerlink" href="#saving-your-work-closing-notebooks-and-closing-jupyterlab" title="Permalink to this heading">#</a></h3>
-<p>You can save your work by choosing <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Notebook</span></code> in JupyterLab’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu or by pressing the keyboard sequence listed next to that item in the menu. When you manually save your work in this way, Jupyter actually saves two copies of your work: it updates the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file that you see in the file list, and it also updates a <em>hidden</em> checkpoint file.  When you are editing or running your notebook file, Jupyter will also autosave your work periodically – the default is every 120s. When Jupyter autosaves, it only updates the .ipynb file. If Jupyter crashes or you quit it without saving your notebooks, your last autosaved work will be what you see in the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files. However, you can always revert to the version you purposefully saved by using the <code class="docutils literal notranslate"><span class="pre">Revert</span> <span class="pre">Notebook</span> <span class="pre">to</span> <span class="pre">Checkpoint</span></code> item in the File menu.</p>
-<p>When starting new Jupyter notebooks, their initial name will be “Untitled.ipynb”. You can easily rename your notebook in a couple of ways. First, you can choose the <code class="docutils literal notranslate"><span class="pre">Rename</span> <span class="pre">Notebook...</span></code> option from the file menu. As an alternative, you can right-click on the notebook in the left-hand Files panel and
-choose <code class="docutils literal notranslate"><span class="pre">Rename</span></code>. In both cases, be sure to change only the part of the notebook name that is in front of the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> extension. Jupyter uses that file extension to recognize Jupyter notebook files.</p>
-<p>When you are finished working with a Jupyter notebook, I recommend you perform the following steps:</p>
-<ol class="arabic simple">
-<li><p>First, from the <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> menu, choose <code class="docutils literal notranslate"><span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells...</span></code> This will clear the previous output from your work and rerun every cell from the top down.</p></li>
-<li><p>Check over your notebook carefully to make sure you have not introduced any errors or produced any unexpected results from having executed cells out of order or from deleting cells or their content. By performing these first two steps, you help make sure that someone else loading your notebook file will be able to reproduce your work.</p></li>
-<li><p>Check the notebook file name and update it if necessary.</p></li>
-<li><p>Save the notebook.</p></li>
-<li><p>Choose <code class="docutils literal notranslate"><span class="pre">Close</span> <span class="pre">and</span> <span class="pre">Shutdown</span> <span class="pre">Notebook</span></code> from Jupyter’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu.</p></li>
-<li><p>If you are finished working in JupyterLab, then choose <code class="docutils literal notranslate"><span class="pre">Shut</span> <span class="pre">Down</span></code> from JupyterLab’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu.</p></li>
-</ol>
-<p>Another common workflow in JupyterLab is to use an existing notebook as a starting point for a new notebook. Again, there are several ways to do this:</p>
-<ul class="simple">
-<li><p>If you already have the existing notebook open, then you can save it under a new name by choosing <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">Notebook</span> <span class="pre">As...</span></code> from Jupyter’s <code class="docutils literal notranslate"><span class="pre">File</span></code> menu and giving the notebook a new name. <strong>Note that after you use this option, the notebook that is open in the main work will be the notebook with the new name. You will no longer be working on the original notebook.</strong></p></li>
-<li><p>You can also duplicate a notebook by right-clicking on the notebook’s name in the File panel on the left-hand side and choosing <code class="docutils literal notranslate"><span class="pre">Duplicate</span></code>. A copy of the notebook will be created with the name of the existing notebook appended with a suffix like <code class="docutils literal notranslate"><span class="pre">-Copy1</span></code> before the <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>.</p></li>
-</ul>
 </section>
 </section>
 <section id="getting-started-in-python">
@@ -2671,16 +2527,8 @@ Two-dimensional arrays can be created by passing a list  whose contents are equa
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-in-jupyter">1.6.1. Getting Started in Jupyter</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-the-basics-of-jupyterlab">1.6.1.1. Learn the basics of JupyterLab</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-structure">1.6.1.1.1. Notebook structure</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab-interface-modes">1.6.1.1.2. JupyterLab interface modes</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-cells">1.6.1.2. More on cells</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-markdown-in-jupyter">1.6.1.3. Intro to Markdown in Jupyter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-notebooks-into-and-out-of-jupyterlab">1.6.1.4. Getting Notebooks Into and Out of JupyterLab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-magics">1.6.1.5. Jupyter Magics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-your-work-closing-notebooks-and-closing-jupyterlab">1.6.1.6. Saving Your Work, Closing Notebooks, and Closing JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-markdown-in-jupyter">1.6.1.1. Intro to Markdown in Jupyter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-magics">1.6.1.2. Jupyter Magics</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-in-python">1.6.2. Getting Started in Python</a><ul class="nav section-nav flex-column">
