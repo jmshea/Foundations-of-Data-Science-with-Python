@@ -1,0 +1,64 @@
+[
+    {
+        "question": "Choose all of the following that are <b>quantitative</b> variables.",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "Daily caloric intake",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Academic degree",
+                "correct": false,
+                "feedback": "May have order (ordinal), such as BS, MS, PhD, but not quantitative (a measurable quantity)."
+            },
+            {
+                "answer": "Miles per gallon",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Heart rate",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Language spoken",
+                "correct": false,
+                "feedback": "Not a numerical, measurable quantity."
+            }
+        ]
+    },
+    {
+        "question": "Choose all of the following that are <b>quantitative</b> variables.",
+        "type": "many_choice",
+        "answers": [
+            {
+            "answer": "Percent completion for a project",
+            "correct": false,
+            "feedback": "This is a numerical, measurable quantity. Thus, it is quantitative."
+        },
+            {
+            "answer": "Steps walked in a day",
+            "correct": false,
+            "feedback": "This is a numerical, measurable quantity. Thus, it is quantitative."
+        },
+            {
+                "answer": "Religion",
+                "correct": true,
+                "feedback": "Correct."
+        },
+            {
+                "answer": "Business sector",
+                "correct": true,
+                "feedback": "Correct."
+        },
+            {
+            "answer": "Marital status",
+            "correct": true,
+            "feedback": "Correct."
+        }
+        ]
+    }
+]
