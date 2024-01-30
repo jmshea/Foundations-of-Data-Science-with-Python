@@ -546,13 +546,13 @@ document.write(`
 <h2>Examples of interactive materials<a class="headerlink" href="#examples-of-interactive-materials" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="iEVvsqPbFyEZ" data-shufflequestions="False"
+<div class="output text_html"><div id="kxvJSIANqPZD" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#iEVvsqPbFyEZ {
+#kxvJSIANqPZD {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -638,6 +638,7 @@ document.write(`
     background: var(--jq-mc-button-bg);
     border: 1px solid var(--jq-mc-button-border);
     border-radius: inherit;
+    color: #333333;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
@@ -722,7 +723,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsiEVvsqPbFyEZ=[
+</style></div><script type="application/javascript">var questionskxvJSIANqPZD=[
   {
     "question": "What are summary statistics?",
     "type": "multiple_choice",
@@ -1655,8 +1656,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("iEVvsqPbFyEZ")) {
-            show_questions(questionsiEVvsqPbFyEZ,  iEVvsqPbFyEZ); 
+          if(document.getElementById("kxvJSIANqPZD")) {
+            show_questions(questionskxvJSIANqPZD,  kxvJSIANqPZD); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1671,10 +1672,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/summary-stats.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, iEVvsqPbFyEZ))
+        .then(json => show_questions(json, kxvJSIANqPZD))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsiEVvsqPbFyEZ, iEVvsqPbFyEZ);
+        show_questions(questionskxvJSIANqPZD, kxvJSIANqPZD);
         });
         }
         </script></div>
@@ -1939,7 +1940,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="TqPbcOOIETkH" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="TqPbcOOIETkH-next" onclick="window.checkFlip('TqPbcOOIETkH')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="SKuiIePoMYLl" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="SKuiIePoMYLl-next" onclick="window.checkFlip('SKuiIePoMYLl')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2330,14 +2331,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("TqPbcOOIETkH")) {
-            createCards("TqPbcOOIETkH", "True", "False");
+          if(document.getElementById("SKuiIePoMYLl")) {
+            createCards("SKuiIePoMYLl", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsTqPbcOOIETkH=[
+var cardsSKuiIePoMYLl=[
     {
         "front": "statistical hypothesis",
         "back": "An explanation for phenomena observed in a data set that can be formally tested using the data."
@@ -2364,9 +2365,9 @@ var cardsTqPbcOOIETkH=[
     }
 ]
 ;
-var frontColorsTqPbcOOIETkH= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsTqPbcOOIETkH= ["var(--dark-blue-gray)" ];
-var textColorsTqPbcOOIETkH= ["var(--snow)" ];
+var frontColorsSKuiIePoMYLl= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsSKuiIePoMYLl= ["var(--dark-blue-gray)" ];
+var textColorsSKuiIePoMYLl= ["var(--snow)" ];
 
 
         {
@@ -2377,7 +2378,7 @@ var textColorsTqPbcOOIETkH= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/flashcards/hypothesis-testing.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("TqPbcOOIETkH", "True", "False"))
+        .then(json => createCards("SKuiIePoMYLl", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
