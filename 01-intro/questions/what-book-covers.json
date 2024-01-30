@@ -6,12 +6,12 @@
             {
                 "answer": "machine learning",
                 "correct": false,
-            "feedback": "Although machine learning is a popular and important data science topic, <i>Foundations of Data Science with Python</i> focuses on <b>Foundations</b>, which are more fundamental topics."
+            "feedback": "Although machine learning is a popular and important data science topic, \"Foundations of Data Science with Python\" focuses on <b>Foundations</b>, which are more fundamental topics."
             },
             {
                 "answer": "data manipulation",
                 "correct": true,
-                "feedback": "<i>Foundations of Data Science with Python</i> introduces important data manipulation techniques, such as loading data from files, working with dataframes, and merging data."
+                "feedback": "\"Foundations of Data Science with Python\" introduces important data manipulation techniques, such as loading data from files, working with dataframes, and merging data."
             },
             {
                 "answer": "data visualization",
