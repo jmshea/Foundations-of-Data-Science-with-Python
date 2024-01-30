@@ -1,0 +1,33 @@
+[
+    {
+    "question": "According to Section 1.4 of <i>Foundations of Data Science with Python</i>, which of these topics are covered in the book?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "machine learning",
+                "correct": false,
+            "feedback": "Although machine learning is a popular and important data science topic, <i>Foundations of Data Science with Python</i> focuses on <b>Foundations</b>, which are more fundamental topics."
+            },
+            {
+                "answer": "data manipulation",
+                "correct": true,
+                "feedback": "<i>Foundations of Data Science with Python</i> introduces important data manipulation techniques, such as loading data from files, working with dataframes, and merging data."
+            },
+            {
+                "answer": "data visualization",
+                "correct": true,
+                "feedback": "Data visualization is one of the first steps of exploratory data analysis and is a major way to communicate results in data science."
+            },
+            {
+                "answer": "data engineering",
+                "correct": false,
+                "feedback": "Data engineering is concerned with the process of how data is collected, stored, and processed. Most of these topics are outside the scope of this book."
+            },
+            {
+                "answer": "probability",
+                "correct": true,
+                "feedback": "Understanding probability is important in many areas of data science."
+            }
+        ]
+    }
+]
