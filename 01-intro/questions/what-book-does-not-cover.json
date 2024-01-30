@@ -1,0 +1,33 @@
+[
+    {
+    "question": "According to Section 1.5 of \"Foundations of Data Science with Python\", which of these topics are covered in the book?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "machine learning",
+                "correct": true,
+            "feedback": "Although machine learning is a popular and important data science topic, \"Foundations of Data Science with Python\" focuses on *Foundations*, meaning more fundamental topics. See the \"Next Steps\" section of this website for some suggested books to get started on this topic."
+            },
+            {
+                "answer": "databases",
+                "correct": true,
+                "feedback": "Again, databases are very important in many real data science systems, but this topic could not be included in this book. See the \"Next Steps\" section of this website for some suggested books to get started on this topic."
+            },
+            {
+                "answer": "linear algebra",
+                "correct": true,
+                "feedback": "Linear algebra is an important tool for working with data,  but this topic could not be included in this book. This topic is covered in the companion book \"Introduction to Linear Algebra for Data Science with Python\"."
+            },
+            {
+                "answer": "statistics",
+                "correct": false,
+                "feedback": ""
+            },
+            {
+                "answer": "data ethics",
+                "correct": true,
+                "feedback": "There are many important topics related to the ethics of data science, but they are beyond the scope of this book. See the \"Next Steps\" section of this website for some suggested books to get started on this topic."
+            }
+        ]
+    }
+]
