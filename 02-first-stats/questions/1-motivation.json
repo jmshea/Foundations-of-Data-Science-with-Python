@@ -1,0 +1,82 @@
+[
+  {
+    "question": "Which of these are valid probabilities?",
+    "type": "many_choice",
+    "answers": [
+      {
+        "answer": "$1 \times 10^{-6}$",
+        "correct": true,
+        "feedback": "Correct."
+      },
+      {
+          "answer": "0",
+          "correct": true,
+          "feedback": "Correct"
+
+      },
+      {
+          "answer": "95%",
+          "correct": true,
+          "feedback": "Correct. 95% = 0.95 is a valid probability."
+      },
+        {
+          "answer": "-0.01",
+          "correct": false,
+          "feedback": "Incorrect. Probabilities cannot be negative."
+      },
+        {
+          "answer": "150%",
+          "correct": false,
+          "feedback": "Incorrect. 150% = 1.5. Probabilities cannot be greater than 1."
+      }
+    ]
+  },
+  {
+      "question": "What are two ways to determine a probability that are mentioned in Section 2.1?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "Estimate it using simulation",
+        "correct": true,
+        "feedback": "Correct. Using simulations to estimate probabilities is one of the fundamental techniques used in this book."
+      },
+      {
+          "answer": "Guess the value",
+          "correct": false,
+          "feedback": "Incorrect. This technique is not reliable and not mentioned in this section."
+      },
+      {
+          "answer": "Determine the probability using mathematical analysis",
+          "correct": true,
+          "feedback": "Correct. This is another technique that will be introduced in this book."
+      },
+      {
+          "answer": "Ask ChatGPT",
+          "correct": false,
+          "feedback": "Incorrect. Although this may work in some instances, values returned by ChatGPT are not necessarily reliable, and hence this technique is not mentioned in this section."
+      }
+    ]
+  },
+    {
+      "question": "If you calculate that the probability of something occurring is very close to (but less than) 1, then:",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "That thing is almost certain to occur",
+          "correct": true,
+          "feedback": "Correct."
+      },
+          {
+          "answer": "That thing is very unlikely to occur",
+          "correct": false,
+          "feedback": "Incorrect. Things that are unlikely to occur have probabilities close to zero."
+
+      },
+          {
+          "answer": "You must have made a mistake",
+          "correct": false,
+          "feedback": "Incorrect. Probabilities that are close to, but less than, 1 are valid probabilities. Thus, there is not reason that this must have been a mistake."
+      }
+      ]
+  }
+]
