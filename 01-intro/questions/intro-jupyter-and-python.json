@@ -142,7 +142,43 @@
             }
         ]
     },
-    {
+ {
+        "question": "Which of these would you use to create a variable called <code>data</code> with value 10 in Python?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "code": "data <- 10",
+                "correct": false,
+                "feedback": "Incorrect. This is how to create that variable in R."
+            },
+            {
+                "code": "let data = 10",
+                "correct": false,
+                "feedback": "Incorrect. Python does not use the let operator."
+            },
+            {
+                "code": "data := 10",
+                "correct": false,
+                "feedback": "Incorrect. Although there is a := operator (called the Walrus operator) that performs assignment, it cannot be used alone like this."
+            },
+            {
+                "code": "data = 10",
+                "correct": true,
+                "feedback": "Correct. The variable is created upon assignment using the = operator"
+            },
+            {
+                "code": "def data\ndata = 10",
+                "correct": false,
+                "feedback": "Incorrect. The <code>def</code> keyword is to declare a function, not a variable."
+            },
+            {
+                "code": "int data = 10",
+                "correct": false,
+                "feedback": "Incorrect. This is C/C++ style. Python uses implicit typing and require declaring the type when creating a new variable."
+            }
+        ]
+    },
+   {
         "question": "Which of the following are used to create functional code blocks in Python?",
         "type": "multiple_choice",
         "answers": [
@@ -299,6 +335,47 @@
                 "correct": false,
                 "feedback": "Incorrect. In Python, {3} will be a set, and the + operator is not defined for a list and a set."
             }
+        ]
+    },
+    {
+        "question": "Which of these are valid ways to get access to the functions from the NumPy library?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+            "code": "import numpy",
+            "correct": true,
+            "feedback": "Correct. The simplest way to import a library is to just use the import keyword like this."
+        },
+            {
+            "code": "import numpy as np",
+            "correct": true,
+            "feedback": "Correct. This is the typical way to import NumPy. The functions are imported into the np namespace, which is easier to type than numpy."
+        },
+            {
+            "code": "load numpy",
+            "correct": false,
+            "feedback": "Incorrect. There is no load keyword in Python. There is a %load magic in JupyterLab/Jupyter Notebook."
+        },
+            {
+            "code": "import NumPy",
+            "correct": false,
+            "feedback": "Incorrect. Even though the name of the library is NumPy, in Python, it is loaded as numpy (all lowercase)."
+        },
+            {
+            "code": "load NumPy",
+            "correct": false,
+            "feedback": "Incorrect. There is no load keyword in Python. There is a %load magic in JupyterLab/Jupyter Notebook. The library is referred to as numpy (all lowercase) within Python."
+        },
+            {
+            "code": "#import numpy",
+            "correct": false,
+            "feedback": "Incorrect. This is C/C++ style."
+        },
+            {
+            "code": "library(numpy)",
+            "correct": false,
+            "feedback": "Incorrect. This is how to import a library in R."
+        }
         ]
     }
 ]
