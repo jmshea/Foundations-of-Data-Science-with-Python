@@ -490,13 +490,13 @@ document.write(`
 <p>The following questions can be used to check your understanding of the material covered in this chapter:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="iCExWvGpVszW" data-shufflequestions="False"
+<div class="output text_html"><div id="lmCrXdfmeUbS" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#iCExWvGpVszW {
+#lmCrXdfmeUbS {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -582,6 +582,7 @@ document.write(`
     background: var(--jq-mc-button-bg);
     border: 1px solid var(--jq-mc-button-border);
     border-radius: inherit;
+    color: #333333;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
@@ -666,7 +667,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsiCExWvGpVszW=[
+</style></div><script type="application/javascript">var questionslmCrXdfmeUbS=[
   {
     "question": "What is a scatter plot?",
     "type": "multiple_choice",
@@ -1459,7 +1460,26 @@ function show_questions(json, mydiv) {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             }
         }, 500);
 if (typeof version == 'undefined') {
@@ -1468,7 +1488,26 @@ if (typeof version == 'undefined') {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             } else {
                 console.log("MathJax not found");
             }
@@ -1484,8 +1523,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("iCExWvGpVszW")) {
-            show_questions(questionsiCExWvGpVszW,  iCExWvGpVszW); 
+          if(document.getElementById("lmCrXdfmeUbS")) {
+            show_questions(questionslmCrXdfmeUbS,  lmCrXdfmeUbS); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1498,12 +1537,12 @@ if (typeof version == 'undefined') {
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/questions/first-vis.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/questions/3-first-vis.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, iCExWvGpVszW))
+        .then(json => show_questions(json, lmCrXdfmeUbS))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsiCExWvGpVszW, iCExWvGpVszW);
+        show_questions(questionslmCrXdfmeUbS, lmCrXdfmeUbS);
         });
         }
         </script></div>
@@ -1765,7 +1804,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="dzaVdRdvLutD" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="dzaVdRdvLutD-next" onclick="window.checkFlip('dzaVdRdvLutD')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="IyLLUspiYXGo" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="IyLLUspiYXGo-next" onclick="window.checkFlip('IyLLUspiYXGo')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2072,6 +2111,26 @@ function createCards(id, keyControl, grabFocus) {
                     if (version[0] == "2") {
                         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                     } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
                         MathJax.typeset([flipper]);
                     }
                 }, 500);
@@ -2080,7 +2139,31 @@ function createCards(id, keyControl, grabFocus) {
                 if (version[0] == "2") {
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 } else if (version[0] == "3") {
-                    MathJax.typeset([flipper]);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
+                        MathJax.typeset([flipper]);
+                    }
                 }
             }
         } else {
@@ -2112,31 +2195,31 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("dzaVdRdvLutD")) {
-            createCards("dzaVdRdvLutD", "True", "False");
+          if(document.getElementById("IyLLUspiYXGo")) {
+            createCards("IyLLUspiYXGo", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsdzaVdRdvLutD=[
+var cardsIyLLUspiYXGo=[
     {
         "front": "scatter plot",
         "back": "A (two-dimensional) scatter plot takes two sequences $\\mathbf{x}= (x_0, x_1, \\ldots)$ and $\\mathbf{y}=(y_0, y_1, \\ldots)$ and plots symbols (called <i>markers</i>) that represent the locations of the points $(x_0, y_0), (x_1, y_1), \\ldots$ in two dimensions. "
     },
     {
         "front": "histogram",
-        "back": "a type of bar graph in which the heights of the bars is proportional to the number of occurrences of the outcomes spanned by the width of the bars "
+        "back": "A type of bar graph in which the heights of the bars is proportional to the number of occurrences of the outcomes spanned by the width of the bars."
     },
     {
         "front": "relative frequency",
-        "back": "the proportion of times that we observe a result matching our criteria during repeated experiments (including simulation); i.e., the number of times that an event occurs divided by the number of times the experiment is conducted. "
+        "back": "The proportion of times that we observe a result matching our criteria during repeated experiments (including simulation); i.e., the number of times that an event occurs divided by the number of times the experiment is conducted."
     }
 ]
 ;
-var frontColorsdzaVdRdvLutD= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsdzaVdRdvLutD= ["var(--dark-blue-gray)" ];
-var textColorsdzaVdRdvLutD= ["var(--snow)" ];
+var frontColorsIyLLUspiYXGo= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsIyLLUspiYXGo= ["var(--dark-blue-gray)" ];
+var textColorsIyLLUspiYXGo= ["var(--snow)" ];
 
 
         {
@@ -2147,7 +2230,7 @@ var textColorsdzaVdRdvLutD= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/flashcards/first-vis.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("dzaVdRdvLutD", "True", "False"))
+        .then(json => createCards("IyLLUspiYXGo", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

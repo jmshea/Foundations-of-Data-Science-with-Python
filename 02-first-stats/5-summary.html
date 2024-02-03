@@ -752,7 +752,7 @@ document.write(`
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="EGtsCXJQRXAd" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="EGtsCXJQRXAd-next" onclick="window.checkFlip('EGtsCXJQRXAd')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="qQfzCldAzwXk" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="qQfzCldAzwXk-next" onclick="window.checkFlip('qQfzCldAzwXk')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1059,6 +1059,26 @@ function createCards(id, keyControl, grabFocus) {
                     if (version[0] == "2") {
                         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                     } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
                         MathJax.typeset([flipper]);
                     }
                 }, 500);
@@ -1067,7 +1087,31 @@ function createCards(id, keyControl, grabFocus) {
                 if (version[0] == "2") {
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 } else if (version[0] == "3") {
-                    MathJax.typeset([flipper]);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
+                        MathJax.typeset([flipper]);
+                    }
                 }
             }
         } else {
@@ -1099,14 +1143,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("EGtsCXJQRXAd")) {
-            createCards("EGtsCXJQRXAd", "True", "False");
+          if(document.getElementById("qQfzCldAzwXk")) {
+            createCards("qQfzCldAzwXk", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsEGtsCXJQRXAd=[
+var cardsqQfzCldAzwXk=[
     {
         "front": "scatter plot",
         "back": "A (two-dimensional) scatter plot takes two sequences $\\mathbf{x}= (x_0, x_1, \\ldots)$ and $\\mathbf{y}=(y_0, y_1, \\ldots)$ and plots symbols (called <i>markers</i>) that represent the locations of the points $(x_0, y_0), (x_1, y_1), \\ldots$ in two dimensions. "
@@ -1149,9 +1193,9 @@ var cardsEGtsCXJQRXAd=[
     }
 ]
 ;
-var frontColorsEGtsCXJQRXAd= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsEGtsCXJQRXAd= ["var(--dark-blue-gray)" ];
-var textColorsEGtsCXJQRXAd= ["var(--snow)" ];
+var frontColorsqQfzCldAzwXk= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsqQfzCldAzwXk= ["var(--dark-blue-gray)" ];
+var textColorsqQfzCldAzwXk= ["var(--snow)" ];
 
 
         {
@@ -1162,7 +1206,7 @@ var textColorsEGtsCXJQRXAd= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/flashcards/ch2.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("EGtsCXJQRXAd", "True", "False"))
+        .then(json => createCards("qQfzCldAzwXk", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1177,13 +1221,13 @@ var textColorsEGtsCXJQRXAd= ["var(--snow)" ];
 <p>The following questions can be used to check your understanding of the material covered in this chapter:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="JDkHBENaQlyj" data-shufflequestions="False"
+<div class="output text_html"><div id="foPHpqQRwpJN" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#JDkHBENaQlyj {
+#foPHpqQRwpJN {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1269,6 +1313,7 @@ var textColorsEGtsCXJQRXAd= ["var(--snow)" ];
     background: var(--jq-mc-button-bg);
     border: 1px solid var(--jq-mc-button-border);
     border-radius: inherit;
+    color: #333333;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
@@ -1353,7 +1398,7 @@ var textColorsEGtsCXJQRXAd= ["var(--snow)" ];
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsJDkHBENaQlyj=[
+</style></div><script type="application/javascript">var questionsfoPHpqQRwpJN=[
     {
         "question": "Which of these cannot be a probability?",
         "type": "multiple_choice",
@@ -2156,7 +2201,26 @@ function show_questions(json, mydiv) {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             }
         }, 500);
 if (typeof version == 'undefined') {
@@ -2165,7 +2229,26 @@ if (typeof version == 'undefined') {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             } else {
                 console.log("MathJax not found");
             }
@@ -2181,8 +2264,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("JDkHBENaQlyj")) {
-            show_questions(questionsJDkHBENaQlyj,  JDkHBENaQlyj); 
+          if(document.getElementById("foPHpqQRwpJN")) {
+            show_questions(questionsfoPHpqQRwpJN,  foPHpqQRwpJN); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2195,12 +2278,12 @@ if (typeof version == 'undefined') {
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/questions/review.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/questions/5-summary.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, JDkHBENaQlyj))
+        .then(json => show_questions(json, foPHpqQRwpJN))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsJDkHBENaQlyj, JDkHBENaQlyj);
+        show_questions(questionsfoPHpqQRwpJN, foPHpqQRwpJN);
         });
         }
         </script></div>
@@ -2212,13 +2295,13 @@ if (typeof version == 'undefined') {
 <p>The spaced repetition questions are drawn randomly when the page is constructed. If you want to do additional review, just force a reload of the page in your browser, and a new set of random questions will be chosen.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="xUKNvmnnvuWa" data-shufflequestions="False"
+<div class="output text_html"><div id="uGIGbunfzQNa" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="4"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#xUKNvmnnvuWa {
+#uGIGbunfzQNa {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -2304,6 +2387,7 @@ if (typeof version == 'undefined') {
     background: var(--jq-mc-button-bg);
     border: 1px solid var(--jq-mc-button-border);
     border-radius: inherit;
+    color: #333333;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
@@ -2388,7 +2472,191 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsxUKNvmnnvuWa=[
+</style></div><script type="application/javascript">var questionsuGIGbunfzQNa=[
+    {
+        "question": "Choose all of the following that are <b>quantitative</b> variables.",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "Daily caloric intake",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Academic degree",
+                "correct": false,
+                "feedback": "May have order (ordinal), such as BS, MS, PhD, but not quantitative (a measurable quantity)."
+            },
+            {
+                "answer": "Miles per gallon",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Heart rate",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Language spoken",
+                "correct": false,
+                "feedback": "Not a numerical, measurable quantity."
+            }
+        ]
+    },
+    {
+        "question": "Choose all of the following that are <b>quantitative</b> variables.",
+        "type": "many_choice",
+        "answers": [
+            {
+            "answer": "Percent completion for a project",
+            "correct": false,
+            "feedback": "This is a numerical, measurable quantity. Thus, it is quantitative."
+        },
+            {
+            "answer": "Steps walked in a day",
+            "correct": false,
+            "feedback": "This is a numerical, measurable quantity. Thus, it is quantitative."
+        },
+            {
+                "answer": "Religion",
+                "correct": true,
+                "feedback": "Correct."
+        },
+            {
+                "answer": "Business sector",
+                "correct": true,
+                "feedback": "Correct."
+        },
+            {
+            "answer": "Marital status",
+            "correct": true,
+            "feedback": "Correct."
+        }
+        ]
+    },
+    {
+    "question": "According to Section 1.4 of <i>Foundations of Data Science with Python</i>, which of these topics are covered in the book?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "machine learning",
+                "correct": false,
+            "feedback": "Although machine learning is a popular and important data science topic, \"Foundations of Data Science with Python\" focuses on *Foundations*, meaning more fundamental topics."
+            },
+            {
+                "answer": "data manipulation",
+                "correct": true,
+                "feedback": "\"Foundations of Data Science with Python\" introduces important data manipulation techniques, such as loading data from files, working with dataframes, and merging data."
+            },
+            {
+                "answer": "data visualization",
+                "correct": true,
+                "feedback": "Data visualization is one of the first steps of exploratory data analysis and is a major way to communicate results in data science."
+            },
+            {
+                "answer": "data engineering",
+                "correct": false,
+                "feedback": "Data engineering is concerned with the process of how data is collected, stored, and processed. Most of these topics are outside the scope of this book."
+            },
+            {
+                "answer": "probability",
+                "correct": true,
+                "feedback": "Understanding probability is important in many areas of data science."
+            }
+        ]
+    },
+    {
+    "question": "According to Section 1.5 of \"Foundations of Data Science with Python\", which of these topics are <b>not</b> covered in the book?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "machine learning",
+                "correct": true,
+            "feedback": "ML is a popular and important data science topic, but this book focuses on more fundamental topics. See the \"Next Steps\" section of this website for suggested resources."
+            },
+            {
+                "answer": "databases",
+                "correct": true,
+                "feedback": "Databases are important in many real data science systems, but this topic could not be included in this book. See the \"Next Steps\" section for suggested resources."
+            },
+            {
+                "answer": "linear algebra",
+                "correct": true,
+                "feedback": "Linear algebra is an important tool for working with data,  but this topic could not be included in this book. See the companion book \"Introduction to Linear Algebra for Data Science with Python\"."
+            },
+            {
+                "answer": "statistics",
+                "correct": false,
+                "feedback": ""
+            },
+            {
+                "answer": "data ethics",
+                "correct": true,
+                "feedback": "The ethics of data science is an important topic that could not be included in this book. See the \"Next Steps\" section for some suggested resources."
+            }
+        ]
+    },
+    {   "question": "JupyterLab has two main interface modes. Select them below:",
+        "type": "many_choice",
+        "answers": [
+            {
+            "answer": "Insert Mode",
+            "correct": false,
+            "feedback": "Incorrect. This is not one of the interface modes."
+            },
+            {
+                "answer": "Edit Mode",
+                "correct": true,
+                "feedback": "Correct. Use Edit Mode to edit the content of a single cell."
+            },
+            {
+                "answer": "Markdown Mode",
+                "correct": false,
+                "feedback": "Incorrect. This is a cell type and not a mode of the JuptyerLab interface."
+            },
+            {
+                "answer": "Command Mode",
+                "correct": true,
+                "feedback": "Correct. Use Command mode to select cells and take actions on them, such as moving them or copying and pasting them."
+            },
+            {
+                "answer": "LaTeX Mode",
+                "correct": false,
+                "feedback": "Incorrect. LaTeX is not an interface mode of JupyterLab. It is a way to specify mathematics within Markdown cells."
+            }
+        ]
+    },
+    {   "question": "Which of the following are ways to evaluate a cell?",
+        "type": "many_choice",
+        "answers": [
+            {
+            "answer": "Press Alt-Enter or Command-Enter",
+            "correct": true,
+            "feedback": "Correct. This is the most common way to evaluate a cell."
+            },
+            {
+            "answer": "Press the Enter key",
+            "correct": false,
+            "feedback": "Incorrect. In Edit mode, the Enter key starts a new line. In Command mode, the Enter key switches to Edit mode on the selected cell."
+            },
+            {
+                "answer": "Press the triangular Play button in the tooblar",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Press Control-M from Edit mode.",
+                "correct": false,
+                "feedback": "Incorrect. In Edit mode, Control-M switches to Command mode."
+            },
+            {
+                "answer": "Use Run Selected Cell from the Run menu",
+                "correct": true,
+                "feedback": "Correct. The Run menu provides many different choices for evaluating cells and shows keyboard shortcuts for those commands."
+            }
+        ]
+    },
     {
         "question": "Choose all of the following that can be included in Jupyter notebooks?",
         "type": "many_choice",
@@ -2427,12 +2695,12 @@ if (typeof version == 'undefined') {
             {
                 "answer": "Wiki markup",
                 "correct": false,
-                "feedback": "False."
+            "feedback": "Incorrect. Although Wiki markup or Wiki Text is a way to specify formatted text, it is not the markup language supported in Jupyter notebooks." 
             },
             {
                 "answer": "SVG",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect. SVG is way for specifying scalable vector graphics."
             },
             {
                 "answer": "Markdown",
@@ -2442,7 +2710,7 @@ if (typeof version == 'undefined') {
             {
                 "answer": "Rich Text",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect. Rich text can refer to any markup language or to Rich Text Format, which was created Microsoft. It is not the markup language used in Jupyter notebooks."
             }
         ]
     },
@@ -2453,48 +2721,84 @@ if (typeof version == 'undefined') {
             {
                 "answer": "SiliCoN",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect. This is a made-up name."
             },
             {
                 "answer": "AcrYliC",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect. This is a made-up name."
             },
             {
                 "answer": "MS Equation",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect. Although MS Equation is a way to enter equations, it is not the technology used in Jupyter notebooks."
             },
             {
                 "answer": "LaTeX",
                 "correct": true,
-                "feedback": "Correct."
+                "feedback": "Correct. Jupter notebooks support the mathematical typsetting language from the LaTeX document writing system."
             }
         ]
     },
-    {
+ {
+        "question": "Which of these would you use to create a variable called <code>data</code> with value 10 in Python?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "code": "data <- 10",
+                "correct": false,
+                "feedback": "Incorrect. This is how to create that variable in R."
+            },
+            {
+                "code": "let data = 10",
+                "correct": false,
+                "feedback": "Incorrect. Python does not use the let operator."
+            },
+            {
+                "code": "data := 10",
+                "correct": false,
+                "feedback": "Incorrect. Although there is a := operator (called the Walrus operator) that performs assignment, it cannot be used alone like this."
+            },
+            {
+                "code": "data = 10",
+                "correct": true,
+                "feedback": "Correct. The variable is created upon assignment using the = operator"
+            },
+            {
+                "code": "def data\ndata = 10",
+                "correct": false,
+                "feedback": "Incorrect. The <code>def</code> keyword is to declare a function, not a variable."
+            },
+            {
+                "code": "int data = 10",
+                "correct": false,
+                "feedback": "Incorrect. This is C/C++ style. Python uses implicit typing and require declaring the type when creating a new variable."
+            }
+        ]
+    },
+   {
         "question": "Which of the following are used to create functional code blocks in Python?",
         "type": "multiple_choice",
         "answers": [
             {
                 "answer": "curly braces {}",
                 "correct": false,
-                "feedback": "Curly braces are used to group code in C, C++, and other languages, but not Python"
+                "feedback": "Incorrect. Curly braces are used to group code in C, C++, and other languages, but not Python"
             },
             {
                 "answer": "parentheses ()",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect."
             },
             {
                 "answer": "blank lines",
                 "correct": false,
-                "feedback": "Blank lines can help distinguish the end of code blocks visually, but do not affect the functional grouping"
+                "feedback": "Incorrect. Blank lines can help distinguish the end of code blocks visually, but do not affect the functional grouping"
             },
             {
                 "answer": "indentation",
                 "correct": true,
-                "feedback": "Correct."
+                "feedback": "Correct. The only way to specify functional code blocks in Python is via indentation."
             }
         ]
     },
@@ -2627,8 +2931,49 @@ if (typeof version == 'undefined') {
             {
                 "code": "mylist+={3}",
                 "correct": false,
-                "feedback": "False. In Python, {3} will be a set, and the + operator is not defined for a list and a set."
+                "feedback": "Incorrect. In Python, {3} will be a set, and the + operator is not defined for a list and a set."
             }
+        ]
+    },
+    {
+        "question": "Which of these are valid ways to get access to the functions from the NumPy library?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+            "code": "import numpy",
+            "correct": true,
+            "feedback": "Correct. The simplest way to import a library is to just use the import keyword like this."
+        },
+            {
+            "code": "import numpy as np",
+            "correct": true,
+            "feedback": "Correct. This is the typical way to import NumPy. The functions are imported into the np namespace, which is easier to type than numpy."
+        },
+            {
+            "code": "load numpy",
+            "correct": false,
+            "feedback": "Incorrect. There is no load keyword in Python. There is a %load magic in JupyterLab/Jupyter Notebook."
+        },
+            {
+            "code": "import NumPy",
+            "correct": false,
+            "feedback": "Incorrect. Even though the name of the library is NumPy, in Python, it is loaded as numpy (all lowercase)."
+        },
+            {
+            "code": "load NumPy",
+            "correct": false,
+            "feedback": "Incorrect. There is no load keyword in Python. There is a %load magic in JupyterLab/Jupyter Notebook. The library is referred to as numpy (all lowercase) within Python."
+        },
+            {
+            "code": "#import numpy",
+            "correct": false,
+            "feedback": "Incorrect. This is C/C++ style."
+        },
+            {
+            "code": "library(numpy)",
+            "correct": false,
+            "feedback": "Incorrect. This is how to import a library in R."
+        }
         ]
     }
 ]
@@ -3356,7 +3701,26 @@ function show_questions(json, mydiv) {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             }
         }, 500);
 if (typeof version == 'undefined') {
@@ -3365,7 +3729,26 @@ if (typeof version == 'undefined') {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             } else {
                 console.log("MathJax not found");
             }
@@ -3381,8 +3764,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("xUKNvmnnvuWa")) {
-            show_questions(questionsxUKNvmnnvuWa,  xUKNvmnnvuWa); 
+          if(document.getElementById("uGIGbunfzQNa")) {
+            show_questions(questionsuGIGbunfzQNa,  uGIGbunfzQNa); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -3395,12 +3778,12 @@ if (typeof version == 'undefined') {
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/questions/review.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/questions/7-summary.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, xUKNvmnnvuWa))
+        .then(json => show_questions(json, uGIGbunfzQNa))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsxUKNvmnnvuWa, xUKNvmnnvuWa);
+        show_questions(questionsuGIGbunfzQNa, uGIGbunfzQNa);
         });
         }
         </script></div>
