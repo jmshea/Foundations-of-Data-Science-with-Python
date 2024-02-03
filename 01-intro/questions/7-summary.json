@@ -1,5 +1,189 @@
 [
     {
+        "question": "Choose all of the following that are <b>quantitative</b> variables.",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "Daily caloric intake",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Academic degree",
+                "correct": false,
+                "feedback": "May have order (ordinal), such as BS, MS, PhD, but not quantitative (a measurable quantity)."
+            },
+            {
+                "answer": "Miles per gallon",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Heart rate",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Language spoken",
+                "correct": false,
+                "feedback": "Not a numerical, measurable quantity."
+            }
+        ]
+    },
+    {
+        "question": "Choose all of the following that are <b>quantitative</b> variables.",
+        "type": "many_choice",
+        "answers": [
+            {
+            "answer": "Percent completion for a project",
+            "correct": false,
+            "feedback": "This is a numerical, measurable quantity. Thus, it is quantitative."
+        },
+            {
+            "answer": "Steps walked in a day",
+            "correct": false,
+            "feedback": "This is a numerical, measurable quantity. Thus, it is quantitative."
+        },
+            {
+                "answer": "Religion",
+                "correct": true,
+                "feedback": "Correct."
+        },
+            {
+                "answer": "Business sector",
+                "correct": true,
+                "feedback": "Correct."
+        },
+            {
+            "answer": "Marital status",
+            "correct": true,
+            "feedback": "Correct."
+        }
+        ]
+    },
+    {
+    "question": "According to Section 1.4 of <i>Foundations of Data Science with Python</i>, which of these topics are covered in the book?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "machine learning",
+                "correct": false,
+            "feedback": "Although machine learning is a popular and important data science topic, \"Foundations of Data Science with Python\" focuses on *Foundations*, meaning more fundamental topics."
+            },
+            {
+                "answer": "data manipulation",
+                "correct": true,
+                "feedback": "\"Foundations of Data Science with Python\" introduces important data manipulation techniques, such as loading data from files, working with dataframes, and merging data."
+            },
+            {
+                "answer": "data visualization",
+                "correct": true,
+                "feedback": "Data visualization is one of the first steps of exploratory data analysis and is a major way to communicate results in data science."
+            },
+            {
+                "answer": "data engineering",
+                "correct": false,
+                "feedback": "Data engineering is concerned with the process of how data is collected, stored, and processed. Most of these topics are outside the scope of this book."
+            },
+            {
+                "answer": "probability",
+                "correct": true,
+                "feedback": "Understanding probability is important in many areas of data science."
+            }
+        ]
+    },
+    {
+    "question": "According to Section 1.5 of \"Foundations of Data Science with Python\", which of these topics are <b>not</b> covered in the book?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "machine learning",
+                "correct": true,
+            "feedback": "ML is a popular and important data science topic, but this book focuses on more fundamental topics. See the \"Next Steps\" section of this website for suggested resources."
+            },
+            {
+                "answer": "databases",
+                "correct": true,
+                "feedback": "Databases are important in many real data science systems, but this topic could not be included in this book. See the \"Next Steps\" section for suggested resources."
+            },
+            {
+                "answer": "linear algebra",
+                "correct": true,
+                "feedback": "Linear algebra is an important tool for working with data,  but this topic could not be included in this book. See the companion book \"Introduction to Linear Algebra for Data Science with Python\"."
+            },
+            {
+                "answer": "statistics",
+                "correct": false,
+                "feedback": ""
+            },
+            {
+                "answer": "data ethics",
+                "correct": true,
+                "feedback": "The ethics of data science is an important topic that could not be included in this book. See the \"Next Steps\" section for some suggested resources."
+            }
+        ]
+    },
+    {   "question": "JupyterLab has two main interface modes. Select them below:",
+        "type": "many_choice",
+        "answers": [
+            {
+            "answer": "Insert Mode",
+            "correct": false,
+            "feedback": "Incorrect. This is not one of the interface modes."
+            },
+            {
+                "answer": "Edit Mode",
+                "correct": true,
+                "feedback": "Correct. Use Edit Mode to edit the content of a single cell."
+            },
+            {
+                "answer": "Markdown Mode",
+                "correct": false,
+                "feedback": "Incorrect. This is a cell type and not a mode of the JuptyerLab interface."
+            },
+            {
+                "answer": "Command Mode",
+                "correct": true,
+                "feedback": "Correct. Use Command mode to select cells and take actions on them, such as moving them or copying and pasting them."
+            },
+            {
+                "answer": "LaTeX Mode",
+                "correct": false,
+                "feedback": "Incorrect. LaTeX is not an interface mode of JupyterLab. It is a way to specify mathematics within Markdown cells."
+            }
+        ]
+    },
+    {   "question": "Which of the following are ways to evaluate a cell?",
+        "type": "many_choice",
+        "answers": [
+            {
+            "answer": "Press Alt-Enter or Command-Enter",
+            "correct": true,
+            "feedback": "Correct. This is the most common way to evaluate a cell."
+            },
+            {
+            "answer": "Press the Enter key",
+            "correct": false,
+            "feedback": "Incorrect. In Edit mode, the Enter key starts a new line. In Command mode, the Enter key switches to Edit mode on the selected cell."
+            },
+            {
+                "answer": "Press the triangular Play button in the tooblar",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "Press Control-M from Edit mode.",
+                "correct": false,
+                "feedback": "Incorrect. In Edit mode, Control-M switches to Command mode."
+            },
+            {
+                "answer": "Use Run Selected Cell from the Run menu",
+                "correct": true,
+                "feedback": "Correct. The Run menu provides many different choices for evaluating cells and shows keyboard shortcuts for those commands."
+            }
+        ]
+    },
+    {
         "question": "Choose all of the following that can be included in Jupyter notebooks?",
         "type": "many_choice",
         "answers": [
@@ -37,12 +221,12 @@
             {
                 "answer": "Wiki markup",
                 "correct": false,
-                "feedback": "False."
+            "feedback": "Incorrect. Although Wiki markup or Wiki Text is a way to specify formatted text, it is not the markup language supported in Jupyter notebooks." 
             },
             {
                 "answer": "SVG",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect. SVG is way for specifying scalable vector graphics."
             },
             {
                 "answer": "Markdown",
@@ -52,7 +236,7 @@
             {
                 "answer": "Rich Text",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect. Rich text can refer to any markup language or to Rich Text Format, which was created Microsoft. It is not the markup language used in Jupyter notebooks."
             }
         ]
     },
@@ -63,48 +247,84 @@
             {
                 "answer": "SiliCoN",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect. This is a made-up name."
             },
             {
                 "answer": "AcrYliC",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect. This is a made-up name."
             },
             {
                 "answer": "MS Equation",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect. Although MS Equation is a way to enter equations, it is not the technology used in Jupyter notebooks."
             },
             {
                 "answer": "LaTeX",
                 "correct": true,
-                "feedback": "Correct."
+                "feedback": "Correct. Jupter notebooks support the mathematical typsetting language from the LaTeX document writing system."
             }
         ]
     },
-    {
+ {
+        "question": "Which of these would you use to create a variable called <code>data</code> with value 10 in Python?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "code": "data <- 10",
+                "correct": false,
+                "feedback": "Incorrect. This is how to create that variable in R."
+            },
+            {
+                "code": "let data = 10",
+                "correct": false,
+                "feedback": "Incorrect. Python does not use the let operator."
+            },
+            {
+                "code": "data := 10",
+                "correct": false,
+                "feedback": "Incorrect. Although there is a := operator (called the Walrus operator) that performs assignment, it cannot be used alone like this."
+            },
+            {
+                "code": "data = 10",
+                "correct": true,
+                "feedback": "Correct. The variable is created upon assignment using the = operator"
+            },
+            {
+                "code": "def data\ndata = 10",
+                "correct": false,
+                "feedback": "Incorrect. The <code>def</code> keyword is to declare a function, not a variable."
+            },
+            {
+                "code": "int data = 10",
+                "correct": false,
+                "feedback": "Incorrect. This is C/C++ style. Python uses implicit typing and require declaring the type when creating a new variable."
+            }
+        ]
+    },
+   {
         "question": "Which of the following are used to create functional code blocks in Python?",
         "type": "multiple_choice",
         "answers": [
             {
                 "answer": "curly braces {}",
                 "correct": false,
-                "feedback": "Curly braces are used to group code in C, C++, and other languages, but not Python"
+                "feedback": "Incorrect. Curly braces are used to group code in C, C++, and other languages, but not Python"
             },
             {
                 "answer": "parentheses ()",
                 "correct": false,
-                "feedback": "False."
+                "feedback": "Incorrect."
             },
             {
                 "answer": "blank lines",
                 "correct": false,
-                "feedback": "Blank lines can help distinguish the end of code blocks visually, but do not affect the functional grouping"
+                "feedback": "Incorrect. Blank lines can help distinguish the end of code blocks visually, but do not affect the functional grouping"
             },
             {
                 "answer": "indentation",
                 "correct": true,
-                "feedback": "Correct."
+                "feedback": "Correct. The only way to specify functional code blocks in Python is via indentation."
             }
         ]
     },
@@ -237,8 +457,49 @@
             {
                 "code": "mylist+={3}",
                 "correct": false,
-                "feedback": "False. In Python, {3} will be a set, and the + operator is not defined for a list and a set."
+                "feedback": "Incorrect. In Python, {3} will be a set, and the + operator is not defined for a list and a set."
             }
+        ]
+    },
+    {
+        "question": "Which of these are valid ways to get access to the functions from the NumPy library?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+            "code": "import numpy",
+            "correct": true,
+            "feedback": "Correct. The simplest way to import a library is to just use the import keyword like this."
+        },
+            {
+            "code": "import numpy as np",
+            "correct": true,
+            "feedback": "Correct. This is the typical way to import NumPy. The functions are imported into the np namespace, which is easier to type than numpy."
+        },
+            {
+            "code": "load numpy",
+            "correct": false,
+            "feedback": "Incorrect. There is no load keyword in Python. There is a %load magic in JupyterLab/Jupyter Notebook."
+        },
+            {
+            "code": "import NumPy",
+            "correct": false,
+            "feedback": "Incorrect. Even though the name of the library is NumPy, in Python, it is loaded as numpy (all lowercase)."
+        },
+            {
+            "code": "load NumPy",
+            "correct": false,
+            "feedback": "Incorrect. There is no load keyword in Python. There is a %load magic in JupyterLab/Jupyter Notebook. The library is referred to as numpy (all lowercase) within Python."
+        },
+            {
+            "code": "#import numpy",
+            "correct": false,
+            "feedback": "Incorrect. This is C/C++ style."
+        },
+            {
+            "code": "library(numpy)",
+            "correct": false,
+            "feedback": "Incorrect. This is how to import a library in R."
+        }
         ]
     }
 ]
