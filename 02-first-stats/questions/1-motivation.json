@@ -4,7 +4,7 @@
     "type": "many_choice",
     "answers": [
       {
-        "answer": "$1 \times 10^{-6}$",
+        "answer": "$1 \\times 10^{-6}$",
         "correct": true,
         "feedback": "Correct."
       },
