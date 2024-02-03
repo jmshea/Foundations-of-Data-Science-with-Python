@@ -15,11 +15,11 @@ parts:
     - file: 01-intro/7-summary
   - file: 02-first-stats/intro
     sections:
-    - file: 02-first-stats/motivating-problem
-    - file: 02-first-stats/first-sims
-    - file: 02-first-stats/first-vis
-    - file: 02-first-stats/first-stats
-    - file: 02-first-stats/summary
+    - file: 02-first-stats/1-motivating-problem
+    - file: 02-first-stats/2-first-sims
+    - file: 02-first-stats/3-first-vis
+    - file: 02-first-stats/4-first-stats
+    - file: 02-first-stats/5-summary
   - file: 03-first-data/intro
     sections:
     - file: 03-first-data/pandas-start
