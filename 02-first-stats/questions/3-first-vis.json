@@ -65,5 +65,28 @@
           "correct": true
       }
       ]
+  },
+    {
+      "question": "Which of the following is used to generate a scatter plot in Python using Matplotlib?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "code": "plt.plot()",
+          "correct": false,
+          "feedback": "Incorrect. The function plt.plot() makes line plots."
+      },
+          {
+          "code": "plt.hist()",
+          "correct": false,
+          "feedback": "False. The function plt.hist() makes a histogram plot."
+
+      },
+          {
+          "code": "plt.scatter()",
+          "correct": true,
+          "feedback": "Correct."
+      }
+      ]
   }
+
 ]
