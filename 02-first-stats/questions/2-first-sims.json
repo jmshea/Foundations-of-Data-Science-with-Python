@@ -1,0 +1,71 @@
+[
+  {
+    "question": "Which of these are listed as reasons to use simulations instead of experiments?",
+    "type": "many_choice",
+    "answers": [
+        {
+        "answer": "Experiments would require a lot of time",
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "answer": "Experiments would require a lot of resources",
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "answer": "The experiment cannot be repeated in real life",
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "answer": "The experiment does not accurately model the system",
+        "correct": false,
+        "feedback": "Incorrect. Generally experiments include the true system, whereas simulations are just an approximation of that system."
+    }
+    ]
+},
+    {
+    "question": "Which of these functions from the random module can be used to choose a random item from a sequence (such as a list)?",
+      "type": "multiple_choice",
+      "answers": [
+      {
+          "code": "random.choice()",
+          "correct": true,
+          "feedback": "Correct. The function random.choice() returns one item from a sequence."
+      },
+      {
+          "code": "random.choices()",
+          "correct": true,
+          "feedback": "Correct. The function random.choices() returns a list of one or more items from a sequence."
+      },
+      {
+          "code": "random.choose()",
+          "correct": false,
+          "feedback": "Incorrect."
+      },
+      {
+          "code": "random.select()",
+          "correct": false,
+          "feedback": "Incorrect."
+      }
+    ]
+  },
+    {
+      "question": "True or False: the functions in the random module must always choose from a sequence of numerical values",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "True",
+          "correct": false,
+          "feedback": "Incorrect."
+      },
+          {
+          "answer": "False",
+          "correct": true,
+          "feedback": "Correct. Methods like random.choice() can choose from sequences, such as a list, which can contain any types of items."
+
+      }
+      ]
+  }
+]
