@@ -1,79 +1,272 @@
 [
+  {
+    "question": "Which of these are valid probabilities?",
+    "type": "many_choice",
+    "answers": [
+      {
+        "answer": "$1 \\times 10^{-6}$",
+        "correct": true,
+        "feedback": "Correct."
+      },
+      {
+          "answer": "0",
+          "correct": true,
+          "feedback": "Correct"
+
+      },
+      {
+          "answer": "95%",
+          "correct": true,
+          "feedback": "Correct. 95% = 0.95 is a valid probability."
+      },
+        {
+          "answer": "-0.01",
+          "correct": false,
+          "feedback": "Incorrect. Probabilities cannot be negative."
+      },
+        {
+          "answer": "150%",
+          "correct": false,
+          "feedback": "Incorrect. 150% = 1.5. Probabilities cannot be greater than 1."
+      }
+    ]
+  },
+  {
+      "question": "What are two ways to determine a probability that are mentioned in Section 2.1?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "Estimate it using simulation",
+        "correct": true,
+        "feedback": "Correct. Using simulations to estimate probabilities is one of the fundamental techniques used in this book."
+      },
+      {
+          "answer": "Guess the value",
+          "correct": false,
+          "feedback": "Incorrect. This technique is not reliable and not mentioned in this section."
+      },
+      {
+          "answer": "Determine the probability using mathematical analysis",
+          "correct": true,
+          "feedback": "Correct. This is another technique that will be introduced in this book."
+      },
+      {
+          "answer": "Ask ChatGPT",
+          "correct": false,
+          "feedback": "Incorrect. Although this may work in some instances, values returned by ChatGPT are not necessarily reliable, and hence this technique is not mentioned in this section."
+      }
+    ]
+  },
     {
-        "question": "Which of these cannot be a probability?",
-        "type": "multiple_choice",
-        "answers": [
-            {
-                "answer": "1",
-                "correct": false,
-                "feedback": "This is a number between 0 and 1 (inclusive of the end points), so it can be probability."
-            },
-            {
-                "answer": "-0.5",
-                "correct": true,
-                "feedback": "Correct! Probabilities must be numbers between 0 and 1."
-            },
-            {
-                "answer": "0",
-                "correct": false,
-                "feedback": "This is a number between 0 and 1 (inclusive of the end points), so it can be probability."
-            },
-            {
-                "answer": "0.5",
-                "correct": false,
-                "feedback": "This is a number between 0 and 1 (inclusive of the end points), so it can be probability."
-            }
-        ]
+      "question": "If you calculate that the probability of something occurring is very close to (but less than) 1, then:",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "That thing is almost certain to occur",
+          "correct": true,
+          "feedback": "Correct."
+      },
+          {
+          "answer": "That thing is very unlikely to occur",
+          "correct": false,
+          "feedback": "Incorrect. Things that are unlikely to occur have probabilities close to zero."
+
+      },
+          {
+          "answer": "You must have made a mistake",
+          "correct": false,
+          "feedback": "Incorrect. Probabilities that are close to, but less than, 1 are valid probabilities. Thus, there is not reason that this must have been a mistake."
+      }
+      ]
+  },
+  {
+    "question": "Which of these are listed as reasons to use simulations instead of experiments?",
+    "type": "many_choice",
+    "answers": [
+        {
+        "answer": "Experiments would require a lot of time",
+        "correct": true,
+        "feedback": "Correct."
     },
-    {
-        "question": "<b>True or False:</b> Relative frequencies can only take values  between 0 and 1.",
-        "type": "multiple_choice",
-        "answers": [
-            {
-                "answer": "True",
-                "correct": true,
-                "feedback": "Correct. Relative frequencies are a proportion of the total and thus (like probabilities) take values between 0 and 1."
-            },
-            {
-                "answer": "False",
-                "correct": false,
-                "feedback": "Incorrect. Relative frequencies are a proportion of the total and thus (like probabilities) take values between 0 and 1."
-            }
-        ]
+        {
+        "answer": "Experiments would require a lot of resources",
+        "correct": true,
+        "feedback": "Correct."
     },
-{
-        "question": "Determine the relative frequency of the outcome 3 in the following dataset:<p><p>2, 3, 5, 2, 3",
-        "type": "numeric",
-        "answers": [
-            {
-                "type": "value",
-                "value": "0.4",
-                "correct": true,
-                "feedback": "Correct! The outcome 3 occurred 2 times out of 5 experiments, so the relative frequency is 2/5=0.4."
-            },
-            {
-                "type": "default",
-                "correct": false,
-                "feedback": "Relative frequency is the proportion of experiments in which an outcome occurs. Count the number of times that outcome 3 occurred and divide by the total number of experiments."
-            },
-            {
-                "type": "range",
-                "range": [ -100000000, 0], 
-                "correct": false,
-                "feedback": "Relative frequency is the proportion of experiments in which an outcome occurs. It is always between 0 and 1."
-            },
-            {
-                "type": "range",
-                "range": [ 1.0000001, 100000000], 
-                "correct": false,
-                "feedback": "Relative frequency is the proportion of experiments in which an outcome occurs. It is always between 0 and 1."
-            },
-            {
-                "type": "value",
-                "answer": "0",
-                "value": false,
-                "feedback": "Relative frequency is the proportion of experiments in which an outcome occurs. Since 3 occured, that proportion will not be 0."
-            }
-        ]
+        {
+        "answer": "The experiment cannot be repeated in real life",
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "answer": "The experiment does not accurately model the system",
+        "correct": false,
+        "feedback": "Incorrect. Generally experiments include the true system, whereas simulations are just an approximation of that system."
     }
+    ]
+},
+    {
+    "question": "Which of these functions from the random module can be used to choose a random item from a sequence (such as a list)?",
+      "type": "multiple_choice",
+      "answers": [
+      {
+          "code": "random.choice()",
+          "correct": true,
+          "feedback": "Correct. The function random.choice() returns one item from a sequence."
+      },
+      {
+          "code": "random.choices()",
+          "correct": true,
+          "feedback": "Correct. The function random.choices() returns a list of one or more items from a sequence."
+      },
+      {
+          "code": "random.choose()",
+          "correct": false,
+          "feedback": "Incorrect."
+      },
+      {
+          "code": "random.select()",
+          "correct": false,
+          "feedback": "Incorrect."
+      }
+    ]
+  },
+    {
+      "question": "True or False: the functions in the random module must always choose from a sequence of numerical values",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "True",
+          "correct": false,
+          "feedback": "Incorrect."
+      },
+          {
+          "answer": "False",
+          "correct": true,
+          "feedback": "Correct. Methods like random.choice() can choose from sequences, such as a list, which can contain any types of items."
+
+      }
+      ]
+  },
+  {
+    "question": "What is a scatter plot?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "A graph that plots a marker to representing two different values associated with each data point",
+        "correct": true
+      },
+      {
+          "answer": "A graph that shows the frequency distribution of some data",
+          "correct": false,
+          "feedback": "No. Histograms are used to show the frequency distribution of data"
+
+      },
+      {
+          "answer": "A graph that shows the statistics of some data",
+          "correct": false,
+          "feedback": "Scatter plots show the data values directly, rather than statistics of the data"
+      }
+    ]
+  },
+  {
+      "question": "What is a histogram? (Choose all correct answers.)",
+    "type": "many_choice",
+    "answers": [
+      {
+        "answer": "A graph that visualizes how some data is distributed",
+        "correct": true
+      },
+      {
+          "answer": "A graph that shows the relationship between two variables",
+          "correct": false,
+          "feedback": "The one-dimensional histograms we discuss in this section only provide information about one variable of a data set"
+      },
+      {
+          "answer": "A graph that plots a marker for each data point",
+          "correct": false,
+          "feedback": "Histograms do not use markers and do not produce separate graphics for each data point"
+      },
+      {
+          "answer": "A specialized type of bar graph",
+          "correct": true
+      }
+
+    ]
+  },
+    {
+      "question": "Which of the following is true of histograms",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Can only be used with discrete data",
+          "correct": false,
+          "feedback": "False. Histograms bin data together, and this allows it to be used with continuous data"
+      },
+          {
+          "answer": "Can only be used with continuous data",
+          "correct": false,
+          "feedback": "False. Histograms can be used to count discrete data, either with one value per bin or multiple values per bin"
+
+      },
+          {
+          "answer": "Can be used with continuous or discrete data",
+          "correct": true
+      }
+      ]
+  },
+    {
+      "question": "Which of the following is used to generate a scatter plot in Python using Matplotlib?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "code": "plt.plot()",
+          "correct": false,
+          "feedback": "Incorrect. The function plt.plot() makes line plots."
+      },
+          {
+          "code": "plt.hist()",
+          "correct": false,
+          "feedback": "False. The function plt.hist() makes a histogram plot."
+
+      },
+          {
+          "code": "plt.scatter()",
+          "correct": true,
+          "feedback": "Correct."
+      }
+      ]
+  },
+    {
+      "question": "The following code can be used to estimate which probability?",
+      "code": "event_count=0\nfor i in range(10_000):\ndice = random.choices( range(1,7), k=10)\nif dice.count(1) >= 3:\n    event_count+=1\n\nprint(event_count/10_000)",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "The probability of getting 3 or more 1s on 10 rolls of a 6-sided die.",
+          "correct": true,
+          "feedback": "Correct."
+      },
+          {
+          "answer": "The probability of getting 3 or more 1s on 10 rolls of a 7-sided die.",
+          "correct": false,
+          "feedback": "Incorrect. Recall that the upper value of a range is not included in the range."
+      },
+          {
+          "answer": "The probability of getting 1 or more 3s on 10 rolls of a 6-sided die.",
+          "correct": false,
+          "feedback": "Incorrect. Note that dice.count(1) counts how many 1s occur."
+      },
+          {
+          "answer": "The probability of getting 1 or more 3s on 10 rolls of a 7-sided die.",
+          "correct": false,
+          "feedback": "Incorrect. Recall that the upper value of a range is not included in the range."
+      },
+          {
+          "answer": "Something else.",
+          "correct": false,
+          "feedback": "Incorrect. "
+      }
+      ]
+}
 ]
