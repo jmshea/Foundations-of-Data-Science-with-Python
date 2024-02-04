@@ -49,6 +49,12 @@
         "feedback": "Incorrect. A probably cannot be less than 0."
     },
         {
+        "type": "range",
+        "range": [ 1.0000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. A probably cannot be more than 1."
+    },
+        {
         "type": "default",
         "feedback": "Incorrect. You can use the coinsim() function from Section 2.4 to answer this question."
     }
@@ -82,6 +88,12 @@
         "range": [ -100000000, -0.000000001], 
         "correct": false,
         "feedback": "Incorrect. A probably cannot be less than 0."
+    },
+        {
+        "type": "range",
+        "range": [ 1.0000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. A probably cannot be more than 1."
     },
         {
         "type": "default",
