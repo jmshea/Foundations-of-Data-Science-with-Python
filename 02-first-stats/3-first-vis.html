@@ -490,13 +490,13 @@ document.write(`
 <p>The following questions can be used to check your understanding of the material covered in this chapter:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="lmCrXdfmeUbS" data-shufflequestions="False"
+<div class="output text_html"><div id="PXMCzUZkdYom" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#lmCrXdfmeUbS {
+#PXMCzUZkdYom {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -667,7 +667,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionslmCrXdfmeUbS=[
+</style></div><script type="application/javascript">var questionsPXMCzUZkdYom=[
   {
     "question": "What is a scatter plot?",
     "type": "multiple_choice",
@@ -734,7 +734,30 @@ document.write(`
           "correct": true
       }
       ]
+  },
+    {
+      "question": "Which of the following is used to generate a scatter plot in Python using Matplotlib?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "code": "plt.plot()",
+          "correct": false,
+          "feedback": "Incorrect. The function plt.plot() makes line plots."
+      },
+          {
+          "code": "plt.hist()",
+          "correct": false,
+          "feedback": "False. The function plt.hist() makes a histogram plot."
+
+      },
+          {
+          "code": "plt.scatter()",
+          "correct": true,
+          "feedback": "Correct."
+      }
+      ]
   }
+
 ]
 ;
     // Make a random ID
@@ -1523,8 +1546,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("lmCrXdfmeUbS")) {
-            show_questions(questionslmCrXdfmeUbS,  lmCrXdfmeUbS); 
+          if(document.getElementById("PXMCzUZkdYom")) {
+            show_questions(questionsPXMCzUZkdYom,  PXMCzUZkdYom); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1539,10 +1562,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/questions/3-first-vis.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, lmCrXdfmeUbS))
+        .then(json => show_questions(json, PXMCzUZkdYom))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionslmCrXdfmeUbS, lmCrXdfmeUbS);
+        show_questions(questionsPXMCzUZkdYom, PXMCzUZkdYom);
         });
         }
         </script></div>
@@ -1804,7 +1827,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="IyLLUspiYXGo" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="IyLLUspiYXGo-next" onclick="window.checkFlip('IyLLUspiYXGo')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="DhrBMkMUTgOr" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="DhrBMkMUTgOr-next" onclick="window.checkFlip('DhrBMkMUTgOr')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2195,14 +2218,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("IyLLUspiYXGo")) {
-            createCards("IyLLUspiYXGo", "True", "False");
+          if(document.getElementById("DhrBMkMUTgOr")) {
+            createCards("DhrBMkMUTgOr", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsIyLLUspiYXGo=[
+var cardsDhrBMkMUTgOr=[
     {
         "front": "scatter plot",
         "back": "A (two-dimensional) scatter plot takes two sequences $\\mathbf{x}= (x_0, x_1, \\ldots)$ and $\\mathbf{y}=(y_0, y_1, \\ldots)$ and plots symbols (called <i>markers</i>) that represent the locations of the points $(x_0, y_0), (x_1, y_1), \\ldots$ in two dimensions. "
@@ -2217,9 +2240,9 @@ var cardsIyLLUspiYXGo=[
     }
 ]
 ;
-var frontColorsIyLLUspiYXGo= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsIyLLUspiYXGo= ["var(--dark-blue-gray)" ];
-var textColorsIyLLUspiYXGo= ["var(--snow)" ];
+var frontColorsDhrBMkMUTgOr= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsDhrBMkMUTgOr= ["var(--dark-blue-gray)" ];
+var textColorsDhrBMkMUTgOr= ["var(--snow)" ];
 
 
         {
@@ -2230,7 +2253,7 @@ var textColorsIyLLUspiYXGo= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/flashcards/first-vis.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("IyLLUspiYXGo", "True", "False"))
+        .then(json => createCards("DhrBMkMUTgOr", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
