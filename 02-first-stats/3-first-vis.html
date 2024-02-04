@@ -484,19 +484,17 @@ document.write(`
 <h2><span class="section-number">2.3.1. </span>Ball-Drop Histogram<a class="headerlink" href="#ball-drop-histogram" title="Permalink to this heading">#</a></h2>
 <p><img alt="BallDropHistogram" src="../_images/ball-histogram.gif" /></p>
 <p>(See the code to generate this in the <a class="reference external" href="https://github.com/jmshea/Foundations-of-Data-Science-with-Python/blob/main/02-first-stats/ball-drop-histogram.ipynb">Jupyter Notebook to Generate Ball Drop Graph</a>).</p>
-<div class="cell tag_remove-input docutils container">
-</div>
 <p><strong>Self-Assessment:</strong></p>
 <p>The following questions can be used to check your understanding of the material covered in this chapter:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="PXMCzUZkdYom" data-shufflequestions="False"
+<div class="output text_html"><div id="LwnSowOsgKvW" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#PXMCzUZkdYom {
+#LwnSowOsgKvW {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -667,7 +665,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsPXMCzUZkdYom=[
+</style></div><script type="application/javascript">var questionsLwnSowOsgKvW=[
   {
     "question": "What is a scatter plot?",
     "type": "multiple_choice",
@@ -1088,9 +1086,7 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            // console.log("1:", submission)
-            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
-            // console.log("Rounded to ", submission, " precision=", precision  );
+            submission = Number(Number(submission).toPrecision(precision));
         }
 
 
@@ -1126,11 +1122,12 @@ function check_numeric(ths, event) {
                 }
                 // } else if (answer.type=="range") {
             } else if ('range' in answer) {
-                //console.log(answer.range);
+                console.log(answer.range);
+                console.log(submission, submission >=answer.range[0], submission < answer.range[1])
                 if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
                     fb.textContent = jaxify(answer.feedback);
                     correct = answer.correct;
-                    //console.log(answer.correct);
+                    console.log(answer.correct);
                     done = true;
                 }
             } else if (answer.type == "default") {
@@ -1142,6 +1139,7 @@ function check_numeric(ths, event) {
                 return true; // Keep looking for case that includes this as a correct answer
             }
         });
+        console.log("done:", done);
 
         if ((!done) && (defaultFB != "")) {
             fb.innerHTML = jaxify(defaultFB);
@@ -1546,8 +1544,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("PXMCzUZkdYom")) {
-            show_questions(questionsPXMCzUZkdYom,  PXMCzUZkdYom); 
+          if(document.getElementById("LwnSowOsgKvW")) {
+            show_questions(questionsLwnSowOsgKvW,  LwnSowOsgKvW); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1562,10 +1560,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/questions/3-first-vis.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, PXMCzUZkdYom))
+        .then(json => show_questions(json, LwnSowOsgKvW))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsPXMCzUZkdYom, PXMCzUZkdYom);
+        show_questions(questionsLwnSowOsgKvW, LwnSowOsgKvW);
         });
         }
         </script></div>
@@ -1827,7 +1825,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="DhrBMkMUTgOr" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="DhrBMkMUTgOr-next" onclick="window.checkFlip('DhrBMkMUTgOr')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="RiRAPltJuYTE" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="RiRAPltJuYTE-next" onclick="window.checkFlip('RiRAPltJuYTE')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2218,14 +2216,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("DhrBMkMUTgOr")) {
-            createCards("DhrBMkMUTgOr", "True", "False");
+          if(document.getElementById("RiRAPltJuYTE")) {
+            createCards("RiRAPltJuYTE", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsDhrBMkMUTgOr=[
+var cardsRiRAPltJuYTE=[
     {
         "front": "scatter plot",
         "back": "A (two-dimensional) scatter plot takes two sequences $\\mathbf{x}= (x_0, x_1, \\ldots)$ and $\\mathbf{y}=(y_0, y_1, \\ldots)$ and plots symbols (called <i>markers</i>) that represent the locations of the points $(x_0, y_0), (x_1, y_1), \\ldots$ in two dimensions. "
@@ -2240,9 +2238,9 @@ var cardsDhrBMkMUTgOr=[
     }
 ]
 ;
-var frontColorsDhrBMkMUTgOr= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsDhrBMkMUTgOr= ["var(--dark-blue-gray)" ];
-var textColorsDhrBMkMUTgOr= ["var(--snow)" ];
+var frontColorsRiRAPltJuYTE= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsRiRAPltJuYTE= ["var(--dark-blue-gray)" ];
+var textColorsRiRAPltJuYTE= ["var(--snow)" ];
 
 
         {
@@ -2253,7 +2251,7 @@ var textColorsDhrBMkMUTgOr= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/02-first-stats/flashcards/first-vis.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("DhrBMkMUTgOr", "True", "False"))
+        .then(json => createCards("RiRAPltJuYTE", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
