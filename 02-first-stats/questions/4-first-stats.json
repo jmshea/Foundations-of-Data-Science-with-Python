@@ -1,0 +1,92 @@
+[
+    {
+      "question": "The following code can be used to estimate which probability?",
+      "code": "event_count=0\nfor i in range(10_000):\ndice = random.choices( range(1,7), k=10)\nif dice.count(1) >= 3:\n    event_count+=1\n\nprint(event_count/10_000)",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "The probability of getting 3 or more 1s on 10 rolls of a 6-sided die.",
+          "correct": true,
+          "feedback": "Correct."
+      },
+          {
+          "answer": "The probability of getting 3 or more 1s on 10 rolls of a 7-sided die.",
+          "correct": false,
+          "feedback": "Incorrect. Recall that the upper value of a range is not included in the range."
+      },
+          {
+          "answer": "The probability of getting 1 or more 3s on 10 rolls of a 6-sided die.",
+          "correct": false,
+          "feedback": "Incorrect. Note that dice.count(1) counts how many 1s occur."
+      },
+          {
+          "answer": "The probability of getting 1 or more 3s on 10 rolls of a 7-sided die.",
+          "correct": false,
+          "feedback": "Incorrect. Recall that the upper value of a range is not included in the range."
+      },
+          {
+          "answer": "Something else.",
+          "correct": false,
+          "feedback": "Incorrect. "
+      }
+      ]
+},
+    {
+    "question": "Run a simulation to estimate the probability of getting 2 or fewer heads on 12 flips of a fair coin. Use at least 200,000 trials. Round your answer to two significant digits.",
+    "type": "numeric",
+    "precision": 2,
+    "answers": [
+        {
+        "type": "range",
+        "range": [ 0.018, 0.02], 
+        "correct": true,
+        "feedback": "Correct. The actual value (via simulation and analysis) is approximately 0.01929."
+    },
+        {
+        "type": "range",
+        "range": [ -100000000, -0.000000001], 
+        "correct": false,
+        "feedback": "Incorrect. A probably cannot be less than 0."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. You can use the coinsim() function from Section 2.4 to answer this question."
+    }
+    ]
+},
+    {
+    "question": "Write a simulation to estimate the probability of seeing 1 or 0 sixes on 30 rolls of a fair die. Use at least 200,000 trials. Round your answer to two significant digits.",
+    "type": "numeric",
+    "precision": 2,
+    "answers": [
+        {
+        "type": "value",
+        "value": 1,
+        "correct": false,
+        "feedback": "Incorrect. Clearly, it should be possible to get more than 1 six on 30 rolls of a die. One possible source of error is if you used a range with upper limit 6 -- it should be 7."
+    },
+        {
+        "type": "range",
+        "range": [ 0.057, 0.06], 
+        "correct": false,
+        "feedback": "Incorrect. If you are getting this value, you might have used range(7), which would generate values of 0, which is not a side on a standard 6-sided die!"
+    },
+        {
+        "type": "range",
+        "range": [ 0.028, 0.031], 
+        "correct": true,
+        "feedback": "Correct. The actual value (via simulation and analysis) is approximately 0.02949."
+    },
+        {
+        "type": "range",
+        "range": [ -100000000, -0.000000001], 
+        "correct": false,
+        "feedback": "Incorrect. A probably cannot be less than 0."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. Try modifying the coinsim() simulation to choose from the values 1 to 6."
+    }
+    ]
+}
+]
