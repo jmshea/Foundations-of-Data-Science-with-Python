@@ -51,7 +51,9 @@ jobs:
     # Update robots.txt
     - name: Update robots.txt
       run: |
-        echo -e "User-agent: *\n\nSitemap: https://jmshea.github.io/Foundations-of-Data-Science-with-Python/sitemap.xml" > _build/html/robots.txt
+        echo -e "User-agent: GPTbot\nDisallow: /\n" > _build/html/robots.txt
+        echo -e "User-agent: Google-Extended\nDisallow: /\n" >> _build/html/robots.txt
+        echo -e "\nSitemap: https://fdsp.net/sitemap.xml" >> _build/html/robots.txt
 
     # Deploy the book's HTML to gh-pages branch
     - name: GitHub Pages action
