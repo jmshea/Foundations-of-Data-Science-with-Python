@@ -55,6 +55,11 @@ jobs:
         echo -e "User-agent: Google-Extended\nDisallow: /\n" >> _build/html/robots.txt
         echo -e "\nSitemap: https://fdsp.net/sitemap.xml" >> _build/html/robots.txt
 
+    # Update the 404 page 
+    - name: Update the 404 page
+      run: |
+        sed -i "s/\/fdsp\///g" _build/html/404.html 
+
     # Deploy the book's HTML to gh-pages branch
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.9.0
