@@ -9,3 +9,4 @@ jupyterquiz
 jupytercards
 sphinx-sitemap
 sphinxext-opengraph
+sphinx-notfound-page
