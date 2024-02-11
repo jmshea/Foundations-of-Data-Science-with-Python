@@ -479,13 +479,13 @@ No interactive elements are available for this section at this time.</p>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="bjbjLKkSIlTd" data-shufflequestions="False"
+<div class="output text_html"><div id="PJJtnpGtFDBo" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#bjbjLKkSIlTd {
+#PJJtnpGtFDBo {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -524,12 +524,30 @@ No interactive elements are available for this section at this time.</p>
     padding: 4px;
 }
 
+.Quiz code {
+    background-color: lightgray;
+    color: black;
+}
+
+.Quiz .QuizCode code {
+    background-color: inherit;
+    color: inherit;
+}
+
+
+.Quiz .MCButton code {
+    background-color: inherit;
+    color: inherit;
+}
+
+
+
 .Answer {
-    margin: 10px 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
     border-radius: inherit;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px 0;
 }
 
 .Feedback {
@@ -562,7 +580,7 @@ No interactive elements are available for this section at this time.</p>
 }
 
 .Input-text:focus {
-    outline: none;
+    /*outline: none;*/
     background-color: var(--jq-numeric-input-bg);
     box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
 }
@@ -600,10 +618,10 @@ No interactive elements are available for this section at this time.</p>
 }
 
 .NumericQn {
-    padding: 10px;
     background: var(--jq-numeric-bg);
-    color: var(--jq-text-color);
     border-radius: inherit;
+    color: var(--jq-text-color);
+    padding: 10px;
 }
 
 .NumericQn p {
@@ -611,11 +629,11 @@ No interactive elements are available for this section at this time.</p>
 }
 
 .InpLabel {
-    line-height: 34px;
-    float: left;
-    margin-right: 10px;
     color: var(--jq-numeric-input-label);
+    float: left;
     font-size: 15pt;
+    line-height: 34px;
+    margin-right: 10px;
 }
 
 .incorrect {
@@ -632,17 +650,17 @@ No interactive elements are available for this section at this time.</p>
    */
     animation: correct-anim 0.6s ease;
     animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
+    /*outline: none;*/
 }
 
 .incorrectButton {
     animation: incorrect-anim 0.8s ease;
     animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
+    /*outline: none;*/
 }
 
 @keyframes incorrect-anim {
@@ -656,7 +674,7 @@ No interactive elements are available for this section at this time.</p>
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsbjbjLKkSIlTd=[
+</style></div><script type="application/javascript">var questionsPJJtnpGtFDBo=[
   {
     "question": "If <code>df</code> is a Pandas dataframe with a column named \"state\", which of these commands will return that column?",
     "type": "multiple_choice",
@@ -1550,8 +1568,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("bjbjLKkSIlTd")) {
-            show_questions(questionsbjbjLKkSIlTd,  bjbjLKkSIlTd); 
+          if(document.getElementById("PJJtnpGtFDBo")) {
+            show_questions(questionsPJJtnpGtFDBo,  PJJtnpGtFDBo); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1566,10 +1584,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/1-pandas-start.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, bjbjLKkSIlTd))
+        .then(json => show_questions(json, PJJtnpGtFDBo))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsbjbjLKkSIlTd, bjbjLKkSIlTd);
+        show_questions(questionsPJJtnpGtFDBo, PJJtnpGtFDBo);
         });
         }
         </script></div>
