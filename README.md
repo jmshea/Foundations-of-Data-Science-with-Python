@@ -1,7 +1,7 @@
 # Foundations of Data Science with Python
 ## by John M. Shea
 
-This repository is the source for the website to accompany this book:
+This repository is the source for the website ([fdsp.net](https://www.fdsp.net/)) to accompany this book:
 
 <a href="https://amzn.to/48PvKip" target="_blank"><img src="intro/cover.jpeg" alt="Cover of the book *Foundations of Data Science with Python*"></a>
 
@@ -26,7 +26,7 @@ This book is an introduction to the foundations of data science, including data 
   These are available on the book's website, <a href="https://www.fdsp.net" target="_blank">fdsp.net</a>. This GitHub repository contains the source files for that site.
   
 ### About the website
-The website contains material that could not be included in the book itself, including:
+The website  ([fdsp.net](https://www.fdsp.net/)) contains material that could not be included in the book itself, including:
 
 Interactive tools to help students learn the material, including:
 
