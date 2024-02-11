@@ -22,14 +22,14 @@ parts:
     - file: 02-first-stats/5-summary
   - file: 03-first-data/intro
     sections:
-    - file: 03-first-data/pandas-start
-    - file: 03-first-data/visualization
-    - file: 03-first-data/partitions
-    - file: 03-first-data/summary-stats
-    - file: 03-first-data/histogram
-    - file: 03-first-data/hypothesis-testing
-    - file: 03-first-data/2d-statistics-preview
-    - file: 03-first-data/summary
+    - file: 03-first-data/1-pandas-start
+    - file: 03-first-data/2-visualization
+    - file: 03-first-data/3-partitions
+    - file: 03-first-data/4-summary-stats
+    - file: 03-first-data/5-histogram
+    - file: 03-first-data/6-hypothesis-testing
+    - file: 03-first-data/7-2d-statistics-preview
+    - file: 03-first-data/8-summary
   - file: 04-probability1/intro
     sections:
     - file: 04-probability1/outcomes-samplespaces-events

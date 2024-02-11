@@ -1,0 +1,107 @@
+[
+  {
+    "question": "If <code>df</code> is a Pandas dataframe with a column named \"state\", which of these commands will return that column?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "code": "df.loc['state']",
+        "correct": false,
+        "feedback": "df.loc is used to index into the rows. "
+      },
+      {
+          "code": "df[state]",
+          "correct": false,
+          "feedback": "Incorrect. The column name must be passes as a string."
+      },
+      {
+          "code": "df['state']", 
+        "correct": true
+      },
+        {
+          "code": "df('state')",
+          "correct": false,
+          "feedback": "Square brackets are used for indexing, not parentheses"
+      }
+    ]
+},
+    {
+    "question": "If <code>df</code> is a Pandas dataframe with a columns named \"city\" and \"state\", which of these commands will return a dataframe that contains just those two columns?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "code": "df('city', 'state')",
+        "correct": false,
+        "feedback": "Incorrect. Remember to use square brackets for indexing into dataframes."
+      },
+      {
+        "code": "df['city', 'state']",
+          "correct": false,
+        "feedback": "Incorrect. You cannot directly pass multiple column names as indexes."
+      },
+      {
+          "code": "df[ ['city', 'state'] ]",
+          "correct": true,
+          "feedback": "Correct."
+      },
+      {
+          "code": "df.loc[ ['city', 'state'] ]",
+          "correct": false,
+          "feedback": "Incorrect. df.loc is for indexing by rows"
+      }
+    ],
+    "answer_cols": 1
+},
+    {
+    "question": "If <code>df</code> is a Pandas dataframe with a column named \"state\" what is the effect of the following command?",
+    "code": "df.set_index('state')",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "The returned dataframe is now indexed by \"state\". The index of df is unchanged.",
+        "correct": true,
+        "feedback": "Correct. This command does not change the index of the df dataframe. You can instead change the index of the dataframe stored in df by using the inplace=True keyword argument."
+      },
+      {
+          "answer": "The index of df is changed to \"state\". There is no returned value.",
+          "correct": false,
+          "feedback": "Incorrect. Try again."
+      },
+      {
+          "answer": "The index of df is changed to \"state\" and the new dataframe is returned.",
+          "correct": false,
+          "feedback": "Incorrect. Try again."
+      },
+        {
+          "answer": "Something else.",
+          "correct": false,
+          "feedback": "Incorrect. Try again."
+      }
+    ]
+  },
+    {
+      "question": "If <code>df</code> is a Pandas dataframe with an index that contains the name of the 50 United States,  which of these commands will return the data for Florida?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "code": "df['Florida']",
+        "correct": false,
+        "feedback": "Incorrect. Using indexing with only square brackets returns columns, each of which contains one variable or feature. We want a row that contains all of the variables or features for Florida."
+      },
+      {
+          "code": "df.loc['Florida']",
+          "correct": true,
+          "feedback": "Correct."
+      },
+      {
+          "code": "df.loc('Florida')",
+          "correct": false,
+          "feedback": "Incorrect. Square brackets are used for indexing."
+      },
+        {
+          "code": "df.row['Florida']",
+          "correct": false,
+          "feedback": "Incorrect. You have the right idea, but \"row\" is not the correct keyword to use to access the rows."
+      }
+    ]
+  }
+]
