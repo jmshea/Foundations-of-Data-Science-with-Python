@@ -32,13 +32,13 @@ parts:
     - file: 03-first-data/8-summary
   - file: 04-probability1/intro
     sections:
-    - file: 04-probability1/outcomes-samplespaces-events
-    - file: 04-probability1/relative-frequency
-    - file: 04-probability1/fair-experiments
-    - file: 04-probability1/axiomatic-prob
-    - file: 04-probability1/corollaries
-    - file: 04-probability1/combinatorics
-    - file: 04-probability1/summary
+    - file: 04-probability1/1-outcomes-samplespaces-events
+    - file: 04-probability1/2-relative-frequency
+    - file: 04-probability1/3-fair-experiments
+    - file: 04-probability1/4-axiomatic-prob
+    - file: 04-probability1/5-corollaries
+    - file: 04-probability1/6-combinatorics
+    - file: 04-probability1/7-summary
   - file: 05-null-hypothesis-testing/intro
     sections:
     - file: 05-null-hypothesis-testing/statistical-studies
