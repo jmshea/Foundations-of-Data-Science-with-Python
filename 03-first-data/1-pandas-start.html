@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-<meta property="og:title" content="3.1. Intro to Pandas" />
+<meta property="og:title" content="3.1. Introduction to Pandas" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/03-first-data/1-pandas-start.html" />
 <meta property="og:site_name" content="Python" />
@@ -17,7 +17,7 @@
 <meta property="og:image:alt" content="Python" />
 <meta name="description" content="Self-Assessment: The following questions can be used to check your understanding of the material covered in this chapter:~~ \!\!" />
 
-    <title>3.1. Intro to Pandas &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
+    <title>3.1. Introduction to Pandas &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
   
   
@@ -208,7 +208,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. First Visualizations and Statistical Tests with Real Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1. Intro to Pandas</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1. Introduction to Pandas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2-visualization.html">3.2. Visualizing Multiple Data Sets - Part 1: Scatter Plots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3-partitions.html">3.3. Partitions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4-summary-stats.html">3.4. Summary Statistics</a></li>
@@ -455,7 +455,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Intro to Pandas</h1>
+    <h1>Introduction to Pandas</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -469,21 +469,21 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="intro-to-pandas">
-<span id="index-0"></span><h1><span class="section-number">3.1. </span>Intro to Pandas<a class="headerlink" href="#intro-to-pandas" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-pandas">
+<span id="index-0"></span><h1><span class="section-number">3.1. </span>Introduction to Pandas<a class="headerlink" href="#introduction-to-pandas" title="Permalink to this heading">#</a></h1>
 <p><strong>Self-Assessment:</strong></p>
 <p>The following questions can be used to check your understanding of the material covered in this chapter: <span class="math notranslate nohighlight">\(~~ \!\!\)</span></p>
 <div class="cell tag_remove-input docutils container">
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="PJJtnpGtFDBo" data-shufflequestions="False"
+<div class="output text_html"><div id="bHQEkxtdBcsl" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#PJJtnpGtFDBo {
+#bHQEkxtdBcsl {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -672,7 +672,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsPJJtnpGtFDBo=[
+</style></div><script type="application/javascript">var questionsbHQEkxtdBcsl=[
   {
     "question": "If <code>df</code> is a Pandas dataframe with a column named \"state\", which of these commands will return that column?",
     "type": "multiple_choice",
@@ -880,9 +880,9 @@ function check_mc() {
         if (label.dataset.correct == "true") {
             // console.log("Correct action");
             if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
+                fb.innerHTML = jaxify(label.dataset.feedback);
             } else {
-                fb.textContent = "Correct!";
+                fb.innerHTML = "Correct!";
             }
             label.classList.add("correctButton");
 
@@ -891,9 +891,9 @@ function check_mc() {
 
         } else {
             if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
+                fb.innerHTML = jaxify(label.dataset.feedback);
             } else {
-                fb.textContent = "Incorrect -- try again.";
+                fb.innerHTML = "Incorrect -- try again.";
             }
             //console.log("Error action");
             label.classList.add("incorrectButton");
@@ -1566,8 +1566,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("PJJtnpGtFDBo")) {
-            show_questions(questionsPJJtnpGtFDBo,  PJJtnpGtFDBo); 
+          if(document.getElementById("bHQEkxtdBcsl")) {
+            show_questions(questionsbHQEkxtdBcsl,  bHQEkxtdBcsl); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1582,10 +1582,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/1-pandas-start.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, PJJtnpGtFDBo))
+        .then(json => show_questions(json, bHQEkxtdBcsl))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsPJJtnpGtFDBo, PJJtnpGtFDBo);
+        show_questions(questionsbHQEkxtdBcsl, bHQEkxtdBcsl);
         });
         }
         </script></div>
