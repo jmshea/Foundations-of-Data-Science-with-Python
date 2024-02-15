@@ -1,0 +1,42 @@
+[
+  {
+    "question": "A research wishes to assess the impact of Caribbean ocean surface temperature on the number of hurricanes that form in the North Atlantic Ocean. She partitions the data on the number of hurricanes for each month in the last 100 years based on whether the ocean surface temperature measurement was above or below the median temperature. She then conducts a NHST using the partition data sets. This should be considered:",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "A one-dimensional test",
+        "correct": true,
+        "feedback" : " Correct. The NHST is a one-dimensional test that is applied to the data on the number of hurricanes."
+      },
+      {
+        "answer": "A two-dimensional test",
+          "correct": false,
+          "feedback": "Incorrect. Even though the ocean surface temperature is used to partition the data, the resulting test is one-dimensional. The surface temperature and number of hurricanes are not used together in the statistical test."
+      },
+      {
+        "answer": "Something else",
+        "correct": false
+      }
+    ]
+  },
+    {
+      "question": "A research wishes to assess the impact of Caribbean ocean surface temperature on the number of hurricanes that form in the North Atlantic Ocean. She tries to find the best line that predicts the number of hurricanes in a month based on the observed ocean surface temperature. This should be considered:",
+    "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "A one-dimensional test",
+          "correct": false,
+          "feedback" : " Incorrect. Ocean surface temperature and number of hurricanes are used together in finding the best line of fit. This is an example of linear regression."
+      },
+          {
+          "answer": "A two-dimensional test",
+          "correct": true,
+          "feedback": "Correct. Ocean surface temperature and number of hurricanes are used together in finding the best line of fit. This is an example of linear regression."
+},
+          {
+          "answer": "Something else",
+          "correct": false
+      }
+      ]
+  }
+]
