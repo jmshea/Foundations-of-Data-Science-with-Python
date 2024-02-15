@@ -1,0 +1,72 @@
+[
+  {
+    "question": "A card is drawn from a standard deck of 52 cards, and the face is observed. Choose all of the following that are an outcome of this experiment.",
+    "type": "many_choice",
+    "answers": [
+      {
+        "answer": "The card is the Ace of Clubs",
+        "correct": true
+      },
+      {
+        "answer": "The card is a Jack",
+          "correct": false,
+          "feedback": "Incorrect. Outcomes cannot be decomposed. There are 4 different ways to get a Jack."
+      },
+      {
+        "answer": "The card is the 3 of Hearts",
+        "correct": true
+      },
+        {
+          "answer": "The card is a Heart",
+          "correct": false,
+          "feedback": "Incorrect. Outcomes cannot be decomposed. There are 13 different ways to get a Heart."
+      },
+        {
+          "answer": "The card is a 7",
+          "correct": false,
+          "feedback": "Incorrect. Outcomes cannot be decomposed. There are 4 different ways to get a card with a value of 7."
+      }
+    ]
+  },
+    {
+      "question": "A card is drawn from a standard deck of 52 cards, and the face is observed. Choose all of the following that are valid events for this experiment.",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "The card is the Ace of Clubs",
+          "correct": true
+      },
+          {
+          "answer": "The card is a Jack",
+          "correct": true
+      },
+          {
+          "answer": "The card is the 3 of Hearts",
+          "correct": true
+      },
+          {
+          "answer": "The card is a Heart",
+          "correct": true
+      },
+          {
+          "answer": "The card is a 7",
+          "correct": true
+      }
+      ]
+  },
+  {
+      "question": "Can the following be a sample space: $S=\\{ \\mbox{sunny}, \\mbox{partly cloudy}, \\mbox{cloudy} \\}$?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Yes",
+          "correct": true,
+          "feedback": "Correct. The sample space can contain the outcomes for any random experiment, such as how sunny tomorrow will be."
+      },
+          {
+          "answer": "No",
+          "correct": false
+      }
+      ]
+  }
+]
