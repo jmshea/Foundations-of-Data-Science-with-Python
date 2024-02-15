@@ -33,11 +33,7 @@
         "answer": "The assumption that there is a significant difference between a sample and the population it represents.",
         "correct": false
       },
-      {
-        "answer": "The opposite of the alternative hypothesis.",
-        "correct": false
-      },
-      {
+        {
         "answer": "The hypothesis that is always rejected.",
         "correct": false
       }
@@ -48,7 +44,7 @@
     "type": "multiple_choice",
     "answers": [
       {
-        "answer": "The opposite of the null hypothesis.",
+        "answer": "An alternative explanation that is disjoint from the null hypothesis.",
         "correct": true
       },
       {
@@ -92,19 +88,19 @@
     "type": "multiple_choice",
     "answers": [
       {
-        "answer": "A numerical value that measures the difference between the sample and the population.",
+        "answer": "A single numerical value that is computed from the data that can be used in a statistical test.",
         "correct": true
       },
       {
-        "answer": "A value that is always greater than the critical value.",
+        "answer": "The minimum number of data points you must have in your data set.",
         "correct": false
       },
       {
-        "answer": "A value that is always less than the critical value.",
+        "answer": "The maximum number of data points you must have in your data set.",
         "correct": false
       },
       {
-        "answer": "A value that is always equal to the critical value.",
+        "answer": "The minimum separate between the means of two data sets for the result to be statistically significant.",
         "correct": false
       }
     ]
@@ -115,11 +111,13 @@
       "answers": [
           {
           "answer": "It provides exact mathematical formula for probabilities",
-          "correct": false
+          "correct": false,
+          "feedback": "Incorrect. Because no model is used, analytical approaches are generally not possible. Thus the results are computed using other techniques, such as resampling (simulation)."
       },
           {
           "answer": "It does not require the data to be a certain size in order for the model to be accurate",
-          "correct": true
+          "correct": true,
+          "feedback": "Correct. Because there is not model, we do not need data to reach a certain size before we can accurately model the data. However, the data may still need to reach a certain size before the results will be accurate."
       },
           {
           "answer": "It does not rely on mathematical formulas for determining factors such as statistical significance",
@@ -132,48 +130,56 @@
       ]
   },
   {
-    "question": "What is a critical value?",
-    "type": "multiple_choice",
-    "answers": [
-      {
-        "answer": "A value determined by the level of significance and the degrees of freedom.",
-        "correct": true
-      },
-      {
-        "answer": "A value that is always greater than the test statistic.",
-        "correct": false
-      },
-      {
-        "answer": "A value that is always less than the test statistic.",
-        "correct": false
-      },
-      {
-        "answer": "A value that is always equal to the test statistic.",
-        "correct": false
-      }
-    ]
-  },
-  {
     "question": "When is the null hypothesis rejected?",
     "type": "multiple_choice",
     "answers": [
-      {
-        "answer": "When the test statistic is greater than the critical value.",
+        {
+        "answer": "When the computed $p$-value is less than the specified significance threshold.",
         "correct": true
-      },
-      {
-        "answer": "When the test statistic is less than the critical value.",
-        "correct": false
-      },
-      {
-        "answer": "When the significance level is high.",
-        "correct": false
-      },
-      {
-        "answer": "When the alternative hypothesis is true.",
-        "correct": false
-      }
+    },
+        {
+        "answer": "When the computed $p$-value is greater than specified significance threshold.",
+        "correct": false,
+        "feedback": "Incorrect. In this case, we  would fail to reject the null hypothesis."
+    },
+
+        {
+        "answer": "When the test statistic is less than the significance threshold.",
+        "correct": false,
+        "feedback": "Incorrect. The test statistic is not what is compared to the signficance threshold."
+    },
+        {
+        "answer": "When a sample value of the test statistic exceeds the observed value of the test statistic.",
+        "correct": false,
+        "feedback": "Incorrect. When conducting a statistical test via resampling, we may compare the sample value of a test statistic to the observed value, and that affects the computed $p$-value. However, it does not cause the null hypothesis to be rejected directly."
+    }
     ]
+  },
+    {
+      "question": "When is the null hypothesis accepted?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "When the computed $p$-value is greater than specified significance threshold.",
+          "correct": false,
+          "feedback": "Incorrect. An NHST is conducted under the assumption that the null hypothesis is true, so we can never accept the null hypothesis. We can only fail to reject it."
+      },
+          {
+          "answer": "When the computed $p$-value is less than the specified significance threshold.",
+          "correct": false,
+          "feedback": "Incorrect. In this case, we would <b>reject</b> the null hypothesis."
+      },
+          {
+          "answer": "When the test statistic is greater than the significance threshold.",
+          "correct": false,
+          "feedback": "Incorrect. An NHST is conducted under the assumption that the null hypothesis is true, so we can never accept the null hypothesis. We can only fail to reject it."
+      },
+          {
+          "answer": "When a sample value of the test statistic exceeds the observed value of the test statistic.",
+          "correct": false,
+          "feedback": "Incorrect. An NHST is conducted under the assumption that the null hypothesis is true, so we can never accept the null hypothesis. We can only fail to reject it."
+      }
+      ]
   },
    {
     "question": "What is the significance level?",
