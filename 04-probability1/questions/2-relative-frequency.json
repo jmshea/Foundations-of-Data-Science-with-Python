@@ -1,0 +1,194 @@
+[
+    {
+    "question": "Given the data set $[1,2,6,1,4]$, find the relative frequency of the outcome 1.",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.4, 
+        "correct": true,
+        "feedback": "Correct. The value 1 appears 2 times out of the five total outcomes, so the relative frequency is 2/5 = 0.4"
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Relative frequencies cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Relative frequencies cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+},{
+    "question": "Given the data set $[1,2,6,1,4]$, find the relative frequency of the outcome 2.",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.2, 
+        "correct": true,
+        "feedback": "Correct. The value 2 appears 1 times out of the five total outcomes, so the relative frequency is 1/5 = 0.2"
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Relative frequencies cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Relative frequencies cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+},
+    {
+    "question": "Given the data set $[1,2,6,1,4]$, find the relative frequency of the outcome 3.",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0, 
+        "correct": true,
+        "feedback": "Correct. The value 3 appears 0 times out of the five total outcomes, so the relative frequency is 0/5 = 0"
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Relative frequencies cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Relative frequencies cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+},
+    {
+    "question": "Given the data set $[1,2,6,1,4]$, find the relative frequency of the outcome 4.",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.2, 
+        "correct": true,
+        "feedback": "Correct. The value 4 appears 1 times out of the five total outcomes, so the relative frequency is 1/5 = 0.2"
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Relative frequencies cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Relative frequencies cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+},
+    {
+    "question": "If an experiment possess statistical regularity, the relative frequency of an outcome will converge to the:",
+    "type": "many_choice",
+    "answers": [
+      {
+        "answer": "The probability of the outcome",
+        "correct": true
+      },
+      {
+        "answer": "The mean value of the outcome",
+          "correct": false
+      },
+      {
+        "answer": "The total number of experiments",
+        "correct": false
+      },
+        {
+          "answer": "The value of the outcome",
+          "correct": false
+      }
+    ]
+  },
+    {
+      "question": "Which of the following are reasons <b>not</b> to define the probabilities of the outcomes of an experiment as the limit of the relative frequencies?",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "The limits are not well defined",
+          "correct": true
+      },
+          {
+          "answer": "Not all experiments possess statistical regularity",
+          "correct": true
+      },
+          {
+          "answer": "Even for an experiment that possesses statistical regularity, the relative frequencies may not converge to the probabilities.",
+          "correct": false,
+          "feedback": "Statistical regularity requires the relative frequencies to converge to the probabilities."
+      },
+          {
+          "answer": "Some experiments cannot be repeated without great difficulty or expense",
+          "correct": true
+      },
+          {
+          "answer": "Even for an experiment that possesses statistical regularity, the number of trials required to estimate a probability to some specified precision is not clear",
+          "correct": true
+      }
+      ],
+      "answer_cols": 1
+  },
+  {
+      "question": "Can the following be a sample space: $S=\\{ \\mbox{sunny}, \\mbox{partly cloudy}, \\mbox{cloudy} \\}$?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Yes",
+          "correct": true,
+          "feedback": "Correct. The sample space can contain the outcomes for any random experiment, such as how sunny tomorrow will be."
+      },
+          {
+          "answer": "No",
+          "correct": false
+      }
+      ]
+  },
+    {
+      "question": "Which of the following types of mathematical object can be a sample space?",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "set",
+          "correct": true,
+          "feedback": "Correct. The sample space is the <b>set</b> of all outcomes."
+      },
+          {
+          "answer": "vector",
+          "correct": false
+      },
+          {
+          "answer": "function",
+          "correct": false
+      },
+          {
+          "answer": "real number",
+          "correct": false
+      }
+
+      ]
+  }
+]
