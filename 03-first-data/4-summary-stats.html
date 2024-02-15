@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/03-first-data/4-summary-stats.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Here is the code to generate Figures 3.1 and 3.2 in Foundations of Data Science with Python: Self-Assessment: The following questions can be used to check your understanding of the material covered..." />
+<meta property="og:description" content="Self-Assessment: The following questions can be used to check your understanding of the material covered in this chapter:~~ \!\! Terminology Review Use the flashcards below to help you review the t..." />
 <meta property="og:image" content="https://www.fdsp.net/intro/cover-larger.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Here is the code to generate Figures 3.1 and 3.2 in Foundations of Data Science with Python: Self-Assessment: The following questions can be used to check your understanding of the material covered..." />
+<meta name="description" content="Self-Assessment: The following questions can be used to check your understanding of the material covered in this chapter:~~ \!\! Terminology Review Use the flashcards below to help you review the t..." />
 
     <title>3.4. Summary Statistics &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -444,7 +444,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -460,6 +462,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-for-figures">3.4.1. Code for Figures</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -471,132 +481,19 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="summary-statistics">
 <h1><span class="section-number">3.4. </span>Summary Statistics<a class="headerlink" href="#summary-statistics" title="Permalink to this heading">#</a></h1>
-<p>Here is the code to generate Figures 3.1 and 3.2 in Foundations of Data Science with Python:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For clarity, store the different error metrics in different variables.</span>
-<span class="c1"># Initialize them here</span>
-<span class="n">sum_errors</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">num_nonzero_errors</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">sum_abs_errors</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">sum_square_errors</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="n">nus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">6.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> 
-<span class="n">D</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-
-<span class="c1"># Calculate the error metrics</span>
-<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">D</span><span class="p">:</span>
-    <span class="n">sum_errors</span> <span class="o">+=</span> <span class="n">d</span> <span class="o">-</span> <span class="n">nus</span>
-    <span class="n">num_nonzero_errors</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">d</span> <span class="o">-</span> <span class="n">nus</span><span class="p">),</span><span class="mi">10</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
-    <span class="n">sum_abs_errors</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="n">nus</span><span class="p">)</span>
-    <span class="n">sum_square_errors</span> <span class="o">+=</span> <span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="n">nus</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
-
-<span class="c1"># Plot the error metrics as a function of the summary statistic, v</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">sum_square_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sum of squared errors&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">sum_abs_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sum of absolute errors&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">num_nonzero_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;No. of nonzero errors&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">sum_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sum of errors&quot;</span><span class="p">)</span>
-
-<span class="c1"># Plot the data as markers</span>
-<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="c1"># Plot the repeated value at -1 as a second marker:</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span> <span class="o">+</span> <span class="mi">7</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Summary statistic, ν&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error function value&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/367c1d596274035bc4ff15760f14f6b39c5bd2ba88a3c73929329b5c139fe345.png" src="../_images/367c1d596274035bc4ff15760f14f6b39c5bd2ba88a3c73929329b5c139fe345.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nu_e</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">sum_errors</span><span class="p">)]</span>
-<span class="n">nu_0</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">num_nonzero_errors</span><span class="p">)]</span>
-<span class="n">nu_1</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">sum_abs_errors</span><span class="p">)]</span>
-<span class="n">nu_2</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">sum_square_errors</span><span class="p">)]</span>
-
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;         Metric         |     Minimizing value of nu&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;____________________________________________________&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;Sum of errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_e</span><span class="p">)</span><span class="si">:</span><span class="s1">^30</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;No. nonzero errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_0</span><span class="p">)</span><span class="si">:</span><span class="s1">^29</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;Sum of abs errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_1</span><span class="p">)</span><span class="si">:</span><span class="s1">^30</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;Sum of squared errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_2</span><span class="p">)</span><span class="si">:</span><span class="s1">^30</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Metric         |     Minimizing value of nu
-____________________________________________________
-     Sum of errors      |             6.0              
-   No. nonzero errors   |            -1.0             
-   Sum of abs errors    |             0.0              
- Sum of squared errors  |             1.0              
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">6.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> 
-<span class="n">D</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="c1"># For clarity, store the different error metrics in different variables.</span>
-<span class="c1"># Initialize them here</span>
-<span class="n">num_nonzero_errors</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">sum_abs_errors</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="c1"># Calculate the error metrics</span>
-<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">D</span><span class="p">:</span>
-    <span class="n">num_nonzero_errors</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">d</span> <span class="o">-</span> <span class="n">nus</span><span class="p">),</span><span class="mi">10</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
-    <span class="n">sum_abs_errors</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="n">nus</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">num_nonzero_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;No. of nonzero errors&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span> <span class="s1">&#39;C2&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">sum_abs_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sum of absolute errors&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">)</span>
-
-<span class="c1"># Plot the data as markers</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
-<span class="n">ymin</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="c1"># Plot the repeated value at -1 as a second marker:</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span> <span class="o">+</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-
-
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Summary statistic, ν&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error function value&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/d87ee2bf168711c5176e268fd5fb62ec8e4532986fe9bc5db28422c2dfa914d5.png" src="../_images/d87ee2bf168711c5176e268fd5fb62ec8e4532986fe9bc5db28422c2dfa914d5.png" />
-</div>
-</div>
 <p><strong>Self-Assessment:</strong></p>
 <p>The following questions can be used to check your understanding of the material covered in this chapter: <span class="math notranslate nohighlight">\(~~ \!\!\)</span></p>
 <div class="cell tag_remove-input docutils container">
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="ovhwRHFmLGip" data-shufflequestions="False"
+<div class="output text_html"><div id="UiTfnYiqVvys" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#ovhwRHFmLGip {
+#UiTfnYiqVvys {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -785,7 +682,7 @@ ____________________________________________________
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsovhwRHFmLGip=[
+</style></div><script type="application/javascript">var questionsUiTfnYiqVvys=[
   {
     "question": "What are summary statistics?",
     "type": "multiple_choice",
@@ -892,267 +789,7 @@ ____________________________________________________
           "feedback": "Correct. Because the median returns a value in the middle of the dataset, it is not significantly affected by the particular values of outliers."
       }
       ]
-  },
-    {
-      "question": "Find the median of the data set $[4, 5, 3, 4, 4]$. ",
-      "type": "numeric",
-      "answers": [
-          {
-          "type": "value",
-          "value": 4, 
-          "correct": true,
-          "feedback": "Correct. The sorted data is $[3,4,4,4,5]$, so the middle value is 4."
-      },
-          {
-          "type": "value",
-          "value": 3,
-          "correct": false,
-          "feedback": "Incorrect. Although 3 is the middle value of the data as displayed in the question, the median is the middle value of the sorted data."
-      },
-          {
-          "range": [ -100000000, 2.9999], 
-          "correct": false,
-          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-          {
-          "range": [ 5.000000001, 100000000], 
-          "correct": false,
-          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-
-          {
-          "type": "default",
-          "feedback": "Incorrect."
-      }
-      ]
-},
-    {
-      "question": "Find the mode of the data set $[4, 5, 3, 4, 4]$. ",
-      "type": "numeric",
-      "answers": [
-          {
-          "type": "value",
-          "value": 4, 
-          "correct": true,
-          "feedback": "Correct. The value 4 appears 3 times, whereas the other data values only appear 1 time each."
-      },
-                    {
-          "range": [ -100000000, 2.9999], 
-          "correct": false,
-          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-          {
-          "range": [ 5.000000001, 100000000], 
-          "correct": false,
-          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-
-          {
-          "type": "default",
-          "feedback": "Incorrect."
-      }
-      ]
-},
-    {
-    "question": "Find the average (sample mean) of the data set $[4, 5, 3, 4, 4]$. ",
-    "type": "numeric",
-    "answers": [
-        {
-        "type": "value",
-        "value": 4, 
-        "correct": true,
-        "feedback": "Correct."
-    },
-        {
-        "range": [ -100000000, 2.9999], 
-        "correct": false,
-        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
-    },
-        {
-        "range": [ 5.000000001, 100000000], 
-        "correct": false,
-        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
-    },
-
-        {
-        "type": "default",
-        "feedback": "Incorrect."
-    }
-    ]
-},
-    {
-      "question": "Find the median of the data set $[4, 1, 2, 7, 1]$. ",
-      "type": "numeric",
-      "answers": [
-          {
-          "type": "value",
-          "value": 2, 
-          "correct": true,
-          "feedback": "Correct. The sorted data is $[1,1,2,4,7]$, so the middle value is 2."
-      },
-          {
-          "type": "value",
-          "value": 2,
-          "correct": false,
-          "feedback": "Incorrect. Although 2 is the middle value of the data as displayed in the question, the median is the middle value of the sorted data."
-      },
-          {
-          "range": [ -100000000, 0.9999], 
-          "correct": false,
-          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-          {
-          "range": [ 7.000000001, 100000000], 
-          "correct": false,
-          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-
-          {
-          "type": "default",
-          "feedback": "Incorrect."
-      }
-      ]
-},
-    {
-    "question": "Find the mode of the data set $[4, 1, 2, 7, 1]$.",
-      "type": "numeric",
-      "answers": [
-          {
-          "type": "value",
-          "value": 1, 
-          "correct": true,
-          "feedback": "Correct. The value 1 appears 2 times, whereas the other data values only appear 1 time each."
-      },
-                    {
-          "range": [ -100000000, 0.9999], 
-          "correct": false,
-          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-          {
-          "range": [ 7.000000001, 100000000], 
-          "correct": false,
-          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-
-          {
-          "type": "default",
-          "feedback": "Incorrect."
-      }
-      ]
-},
-    {
-    "question": "Find the average (sample mean) of the data set $[4, 1, 2, 7, 1]$. ",
-    "type": "numeric",
-    "answers": [
-        {
-        "type": "value",
-        "value": 3, 
-        "correct": true,
-        "feedback": "Correct."
-    },
-        {
-        "range": [ -100000000, 0.9999], 
-        "correct": false,
-        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
-    },
-        {
-        "range": [ 7.000000001, 100000000], 
-        "correct": false,
-        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
-    },
-
-        {
-        "type": "default",
-        "feedback": "Incorrect."
-    }
-    ]
-},
-    {
-    "question": "Find the median of the data set $[1, 4, 2, 1, 7, 3]$. Since there is an even number of data points, calculate the median as the average of the middle two data points.",
-      "type": "numeric",
-      "answers": [
-          {
-          "type": "value",
-          "value": 2.5, 
-          "correct": true,
-          "feedback": "Correct. The sorted data is $[1,1,2,4,7]$, so the middle value is 2."
-      },
-          {
-          "type": "value",
-          "value": 2,
-          "correct": false,
-          "feedback": "Incorrect. Although 2 is the middle value of the data as displayed in the question, the median is the middle value of the sorted data."
-      },
-          {
-          "range": [ -100000000, 0.9999], 
-          "correct": false,
-          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-          {
-          "range": [ 7.000000001, 100000000], 
-          "correct": false,
-          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-          {
-          "type": "default",
-          "feedback": "Incorrect."
-      }
-      ]
-},
-    {
-    "question": "Find the mode of the data set $[1, 4, 2, 1, 7, 3]$.",
-      "type": "numeric",
-      "answers": [
-          {
-          "type": "value",
-          "value": 1, 
-          "correct": true,
-          "feedback": "Correct. The value 1 appears 2 times, whereas the other data values only appear 1 time each."
-      },
-                    {
-          "range": [ -100000000, 0.9999], 
-          "correct": false,
-          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-          {
-          "range": [ 7.000000001, 100000000], 
-          "correct": false,
-          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
-      },
-
-          {
-          "type": "default",
-          "feedback": "Incorrect."
-      }
-      ]
-},
-    {
-    "question": "Find the average (sample mean) of the data set $[1, 4, 2, 1, 7, 3]$. ",
-    "type": "numeric",
-    "answers": [
-        {
-        "type": "value",
-        "value": 3, 
-        "correct": true,
-        "feedback": "Correct."
-    },
-        {
-        "range": [ -100000000, 0.9999], 
-        "correct": false,
-        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
-    },
-        {
-        "range": [ 7.000000001, 100000000], 
-        "correct": false,
-        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
-    },
-
-        {
-        "type": "default",
-        "feedback": "Incorrect."
-    }
-    ]
-}
+  }
 ]
 ;
     // Make a random ID
@@ -1941,8 +1578,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("ovhwRHFmLGip")) {
-            show_questions(questionsovhwRHFmLGip,  ovhwRHFmLGip); 
+          if(document.getElementById("UiTfnYiqVvys")) {
+            show_questions(questionsUiTfnYiqVvys,  UiTfnYiqVvys); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1957,10 +1594,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/4-summary-stats.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, ovhwRHFmLGip))
+        .then(json => show_questions(json, UiTfnYiqVvys))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsovhwRHFmLGip, ovhwRHFmLGip);
+        show_questions(questionsUiTfnYiqVvys, UiTfnYiqVvys);
         });
         }
         </script></div>
@@ -2224,7 +1861,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="tUKRTgZGvKGP" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="tUKRTgZGvKGP-next" onclick="window.checkFlip('tUKRTgZGvKGP')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="snvGIBPpJWvE" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="snvGIBPpJWvE-next" onclick="window.checkFlip('snvGIBPpJWvE')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2615,14 +2252,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("tUKRTgZGvKGP")) {
-            createCards("tUKRTgZGvKGP", "True", "False");
+          if(document.getElementById("snvGIBPpJWvE")) {
+            createCards("snvGIBPpJWvE", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardstUKRTgZGvKGP=[
+var cardssnvGIBPpJWvE=[
     {
         "front": "summary statistic",
         "back": "A numerical value calculated from data that measures some characteristic of the data."
@@ -2641,9 +2278,9 @@ var cardstUKRTgZGvKGP=[
     }
 ]
 ;
-var frontColorstUKRTgZGvKGP= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorstUKRTgZGvKGP= ["var(--dark-blue-gray)" ];
-var textColorstUKRTgZGvKGP= ["var(--snow)" ];
+var frontColorssnvGIBPpJWvE= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorssnvGIBPpJWvE= ["var(--dark-blue-gray)" ];
+var textColorssnvGIBPpJWvE= ["var(--snow)" ];
 
 
         {
@@ -2654,7 +2291,7 @@ var textColorstUKRTgZGvKGP= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/flashcards/summary-stats.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("tUKRTgZGvKGP", "True", "False"))
+        .then(json => createCards("snvGIBPpJWvE", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -2662,6 +2299,122 @@ var textColorstUKRTgZGvKGP= ["var(--snow)" ];
         }
         </script></div>
 </div>
+<section id="code-for-figures">
+<h2><span class="section-number">3.4.1. </span>Code for Figures<a class="headerlink" href="#code-for-figures" title="Permalink to this heading">#</a></h2>
+<p>Here is the code to generate Figures 3.1 and 3.2 in Foundations of Data Science with Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For clarity, store the different error metrics in different variables.</span>
+<span class="c1"># Initialize them here</span>
+<span class="n">sum_errors</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">num_nonzero_errors</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">sum_abs_errors</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">sum_square_errors</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">nus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">6.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> 
+<span class="n">D</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># Calculate the error metrics</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">D</span><span class="p">:</span>
+    <span class="n">sum_errors</span> <span class="o">+=</span> <span class="n">d</span> <span class="o">-</span> <span class="n">nus</span>
+    <span class="n">num_nonzero_errors</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">d</span> <span class="o">-</span> <span class="n">nus</span><span class="p">),</span><span class="mi">10</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">sum_abs_errors</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="n">nus</span><span class="p">)</span>
+    <span class="n">sum_square_errors</span> <span class="o">+=</span> <span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="n">nus</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="c1"># Plot the error metrics as a function of the summary statistic, v</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">sum_square_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sum of squared errors&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">sum_abs_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sum of absolute errors&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">num_nonzero_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;No. of nonzero errors&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">sum_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sum of errors&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot the data as markers</span>
+<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="c1"># Plot the repeated value at -1 as a second marker:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span> <span class="o">+</span> <span class="mi">7</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Summary statistic, ν&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error function value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/367c1d596274035bc4ff15760f14f6b39c5bd2ba88a3c73929329b5c139fe345.png" src="../_images/367c1d596274035bc4ff15760f14f6b39c5bd2ba88a3c73929329b5c139fe345.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nu_e</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">sum_errors</span><span class="p">)]</span>
+<span class="n">nu_0</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">num_nonzero_errors</span><span class="p">)]</span>
+<span class="n">nu_1</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">sum_abs_errors</span><span class="p">)]</span>
+<span class="n">nu_2</span> <span class="o">=</span> <span class="n">nus</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">sum_square_errors</span><span class="p">)]</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;         Metric         |     Minimizing value of nu&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;____________________________________________________&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;Sum of errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_e</span><span class="p">)</span><span class="si">:</span><span class="s1">^30</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;No. nonzero errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_0</span><span class="p">)</span><span class="si">:</span><span class="s1">^29</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;Sum of abs errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_1</span><span class="p">)</span><span class="si">:</span><span class="s1">^30</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;Sum of squared errors&quot;</span><span class="si">:</span><span class="s1"> ^24s</span><span class="si">}</span><span class="s1">|</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">nu_2</span><span class="p">)</span><span class="si">:</span><span class="s1">^30</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Metric         |     Minimizing value of nu
+____________________________________________________
+     Sum of errors      |             6.0              
+   No. nonzero errors   |            -1.0             
+   Sum of abs errors    |             0.0              
+ Sum of squared errors  |             1.0              
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">6.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> 
+<span class="n">D</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="c1"># For clarity, store the different error metrics in different variables.</span>
+<span class="c1"># Initialize them here</span>
+<span class="n">num_nonzero_errors</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">sum_abs_errors</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Calculate the error metrics</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">D</span><span class="p">:</span>
+    <span class="n">num_nonzero_errors</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="n">d</span> <span class="o">-</span> <span class="n">nus</span><span class="p">),</span><span class="mi">10</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">sum_abs_errors</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="n">nus</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">num_nonzero_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;No. of nonzero errors&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span> <span class="s1">&#39;C2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nus</span><span class="p">,</span> <span class="n">sum_abs_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sum of absolute errors&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot the data as markers</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="c1"># Plot the repeated value at -1 as a second marker:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span> <span class="o">+</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Summary statistic, ν&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error function value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d87ee2bf168711c5176e268fd5fb62ec8e4532986fe9bc5db28422c2dfa914d5.png" src="../_images/d87ee2bf168711c5176e268fd5fb62ec8e4532986fe9bc5db28422c2dfa914d5.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2718,6 +2471,20 @@ var textColorstUKRTgZGvKGP= ["var(--snow)" ];
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-for-figures">3.4.1. Code for Figures</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
