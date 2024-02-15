@@ -6,7 +6,7 @@
       {
         "code": "df.loc['state']",
         "correct": false,
-        "feedback": "df.loc is used to index into the rows. "
+        "feedback": "<code>df.loc</code> is used to index into the rows. "
       },
       {
           "code": "df[state]",
@@ -25,7 +25,7 @@
     ]
 },
     {
-    "question": "If <code>df</code> is a Pandas dataframe with a columns named \"city\" and \"state\", which of these commands will return a dataframe that contains just those two columns?",
+"question": "If <code>df</code> is a Pandas dataframe with a columns named \"city\" and \"state\", which of these commands will return a dataframe that contains just those two columns?",
     "type": "multiple_choice",
     "answers": [
       {
@@ -46,7 +46,7 @@
       {
           "code": "df.loc[ ['city', 'state'] ]",
           "correct": false,
-          "feedback": "Incorrect. df.loc is for indexing by rows"
+          "feedback": "Incorrect. <code>df.loc</code> is for indexing by rows"
       }
     ],
     "answer_cols": 1
@@ -59,15 +59,15 @@
       {
         "answer": "The returned dataframe is now indexed by \"state\". The index of df is unchanged.",
         "correct": true,
-        "feedback": "Correct. This command does not change the index of the df dataframe. You can instead change the index of the dataframe stored in df by using the inplace=True keyword argument."
+        "feedback": "Correct. This command does not change the index of the <code>df</code> dataframe. You can instead change the index of the dataframe stored in <code>df</code> by using the <code>inplace=True</code> keyword argument."
       },
       {
-          "answer": "The index of df is changed to \"state\". There is no returned value.",
+          "answer": "The index of <code>df</code> is changed to \"state\". There is no returned value.",
           "correct": false,
           "feedback": "Incorrect. Try again."
       },
       {
-          "answer": "The index of df is changed to \"state\" and the new dataframe is returned.",
+          "answer": "The index of <code>df</code> is changed to \"state\" and the new dataframe is returned.",
           "correct": false,
           "feedback": "Incorrect. Try again."
       },
