@@ -1,0 +1,67 @@
+[
+  {
+    "question": "If Matplotlib.pyplot has been imported as <code>plt</code>, which of these can be used to specify that the label for the $x$ axis of the current graph should be \"index\"?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "code": "plt.labelx('index')",
+        "correct": false,
+        "feedback": ""
+    },
+       {
+        "code": "plt.xlabel('index')",
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "code": "plt.xtitle('index')",
+        "correct": false,
+        "feedback": "Incorrect. There is a <code>plt.title()</code> function, but it is used for setting the title of the plot."
+    },
+        {
+        "code": "plt['xlabel']='index'",
+        "correct": false,
+        "feedback": "Incorrect. Although the label of the $x$-axis is a property of the graph, it cannot be accessed through indexing like this."
+    }
+    ],
+    "answer_cols": 1
+},
+    {
+    "question": "Which of these Matplotlib functions can be used to add information about which visual indicators (like color or marker) in your plot correspond to which data?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "code": "plt.legend()",
+        "correct": true,
+        "feedback": "Correct."
+      },
+      {
+          "code": "plt.guide()",
+          "correct": false
+      },
+      {
+          "code": "plt.add_legend()",
+          "correct": false
+      },
+      {
+          "code": "plt.add_guide()",
+          "correct": false
+      }
+    ]
+},
+    {
+    "question": "Which type of plot is better for identifying outliers?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "code": "Histogram",
+        "correct": false,
+        "feedback": "Incorrect. Histograms do not show all of the data points and so can hide outliers."
+      },
+      {
+          "code": "Scatter Plot",
+          "correct": true
+      }
+    ]
+  }
+]
