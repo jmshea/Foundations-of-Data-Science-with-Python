@@ -68,5 +68,24 @@
           "correct": false
       }
       ]
+  },
+    {
+      "question": "Which of the following types of mathematical object can be a sample space?",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "set",
+          "correct": true,
+          "feedback": "Correct. The sample space is the <b>set</b> of all outcomes."
+      },
+          {
+          "answer": "vector",
+          "correct": false
+      },
+          {
+          "answer": "function",
+          "correct": false
+      }
+      ]
   }
 ]
