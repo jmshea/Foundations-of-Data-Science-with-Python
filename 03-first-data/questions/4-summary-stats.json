@@ -105,5 +105,265 @@
           "feedback": "Correct. Because the median returns a value in the middle of the dataset, it is not significantly affected by the particular values of outliers."
       }
       ]
-  }
+  },
+    {
+      "question": "Find the median of the data set $[4, 5, 3, 4, 4]$. ",
+      "type": "numeric",
+      "answers": [
+          {
+          "type": "value",
+          "value": 4, 
+          "correct": true,
+          "feedback": "Correct. The sorted data is $[3,4,4,4,5]$, so the middle value is 4."
+      },
+          {
+          "type": "value",
+          "value": 3,
+          "correct": false,
+          "feedback": "Incorrect. Although 3 is the middle value of the data as displayed in the question, the median is the middle value of the sorted data."
+      },
+          {
+          "range": [ -100000000, 2.9999], 
+          "correct": false,
+          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+          {
+          "range": [ 5.000000001, 100000000], 
+          "correct": false,
+          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+
+          {
+          "type": "default",
+          "feedback": "Incorrect."
+      }
+      ]
+},
+    {
+      "question": "Find the mode of the data set $[4, 5, 3, 4, 4]$. ",
+      "type": "numeric",
+      "answers": [
+          {
+          "type": "value",
+          "value": 4, 
+          "correct": true,
+          "feedback": "Correct. The value 4 appears 3 times, whereas the other data values only appear 1 time each."
+      },
+                    {
+          "range": [ -100000000, 2.9999], 
+          "correct": false,
+          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+          {
+          "range": [ 5.000000001, 100000000], 
+          "correct": false,
+          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+
+          {
+          "type": "default",
+          "feedback": "Incorrect."
+      }
+      ]
+},
+    {
+    "question": "Find the average (sample mean) of the data set $[4, 5, 3, 4, 4]$. ",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 4, 
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "range": [ -100000000, 2.9999], 
+        "correct": false,
+        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
+    },
+        {
+        "range": [ 5.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
+    },
+
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+},
+    {
+      "question": "Find the median of the data set $[4, 1, 2, 7, 1]$. ",
+      "type": "numeric",
+      "answers": [
+          {
+          "type": "value",
+          "value": 2, 
+          "correct": true,
+          "feedback": "Correct. The sorted data is $[1,1,2,4,7]$, so the middle value is 2."
+      },
+          {
+          "type": "value",
+          "value": 2,
+          "correct": false,
+          "feedback": "Incorrect. Although 2 is the middle value of the data as displayed in the question, the median is the middle value of the sorted data."
+      },
+          {
+          "range": [ -100000000, 0.9999], 
+          "correct": false,
+          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+          {
+          "range": [ 7.000000001, 100000000], 
+          "correct": false,
+          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+
+          {
+          "type": "default",
+          "feedback": "Incorrect."
+      }
+      ]
+},
+    {
+    "question": "Find the mode of the data set $[4, 1, 2, 7, 1]$.",
+      "type": "numeric",
+      "answers": [
+          {
+          "type": "value",
+          "value": 1, 
+          "correct": true,
+          "feedback": "Correct. The value 1 appears 2 times, whereas the other data values only appear 1 time each."
+      },
+                    {
+          "range": [ -100000000, 0.9999], 
+          "correct": false,
+          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+          {
+          "range": [ 7.000000001, 100000000], 
+          "correct": false,
+          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+
+          {
+          "type": "default",
+          "feedback": "Incorrect."
+      }
+      ]
+},
+    {
+    "question": "Find the average (sample mean) of the data set $[4, 1, 2, 7, 1]$. ",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 3, 
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "range": [ -100000000, 0.9999], 
+        "correct": false,
+        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
+    },
+        {
+        "range": [ 7.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
+    },
+
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+},
+    {
+    "question": "Find the median of the data set $[1, 4, 2, 1, 7, 3]$. Since there is an even number of data points, calculate the median as the average of the middle two data points.",
+      "type": "numeric",
+      "answers": [
+          {
+          "type": "value",
+          "value": 2.5, 
+          "correct": true,
+          "feedback": "Correct. The sorted data is $[1,1,2,4,7]$, so the middle value is 2."
+      },
+          {
+          "type": "value",
+          "value": 2,
+          "correct": false,
+          "feedback": "Incorrect. Although 2 is the middle value of the data as displayed in the question, the median is the middle value of the sorted data."
+      },
+          {
+          "range": [ -100000000, 0.9999], 
+          "correct": false,
+          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+          {
+          "range": [ 7.000000001, 100000000], 
+          "correct": false,
+          "feedback": "Incorrect. The median will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+          {
+          "type": "default",
+          "feedback": "Incorrect."
+      }
+      ]
+},
+    {
+    "question": "Find the mode of the data set $[1, 4, 2, 1, 7, 3]$.",
+      "type": "numeric",
+      "answers": [
+          {
+          "type": "value",
+          "value": 1, 
+          "correct": true,
+          "feedback": "Correct. The value 1 appears 2 times, whereas the other data values only appear 1 time each."
+      },
+                    {
+          "range": [ -100000000, 0.9999], 
+          "correct": false,
+          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+          {
+          "range": [ 7.000000001, 100000000], 
+          "correct": false,
+          "feedback": "Incorrect. The mode will always be a value in the data set, or the average of the middle two values if there are an even number of data points."
+      },
+
+          {
+          "type": "default",
+          "feedback": "Incorrect."
+      }
+      ]
+},
+    {
+    "question": "Find the average (sample mean) of the data set $[1, 4, 2, 1, 7, 3]$. ",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 3, 
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "range": [ -100000000, 0.9999], 
+        "correct": false,
+        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
+    },
+        {
+        "range": [ 7.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Although the mean is not always a value in the data set, it will always be a value that lies between the minimum and maximum data values."
+    },
+
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+}
 ]
