@@ -17,26 +17,8 @@
       }
     ]
   },
-  {
-    "question": "What are the most common summary statistics?",
-    "type": "multiple_choice",
-    "answers": [
-      {
-        "answer": "Mean, median, mode, range, variance, and standard deviation",
-        "correct": true
-      },
-      {
-        "answer": "Histogram, scatter plot, box plot, and bar chart",
-        "correct": false
-      },
-      {
-        "answer": "Correlation, regression, and hypothesis testing",
-        "correct": false
-      }
-    ]
-  },
-  {
-    "question": "What is the mean?",
+    {
+    "question": "What is the sample mean?",
     "type": "multiple_choice",
     "answers": [
       {
@@ -48,7 +30,7 @@
         "correct": false
       },
       {
-        "answer": "The average value of a dataset",
+        "answer": "A value that minimizes the mean-squared error to the data",
         "correct": true
       }
     ]
@@ -58,7 +40,7 @@
     "type": "multiple_choice",
     "answers": [
       {
-        "answer": "The middle value of a dataset",
+        "answer": "A middle value of a dataset",
         "correct": true
       },
       {
@@ -66,7 +48,7 @@
         "correct": false
       },
       {
-        "answer": "The average value of a dataset",
+        "answer": "A value that minimizes the mean-squared error to the data",
         "correct": false
       }
     ]
@@ -80,67 +62,48 @@
         "correct": false
       },
       {
-        "answer": "The most common value in a dataset",
+        "answer": "A value that appears the most in a dataset",
         "correct": true
       },
       {
-        "answer": "The average value of a dataset",
+        "answer": "A value that minimizes the mean-squared error to the data",
         "correct": false
       }
     ]
   },
-  {
-    "question": "What is the range?",
-    "type": "multiple_choice",
-    "answers": [
-      {
-        "answer": "The difference between the maximum and minimum values in a dataset",
-        "correct": true
+    {
+      "question": "Which of these summary statistics always has a unique value for a given dataset?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "median",
+          "correct": false,
+          "feedback": "Incorrect. When the number of points in a dataset is even, there is not a single data value in the middle of the dataset. In this case, the value of the median can be defined in different ways."
       },
-      {
-        "answer": "The sum of all values in a dataset",
-        "correct": false
+          {
+          "answer": "mode",
+          "correct": false,
+          "feedback": "Incorrect. There may be multiple values that all occur the same number of times, and there is no unique mode in such a case."
       },
-      {
-        "answer": "The number of values in a dataset",
-        "correct": false
+          {
+          "answer": "mean",
+          "correct": true
       }
-    ]
-  },
-  {
-    "question": "What is the variance?",
-    "type": "multiple_choice",
-    "answers": [
-      {
-        "answer": "A measure of how spread out the data is",
-        "correct": true
+      ]
+  }, {
+      "question": "Which of these statistics is less sensitive to outliers?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "sample mean",
+          "correct": false,
+          "feedback": "Incorrect. The sample mean can change significantly in the presence of outliers."
       },
-      {
-        "answer": "The difference between the maximum and minimum values in a dataset",
-        "correct": false
-      },
-      {
-        "answer": "The middle value of a dataset",
-        "correct": false
+          {
+          "answer": "median",
+          "correct": true,
+          "feedback": "Correct. Because the median returns a value in the middle of the dataset, it is not significantly affected by the particular values of outliers."
       }
-    ]
-  },
-  {
-    "question": "What is the standard deviation?",
-    "type": "multiple_choice",
-    "answers": [
-      {
-        "answer": "The square root of the variance",
-        "correct": true
-      },
-      {
-        "answer": "The difference between the maximum and minimum values in a dataset",
-        "correct": false
-      },
-      {
-        "answer": "The middle value of a dataset",
-        "correct": false
-      }
-    ]
+      ]
   }
 ]
