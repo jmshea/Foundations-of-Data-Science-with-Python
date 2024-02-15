@@ -1,10 +1,14 @@
 [
     {
-        "front": "statistical hypothesis",
-        "back": "An explanation for phenomena observed in a data set that can be formally tested using the data."
-    },
+    "front": "test statistic",
+    "back": "A single numerical value that can be used in a statistical test."
+},
     {
-        "front": "binary hypothesis test ",
+    "front": "statistical hypothesis",
+    "back": "An explanation for phenomena observed in a data set that can be formally tested using the data."
+},
+    {
+    "front": "binary hypothesis test ",
         "back": "A statistical test that decides between two competing statistical hypotheses."
     },
     {
