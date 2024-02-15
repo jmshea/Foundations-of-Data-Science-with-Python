@@ -487,19 +487,19 @@ document.write(`
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="THZEqRQZxEvJ" data-shufflequestions="False"
+<div class="output text_html"><div id="LUCexzzdChHb" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#THZEqRQZxEvJ {
+#LUCexzzdChHb {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
    --jq-mc-button-inset-shadow: #555555;
    --jq-many-choice-bg: #e26d5a;
-   --Jq-numeric-bg: #5bc0eb;
+   --jq-numeric-bg: #5bc0eb;
    --jq-numeric-input-bg: #c0c0c0;
    --jq-numeric-input-label: #101010;
    --jq-numeric-input-shadow: #999999;
@@ -532,12 +532,30 @@ document.write(`
     padding: 4px;
 }
 
+.Quiz code {
+    background-color: lightgray;
+    color: black;
+}
+
+.Quiz .QuizCode code {
+    background-color: inherit;
+    color: inherit;
+}
+
+
+.Quiz .MCButton code {
+    background-color: inherit;
+    color: inherit;
+}
+
+
+
 .Answer {
-    margin: 10px 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
     border-radius: inherit;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px 0;
 }
 
 .Feedback {
@@ -570,7 +588,7 @@ document.write(`
 }
 
 .Input-text:focus {
-    outline: none;
+    /*outline: none;*/
     background-color: var(--jq-numeric-input-bg);
     box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
 }
@@ -579,6 +597,7 @@ document.write(`
     background: var(--jq-mc-button-bg);
     border: 1px solid var(--jq-mc-button-border);
     border-radius: inherit;
+    color: #333333;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
@@ -607,10 +626,10 @@ document.write(`
 }
 
 .NumericQn {
-    padding: 10px;
     background: var(--jq-numeric-bg);
-    color: var(--jq-text-color);
     border-radius: inherit;
+    color: var(--jq-text-color);
+    padding: 10px;
 }
 
 .NumericQn p {
@@ -618,11 +637,11 @@ document.write(`
 }
 
 .InpLabel {
-    line-height: 34px;
-    float: left;
-    margin-right: 10px;
     color: var(--jq-numeric-input-label);
+    float: left;
     font-size: 15pt;
+    line-height: 34px;
+    margin-right: 10px;
 }
 
 .incorrect {
@@ -639,17 +658,17 @@ document.write(`
    */
     animation: correct-anim 0.6s ease;
     animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
+    /*outline: none;*/
 }
 
 .incorrectButton {
     animation: incorrect-anim 0.8s ease;
     animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
+    /*outline: none;*/
 }
 
 @keyframes incorrect-anim {
@@ -663,7 +682,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsTHZEqRQZxEvJ=[
+</style></div><script type="application/javascript">var questionsLUCexzzdChHb=[
   {
     "question": "Suppose sets $A$ and $B$ are non-empty subsets of some sample space $S$. If $A$ and $B$ are disjoint, which of the following are true?",
     "type": "many_choice",
@@ -848,9 +867,9 @@ function check_mc() {
         if (label.dataset.correct == "true") {
             // console.log("Correct action");
             if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
+                fb.innerHTML = jaxify(label.dataset.feedback);
             } else {
-                fb.textContent = "Correct!";
+                fb.innerHTML = "Correct!";
             }
             label.classList.add("correctButton");
 
@@ -859,9 +878,9 @@ function check_mc() {
 
         } else {
             if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
+                fb.innerHTML = jaxify(label.dataset.feedback);
             } else {
-                fb.textContent = "Incorrect -- try again.";
+                fb.innerHTML = "Incorrect -- try again.";
             }
             //console.log("Error action");
             label.classList.add("incorrectButton");
@@ -1076,9 +1095,7 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            // console.log("1:", submission)
-            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
-            // console.log("Rounded to ", submission, " precision=", precision  );
+            submission = Number(Number(submission).toPrecision(precision));
         }
 
 
@@ -1114,11 +1131,12 @@ function check_numeric(ths, event) {
                 }
                 // } else if (answer.type=="range") {
             } else if ('range' in answer) {
-                //console.log(answer.range);
+                console.log(answer.range);
+                console.log(submission, submission >=answer.range[0], submission < answer.range[1])
                 if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
                     fb.textContent = jaxify(answer.feedback);
                     correct = answer.correct;
-                    //console.log(answer.correct);
+                    console.log(answer.correct);
                     done = true;
                 }
             } else if (answer.type == "default") {
@@ -1130,6 +1148,7 @@ function check_numeric(ths, event) {
                 return true; // Keep looking for case that includes this as a correct answer
             }
         });
+        console.log("done:", done);
 
         if ((!done) && (defaultFB != "")) {
             fb.innerHTML = jaxify(defaultFB);
@@ -1471,7 +1490,26 @@ function show_questions(json, mydiv) {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             }
         }, 500);
 if (typeof version == 'undefined') {
@@ -1480,7 +1518,26 @@ if (typeof version == 'undefined') {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                MathJax.typeset([mydiv]);
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
             } else {
                 console.log("MathJax not found");
             }
@@ -1496,8 +1553,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("THZEqRQZxEvJ")) {
-            show_questions(questionsTHZEqRQZxEvJ,  THZEqRQZxEvJ); 
+          if(document.getElementById("LUCexzzdChHb")) {
+            show_questions(questionsLUCexzzdChHb,  LUCexzzdChHb); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1510,12 +1567,12 @@ if (typeof version == 'undefined') {
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/partitions.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/3-partitions.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, THZEqRQZxEvJ))
+        .then(json => show_questions(json, LUCexzzdChHb))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsTHZEqRQZxEvJ, THZEqRQZxEvJ);
+        show_questions(questionsLUCexzzdChHb, LUCexzzdChHb);
         });
         }
         </script></div>
@@ -1679,7 +1736,7 @@ if (typeof version == 'undefined') {
     font-size: 1.5em;
     /*left:90%; */
     margin-left: 70%;
-    width: 100pt;
+    width: 55pt;
     height: 22pt;
     opacity:0.3;
     position:relative; 
@@ -1723,7 +1780,7 @@ if (typeof version == 'undefined') {
 
     .flip-container, .front, .back {
 	      height: 300px;
-	      width: 640px;
+	      width: min(95%, 640px);
     }
 
     .flipper {
@@ -1737,9 +1794,9 @@ if (typeof version == 'undefined') {
 
     .next {
         font-size: 16pt;
-        left:438pt;
+        left:min(80%, 450pt);
         margin-left: 0;
-        width: 100pt;
+        width: 55pt;
         height: 22pt;
         top:-0.5em;
     }
@@ -1780,7 +1837,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="HhwnYSZOAqQi" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="HhwnYSZOAqQi-next" onclick="window.checkFlip('HhwnYSZOAqQi')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="jsYIRAwufnRJ" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="jsYIRAwufnRJ-next" onclick="window.checkFlip('jsYIRAwufnRJ')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2087,6 +2144,26 @@ function createCards(id, keyControl, grabFocus) {
                     if (version[0] == "2") {
                         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                     } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
                         MathJax.typeset([flipper]);
                     }
                 }, 500);
@@ -2095,7 +2172,31 @@ function createCards(id, keyControl, grabFocus) {
                 if (version[0] == "2") {
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 } else if (version[0] == "3") {
-                    MathJax.typeset([flipper]);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
+                        MathJax.typeset([flipper]);
+                    }
                 }
             }
         } else {
@@ -2127,27 +2228,27 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("HhwnYSZOAqQi")) {
-            createCards("HhwnYSZOAqQi", "True", "False");
+          if(document.getElementById("jsYIRAwufnRJ")) {
+            createCards("jsYIRAwufnRJ", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsHhwnYSZOAqQi=[
+var cardsjsYIRAwufnRJ=[
     {
         "front": "disjoint",
-        "back": "collections of data are disjoint if no data point belongs to more than one of the collections"
+        "back": "Collections of data are disjoint if no data point belongs to more than one of the collections."
     },
     {
         "front": "partition",
-        "back": "a partition of a data set is a group of <b>disjoint</b> collections of data, such that every data point in the original data set belongs to exactly one of the collections. "
+        "back": "A partition of a data set is a group of <b>disjoint</b> collections of data, such that every data point in the original data set belongs to exactly one of the collections. "
     }
 ]
 ;
-var frontColorsHhwnYSZOAqQi= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsHhwnYSZOAqQi= ["var(--dark-blue-gray)" ];
-var textColorsHhwnYSZOAqQi= ["var(--snow)" ];
+var frontColorsjsYIRAwufnRJ= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsjsYIRAwufnRJ= ["var(--dark-blue-gray)" ];
+var textColorsjsYIRAwufnRJ= ["var(--snow)" ];
 
 
         {
@@ -2158,7 +2259,7 @@ var textColorsHhwnYSZOAqQi= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/flashcards/partitions.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("HhwnYSZOAqQi", "True", "False"))
+        .then(json => createCards("jsYIRAwufnRJ", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
