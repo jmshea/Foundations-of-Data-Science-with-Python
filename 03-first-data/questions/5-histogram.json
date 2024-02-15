@@ -1,0 +1,163 @@
+[
+  {
+    "question": "Given a Pandas dataframe <code>df</code> with a column called 'height', which of these can be used to get a dataframe that contains all the datapoints with height greater than the average within the dataset?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "code": "avg = df.avg()\ndf.query('height > avg')",
+        "correct": false,
+        "feedback": "Pandas Dataframe and Series objects do not have an <code>avg()</code> method. Please try again."
+
+      },
+      {
+          "code": "avg = df.mean()\ndf.query('height > avg')",
+          "correct": false,
+          "feedback": "This will compare the values in the 'height' column with the values in the  'avg' column (if it exists) or else throw an error."
+      },
+      {
+          "code": "avg = df.mean()\ndf.query('height > @avg')",
+          "correct": true
+      },
+        {
+          "code": "avg = df.mean()\ndf.query('height > $avg')",
+          "correct": false,
+          "feedback": "Incorrect. You are correct to recognize that we need to indicate to query that <code>avg</code> is a variable. However, $ is not the correct character for this purpose."
+      }
+    ],
+    "answer_cols": 1
+  },
+    {
+      "question": "Supposed the data used in Section 3.5 is partitioned using the <b>mean</b> of the normalized GDP. How many states have normalized GDP greater than or equal to the average?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 22, 
+        "correct": true
+    },
+        {
+        "type": "value",
+        "value": 28, 
+        "correct": false,
+        "feedback": "Incorrect. You may want to check the direction of your inequality."
+    },
+        {
+        "type": "value",
+        "value": 25, 
+        "correct": false,
+        "feedback": "Incorrect. When we use the median to partition the data, the two groups are of equal size. However, that is not necessarily the case when we use the mean to partition the data."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. The number of states satisfying some condition can never be negative."
+    },
+        {
+        "range": [ 50.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. There are a total of 50 states, so there cannot be more states than that satisfying any condition."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+  },
+    {
+      "question": "When plotting two histograms on the same axes to compare the results, which of these should generally be used?",
+    "type": "many_choice",
+    "answers": [
+      {
+        "answer": "The same bins should be used for each histogram.",
+        "correct": true,
+        "feedback": "Correct. Using the same bins makes it easier to compare the distributions of values between the two histograms."
+
+      },
+      {
+          "answer": "The data should first be partitioned using the median.",
+          "correct": false,
+          "feedback": "Incorrect. The data was partitioned using the median in Section 3.5, but that was not critical the comparing the distributions of values by plotting two histograms on the same axes."
+      },
+      {
+          "answer": "The <code>alpha</code> parameter should be used to adjust the transparency of the two histograms.",
+          "correct": true,
+          "feedback": "Using transparency makes it easier to see the data when histogram bars overlap."
+      }
+    ]
+  },
+    {
+      "question": "Suppose a histogram for the data $[4,6,2,4,2,4]$ is made using bins with edges at $[1,3,5,7]$. How many value are in the leftmost bin?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 2, 
+        "correct": true
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. The number of items in a bin cannot be negative."
+    },
+        {
+        "range": [ 6.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. There are a total of 6 values in the data set. The number of items in any bin of the histogram cannot be greater than the total number of items."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. The leftmost bin contains all values in the interval $[1,3)$."
+    }
+    ]
+  },
+    {
+      "question": "Suppose a histogram for the data $[4,6,2,4,2,4]$ is made using bins with edges at $[1,3,5,7]$. How many value are in the center bin?",
+      "type": "numeric",
+      "answers": [
+          {
+          "type": "value",
+          "value": 3, 
+          "correct": true
+      },
+          {
+          "range": [ -100000000, -0.000000000001], 
+          "correct": false,
+          "feedback": "Incorrect. The number of items in a bin cannot be negative."
+      },
+          {
+          "range": [ 6.000000001, 100000000], 
+          "correct": false,
+          "feedback": "Incorrect. There are a total of 6 values in the data set. The number of items in any bin of the histogram cannot be greater than the total number of items."
+      },
+          {
+          "type": "default",
+          "feedback": "Incorrect. The leftmost bin contains all values in the interval $[3,5)$."
+      }
+      ]
+  },
+    {
+      "question": "Suppose a histogram for the data $[4,6,2,4,2,4]$ is made using bins with edges at $[1,3,5,7]$. How many value are in the rightmost bin?",
+      "type": "numeric",
+      "answers": [
+          {
+          "type": "value",
+          "value": 1, 
+          "correct": true
+      },
+          {
+          "range": [ -100000000, -0.000000000001], 
+          "correct": false,
+          "feedback": "Incorrect. The number of items in a bin cannot be negative."
+      },
+          {
+          "range": [ 6.000000001, 100000000], 
+          "correct": false,
+          "feedback": "Incorrect. There are a total of 6 values in the data set. The number of items in any bin of the histogram cannot be greater than the total number of items."
+      },
+          {
+          "type": "default",
+          "feedback": "Incorrect. The leftmost bin contains all values in the interval $[5,7]$."
+      }
+      ]
+  }
+]
