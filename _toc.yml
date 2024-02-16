@@ -120,3 +120,6 @@ parts:
   chapters:
   - file: 16-next-steps/next-steps
   - file: appendix/appendix
+- caption: Buy the Book
+  chapters:
+  - file: buy
