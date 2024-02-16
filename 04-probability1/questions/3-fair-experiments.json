@@ -52,4 +52,37 @@
         "feedback": "Incorrect. There are six colors, so  $|S|=6. For a fair experiment, all of the outcomes have equal probability, so what is the probability of any one outcome?"
     }
     ]
-}]
+},
+    {
+    "question": "An experimenter has a two-headed coin, and two-tailed coin, and a fair coin. He chooses one at random, flips it, and observes the top face. Is the resulting fair?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "Yes",
+        "correct": true,
+        "feedback": "Correct. There are a total of 6 faces that are all equally likely to be chosen. 3 of those are Heads and 3 of those are Tails. Thus, $P(\\mbox{Heads} = P(\\mbox{Tails}) = 1/2$, and the experiment is fair."
+    },
+        {
+        "answer": "No",
+        "correct": false,
+        "feedback": "Incorrect. There are a total of 6 faces. Are these 6 faces equally likely? How many are Heads and how many are Tails?"
+    }
+    ]
+},
+    {
+    "question": "An experimenter has a two-headed coin and 6-sided die that has been changed to have Heads on two sides and Tails on 4 sides. The experimenter chooses randomly between the coin and the die. Then she flips the coin or rolls the die and observes the top face. Is this a fair experiment?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "Yes",
+        "correct": false,
+        "feedback": "Incorrect. Although there are a total of 4 faces of Heads and 4 faces of Tails, they are not equally likely. See if you can reason through why not. For instance,  what is the probability that the coin is chosen?"
+    },
+        {
+        "answer": "No",
+        "correct": true,
+        "feedback": "Correct. Note that 1/2 the time, the coin will be chosen and the outcome will be Heads. In addition, 1/2 the time the die will be chosen and some of those times the outcome will be Heads. Thus $P(\\mbox{Heads})>1/2$, so the experiment is not fair."
+    }
+    ]
+}
+]
