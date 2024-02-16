@@ -481,13 +481,13 @@ document.write(`
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="EzrybMkukSLZ" data-shufflequestions="False"
-               data-shuffleanswers="True"
+<div class="output text_html"><div id="uoAjLlNthKbH" data-shufflequestions="False"
+               data-shuffleanswers="False"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#EzrybMkukSLZ {
+#uoAjLlNthKbH {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -681,42 +681,17 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsEzrybMkukSLZ=[
+</style></div><script type="application/javascript">var questionsuoAjLlNthKbH=[
     {
-    "question": "Consider a standard deck of cards consists of 52 cards (excluding jokers). If you draw one card, what is the probability that its suit is Hearts?",
-    "type": "numeric",
-    "answers": [
-        {
-        "type": "value",
-        "value": 0.25, 
-        "correct": true,
-        "feedback": "Correct. There are 13 Hearts out of 52 cards, so the probability is 13/52 = 1/4."
-    },
-        {
-        "range": [ -100000000, -0.000000000001], 
-        "correct": false,
-        "feedback": "Incorrect. Probabilities cannot be negative."
-    },
-        {
-        "range": [ 1.000000001, 100000000], 
-        "correct": false,
-        "feedback": "Incorrect. Probabilities cannot be greater than 1."
-    },
-        {
-        "type": "default",
-        "feedback": "Incorrect. There are 52 total cards; i.e. $|S|=52$. Let $E$ denote the specified event. Count the number of cards in $E$ and calculate the probability as $|E|/|S|$."
-    }
-    ]
-},{
-    "question": "Consider a standard deck of cards consists of 52 cards (excluding jokers). If you draw one card, what is the probability that it is an Ace?",
+    "question": "Consider a standard deck of cards consists of 52 cards (excluding jokers). What is the probability of drawing the Ace of Hearts?",
     "type": "numeric",
     "precision": 2,
     "answers": [
         {
         "type": "value",
-        "value": 0.077, 
+        "value": 0.019, 
         "correct": true,
-        "feedback": "Correct. There are a total of 4 Aces among the 52 total cards, so the probability is $4/52 = 1/13 \\approx 0.077$."
+        "feedback": "Correct. The probability of getting any particular card is $1/52 \\approx 0.019$."
     },
         {
         "range": [ -100000000, -0.000000000001], 
@@ -730,19 +705,20 @@ document.write(`
     },
         {
         "type": "default",
-        "feedback": "Incorrect. There are 52 total cards; i.e. $|S|=52$. Let $E$ denote the specified event. Count the number of cards in $E$ and calculate the probability as $|E|/|S|$."
+        "feedback": "Incorrect. There are 52 total cards; i.e. $|S|=52$. For a fair experiment, all of the outcomes have equal probability, so what is the probability of any one outcome?"
     }
     ]
 },
     {
-    "question": "In a standard English Scrabble set, there are 42 vowel tiles, with the counts shown: \\[E \\times 12,\\, A \\times 9,\\, I \\times 9, \\, O \\times 8, \\, U \\times 4. \\] If you draw one tile from the set of vowels, what is the probability that it is <b>neither</b> an $A$ nor an $E$?",
+    "question": "In the children's game Candy Land, players uses a spinner wheel with six different colors to determine which space to move to next. If there are six different colors (red, orange, yellow, green, blue, and violet) that are equally spaced around the wheel, what is the probability the spinner lands on orange?",
     "type": "numeric",
+    "precision": 2,
     "answers": [
         {
         "type": "value",
-        "value": 0.5, 
+        "value": 0.17, 
         "correct": true,
-        "feedback": "Correct. There are 21 tiles that are not $A$ or $E$: $I \\times 9$, $O \\times 8$, $U \\times 4$. The probability is thus 21/42 = 1/2."
+        "feedback": "Correct. The probability of getting any particular color is $1/6 \\approx 0.17$."
     },
         {
         "range": [ -100000000, -0.000000000001], 
@@ -756,7 +732,7 @@ document.write(`
     },
         {
         "type": "default",
-        "feedback": "Incorrect. How many vowel tiles are there that are not $A$ or $E$? What is the proportion of those tiles out of all vowel tiles?"
+        "feedback": "Incorrect. There are six colors, so  $|S|=6. For a fair experiment, all of the outcomes have equal probability, so what is the probability of any one outcome?"
     }
     ]
 },
@@ -1580,8 +1556,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("EzrybMkukSLZ")) {
-            show_questions(questionsEzrybMkukSLZ,  EzrybMkukSLZ); 
+          if(document.getElementById("uoAjLlNthKbH")) {
+            show_questions(questionsuoAjLlNthKbH,  uoAjLlNthKbH); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1596,10 +1572,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/questions/3-fair-experiments.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, EzrybMkukSLZ))
+        .then(json => show_questions(json, uoAjLlNthKbH))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsEzrybMkukSLZ, EzrybMkukSLZ);
+        show_questions(questionsuoAjLlNthKbH, uoAjLlNthKbH);
         });
         }
         </script></div>
@@ -1863,7 +1839,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="FjchFzUOKUMu" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="FjchFzUOKUMu-next" onclick="window.checkFlip('FjchFzUOKUMu')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="xONjcxzswOXf" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="xONjcxzswOXf-next" onclick="window.checkFlip('xONjcxzswOXf')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2254,22 +2230,22 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("FjchFzUOKUMu")) {
-            createCards("FjchFzUOKUMu", "True", "False");
+          if(document.getElementById("xONjcxzswOXf")) {
+            createCards("xONjcxzswOXf", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsFjchFzUOKUMu=[
+var cardsxONjcxzswOXf=[
     {
         "front": "fair (random experiment)",
         "back": "An experiment is said to be fair if every outcome is equally likely."
     }
 ];
-var frontColorsFjchFzUOKUMu= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsFjchFzUOKUMu= ["var(--dark-blue-gray)" ];
-var textColorsFjchFzUOKUMu= ["var(--snow)" ];
+var frontColorsxONjcxzswOXf= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsxONjcxzswOXf= ["var(--dark-blue-gray)" ];
+var textColorsxONjcxzswOXf= ["var(--snow)" ];
 
 
         {
@@ -2280,7 +2256,7 @@ var textColorsFjchFzUOKUMu= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/fair-experiments.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("FjchFzUOKUMu", "True", "False"))
+        .then(json => createCards("xONjcxzswOXf", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
