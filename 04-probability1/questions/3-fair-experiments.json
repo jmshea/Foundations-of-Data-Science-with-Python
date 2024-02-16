@@ -1,0 +1,112 @@
+[
+    {
+    "question": "Consider a standard deck of cards consists of 52 cards (excluding jokers). If you draw one card, what is the probability that its suit is Hearts?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.25, 
+        "correct": true,
+        "feedback": "Correct. There are 13 Hearts out of 52 cards, so the probability is 13/52 = 1/4."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. There are 52 total cards; i.e. $|S|=52$. Let $E$ denote the specified event. Count the number of cards in $E$ and calculate the probability as $|E|/|S|$."
+    }
+    ]
+},{
+    "question": "Consider a standard deck of cards consists of 52 cards (excluding jokers). If you draw one card, what is the probability that it is an Ace?",
+    "type": "numeric",
+    "precision": 2,
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.077, 
+        "correct": true,
+        "feedback": "Correct. There are a total of 4 Aces among the 52 total cards, so the probability is $4/52 = 1/13 \\approx 0.077$."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. There are 52 total cards; i.e. $|S|=52$. Let $E$ denote the specified event. Count the number of cards in $E$ and calculate the probability as $|E|/|S|$."
+    }
+    ]
+},
+    {
+    "question": "In a standard English Scrabble set, there are 42 vowel tiles, with the counts shown: \\[E \\times 12,\\, A \\times 9,\\, I \\times 9, \\, O \\times 8, \\, U \\times 4. \\] If you draw one tile from the set of vowels, what is the probability that it is <b>neither</b> an $A$ nor an $E$?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.5, 
+        "correct": true,
+        "feedback": "Correct. There are 21 tiles that are not $A$ or $E$: $I \\times 9$, $O \\times 8$, $U \\times 4$. The probability is thus 21/42 = 1/2."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. How many vowel tiles are there that are not $A$ or $E$? What is the proportion of those tiles out of all vowel tiles?"
+    }
+    ]
+},
+    {
+    "question": "An experimenter has a two-headed coin, and two-tailed coin, and a fair coin. He chooses one at random, flips it, and observes the top face. Is the resulting fair?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "Yes",
+        "correct": true,
+        "feedback": "Correct. There are a total of 6 faces that are all equally likely to be chosen. 3 of those are Heads and 3 of those are Tails. Thus, $P(\\mbox{Heads} = P(\\mbox{Tails}) = 1/2$, and the experiment is fair."
+    },
+        {
+        "answer": "No",
+        "correct": false,
+        "feedback": "Incorrect. There are a total of 6 faces. Are these 6 faces equally likely? How many are Heads and how many are Tails?"
+    }
+    ]
+},
+    {
+    "question": "An experimenter has a two-headed coin and 6-sided die that has been changed to have Heads on two sides and Tails on 4 sides. The experimenter chooses randomly between the coin and the die. Then she flips the coin or rolls the die and observes the top face. Is this a fair experiment?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "Yes",
+        "correct": false,
+        "feedback": "Incorrect. Although there are a total of 4 faces of Heads and 4 faces of Tails, they are not equally likely. See if you can reason through why not. For instance,  what is the probability that the coin is chosen?"
+    },
+        {
+        "answer": "No",
+        "correct": true,
+        "feedback": "Correct. Note that 1/2 the time, the coin will be chosen and the outcome will be Heads. In addition, 1/2 the time the die will be chosen and some of those times the outcome will be Heads. Thus $P(\\mbox{Heads})>1/2$, so the experiment is not fair."
+    }
+    ]
+}
+]
