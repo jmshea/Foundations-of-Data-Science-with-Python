@@ -51,6 +51,42 @@
     }
     ]
 },
+    {
+    "question": "Which of the following are true of a probability measure? (Choose all that apply.)",
+    "type": "multiple_choice",
+    "answers": [
+            {
+                "answer": "values are non-negative",
+                "correct": true,
+                "feedback": "Correct. Probabilty measures return the probability of an event, and probabilities are non-negative ($\\ge 0$)."
+            },
+            {
+                "answer": "values are $\\le 1$",
+                "correct": true,
+                "feedback": "Correct. Probabilty measures return the probability of an event, and probabilities are $\\le 1$."
+            },
+            {
+                "answer": "one-to-one",
+                "correct": false,
+                "feedback": "Incorrect. One-to-one would mean that the probability measure produces different values for every event. But multiple events can have the same probability."
+            },
+            {
+                "answer": "maps from outcomes onto the real line",
+                "correct": false,
+                "feedback": "Incorrect. A probability measure measures events, not outcomes."
+            },
+            {
+                "answer": "maps from events onto the real line",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "additive:<p> for any two events $A,B$ in the event class,<p>$$P(A \\cup B) = P(A) +P(B)$$",
+                "correct": false,
+                "feedback": "Incorrect. This only holds if $A$ and $B$ are disjoint."
+            }
+        ]
+},
         {
     "question": "Which of these are the standard Axioms of Probability for a finite sample space?",
     "type": "many_choice",
