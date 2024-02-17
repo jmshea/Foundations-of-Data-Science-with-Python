@@ -79,32 +79,6 @@
     ]
 },
     {
-    "question": "In a standard English Scrabble set, there are 42 vowel tiles, with the counts shown: \\[E \\times 12,\\, A \\times 9,\\, I \\times 9, \\, O \\times 8, \\, U \\times 4. \\] If you draw one tile from the set of vowels, what is the probability that it is <b>neither</b> an $A$ nor an $E$?",
-    "type": "numeric",
-    "answers": [
-        {
-        "type": "value",
-        "value": 0.5, 
-        "correct": true,
-        "feedback": "Correct. There are 21 tiles that are not $A$ or $E$: $I \\times 9$, $O \\times 8$, $U \\times 4$. The probability is thus 21/42 = 1/2."
-    },
-        {
-        "range": [ -100000000, -0.000000000001], 
-        "correct": false,
-        "feedback": "Incorrect. Probabilities cannot be negative."
-    },
-        {
-        "range": [ 1.000000001, 100000000], 
-        "correct": false,
-        "feedback": "Incorrect. Probabilities cannot be greater than 1."
-    },
-        {
-        "type": "default",
-        "feedback": "Incorrect. How many vowel tiles are there that are not $A$ or $E$? What is the proportion of those tiles out of all vowel tiles?"
-    }
-    ]
-},
-    {
     "question": "Three fair dice are rolled. What is the probability that the sum of the top faces is equal to 4?",
     "type": "numeric",
     "precision": 2,

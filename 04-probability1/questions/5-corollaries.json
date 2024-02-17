@@ -1,0 +1,187 @@
+[
+    {
+    "question": "If you roll a fair 6-sided die two times and observe the top faces, what is the probability that you see at least one 1? Answer using a fraction or at least 3 significant digits.",
+    "type": "numeric",
+    "precision": 3,
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.306, 
+        "correct": true,
+        "feedback": "Correct." 
+    },
+        {
+        "type": "value",
+        "value": 0.333, 
+        "correct": false,
+        "feedback": "Incorrect. Are these events mutually exclusive?" 
+    },
+
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. You can solve this problem using Corollary 5 or through careful counting over all 36 outcomes."
+    }
+    ]
+},
+    {
+    "question": "If you roll a fair 6-sided die two times, what is the probability of getting a 1 on both rolls of the die? Answer using a fraction or at least 3 significant digits.",
+    "type": "numeric",
+    "precision": 3,
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.0278, 
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. Consider all 36 outcomes that arise from rolling a die two times. How many of them correspond to getting a 1 on both rolls?"
+    }
+    ]
+},
+    {
+    "question": "The affiliations of attendees at a large conference are: 45% education, 20% government, and 35% industry. (Attendees are only allowed to specify one type of affiliation.) If you ask a random attendee about their affiliation, what is the probability that it will <b>not</b> be in education?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.55, 
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "type": "value",
+        "value": 0.45, 
+        "correct": false,
+        "feedback": "Incorrect. Note that we are looking for those attendees whose affiliation is <b>NOT</b> in education."
+    },
+
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. Hint: this problem can be solved using either complements or using the probability of mutually exclusive events."
+    }
+    ]
+},{
+    "question": "At a certain university, students access the Internet through either WiFi or cellular data. However, there are some places on campus where each of these do not offer connectivity. For a randomly selected location on the University's campus, the probability of a WiFi connection is 0.8, the probability of a cellular data connection is 0.9, and the probability of having both types of connections is 0.75. What is the probability of being able to connect to the Internet at a randomly selected location?",
+    "type": "numeric",
+    "precision": 2,
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.95, 
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "range": [ 0.00000000001, 0.899999999999], 
+        "correct": false,
+        "feedback": "Incorrect. We are looking for the probability of a union of events. It cannot be less than the probability of either of the individual events."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+},
+    {
+    "question": "In a standard English Scrabble set, there are 42 vowel tiles, with the counts shown: \\[E \\times 12,\\, A \\times 9,\\, I \\times 9, \\, O \\times 8, \\, U \\times 4. \\] If you draw one tile from the set of vowels, what is the probability that it is <b>neither</b> an $A$ nor an $E$?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.5, 
+        "correct": true,
+        "feedback": "Correct. There are 21 tiles that are not $A$ or $E$: $I \\times 9$, $O \\times 8$, $U \\times 4$. The probability is thus 21/42 = 1/2."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. How many vowel tiles are there that are not $A$ or $E$? What is the proportion of those tiles out of all vowel tiles?"
+    }
+    ]
+},
+    {
+    "question": "Of the readers of a data science book, 80% have prior Python programming experience, and 40% have prior C/C++ programming experience. What can we say about the probability that a randomly selected reader has prior experience in programming in both Python and C/C++? (Choose all that are true.)",
+        "type": "many_choice",
+        "answers": [
+            {
+            "answer": "The probability is less than 80%",
+            "correct": true
+        },
+            {
+            "answer": "The probability is less than 40%",
+            "correct": true
+        },
+            {
+            "answer": "The probability is strictly greater than 0",
+            "correct": true,
+            "feedback": "Correct. Since $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$, it must be that $P(A \\cap B)>0$; otherwise, $P(A \\cup B) > 1$, which is not possible."
+        },
+            {
+            "answer": "The probability is more than 40%",
+            "correct": false,
+            "feedback": "This is the probability of an intersection of events. That probability must be less than  or equal to the probabilities of either of the events."
+        },
+            {
+            "answer": "The probability is more than 80%",
+            "correct": false,
+            "feedback": "This is the probability of an intersection of events. That probability must be less than  or equal to the probabilities of either of the events."
+        },
+            {
+            "answer": "The probability is strictly less than 1",
+            "correct": true
+        }
+
+        ]
+}
+]
