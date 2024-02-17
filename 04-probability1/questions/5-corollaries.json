@@ -92,7 +92,8 @@
         "feedback": "Incorrect. Hint: this problem can be solved using either complements or using the probability of mutually exclusive events."
     }
     ]
-},{
+},
+    {
     "question": "At a certain university, students access the Internet through either WiFi or cellular data. However, there are some places on campus where each of these do not offer connectivity. For a randomly selected location on the University's campus, the probability of a WiFi connection is 0.8, the probability of a cellular data connection is 0.9, and the probability of having both types of connections is 0.75. What is the probability of being able to connect to the Internet at a randomly selected location?",
     "type": "numeric",
     "precision": 2,
@@ -150,6 +151,48 @@
     }
     ]
 },
+    {
+        "question": "If I roll a fair 6-sided die two times, what is the probability that the values on the top face of the dice are different? Answer as a fraction or a decimal with at least 2 significant digits.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.83,
+                "correct": true,
+                "feedback": "Correct! The exact answer is 5/6."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Suggestion: Write out all the outcomes in the event OR apply corollary 1 to make the problem simpler."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be more than 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilities cannot be less than 0."
+            },
+            {
+                "type": "value",
+                "answer": "0",
+                "value": false,
+                "feedback": "Incorrect. A probability of 0 would imply that it is not possible for the two dice to have different values? Clearly, that is not true."
+            }
+        ]
+    },
     {
     "question": "Of the readers of a data science book, 80% have prior Python programming experience, and 40% have prior C/C++ programming experience. What can we say about the probability that a randomly selected reader has prior experience in programming in both Python and C/C++? (Choose all that are true.)",
         "type": "many_choice",
