@@ -70,6 +70,35 @@
       ]
   },
     {
+      "question": "Select all of the following that can be an outcome of a random experiment.",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "A number",
+          "correct": true,
+          "feedback": "Correct."
+      },
+          {
+          "answer": "A color",
+          "correct": true,
+          "feedback": "Correct."
+      },
+          {
+          "answer": "A tuple",
+          "correct": true,
+          "feedback": "Correct."
+      },
+          {
+          "answer": "A set",
+          "correct": true
+      },
+          {
+          "answer": "An animal.",
+          "correct": true
+      }
+      ]
+  },
+    {
       "question": "Which of the following types of mathematical object can be a sample space?",
       "type": "many_choice",
       "answers": [
