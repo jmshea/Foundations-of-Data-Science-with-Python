@@ -491,13 +491,13 @@ document.write(`
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="ROKaJJGDPFyi" data-shufflequestions="False"
+<div class="output text_html"><div id="ACBsOyciSCga" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#ROKaJJGDPFyi {
+#ACBsOyciSCga {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -691,7 +691,140 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsROKaJJGDPFyi=[
+</style></div><script type="application/javascript">var questionsACBsOyciSCga=[
+    {
+    "question": "Choose all of the following that are members of a probability space.",
+    "type": "many_choice",
+    "answers": [
+        {
+        "answer": "Sample Space",
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "answer": "Probability Measure",
+        "correct": true
+    },
+        {
+        "answer": "Event Class",
+        "correct": true
+    },
+        {
+        "answer": "Random Variable",
+        "correct": false
+    },
+        {
+        "answer": "Distribution Function",
+        "correct": false
+    },
+        {
+        "answer": "State Space",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "Which of the following types of mathematical objects can be an event class?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "A set of numbers",
+        "correct": false,
+        "feedback": "Incorrect. The event class contains events. Events are not just numbers..."
+    },
+        {
+        "answer": "A set of sets",
+        "correct": true,
+        "feedback": "Correct. For finite sample spaces, the event class can be taken to be the set of all subsets of the sample space."
+    },
+        {
+        "answer": "A set of functions",
+        "correct": false,
+        "feedback": "Incorrect. The event class contains events. Events are not just numbers..."
+    }
+    ]
+},
+    {
+    "question": "Which of the following are true of a probability measure? (Choose all that apply.)",
+    "type": "multiple_choice",
+    "answers": [
+            {
+                "answer": "values are non-negative",
+                "correct": true,
+                "feedback": "Correct. Probabilty measures return the probability of an event, and probabilities are non-negative ($\\ge 0$)."
+            },
+            {
+                "answer": "values are $\\le 1$",
+                "correct": true,
+                "feedback": "Correct. Probabilty measures return the probability of an event, and probabilities are $\\le 1$."
+            },
+            {
+                "answer": "one-to-one",
+                "correct": false,
+                "feedback": "Incorrect. One-to-one would mean that the probability measure produces different values for every event. But multiple events can have the same probability."
+            },
+            {
+                "answer": "maps from outcomes onto the real line",
+                "correct": false,
+                "feedback": "Incorrect. A probability measure measures events, not outcomes."
+            },
+            {
+                "answer": "maps from events onto the real line",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "additive:<p> for any two events $A,B$ in the event class,<p>$$P(A \\cup B) = P(A) +P(B)$$",
+                "correct": false,
+                "feedback": "Incorrect. This only holds if $A$ and $B$ are disjoint."
+            }
+        ]
+},
+        {
+    "question": "Which of these are the standard Axioms of Probability for a finite sample space?",
+    "type": "many_choice",
+    "answers": [
+        {
+        "answer": "If $E \\in \\mathcal{F}$, then $P(E) \\ge 0$",
+        "correct": true
+    },
+        {
+        "answer": "If $E \\in \\mathcal{F}$, then $P(E) \\le 1$",
+        "correct": false,
+        "feedback": "Incorrect. Although this is true, it is not one of the standard axioms; instead, it can be proven as a corollary of the axioms."
+
+    },
+        {
+        "answer": "$P(S) = 1$",
+        "correct": true
+    },
+        {
+        "answer": "$P( \\emptyset) = 0$",
+        "correct": false,
+        "feedback": "Incorrect. Although this is true, it is not one of the standard axioms; instead, it can be proven as a corollary of the axioms."
+    },
+        {
+        "answer": "If $A \\cap B = \\emptyset$, then $P(A \\cup B) = P(A) + P(B)$",
+        "correct": true
+    },
+        {
+        "answer": "If $A \\cap B = \\emptyset$, then $P(A \\cap B) = 0$",
+        "correct": false,
+        "feedback": "Incorrect. Although this is true, it is not one of the standard axioms; instead, it can be proven as a corollary of the axioms."
+    },
+        {
+        "answer": "If $A \\cup B = \\emptyset$, then $P(A \\cap B) = P(A) + P(B)$",
+        "correct": false,
+        "feedback": "Incorrect. This turns out to be true only because it implies that both $P(A)=0$ and $P(B)=0$, which will also result in $P(A \\cap B) =0$."
+    },
+        {
+        "answer": "If $A \\cap B = \\emptyset$, then $P(A \\cap B) = P(A)P(B)$",
+        "correct": false,
+        "feedback": "Incorrect. This can only be true if at least one of $P(A)=0$ or $P(B)=0$."
+    }
+    ],
+    "answer_cols": 1
+},
     {
     "question": "Consider a standard deck of cards consists of 52 cards (excluding jokers). If you draw one card, what is the probability that its suit is Hearts?",
     "type": "numeric",
@@ -717,7 +850,8 @@ document.write(`
         "feedback": "Incorrect. There are 52 total cards; i.e. $|S|=52$. Let $E$ denote the specified event. Count the number of cards in $E$ and calculate the probability as $|E|/|S|$."
     }
     ]
-},{
+},
+    {
     "question": "Consider a standard deck of cards consists of 52 cards (excluding jokers). If you draw one card, what is the probability that it is an Ace?",
     "type": "numeric",
     "precision": 2,
@@ -772,32 +906,6 @@ document.write(`
     ]
 },
     {
-    "question": "In a standard English Scrabble set, there are 42 vowel tiles, with the counts shown: \\[E \\times 12,\\, A \\times 9,\\, I \\times 9, \\, O \\times 8, \\, U \\times 4. \\] If you draw one tile from the set of vowels, what is the probability that it is <b>neither</b> an $A$ nor an $E$?",
-    "type": "numeric",
-    "answers": [
-        {
-        "type": "value",
-        "value": 0.5, 
-        "correct": true,
-        "feedback": "Correct. There are 21 tiles that are not $A$ or $E$: $I \\times 9$, $O \\times 8$, $U \\times 4$. The probability is thus 21/42 = 1/2."
-    },
-        {
-        "range": [ -100000000, -0.000000000001], 
-        "correct": false,
-        "feedback": "Incorrect. Probabilities cannot be negative."
-    },
-        {
-        "range": [ 1.000000001, 100000000], 
-        "correct": false,
-        "feedback": "Incorrect. Probabilities cannot be greater than 1."
-    },
-        {
-        "type": "default",
-        "feedback": "Incorrect. How many vowel tiles are there that are not $A$ or $E$? What is the proportion of those tiles out of all vowel tiles?"
-    }
-    ]
-},
-    {
     "question": "Three fair dice are rolled. What is the probability that the sum of the top faces is equal to 4?",
     "type": "numeric",
     "precision": 2,
@@ -830,82 +938,6 @@ document.write(`
         "feedback": "Incorrect. How many ways are there to make a sum of 4? There are $6 \\times 6 \\times 6 =216$ total outcomes. "
     }
     ]
-},
-    {
-    "question": "Choose all of the following that are members of a probability space.",
-    "type": "many_choice",
-    "answers": [
-        {
-        "answer": "Sample Space",
-        "correct": true,
-        "feedback": "Correct."
-    },
-        {
-        "answer": "Probability Measure",
-        "correct": true
-    },
-        {
-        "answer": "Event Class",
-        "correct": true
-    },
-        {
-        "answer": "Random Variable",
-        "correct": false
-    },
-        {
-        "answer": "Distribution Function",
-        "correct": false
-    },
-        {
-        "answer": "State Space",
-        "correct": false
-    }
-    ]
-},
-    {
-    "question": "Which of these are the standard Axioms of Probability for a finite sample space?",
-    "type": "many_choice",
-    "answers": [
-        {
-        "answer": "If $E \\in \\mathcal{F}$, then $P(E) \\ge 0$",
-        "correct": true
-    },
-        {
-        "answer": "If $E \\in \\mathcal{F}$, then $P(E) \\le 1$",
-        "correct": false,
-        "feedback": "Incorrect. Although this is true, it is not one of the standard axioms; instead, it can be proven as a corollary of the axioms."
-
-    },
-        {
-        "answer": "$P(S) = 1$",
-        "correct": true
-    },
-        {
-        "answer": "$P( \\emptyset) = 0$",
-        "correct": false,
-        "feedback": "Incorrect. Although this is true, it is not one of the standard axioms; instead, it can be proven as a corollary of the axioms."
-    },
-        {
-        "answer": "If $A \\cap B = \\emptyset$, then $P(A \\cup B) = P(A) + P(B)$",
-        "correct": true
-    },
-        {
-        "answer": "If $A \\cap B = \\emptyset$, then $P(A \\cap B) = 0$",
-        "correct": false,
-        "feedback": "Incorrect. Although this is true, it is not one of the standard axioms; instead, it can be proven as a corollary of the axioms."
-    },
-        {
-        "answer": "If $A \\cup B = \\emptyset$, then $P(A \\cap B) = P(A) + P(B)$",
-        "correct": false,
-        "feedback": "Incorrect. This turns out to be true only because it implies that both $P(A)=0$ and $P(B)=0$, which will also result in $P(A \\cap B) =0$."
-    },
-        {
-        "answer": "If $A \\cap B = \\emptyset$, then $P(A \\cap B) = P(A)P(B)$",
-        "correct": false,
-        "feedback": "Incorrect. This can only be true if at least one of $P(A)=0$ or $P(B)=0$."
-    }
-    ],
-    "answer_cols": 1
 }
 ]
 ;
@@ -1695,8 +1727,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("ROKaJJGDPFyi")) {
-            show_questions(questionsROKaJJGDPFyi,  ROKaJJGDPFyi); 
+          if(document.getElementById("ACBsOyciSCga")) {
+            show_questions(questionsACBsOyciSCga,  ACBsOyciSCga); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1711,10 +1743,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/questions/4-axiomatic-prob.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, ROKaJJGDPFyi))
+        .then(json => show_questions(json, ACBsOyciSCga))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsROKaJJGDPFyi, ROKaJJGDPFyi);
+        show_questions(questionsACBsOyciSCga, ACBsOyciSCga);
         });
         }
         </script></div>
@@ -1978,7 +2010,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="EgtnCrBoQkBR" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="EgtnCrBoQkBR-next" onclick="window.checkFlip('EgtnCrBoQkBR')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="BrtvNFZNrxYq" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="BrtvNFZNrxYq-next" onclick="window.checkFlip('BrtvNFZNrxYq')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2369,14 +2401,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("EgtnCrBoQkBR")) {
-            createCards("EgtnCrBoQkBR", "True", "False");
+          if(document.getElementById("BrtvNFZNrxYq")) {
+            createCards("BrtvNFZNrxYq", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsEgtnCrBoQkBR=[
+var cardsBrtvNFZNrxYq=[
     {
         "front": "probability space",
         "back": "An tuple $ (S, \\mathcal{F}, P),$ consisting of the *sample space*, the *event class*, and the *probability measure*, respectively."
@@ -2395,9 +2427,9 @@ var cardsEgtnCrBoQkBR=[
     }
 ]
 ;
-var frontColorsEgtnCrBoQkBR= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsEgtnCrBoQkBR= ["var(--dark-blue-gray)" ];
-var textColorsEgtnCrBoQkBR= ["var(--snow)" ];
+var frontColorsBrtvNFZNrxYq= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsBrtvNFZNrxYq= ["var(--dark-blue-gray)" ];
+var textColorsBrtvNFZNrxYq= ["var(--snow)" ];
 
 
         {
@@ -2408,7 +2440,7 @@ var textColorsEgtnCrBoQkBR= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/axiomatic-prob.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("EgtnCrBoQkBR", "True", "False"))
+        .then(json => createCards("BrtvNFZNrxYq", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -2794,7 +2826,7 @@ Number of outcomes in E1 OR E2 is 20
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="KVVUjYxXsehA" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="KVVUjYxXsehA-next" onclick="window.checkFlip('KVVUjYxXsehA')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="SlyCbmhhhEFU" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="SlyCbmhhhEFU-next" onclick="window.checkFlip('SlyCbmhhhEFU')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -3185,14 +3217,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("KVVUjYxXsehA")) {
-            createCards("KVVUjYxXsehA", "True", "False");
+          if(document.getElementById("SlyCbmhhhEFU")) {
+            createCards("SlyCbmhhhEFU", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsKVVUjYxXsehA=[
+var cardsSlyCbmhhhEFU=[
     {
         "front": "probability space",
         "back": "An tuple $ (S, \\mathcal{F}, P),$ consisting of the *sample space*, the *event class*, and the *probability measure*, respectively."
@@ -3211,9 +3243,9 @@ var cardsKVVUjYxXsehA=[
     }
 ]
 ;
-var frontColorsKVVUjYxXsehA= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsKVVUjYxXsehA= ["var(--dark-blue-gray)" ];
-var textColorsKVVUjYxXsehA= ["var(--snow)" ];
+var frontColorsSlyCbmhhhEFU= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsSlyCbmhhhEFU= ["var(--dark-blue-gray)" ];
+var textColorsSlyCbmhhhEFU= ["var(--snow)" ];
 
 
         {
@@ -3224,7 +3256,7 @@ var textColorsKVVUjYxXsehA= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/axiomatic-prob.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("KVVUjYxXsehA", "True", "False"))
+        .then(json => createCards("SlyCbmhhhEFU", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
