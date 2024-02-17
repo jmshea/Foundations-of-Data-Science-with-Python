@@ -1,0 +1,113 @@
+[
+    {
+        "question": "Poker dice is played by rolling five dice simultaneously.  How many ordered outcomes are there?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 7776,
+                "correct": true,
+                "feedback": "Correct! This is an example of sampling with ordering and with replacement."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. This is an example of sampling with replacement, where each subexperiment has a sample space with 6 outcomes."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1e-15,
+                    1
+                ],
+                "correct": false,
+                "feedback": "Incorrect. We are looking for a count of the number of outcomes, not a probability."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. The number of outcomes cannot be less than zero."
+            },
+            {
+                "type": "value",
+                "answer": "0",
+                "value": false,
+                "feedback": "Incorrect. There are many possible outcomes, such as (1,1,1,1,1) or (1,2,3,4,5)."
+            }
+        ]
+},
+    {
+        "question": "Five cards are drawn from a deck of 52 cards (i.e., without jokers). Determine how many ways there are to get a hand with 4 aces if order IS NOT considered.",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 48,
+                "correct": true,
+                "feedback": "Correct! The answer is 48 because the 4 aces are determined, so the other card in the hand can be any of the other 48 cards in the deck."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. How many ways are there to choose the aces in the hand? The other card(s)?"
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Counts cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1e-15,
+                    1
+                ],
+                "correct": false,
+                "feedback": "Incorrect. We are looking for a count of the number of outcomes, not a probability."
+            }
+        ]
+    },
+    {
+        "question": "Five cards are drawn from a deck of 52 cards (i.e., without jokers). Determine how many ways there are to get a hand with 3 aces if order IS NOT considered.",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 4512,
+                "correct": true,
+                "feedback": "Correct!"
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. How many ways are there to choose the aces in the hand? The other card(s)?"
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    0
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Counts cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1e-15,
+                    1
+                ],
+                "correct": false,
+                "feedback": "Incorrect. We are looking for a count of the number of outcomes, not a probability."
+            }
+        ]
+    }
+]
