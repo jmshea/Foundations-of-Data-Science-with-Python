@@ -481,13 +481,13 @@ document.write(`
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="mmEdfrwomsDK" data-shufflequestions="False"
+<div class="output text_html"><div id="jTEIQLpLQJxZ" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#mmEdfrwomsDK {
+#jTEIQLpLQJxZ {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -681,7 +681,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsmmEdfrwomsDK=[
+</style></div><script type="application/javascript">var questionsjTEIQLpLQJxZ=[
   {
     "question": "A card is drawn from a standard deck of 52 cards, and the face is observed. Choose all of the following that are an outcome of this experiment.",
     "type": "many_choice",
@@ -749,6 +749,35 @@ document.write(`
           {
           "answer": "No",
           "correct": false
+      }
+      ]
+  },
+    {
+      "question": "Select all of the following that can be an outcome of a random experiment.",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "A number",
+          "correct": true,
+          "feedback": "Correct."
+      },
+          {
+          "answer": "A color",
+          "correct": true,
+          "feedback": "Correct."
+      },
+          {
+          "answer": "A tuple",
+          "correct": true,
+          "feedback": "Correct."
+      },
+          {
+          "answer": "A set",
+          "correct": true
+      },
+          {
+          "answer": "An animal.",
+          "correct": true
       }
       ]
   },
@@ -1559,8 +1588,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("mmEdfrwomsDK")) {
-            show_questions(questionsmmEdfrwomsDK,  mmEdfrwomsDK); 
+          if(document.getElementById("jTEIQLpLQJxZ")) {
+            show_questions(questionsjTEIQLpLQJxZ,  jTEIQLpLQJxZ); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1575,10 +1604,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/questions/1-outcomes-samplespaces-events.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, mmEdfrwomsDK))
+        .then(json => show_questions(json, jTEIQLpLQJxZ))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsmmEdfrwomsDK, mmEdfrwomsDK);
+        show_questions(questionsjTEIQLpLQJxZ, jTEIQLpLQJxZ);
         });
         }
         </script></div>
@@ -1842,7 +1871,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="mwEJHYDCozMx" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="mwEJHYDCozMx-next" onclick="window.checkFlip('mwEJHYDCozMx')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="imXASFAVCNqF" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="imXASFAVCNqF-next" onclick="window.checkFlip('imXASFAVCNqF')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2233,14 +2262,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("mwEJHYDCozMx")) {
-            createCards("mwEJHYDCozMx", "True", "False");
+          if(document.getElementById("imXASFAVCNqF")) {
+            createCards("imXASFAVCNqF", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsmwEJHYDCozMx=[
+var cardsimXASFAVCNqF=[
     {
         "front": "outcome (of a random experiment)",
         "back": "An outcome of a random experiment is a result of the experiment that cannot be further decomposed."
@@ -2255,9 +2284,9 @@ var cardsmwEJHYDCozMx=[
     }
 ]
 ;
-var frontColorsmwEJHYDCozMx= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsmwEJHYDCozMx= ["var(--dark-blue-gray)" ];
-var textColorsmwEJHYDCozMx= ["var(--snow)" ];
+var frontColorsimXASFAVCNqF= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsimXASFAVCNqF= ["var(--dark-blue-gray)" ];
+var textColorsimXASFAVCNqF= ["var(--snow)" ];
 
 
         {
@@ -2268,7 +2297,7 @@ var textColorsmwEJHYDCozMx= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/outcomes-samplespaces-events.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("mwEJHYDCozMx", "True", "False"))
+        .then(json => createCards("imXASFAVCNqF", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
