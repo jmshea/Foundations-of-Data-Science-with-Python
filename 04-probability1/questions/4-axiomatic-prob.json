@@ -1,0 +1,217 @@
+[
+    {
+    "question": "Consider a standard deck of cards consists of 52 cards (excluding jokers). If you draw one card, what is the probability that its suit is Hearts?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.25, 
+        "correct": true,
+        "feedback": "Correct. There are 13 Hearts out of 52 cards, so the probability is 13/52 = 1/4."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. There are 52 total cards; i.e. $|S|=52$. Let $E$ denote the specified event. Count the number of cards in $E$ and calculate the probability as $|E|/|S|$."
+    }
+    ]
+},{
+    "question": "Consider a standard deck of cards consists of 52 cards (excluding jokers). If you draw one card, what is the probability that it is an Ace?",
+    "type": "numeric",
+    "precision": 2,
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.077, 
+        "correct": true,
+        "feedback": "Correct. There are a total of 4 Aces among the 52 total cards, so the probability is $4/52 = 1/13 \\approx 0.077$."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. There are 52 total cards; i.e. $|S|=52$. Let $E$ denote the specified event. Count the number of cards in $E$ and calculate the probability as $|E|/|S|$."
+    }
+    ]
+},
+    {
+    "question": "In a standard English Scrabble set, there are 42 vowel tiles, with the counts shown: \\[E \\times 12,\\, A \\times 9,\\, I \\times 9, \\, O \\times 8, \\, U \\times 4. \\] If you draw one tile from the set of vowels, what is the probability that it is an $E$?",
+    "type": "numeric",
+    "precision": 2,
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.29, 
+        "correct": true,
+        "feedback": "Correct. There are 12 $E$ tiles out of 42 total tiles, so the probability is $12/42 \\approx 0.29$."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. For a fair experiment the probability of an outcome $"
+    }
+    ]
+},
+    {
+    "question": "In a standard English Scrabble set, there are 42 vowel tiles, with the counts shown: \\[E \\times 12,\\, A \\times 9,\\, I \\times 9, \\, O \\times 8, \\, U \\times 4. \\] If you draw one tile from the set of vowels, what is the probability that it is <b>neither</b> an $A$ nor an $E$?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.5, 
+        "correct": true,
+        "feedback": "Correct. There are 21 tiles that are not $A$ or $E$: $I \\times 9$, $O \\times 8$, $U \\times 4$. The probability is thus 21/42 = 1/2."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. How many vowel tiles are there that are not $A$ or $E$? What is the proportion of those tiles out of all vowel tiles?"
+    }
+    ]
+},
+    {
+    "question": "Three fair dice are rolled. What is the probability that the sum of the top faces is equal to 4?",
+    "type": "numeric",
+    "precision": 2,
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.014, 
+        "correct": true,
+        "feedback": "Correct. There are three ways to get a sum of 4: (1,1,2), (1,2,1), (2,1,1). There are $6 \\times 6 \\times 6 =216$ total outcomes. Thus, the probability is $3/216 = 1/72$."
+    },
+        {
+        "type": "value",
+        "value": 0.019, 
+        "correct": true,
+        "feedback": "Incorrect. You look like you are on the right track, but are you sure you counted the number of ways to get a sum of 4 correctly? Try writing them down."
+    },
+
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect. How many ways are there to make a sum of 4? There are $6 \\times 6 \\times 6 =216$ total outcomes. "
+    }
+    ]
+},
+    {
+    "question": "Choose all of the following that are members of a probability space.",
+    "type": "many_choice",
+    "answers": [
+        {
+        "answer": "Sample Space",
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "answer": "Probability Measure",
+        "correct": true
+    },
+        {
+        "answer": "Event Class",
+        "correct": true
+    },
+        {
+        "answer": "Random Variable",
+        "correct": false
+    },
+        {
+        "answer": "Distribution Function",
+        "correct": false
+    },
+        {
+        "answer": "State Space",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "Which of these are the standard Axioms of Probability for a finite sample space?",
+    "type": "many_choice",
+    "answers": [
+        {
+        "answer": "If $E \\in \\mathcal{F}$, then $P(E) \\ge 0$",
+        "correct": true
+    },
+        {
+        "answer": "If $E \\in \\mathcal{F}$, then $P(E) \\le 1$",
+        "correct": false,
+        "feedback": "Incorrect. Although this is true, it is not one of the standard axioms; instead, it can be proven as a corollary of the axioms."
+
+    },
+        {
+        "answer": "$P(S) = 1$",
+        "correct": true
+    },
+        {
+        "answer": "$P( \\emptyset) = 0$",
+        "correct": false,
+        "feedback": "Incorrect. Although this is true, it is not one of the standard axioms; instead, it can be proven as a corollary of the axioms."
+    },
+        {
+        "answer": "If $A \\cap B = \\emptyset$, then $P(A \\cup B) = P(A) + P(B)$",
+        "correct": true
+    },
+        {
+        "answer": "If $A \\cap B = \\emptyset$, then $P(A \\cap B) = 0$",
+        "correct": false,
+        "feedback": "Incorrect. Although this is true, it is not one of the standard axioms; instead, it can be proven as a corollary of the axioms."
+    },
+        {
+        "answer": "If $A \\cup B = \\emptyset$, then $P(A \\cap B) = P(A) + P(B)$",
+        "correct": false,
+        "feedback": "Incorrect. This turns out to be true only because it implies that both $P(A)=0$ and $P(B)=0$, which will also result in $P(A \\cap B) =0$."
+    },
+        {
+        "answer": "If $A \\cap B = \\emptyset$, then $P(A \\cap B) = P(A)P(B)$",
+        "correct": false,
+        "feedback": "Incorrect. This can only be true if at least one of $P(A)=0$ or $P(B)=0$."
+    }
+    ],
+    "answer_cols": 1
+}
+]
