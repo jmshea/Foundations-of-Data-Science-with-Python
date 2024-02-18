@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Which of these is considered the <i>gold standard</i> for research studies?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "Randomized controlled trial",
+        "correct": true
+      },
+      {
+        "answer": "Cross-sectional study",
+          "correct": false
+      },
+      {
+        "answer": "Longitudinal cohort study",
+        "correct": false
+      },
+        {
+          "answer": "Population study",
+          "correct": false
+      }
+    ]
+  },
+    {
+      "question": "Which of these is most likely to result in <i>post hoc</i> analysis?",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "A prospective study",
+          "correct": false
+      },
+          {
+          "answer": "A retrospective study",
+          "correct": true
+      },
+          {
+          "answer": "A population study",
+          "correct": false
+      }
+      ]
+  },
+    {
+      "question": "Which of these is most likely to result in sampling bias?",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "A random sample",
+          "correct": false
+      },
+          {
+          "answer": "A convenience sample",
+          "correct": true
+      }
+      ]
+  },
+  {
+      "question": "Which of the following is true of a cross-sectional study?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "It collects data about a population at one point in time",
+          "correct": true
+      },
+          {
+          "answer": "It collects data about a population across time",
+          "correct": false
+      },
+          {
+          "answer": "It collects data about the same sample from a  population at different points in time",
+          "correct": false
+      }
+      ]
+  },
+    {
+      "question": "Which of the following is true of a longitudinal study?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "It collects data about a population at one point in time",
+          "correct": false
+      },
+          {
+          "answer": "It collects data about a population across time",
+          "correct": true
+      },
+          {
+          "answer": "It collects data about the same sample from a  population at different points in time",
+          "correct": false,
+          "feedback": "Not necessarily."
+      }
+      ]
+  },
+    {
+      "question": "Which of the following is true of a longitudinal cohort study?",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "It collects data about a population at one point in time",
+          "correct": false
+      },
+          {
+          "answer": "It collects data about a population across time",
+          "correct": true,
+          "feedback": "This is true but not the best answer."
+      },
+          {
+          "answer": "It collects data about the same sample from a  population at different points in time",
+          "correct": true
+      }
+      ]
+  }
+]
