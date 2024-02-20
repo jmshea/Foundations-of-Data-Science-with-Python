@@ -1,0 +1,151 @@
+[
+    {
+      "question": "The distribution of a statistic computed from some data is called the:",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Statistical distribution",
+          "correct": false
+      },
+          {
+          "answer": "Sampling distribution",
+          "correct": true
+      },
+          {
+          "answer": "Population distribution",
+          "correct": false
+      },
+          {
+          "answer": "Cross-sectional distribution",
+          "correct": false
+      }
+
+      ]
+  },
+    {
+      "question": "NHST stands for:",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Nonlinear Hypothesis Screening Test",
+          "correct": false
+      },
+          {
+          "answer": "Null Hypothesis Significance Test",
+          "correct": true
+      },
+          {
+          "answer": "Normalized Hypothesis  Significance Test",
+          "correct": false
+      },
+          {
+          "answer": "Nonparametric Hypothesis  Screening Test",
+          "correct": false
+      }
+      ]
+  },
+  {
+      "question": "Topcoding is generally used in data sets to ",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Protect sensitive information",
+          "correct": true
+      },
+          {
+          "answer": "Limit the effects of outliers",
+          "correct": false
+      },
+          {
+          "answer": "Improve the accuracy of statistical models",
+          "correct": false
+      },
+          {
+          "answer": "Simplify the interpretation of results",
+          "correct": false
+      }
+      ]
+  },
+    {
+      "question": "Large data sets are often accompanied by information on how to interpret the codes and values for the different variables. This set of information is usually called a:",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Guidebook",
+          "correct": false
+      },
+          {
+          "answer": "Codebook",
+          "correct": true
+      },
+          {
+          "answer": "Data set legend",
+          "correct": false
+      },
+          {
+          "answer": "Variable map",
+          "correct": false
+      }
+      ]
+  },
+    {
+      "question": "The process of dealing with incorrect, duplicate, missing, corrupt, or incomplete data is generally called:",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Variable cleansing",
+          "correct": false
+      },
+          {
+          "answer": "Data cleaning",
+          "correct": true
+      },
+          {
+          "answer": "Dataset polishing",
+          "correct": false
+      },
+          {
+          "answer": "Data wrangling",
+          "correct": false
+      }
+      ]
+  },
+    {
+      "question": "In an NHST, which of the following should be used to choose between a one-tailed and two-tailed test?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "The particular phrasing of the research question",
+          "correct": true
+      },
+          {
+          "answer": "The significance threshold",
+          "correct": false
+      },
+          {
+          "answer": "Whether the data is quantitative or qualitative",
+          "correct": false
+      },
+          {
+          "answer": "The size of the data set",
+          "correct": false
+      }
+      ]
+  },
+    {
+      "question": "Which is a more conservative test: a one-tailed test or a two-tailed test.",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "A two-tailed test",
+          "correct": true,
+          "feedback": "Correct. A two-tailed test is considered more conservative because it will produce a higher $p$-value than a one-sided test for the same data. Thus, it is less likely to indicate statistical significance."
+      },
+          {
+          "answer": "A one-tailed test",
+          "correct": false,
+          "feedback": "Incorrect. A two-tailed test is considered more conservative because it will produce a higher $p$-value than a one-sided test for the same data. Thus, it is less likely to indicate statistical significance."
+      }
+      ]
+  }
+]

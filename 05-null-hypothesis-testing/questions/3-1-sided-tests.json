@@ -1,0 +1,84 @@
+[
+    {
+      "question": "Consider the research question: \"Do people who attend a STEM-focused high school score higher than those who attend a standard high school on the Math section of the SAT?\". If you are conducting a NHST on this, would it be justifiable to use a one-sided test?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Yes",
+          "correct": true,
+          "feedback": "Correct. Because the research question indicates a particular direction and not just a difference between the populations, a one-sided test is justified." 
+      },
+          {
+          "answer": "No",
+          "correct": false,
+          "feedback": "Incorrect. Check the question carefully." 
+      },
+          {
+          "answer": "It depends on other factors",
+          "correct": false,
+          "feedback": "Incorrect. Check the question carefully."
+      }
+      ]
+  },
+    {
+      "question": "TikDeTox is a new drug that was developed to treat social media FOMO disease (SMFD). Consider the research question: \"Does data from a test show that college students who take this drug have less FOMO?\" If you are conducting a NHST on this, would it be justifiable to use a one-sided test?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Yes",
+          "correct": true,
+          "feedback": "Correct. Because the research question indicates a particular direction and not just a difference between the populations, a one-sided test is justified." 
+      },
+          {
+          "answer": "No",
+          "correct": false,
+          "feedback": "Incorrect. Check the question carefully." 
+      },
+          {
+          "answer": "It depends on other factors",
+          "correct": false,
+          "feedback": "Incorrect. Check the question carefully."
+      }
+      ]
+  },
+    {
+      "question": "Consider the research question \"A professor uses two different routes to work. Does the data support that there is a statistically significant difference in the commute time between the two routes?\".  If you are conducting a NHST on this, would it be justifiable to use a one-sided test?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Yes",
+          "correct": false,
+          "feedback": "Incorrect. Because the research questions only asks if there is a difference between the two routes, a two-tailed test should be used." 
+      },
+          {
+          "answer": "No",
+          "correct": true
+      },
+          {
+          "answer": "It depends on other factors",
+          "correct": false,
+          "feedback": "Incorrect. Check the question carefully."
+      }
+      ]
+  },
+    {
+      "question": "Consider the research question \"Is there a difference in performance on pilot qualification tests between people who play video games and those who do not?\".  If you are conducting a NHST on this, would it be justifiable to use a one-sided test?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Yes",
+          "correct": false,
+          "feedback": "Incorrect. Because the research questions only asks if there is a difference between the performances of the two groups, a two-tailed test should be used." 
+      },
+          {
+          "answer": "No",
+          "correct": true
+      },
+          {
+          "answer": "It depends on other factors",
+          "correct": false,
+          "feedback": "Incorrect. Check the question carefully."
+      }
+      ]
+  }
+]
