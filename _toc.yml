@@ -51,16 +51,16 @@ parts:
     - file: 05-null-hypothesis-testing/8-summary
   - file: 06-conditional-prob/intro
     sections:
-    - file: 06-conditional-prob/simulating-cond-probs
-    - file: 06-conditional-prob/notation-and-intuition
-    - file: 06-conditional-prob/definition
-    - file: 06-conditional-prob/relating-cond-uncond
-    - file: 06-conditional-prob/more-on-simulating
-    - file: 06-conditional-prob/independence
-    - file: 06-conditional-prob/fair-exps
-    - file: 06-conditional-prob/conditional-independence
-    - file: 06-conditional-prob/chain-rules-total-prob
-    - file: 06-conditional-prob/summary
+    - file: 06-conditional-prob/1-simulating-cond-probs
+    - file: 06-conditional-prob/2-notation-and-intuition
+    - file: 06-conditional-prob/3-definition
+    - file: 06-conditional-prob/4-relating-cond-uncond
+    - file: 06-conditional-prob/5-more-on-simulating
+    - file: 06-conditional-prob/6-independence
+    - file: 06-conditional-prob/7-fair-exps
+    - file: 06-conditional-prob/8-conditional-independence
+    - file: 06-conditional-prob/9-chain-rules-total-prob
+    - file: 06-conditional-prob/10-summary
   - file: 07-bayesian-methods/intro
     sections:
     - file: 07-bayesian-methods/bayes-rule
