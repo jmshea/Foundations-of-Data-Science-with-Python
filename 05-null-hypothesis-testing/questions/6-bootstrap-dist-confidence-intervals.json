@@ -1,0 +1,73 @@
+[
+    {
+    "question": "True or False: A given 95% confidence interval has a 95% chance of containing the true value of the statistic being estimated.",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "False",
+          "correct": true,
+          "feedback": "Correct. A 95% confidence interval indicates that if confidence intervals created using this approach were created many times, then they would contain the true value of the statistic 95% of the time."
+      },
+          {
+          "answer": "True",
+          "correct": false,
+          "feedback": "Incorrect. This is a common misinterpretation of what a C% confidence interval means. The C% confidence interval applies to the estimation technique for the statistic and indicates that if confidence intervals created using this approach were created many times, then they would contain the true value of the statistic 95% of the time."
+      }
+      ]
+},
+    {
+    "question": "Compared to a 95% confidence interval, the width of a 99% confidence interval would be:",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "Wider",
+        "correct": true,
+        "feedback": "Correct. To have higher confidence that intervals created in this way would contain the true value of the statistic being estimated, the confidence interval must be wider."
+    },
+        {
+        "answer": "Narrower",
+        "correct": false
+    },
+        {
+        "answer": "The same -- the width of a CI is controlled by other factors",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "Confidence intervals can most readily be estimated from what type of histogram?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "True",
+          "correct": false,
+          "feedback": "Incorrect. Always report the measured p-value along with the conclusion. It is not suﬀicient to just report p > 0.05 because the specific p value gives additional insight into the results of the statistical test."
+      },
+          {
+          "answer": "False",
+          "correct": true,
+          "feedback": "Correct. Always report the measured p-value along with the conclusion. It is not suﬀicient to just report p > 0.05 because the specific p value gives additional insight into the results of the statistical test."
+      }
+      ]
+  },
+  {
+      "question": "Can multiple NHSTs be applied to the same data set?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Yes, without modification",
+          "correct": false,
+          "feedback": "Incorrect. Multiple NHSTs should not be applied to the same data set without applying a stricter criteria to achieve the target significance level."
+      },
+          {
+          "answer": "Yes, with modification",
+          "correct": true,
+          "feedback": "Correct. Multiple NHSTs can be applied to the same data set, but  a stricter criteria must be applied to achieve the target significance level."
+      },
+          {
+          "answer": "No",
+          "correct": false,
+          "feedback": "Incorrect. Multiple NHSTs can be applied to the same data set, but  a stricter criteria must be applied to achieve the target significance level."
+      }
+      ]
+  }]

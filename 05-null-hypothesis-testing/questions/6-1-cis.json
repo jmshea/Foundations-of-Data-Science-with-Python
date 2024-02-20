@@ -1,0 +1,102 @@
+[
+    {
+    "question": "From the histogram of the data above, estimate the left edge of a symmetric 80% confidence interval.",
+    "type": "numeric",
+    "answers": [
+        {
+        "range": [ 70, 90], 
+        "correct": true,
+        "feedback": "Correct. From the figure, the cumulative histogram has approximately 90% of its relative frequency above 80, which means 10% is less than this value. The 10% percentile value is approximately 81.5."
+    },
+        {
+        "range": [ 200, 480 ], 
+        "correct": false,
+        "feedback": "Incorrect. We are looking for the <b>left</b> edge of the 80% CI in this problem."
+    },
+        {
+        "range": [ 100, 150 ], 
+        "correct": false,
+        "feedback": "Incorrect. Did you look at 0.2 on the $y$-axis? Remember that for a symmetric 80% CI, the CI will exclude 10% of the observed values on each edge, not 20%."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+},
+    {
+    "question": "From the histogram of the data above, estimate the right edge of a symmetric 80% confidence interval.",
+    "type": "numeric",
+    "answers": [
+        {
+        "range": [ 310, 340], 
+        "correct": true,
+        "feedback": "Correct. From the figure, the cumulative histogram has approximately 90% of its relative frequency below 330, which means 10% is above this value. The 90% percentile value is approximately 328.7"
+    },
+        {
+        "range": [ -100, 200 ], 
+        "correct": false,
+        "feedback": "Incorrect. We are looking for the <b>right</b> edge of the 80% CI in this problem."
+    },
+        {
+        "range": [ 260, 290 ], 
+        "correct": false,
+        "feedback": "Incorrect. Did you look at 0.8 on the $y$-axis? Remember that for a symmetric 80% CI, the CI will exclude 10% of the observed values on each edge, not 20%."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+},
+    {
+    "question": "From the histogram of the data above, estimate the left edge of a symmetric 90% confidence interval.",
+    "type": "numeric",
+    "answers": [
+        {
+        "range": [ -5, 40], 
+        "correct": true,
+            "feedback": "Correct. From the figure, the cumulative histogram has approximately 95% of its relative frequency above 0. The 5% percentile for this data set is actually (approximately) 23.34."
+    },
+        {
+        "range": [ 200, 480 ], 
+        "correct": false,
+        "feedback": "Incorrect. We are looking for the <b>left</b> edge of the 80% CI in this problem."
+    },
+                {
+        "range": [ 70, 90 ], 
+        "correct": false,
+        "feedback": "Incorrect. Did you look at 0.1 on the $y$-axis? Remember that for a symmetric 90% CI, the CI will exclude 5% of the observed values on each edge, not 10%."
+    },
+        {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+},
+    {
+    "question": "From the histogram of the data above, estimate the right edge of a symmetric 90% confidence interval.",
+    "type": "numeric",
+    "answers": [
+        {
+        "range": [ 350, 380 ], 
+        "correct": true,
+        "feedback": "Correct. From the figure, the cumulative histogram has approximately 95% of its relative frequency below 360, which means 5 is above this value. The 95% percentile value is approximately 358.5"
+    },
+        {
+        "range": [ 320, 340 ], 
+        "correct": false,
+        "feedback": "Incorrect. Did you look at 0.9 on the $y$-axis? Remember that for a symmetric 90% CI, the CI will exclude 5% of the observed values on each edge, not 10%."
+    },
+        {
+        "range": [ -50, 200], 
+        "correct": false,
+        "feedback": "Incorrect. We are looking for the <b>right</b> edge of the 80% CI in this problem."
+    },
+                {
+        "type": "default",
+        "feedback": "Incorrect."
+    }
+    ]
+}
+]
