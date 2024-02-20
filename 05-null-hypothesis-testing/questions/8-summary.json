@@ -1,0 +1,907 @@
+[
+    {
+        "question": "Which of these is considered the <i>gold standard</i> for research studies?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Randomized controlled trial",
+                "correct": true
+            },
+            {
+                "answer": "Cross-sectional study",
+                "correct": false
+            },
+            {
+                "answer": "Longitudinal cohort study",
+                "correct": false
+            },
+            {
+                "answer": "Population study",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Which of these is most likely to result in <i>post hoc</i> analysis?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "A prospective study",
+                "correct": false
+            },
+            {
+                "answer": "A retrospective study",
+                "correct": true
+            },
+            {
+                "answer": "A population study",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Which of these is most likely to result in sampling bias?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "A random sample",
+                "correct": false
+            },
+            {
+                "answer": "A convenience sample",
+                "correct": true
+            }
+        ]
+    },
+    {
+        "question": "Which of the following is true of a cross-sectional study?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "It collects data about a population at one point in time",
+                "correct": true
+            },
+            {
+                "answer": "It collects data about a population across time",
+                "correct": false
+            },
+            {
+                "answer": "It collects data about the same sample from a  population at different points in time",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Which of the following is true of a longitudinal study?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "It collects data about a population at one point in time",
+                "correct": false
+            },
+            {
+                "answer": "It collects data about a population across time",
+                "correct": true
+            },
+            {
+                "answer": "It collects data about the same sample from a  population at different points in time",
+                "correct": false,
+                "feedback": "Not necessarily."
+            }
+        ]
+    },
+    {
+        "question": "Which of the following is true of a longitudinal cohort study?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "It collects data about a population at one point in time",
+                "correct": false
+            },
+            {
+                "answer": "It collects data about a population across time",
+                "correct": true,
+                "feedback": "This is true but not the best answer."
+            },
+            {
+                "answer": "It collects data about the same sample from a  population at different points in time",
+                "correct": true
+            }
+        ]
+    },
+    {
+        "question": "Resampling can be used in which of the following approaches to conduct a statistical test?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Model-free",
+                "correct": true
+            },
+            {
+                "answer": "Model-based",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "The distribution of a statistic computed from some data is called the:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Statistical distribution",
+                "correct": false
+            },
+            {
+                "answer": "Sampling distribution",
+                "correct": true
+            },
+            {
+                "answer": "Population distribution",
+                "correct": false
+            },
+            {
+                "answer": "Cross-sectional distribution",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "NHST stands for:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Nonlinear Hypothesis Screening Test",
+                "correct": false
+            },
+            {
+                "answer": "Null Hypothesis Significance Test",
+                "correct": true
+            },
+            {
+                "answer": "Normalized Hypothesis  Significance Test",
+                "correct": false
+            },
+            {
+                "answer": "Nonparametric Hypothesis  Screening Test",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Topcoding is generally used in data sets to ",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Protect sensitive information",
+                "correct": true
+            },
+            {
+                "answer": "Limit the effects of outliers",
+                "correct": false
+            },
+            {
+                "answer": "Improve the accuracy of statistical models",
+                "correct": false
+            },
+            {
+                "answer": "Simplify the interpretation of results",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Large data sets are often accompanied by information on how to interpret the codes and values for the different variables. This set of information is usually called a:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Guidebook",
+                "correct": false
+            },
+            {
+                "answer": "Codebook",
+                "correct": true
+            },
+            {
+                "answer": "Data set legend",
+                "correct": false
+            },
+            {
+                "answer": "Variable map",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "The process of dealing with incorrect, duplicate, missing, corrupt, or incomplete data is generally called:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Variable cleansing",
+                "correct": false
+            },
+            {
+                "answer": "Data cleaning",
+                "correct": true
+            },
+            {
+                "answer": "Dataset polishing",
+                "correct": false
+            },
+            {
+                "answer": "Data wrangling",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Consider the research question: \"Do people who attend a STEM-focused high school score higher than those who attend a standard high school on the Math section of the SAT?\". If you are conducting a NHST on this, would it be justifiable to use a one-sided test?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": true,
+                "feedback": "Correct. Because the research question indicates a particular direction and not just a difference between the populations, a one-sided test is justified."
+            },
+            {
+                "answer": "No",
+                "correct": false,
+                "feedback": "Incorrect. Check the question carefully."
+            },
+            {
+                "answer": "It depends on other factors",
+                "correct": false,
+                "feedback": "Incorrect. Check the question carefully."
+            }
+        ]
+    },
+    {
+        "question": "TikDeTox is a new drug that was developed to treat social media FOMO disease (SMFD). Consider the research question: \"Does data from a test show that college students who take this drug have less FOMO?\" If you are conducting a NHST on this, would it be justifiable to use a one-sided test?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": true,
+                "feedback": "Correct. Because the research question indicates a particular direction and not just a difference between the populations, a one-sided test is justified."
+            },
+            {
+                "answer": "No",
+                "correct": false,
+                "feedback": "Incorrect. Check the question carefully."
+            },
+            {
+                "answer": "It depends on other factors",
+                "correct": false,
+                "feedback": "Incorrect. Check the question carefully."
+            }
+        ]
+    },
+    {
+        "question": "Consider the research question \"A professor uses two different routes to work. Does the data support that there is a statistically significant difference in the commute time between the two routes?\".  If you are conducting a NHST on this, would it be justifiable to use a one-sided test?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": false,
+                "feedback": "Incorrect. Because the research questions only asks if there is a difference between the two routes, a two-tailed test should be used."
+            },
+            {
+                "answer": "No",
+                "correct": true
+            },
+            {
+                "answer": "It depends on other factors",
+                "correct": false,
+                "feedback": "Incorrect. Check the question carefully."
+            }
+        ]
+    },
+    {
+        "question": "Consider the research question \"Is there a difference in performance on pilot qualification tests between people who play video games and those who do not?\".  If you are conducting a NHST on this, would it be justifiable to use a one-sided test?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": false,
+                "feedback": "Incorrect. Because the research questions only asks if there is a difference between the performances of the two groups, a two-tailed test should be used."
+            },
+            {
+                "answer": "No",
+                "correct": true
+            },
+            {
+                "answer": "It depends on other factors",
+                "correct": false,
+                "feedback": "Incorrect. Check the question carefully."
+            }
+        ]
+    },
+    {
+        "question": "The distribution of a statistic computed from some data is called the:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Statistical distribution",
+                "correct": false
+            },
+            {
+                "answer": "Sampling distribution",
+                "correct": true
+            },
+            {
+                "answer": "Population distribution",
+                "correct": false
+            },
+            {
+                "answer": "Cross-sectional distribution",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "NHST stands for:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Nonlinear Hypothesis Screening Test",
+                "correct": false
+            },
+            {
+                "answer": "Null Hypothesis Significance Test",
+                "correct": true
+            },
+            {
+                "answer": "Normalized Hypothesis  Significance Test",
+                "correct": false
+            },
+            {
+                "answer": "Nonparametric Hypothesis  Screening Test",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Topcoding is generally used in data sets to ",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Protect sensitive information",
+                "correct": true
+            },
+            {
+                "answer": "Limit the effects of outliers",
+                "correct": false
+            },
+            {
+                "answer": "Improve the accuracy of statistical models",
+                "correct": false
+            },
+            {
+                "answer": "Simplify the interpretation of results",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Large data sets are often accompanied by information on how to interpret the codes and values for the different variables. This set of information is usually called a:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Guidebook",
+                "correct": false
+            },
+            {
+                "answer": "Codebook",
+                "correct": true
+            },
+            {
+                "answer": "Data set legend",
+                "correct": false
+            },
+            {
+                "answer": "Variable map",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "The process of dealing with incorrect, duplicate, missing, corrupt, or incomplete data is generally called:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Variable cleansing",
+                "correct": false
+            },
+            {
+                "answer": "Data cleaning",
+                "correct": true
+            },
+            {
+                "answer": "Dataset polishing",
+                "correct": false
+            },
+            {
+                "answer": "Data wrangling",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "In an NHST, which of the following should be used to choose between a one-tailed and two-tailed test?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "The particular phrasing of the research question",
+                "correct": true
+            },
+            {
+                "answer": "The significance threshold",
+                "correct": false
+            },
+            {
+                "answer": "Whether the data is quantitative or qualitative",
+                "correct": false
+            },
+            {
+                "answer": "The size of the data set",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Which is a more conservative test: a one-tailed test or a two-tailed test.",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "A two-tailed test",
+                "correct": true,
+                "feedback": "Correct. A two-tailed test is considered more conservative because it will produce a higher $p$-value than a one-sided test for the same data. Thus, it is less likely to indicate statistical significance."
+            },
+            {
+                "answer": "A one-tailed test",
+                "correct": false,
+                "feedback": "Incorrect. A two-tailed test is considered more conservative because it will produce a higher $p$-value than a one-sided test for the same data. Thus, it is less likely to indicate statistical significance."
+            }
+        ]
+    },
+    {
+        "question": "Which of these are resampling techniques?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "Shoelacing",
+                "correct": false
+            },
+            {
+                "answer": "Suspendering",
+                "correct": false
+            },
+            {
+                "answer": "Combination testing",
+                "correct": false
+            },
+            {
+                "answer": "Bootstrapping",
+                "correct": true
+            },
+            {
+                "answer": "Permutation testing",
+                "correct": true
+            },
+            {
+                "answer": "Monaco Permutation testing",
+                "correct": false,
+                "feedback": "Incorrect -- this was a tricky one. You are probably thinking of Monte Carlo Permutation testing."
+            }
+        ]
+    },
+    {
+        "question": "In which of these resampling techniques can a single data value be repeated in a sample?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Permutation testing",
+                "correct": false
+            },
+            {
+                "answer": "Bootstrapping",
+                "correct": true
+            },
+            {
+                "answer": "Monte Carlo permutation testing",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "If the goal of resampling is to approximate drawing from the sampling distribution of the test statistic, which approach to resampling should usually be used?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Bootstrap sampling",
+                "correct": true,
+                "feedback": "Correct. Bootstrapping approximates drawing from the sampling distribution. More details are provided in Section 9.7 of <a url=\"https://www.fdsp.net/\">Foundations of Data Science with Python</a>\""
+            },
+            {
+                "answer": "Permutation sampling",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "If the goal of resampling is to break up any dependence from the assignment to the underlying groups, which approach to resampling should usually be used?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Bootstrap sampling",
+                "correct": false
+            },
+            {
+                "answer": "Permutation sampling",
+                "correct": true,
+                "feedback": "Correct. Permutation sampling inherently reshuffles data, breaking up any dependence from the assignmen tto groups and is thus the most appropriate in this case."
+            }
+        ]
+    },
+    {
+        "question": "Which approach to resampling is generally more conservative?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Bootstrapping",
+                "correct": false
+            },
+            {
+                "answer": "Permutation testing",
+                "correct": true,
+                "feedback": "Correct. Permutation testing generally produces higher $p$-values than bootstrapping. Thus, permutation testing is less likely to indicate statistical significance and is thus more conservative."
+            }
+        ]
+    },
+    {
+        "question": "When using resampling with a significance threshold of 0.05, which of these is the minimum number of samples (simulation iterations) that will be needed?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "2,000",
+                "correct": true,
+                "feedback": "Correct. 2,000 is a good guideline for the minimum number of samples because it is equal to 100/$p$. A more conservative choice would be 10,000."
+            },
+            {
+                "answer": "200",
+                "correct": false
+            },
+            {
+                "answer": "500",
+                "correct": false
+            },
+            {
+                "answer": "20,000",
+                "correct": false
+            },
+            {
+                "answer": "200,000",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "When using resampling with a significance threshold of 0.005 (i.e. $5 \\times 10^{-3}$), which of these is the minimum number of samples (simulation iterations) that will be needed?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "20,000",
+                "correct": true,
+                "feedback": "Correct. 20,000 is a good guideline for the minimum number of samples because it is equal to 100/$p$. A more conservative choice would be 100,000."
+            },
+            {
+                "answer": "200",
+                "correct": false
+            },
+            {
+                "answer": "500",
+                "correct": false
+            },
+            {
+                "answer": "2,000",
+                "correct": false
+            },
+            {
+                "answer": "200,000",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "True or false: When reporting the results of a NHST, it is sufficient to report whether the null hypothesis was rejected.",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "True",
+                "correct": false,
+                "feedback": "Incorrect. Always report the measured p-value along with the conclusion. It is not su\ufb00icient to just report p > 0.05 because the specific p value gives additional insight into the results of the statistical test."
+            },
+            {
+                "answer": "False",
+                "correct": true,
+                "feedback": "Correct. Always report the measured p-value along with the conclusion. It is not su\ufb00icient to just report p > 0.05 because the specific p value gives additional insight into the results of the statistical test."
+            }
+        ]
+    },
+    {
+        "question": "Can multiple NHSTs be applied to the same data set?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes, without modification",
+                "correct": false,
+                "feedback": "Incorrect. Multiple NHSTs should not be applied to the same data set without applying a stricter criteria to achieve the target significance level."
+            },
+            {
+                "answer": "Yes, with modification",
+                "correct": true,
+                "feedback": "Correct. Multiple NHSTs can be applied to the same data set, but  a stricter criteria must be applied to achieve the target significance level."
+            },
+            {
+                "answer": "No",
+                "correct": false,
+                "feedback": "Incorrect. Multiple NHSTs can be applied to the same data set, but  a stricter criteria must be applied to achieve the target significance level."
+            }
+        ]
+    },
+    {
+        "question": "True or False: A given 95% confidence interval has a 95% chance of containing the true value of the statistic being estimated.",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "False",
+                "correct": true,
+                "feedback": "Correct. A 95% confidence interval indicates that if confidence intervals created using this approach were created many times, then they would contain the true value of the statistic 95% of the time."
+            },
+            {
+                "answer": "True",
+                "correct": false,
+                "feedback": "Incorrect. This is a common misinterpretation of what a C% confidence interval means. The C% confidence interval applies to the estimation technique for the statistic and indicates that if confidence intervals created using this approach were created many times, then they would contain the true value of the statistic 95% of the time."
+            }
+        ]
+    },
+    {
+        "question": "Compared to a 95% confidence interval, the width of a 99% confidence interval would be:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Wider",
+                "correct": true,
+                "feedback": "Correct. To have higher confidence that intervals created in this way would contain the true value of the statistic being estimated, the confidence interval must be wider."
+            },
+            {
+                "answer": "Narrower",
+                "correct": false
+            },
+            {
+                "answer": "The same -- the width of a CI is controlled by other factors",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Confidence intervals can most readily be estimated from what type of histogram?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "True",
+                "correct": false,
+                "feedback": "Incorrect. Always report the measured p-value along with the conclusion. It is not su\ufb00icient to just report p > 0.05 because the specific p value gives additional insight into the results of the statistical test."
+            },
+            {
+                "answer": "False",
+                "correct": true,
+                "feedback": "Correct. Always report the measured p-value along with the conclusion. It is not su\ufb00icient to just report p > 0.05 because the specific p value gives additional insight into the results of the statistical test."
+            }
+        ]
+    },
+    {
+        "question": "Can multiple NHSTs be applied to the same data set?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes, without modification",
+                "correct": false,
+                "feedback": "Incorrect. Multiple NHSTs should not be applied to the same data set without applying a stricter criteria to achieve the target significance level."
+            },
+            {
+                "answer": "Yes, with modification",
+                "correct": true,
+                "feedback": "Correct. Multiple NHSTs can be applied to the same data set, but  a stricter criteria must be applied to achieve the target significance level."
+            },
+            {
+                "answer": "No",
+                "correct": false,
+                "feedback": "Incorrect. Multiple NHSTs can be applied to the same data set, but  a stricter criteria must be applied to achieve the target significance level."
+            }
+        ]
+    },
+    {
+        "question": "If $H_0$ is true, but you fail to reject $H_0$, it is a:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "True Negative",
+                "correct": true
+            },
+            {
+                "answer": "False Positive",
+                "correct": false
+            },
+            {
+                "answer": "False Negative",
+                "correct": false
+            },
+            {
+                "answer": "True Positive",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "If $H_0$ is true, and you reject $H_0$, it is a:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "True Negative",
+                "correct": false
+            },
+            {
+                "answer": "False Positive",
+                "correct": true
+            },
+            {
+                "answer": "False Negative",
+                "correct": false
+            },
+            {
+                "answer": "True Positive",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "If the alternative hypothesis $H_a$ is true, and you fail to reject $H_0$, it is a:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "True Negative",
+                "correct": false
+            },
+            {
+                "answer": "False Positive",
+                "correct": false
+            },
+            {
+                "answer": "False Negative",
+                "correct": true
+            },
+            {
+                "answer": "True Positive",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "If the alternative hypothesis $H_a$ is true, and you reject $H_0$, it is a:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "True Negative",
+                "correct": false
+            },
+            {
+                "answer": "False Positive",
+                "correct": false
+            },
+            {
+                "answer": "False Negative",
+                "correct": false
+            },
+            {
+                "answer": "True Positive",
+                "correct": true
+            }
+        ]
+    },
+    {
+        "question": "Another name for a False Positive is a:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Type I Error",
+                "correct": true
+            },
+            {
+                "answer": "Type II Error",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "Another name for a False Negative is a:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Type II Error",
+                "correct": true
+            },
+            {
+                "answer": "Type I Error",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "The Greek letter $\\alpha$ is used to denote the probability of which event?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Type I Error",
+                "correct": true
+            },
+            {
+                "answer": "Type II Error",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "The Greek letter $\\beta is used to denote the probability of which event?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Type II Error",
+                "correct": true
+            },
+            {
+                "answer": "Type I Error",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "The statistical power of a test corresponds to the probability of:",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Rejecting $H_0$ when $H_a$ is true",
+                "correct": true
+            },
+            {
+                "answer": "Failing to reject $H_0$ when $H_a$ is true",
+                "correct": false
+            },
+            {
+                "answer": "Rejecting $H_a$ when $H_0$ is true",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "question": "If we have the probabilities $\\alpha$ and $\\beta$ for a test, the statistical power can be computed as :",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "$1-\\beta$",
+                "correct": true
+            },
+            {
+                "answer": "$1 - \\alpha$",
+                "correct": false
+            },
+            {
+                "answer": "$1- \\alpha - \\beta$",
+                "correct": false
+            },
+            {
+                "answer": "$\\alpha + \\beta$",
+                "correct": false
+            }
+        ]
+    }
+]
