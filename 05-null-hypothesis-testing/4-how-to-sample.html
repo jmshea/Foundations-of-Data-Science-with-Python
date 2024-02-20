@@ -12,10 +12,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.fdsp.net/05-null-hypothesis-testing/4-how-to-sample.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Permutation Tests: Code and additional discussion for Section 5.4.2 are included here. When we carried out the bootstrap test, we observed that almost every row had repeated values of the data. Thi..." />
+<meta property="og:description" content="Self-Assessment Terminology Review Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ Permutation Tests: Code and additional discussion for Sectio..." />
 <meta property="og:image" content="https://www.fdsp.net/intro/cover-larger.png" />
 <meta property="og:image:alt" content="Python" />
-<meta name="description" content="Permutation Tests: Code and additional discussion for Section 5.4.2 are included here. When we carried out the bootstrap test, we observed that almost every row had repeated values of the data. Thi..." />
+<meta name="description" content="Self-Assessment Terminology Review Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~ Permutation Tests: Code and additional discussion for Sectio..." />
 
     <title>5.4. How to Sample from the Pooled Data &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
   
@@ -448,9 +448,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -466,14 +464,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">5.4.1. Terminology Review</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -485,161 +475,1119 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="how-to-sample-from-the-pooled-data">
 <h1><span class="section-number">5.4. </span>How to Sample from the Pooled Data<a class="headerlink" href="#how-to-sample-from-the-pooled-data" title="Permalink to this heading">#</a></h1>
-<p><strong>Permutation Tests: Code and additional discussion for Section 5.4.2 are included here.</strong></p>
-<p>When we carried out the bootstrap test, we observed that almost every row had repeated values of the data.  This is attributable to resampling with replacement, and the probability of at least one repeated value increases as the size of the data increases.  There is also nothing preventing the sample groups from repeating in different iterations, although the probability of repeated sample groups decreases with the size of the data.</p>
-<p>If our goal is to conduct a statistical test that directly breaks any dependence on the assignment of the data to the two groups, then it makes more sense to consider simply shuffling, or <em>permuting</em>, the data among the groups, with no repetitions allowed.  When the data is small, we can simply try every permutation of the data across the two groups. This is a permutation test.</p>
-<p>For instance, with six data points, the number of permutations is <span class="math notranslate nohighlight">\(6! = 720\)</span>. If we want to carry out a NHST, we first compute the test difference for each permutation. Then, we determine the proportion of permutations that result in sample test statistics greater than our observed test difference. This proportion is the <span class="math notranslate nohighlight">\(p\)</span>-value under the permutation test.</p>
-<p>We will use the <code class="docutils literal notranslate"><span class="pre">itertools</span></code> library to find every permutation of the data across the two groups. Let’s first see how to get every permutation of a list of sequential integers:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
-<span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>
-</pre></div>
+<p><strong>Self-Assessment</strong></p>
+<div class="cell tag_remove-input docutils container">
 </div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 1, 2)
-(0, 2, 1)
-(1, 0, 2)
-(1, 2, 0)
-(2, 0, 1)
-(2, 1, 0)
-</pre></div>
-</div>
-</div>
-</div>
-<p>For three values, we expect <span class="math notranslate nohighlight">\(3!=6\)</span> permutations, which is what we observe.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">itertools.permutations()</span></code> returns a special object that can be iterated over but that you can’t directly get individual values from.
-Thus, we will always use <code class="docutils literal notranslate"><span class="pre">itertools.permutations()</span></code> in a <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span> </code> statement.</p>
-</div>
-<p>To map permutations into two groups, we first permute the entire pooled data and then partition it according to the size of the two groups. For instance, here are the first ten permutations of the pooled data:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">perm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">)</span> <span class="p">):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
-    <span class="k">break</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(74.1, 74.5, 79.4, 79.0, 78.4, 79.3)
-(74.1, 74.5, 79.4, 79.0, 79.3, 78.4)
-(74.1, 74.5, 79.4, 78.4, 79.0, 79.3)
-(74.1, 74.5, 79.4, 78.4, 79.3, 79.0)
-(74.1, 74.5, 79.4, 79.3, 79.0, 78.4)
-(74.1, 74.5, 79.4, 79.3, 78.4, 79.0)
-(74.1, 74.5, 79.0, 79.4, 78.4, 79.3)
-(74.1, 74.5, 79.0, 79.4, 79.3, 78.4)
-(74.1, 74.5, 79.0, 78.4, 79.4, 79.3)
-(74.1, 74.5, 79.0, 78.4, 79.3, 79.4)
-(74.1, 74.5, 79.0, 79.3, 79.4, 78.4)
-</pre></div>
-</div>
-</div>
-</div>
-<p>To partition the data, we can simply split each returned tuple using indexing:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">perm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">)</span> <span class="p">):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)],</span> <span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">):])</span>
-  <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
-    <span class="k">break</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(74.1, 74.5) (79.4, 79.0, 78.4, 79.3)
-(74.1, 74.5) (79.4, 79.0, 79.3, 78.4)
-(74.1, 74.5) (79.4, 78.4, 79.0, 79.3)
-(74.1, 74.5) (79.4, 78.4, 79.3, 79.0)
-(74.1, 74.5) (79.4, 79.3, 79.0, 78.4)
-(74.1, 74.5) (79.4, 79.3, 78.4, 79.0)
-(74.1, 74.5) (79.0, 79.4, 78.4, 79.3)
-(74.1, 74.5) (79.0, 79.4, 79.3, 78.4)
-(74.1, 74.5) (79.0, 78.4, 79.4, 79.3)
-(74.1, 74.5) (79.0, 78.4, 79.3, 79.4)
-(74.1, 74.5) (79.0, 79.3, 79.4, 78.4)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Finally, we can carry out a NHST by determining the proportion of permutations that result in a sample test statistic as large as the observed test difference:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_perms</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="output text_html"><div id="ykFLbZadgtcZ" data-shufflequestions="False"
+               data-shuffleanswers="True"
+               data-preserveresponses="false"
+               data-numquestions="1000000"
+               data-maxwidth="600"
+               style="border-radius: 10px; text-align: left"> <style>
+#ykFLbZadgtcZ {
+   --jq-multiple-choice-bg: #345995;
+   --jq-mc-button-bg: #fafafa;
+   --jq-mc-button-border: #e0e0e0e0;
+   --jq-mc-button-inset-shadow: #555555;
+   --jq-many-choice-bg: #e26d5a;
+   --jq-numeric-bg: #5bc0eb;
+   --jq-numeric-input-bg: #c0c0c0;
+   --jq-numeric-input-label: #101010;
+   --jq-numeric-input-shadow: #999999;
+   --jq-incorrect-color: #666666;
+   --jq-correct-color: #87a878;
+   --jq-text-color: #fafafa;
+}
 
-<span class="n">observed_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+.Quiz {
+    max-width: 600px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    line-height: 1.1;
+    font-size: 16pt;
+    border-radius: inherit;
+}
 
-<span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">):</span>
-  <span class="n">num_perms</span> <span class="o">+=</span> <span class="mi">1</span>
-  <span class="c1"># Split the permuted data across the two sample groups</span>
-  <span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)]</span> <span class="p">)</span>
-  <span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">:</span> <span class="p">]</span> <span class="p">)</span>
-  <span class="c1"># Compute the test statistic</span>
-  <span class="n">sample_diff</span> <span class="o">=</span> <span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-  
-  <span class="c1"># Count if at least as large as observed test difference</span>
-  <span class="k">if</span> <span class="n">sample_diff</span> <span class="o">&gt;=</span> <span class="n">observed_diff</span><span class="p">:</span>
-    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+.QuizCode {
+    font-size: 14pt;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.QuizCode>pre {
+    padding: 4px;
+}
+
+.Quiz code {
+    background-color: lightgray;
+    color: black;
+}
+
+.Quiz .QuizCode code {
+    background-color: inherit;
+    color: inherit;
+}
+
+
+.Quiz .MCButton code {
+    background-color: inherit;
+    color: inherit;
+}
+
+.MCButton .QuizCode {
+    text-align: left;
+}
+
+
+
+
+.Answer {
+    border-radius: inherit;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px 0;
+}
+
+.Feedback {
+    font-size: 16pt;
+    text-align: center;
+    min-height: 2em;
+}
+
+.Input {
+    align: left;
+    font-size: 20pt;
+}
+
+.Input-text {
+    display: block;
+    margin: 10px;
+    color: inherit;
+    width: 140px;
+    background-color: var(--jq-numeric-input-bg);
+    color: var(--jq-text-color);
+    padding: 5px;
+    padding-left: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: inherit;
+    line-height: 20pt;
+    border: none;
+    border-radius: 0.2rem;
+    transition: box-shadow 0.1s);
+}
+
+.Input-text:focus {
+    /*outline: none;*/
+    background-color: var(--jq-numeric-input-bg);
+    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
+}
+
+.MCButton {
+    background: var(--jq-mc-button-bg);
+    border: 1px solid var(--jq-mc-button-border);
+    border-radius: inherit;
+    color: #333333;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MCButton p {
+    color: inherit;
+}
+
+.MultipleChoiceQn {
+    padding: 10px;
+    background: var(--jq-multiple-choice-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
+}
+
+.ManyChoiceQn {
+    padding: 10px;
+    background: var(--jq-many-choice-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
+}
+
+.NumericQn {
+    background: var(--jq-numeric-bg);
+    border-radius: inherit;
+    color: var(--jq-text-color);
+    padding: 10px;
+}
+
+.NumericQn p {
+    color: inherit;
+}
+
+.InpLabel {
+    color: var(--jq-numeric-input-label);
+    float: left;
+    font-size: 15pt;
+    line-height: 34px;
+    margin-right: 10px;
+}
+
+.incorrect {
+    color: var(--jq-incorrect-color);
+}
+
+.correct {
+    color: var(--jq-correct-color);
+}
+
+.correctButton {
+    /*
+    background: var(--jq-correct-color);
+   */
+    animation: correct-anim 0.6s ease;
+    animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
+    color: var(--jq-text-color);
+    /*outline: none;*/
+}
+
+.incorrectButton {
+    animation: incorrect-anim 0.8s ease;
+    animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
+    color: var(--jq-text-color);
+    /*outline: none;*/
+}
+
+@keyframes incorrect-anim {
+    100% {
+        background-color: var(--jq-incorrect-color);
+    }
+}
+
+@keyframes correct-anim {
+    100% {
+        background-color: var(--jq-correct-color);
+    }
+}
+</style></div><script type="application/javascript">var questionsykFLbZadgtcZ=[
+    {
+      "question": "Which of these are resampling techniques?",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "Shoelacing",
+          "correct": false
+      },
+          {
+          "answer": "Suspendering",
+          "correct": false
+      },
+          {
+          "answer": "Combination testing",
+          "correct": false
+      },
+          {
+          "answer": "Bootstrapping",
+          "correct": true
+      },
+          {
+          "answer": "Permutation testing",
+          "correct": true
+      },
+          {
+          "answer": "Monaco Permutation testing",
+          "correct": false,
+          "feedback": "Incorrect -- this was a tricky one. You are probably thinking of Monte Carlo Permutation testing."
+      }
+      ]
+  },
+    {
+      "question": "In which of these resampling techniques can a single data value be repeated in a sample?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Permutation testing",
+          "correct": false
+      },
+          {
+          "answer": "Bootstrapping",
+          "correct": true
+      },
+          {
+          "answer": "Monte Carlo permutation testing",
+          "correct": false
+      }
+      ]
+  },
+  {
+      "question": "If the goal of resampling is to approximate drawing from the sampling distribution of the test statistic, which approach to resampling should usually be used?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Bootstrap sampling",
+          "correct": true,
+          "feedback": "Correct. Bootstrapping approximates drawing from the sampling distribution. More details are provided in Section 9.7 of <a url=\"https://www.fdsp.net/\">Foundations of Data Science with Python</a>\""
+      },
+          {
+          "answer": "Permutation sampling",
+          "correct": false
+      }
+      ]
+  },
+    {
+      "question": "If the goal of resampling is to break up any dependence from the assignment to the underlying groups, which approach to resampling should usually be used?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Bootstrap sampling",
+          "correct": false
+      },
+          {
+          "answer": "Permutation sampling",
+          "correct": true,
+          "feedback": "Correct. Permutation sampling inherently reshuffles data, breaking up any dependence from the assignmen tto groups and is thus the most appropriate in this case."
+      }
+      ]
+  },
+    {
+      "question": "Which approach to resampling is generally more conservative?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Bootstrapping",
+          "correct": false
+      },
+          {
+          "answer": "Permutation testing",
+          "correct": true,
+          "feedback": "Correct. Permutation testing generally produces higher $p$-values than bootstrapping. Thus, permutation testing is less likely to indicate statistical significance and is thus more conservative."
+      }
+      ]
+  }
+]
+;
+    // Make a random ID
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+    }
+    return result.join('');
+}
+
+// Choose a random subset of an array. Can also be used to shuffle the array
+function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}
+
+function printResponses(responsesContainer) {
+    var responses=JSON.parse(responsesContainer.dataset.responses);
+    var stringResponses='<B>IMPORTANT!</B>To preserve this answer sequence for submission, when you have finalized your answers: <ol> <li> Copy the text in this cell below "Answer String"</li> <li> Double click on the cell directly below the Answer String, labeled "Replace Me"</li> <li> Select the whole "Replace Me" text</li> <li> Paste in your answer string and press shift-Enter.</li><li>Save the notebook using the save icon or File->Save Notebook menu item</li></ul><br><br><br><b>Answer String:</b><br> ';
+    console.log(responses);
+    responses.forEach((response, index) => {
+        if (response) {
+            console.log(index + ': ' + response);
+            stringResponses+= index + ': ' + response +"<BR>";
+        }
+    });
+    responsesContainer.innerHTML=stringResponses;
+}
+function check_mc() {
+    var id = this.id.split('-')[0];
+    //var response = this.id.split('-')[1];
+    //console.log(response);
+    //console.log("In check_mc(), id="+id);
+    //console.log(event.srcElement.id)           
+    //console.log(event.srcElement.dataset.correct)   
+    //console.log(event.srcElement.dataset.feedback)
+
+    var label = event.srcElement;
+    //console.log(label, label.nodeName);
+    var depth = 0;
+    while ((label.nodeName != "LABEL") && (depth < 20)) {
+        label = label.parentElement;
+        console.log(depth, label);
+        depth++;
+    }
+
+
+
+    var answers = label.parentElement.children;
+
+    //console.log(answers);
+
+
+    // Split behavior based on multiple choice vs many choice:
+    var fb = document.getElementById("fb" + id);
+
+
+
+
+    if (fb.dataset.numcorrect <= 1) {
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            responses[qnum]= response;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        for (var i = 0; i < answers.length; i++) {
+            var child = answers[i];
+            //console.log(child);
+            child.className = "MCButton";
+        }
+
+
+
+        if (label.dataset.correct == "true") {
+            // console.log("Correct action");
+            if ("feedback" in label.dataset) {
+                fb.innerHTML = jaxify(label.dataset.feedback);
+            } else {
+                fb.innerHTML = "Correct!";
+            }
+            label.classList.add("correctButton");
+
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+
+        } else {
+            if ("feedback" in label.dataset) {
+                fb.innerHTML = jaxify(label.dataset.feedback);
+            } else {
+                fb.innerHTML = "Incorrect -- try again.";
+            }
+            //console.log("Error action");
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+    }
+    else {
+        var reset = false;
+        var feedback;
+         if (label.dataset.correct == "true") {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Correct!";
+            }
+            if (label.dataset.answered <= 0) {
+                if (fb.dataset.answeredcorrect < 0) {
+                    fb.dataset.answeredcorrect = 1;
+                    reset = true;
+                } else {
+                    fb.dataset.answeredcorrect++;
+                }
+                if (reset) {
+                    for (var i = 0; i < answers.length; i++) {
+                        var child = answers[i];
+                        child.className = "MCButton";
+                        child.dataset.answered = 0;
+                    }
+                }
+                label.classList.add("correctButton");
+                label.dataset.answered = 1;
+                fb.className = "Feedback";
+                fb.classList.add("correct");
+
+            }
+        } else {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Incorrect -- try again.";
+            }
+            if (fb.dataset.answeredcorrect > 0) {
+                fb.dataset.answeredcorrect = -1;
+                reset = true;
+            } else {
+                fb.dataset.answeredcorrect--;
+            }
+
+            if (reset) {
+                for (var i = 0; i < answers.length; i++) {
+                    var child = answers[i];
+                    child.className = "MCButton";
+                    child.dataset.answered = 0;
+                }
+            }
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            if (label.dataset.correct == "true") {
+                if (typeof(responses[qnum]) == "object"){
+                    if (!responses[qnum].includes(response))
+                        responses[qnum].push(response);
+                } else{
+                    responses[qnum]= [ response ];
+                }
+            } else {
+                responses[qnum]= response;
+            }
+            console.log(responses);
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End save responses stuff
+
+
+
+        var numcorrect = fb.dataset.numcorrect;
+        var answeredcorrect = fb.dataset.answeredcorrect;
+        if (answeredcorrect >= 0) {
+            fb.textContent = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
+        } else {
+            fb.textContent = feedback + " [" + 0 + "/" + numcorrect + "]";
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([fb]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+}
+
+function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
+    var shuffled;
+    if (shuffle_answers == "True") {
+        //console.log(shuffle_answers+" read as true");
+        shuffled = getRandomSubarray(qa.answers, qa.answers.length);
+    } else {
+        //console.log(shuffle_answers+" read as false");
+        shuffled = qa.answers;
+    }
+
+
+    var num_correct = 0;
+
+
+
+    shuffled.forEach((item, index, ans_array) => {
+        //console.log(answer);
+
+        // Make input element
+        var inp = document.createElement("input");
+        inp.type = "radio";
+        inp.id = "quizo" + id + index;
+        inp.style = "display:none;";
+        aDiv.append(inp);
+
+        //Make label for input element
+        var lab = document.createElement("label");
+        lab.className = "MCButton";
+        lab.id = id + '-' + index;
+        lab.onclick = check_mc;
+        var aSpan = document.createElement('span');
+        aSpan.classsName = "";
+        //qDiv.id="quizQn"+id+index;
+        if ("answer" in item) {
+            aSpan.innerHTML = jaxify(item.answer);
+            //aSpan.innerHTML=item.answer;
+        }
+        lab.append(aSpan);
+
+        // Create div for code inside question
+        var codeSpan;
+        if ("code" in item) {
+            codeSpan = document.createElement('span');
+            codeSpan.id = "code" + id + index;
+            codeSpan.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeSpan.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = item.code;
+            lab.append(codeSpan);
+            //console.log(codeSpan);
+        }
+
+        //lab.textContent=item.answer;
+
+        // Set the data attributes for the answer
+        lab.setAttribute('data-correct', item.correct);
+        if (item.correct) {
+            num_correct++;
+        }
+        if ("feedback" in item) {
+            lab.setAttribute('data-feedback', item.feedback);
+        }
+        lab.setAttribute('data-answered', 0);
+
+        aDiv.append(lab);
+
+    });
+
+    if (num_correct > 1) {
+        outerqDiv.className = "ManyChoiceQn";
+    } else {
+        outerqDiv.className = "MultipleChoiceQn";
+    }
+
+    return num_correct;
+
+}
+function check_numeric(ths, event) {
+
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+
+        var submission = ths.value;
+        if (submission.indexOf('/') != -1) {
+            var sub_parts = submission.split('/');
+            //console.log(sub_parts);
+            submission = sub_parts[0] / sub_parts[1];
+        }
+        //console.log("Reader entered", submission);
+
+        if ("precision" in ths.dataset) {
+            var precision = ths.dataset.precision;
+            submission = Number(Number(submission).toPrecision(precision));
+        }
+
+
+        //console.log("In check_numeric(), id="+id);
+        //console.log(event.srcElement.id)           
+        //console.log(event.srcElement.dataset.feedback)
+
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.textContent = "Incorrect -- try again.";
+
+        var answers = JSON.parse(ths.dataset.answers);
+        //console.log(answers);
+
+        var defaultFB = "";
+        var correct;
+        var done = false;
+        answers.every(answer => {
+            //console.log(answer.type);
+
+            correct = false;
+            // if (answer.type=="value"){
+            if ('value' in answer) {
+                if (submission == answer.value) {
+                    if ("feedback" in answer) {
+                        fb.textContent = jaxify(answer.feedback);
+                    } else {
+                        fb.textContent = jaxify("Correct");
+                    }
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+                // } else if (answer.type=="range") {
+            } else if ('range' in answer) {
+                console.log(answer.range);
+                console.log(submission, submission >=answer.range[0], submission < answer.range[1])
+                if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    console.log(answer.correct);
+                    done = true;
+                }
+            } else if (answer.type == "default") {
+                defaultFB = answer.feedback;
+            }
+            if (done) {
+                return false; // Break out of loop if this has been marked correct
+            } else {
+                return true; // Keep looking for case that includes this as a correct answer
+            }
+        });
+        console.log("done:", done);
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+            //console.log("Default feedback", defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            console.log(submission);
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            //console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            if (submission == ths.value){
+                responses[qnum]= submission;
+            } else {
+                responses[qnum]= ths.value + "(" + submission +")";
+            }
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        return false;
+    }
+
+}
+
+function isValid(el, charC) {
+    //console.log("Input char: ", charC);
+    if (charC == 46) {
+        if (el.value.indexOf('.') === -1) {
+            return true;
+        } else if (el.value.indexOf('/') != -1) {
+            var parts = el.value.split('/');
+            if (parts[1].indexOf('.') === -1) {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    } else if (charC == 47) {
+        if (el.value.indexOf('/') === -1) {
+            if ((el.value != "") && (el.value != ".")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else if (charC == 45) {
+        var edex = el.value.indexOf('e');
+        if (edex == -1) {
+            edex = el.value.indexOf('E');
+        }
+
+        if (el.value == "") {
+            return true;
+        } else if (edex == (el.value.length - 1)) { // If just after e or E
+            return true;
+        } else {
+            return false;
+        }
+    } else if (charC == 101) { // "e"
+        if ((el.value.indexOf('e') === -1) && (el.value.indexOf('E') === -1) && (el.value.indexOf('/') == -1)) {
+            // Prev symbol must be digit or decimal point:
+            if (el.value.slice(-1).search(/\d/) >= 0) {
+                return true;
+            } else if (el.value.slice(-1).search(/\./) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        if (charC > 31 && (charC < 48 || charC > 57))
+            return false;
+    }
+    return true;
+}
+
+function numeric_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_numeric(this, evnt);
+    } else {
+        return isValid(this, charC);
+    }
+}
+
+
+
+
+
+function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
+
+
+
+    //console.log(answer);
+
+
+    outerqDiv.className = "NumericQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.textContent = "Type numeric answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    //inp.id="input-"+id;
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    if ("precision" in qa) {
+        inp.setAttribute('data-precision', qa.precision);
+    }
+    aDiv.append(inp);
+    //console.log(inp);
+
+    //inp.addEventListener("keypress", check_numeric);
+    //inp.addEventListener("keypress", numeric_keypress);
+    /*
+    inp.addEventListener("keypress", function(event) {
+        return numeric_keypress(this, event);
+    }
+                        );
+                        */
+    //inp.onkeypress="return numeric_keypress(this, event)";
+    inp.onkeypress = numeric_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    }
+    );
+
+
+}
+function jaxify(string) {
+    var mystring = string;
+
+    var count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    var count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+
+function show_questions(json, mydiv) {
+    console.log('show_questions');
+    //var mydiv=document.getElementById(myid);
+    var shuffle_questions = mydiv.dataset.shufflequestions;
+    var num_questions = mydiv.dataset.numquestions;
+    var shuffle_answers = mydiv.dataset.shuffleanswers;
+    var max_width = mydiv.dataset.maxwidth;
+
+    if (num_questions > json.length) {
+        num_questions = json.length;
+    }
+
+    var questions;
+    if ((num_questions < json.length) || (shuffle_questions == "True")) {
+        //console.log(num_questions+","+json.length);
+        questions = getRandomSubarray(json, num_questions);
+    } else {
+        questions = json;
+    }
+
+    //console.log("SQ: "+shuffle_questions+", NQ: " + num_questions + ", SA: ", shuffle_answers);
+
+    // Iterate over questions
+    questions.forEach((qa, index, array) => {
+        //console.log(qa.question); 
+
+        var id = makeid(8);
+        //console.log(id);
+
+
+        // Create Div to contain question and answers
+        var iDiv = document.createElement('div');
+        //iDiv.id = 'quizWrap' + id + index;
+        iDiv.id = 'quizWrap' + id;
+        iDiv.className = 'Quiz';
+        iDiv.setAttribute('data-qnum', index);
+        iDiv.style.maxWidth  =max_width+"px";
+        mydiv.appendChild(iDiv);
+        // iDiv.innerHTML=qa.question;
+        
+        var outerqDiv = document.createElement('div');
+        outerqDiv.id = "OuterquizQn" + id + index;
+        // Create div to contain question part
+        var qDiv = document.createElement('div');
+        qDiv.id = "quizQn" + id + index;
+        
+        if (qa.question) {
+            iDiv.append(outerqDiv);
+
+            //qDiv.textContent=qa.question;
+            qDiv.innerHTML = jaxify(qa.question);
+            outerqDiv.append(qDiv);
+        }
+
+        // Create div for code inside question
+        var codeDiv;
+        if ("code" in qa) {
+            codeDiv = document.createElement('div');
+            codeDiv.id = "code" + id + index;
+            codeDiv.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeDiv.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = qa.code;
+            outerqDiv.append(codeDiv);
+            //console.log(codeDiv);
+        }
+
+
+        // Create div to contain answer part
+        var aDiv = document.createElement('div');
+        aDiv.id = "quizAns" + id + index;
+        aDiv.className = 'Answer';
+        iDiv.append(aDiv);
+
+        //console.log(qa.type);
+
+        var num_correct;
+        if ((qa.type == "multiple_choice") || (qa.type == "many_choice") ) {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+            if ("answer_cols" in qa) {
+                //aDiv.style.gridTemplateColumns = 'auto '.repeat(qa.answer_cols);
+                aDiv.style.gridTemplateColumns = 'repeat(' + qa.answer_cols + ', 1fr)';
+            }
+        } else if (qa.type == "numeric") {
+            //console.log("numeric");
+            make_numeric(qa, outerqDiv, qDiv, aDiv, id);
+        }
+
+
+        //Make div for feedback
+        var fb = document.createElement("div");
+        fb.id = "fb" + id;
+        //fb.style="font-size: 20px;text-align:center;";
+        fb.className = "Feedback";
+        fb.setAttribute("data-answeredcorrect", 0);
+        fb.setAttribute("data-numcorrect", num_correct);
+        iDiv.append(fb);
+
+
+    });
+    var preserveResponses = mydiv.dataset.preserveresponses;
+    console.log(preserveResponses);
+    console.log(preserveResponses == "true");
+    if (preserveResponses == "true") {
+        console.log(preserveResponses);
+        // Create Div to contain record of answers
+        var iDiv = document.createElement('div');
+        iDiv.id = 'responses' + mydiv.id;
+        iDiv.className = 'JCResponses';
+        // Create a place to store responses as an empty array
+        iDiv.setAttribute('data-responses', '[]');
+
+        // Dummy Text
+        iDiv.innerHTML="<b>Select your answers and then follow the directions that will appear here.</b>"
+        //iDiv.className = 'Quiz';
+        mydiv.appendChild(iDiv);
+    }
+//console.log("At end of show_questions");
+    if (typeof MathJax != 'undefined') {
+        console.log("MathJax version", MathJax.version);
+        var version = MathJax.version;
+        setTimeout(function(){
+            var version = MathJax.version;
+            console.log('After sleep, MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
+            }
+        }, 500);
+if (typeof version == 'undefined') {
+        } else
+        {
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([mydiv]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
+            } else {
+                console.log("MathJax not found");
+            }
+        }
+    }
+    return false;
+}
+/* This is to handle asynchrony issues in loading Jupyter notebooks
+           where the quiz has been previously run. The Javascript was generally
+           being run before the div was added to the DOM. I tried to do this
+           more elegantly using Mutation Observer, but I didn't get it to work.
+
+           Someone more knowledgeable could make this better ;-) */
+
+        function try_show() {
+          if(document.getElementById("ykFLbZadgtcZ")) {
+            show_questions(questionsykFLbZadgtcZ,  ykFLbZadgtcZ); 
+          } else {
+             setTimeout(try_show, 200);
+          }
+        };
     
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;After </span><span class="si">{</span><span class="n">num_perms</span><span class="si">}</span><span class="s1"> permutations:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Proportion of events with difference &gt;= &#39;</span>
-      <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">observed_diff</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">count</span><span class="o">/</span><span class="n">num_perms</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        //console.log(element);
+        {
+        const jmscontroller = new AbortController();
+        const signal = jmscontroller.signal;
 
-  
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>After 720 permutations:
-Proportion of events with difference &gt;= 4.725 is 0.067
-</pre></div>
-</div>
-</div>
-</div>
-<p>The proportion of permutations with a test difference as large as that observed in the data is 6.67%, so the null hypothesis cannot be rejected at the <span class="math notranslate nohighlight">\(\alpha=0.05\)</span> level. Note that the calculated <span class="math notranslate nohighlight">\(p\)</span>-value is larger than for the bootstrap test; this is typical of permutation tests. They are more conservative in the sense that the null hypothesis is less likely to be rejected than if a bootstrap test were applied.</p>
-<p>One problem with exact permutation tests is that the number of possible permutations grows exponentially with the length of the data. For 6 data points, there are only 720 permutations, but for 60 data points, there are approximately <span class="math notranslate nohighlight">\(8.3 \times 10^{81}\)</span> permutations, which is too large to enumerate. As an alternative, we can use a Monte Carlo permutation test. As previously mentioned, this is usually implemented by performing resampling <em>without replacement</em>,  which we can do in Python using <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code> with the keyword parameter <code class="docutils literal notranslate"><span class="pre">replace</span> <span class="pre">=</span> <span class="pre">False</span></code>.</p>
-<p>The simulation for a Monte Carlo permutation test is a hybrid between the simulation for bootstrapping and that for the exact permutation test. We draw the data using <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code>, but we get a full permutation of the data and then split it among the two sample groups. An example is shown below:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_sims</span> <span class="o">=</span> <span class="mi">100_000</span>
-<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        setTimeout(() => jmscontroller.abort(), 5000);
 
-<span class="n">observed_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
-  <span class="c1"># Get a random permutation of the pooled data:</span>
-  <span class="n">perm</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pooled</span><span class="p">),</span> <span class="n">replace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> 
-  <span class="c1"># Split the permuted data across the two sample groups</span>
-  <span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)]</span> <span class="p">)</span>
-  <span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">:</span> <span class="p">]</span> <span class="p">)</span>
-  <span class="n">sample_diff</span> <span class="o">=</span> <span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-  
-  <span class="c1"># Count if at least as large as observed test difference</span>
-  <span class="k">if</span> <span class="n">sample_diff</span> <span class="o">&gt;=</span> <span class="n">observed_diff</span><span class="p">:</span>
-    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-    
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Relative frequency of events with difference &gt;= &#39;</span>
-      <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">observed_diff</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">count</span><span class="o">/</span><span class="n">num_sims</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-  
-</pre></div>
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/05-null-hypothesis-testing/questions/4-how-to-sample.json", {signal})
+        .then(response => response.json())
+        .then(json => show_questions(json, ykFLbZadgtcZ))
+        .catch(err => {
+        console.log("Fetch error or timeout");
+        show_questions(questionsykFLbZadgtcZ, ykFLbZadgtcZ);
+        });
+        }
+        </script></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Relative frequency of events with difference &gt;= 4.725 is 0.065
-</pre></div>
-</div>
-</div>
-</div>
-<p>The relative frequency of the Monte Carlo test is very similar to the exact test. In this case, we have a lot of repetitions of the same permutations because there are only 720 unique permutations, but we are drawing 100,000 permutations at random. The computed relative frequency is an estimate of the proportion of permutations that meet the specified criteria.</p>
-<section id="terminology-review">
-<h2><span class="section-number">5.4.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Permalink to this heading">#</a></h2>
+<p><strong>Terminology Review</strong></p>
 <p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
@@ -898,7 +1846,7 @@ Proportion of events with difference &gt;= 4.725 is 0.067
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="ikNMzFjIMrBv" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="ikNMzFjIMrBv-next" onclick="window.checkFlip('ikNMzFjIMrBv')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="vFmRLFgeOFGR" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="vFmRLFgeOFGR-next" onclick="window.checkFlip('vFmRLFgeOFGR')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1205,6 +2153,26 @@ function createCards(id, keyControl, grabFocus) {
                     if (version[0] == "2") {
                         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                     } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
                         MathJax.typeset([flipper]);
                     }
                 }, 500);
@@ -1213,7 +2181,31 @@ function createCards(id, keyControl, grabFocus) {
                 if (version[0] == "2") {
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 } else if (version[0] == "3") {
-                    MathJax.typeset([flipper]);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
+                        MathJax.typeset([flipper]);
+                    }
                 }
             }
         } else {
@@ -1245,22 +2237,31 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("ikNMzFjIMrBv")) {
-            createCards("ikNMzFjIMrBv", "True", "False");
+          if(document.getElementById("vFmRLFgeOFGR")) {
+            createCards("vFmRLFgeOFGR", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsikNMzFjIMrBv=[
+var cardsvFmRLFgeOFGR=[
     {
-        "front": "exact permutation test",
-        "back": "The data is permuted among the groups in every possible order. (No data is repeated.)"
+        "front": "bootstrapping",
+        "back":  "A resampling technique that approximates sampling from the distribution of a population by drawing samples <B>with replacement</B> from the original data."
+    },
+    {
+        "front": "permutation testing",
+        "back":  "A statistical technique that uses every mapping (i.e., permutation) from the original data to the test samples."
+    },
+    {
+        "front": "Monte Carlo permutation testing",
+        "back":  "A resampling technique that approximates a permutation test by drawing samples <B>without replacement</B> from the original data."
     }
-];
-var frontColorsikNMzFjIMrBv= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsikNMzFjIMrBv= ["var(--dark-blue-gray)" ];
-var textColorsikNMzFjIMrBv= ["var(--snow)" ];
+]
+;
+var frontColorsvFmRLFgeOFGR= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsvFmRLFgeOFGR= ["var(--dark-blue-gray)" ];
+var textColorsvFmRLFgeOFGR= ["var(--snow)" ];
 
 
         {
@@ -1271,7 +2272,7 @@ var textColorsikNMzFjIMrBv= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/05-null-hypothesis-testing/flashcards/how-to-sample.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("ikNMzFjIMrBv", "True", "False"))
+        .then(json => createCards("vFmRLFgeOFGR", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1279,7 +2280,174 @@ var textColorsikNMzFjIMrBv= ["var(--snow)" ];
         }
         </script></div>
 </div>
-</section>
+<p><strong>Permutation Tests: Code and additional discussion for Section 5.4.2 are included here.</strong></p>
+<p>When we carried out the bootstrap test, we observed that almost every row had repeated values of the data.  This is attributable to resampling with replacement, and the probability of at least one repeated value increases as the size of the data increases.  There is also nothing preventing the sample groups from repeating in different iterations, although the probability of repeated sample groups decreases with the size of the data.</p>
+<p>If our goal is to conduct a statistical test that directly breaks any dependence on the assignment of the data to the two groups, then it makes more sense to consider simply shuffling, or <em>permuting</em>, the data among the groups, with no repetitions allowed.  When the data is small, we can simply try every permutation of the data across the two groups. This is a permutation test.</p>
+<p>For the examples here, we will use the grades data from Section 5.4:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">grades1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">74.1</span><span class="p">,</span> <span class="mf">74.5</span><span class="p">])</span>
+<span class="n">grades2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">79.4</span><span class="p">,</span><span class="mf">79.0</span><span class="p">,</span> <span class="mf">78.4</span><span class="p">,</span><span class="mf">79.3</span><span class="p">])</span>
+
+<span class="n">pooled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span> <span class="p">(</span><span class="n">grades1</span><span class="p">,</span> <span class="n">grades2</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For instance, with six data points, the number of permutations is <span class="math notranslate nohighlight">\(6! = 720\)</span>. If we want to carry out a NHST, we first compute the test difference for each permutation. Then, we determine the proportion of permutations that result in sample test statistics greater than our observed test difference. This proportion is the <span class="math notranslate nohighlight">\(p\)</span>-value under the permutation test.</p>
+<p>We will use the <code class="docutils literal notranslate"><span class="pre">itertools</span></code> library to find every permutation of the data across the two groups. Let’s first see how to get every permutation of a list of sequential integers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 1, 2)
+(0, 2, 1)
+(1, 0, 2)
+(1, 2, 0)
+(2, 0, 1)
+(2, 1, 0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>For three values, we expect <span class="math notranslate nohighlight">\(3!=6\)</span> permutations, which is what we observe.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">itertools.permutations()</span></code> returns a special object that can be iterated over but that you can’t directly get individual values from.
+Thus, we will always use <code class="docutils literal notranslate"><span class="pre">itertools.permutations()</span></code> in a <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">...</span> <span class="pre">in</span> </code> statement.</p>
+</div>
+<p>To map permutations into two groups, we first permute the entire pooled data and then partition it according to the size of the two groups. For instance, here are the first ten permutations of the pooled grades data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">perm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">)</span> <span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(74.1, 74.5, 79.4, 79.0, 78.4, 79.3)
+(74.1, 74.5, 79.4, 79.0, 79.3, 78.4)
+(74.1, 74.5, 79.4, 78.4, 79.0, 79.3)
+(74.1, 74.5, 79.4, 78.4, 79.3, 79.0)
+(74.1, 74.5, 79.4, 79.3, 79.0, 78.4)
+(74.1, 74.5, 79.4, 79.3, 78.4, 79.0)
+(74.1, 74.5, 79.0, 79.4, 78.4, 79.3)
+(74.1, 74.5, 79.0, 79.4, 79.3, 78.4)
+(74.1, 74.5, 79.0, 78.4, 79.4, 79.3)
+(74.1, 74.5, 79.0, 78.4, 79.3, 79.4)
+(74.1, 74.5, 79.0, 79.3, 79.4, 78.4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because <code class="docutils literal notranslate"><span class="pre">itertools</span></code> is creating the permutations in a systematic fashion, only the last 4 values will change over these 10 permutations.</p>
+<p>To partition the data, we can simply split each returned tuple using indexing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">perm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">)</span> <span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)],</span> <span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">):])</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(74.1, 74.5) (79.4, 79.0, 78.4, 79.3)
+(74.1, 74.5) (79.4, 79.0, 79.3, 78.4)
+(74.1, 74.5) (79.4, 78.4, 79.0, 79.3)
+(74.1, 74.5) (79.4, 78.4, 79.3, 79.0)
+(74.1, 74.5) (79.4, 79.3, 79.0, 78.4)
+(74.1, 74.5) (79.4, 79.3, 78.4, 79.0)
+(74.1, 74.5) (79.0, 79.4, 78.4, 79.3)
+(74.1, 74.5) (79.0, 79.4, 79.3, 78.4)
+(74.1, 74.5) (79.0, 78.4, 79.4, 79.3)
+(74.1, 74.5) (79.0, 78.4, 79.3, 79.4)
+(74.1, 74.5) (79.0, 79.3, 79.4, 78.4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can carry out a NHST by determining the proportion of permutations that result in a sample test statistic as large as the observed test difference:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_perms</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">observed_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">pooled</span><span class="p">):</span>
+  <span class="n">num_perms</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="c1"># Split the permuted data across the two sample groups</span>
+  <span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)]</span> <span class="p">)</span>
+  <span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">:</span> <span class="p">]</span> <span class="p">)</span>
+  <span class="c1"># Compute the test statistic</span>
+  <span class="n">sample_diff</span> <span class="o">=</span> <span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  
+  <span class="c1"># Count if at least as large as observed test difference</span>
+  <span class="k">if</span> <span class="n">sample_diff</span> <span class="o">&gt;=</span> <span class="n">observed_diff</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;After </span><span class="si">{</span><span class="n">num_perms</span><span class="si">}</span><span class="s1"> permutations:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Proportion of events with difference &gt;= &#39;</span>
+      <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">observed_diff</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">count</span><span class="o">/</span><span class="n">num_perms</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>After 720 permutations:
+Proportion of events with difference &gt;= 4.725 is 0.067
+</pre></div>
+</div>
+</div>
+</div>
+<p>The proportion of permutations with a test difference as large as that observed in the data is 6.67%, so the null hypothesis cannot be rejected at the <span class="math notranslate nohighlight">\(\alpha=0.05\)</span> level. Note that the calculated <span class="math notranslate nohighlight">\(p\)</span>-value is larger than for the bootstrap test; this is typical of permutation tests. They are more conservative in the sense that the null hypothesis is less likely to be rejected than if a bootstrap test were applied.</p>
+<p>One problem with exact permutation tests is that the number of possible permutations grows exponentially with the length of the data. For 6 data points, there are only 720 permutations, but for 60 data points, there are approximately <span class="math notranslate nohighlight">\(8.3 \times 10^{81}\)</span> permutations, which is too large to enumerate. As an alternative, we can use a Monte Carlo permutation test. As previously mentioned, this is usually implemented by performing resampling <em>without replacement</em>,  which we can do in Python using <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code> with the keyword parameter <code class="docutils literal notranslate"><span class="pre">replace</span> <span class="pre">=</span> <span class="pre">False</span></code>.</p>
+<p>The simulation for a Monte Carlo permutation test is a hybrid between the simulation for bootstrapping and that for the exact permutation test. We draw the data using <code class="docutils literal notranslate"><span class="pre">npr.choice()</span></code>, but we get a full permutation of the data and then split it among the two sample groups. An example is shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+
+<span class="n">num_sims</span> <span class="o">=</span> <span class="mi">100_000</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">observed_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grades1</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+  <span class="c1"># Get a random permutation of the pooled data:</span>
+  <span class="n">perm</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pooled</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pooled</span><span class="p">),</span> <span class="n">replace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> 
+  <span class="c1"># Split the permuted data across the two sample groups</span>
+  <span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)]</span> <span class="p">)</span>
+  <span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">grades1</span><span class="p">)</span> <span class="p">:</span> <span class="p">]</span> <span class="p">)</span>
+  <span class="n">sample_diff</span> <span class="o">=</span> <span class="n">sample2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">sample1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  
+  <span class="c1"># Count if at least as large as observed test difference</span>
+  <span class="k">if</span> <span class="n">sample_diff</span> <span class="o">&gt;=</span> <span class="n">observed_diff</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Relative frequency of events with difference &gt;= &#39;</span>
+      <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">observed_diff</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> is </span><span class="si">{</span><span class="n">count</span><span class="o">/</span><span class="n">num_sims</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Relative frequency of events with difference &gt;= 4.725 is 0.067
+</pre></div>
+</div>
+</div>
+</div>
+<p>The relative frequency of the Monte Carlo test is very similar to the exact test. In this case, we have a lot of repetitions of the same permutations because there are only 720 unique permutations, but we are drawing 100,000 permutations at random. The computed relative frequency is an estimate of the proportion of permutations that meet the specified criteria.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1336,20 +2504,6 @@ var textColorsikNMzFjIMrBv= ["var(--snow)" ];
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">5.4.1. Terminology Review</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
