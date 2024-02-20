@@ -1,0 +1,96 @@
+[
+    {
+      "question": "Which of these are resampling techniques?",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "Shoelacing",
+          "correct": false
+      },
+          {
+          "answer": "Suspendering",
+          "correct": false
+      },
+          {
+          "answer": "Combination testing",
+          "correct": false
+      },
+          {
+          "answer": "Bootstrapping",
+          "correct": true
+      },
+          {
+          "answer": "Permutation testing",
+          "correct": true
+      },
+          {
+          "answer": "Monaco Permutation testing",
+          "correct": false,
+          "feedback": "Incorrect -- this was a tricky one. You are probably thinking of Monte Carlo Permutation testing."
+      }
+      ]
+  },
+    {
+      "question": "In which of these resampling techniques can a single data value be repeated in a sample?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Permutation testing",
+          "correct": false
+      },
+          {
+          "answer": "Bootstrapping",
+          "correct": true
+      },
+          {
+          "answer": "Monte Carlo permutation testing",
+          "correct": false
+      }
+      ]
+  },
+  {
+      "question": "If the goal of resampling is to approximate drawing from the sampling distribution of the test statistic, which approach to resampling should usually be used?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Bootstrap sampling",
+          "correct": true,
+          "feedback": "Correct. Bootstrapping approximates drawing from the sampling distribution. More details are provided in Section 9.7 of <a url=\"https://www.fdsp.net/\">Foundations of Data Science with Python</a>\""
+      },
+          {
+          "answer": "Permutation sampling",
+          "correct": false
+      }
+      ]
+  },
+    {
+      "question": "If the goal of resampling is to break up any dependence from the assignment to the underlying groups, which approach to resampling should usually be used?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Bootstrap sampling",
+          "correct": false
+      },
+          {
+          "answer": "Permutation sampling",
+          "correct": true,
+          "feedback": "Correct. Permutation sampling inherently reshuffles data, breaking up any dependence from the assignmen tto groups and is thus the most appropriate in this case."
+      }
+      ]
+  },
+    {
+      "question": "Which approach to resampling is generally more conservative?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Bootstrapping",
+          "correct": false
+      },
+          {
+          "answer": "Permutation testing",
+          "correct": true,
+          "feedback": "Correct. Permutation testing generally produces higher $p$-values than bootstrapping. Thus, permutation testing is less likely to indicate statistical significance and is thus more conservative."
+      }
+      ]
+  }
+]
