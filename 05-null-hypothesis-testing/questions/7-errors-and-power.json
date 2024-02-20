@@ -1,0 +1,186 @@
+[
+    {
+    "question": "If $H_0$ is true, but you fail to reject $H_0$, it is a:",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "True Negative",
+          "correct": true
+      },
+          {
+          "answer": "False Positive",
+          "correct": false
+      },
+          {
+          "answer": "False Negative",
+          "correct": false
+      },
+          {
+          "answer": "True Positive",
+          "correct": false
+      }
+      ]
+},
+    {
+    "question": "If $H_0$ is true, and you reject $H_0$, it is a:",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "True Negative",
+        "correct": false
+    },
+        {
+        "answer": "False Positive",
+        "correct": true
+    },
+        {
+        "answer": "False Negative",
+        "correct": false
+    },
+        {
+        "answer": "True Positive",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "If the alternative hypothesis $H_a$ is true, and you fail to reject $H_0$, it is a:",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "True Negative",
+        "correct": false
+    },
+        {
+        "answer": "False Positive",
+        "correct": false
+    },
+        {
+        "answer": "False Negative",
+        "correct": true
+    },
+        {
+        "answer": "True Positive",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "If the alternative hypothesis $H_a$ is true, and you reject $H_0$, it is a:",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "True Negative",
+        "correct": false
+    },
+        {
+        "answer": "False Positive",
+        "correct": false
+    },
+        {
+        "answer": "False Negative",
+        "correct": false
+    },
+        {
+        "answer": "True Positive",
+        "correct": true
+    }
+    ]
+},
+    {
+    "question": "Another name for a False Positive is a:",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "Type I Error",
+        "correct": true
+    },
+        {
+        "answer": "Type II Error",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "Another name for a False Negative is a:",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "Type II Error",
+        "correct": true
+    },
+        {
+        "answer": "Type I Error",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "The Greek letter $\\alpha$ is used to denote the probability of which event?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "Type I Error",
+        "correct": true
+    },
+        {
+        "answer": "Type II Error",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "The Greek letter $\\beta is used to denote the probability of which event?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "Type II Error",
+        "correct": true
+    },
+        {
+        "answer": "Type I Error",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "The statistical power of a test corresponds to the probability of:",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "Rejecting $H_0$ when $H_a$ is true",
+        "correct": true
+    },
+        {
+        "answer": "Failing to reject $H_0$ when $H_a$ is true",
+        "correct": false
+    },
+        {
+        "answer": "Rejecting $H_a$ when $H_0$ is true",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "If we have the probabilities $\\alpha$ and $\\beta$ for a test, the statistical power can be computed as :",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "$1-\\beta$",
+        "correct": true
+    },
+        {
+        "answer": "$1 - \\alpha$",
+        "correct": false
+    },
+        {
+        "answer": "$1- \\alpha - \\beta$",
+        "correct": false
+    },
+        {
+        "answer": "$\\alpha + \\beta$",
+        "correct": false
+    }
+    ]
+}
+]
