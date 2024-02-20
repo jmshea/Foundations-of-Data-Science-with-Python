@@ -1,0 +1,92 @@
+[
+    {
+    "question": "When using resampling with a significance threshold of 0.05, which of these is the minimum number of samples (simulation iterations) that will be needed?",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "2,000",
+          "correct": true,
+          "feedback": "Correct. 2,000 is a good guideline for the minimum number of samples because it is equal to 100/$p$. A more conservative choice would be 10,000."
+      },
+          {
+          "answer": "200",
+          "correct": false
+      },
+          {
+          "answer": "500",
+          "correct": false
+      },
+          {
+          "answer": "20,000",
+          "correct": false
+      },
+          {
+          "answer": "200,000",
+          "correct": false
+      }
+      ]
+},
+    {
+    "question": "When using resampling with a significance threshold of 0.005 (i.e. $5 \\times 10^{-3}$), which of these is the minimum number of samples (simulation iterations) that will be needed?",
+    "type": "many_choice",
+    "answers": [
+        {
+        "answer": "20,000",
+        "correct": true,
+        "feedback": "Correct. 20,000 is a good guideline for the minimum number of samples because it is equal to 100/$p$. A more conservative choice would be 100,000."
+    },
+        {
+        "answer": "200",
+        "correct": false
+    },
+        {
+        "answer": "500",
+        "correct": false
+    },
+        {
+        "answer": "2,000",
+        "correct": false
+    },
+        {
+        "answer": "200,000",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "True or false: When reporting the results of a NHST, it is sufficient to report whether the null hypothesis was rejected.",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "True",
+          "correct": false,
+          "feedback": "Incorrect. Always report the measured p-value along with the conclusion. It is not suﬀicient to just report p > 0.05 because the specific p value gives additional insight into the results of the statistical test."
+      },
+          {
+          "answer": "False",
+          "correct": true,
+          "feedback": "Correct. Always report the measured p-value along with the conclusion. It is not suﬀicient to just report p > 0.05 because the specific p value gives additional insight into the results of the statistical test."
+      }
+      ]
+  },
+  {
+      "question": "Can multiple NHSTs be applied to the same data set?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "Yes, without modification",
+          "correct": false,
+          "feedback": "Incorrect. Multiple NHSTs should not be applied to the same data set without applying a stricter criteria to achieve the target significance level."
+      },
+          {
+          "answer": "Yes, with modification",
+          "correct": true,
+          "feedback": "Correct. Multiple NHSTs can be applied to the same data set, but  a stricter criteria must be applied to achieve the target significance level."
+      },
+          {
+          "answer": "No",
+          "correct": false,
+          "feedback": "Incorrect. Multiple NHSTs can be applied to the same data set, but  a stricter criteria must be applied to achieve the target significance level."
+      }
+      ]
+  }]
