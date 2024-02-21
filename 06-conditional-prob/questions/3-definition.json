@@ -1,0 +1,58 @@
+[
+  {
+    "question": "For events $A$ and $B$ with $P(B)>0$, which of these define the conditional probability of $A$ given $B$?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "$|A \\cap B|/|B|$",
+        "correct": false,
+        "feedback": "Incorrect. This is true if the outcomes in $S$ are equally likely, but is not true in general."
+    },
+        {
+        "answer": "$P(A)/P(B)$",
+        "correct": false,
+        "feedback": "Incorrect. This will hold if $A \\subset B$, but is not true in general."
+    },
+        {
+        "answer": "$P(A \\cap B)/P(A)$",
+        "correct": false,
+        "feedback": "Incorrect. One way to remember this is that the conditioning bar $\\mid$ looks kind of like a divide sign &mdash; the denominator will be the probability of whatever is to the right of the conditioning bar."
+    },
+        {
+        "answer": "$P(A \\cup B)/P(A)$",
+        "correct": false
+    },
+        {
+        "answer": "$P(A \\cup B)/P(B)$",
+        "correct": false
+    },
+        {
+        "answer": "$P(A \\cap B)/P(B)$",
+        "correct": true
+    }
+    ]
+  },
+    {
+      "question": "Consider a probability space $\\left( S, \\mathcal{F}, P\\right)$ and an event $C \\in \\mathcal{F}$ with $P(C)>0$.  Form a  conditional probability measure such that for any event $E \\in \\mathcal{F}$, $P(E \\mid C) = P(E \\cap C) / |(C)$.  Which of the following axioms axioms/properties hold if we apply $P(E|C)$ using the original sample space $S$ and event class $\\mathcal{F}$?",
+      "type": "many_choice",
+      "answers": [
+          {
+          "answer": "$P(E \\mid C) \\ge 0$ for all $E \\in \\mathcal{F}$",
+          "correct": true
+      },
+          {
+          "answer": "$P(S \\mid B ) = 1$",
+          "correct": true
+      },
+          {
+          "answer": "If $A \\in \\mathcal{F}$ and $B \\in \\mathcal{F}$, then $P(A \\cup B \\mid C) = P(A \\mid C) + P(B \\mid C)$",
+          "correct": true
+      },
+          {
+          "answer": "If $E \\in \\mathcal{F}$ with $P(E)> 0$, then $P(E \\mid C) >0$",
+          "correct": false,
+          "feedback": "Incorrect. We will see that a conditional probability may be less than, equal to, or larger than the corresponding unconditioned probability."
+      }
+      ]
+  }
+]
