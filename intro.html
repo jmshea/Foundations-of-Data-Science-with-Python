@@ -495,7 +495,7 @@ document.write(`
 </section>
 <section id="about-the-book">
 <h2>About the book<a class="headerlink" href="#about-the-book" title="Permalink to this heading">#</a></h2>
-<p>This book is an introduction to the foundations of data science, including data visualization, statistics, probability, and linear algebra. This book is targeted toward engineers and scientists, but it should be easily accessible to anyone who knows basic calculus and the basics of computer programming. By leveraging this background knowledge, this book fits a unique niche in the books on data science and statistics:</p>
+<p>This book is an introduction to the foundations of data science, including data visualization, statistics, probability, and dimensionality reduction. This book is targeted toward engineers and scientists, but it should be easily accessible to anyone who knows basic calculus and the basics of computer programming. By leveraging this background knowledge, this book fits a unique niche in the books on data science and statistics:</p>
 <ul class="simple">
 <li><p><strong>This book applies a modern, computational approach to work with data</strong>, and in particular, uses simulations (an approach called <em>resampling</em>) to answer statistical questions.</p>
 <ul>
@@ -561,13 +561,13 @@ document.write(`
 <h2>Examples of interactive materials<a class="headerlink" href="#examples-of-interactive-materials" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="kxvJSIANqPZD" data-shufflequestions="False"
+<div class="output text_html"><div id="ZAFOOhxBtoqU" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#kxvJSIANqPZD {
+#ZAFOOhxBtoqU {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -606,12 +606,35 @@ document.write(`
     padding: 4px;
 }
 
+.Quiz code {
+    background-color: lightgray;
+    color: black;
+}
+
+.Quiz .QuizCode code {
+    background-color: inherit;
+    color: inherit;
+}
+
+
+.Quiz .MCButton code {
+    background-color: inherit;
+    color: inherit;
+}
+
+.MCButton .QuizCode {
+    text-align: left;
+}
+
+
+
+
 .Answer {
-    margin: 10px 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
     border-radius: inherit;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px 0;
 }
 
 .Feedback {
@@ -644,7 +667,7 @@ document.write(`
 }
 
 .Input-text:focus {
-    outline: none;
+    /*outline: none;*/
     background-color: var(--jq-numeric-input-bg);
     box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
 }
@@ -682,10 +705,10 @@ document.write(`
 }
 
 .NumericQn {
-    padding: 10px;
     background: var(--jq-numeric-bg);
-    color: var(--jq-text-color);
     border-radius: inherit;
+    color: var(--jq-text-color);
+    padding: 10px;
 }
 
 .NumericQn p {
@@ -693,11 +716,11 @@ document.write(`
 }
 
 .InpLabel {
-    line-height: 34px;
-    float: left;
-    margin-right: 10px;
     color: var(--jq-numeric-input-label);
+    float: left;
     font-size: 15pt;
+    line-height: 34px;
+    margin-right: 10px;
 }
 
 .incorrect {
@@ -714,17 +737,17 @@ document.write(`
    */
     animation: correct-anim 0.6s ease;
     animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
+    /*outline: none;*/
 }
 
 .incorrectButton {
     animation: incorrect-anim 0.8s ease;
     animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
+    /*outline: none;*/
 }
 
 @keyframes incorrect-anim {
@@ -738,7 +761,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionskxvJSIANqPZD=[
+</style></div><script type="application/javascript">var questionsZAFOOhxBtoqU=[
   {
     "question": "What are summary statistics?",
     "type": "multiple_choice",
@@ -757,26 +780,8 @@ document.write(`
       }
     ]
   },
-  {
-    "question": "What are the most common summary statistics?",
-    "type": "multiple_choice",
-    "answers": [
-      {
-        "answer": "Mean, median, mode, range, variance, and standard deviation",
-        "correct": true
-      },
-      {
-        "answer": "Histogram, scatter plot, box plot, and bar chart",
-        "correct": false
-      },
-      {
-        "answer": "Correlation, regression, and hypothesis testing",
-        "correct": false
-      }
-    ]
-  },
-  {
-    "question": "What is the mean?",
+    {
+    "question": "What is the sample mean?",
     "type": "multiple_choice",
     "answers": [
       {
@@ -788,7 +793,7 @@ document.write(`
         "correct": false
       },
       {
-        "answer": "The average value of a dataset",
+        "answer": "A value that minimizes the mean-squared error to the data",
         "correct": true
       }
     ]
@@ -798,7 +803,7 @@ document.write(`
     "type": "multiple_choice",
     "answers": [
       {
-        "answer": "The middle value of a dataset",
+        "answer": "A middle value of a dataset",
         "correct": true
       },
       {
@@ -806,7 +811,7 @@ document.write(`
         "correct": false
       },
       {
-        "answer": "The average value of a dataset",
+        "answer": "A value that minimizes the mean-squared error to the data",
         "correct": false
       }
     ]
@@ -820,68 +825,49 @@ document.write(`
         "correct": false
       },
       {
-        "answer": "The most common value in a dataset",
+        "answer": "A value that appears the most in a dataset",
         "correct": true
       },
       {
-        "answer": "The average value of a dataset",
+        "answer": "A value that minimizes the mean-squared error to the data",
         "correct": false
       }
     ]
   },
-  {
-    "question": "What is the range?",
-    "type": "multiple_choice",
-    "answers": [
-      {
-        "answer": "The difference between the maximum and minimum values in a dataset",
-        "correct": true
+    {
+      "question": "Which of these summary statistics always has a unique value for a given dataset?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "median",
+          "correct": false,
+          "feedback": "Incorrect. When the number of points in a dataset is even, there is not a single data value in the middle of the dataset. In this case, the value of the median can be defined in different ways."
       },
-      {
-        "answer": "The sum of all values in a dataset",
-        "correct": false
+          {
+          "answer": "mode",
+          "correct": false,
+          "feedback": "Incorrect. There may be multiple values that all occur the same number of times, and there is no unique mode in such a case."
       },
-      {
-        "answer": "The number of values in a dataset",
-        "correct": false
+          {
+          "answer": "mean",
+          "correct": true
       }
-    ]
-  },
-  {
-    "question": "What is the variance?",
-    "type": "multiple_choice",
-    "answers": [
-      {
-        "answer": "A measure of how spread out the data is",
-        "correct": true
+      ]
+  }, {
+      "question": "Which of these statistics is less sensitive to outliers?",
+      "type": "multiple_choice",
+      "answers": [
+          {
+          "answer": "sample mean",
+          "correct": false,
+          "feedback": "Incorrect. The sample mean can change significantly in the presence of outliers."
       },
-      {
-        "answer": "The difference between the maximum and minimum values in a dataset",
-        "correct": false
-      },
-      {
-        "answer": "The middle value of a dataset",
-        "correct": false
+          {
+          "answer": "median",
+          "correct": true,
+          "feedback": "Correct. Because the median returns a value in the middle of the dataset, it is not significantly affected by the particular values of outliers."
       }
-    ]
-  },
-  {
-    "question": "What is the standard deviation?",
-    "type": "multiple_choice",
-    "answers": [
-      {
-        "answer": "The square root of the variance",
-        "correct": true
-      },
-      {
-        "answer": "The difference between the maximum and minimum values in a dataset",
-        "correct": false
-      },
-      {
-        "answer": "The middle value of a dataset",
-        "correct": false
-      }
-    ]
+      ]
   }
 ]
 ;
@@ -951,7 +937,7 @@ function check_mc() {
 
 
 
-    if (fb.dataset.numcorrect == 1) {
+    if (fb.dataset.numcorrect <= 1) {
         // What follows is for the saved responses stuff
         var outerContainer = fb.parentElement.parentElement;
         var responsesContainer = document.getElementById("responses" + outerContainer.id);
@@ -973,7 +959,7 @@ function check_mc() {
             printResponses(responsesContainer);
         }
         // End code to preserve responses
-        
+
         for (var i = 0; i < answers.length; i++) {
             var child = answers[i];
             //console.log(child);
@@ -985,9 +971,9 @@ function check_mc() {
         if (label.dataset.correct == "true") {
             // console.log("Correct action");
             if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
+                fb.innerHTML = jaxify(label.dataset.feedback);
             } else {
-                fb.textContent = "Correct!";
+                fb.innerHTML = "Correct!";
             }
             label.classList.add("correctButton");
 
@@ -996,9 +982,9 @@ function check_mc() {
 
         } else {
             if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
+                fb.innerHTML = jaxify(label.dataset.feedback);
             } else {
-                fb.textContent = "Incorrect -- try again.";
+                fb.innerHTML = "Incorrect -- try again.";
             }
             //console.log("Error action");
             label.classList.add("incorrectButton");
@@ -1213,9 +1199,7 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            // console.log("1:", submission)
-            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
-            // console.log("Rounded to ", submission, " precision=", precision  );
+            submission = Number(Number(submission).toPrecision(precision));
         }
 
 
@@ -1241,9 +1225,9 @@ function check_numeric(ths, event) {
             if ('value' in answer) {
                 if (submission == answer.value) {
                     if ("feedback" in answer) {
-                        fb.textContent = jaxify(answer.feedback);
+                        fb.innerHTML = jaxify(answer.feedback);
                     } else {
-                        fb.textContent = jaxify("Correct");
+                        fb.innerHTML = jaxify("Correct");
                     }
                     correct = answer.correct;
                     //console.log(answer.correct);
@@ -1251,11 +1235,12 @@ function check_numeric(ths, event) {
                 }
                 // } else if (answer.type=="range") {
             } else if ('range' in answer) {
-                //console.log(answer.range);
+                console.log(answer.range);
+                console.log(submission, submission >=answer.range[0], submission < answer.range[1])
                 if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
-                    fb.textContent = jaxify(answer.feedback);
+                    fb.innerHTML = jaxify(answer.feedback);
                     correct = answer.correct;
-                    //console.log(answer.correct);
+                    console.log(answer.correct);
                     done = true;
                 }
             } else if (answer.type == "default") {
@@ -1267,6 +1252,7 @@ function check_numeric(ths, event) {
                 return true; // Keep looking for case that includes this as a correct answer
             }
         });
+        console.log("done:", done);
 
         if ((!done) && (defaultFB != "")) {
             fb.innerHTML = jaxify(defaultFB);
@@ -1671,8 +1657,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("kxvJSIANqPZD")) {
-            show_questions(questionskxvJSIANqPZD,  kxvJSIANqPZD); 
+          if(document.getElementById("ZAFOOhxBtoqU")) {
+            show_questions(questionsZAFOOhxBtoqU,  ZAFOOhxBtoqU); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1685,12 +1671,12 @@ if (typeof version == 'undefined') {
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/summary-stats.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/4-summary-stats.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, kxvJSIANqPZD))
+        .then(json => show_questions(json, ZAFOOhxBtoqU))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionskxvJSIANqPZD, kxvJSIANqPZD);
+        show_questions(questionsZAFOOhxBtoqU, ZAFOOhxBtoqU);
         });
         }
         </script></div>
@@ -1842,10 +1828,11 @@ if (typeof version == 'undefined') {
 	  backface-visibility: hidden;
     background: var(--dark-blue-gray);
 	  transform: rotateY(180deg);
+    left: 8px;
 }
 
 .jp-OutputArea-output .back {
-	  transform: rotateY(180deg) translateX(7.5%);
+	  transform: rotateY(180deg) translateZ(20px);
 }
 
 .next {
@@ -1894,7 +1881,7 @@ if (typeof version == 'undefined') {
     text-align: left;
 }
 
-@media only screen and (min-width:1000px) {
+@media only screen and (min-width:700px) {
 
     .flip-container, .front, .back {
 	      height: 300px;
@@ -1941,6 +1928,10 @@ if (typeof version == 'undefined') {
     .flipper {
 	      height: 300px;
     }
+    .back {
+        left: 4px;
+    }
+
 
 }
 
@@ -1952,10 +1943,12 @@ if (typeof version == 'undefined') {
     .next {
         margin-left: 65%;
     }
-
+    .back {
+        left: 4px;
+    }
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="SKuiIePoMYLl" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="SKuiIePoMYLl-next" onclick="window.checkFlip('SKuiIePoMYLl')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="sUPwtGAAybCR" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="sUPwtGAAybCR-next" onclick="window.checkFlip('sUPwtGAAybCR')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2107,10 +2100,20 @@ function cleanup(container, frontcard, backcard, next) {
     container.className="flip-container";
 
     var cardnum=parseInt(container.dataset.cardnum);
+
+    let cardOrder = JSON.parse(container.dataset.cardOrder);
+
     var cards=eval('cards'+container.id);
-    var flipper=createOneCard(container, false, cards, cardnum);
+
+    var flipper=createOneCard(container, false, cards, cardOrder[cardnum], cardnum);
     container.append(flipper);
     cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    if ((cardnum == 0) && (container.dataset.shuffleCards == "True")) {
+        cardOrder = randomOrderArray(parseInt(container.dataset.numCards));
+        container.dataset.cardOrder = JSON.stringify(cardOrder);
+        console.log(cardOrder);
+    }
+
     container.dataset.cardnum=cardnum;
     if (cardnum != 1){
         next.innerHTML="Next >";
@@ -2162,7 +2165,7 @@ function cleanup(container, frontcard, backcard, next) {
 }
 
 
-function createOneCard  (mydiv, frontCard, cards, cardnum) {
+function createOneCard  (mydiv, frontCard, cards, cardnum, seq) {
     var colors=eval('frontColors'+mydiv.id);
     var backColors=eval('backColors'+mydiv.id);
     var textColors=eval('textColors'+mydiv.id);
@@ -2182,22 +2185,22 @@ function createOneCard  (mydiv, frontCard, cards, cardnum) {
     var frontSpan= document.createElement('span');
     frontSpan.className='flashcardtext';
     frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
-    frontSpan.style.color=textColors[cardnum % textColors.length];
+    frontSpan.style.color=textColors[seq % textColors.length];
     //frontSpan.textContent=jaxify(cards[cardnum]['front']);
     //front.style.background='var(' + colors[cardnum % colors.length] + ')';
-    front.style.background=colors[cardnum % colors.length];
+    front.style.background=colors[seq % colors.length];
 
     front.append(frontSpan);
     flipper.append(front);
 
     var back = document.createElement('div');
     back.className='back flashcard';
-    back.style.background=backColors[cardnum % backColors.length];
+    back.style.background=backColors[seq % backColors.length];
 
     var backSpan= document.createElement('span');
     backSpan.className='flashcardtext';
     backSpan.innerHTML=jaxify(cards[cardnum]['back']);
-    backSpan.style.color=textColors[cardnum % textColors.length];
+    backSpan.style.color=textColors[seq % textColors.length];
     back.append(backSpan);
 
     flipper.append(back);
@@ -2206,11 +2209,23 @@ function createOneCard  (mydiv, frontCard, cards, cardnum) {
 
 }
 
+function randomOrderArray(N) {
+    // Create an array with numbers from 0 to N-1
+    let arr = Array.from({ length: N }, (_, index) => index);
+
+    // Shuffle the array using Fisher-Yates algorithm
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+
+    return arr;
+}
 
 
 
 
-function createCards(id, keyControl, grabFocus) {
+function createCards(id, keyControl, grabFocus, shuffleCards) {
     console.log(id);
 
     var mydiv=document.getElementById(id);
@@ -2232,6 +2247,18 @@ function createCards(id, keyControl, grabFocus) {
     var cards=eval('cards'+id);
     mydiv.dataset.cardnum=0;
     mydiv.dataset.numCards=cards.length;
+
+    mydiv.dataset.shuffleCards = shuffleCards;
+    var cardOrder;
+    if (shuffleCards == "True"){
+        cardOrder = randomOrderArray(cards.length);
+    } else {
+        cardOrder = Array.from({ length: cards.length }, (_, index) => index);
+    }
+    mydiv.dataset.cardOrder = JSON.stringify(cardOrder);
+    console.log(mydiv.dataset.cardOrder);
+
+
     mydiv.addEventListener('swiped-left', function(e) {
         /*
           console.log(e.detail);
@@ -2246,10 +2273,10 @@ function createCards(id, keyControl, grabFocus) {
     
         var flipper;
         if (i==0){
-            flipper=createOneCard(mydiv, true, cards, cardnum);
+            flipper=createOneCard(mydiv, true, cards, cardOrder[cardnum], cardnum);
         }
         else {
-            flipper=createOneCard(mydiv, false, cards, cardnum);
+            flipper=createOneCard(mydiv, false, cards, cardOrder[cardnum], cardnum);
         }
 
         mydiv.append(flipper);
@@ -2346,20 +2373,24 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("SKuiIePoMYLl")) {
-            createCards("SKuiIePoMYLl", "True", "False");
+          if(document.getElementById("sUPwtGAAybCR")) {
+            createCards("sUPwtGAAybCR", "True", "False", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsSKuiIePoMYLl=[
+var cardssUPwtGAAybCR=[
     {
-        "front": "statistical hypothesis",
-        "back": "An explanation for phenomena observed in a data set that can be formally tested using the data."
-    },
+    "front": "test statistic",
+    "back": "A single numerical value that can be used in a statistical test."
+},
     {
-        "front": "binary hypothesis test ",
+    "front": "statistical hypothesis",
+    "back": "An explanation for phenomena observed in a data set that can be formally tested using the data."
+},
+    {
+    "front": "binary hypothesis test ",
         "back": "A statistical test that decides between two competing statistical hypotheses."
     },
     {
@@ -2380,9 +2411,9 @@ var cardsSKuiIePoMYLl=[
     }
 ]
 ;
-var frontColorsSKuiIePoMYLl= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsSKuiIePoMYLl= ["var(--dark-blue-gray)" ];
-var textColorsSKuiIePoMYLl= ["var(--snow)" ];
+var frontColorssUPwtGAAybCR= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorssUPwtGAAybCR= ["var(--dark-blue-gray)" ];
+var textColorssUPwtGAAybCR= ["var(--snow)" ];
 
 
         {
@@ -2393,7 +2424,7 @@ var textColorsSKuiIePoMYLl= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/flashcards/hypothesis-testing.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("SKuiIePoMYLl", "True", "False"))
+        .then(json => createCards("sUPwtGAAybCR", "True", "False", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
