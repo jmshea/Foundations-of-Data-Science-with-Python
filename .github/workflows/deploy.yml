@@ -61,7 +61,7 @@ jobs:
         sed -i "s/\/fdsp\///g" _build/html/404.html 
         #sed -i "s/\/fdsp/https:\/\/www.fdsp.net/g" _build/html/404.html 
 
-    -name: Update the OG description
+    - name: Update the OG description
       run: |
         sed -i 's/\(.*og:description.*content="\)[^"]*\("\)/\1Foundations of Data Science with Python introduces readers to the fundamentals of data science, including data manipulation and visualization, probability, statistics, and dimensionality reduction.\2/' _build/html/intro.html
 
