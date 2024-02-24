@@ -93,3 +93,12 @@ jobs:
         publish_dir: notebooks
         destination_dir: notebooks
         keep_files: true
+
+    # Deploy the images to gh-pages branch
+    - name: GitHub Pages action redirects
+      uses: peaceiris/actions-gh-pages@v3.9.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: images
+        keep_files: true
+
