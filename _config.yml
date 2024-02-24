@@ -24,6 +24,7 @@ sphinx:
     - sphinx.ext.imgconverter
     - notfound.extension
   config:
+    project: "Foundations of Data Science with Python"
     #html_baseurl: "https://jmshea.github.io/Foundations-of-Data-Science-with-Python/"
     html_baseurl: "https://www.fdsp.net/"
     #mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
