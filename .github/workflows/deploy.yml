@@ -69,7 +69,7 @@ jobs:
         publish_dir: _build/html
 
     # Deploy the redirects to gh-pages branch
-    - name: GitHub Pages action redirects
+    - name: GitHub Pages action copy redirects
       uses: peaceiris/actions-gh-pages@v3.9.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -77,7 +77,7 @@ jobs:
         keep_files: true
 
     # Deploy the data to gh-pages branch
-    - name: GitHub Pages action redirects
+    - name: GitHub Pages action copy data dir
       uses: peaceiris/actions-gh-pages@v3.9.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -86,7 +86,7 @@ jobs:
         keep_files: true
 
     # Deploy the notebooks to gh-pages branch
-    - name: GitHub Pages action redirects
+    - name: GitHub Pages action copy notebooks dir
       uses: peaceiris/actions-gh-pages@v3.9.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -95,10 +95,11 @@ jobs:
         keep_files: true
 
     # Deploy the images to gh-pages branch
-    - name: GitHub Pages action redirects
+    - name: GitHub Pages action copy images dir
       uses: peaceiris/actions-gh-pages@v3.9.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: images
+        destination_dir: images
         keep_files: true
 
