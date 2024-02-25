@@ -2,7 +2,7 @@
     {
         "question": "If you roll a fair six-sided die twice, what is the probability of getting a 3 on both dice?",
         "type": "numeric",
-	"precision": 3,
+	"precision": 2,
         "answers": [
             {
                 "type": "value",
