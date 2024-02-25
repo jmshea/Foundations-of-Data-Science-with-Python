@@ -481,13 +481,13 @@ document.write(`
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="bHQEkxtdBcsl" data-shufflequestions="False"
+<div class="output text_html"><div id="KIhHGaZovNwT" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#bHQEkxtdBcsl {
+#KIhHGaZovNwT {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -542,6 +542,11 @@ document.write(`
     color: inherit;
 }
 
+.MCButton .QuizCode {
+    text-align: left;
+}
+
+
 
 
 .Answer {
@@ -550,6 +555,13 @@ document.write(`
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr;
     margin: 10px 0;
+}
+
+@media only screen and (max-width:480px) {
+    .Answer {
+        grid-template-columns: 1fr;
+    }
+
 }
 
 .Feedback {
@@ -676,7 +688,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsbHQEkxtdBcsl=[
+</style></div><script type="application/javascript">var questionsKIhHGaZovNwT=[
   {
     "question": "If <code>df</code> is a Pandas dataframe with a column named \"state\", which of these commands will return that column?",
     "type": "multiple_choice",
@@ -684,7 +696,7 @@ document.write(`
       {
         "code": "df.loc['state']",
         "correct": false,
-        "feedback": "df.loc is used to index into the rows. "
+        "feedback": "<code>df.loc</code> is used to index into the rows. "
       },
       {
           "code": "df[state]",
@@ -703,7 +715,7 @@ document.write(`
     ]
 },
     {
-    "question": "If <code>df</code> is a Pandas dataframe with a columns named \"city\" and \"state\", which of these commands will return a dataframe that contains just those two columns?",
+"question": "If <code>df</code> is a Pandas dataframe with a columns named \"city\" and \"state\", which of these commands will return a dataframe that contains just those two columns?",
     "type": "multiple_choice",
     "answers": [
       {
@@ -724,7 +736,7 @@ document.write(`
       {
           "code": "df.loc[ ['city', 'state'] ]",
           "correct": false,
-          "feedback": "Incorrect. df.loc is for indexing by rows"
+          "feedback": "Incorrect. <code>df.loc</code> is for indexing by rows"
       }
     ],
     "answer_cols": 1
@@ -737,15 +749,15 @@ document.write(`
       {
         "answer": "The returned dataframe is now indexed by \"state\". The index of df is unchanged.",
         "correct": true,
-        "feedback": "Correct. This command does not change the index of the df dataframe. You can instead change the index of the dataframe stored in df by using the inplace=True keyword argument."
+        "feedback": "Correct. This command does not change the index of the <code>df</code> dataframe. You can instead change the index of the dataframe stored in <code>df</code> by using the <code>inplace=True</code> keyword argument."
       },
       {
-          "answer": "The index of df is changed to \"state\". There is no returned value.",
+          "answer": "The index of <code>df</code> is changed to \"state\". There is no returned value.",
           "correct": false,
           "feedback": "Incorrect. Try again."
       },
       {
-          "answer": "The index of df is changed to \"state\" and the new dataframe is returned.",
+          "answer": "The index of <code>df</code> is changed to \"state\" and the new dataframe is returned.",
           "correct": false,
           "feedback": "Incorrect. Try again."
       },
@@ -819,6 +831,9 @@ function printResponses(responsesContainer) {
     });
     responsesContainer.innerHTML=stringResponses;
 }
+/* Callback function to determine whether a selected multiple-choice
+   button corresponded to a correct answer and to provide feedback
+   based on the answer */
 function check_mc() {
     var id = this.id.split('-')[0];
     //var response = this.id.split('-')[1];
@@ -840,17 +855,16 @@ function check_mc() {
 
 
     var answers = label.parentElement.children;
-
     //console.log(answers);
-
 
     // Split behavior based on multiple choice vs many choice:
     var fb = document.getElementById("fb" + id);
 
 
 
-
-    if (fb.dataset.numcorrect == 1) {
+    /* Multiple choice (1 answer). Allow for 0 correct
+       answers as an edge case */
+    if (fb.dataset.numcorrect <= 1) {
         // What follows is for the saved responses stuff
         var outerContainer = fb.parentElement.parentElement;
         var responsesContainer = document.getElementById("responses" + outerContainer.id);
@@ -872,7 +886,7 @@ function check_mc() {
             printResponses(responsesContainer);
         }
         // End code to preserve responses
-        
+
         for (var i = 0; i < answers.length; i++) {
             var child = answers[i];
             //console.log(child);
@@ -905,7 +919,7 @@ function check_mc() {
             fb.classList.add("incorrect");
         }
     }
-    else {
+    else { /* Many choice (more than 1 correct answer) */
         var reset = false;
         var feedback;
          if (label.dataset.correct == "true") {
@@ -1016,7 +1030,12 @@ function check_mc() {
 
 }
 
+
+/* Function to produce the HTML buttons for a multiple choice/
+   many choice question  and to update the CSS tags based on
+   the question type */
 function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
+
     var shuffled;
     if (shuffle_answers == "True") {
         //console.log(shuffle_answers+" read as true");
@@ -1028,8 +1047,6 @@ function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
 
 
     var num_correct = 0;
-
-
 
     shuffled.forEach((item, index, ans_array) => {
         //console.log(answer);
@@ -1138,9 +1155,9 @@ function check_numeric(ths, event) {
             if ('value' in answer) {
                 if (submission == answer.value) {
                     if ("feedback" in answer) {
-                        fb.textContent = jaxify(answer.feedback);
+                        fb.innerHTML = jaxify(answer.feedback);
                     } else {
-                        fb.textContent = jaxify("Correct");
+                        fb.innerHTML = jaxify("Correct");
                     }
                     correct = answer.correct;
                     //console.log(answer.correct);
@@ -1151,7 +1168,7 @@ function check_numeric(ths, event) {
                 console.log(answer.range);
                 console.log(submission, submission >=answer.range[0], submission < answer.range[1])
                 if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
-                    fb.textContent = jaxify(answer.feedback);
+                    fb.innerHTML = jaxify(answer.feedback);
                     correct = answer.correct;
                     console.log(answer.correct);
                     done = true;
@@ -1570,8 +1587,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("bHQEkxtdBcsl")) {
-            show_questions(questionsbHQEkxtdBcsl,  bHQEkxtdBcsl); 
+          if(document.getElementById("KIhHGaZovNwT")) {
+            show_questions(questionsKIhHGaZovNwT,  KIhHGaZovNwT); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1586,10 +1603,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/03-first-data/questions/1-pandas-start.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, bHQEkxtdBcsl))
+        .then(json => show_questions(json, KIhHGaZovNwT))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsbHQEkxtdBcsl, bHQEkxtdBcsl);
+        show_questions(questionsKIhHGaZovNwT, KIhHGaZovNwT);
         });
         }
         </script></div>
