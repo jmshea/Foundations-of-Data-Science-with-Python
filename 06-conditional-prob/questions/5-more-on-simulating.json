@@ -1,0 +1,62 @@
+[
+    {
+    "question": "When estimating a conditional probability like $P(A \\mid B)$ via simulation, which of these probabilities will determine the number of simulation iterations needed to estimate $P(A \\mid B)$ accurately?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+            "answer": "$P(A \\mid B)$",
+            "correct": false,
+            "feedback": "Incorrect. This will often severely underestimate the number of simulation iterations needed."
+        },
+            {
+            "answer": "$P(A)$",
+            "correct": false
+        },
+            {
+            "answer": "$P(B)$",
+            "correct": false
+        },
+            {
+            "answer": "$P(A \\cap B)$",
+            "correct": true,
+            "feedback": "Correct."
+        },
+            {
+            "answer": "$P(A \\cup B)$",
+            "correct": false,
+            "feedback": "Incorrect. Recall that $P(A \\mid B) = P(A \\cap B)/P(B)$. The probability of the union of $A$ and $B$ is not involved."
+        }
+        ]
+},
+{
+    "question": "Researchers have developed a new blood test for patients in their 50s that can predict whether a patient will get Alzheimer's disease by age 75. The percentage of patients that will get Alzheimer's disease by age 75 is approximately 1%. Suppose the researchers believe their test will be approximately 60% accurate in identifying patients who will get Alzheimer's by age 75. Which of the following represents a reasonable number of patients that should be enrolled in the study to estimate the probability that a patient who will get Alzheimer's by age 75 will be identified by the test?",
+    "type": "many_choice",
+    "answers": [
+        {
+        "answer": "1,000",
+        "correct": false,
+        "feedback": "Incorrect. 1,000 patients would result in approximately 10 patients who develop Alzheimer's. It will be hard to identify whether the test was effective with such a small group of people who develop Alzheimer's."
+    },
+        {
+        "answer": "20 to 200",
+        "correct": false,
+        "feedback": "Incorrect. Even though the conditional probability of identifying Alzheimer's in people who will develop it by age 75 is large, we cannot use that conditional probability to choose the sample size. For example, even with 200 patients, the number of patients who will develop Alzheimer's will most likely be around 2."
+    },
+            {
+        "answer": "20,000",
+        "correct": true,
+        "feedback": "Correct. With 20,000 patients, we will have approximately 100 people who both test positive and develop Alzheimer's. That should be sufficient to estimate the probability that the test accurately predicts who will develop Alzheimer's."
+    },
+        {
+        "answer": "200,000",
+        "correct": true,
+        "feedback": "Correct. This should provide a very accurate estimate of the probability that the test accurately predicts who will develop Alzheimer's."
+    },
+        {
+        "answer": "2,000,000",
+        "correct": false,
+        "feedback": "Incorrect. Although this will accurately estimate this probability, it will come at great expense in comparison to the additional accuracy achieved. 20,000 patients should be sufficient for a reasonable estimate of the probability."
+    }
+    ]
+}
+]
