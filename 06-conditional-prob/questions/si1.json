@@ -1,20 +1,26 @@
 [
     {
-        "question": "If you roll a fair six-sided die twice, what is the probability of getting a 3 on both dice?",
+        "question": "If you roll a fair six-sided die twice, what is the probability that at least one of the rolls was a 3?",
         "type": "numeric",
 	"precision": 2,
         "answers": [
             {
                 "type": "value",
-                "value": 0.028,
+                "value": 0.31,
                 "correct": true,
                 "feedback": "Correct."
             },
             {
-                "type": "range",
-                "range": [0.166, 0.171],
+                "type": "value",
+                "value": 0.36,
                 "correct": false,
-                "feedback": "Getting a 3 on the first roll would have a probability of 1/6, so getting a 3 on both rolls must be have a smaller probability."
+                "feedback": "Don't forget that these events are not mutually exclusive &mdash; they are <b>independent</b>."
+            },
+            {
+                "type": "value",
+                "value": 0.028,
+                "correct": false,
+                "feedback": "Incorrect. This is the probability that 3 came up on both rolls."
             },
             {
                 "type": "range",
@@ -30,9 +36,90 @@
             },
             {
                 "type": "default",
-                "correct": false,
-                "feedback": "Incorrect. Use the definition of statistical independence to make this problem easier to solve."
+                "correct": false
             }
         ]
-    }
+},
+{
+    "question": "A RAID 1 storage system uses two hard drives to keep identical copies of the information in a computer system.  If the two hard drives are identical and have an annual failure rate of approximately 1.4%,  determine the probability that at least one of the hard drives fails in a year. Give 3 significant digits in your answer.",
+        "type": "numeric",
+	"precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.0278,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 0.028,
+                "correct": false,
+                "feedback": "Incorrect. This may be a rounding error or you may have treated these events as disjoint instead of independent."
+            },
+            {
+                "type": "value",
+                "value": 0.000196,
+                "correct": false,
+                "feedback": "Incorrect. This is the probability that both hard drives fail in a year."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000000001, 1000000000], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            },
+            {
+                "type": "default",
+                "correct": false
+            }
+        ]
+},
+{
+    "question": "A RAID 1 storage system uses two hard drives to keep identical copies of the information in a computer system.  If the two hard drives are identical and have an annual failure rate of approximately 1.4%,  determine the probability that both of the hard drives fails in a year. Give 3 significant digits in your answer.",
+    "type": "numeric",
+	  "precision": 3,
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.000196,
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "type": "value",
+        "value": 0.0278,
+        "correct": false,
+        "feedback": "Incorrect. This is the probability that either of the drives fail in a year"
+            },
+            {
+                "type": "value",
+                "value": 0.0196,
+                "correct": false,
+                "feedback": "Incorrect. This is the probability that both hard drives fail in a year."
+            },
+            {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000000001, 1000000000], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            },
+            {
+                "type": "default",
+                "correct": false
+            }
+        ]
+}
 ]
