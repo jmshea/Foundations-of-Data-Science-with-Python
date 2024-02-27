@@ -491,13 +491,13 @@ document.write(`
 <p>Based on the discussion in the book, try to answer the following question about what independence should mean for conditional probabilities. (Don’t worry if you don’t intuitively know the answer – you can keep trying if you don’t get it right at first!)  <span class="math notranslate nohighlight">\(~ \!\)</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="biQISDlfblBw" data-shufflequestions="False"
+<div class="output text_html"><div id="IyURIoHjfQYG" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#biQISDlfblBw {
+#IyURIoHjfQYG {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -698,7 +698,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsbiQISDlfblBw=[
+</style></div><script type="application/javascript">var questionsIyURIoHjfQYG=[
     {
         "question": "Consider two events $A$ and $B$ with $P(A)>0$. If these events are independent, then we expect that implies that knowledge of one event does not influence the probabilities of the other. What should $P(B|A)$ simplify to?",
         "type": "multiple_choice",
@@ -1080,7 +1080,7 @@ function check_numeric(ths, event) {
         var answers = JSON.parse(ths.dataset.answers);
         //console.log(answers);
 
-        var defaultFB = "";
+        var defaultFB = "Incorrect. Try again.";
         var correct;
         var done = false;
         answers.every(answer => {
@@ -1110,7 +1110,9 @@ function check_numeric(ths, event) {
                     done = true;
                 }
             } else if (answer.type == "default") {
-                defaultFB = answer.feedback;
+                if ("feedback" in answer) {
+                    defaultFB = answer.feedback;
+                } 
             }
             if (done) {
                 return false; // Break out of loop if this has been marked correct
@@ -1523,8 +1525,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("biQISDlfblBw")) {
-            show_questions(questionsbiQISDlfblBw,  biQISDlfblBw); 
+          if(document.getElementById("IyURIoHjfQYG")) {
+            show_questions(questionsIyURIoHjfQYG,  IyURIoHjfQYG); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1539,10 +1541,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/6-si-conditional.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, biQISDlfblBw))
+        .then(json => show_questions(json, IyURIoHjfQYG))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsbiQISDlfblBw, biQISDlfblBw);
+        show_questions(questionsIyURIoHjfQYG, IyURIoHjfQYG);
         });
         }
         </script></div>
@@ -1550,13 +1552,13 @@ if (typeof version == 'undefined') {
 <p><strong>Quiz 2: Applying Statistical Independence to Unions</strong></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="OvXTRasKrhDS" data-shufflequestions="False"
+<div class="output text_html"><div id="ZrxfGvLNZKRa" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#OvXTRasKrhDS {
+#ZrxfGvLNZKRa {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1757,7 +1759,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsOvXTRasKrhDS=[
+</style></div><script type="application/javascript">var questionsZrxfGvLNZKRa=[
     {
         "question": "If you roll a fair six-sided die twice, what is the probability that at least one of the rolls was a 3?",
         "type": "numeric",
@@ -2231,7 +2233,7 @@ function check_numeric(ths, event) {
         var answers = JSON.parse(ths.dataset.answers);
         //console.log(answers);
 
-        var defaultFB = "";
+        var defaultFB = "Incorrect. Try again.";
         var correct;
         var done = false;
         answers.every(answer => {
@@ -2261,7 +2263,9 @@ function check_numeric(ths, event) {
                     done = true;
                 }
             } else if (answer.type == "default") {
-                defaultFB = answer.feedback;
+                if ("feedback" in answer) {
+                    defaultFB = answer.feedback;
+                } 
             }
             if (done) {
                 return false; // Break out of loop if this has been marked correct
@@ -2674,8 +2678,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("OvXTRasKrhDS")) {
-            show_questions(questionsOvXTRasKrhDS,  OvXTRasKrhDS); 
+          if(document.getElementById("ZrxfGvLNZKRa")) {
+            show_questions(questionsZrxfGvLNZKRa,  ZrxfGvLNZKRa); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2690,10 +2694,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/6-si1.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, OvXTRasKrhDS))
+        .then(json => show_questions(json, ZrxfGvLNZKRa))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsOvXTRasKrhDS, OvXTRasKrhDS);
+        show_questions(questionsZrxfGvLNZKRa, ZrxfGvLNZKRa);
         });
         }
         </script></div>
@@ -2702,13 +2706,13 @@ if (typeof version == 'undefined') {
 <h2><span class="section-number">6.6.1. </span>Quiz 3: More on Independence and Probabilities of Unions<a class="headerlink" href="#quiz-3-more-on-independence-and-probabilities-of-unions" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="LzcyLHaVmovM" data-shufflequestions="False"
+<div class="output text_html"><div id="wDViFVaVjaHy" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#LzcyLHaVmovM {
+#wDViFVaVjaHy {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -2909,7 +2913,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsLzcyLHaVmovM=[
+</style></div><script type="application/javascript">var questionswDViFVaVjaHy=[
     {
         "question": "Highly reliable systems can be made from unreliable components. A high reliability computer is built using\n    four old hard drives that were found in the lab. The computer data is replicated to each hard drive. The\n    probability that a hard drive is working in any week is 0.75, 0.8, 0.85, and 0.9, respectively, for the four\n    different drives. If drives fail independently, what is the probability that the computer data is available on\n    at least one of the drives in a given week? Give your answer to 3 decimal places.",
         "type": "numeric",
@@ -3339,7 +3343,7 @@ function check_numeric(ths, event) {
         var answers = JSON.parse(ths.dataset.answers);
         //console.log(answers);
 
-        var defaultFB = "";
+        var defaultFB = "Incorrect. Try again.";
         var correct;
         var done = false;
         answers.every(answer => {
@@ -3369,7 +3373,9 @@ function check_numeric(ths, event) {
                     done = true;
                 }
             } else if (answer.type == "default") {
-                defaultFB = answer.feedback;
+                if ("feedback" in answer) {
+                    defaultFB = answer.feedback;
+                } 
             }
             if (done) {
                 return false; // Break out of loop if this has been marked correct
@@ -3782,8 +3788,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("LzcyLHaVmovM")) {
-            show_questions(questionsLzcyLHaVmovM,  LzcyLHaVmovM); 
+          if(document.getElementById("wDViFVaVjaHy")) {
+            show_questions(questionswDViFVaVjaHy,  wDViFVaVjaHy); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -3798,10 +3804,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/6-si-unions.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, LzcyLHaVmovM))
+        .then(json => show_questions(json, wDViFVaVjaHy))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsLzcyLHaVmovM, LzcyLHaVmovM);
+        show_questions(questionswDViFVaVjaHy, wDViFVaVjaHy);
         });
         }
         </script></div>
@@ -3811,13 +3817,13 @@ if (typeof version == 'undefined') {
 <h2><span class="section-number">6.6.2. </span>Quiz 4: Relating Statistical Independent and Mutually Exclusive Events<a class="headerlink" href="#quiz-4-relating-statistical-independent-and-mutually-exclusive-events" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="lpNazFGeCvBO" data-shufflequestions="False"
+<div class="output text_html"><div id="OgzkoDkUDpLS" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#lpNazFGeCvBO {
+#OgzkoDkUDpLS {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -4018,7 +4024,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionslpNazFGeCvBO=[
+</style></div><script type="application/javascript">var questionsOgzkoDkUDpLS=[
     {
         "question": "How are \"mutually exclusive\" and \"statistically independent\" related?",
         "type": "multiple_choice",
@@ -4400,7 +4406,7 @@ function check_numeric(ths, event) {
         var answers = JSON.parse(ths.dataset.answers);
         //console.log(answers);
 
-        var defaultFB = "";
+        var defaultFB = "Incorrect. Try again.";
         var correct;
         var done = false;
         answers.every(answer => {
@@ -4430,7 +4436,9 @@ function check_numeric(ths, event) {
                     done = true;
                 }
             } else if (answer.type == "default") {
-                defaultFB = answer.feedback;
+                if ("feedback" in answer) {
+                    defaultFB = answer.feedback;
+                } 
             }
             if (done) {
                 return false; // Break out of loop if this has been marked correct
@@ -4843,8 +4851,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("lpNazFGeCvBO")) {
-            show_questions(questionslpNazFGeCvBO,  lpNazFGeCvBO); 
+          if(document.getElementById("OgzkoDkUDpLS")) {
+            show_questions(questionsOgzkoDkUDpLS,  OgzkoDkUDpLS); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -4859,10 +4867,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/6-si-me.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, lpNazFGeCvBO))
+        .then(json => show_questions(json, OgzkoDkUDpLS))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionslpNazFGeCvBO, lpNazFGeCvBO);
+        show_questions(questionsOgzkoDkUDpLS, OgzkoDkUDpLS);
         });
         }
         </script></div>
@@ -5135,7 +5143,7 @@ if (typeof version == 'undefined') {
     }
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="euLfrqHWoDHe" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="euLfrqHWoDHe-next" onclick="window.checkFlip('euLfrqHWoDHe')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="rODRwCjtuBuD" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="rODRwCjtuBuD-next" onclick="window.checkFlip('rODRwCjtuBuD')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -5560,14 +5568,14 @@ function createCards(id, keyControl, grabFocus, shuffleCards) {
 
 
         function try_create() {
-          if(document.getElementById("euLfrqHWoDHe")) {
-            createCards("euLfrqHWoDHe", "True", "False", "False");
+          if(document.getElementById("rODRwCjtuBuD")) {
+            createCards("rODRwCjtuBuD", "True", "False", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardseuLfrqHWoDHe=[
+var cardsrODRwCjtuBuD=[
     {
         "front": "statistically independent <br>(two events)",
         "back": "Given a probability space $S, \\mathcal{F}, P$ and two events $A\\in \\mathcal{F}$ and $B \\in \\mathcal{F}$, $A$ and $B$ are  <i>statistically independent</i> if and only if (iff) <br><br> $$ P(A \\cap B) = P(A)P(B).$$ "
@@ -5586,9 +5594,9 @@ var cardseuLfrqHWoDHe=[
     }
 ]
 ;
-var frontColorseuLfrqHWoDHe= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorseuLfrqHWoDHe= ["var(--dark-blue-gray)" ];
-var textColorseuLfrqHWoDHe= ["var(--snow)" ];
+var frontColorsrODRwCjtuBuD= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsrODRwCjtuBuD= ["var(--dark-blue-gray)" ];
+var textColorsrODRwCjtuBuD= ["var(--snow)" ];
 
 
         {
@@ -5599,7 +5607,7 @@ var textColorseuLfrqHWoDHe= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/flashcards/independence.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("euLfrqHWoDHe", "True", "False", "False"))
+        .then(json => createCards("rODRwCjtuBuD", "True", "False", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
