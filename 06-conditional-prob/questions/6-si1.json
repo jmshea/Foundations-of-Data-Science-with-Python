@@ -12,7 +12,7 @@
             },
             {
                 "type": "value",
-                "value": 0.36,
+                "value": 0.33,
                 "correct": false,
                 "feedback": "Don't forget that these events are not mutually exclusive &mdash; they are <b>independent</b>."
             },
