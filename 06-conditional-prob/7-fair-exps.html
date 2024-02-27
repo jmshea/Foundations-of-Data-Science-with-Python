@@ -481,13 +481,13 @@ document.write(`
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="GQmTlSogTyTN" data-shufflequestions="False"
+<div class="output text_html"><div id="QNrDqcTsnjqg" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#GQmTlSogTyTN {
+#QNrDqcTsnjqg {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -688,64 +688,91 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsGQmTlSogTyTN=[
+</style></div><script type="application/javascript">var questionsQNrDqcTsnjqg=[
     {
-    "question": "When estimating a conditional probability like $P(A \\mid B)$ via simulation, which of these probabilities will determine the number of simulation iterations needed to estimate $P(A \\mid B)$ accurately?",
-        "type": "multiple_choice",
-        "answers": [
-            {
-            "answer": "$P(A \\mid B)$",
-            "correct": false,
-            "feedback": "Incorrect. This will often severely underestimate the number of simulation iterations needed."
-        },
-            {
-            "answer": "$P(A)$",
-            "correct": false
-        },
-            {
-            "answer": "$P(B)$",
-            "correct": false
-        },
-            {
-            "answer": "$P(A \\cap B)$",
-            "correct": true,
-            "feedback": "Correct."
-        },
-            {
-            "answer": "$P(A \\cup B)$",
-            "correct": false,
-            "feedback": "Incorrect. Recall that $P(A \\mid B) = P(A \\cap B)/P(B)$. The probability of the union of $A$ and $B$ is not involved."
-        }
-        ]
-},
-{
-    "question": "Researchers have developed a new blood test for patients in their 50s that can predict whether a patient will get Alzheimer's disease by age 75. The percentage of patients that will get Alzheimer's disease by age 75 is approximately 1%. Suppose the researchers believe their test will be approximately 60% accurate in identifying patients who will get Alzheimer's by age 75. Which of the following represents a reasonable number of patients that should be enrolled in the study to estimate the probability that a patient who will get Alzheimer's by age 75 will be identified by the test?",
-    "type": "many_choice",
+    "question": "For a fair experiment, $A$ and $B$ will be independent if the proportion of outcomes of $B$ in $S$ is equal to:",
+    "type": "multiple_choice",
     "answers": [
         {
-        "answer": "1,000",
-        "correct": false,
-        "feedback": "Incorrect. 1,000 patients would result in approximately 10 patients who develop Alzheimer's. It will be hard to identify whether the test was effective with such a small group of people who develop Alzheimer's."
+        "answer": "The proportion of outcomes of $A$ in $S$.",
+        "correct": false
     },
         {
-        "answer": "20 to 200",
-        "correct": false,
-        "feedback": "Incorrect. Even though the conditional probability of identifying Alzheimer's in people who will develop it by age 75 is large, we cannot use that conditional probability to choose the sample size. For example, even with 200 patients, the number of patients who will develop Alzheimer's will most likely be around 2."
+        "answer": "The proportion of outcomes of $A$ in $B$.",
+        "correct": false
     },
+        {
+        "answer": "The proportion of outcomes of $B$ in $A$",
+        "correct": true
+    },
+        {
+        "answer": "None of these guarantee independence.",
+        "correct": false
+    },
+        {
+        "answer": "The proportion of outcomes of $B$ in $A \\cap B$",
+        "correct": false,
+        "feedback": "Incorrect. Note that all of the outcomes in $A \\cap B$  must come from $B$."
+    }
+    ]
+},
+{
+    "question": "A surplus box contains 20 miscellaneous desktop and laptop computers from various manufacturers. There are a total of 5 laptops in the box, 2 of which are from Apple. Suppose that a computer is chosen randomly from the box. Let $L$ and $A$ denote the event that the chosen computer is a laptop and the event that the chosen computer is from Apple, respectively. How many computers from Apple must be in the box for $L$ and $A$ to be independent?",
+        "type": "numeric",
+        "answers": [
             {
-        "answer": "20,000",
+                "type": "value",
+                "value": 8,
+                "correct": true,
+            "feedback": "Correct. The proportion of laptops that are from Apple must equal the proportion of all computers from Apple, which requires $|A|=8$."
+            },
+            {
+                "type": "range",
+                "range": [ 21, 1000000000000], 
+                "correct": false,
+                "feedback": "Incorrect. There are only 20 computers, so how can there be more than 20 from Apple?"
+            },
+            {
+                "type": "range",
+                "range": [ 0, 1.01], 
+                "correct": false,
+                "feedback": "Incorrect. We are given in the problem that there are at least 2 computers from Apple (the two laptops)."
+            },
+                {
+                "type": "range",
+                "range": [ -1000000000, -0.00000000001], 
+                "correct": false,
+                "feedback": "Incorrect. What would it mean to have a negative number of computers?"
+            }
+            ]
+},
+{
+    "question": "A surplus box contains 20 miscellaneous desktop and laptop computers from various manufacturers. There are a total of 5 laptops in the box, 2 of which are from Apple. Suppose that a computer is chosen randomly from the box. Let $L$ and $A$ denote the event that the chosen computer is a laptop and the event that the chosen computer is from Apple, respectively. If $L$ and $A$ are independent, what is the proportion of laptop computers among all the Apple computers?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.25,
         "correct": true,
-        "feedback": "Correct. With 20,000 patients, we will have approximately 100 people who both test positive and develop Alzheimer's. That should be sufficient to estimate the probability that the test accurately predicts who will develop Alzheimer's."
+        "feedback": "Correct. The proportion of laptop computers in the box is $1/4$. If $L$ and $A$ are independent, then then the proportion of laptops among Apple computers must also be $1/4$."
     },
         {
-        "answer": "200,000",
-        "correct": true,
-        "feedback": "Correct. This should provide a very accurate estimate of the probability that the test accurately predicts who will develop Alzheimer's."
-    },
-        {
-        "answer": "2,000,000",
+        "type": "range",
+        "range": [ 1.0000000001, 1000000000000], 
         "correct": false,
-        "feedback": "Incorrect. Although this will accurately estimate this probability, it will come at great expense in comparison to the additional accuracy achieved. 20,000 patients should be sufficient for a reasonable estimate of the probability."
+        "feedback": "Incorrect. What does it mean to have a proportion greater than 1?"
+    },
+        {
+        "type": "value",
+        "value": 0,
+        "correct": false,
+        "feedback": "Incorrect. We are given in the problem that there are at least 2 laptops computers from Apple, so the proportion cannot be 0."
+    },
+        {
+        "type": "range",
+        "range": [ -1000000000, -0.00000000001], 
+        "correct": false,
+        "feedback": "Incorrect. What would it mean to have a negative proportion?"
     }
     ]
 }
@@ -1099,7 +1126,7 @@ function check_numeric(ths, event) {
         var answers = JSON.parse(ths.dataset.answers);
         //console.log(answers);
 
-        var defaultFB = "";
+        var defaultFB = "Incorrect. Try again.";
         var correct;
         var done = false;
         answers.every(answer => {
@@ -1129,7 +1156,9 @@ function check_numeric(ths, event) {
                     done = true;
                 }
             } else if (answer.type == "default") {
-                defaultFB = answer.feedback;
+                if ("feedback" in answer) {
+                    defaultFB = answer.feedback;
+                } 
             }
             if (done) {
                 return false; // Break out of loop if this has been marked correct
@@ -1542,8 +1571,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("GQmTlSogTyTN")) {
-            show_questions(questionsGQmTlSogTyTN,  GQmTlSogTyTN); 
+          if(document.getElementById("QNrDqcTsnjqg")) {
+            show_questions(questionsQNrDqcTsnjqg,  QNrDqcTsnjqg); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1556,12 +1585,12 @@ if (typeof version == 'undefined') {
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/5-more-on-simulating.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/7-fair-exps.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, GQmTlSogTyTN))
+        .then(json => show_questions(json, QNrDqcTsnjqg))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsGQmTlSogTyTN, GQmTlSogTyTN);
+        show_questions(questionsQNrDqcTsnjqg, QNrDqcTsnjqg);
         });
         }
         </script></div>
