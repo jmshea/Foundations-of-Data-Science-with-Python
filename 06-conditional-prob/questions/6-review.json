@@ -1,0 +1,87 @@
+[
+    {
+    "question": "Let $A$ and $B$ be events with non-zero probability on some probability space. Which of the following must be true for $P(A)$ and $P(B)$ to be statistically independent?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "$P(A \\cap B) = P(A) P(B)$ ",
+        "correct": false
+    },
+        {
+        "answer": "$P(A \\cap B) = P(A) $ ",
+        "correct": false
+    },
+        {
+        "answer": "$P(A \\cap B) = P(B) $ ",
+        "correct": false
+    },
+        {
+        "answer": "$P(A \\cup B) = P(A) + P(B)$ ",
+        "correct": false
+    },
+        {
+        "answer": "Something else",
+        "correct": true,
+        "feedback": "Correct. <b>Probabilities</b> cannot be statistically independent. We could ask what condition would be required for the <b>events</b> $A$ and $B$ to be independent, but that was not the question."
+    }
+    ]
+},
+    {
+    "question": "At a certain university, students access the Internet through either WiFi or cellular data. However, there are some places on campus where each of these do not offer connectivity. For a randomly selected location on the University's campus, the probability of a WiFi connection is 0.8 and  the probability of a cellular data connection is 0.9. If connectivity across these two technologies is independent, what is the probability of being able to connect to the Internet at a randomly selected location?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.98, 
+        "correct": true,
+        "feedback": "Correct."
+    },
+        {
+        "range": [ 0.00000000001, 0.899999999999], 
+        "correct": false,
+        "feedback": "Incorrect. We are looking for the probability of a union of events. It cannot be less than the probability of either of the individual events."
+    },
+        {
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be negative."
+    },
+        {
+        "range": [ 1.000000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilities cannot be greater than 1."
+    }
+    ]
+},
+    {
+    "question": "A fair six-sided die is rolled 4 times.  What is the probability of getting a 1 or 2 on any of the rolls? Give your answer as a fraction or to at least 3 significant digits.",
+    "type": "numeric",
+	  "precision": 3,
+    "answers": [
+            {
+                "type": "value",
+                "value": 0.802,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 0.0123,
+                "correct": false,
+                "feedback": "Incorrect. This is the probability of getting a 1 or 2 on <b>every</b> one of the 4 rolls."
+            },
+        {
+                "type": "range",
+                "range": [ -1000000, 0], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+        {
+                "type": "range",
+                "range": [ 1.0000000001, 1000000000], 
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            }
+    ]
+}
+]
