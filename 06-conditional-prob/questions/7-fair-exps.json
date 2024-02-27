@@ -1,0 +1,89 @@
+[
+    {
+    "question": "For a fair experiment, $A$ and $B$ will be independent if the proportion of outcomes of $B$ in $S$ is equal to:",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "The proportion of outcomes of $A$ in $S$.",
+        "correct": false
+    },
+        {
+        "answer": "The proportion of outcomes of $A$ in $B$.",
+        "correct": false
+    },
+        {
+        "answer": "The proportion of outcomes of $B$ in $A$",
+        "correct": true
+    },
+        {
+        "answer": "None of these guarantee independence.",
+        "correct": false
+    },
+        {
+        "answer": "The proportion of outcomes of $B$ in $A \\cap B$",
+        "correct": false,
+        "feedback": "Incorrect. Note that all of the outcomes in $A \\cap B$  must come from $B$."
+    }
+    ]
+},
+{
+    "question": "A surplus box contains 20 miscellaneous desktop and laptop computers from various manufacturers. There are a total of 5 laptops in the box, 2 of which are from Apple. Suppose that a computer is chosen randomly from the box. Let $L$ and $A$ denote the event that the chosen computer is a laptop and the event that the chosen computer is from Apple, respectively. How many computers from Apple must be in the box for $L$ and $A$ to be independent?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 8,
+                "correct": true,
+            "feedback": "Correct. The proportion of laptops that are from Apple must equal the proportion of all computers from Apple, which requires $|A|=8$."
+            },
+            {
+                "type": "range",
+                "range": [ 21, 1000000000000], 
+                "correct": false,
+                "feedback": "Incorrect. There are only 20 computers, so how can there be more than 20 from Apple?"
+            },
+            {
+                "type": "range",
+                "range": [ 0, 1.01], 
+                "correct": false,
+                "feedback": "Incorrect. We are given in the problem that there are at least 2 computers from Apple (the two laptops)."
+            },
+                {
+                "type": "range",
+                "range": [ -1000000000, -0.00000000001], 
+                "correct": false,
+                "feedback": "Incorrect. What would it mean to have a negative number of computers?"
+            }
+            ]
+},
+{
+    "question": "A surplus box contains 20 miscellaneous desktop and laptop computers from various manufacturers. There are a total of 5 laptops in the box, 2 of which are from Apple. Suppose that a computer is chosen randomly from the box. Let $L$ and $A$ denote the event that the chosen computer is a laptop and the event that the chosen computer is from Apple, respectively. If $L$ and $A$ are independent, what is the proportion of laptop computers among all the Apple computers?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.25,
+        "correct": true,
+        "feedback": "Correct. The proportion of laptop computers in the box is $1/4$. If $L$ and $A$ are independent, then then the proportion of laptops among Apple computers must also be $1/4$."
+    },
+        {
+        "type": "range",
+        "range": [ 1.0000000001, 1000000000000], 
+        "correct": false,
+        "feedback": "Incorrect. What does it mean to have a proportion greater than 1?"
+    },
+        {
+        "type": "value",
+        "value": 0,
+        "correct": false,
+        "feedback": "Incorrect. We are given in the problem that there are at least 2 laptops computers from Apple, so the proportion cannot be 0."
+    },
+        {
+        "type": "range",
+        "range": [ -1000000000, -0.00000000001], 
+        "correct": false,
+        "feedback": "Incorrect. What would it mean to have a negative proportion?"
+    }
+    ]
+}
+]
