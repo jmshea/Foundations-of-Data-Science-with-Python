@@ -1,0 +1,70 @@
+[
+    {
+    "question": "<b>True of False:</b> Events can be statistically independent but become dependent when given that some other event has occurred.",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "False",
+                "correct": false
+            },
+            {
+                "answer": "True",
+                "correct": true
+            }
+        ]
+    },
+    {
+        "question": "<b>True of False:</b> Events can be dependent but become independent when given that some other event has occurred.",
+        "type": "multiple_choice",
+        "answers": [
+            {
+            "answer": "False",
+            "correct": false
+        },
+            {
+            "answer": "True",
+            "correct": true
+        }
+        ]
+    },
+    {
+        "question": "A fair coin is flipped two times. Let $H_i$ be the outcome of flip $i$. Let $B$ be the event that both coins land on the same face. Given $B$, are $H_1$ and $H_2$ conditionally statistically independent?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+            "answer": "Yes",
+            "correct": false,
+            "feedback": "Incorrect. Determining conditional independence requires determining whether $P(H_1 \\cap H_2 \\mid B)$ equals $P(H_1 \\mid B)P(H_2 \\mid B$)."
+            },
+            {
+                "answer": "No",
+                "correct": true
+            },
+            {
+                "answer": "There is not enough information to decide.",
+                "correct": false,
+                "feedback": "Incorrect. Determining conditional independence only requires calculating $P(H_1 \\cap H_2 |B)$ and $P(H_1|B)P(H_2|B)$. The problem gives the information you need."
+            }
+        ]
+    },
+    {
+        "question": "<b>True or False:</b> If $A$ and $B$ are conditionally independent given $C$, then $P(A \\mid B \\cap C) = P(A \\mid C)$.",
+        "type": "multiple_choice",
+        "answers": [
+            {
+            "answer": "True",
+            "correct": true
+        },
+            {
+            "answer": "False",
+            "correct": false,
+            "feedback": "Incorrect. Show that $P(A \\mid B \\cap C) $ can be written as $P(A \\cap B\\mid C)P(C)/ P(B \\cap C)$ and then apply the definition for c.s.i."
+        },
+            {
+            "answer": "There is not enough information to decide.",
+            "correct": false,
+            "feedback": "Incorrect. Show that $P(A \\mid B \\cap C) $ can be written as $P(A \\cap B\\mid C)P(C)/ P(B \\cap C)$ and then apply the definition for c.s.i."
+        }
+        ]
+    }
+]
