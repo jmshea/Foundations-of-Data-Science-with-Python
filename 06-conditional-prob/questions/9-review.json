@@ -1,0 +1,118 @@
+[
+    {
+    "question": "A class has 40 total students, 10 of which are on EDGE. The professor gives the students a Learning Catalytics assignment and finds that the EDGE students have a 90% chance of getting each problem correct, whereas the non-EDGE students have a 60% chance of getting each problem correct. If the professor picks an exam at random and checks the first question, what is the probability that it is from an EDGE student and is correct?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.225,
+        "correct": true,
+        "feedback": "Correct! "
+    },
+        {
+        "type": "default",
+        "correct": false,
+        "feedback": "Incorrect. This is a Chain Rule problem. "
+    },
+        {
+        "type": "range",
+        "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+    "question": "A class has 40 total students, 10 of which are on EDGE. The professor gives the students a Learning Catalytics assignment and finds that the EDGE students have a 90% chance of getting each problem correct, whereas the non-EDGE students have a 60% chance of getting each problem correct. If the professor picks an exam at random and checks the first question, what is the probability that it is correct? ",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.675,
+        "correct": true,
+        "feedback": "Correct! "
+    },
+        {
+        "type": "default",
+        "correct": false,
+        "feedback": "Incorrect. This is a Total Probability problem. "
+    },
+        {
+        "type": "range",
+        "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "A class has 40 total students, 10 of which are on EDGE. The professor gives the students a Learning Catalytics assignment and finds that the EDGE students have a 90% chance of getting each problem correct, whereas the non-EDGE students have a 60% chance of getting each problem correct. For a particular student's exam, the events of getting different questions correct are all independent. If the professor picks an exam at random, what is the probability that the first two questions will both be correct? ",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.4725,
+        "correct": true,
+        "feedback": "Correct! "
+    },
+        {
+        "type": "default",
+        "correct": false,
+        "feedback": "Incorrect. This is a Total Probability problem. "
+    },
+        {
+        "type": "range",
+        "range": [ -100000000, -0.000000000001], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [ 1.0000001, 100000000], 
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "A class has 40 total students, 10 of which are on EDGE. The professor gives the students a Learning Catalytics assignment and finds that the EDGE students have a 90% chance of getting each problem correct, whereas the non-EDGE students have a 60% chance of getting each problem correct. For a particular student's exam, the events of getting different questions correct are all independent. If the professor picks an exam at random and checks the first question and finds it to be correct, what is the probability that the second question will be correct?",
+        "type": "numeric",
+        "answers": [
+            {
+            "type": "value",
+            "value": 0.7,
+            "correct": true,
+            "feedback": "Correct! "
+        },
+            {
+            "type": "default",
+            "correct": false,
+            "feedback": "Incorrect. This problem can be solved by writing the desired probability using the definition of conditional probability and applying Total Probability to both the numerator and the denominator."
+        },
+            {
+            "type": "range",
+            "range": [ -100000000, -0.000000000001], 
+            "correct": false,
+            "feedback": "Incorrect. Probabilties must be between 0 and 1."
+        },
+            {
+            "type": "range",
+            "range": [ 1.0000001, 100000000], 
+            "correct": false,
+            "feedback": "Incorrect. Probabilties must be between 0 and 1."
+        }
+        ]
+    }
+]
