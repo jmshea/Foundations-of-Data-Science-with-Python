@@ -79,7 +79,7 @@
             {
                 "type": "default",
                 "correct": false,
-                "feedback": "Incorrect. The first step is to realize that you have to try 3 or more computers if the first two are defective. Thus the probability we are looking for is \\( P(D_1 \cap D_2)\\). Apply the chain rule."
+                "feedback": "Incorrect. The first step is to realize that you have to try 3 or more computers if the first two are defective. Thus the probability we are looking for is \\( P(D_1 \\cap D_2)\\). Apply the chain rule."
             },
             {
                 "type": "range",
