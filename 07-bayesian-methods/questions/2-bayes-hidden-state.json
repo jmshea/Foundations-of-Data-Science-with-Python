@@ -11,6 +11,12 @@
                 "feedback": "Correct."
             },
             {
+                "type": "value",
+                "value": 0.5,
+                "correct": false,
+                "feedback": "Incorrect. If you believe that seeing 3 Heads doesn't change the chance that the magician is using the two-headed coin, what if you saw one million heads? Would you be willing to bet that the coin is fair?"
+            },
+{
                 "type": "range",
                 "range": [
                     -1000000,
@@ -34,5 +40,41 @@
                 "feedback": "Apply Bayes' rule to write $P(\\overline{F}| H_1 \\cap H_2 \\cap H_3)$ in terms of likelihoods and <i>a priori</i> probabilities. "
             }
         ]
+    },
+    {
+    "question": "A nuclear engineer has put two samples of Uranium in identical containers. However, one is naturally occurring Uranium and the other is enriched Uranium. She wishes to perform measurements to determine which container has the enriched Uranium.<br> She uses a Geiger counter to detect the release of alpha particles from radioactive decay. Even enriched Uranium decays slowly, and during a 10 minute observation period, an alpha particle will be released with probability 1/6 if the sample is naturally occuring Uranium and with probability 1/2 if the sample is enriched Uranium. (Otherwise no alpha particle is released.)<br> Suppose a sample is chosen at random and observed over two separate 10-minute observation periods. If an alpha particle is detected in both observation periods, what is the probability that the sample is the enriched Uranium? Provide your answer to 3 significant digits.",
+    "type": "numeric",
+    "precision": 3,
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.9,
+        "correct": true,
+        "feedback": "Correct! "
+    },
+        {
+        "type": "value",
+        "value": 0.429,
+        "correct": false,
+        "feedback": "Incorrect. Note that we are asking about the probability that the sample is enriched Uraniaum if an alpha particle is observed in  <b>both</b> observation periods."
+    },
+{
+        "type": "default",
+        "correct": false,
+        "feedback": "Incorrect. Use Total Probability and conditional statistical independence to solve this problem. "
+    },
+        {
+        "type": "range",
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
+    },
+        {
+        "type": "range",
+        "range": [ 1.0000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
+    }
+    ]
     }
 ]
