@@ -489,13 +489,13 @@ B_i \cap B_j = (B \cap A_i) \cap (B \cap A_j) = B \cap (A_i \cap A_j) = B \cap \
 <p><strong>Quiz 1: Using Chain Rules</strong></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="qokyCmGlPHad" data-shufflequestions="False"
+<div class="output text_html"><div id="OyLWXdImgbCC" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#qokyCmGlPHad {
+#OyLWXdImgbCC {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -696,7 +696,7 @@ B_i \cap B_j = (B \cap A_i) \cap (B \cap A_j) = B \cap (A_i \cap A_j) = B \cap \
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsqokyCmGlPHad=[
+</style></div><script type="application/javascript">var questionsOyLWXdImgbCC=[
     {
         "question": "What is the probability of getting <b>two</b> consecutive face cards (J, Q, K) on two consecutive draws from a standard 52-card deck? Give your answer to 3 significant digits.",
         "type": "numeric",
@@ -777,7 +777,7 @@ B_i \cap B_j = (B \cap A_i) \cap (B \cap A_j) = B \cap (A_i \cap A_j) = B \cap \
             {
                 "type": "default",
                 "correct": false,
-                "feedback": "Incorrect. The first step is to realize that you have to try 3 or more computers if the first two are defective. Thus the probability we are looking for is \\( P(D_1 \cap D_2)\\). Apply the chain rule."
+                "feedback": "Incorrect. The first step is to realize that you have to try 3 or more computers if the first two are defective. Thus the probability we are looking for is \\( P(D_1 \\cap D_2)\\). Apply the chain rule."
             },
             {
                 "type": "range",
@@ -1590,8 +1590,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("qokyCmGlPHad")) {
-            show_questions(questionsqokyCmGlPHad,  qokyCmGlPHad); 
+          if(document.getElementById("OyLWXdImgbCC")) {
+            show_questions(questionsOyLWXdImgbCC,  OyLWXdImgbCC); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1606,10 +1606,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/9-chain-rules.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, qokyCmGlPHad))
+        .then(json => show_questions(json, OyLWXdImgbCC))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsqokyCmGlPHad, qokyCmGlPHad);
+        show_questions(questionsOyLWXdImgbCC, OyLWXdImgbCC);
         });
         }
         </script></div>
@@ -1617,13 +1617,13 @@ if (typeof version == 'undefined') {
 <p><strong>Quiz 2: Chain Rules and the Magician’s Coin</strong></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="zLixEJXeoJcn" data-shufflequestions="False"
+<div class="output text_html"><div id="vyhOrBlABOgO" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#zLixEJXeoJcn {
+#vyhOrBlABOgO {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1824,7 +1824,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionszLixEJXeoJcn=[
+</style></div><script type="application/javascript">var questionsvyhOrBlABOgO=[
     {
         "question": "For the scenario where a magician has a fair coin and a two-headed coin, what is the probability that the magician chooses the Fair coin and gets heads on the first two flips?",
         "type": "numeric",
@@ -2679,8 +2679,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("zLixEJXeoJcn")) {
-            show_questions(questionszLixEJXeoJcn,  zLixEJXeoJcn); 
+          if(document.getElementById("vyhOrBlABOgO")) {
+            show_questions(questionsvyhOrBlABOgO,  vyhOrBlABOgO); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2695,10 +2695,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/9-chain-rules2.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, zLixEJXeoJcn))
+        .then(json => show_questions(json, vyhOrBlABOgO))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionszLixEJXeoJcn, zLixEJXeoJcn);
+        show_questions(questionsvyhOrBlABOgO, vyhOrBlABOgO);
         });
         }
         </script></div>
@@ -2715,13 +2715,13 @@ $<span class="math notranslate nohighlight">\(
 <p><strong>Quiz 3: Total Probability and the Magician’s Coin</strong></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="MwSsZEsQVFwS" data-shufflequestions="False"
+<div class="output text_html"><div id="mEKjirrXjdZk" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#MwSsZEsQVFwS {
+#mEKjirrXjdZk {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -2922,7 +2922,7 @@ $<span class="math notranslate nohighlight">\(
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsMwSsZEsQVFwS=[
+</style></div><script type="application/javascript">var questionsmEKjirrXjdZk=[
     {
         "question": "For the scenario where a magician has a fair coin and a two-headed coin, what is the probability that the magician chooses the Fair coin and gets heads on the first two flips?",
         "type": "numeric",
@@ -3777,8 +3777,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("MwSsZEsQVFwS")) {
-            show_questions(questionsMwSsZEsQVFwS,  MwSsZEsQVFwS); 
+          if(document.getElementById("mEKjirrXjdZk")) {
+            show_questions(questionsmEKjirrXjdZk,  mEKjirrXjdZk); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -3793,10 +3793,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/9-chain-rules2.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, MwSsZEsQVFwS))
+        .then(json => show_questions(json, mEKjirrXjdZk))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsMwSsZEsQVFwS, MwSsZEsQVFwS);
+        show_questions(questionsmEKjirrXjdZk, mEKjirrXjdZk);
         });
         }
         </script></div>
@@ -3805,13 +3805,13 @@ if (typeof version == 'undefined') {
 <p><span class="math notranslate nohighlight">\(~~~~\mbox{ }\)</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="eqquWWAkrWwU" data-shufflequestions="False"
+<div class="output text_html"><div id="QSLYCfqejykO" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#eqquWWAkrWwU {
+#QSLYCfqejykO {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -4012,7 +4012,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionseqquWWAkrWwU=[
+</style></div><script type="application/javascript">var questionsQSLYCfqejykO=[
     {
     "question": "A class has 40 total students, 10 of which are on EDGE. The professor gives the students a Learning Catalytics assignment and finds that the EDGE students have a 90% chance of getting each problem correct, whereas the non-EDGE students have a 60% chance of getting each problem correct. If the professor picks an exam at random and checks the first question, what is the probability that it is from an EDGE student and is correct?",
     "type": "numeric",
@@ -4925,8 +4925,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("eqquWWAkrWwU")) {
-            show_questions(questionseqquWWAkrWwU,  eqquWWAkrWwU); 
+          if(document.getElementById("QSLYCfqejykO")) {
+            show_questions(questionsQSLYCfqejykO,  QSLYCfqejykO); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -4941,10 +4941,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/questions/9-review.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, eqquWWAkrWwU))
+        .then(json => show_questions(json, QSLYCfqejykO))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionseqquWWAkrWwU, eqquWWAkrWwU);
+        show_questions(questionsQSLYCfqejykO, QSLYCfqejykO);
         });
         }
         </script></div>
@@ -5214,7 +5214,7 @@ if (typeof version == 'undefined') {
     }
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="tNvyGsWzgBMo" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="tNvyGsWzgBMo-next" onclick="window.checkFlip('tNvyGsWzgBMo')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="EahwZUgeFqct" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="EahwZUgeFqct-next" onclick="window.checkFlip('EahwZUgeFqct')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -5639,14 +5639,14 @@ function createCards(id, keyControl, grabFocus, shuffleCards) {
 
 
         function try_create() {
-          if(document.getElementById("tNvyGsWzgBMo")) {
-            createCards("tNvyGsWzgBMo", "True", "False", "False");
+          if(document.getElementById("EahwZUgeFqct")) {
+            createCards("EahwZUgeFqct", "True", "False", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardstNvyGsWzgBMo=[
+var cardsEahwZUgeFqct=[
     {
         "front": "chain rules",
         "back": "express the probability of an intersection of events in terms of a sequence of conditional probabilities involving those events"
@@ -5661,9 +5661,9 @@ var cardstNvyGsWzgBMo=[
     }
 ]
 ;
-var frontColorstNvyGsWzgBMo= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorstNvyGsWzgBMo= ["var(--dark-blue-gray)" ];
-var textColorstNvyGsWzgBMo= ["var(--snow)" ];
+var frontColorsEahwZUgeFqct= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsEahwZUgeFqct= ["var(--dark-blue-gray)" ];
+var textColorsEahwZUgeFqct= ["var(--snow)" ];
 
 
         {
@@ -5674,7 +5674,7 @@ var textColorstNvyGsWzgBMo= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/06-conditional-prob/flashcards/chain-rules-total-prob.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("tNvyGsWzgBMo", "True", "False", "False"))
+        .then(json => createCards("EahwZUgeFqct", "True", "False", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
