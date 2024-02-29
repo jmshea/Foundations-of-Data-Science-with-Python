@@ -17,17 +17,17 @@
         {
         "type": "range",
         "range": [ -100000000, -0.000000000001], 
-                "correct": false,
-                "feedback": "Incorrect. Probabilties must be between 0 and 1."
-            },
-            {
-                "type": "range",
-                "range": [ 1.0000001, 100000000], 
-                "correct": false,
-                "feedback": "Incorrect. Probabilties must be between 0 and 1."
-            }
-        ]
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
     },
+        {
+        "type": "range",
+        "range": [ 1.0000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
+    }
+    ]
+},
     {
     "question": "A class has 40 total students, 10 of which are on EDGE. The professor gives the students a Learning Catalytics assignment and finds that the EDGE students have a 90% chance of getting each problem correct, whereas the non-EDGE students have a 60% chance of getting each problem correct. If the professor picks an exam at random and checks the first question, what is the probability that it is correct? ",
     "type": "numeric",
@@ -46,19 +46,19 @@
         {
         "type": "range",
         "range": [ -100000000, -0.000000000001], 
-                "correct": false,
-                "feedback": "Incorrect. Probabilties must be between 0 and 1."
-            },
-            {
-                "type": "range",
-                "range": [ 1.0000001, 100000000], 
-                "correct": false,
-                "feedback": "Incorrect. Probabilties must be between 0 and 1."
-            }
-        ]
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
     },
+        {
+        "type": "range",
+        "range": [ 1.0000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
+    }
+    ]
+},
     {
-        "question": "A class has 40 total students, 10 of which are on EDGE. The professor gives the students a Learning Catalytics assignment and finds that the EDGE students have a 90% chance of getting each problem correct, whereas the non-EDGE students have a 60% chance of getting each problem correct. For a particular student's exam, the events of getting different questions correct are all independent. If the professor picks an exam at random, what is the probability that the first two questions will both be correct? ",
+    "question": "A class has 40 total students, 10 of which are on EDGE. The professor gives the students a Learning Catalytics assignment and finds that the EDGE students have a 90% chance of getting each problem correct, whereas the non-EDGE students have a 60% chance of getting each problem correct. For a particular student's exam, the events of getting different questions correct are all independent. If the professor picks an exam at random, what is the probability that the first two questions will both be correct? ",
     "type": "numeric",
     "answers": [
         {
@@ -75,44 +75,80 @@
         {
         "type": "range",
         "range": [ -100000000, -0.000000000001], 
-                "correct": false,
-                "feedback": "Incorrect. Probabilties must be between 0 and 1."
-            },
-            {
-                "type": "range",
-                "range": [ 1.0000001, 100000000], 
-                "correct": false,
-                "feedback": "Incorrect. Probabilties must be between 0 and 1."
-            }
-        ]
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
     },
-    {
-        "question": "A class has 40 total students, 10 of which are on EDGE. The professor gives the students a Learning Catalytics assignment and finds that the EDGE students have a 90% chance of getting each problem correct, whereas the non-EDGE students have a 60% chance of getting each problem correct. For a particular student's exam, the events of getting different questions correct are all independent. If the professor picks an exam at random and checks the first question and finds it to be correct, what is the probability that the second question will be correct?",
-        "type": "numeric",
-        "answers": [
-            {
-            "type": "value",
-            "value": 0.7,
-            "correct": true,
-            "feedback": "Correct! "
-        },
-            {
-            "type": "default",
-            "correct": false,
-            "feedback": "Incorrect. This problem can be solved by writing the desired probability using the definition of conditional probability and applying Total Probability to both the numerator and the denominator."
-        },
-            {
-            "type": "range",
-            "range": [ -100000000, -0.000000000001], 
-            "correct": false,
-            "feedback": "Incorrect. Probabilties must be between 0 and 1."
-        },
-            {
-            "type": "range",
-            "range": [ 1.0000001, 100000000], 
-            "correct": false,
-            "feedback": "Incorrect. Probabilties must be between 0 and 1."
-        }
-        ]
+        {
+        "type": "range",
+        "range": [ 1.0000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
     }
+    ]
+},
+    {
+    "question": "A class has 40 total students, 10 of which are on EDGE. The professor gives the students a Learning Catalytics assignment and finds that the EDGE students have a 90% chance of getting each problem correct, whereas the non-EDGE students have a 60% chance of getting each problem correct. For a particular student's exam, the events of getting different questions correct are all independent. If the professor picks an exam at random and checks the first question and finds it to be correct, what is the probability that the second question will be correct?",
+    "type": "numeric",
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.7,
+        "correct": true,
+        "feedback": "Correct! "
+    },
+        {
+        "type": "default",
+        "correct": false,
+        "feedback": "Incorrect. This problem can be solved by writing the desired probability using the definition of conditional probability and applying Total Probability to both the numerator and the denominator."
+    },
+        {
+        "type": "range",
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
+    },
+        {
+        "type": "range",
+        "range": [ 1.0000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
+    }
+    ]
+},
+    {
+    "question": "A nuclear engineer has put two samples of Uranium in identical containers. However, one is naturally occurring Uranium and the other is enriched Uranium. She wishes to perform measurements to determine which container has the enriched Uranium.<br> She uses a Geiger counter to detect the release of alpha particles from radioactive decay. Even enriched Uranium decays slowly, and during a 10 minute observation period, an alpha particle will be released with probability 1/6 if the sample is naturally occuring Uranium and with probability 1/2 if the sample is enriched Uranium. (Otherwise no alpha particle is released.)<br> If a sample is chosen at random and observed over two separate 10-minute observation periods, what is the probability that an alpha particle will be detected in both observation periods? (Assume that for a given sample, the radioactive decay in separate observation periods is independent.) Provide your answer to 3 significant digits.",
+    "type": "numeric",
+    "precision": 3,
+    "answers": [
+        {
+        "type": "value",
+        "value": 0.139,
+        "correct": true,
+        "feedback": "Correct! "
+    },
+        {
+        "type": "value",
+        "value": 0.333,
+        "correct": false,
+        "feedback": "Incorrect. Note that we want the probability of observing an alpha particle in <b>both</b> observation periods."
+    },
+{
+        "type": "default",
+        "correct": false,
+        "feedback": "Incorrect. Use Total Probability and conditional statistical independence to solve this problem. "
+    },
+        {
+        "type": "range",
+        "range": [ -100000000, -0.000000000001], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
+    },
+        {
+        "type": "range",
+        "range": [ 1.0000001, 100000000], 
+        "correct": false,
+        "feedback": "Incorrect. Probabilties must be between 0 and 1."
+    }
+    ]
+}
 ]
