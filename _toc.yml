@@ -63,11 +63,11 @@ parts:
     - file: 06-conditional-prob/10-summary
   - file: 07-bayesian-methods/intro
     sections:
-    - file: 07-bayesian-methods/bayes-rule
-    - file: 07-bayesian-methods/bayes-hidden-state
-    - file: 07-bayesian-methods/optimal-decisions
-    - file: 07-bayesian-methods/bayesian-hypothesis-testing
-    - file: 07-bayesian-methods/summary
+    - file: 07-bayesian-methods/1-bayes-rule
+    - file: 07-bayesian-methods/2-bayes-hidden-state
+    - file: 07-bayesian-methods/3-optimal-decisions
+    - file: 07-bayesian-methods/4-bayesian-hypothesis-testing
+    - file: 07-bayesian-methods/5-summary
   - file: 08-random-variables/intro
     sections:
     - file: 08-random-variables/definition
