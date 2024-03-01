@@ -1,5 +1,4 @@
-<script type="application/ld+json">
-{
+var structuredData = {
 "@context" : "https://schema.org",
 "@type" : "WebSite",
 "name" : "Foundations of Data Science with Python",
@@ -13,5 +12,9 @@
 },
 "query-input": "required name=search_term_string"
 }
-}
-</script>
+};
+
+const SDscript = document.createElement('script');
+SDscript.setAttribute('type', 'application/ld+json');
+SDscript.textContent = JSON.stringify(structuredData);
+document.head.appendChild(SDscript);
