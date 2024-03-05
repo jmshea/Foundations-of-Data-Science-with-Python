@@ -742,7 +742,7 @@ document.write(`
     }
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="KvXhKZPgDAlQ" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="KvXhKZPgDAlQ-next" onclick="window.checkFlip('KvXhKZPgDAlQ')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="rRcPQFHZudWl" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="rRcPQFHZudWl-next" onclick="window.checkFlip('rRcPQFHZudWl')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -1056,7 +1056,7 @@ function createStructuredData(mydiv, cards, title, subject) {
     el.type = 'application/ld+json';
     el.text = JSON.stringify(structuredData);
 
-    mydiv.appendChild(el);
+    mydiv.parentElement.appendChild(el);
 
 }
 
@@ -1216,14 +1216,14 @@ function createCards(id, keyControl, grabFocus, shuffleCards, title, subject) {
 
 
         function try_create() {
-          if(document.getElementById("KvXhKZPgDAlQ")) {
-            createCards("KvXhKZPgDAlQ", "True", "False", "False", "Decision Theory", "Probability");
+          if(document.getElementById("rRcPQFHZudWl")) {
+            createCards("rRcPQFHZudWl", "True", "False", "False", "Decision Theory", "Probability");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsKvXhKZPgDAlQ=[
+var cardsrRcPQFHZudWl=[
     {
         "front": "decision rule<br>(discrete stochastic system)",
         "back": "For a discrete stochastic system with inputs (or hidden states) $\\{A_i\\}$ and outputs $\\{B_j\\}$, a <I>decision rule</I> for an observation $B_j$ gives a choice of corresponding input event $A_i$.<br> The decision rule may be chosen to optimize some function of the inputs and outputs (e.g., likelihood or APP)."
@@ -1237,9 +1237,9 @@ var cardsKvXhKZPgDAlQ=[
         "back": "For a stochastic system with a discrete input events $\\{ A_0, A_i, \\ldots \\}$ and  discrete output events $\\{B_0, B_1, \\ldots\\}$,  the <I>maximum a posteriori (MAP)</I> decision rule given $B_j$ was received is <br> $$ \\hat{A}_i, \\mbox{ where } i = \\arg \\max_{i \\in \\{0,1\\}} P(A_i|B_j). $$ "}
 ]
 ;
-var frontColorsKvXhKZPgDAlQ= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsKvXhKZPgDAlQ= ["var(--dark-blue-gray)" ];
-var textColorsKvXhKZPgDAlQ= ["var(--snow)" ];
+var frontColorsrRcPQFHZudWl= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsrRcPQFHZudWl= ["var(--dark-blue-gray)" ];
+var textColorsrRcPQFHZudWl= ["var(--snow)" ];
 
 
         {
@@ -1250,7 +1250,7 @@ var textColorsKvXhKZPgDAlQ= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/flashcards/optimal-decisions.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("KvXhKZPgDAlQ", "True", "False", "False", "Decision Theory", "Probability"))
+        .then(json => createCards("rRcPQFHZudWl", "True", "False", "False", "Decision Theory", "Probability"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
