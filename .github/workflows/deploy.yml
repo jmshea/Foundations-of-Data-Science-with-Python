@@ -61,10 +61,11 @@ jobs:
         sed -i "s/\/fdsp\///g" _build/html/404.html 
         #sed -i "s/\/fdsp/https:\/\/www.fdsp.net/g" _build/html/404.html 
 
-    - name: Update the OG description
+    - name: Update the meta and OG tags
       run: |
         sed -i 's/\(.*og:description.*content="\)[^"]*\("\)/\1Learn the Foundations of Data Science with Python! This book covers data manipulation and visualization, probability, statistics, dimensionality reduction, and more. Perfect for engineers, scientists, or anyone with basic calculus and programming knowledge.\2/' _build/html/intro.html
         sed -i 's/\(name.*description.*content="\)[^"]*\("\)/\1Learn the Foundations of Data Science with Python! This book covers data manipulation and visualization, probability, statistics, dimensionality reduction, and more. Perfect for engineers, scientists, or anyone with basic calculus and programming knowledge.\2/' _build/html/intro.html
+        sed -i '/<meta name="description"/a <meta name="keywords" content="data science flashcards, data science flash cards, data science terminology, probability flashcards, statistics flashcards">' _build/html/intro.html
 
 
 
