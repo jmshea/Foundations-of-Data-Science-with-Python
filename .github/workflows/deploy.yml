@@ -63,7 +63,8 @@ jobs:
 
     - name: Update the OG description
       run: |
-        sed -i 's/\(property.*description.*content="\)[^"]*\("\)/\1Learn the Foundations of Data Science with Python! This book covers data manipulation and visualization, probability, statistics, dimensionality reduction, and more. Perfect for engineers, scientists, or anyone with basic calculus and programming knowledge.\2/' _build/html/intro.html
+        sed -i 's/\(.*og:description.*content="\)[^"]*\("\)/\1Learn the Foundations of Data Science with Python! This book covers data manipulation and visualization, probability, statistics, dimensionality reduction, and more. Perfect for engineers, scientists, or anyone with basic calculus and programming knowledge.\2/' _build/html/intro.html
+        sed -i 's/\(name.*description.*content="\)[^"]*\("\)/\1Learn the Foundations of Data Science with Python! This book covers data manipulation and visualization, probability, statistics, dimensionality reduction, and more. Perfect for engineers, scientists, or anyone with basic calculus and programming knowledge.\2/' _build/html/intro.html
 
 
 
