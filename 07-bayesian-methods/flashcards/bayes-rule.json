@@ -1,7 +1,7 @@
 [
     {
         "front": "stochastic system",
-        "back": "A stochastic system with one or more inputs and one or more outputs, for which the outputs are not a deterministic function of the inputs."
+        "back": "A system with one or more inputs and one or more outputs, for which the outputs are not a deterministic function of the inputs."
     },
     {
         "front": "sensitivity",
