@@ -1,17 +1,24 @@
 [
     {
-        "front": "point conditioning",
-        "back": "Point conditioning occurs when the conditioning  event is that a continuous random variable is equal to a particular value. I.e., $P(A|X=x)$, where $X$ is a continuous random variable."
-    }, 
-    {
         "front": "likelihood for discrete-input, continuous-output systems",
         "back": "A conditional density in a form like $f_X(x|A_i)$"
     },
     {
-        "front": "<it>a posteriori</it> probability for discrete-input, continuous-output systems",
-        "back": "A conditional probability in a point-conditioning form like $P(A|X=x)$" 
+        "front": "receiver operating characteristic (ROC) curve",
+        "back": "For a binary hypothesis test, a plot of the probability of false alarm (sometimes called the False Positive Rate or FPR) versus the probability of detection (sometimes called the True Positive Rate or TPR). "
     },
-
+    {
+        "front": "area under curve (AUC)",
+        "back": "For a binary hypothesis test, a measure of the overall performance of the detector that is computed by integrating the area under the ROC curve."
+    },
+    {
+        "front": "point conditioning",
+        "back": "Point conditioning occurs when the conditioning  event is that a continuous random variable is equal to a particular value. I.e., $P(A|X=x)$, where $X$ is a continuous random variable."
+    },
+    {
+        "front": "<it>a posteriori</it> probability for discrete-input, continuous-output systems",
+        "back": "A conditional probability in a point-conditioning form like $P(A|X=x)$"
+    },
     {
         "front": "total probability for CDFs",
         "back": "\\begin{align*} F_X(x) &= \\sum_i F_X(x|A_i) P(A_i) \\end{align*}"
