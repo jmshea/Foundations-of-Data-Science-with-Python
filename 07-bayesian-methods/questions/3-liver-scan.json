@@ -1,0 +1,167 @@
+[
+    {
+    "question": "For a healthy patient, if the computerized scan indicates a tumor, what is the probability that the patient has liver cancer? Give your answer to 2 significant digits.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.021,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 0.5,
+                "correct": false,
+                "feedback": "Incorrect. This is the probability that a tumor is detected given that the patient has liver cancer; i.e., $P(T|C)$. This problem asks for $P(C|T)$."
+            },
+{
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.01
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative. Your work may contain a math error."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.01,
+                    1000000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1. Your work may contain a math error."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Apply Bayes' rule to solve this problem."
+            }
+        ]
+    },
+{
+    "question": "For a healthy patient, if the computerized scan indicates a tumor, what is the probability that the patient has a benign tumor? Give your answer to 2 significant digits.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.15,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 0.4,
+                "correct": false,
+                "feedback": "Incorrect. This is the probability that a tumor is detected given that the patient has a benign tumor; i.e., $P(T|B)$. This problem asks for $P(B|T)$."
+            },
+{
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.01
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative. Your work may contain a math error."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.01,
+                    1000000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1. Your work may contain a math error."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Apply Bayes' rule to solve this problem."
+            }
+        ]
+    },
+{
+    "question": "For a healthy patient, if the computerized scan indicates a tumor, what is the probability that the patient has a healthy liver? Give your answer to 2 significant digits.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.83,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 0.02,
+                "correct": false,
+                "feedback": "Incorrect. This is the probability that a tumor is detected given that the patient has a healthy liver; i.e., $P(T|N)$. This problem asks for $P(N|T)$."
+            },
+{
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.01
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative. Your work may contain a math error."
+            }, {
+                "type": "range",
+                "range": [
+                    1.01,
+                    1000000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1. Your work may contain a math error."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Apply Bayes' rule to solve this problem."
+            }
+        ]
+    },
+    {
+        "question": "For a healthy patient, if the scan detects a tumor, what is the maximum likelihood (ML) decision?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+            "answer": "Normal liver ($N$)",
+            "correct": false,
+            "feedback": "Incorrect. The ML decision should correspond to the maximum of $P(T|N)$, $P(T|B}$, and $P(T|C)$."
+        },
+            {
+            "answer": "Benign tumor ($B$)",
+            "correct": false,
+            "feedback": "Incorrect. The ML decision should correspond to the maximum of $P(T|N)$, $P(T|B}$, and $P(T|C)$."
+        },
+            {
+            "answer": "Liver cancer ($C$)",
+            "correct": true
+        }
+        ]
+    },
+    {
+        "question": "For a healthy patient, if the scan detects a tumor, what is the maximum <i>a posteriori</i>(MAP) decision?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+            "answer": "Normal liver ($N$)",
+            "correct": true
+        },
+            {
+            "answer": "Benign tumor ($B$)",
+            "correct": false,
+            "feedback": "Incorrect. The MAP decision should correspond to the maximum of $P(N|T)$, $P(B|T}$, and $P(C|T)$."
+        },
+            {
+            "answer": "Liver cancer ($C$)",
+            "correct": false,
+            "feedback": "Incorrect. The MAP decision should correspond to the maximum of $P(N|T)$, $P(B|T}$, and $P(C|T)$."
+        }
+        ]
+    }
+]
