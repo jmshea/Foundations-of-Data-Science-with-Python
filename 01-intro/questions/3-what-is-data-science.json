@@ -31,7 +31,7 @@
         ]
     },
     {
-        "question": "Choose all of the following that are <b>quantitative</b> variables.",
+        "question": "Choose all of the following that are <b>qualitative</b> variables.",
         "type": "many_choice",
         "answers": [
             {
