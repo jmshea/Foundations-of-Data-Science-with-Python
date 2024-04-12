@@ -47,7 +47,7 @@
         {
         "answer": "A set of functions",
         "correct": false,
-        "feedback": "Incorrect. The event class contains events. Events are not just numbers..."
+        "feedback": "Incorrect. The event class contains events. Events are not functions..."
     }
     ]
 },
