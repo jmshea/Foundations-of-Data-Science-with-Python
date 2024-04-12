@@ -1,7 +1,7 @@
 [
     {
         "front": "probability space",
-        "back": "An tuple $ (S, \\mathcal{F}, P),$ consisting of the *sample space*, the *event class*, and the *probability measure*, respectively."
+        "back": "A tuple $ (S, \\mathcal{F}, P),$ consisting of the <I>sample space</I>, the <I>event class</I>, and the <I>probability measure</I>, respectively."
     },
     {
         "front": "event class",
