@@ -11,12 +11,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="07-bayesian-methods/4-bayesian-hypothesis-testing.html" />
 <meta property="og:site_name" content="Python" />
-<meta property="og:description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
+<meta property="og:description" content="This section of Foundations of Data Science with Python considers how Bayesian techniques can be applied in hypothesis testing. Prior sections of the book consider Null Hypothesis Significance Test..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="/_images/social_previews/summary_07-bayesian-methods_4-bayesian-hypothesis-testing_e4937df8.png" />
-<meta property="og:image:alt" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
-<meta name="description" content="Terminology Review: Use the flashcards below to help you review the terminology introduced in this chapter.~~~~ ~~~~ ~~~~" />
+<meta property="og:image" content="/_images/social_previews/summary_07-bayesian-methods_4-bayesian-hypothesis-testing_2ee2d02a.png" />
+<meta property="og:image:alt" content="This section of Foundations of Data Science with Python considers how Bayesian techniques can be applied in hypothesis testing. Prior sections of the book co..." />
+<meta name="description" content="This section of Foundations of Data Science with Python considers how Bayesian techniques can be applied in hypothesis testing. Prior sections of the book consider Null Hypothesis Significance Test..." />
 <meta name="twitter:card" content="summary_large_image" />
 
     <title>7.4. Bayesian Hypothesis Testing &#8212; Foundations of Data Science with Python &amp;mdash; Online Resources</title>
@@ -54,7 +54,7 @@
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -474,7 +474,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">7.4.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#omitted-material-on-a-bayesian-hypothesis-test-on-whether-a-die-is-loaded-unfair">7.4.1. Omitted Material on a Bayesian Hypothesis Test on Whether a Die is Loaded (Unfair)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">7.4.2. Terminology Review</a></li>
 </ul>
             </nav>
         </div>
@@ -488,8 +489,145 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-hypothesis-testing">
 <span id="index-0"></span><h1><span class="section-number">7.4. </span>Bayesian Hypothesis Testing<a class="headerlink" href="#bayesian-hypothesis-testing" title="Link to this heading">#</a></h1>
+<p>This section of <a class="reference external" href="https://amzn.to/3VXLixc"><em>Foundations of Data Science with Python</em></a> considers how Bayesian techniques can be applied in hypothesis testing. Prior sections of the book consider Null Hypothesis Significance Testing (NHST), which can be considered a frequentist technique. NHST has been used since the early 1900s and is a well-accepted technique in many communities. However, NHST also has several important limitations:</p>
+<ul class="simple">
+<li><p>NHST cannot utilize information from other sources about the probability of a hypothesis being true.</p></li>
+<li><p>NHST can only evaluate the probability of seeing such an extreme value of a statistic under the null hypothesis; it cannot assign probabilities to the null and alternative hypotheses.</p></li>
+<li><p>Moreover, NHST is not easily generalized to handle multiple possible hypotheses.</p></li>
+<li><p>The result of an NHST (the <span class="math notranslate nohighlight">\(p\)</span>-value) is often misinterpreted, and <span class="math notranslate nohighlight">\(p\)</span>-values are often subject
+to manipulation through “<span class="math notranslate nohighlight">\(p\)</span> hacking”.</p></li>
+</ul>
+<p>An alternative is to use a Bayesian hypothesis test, in which the goal is to estimate the <em>a posteriori</em> distributions for the possible hypotheses. Here the <em>a posteriori</em> distribution characterizes the probabilities of the hypotheses after observing the data. Bayesian tests require having a model for the probabilities of the events being investigated <em>prior to the  data being observed</em>. This brings the advantage that Bayesian tests can incorporate information from prior tests, but has the disadvantage that there are usually multiple choices for the prior models, which some consider too subjective. An important advantage of Bayesian tests is that they can produce “credible intervals” that characterize a region that will contain the true value with some specified probability.</p>
+<section id="omitted-material-on-a-bayesian-hypothesis-test-on-whether-a-die-is-loaded-unfair">
+<h2><span class="section-number">7.4.1. </span>Omitted Material on a Bayesian Hypothesis Test on Whether a Die is Loaded (Unfair)<a class="headerlink" href="#omitted-material-on-a-bayesian-hypothesis-test-on-whether-a-die-is-loaded-unfair" title="Link to this heading">#</a></h2>
+<p>This section uses an example in which a six-sided die has been rolled four times and the result was 1 on every roll. The hypothesis test was to determine the probabilities of the die being fair or unfair. Four different tests are described. The tests depend on the prior models for the die. They are:</p>
+<ol class="arabic simple">
+<li><p>Simple, uninformative: The die is assumed to be either fair or to always return 1. Under this “uninformative” model, each of these cases is considered equally likely.</p></li>
+<li><p>Simple, informative. he die is assumed to be either fair or to always return 1. Because almost all dice are fair, the probability that the die is unfair is set to much less than 1/2. In the book, a value of 1/100 is used because this is assumed to be a much more extreme value than would be encountered in practice.</p></li>
+<li><p>Extended, uninformative: The die is assumed to return 1 with some probability between 0 and 1; for convenience of discussion, we will call these different “loadings”. For this “uninformative” model, the die is equally likely to take on any of the loadings.</p></li>
+<li><p>Extended, uninformative: The die is assumed to return 1 with some probability between 0 and 1. For the “informative” case, we assign 99% of the probability to the loading in which all of the values of the die are equally likely. The remaining probability is assigned equally to all the other loadings.</p></li>
+</ol>
+<p><a class="reference external" href="https://amzn.to/3VXLixc"><em>Foundations of Data Science with Python</em></a> omits the details for case 3 because of space constraints. As mentioned above, this uses a type of uninformative prior, where the loading value (the probability that the die comes up 1) is
+equally likely to take any value in <span class="math notranslate nohighlight">\([0,1]\)</span>. Because techniques on how to estimate the <em>a posteriori</em> probability when the loading <span class="math notranslate nohighlight">\(L\)</span> is chosen randomly from the continuous range <span class="math notranslate nohighlight">\([0,1]\)</span> is not covered in prior sections of the book, we instead quantize the range in steps of 0.01:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">all_loadings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then in the simulation below, we choose a loading at random and then divide the remaining probability among the other five die faces:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">biased_die_u</span><span class="p">(</span><span class="n">rolls</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_sims</span><span class="o">=</span><span class="mi">100_000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Simulate randomly choosing the bias for a die (from 0 to 1 by 0.01) and</span>
+<span class="sd">    then rolling the die &quot;rolls&quot; times. Whenever it comes up 1  &quot;rolls&quot; times, record</span>
+<span class="sd">    that die&#39;s bias.  As before, the relative frequencies of the biases in the resulting set</span>
+<span class="sd">    approximate the *a posteriori* probability of those biases. &quot;&quot;&quot;</span>
+
+    <span class="c1"># Generate the set of possible loadings</span>
+    <span class="n">all_loadings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+    <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sims</span><span class="p">):</span>
+
+        <span class="c1"># Choose a bias for this die</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">npr</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">all_loadings</span><span class="p">)</span>
+
+        <span class="c1"># Now generate a value from a die with that loading and count the number of 1s</span>
+        <span class="n">faces</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="n">L</span><span class="p">]</span> <span class="o">+</span> <span class="p">[(</span><span class="mi">1</span><span class="o">-</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">rolls</span><span class="p">)</span>
+        <span class="n">num1s</span> <span class="o">=</span> <span class="n">faces</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Record the events with the target number of tails</span>
+        <span class="k">if</span> <span class="n">num1s</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">events</span> <span class="o">+=</span> <span class="p">[</span><span class="n">L</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">events</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">events</span> <span class="o">=</span> <span class="n">biased_die_u</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A histogram of the events shows the frequencies of the loadings. If we want to plot against our original quantized values of the loadings, we need to add one more bin above 1 (because otherwise the last bin will include both 0.99 and 1.0).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mybins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">mybins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Die loading (prob. of 1)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Counts&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Observed die loadings for all 1s on four die rolls&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ba9c5aa3329255d99ad2dc55a7d68ddc45bf38f324c3e3751914070ff9d5edef.png" src="../_images/ba9c5aa3329255d99ad2dc55a7d68ddc45bf38f324c3e3751914070ff9d5edef.png" />
+</div>
+</div>
+<p>These frequencies are approximately proportional to the <em>a posteriori</em> probabilities (APPs). As expected, the APPs are largest for those loadings that are closest to 1, since these loadings are most likely to result in getting all 1s on four rolls of a loaded die. By changing the weights, we can create a much more general <em>a priori</em> model than we had before. However, we have introduced a new problem:</p>
+<p><strong>How can we turn the APPs into a statistical test –  i.e., how can we make a decision about whether the die could be a fair die based on the <em>a posteriori</em> information?</strong></p>
+<p>A typical approach is to find whether the fair die (<span class="math notranslate nohighlight">\(L=1/6\)</span>) is within a certain range of values where <em>almost all</em> of the <em>a posteriori</em> probability lies. Such a region a <em>credible interval</em> (more details are provided in the book).
+For an equal-tail credible interval, the set of values below the credible interval has the same probability as the set of values above the credible interval.</p>
+<p>Consider the histogram produced by <code class="docutils literal notranslate"><span class="pre">biased_die_u()</span></code>. To find the <span class="math notranslate nohighlight">\(C\)</span>% credible interval, we can find the tail regions of the histogram plot that contain <span class="math notranslate nohighlight">\((1-C)/2\)</span>% of the probability. The histogram we created shows (estimated) probabilities, but we are really asking about the <em>sums</em> of the probabilities in the tails of the histogram.   We can use the normalized cumulative histogram to find the cumulative relative frequencies:</p>
+<p>Since our prior values come from a discrete set, we need to estimate the cumulative probabilities on that same set. We can do this by using the set of possible prior values as the bins in the histogram. Referring to the documentation for <code class="docutils literal notranslate"><span class="pre">pyplot.hist()</span></code>, when bin edges are specified the rightmost bin is inclusive of both endpoints – thus if we use <code class="docutils literal notranslate"><span class="pre">all_loadings</span></code> as our bins, then the last bin would include both 0.99 and 1.0. Thus, we just need to add a value higher than 1 to the bins. We also
+We also add some lines to delimit the credible interval and the tails. For a 95% credible interval, these correspond to <span class="math notranslate nohighlight">\((100-95)/2 = 2.5\)</span>% and <span class="math notranslate nohighlight">\(100-2.5 = 97.5\)</span>%, respectively:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the set of possible biases</span>
+<span class="n">mybins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">mybins</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;C1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;C2&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/18d53d7a5469906e2a7cc722ceefbea1a26ec31460e84d3b0eb0de8bbc58138a.png" src="../_images/18d53d7a5469906e2a7cc722ceefbea1a26ec31460e84d3b0eb0de8bbc58138a.png" />
+</div>
+</div>
+<p>By visual inspection, the 95% credible interval is approximately <span class="math notranslate nohighlight">\([0.4, 0.99]\)</span>.  We can more easily and accurately find the credible interval by finding the 2.5% and 97.5% percentiles of the <em>a posteriori</em> probabilities:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.48, 1.  ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we considered the 99% credible interval, we would get</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.4, 1. ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we return to our original question: how can we use this to conduct a statistical test for whether the die could be fair? The approach we will use is to evaluate if the fair die is in a <span class="math notranslate nohighlight">\(C\)</span>% credible interval, where typically <span class="math notranslate nohighlight">\(C\)</span>% is 95% or 99%. For either case, the fair die (<span class="math notranslate nohighlight">\(L=1/6\)</span>) is not in the credible interval, so
+using this uninformative prior model, we would say that the case of this being a fair die is not within the 99% credible interval. The problem with this uniformative model is that it does not reflect reality: most dice that we encounter will be fair dice. With the uninformative prior, the probability that the die is fair is only 1/101, where in reality it should be close to 1. This motivates using an informative model for the prior distribution in which most of the probability is allocated to the case in which the die is fair. This model is studied in the book.</p>
+</section>
 <section id="terminology-review">
-<h2><span class="section-number">7.4.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.4.2. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Link to this heading">#</a></h2>
 <p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
@@ -635,10 +773,11 @@ document.write(`
 	  backface-visibility: hidden;
     background: var(--dark-blue-gray);
 	  transform: rotateY(180deg);
+    left: 8px;
 }
 
 .jp-OutputArea-output .back {
-	  transform: rotateY(180deg) translateX(7.5%);
+	  transform: rotateY(180deg) translateZ(20px);
 }
 
 .next {
@@ -687,7 +826,7 @@ document.write(`
     text-align: left;
 }
 
-@media only screen and (min-width:1000px) {
+@media only screen and (min-width:700px) {
 
     .flip-container, .front, .back {
 	      height: 300px;
@@ -734,6 +873,10 @@ document.write(`
     .flipper {
 	      height: 300px;
     }
+    .back {
+        left: 4px;
+    }
+
 
 }
 
@@ -745,10 +888,12 @@ document.write(`
     .next {
         margin-left: 65%;
     }
-
+    .back {
+        left: 4px;
+    }
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="BNiMhkQJECZv" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="BNiMhkQJECZv-next" onclick="window.checkFlip('BNiMhkQJECZv')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="kUirfnpLJfpe" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="kUirfnpLJfpe-next" onclick="window.checkFlip('kUirfnpLJfpe')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -900,10 +1045,20 @@ function cleanup(container, frontcard, backcard, next) {
     container.className="flip-container";
 
     var cardnum=parseInt(container.dataset.cardnum);
+
+    let cardOrder = JSON.parse(container.dataset.cardOrder);
+
     var cards=eval('cards'+container.id);
-    var flipper=createOneCard(container, false, cards, cardnum);
+
+    var flipper=createOneCard(container, false, cards, cardOrder[cardnum], cardnum);
     container.append(flipper);
     cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
+    if ((cardnum == 0) && (container.dataset.shuffleCards == "True")) {
+        cardOrder = randomOrderArray(parseInt(container.dataset.numCards));
+        container.dataset.cardOrder = JSON.stringify(cardOrder);
+        console.log(cardOrder);
+    }
+
     container.dataset.cardnum=cardnum;
     if (cardnum != 1){
         next.innerHTML="Next >";
@@ -955,7 +1110,7 @@ function cleanup(container, frontcard, backcard, next) {
 }
 
 
-function createOneCard  (mydiv, frontCard, cards, cardnum) {
+function createOneCard  (mydiv, frontCard, cards, cardnum, seq) {
     var colors=eval('frontColors'+mydiv.id);
     var backColors=eval('backColors'+mydiv.id);
     var textColors=eval('textColors'+mydiv.id);
@@ -975,22 +1130,22 @@ function createOneCard  (mydiv, frontCard, cards, cardnum) {
     var frontSpan= document.createElement('span');
     frontSpan.className='flashcardtext';
     frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
-    frontSpan.style.color=textColors[cardnum % textColors.length];
+    frontSpan.style.color=textColors[seq % textColors.length];
     //frontSpan.textContent=jaxify(cards[cardnum]['front']);
     //front.style.background='var(' + colors[cardnum % colors.length] + ')';
-    front.style.background=colors[cardnum % colors.length];
+    front.style.background=colors[seq % colors.length];
 
     front.append(frontSpan);
     flipper.append(front);
 
     var back = document.createElement('div');
     back.className='back flashcard';
-    back.style.background=backColors[cardnum % backColors.length];
+    back.style.background=backColors[seq % backColors.length];
 
     var backSpan= document.createElement('span');
     backSpan.className='flashcardtext';
     backSpan.innerHTML=jaxify(cards[cardnum]['back']);
-    backSpan.style.color=textColors[cardnum % textColors.length];
+    backSpan.style.color=textColors[seq % textColors.length];
     back.append(backSpan);
 
     flipper.append(back);
@@ -999,11 +1154,66 @@ function createOneCard  (mydiv, frontCard, cards, cardnum) {
 
 }
 
+function randomOrderArray(N) {
+    // Create an array with numbers from 0 to N-1
+    let arr = Array.from({ length: N }, (_, index) => index);
+
+    // Shuffle the array using Fisher-Yates algorithm
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+
+    return arr;
+}
+
+function createStructuredData(mydiv, cards, title, subject) {
+    var structuredData = {
+        "@context": "https://schema.org/",
+        "@type": "Quiz",
+        "about": {
+            "@type": "Thing"
+        },
+        "educationalAlignment": [
+            {
+                "@type": "AlignmentObject",
+                "alignmentType": "educationalSubject"
+            }
+        ],
+        "hasPart": []
+    };
+
+    structuredData["about"]["name"] = title;
+    structuredData["educationalAlignment"][0]["targetName"] = subject;
+
+    for (var i=0; i<cards.length; i++) {
+        var newPart = {
+            "@context": "https://schema.org/",
+            "@type": "Question",
+            "eduQuestionType": "Flashcard",
+            "acceptedAnswer": {
+                "@type": "Answer",
+            }
+        };
+
+        newPart["text"] = cards[i]["front"];
+        newPart["acceptedAnswer"]["text"] = cards[i]["back"];
+
+        structuredData["hasPart"].push(newPart);
+    }
+    /*console.log(structuredData);*/
+
+    var el = document.createElement('script');
+    el.type = 'application/ld+json';
+    el.text = JSON.stringify(structuredData);
+
+    mydiv.parentElement.appendChild(el);
+
+}
 
 
 
-
-function createCards(id, keyControl, grabFocus) {
+function createCards(id, keyControl, grabFocus, shuffleCards, title, subject) {
     console.log(id);
 
     var mydiv=document.getElementById(id);
@@ -1025,6 +1235,18 @@ function createCards(id, keyControl, grabFocus) {
     var cards=eval('cards'+id);
     mydiv.dataset.cardnum=0;
     mydiv.dataset.numCards=cards.length;
+
+    mydiv.dataset.shuffleCards = shuffleCards;
+    var cardOrder;
+    if (shuffleCards == "True"){
+        cardOrder = randomOrderArray(cards.length);
+    } else {
+        cardOrder = Array.from({ length: cards.length }, (_, index) => index);
+    }
+    mydiv.dataset.cardOrder = JSON.stringify(cardOrder);
+    console.log(mydiv.dataset.cardOrder);
+
+
     mydiv.addEventListener('swiped-left', function(e) {
         /*
           console.log(e.detail);
@@ -1033,16 +1255,22 @@ function createCards(id, keyControl, grabFocus) {
         checkFlip(id);
     }, {once: true});
 
+    if ((title!="") || (subject != "")){
+        createStructuredData(mydiv, cards, title, subject);
+    }
+
     var cardnum=0;
-    
+
     for (var i=0; i<2; i++) {
-    
+
+
+
         var flipper;
         if (i==0){
-            flipper=createOneCard(mydiv, true, cards, cardnum);
+            flipper=createOneCard(mydiv, true, cards, cardOrder[cardnum], cardnum);
         }
         else {
-            flipper=createOneCard(mydiv, false, cards, cardnum);
+            flipper=createOneCard(mydiv, false, cards, cardOrder[cardnum], cardnum);
         }
 
         mydiv.append(flipper);
@@ -1055,6 +1283,26 @@ function createCards(id, keyControl, grabFocus) {
                     if (version[0] == "2") {
                         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                     } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
                         MathJax.typeset([flipper]);
                     }
                 }, 500);
@@ -1063,7 +1311,31 @@ function createCards(id, keyControl, grabFocus) {
                 if (version[0] == "2") {
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 } else if (version[0] == "3") {
-                    MathJax.typeset([flipper]);
+                    if (version[0] == "2") {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    } else if (version[0] == "3") {
+                        if (MathJax.hasOwnProperty('typeset') ) {
+                            MathJax.typeset([flipper]);
+                        } else {
+                            console.log('WARNING: Trying to force load MathJax 3');
+                            window.MathJax = {
+                                tex: {
+                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                },
+                                svg: {
+                                    fontCache: 'global'
+                                }
+                            };
+
+                            (function () {
+                                var script = document.createElement('script');
+                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                                script.async = true;
+                                document.head.appendChild(script);
+                            })();
+                        }
+                        MathJax.typeset([flipper]);
+                    }
                 }
             }
         } else {
@@ -1095,14 +1367,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("BNiMhkQJECZv")) {
-            createCards("BNiMhkQJECZv", "True", "False");
+          if(document.getElementById("kUirfnpLJfpe")) {
+            createCards("kUirfnpLJfpe", "True", "False", "False", "Bayesian Hypothesis Testing", "Bayesian Statistics");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsBNiMhkQJECZv=[
+var cardskUirfnpLJfpe=[
     {
         "front": "uninformative prior",
         "back": "A collection of <i>a priori</i> probabilities that do not give preference to any of the outcomes; usually flat (constant) across the set of outcomes."
@@ -1117,9 +1389,9 @@ var cardsBNiMhkQJECZv=[
     }
 ]
 ;
-var frontColorsBNiMhkQJECZv= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsBNiMhkQJECZv= ["var(--dark-blue-gray)" ];
-var textColorsBNiMhkQJECZv= ["var(--snow)" ];
+var frontColorskUirfnpLJfpe= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorskUirfnpLJfpe= ["var(--dark-blue-gray)" ];
+var textColorskUirfnpLJfpe= ["var(--snow)" ];
 
 
         {
@@ -1130,7 +1402,7 @@ var textColorsBNiMhkQJECZv= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/flashcards//bayesian-hypothesis-testing.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("BNiMhkQJECZv", "True", "False"))
+        .then(json => createCards("kUirfnpLJfpe", "True", "False", "False", "Bayesian Hypothesis Testing", "Bayesian Statistics"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -1205,7 +1477,8 @@ var textColorsBNiMhkQJECZv= ["var(--snow)" ];
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">7.4.1. Terminology Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#omitted-material-on-a-bayesian-hypothesis-test-on-whether-a-die-is-loaded-unfair">7.4.1. Omitted Material on a Bayesian Hypothesis Test on Whether a Die is Loaded (Unfair)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">7.4.2. Terminology Review</a></li>
 </ul>
   </nav></div>
 
