@@ -1,0 +1,177 @@
+[
+    {
+    "question": "Choose all of the following that are limitation of null hypothesis significance testing (NHST) when compared to Bayesian hypothesis testing.",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "NHST cannot assign probabilities to the null and alternative hypotheses.",
+        "correct": true
+    },
+        {
+        "answer": "NHST cannot utilize information from other sources about the probability of a hypothesis being true.",
+        "correct": true
+    },
+        {
+        "answer": "NHST is not easily generalized to handle multiple possible hypotheses.",
+        "correct": true
+    },
+        {
+        "answer": "NHST requires specifying a prior distribution for the hypotheses.",
+        "correct": false,
+        "feedback":  "Incorrect. This is true of Bayesian hypothesis tests."
+    }
+    ]
+},
+    {
+    "question": "Choose all of the following that are typically true of a Bayesian hypothesis test.",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "It involves estimating the a posteriori probability of possible hypotheses.",
+        "correct": true
+    },
+        {
+        "answer": "It assigns probabilities to both null and alternative hypotheses.",
+        "correct": true
+    },
+        {
+        "answer": "It can utilize information from other sources about the probability of a hypothesis being true.",
+        "correct": true
+    },
+        {
+        "answer": "It operates under the assumption that the null hypothesis is true.",
+        "correct": false,
+        "feedback":  "Incorrect. This is only true for a NHST."
+    }
+    ]
+},
+    {
+    "question": "Which of these purposes does the <i>a priori</i> distribution serve in Bayesian hypothesis testing?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "It is needed in determining <i>a posteriori</i> probabilities.",
+        "correct": true
+    },
+        {
+        "answer": "It allows for the incorporation of prior knowledge about the problem.",
+        "correct": true
+    },
+        {
+        "answer": "It is used to calculate significance thresholds.",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "In Bayesian hypothesis testing, what does a credible interval represent?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "The range of values for which the null hypothesis is rejected.",
+        "correct": false
+    },
+        {
+        "answer": "The range of values that contain a certain percentage of the a posteriori probability.",
+        "correct": true
+    },
+        {
+        "answer": "The range of values for which the alternative hypothesis is accepted.",
+        "correct": false
+    },
+        {
+        "answer": "The range of values for which the prior probability is highest.",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "When choosing between an uninformative and an informative prior in Bayesian hypothesis testing, which of these is the primary consideration?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "The complexity of the model.",
+        "correct": false
+    },
+        {
+        "answer": "The ease of calculation.",
+        "correct": false
+    },
+        {
+        "answer": "The relevance of prior knowledge to the problem.",
+        "correct": true
+    },
+        {
+        "answer": "The size of the data set.",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "What is the primary advantage of using an informative prior in Bayesian hypothesis testing?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "It avoids the need to establish a model for possible behaviors of the variable.",
+        "correct": false
+    },
+        {
+        "answer": "It assigns equal probabilities to all possible outcomes, simplifying calculations.",
+        "correct": false
+    },
+        {
+        "answer": "It allows incorporating existing knowledge about the problem into the analysis.",
+        "correct": true
+    },
+        {
+        "answer": "It ensures that the observed data are not biased by prior assumptions.",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "Which approach is typically used to establish an uninformative prior in Bayesian hypothesis testing?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+        "answer": "Choosing a prior based on existing knowledge about the problem.",
+        "correct": false
+    },
+        {
+        "answer": "Assigning equal probabilities or probability densities to all possible outcomes.",
+        "correct": true
+    },
+        {
+        "answer": "Maximizing the likelihood of the observed data under the null hypothesis.",
+        "correct": false
+    },
+        {
+        "answer": "Choosing the <i>a priori</i> distribution based on a histogram of the data.",
+        "correct": false
+    }
+    ]
+},
+    {
+    "question": "Choose all of the following that are accurate characterizations of confidence intervals and credible intervals.",
+    "type": "many_choice",
+    "answers": [
+        {
+        "answer": "Credible intervals depend on a prior distribution, while confidence intervals do not.",
+        "correct": true
+    },
+        {
+        "answer": "Confidence intervals have a straightforward interpretation, while credible intervals do not.",
+        "correct": true
+    },
+        {
+        "answer": "Confidence intervals are used in NHST, while credible intervals are used in Bayesian hypothesis testing.",
+        "correct": true
+    },
+        {
+        "answer": "Confidence intervals are generated using a posteriori probabilities, while credible intervals are generated using a priori probabilities.",
+        "correct": false,
+        "feedfback": "Credible intervals are generated using <i>a posteriori</i> probabilities. Confidence intervals can be generated in multiple ways but are based on likelihoods under the null hypothesis."
+    }
+    ]
+}
+]
