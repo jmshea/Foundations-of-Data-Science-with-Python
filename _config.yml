@@ -61,4 +61,7 @@ sphinx:
 
 html:
   base_url: "https://www.fdsp.net/"
-  google_analytics_id: G-51XGJJ29T3
+  baseurl: "https://www.fdsp.net/"
+  analytics:
+    google_analytics_id: G-51XGJJ29T3
+    googleanalytics_id: G-51XGJJ29T3
