@@ -49,7 +49,7 @@ sphinx:
                           'body': '<h1><i>H<sub>0</sub></i> No &mdash; you failed to reject the null hypothesis!</h1><p><b></b></p><p>Unfortunately we could not find that content. You can use the magnifying glass to search or the table of contents to access specific pages<p><p><a href="intro.html">Return to the homepage</a></p><br><p>This website contains interactive activities and supporting materials for the book <i>Foundations of Data Science with Python</i> by John M. Shea:</p><a class="reference external image-reference" href="https://amzn.to/48PvKip"><img alt="Cover image for the published book Foundations of Data Science with Python by John M. Shea" class="align-center" src="_images/cover.jpeg" style="width: 200px;" /></a> <p>Purchase <i>Foundations of Data Science with Python</i> from <a class="reference external" href="https://amzn.to/48PvKip">Amazon</a><p>The scheduled publication date is February 22, 2024.</p><br><br><i>As an Amazon Associate I earn from qualifying purchases.</i>' 
                       }
     notfound_urls_prefix: "/fdsp/"
-  config:
+  #config:
     html_theme_options:
       repository_url: https://github.com/jmshea/Foundations-of-Data-Science-with-Python
       use_issues_button: true
@@ -57,11 +57,5 @@ sphinx:
       use_repository_button: true
       use_edit_page_button: false
       home_page_in_toc: true
-
-
-html:
-  base_url: "https://www.fdsp.net/"
-  baseurl: "https://www.fdsp.net/"
-  analytics:
-    google_analytics_id: G-51XGJJ29T3
-    googleanalytics_id: G-51XGJJ29T3
+      analytics:
+        google_analytics_id: G-51XGJJ29T3
