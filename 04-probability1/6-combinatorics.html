@@ -498,13 +498,13 @@ document.write(`
 <p><em>Combinatorics Question 1</em></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="HRjKXGPTNtMm" data-shufflequestions="False"
+<div class="output text_html"><div id="kskUWsXCmREA" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#HRjKXGPTNtMm {
+#kskUWsXCmREA {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -543,35 +543,12 @@ document.write(`
     padding: 4px;
 }
 
-.Quiz code {
-    background-color: lightgray;
-    color: black;
-}
-
-.Quiz .QuizCode code {
-    background-color: inherit;
-    color: inherit;
-}
-
-
-.Quiz .MCButton code {
-    background-color: inherit;
-    color: inherit;
-}
-
-.MCButton .QuizCode {
-    text-align: left;
-}
-
-
-
-
 .Answer {
-    border-radius: inherit;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 1fr 1fr;
     margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    border-radius: inherit;
 }
 
 .Feedback {
@@ -604,7 +581,7 @@ document.write(`
 }
 
 .Input-text:focus {
-    /*outline: none;*/
+    outline: none;
     background-color: var(--jq-numeric-input-bg);
     box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
 }
@@ -613,7 +590,6 @@ document.write(`
     background: var(--jq-mc-button-bg);
     border: 1px solid var(--jq-mc-button-border);
     border-radius: inherit;
-    color: #333333;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
@@ -642,10 +618,10 @@ document.write(`
 }
 
 .NumericQn {
-    background: var(--jq-numeric-bg);
-    border-radius: inherit;
-    color: var(--jq-text-color);
     padding: 10px;
+    background: var(--jq-numeric-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
 }
 
 .NumericQn p {
@@ -653,11 +629,11 @@ document.write(`
 }
 
 .InpLabel {
-    color: var(--jq-numeric-input-label);
-    float: left;
-    font-size: 15pt;
     line-height: 34px;
+    float: left;
     margin-right: 10px;
+    color: var(--jq-numeric-input-label);
+    font-size: 15pt;
 }
 
 .incorrect {
@@ -674,17 +650,17 @@ document.write(`
    */
     animation: correct-anim 0.6s ease;
     animation-fill-mode: forwards;
-    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    /*outline: none;*/
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
+    outline: none;
 }
 
 .incorrectButton {
     animation: incorrect-anim 0.8s ease;
     animation-fill-mode: forwards;
-    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    /*outline: none;*/
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
+    outline: none;
 }
 
 @keyframes incorrect-anim {
@@ -698,7 +674,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsHRjKXGPTNtMm=[
+</style></div><script type="application/javascript">var questionskskUWsXCmREA=[
     {
         "question": "How many outcomes are in the event $H_3$ (there are 3 heads on 20 flips of a fair coin)?",
         "type": "numeric",
@@ -815,7 +791,7 @@ function check_mc() {
 
 
 
-    if (fb.dataset.numcorrect <= 1) {
+    if (fb.dataset.numcorrect == 1) {
         // What follows is for the saved responses stuff
         var outerContainer = fb.parentElement.parentElement;
         var responsesContainer = document.getElementById("responses" + outerContainer.id);
@@ -837,7 +813,7 @@ function check_mc() {
             printResponses(responsesContainer);
         }
         // End code to preserve responses
-
+        
         for (var i = 0; i < answers.length; i++) {
             var child = answers[i];
             //console.log(child);
@@ -849,9 +825,9 @@ function check_mc() {
         if (label.dataset.correct == "true") {
             // console.log("Correct action");
             if ("feedback" in label.dataset) {
-                fb.innerHTML = jaxify(label.dataset.feedback);
+                fb.textContent = jaxify(label.dataset.feedback);
             } else {
-                fb.innerHTML = "Correct!";
+                fb.textContent = "Correct!";
             }
             label.classList.add("correctButton");
 
@@ -860,9 +836,9 @@ function check_mc() {
 
         } else {
             if ("feedback" in label.dataset) {
-                fb.innerHTML = jaxify(label.dataset.feedback);
+                fb.textContent = jaxify(label.dataset.feedback);
             } else {
-                fb.innerHTML = "Incorrect -- try again.";
+                fb.textContent = "Incorrect -- try again.";
             }
             //console.log("Error action");
             label.classList.add("incorrectButton");
@@ -1077,7 +1053,9 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            submission = Number(Number(submission).toPrecision(precision));
+            // console.log("1:", submission)
+            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
+            // console.log("Rounded to ", submission, " precision=", precision  );
         }
 
 
@@ -1113,12 +1091,11 @@ function check_numeric(ths, event) {
                 }
                 // } else if (answer.type=="range") {
             } else if ('range' in answer) {
-                console.log(answer.range);
-                console.log(submission, submission >=answer.range[0], submission < answer.range[1])
+                //console.log(answer.range);
                 if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
                     fb.textContent = jaxify(answer.feedback);
                     correct = answer.correct;
-                    console.log(answer.correct);
+                    //console.log(answer.correct);
                     done = true;
                 }
             } else if (answer.type == "default") {
@@ -1130,7 +1107,6 @@ function check_numeric(ths, event) {
                 return true; // Keep looking for case that includes this as a correct answer
             }
         });
-        console.log("done:", done);
 
         if ((!done) && (defaultFB != "")) {
             fb.innerHTML = jaxify(defaultFB);
@@ -1472,26 +1448,7 @@ function show_questions(json, mydiv) {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                if (MathJax.hasOwnProperty('typeset') ) {
-                    MathJax.typeset([mydiv]);
-                } else {
-                    console.log('WARNING: Trying to force load MathJax 3');
-                    window.MathJax = {
-                        tex: {
-                            inlineMath: [['$', '$'], ['\\(', '\\)']]
-                        },
-                        svg: {
-                            fontCache: 'global'
-                        }
-                    };
-
-                    (function () {
-                        var script = document.createElement('script');
-                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                        script.async = true;
-                        document.head.appendChild(script);
-                    })();
-                }
+                MathJax.typeset([mydiv]);
             }
         }, 500);
 if (typeof version == 'undefined') {
@@ -1500,26 +1457,7 @@ if (typeof version == 'undefined') {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                if (MathJax.hasOwnProperty('typeset') ) {
-                    MathJax.typeset([mydiv]);
-                } else {
-                    console.log('WARNING: Trying to force load MathJax 3');
-                    window.MathJax = {
-                        tex: {
-                            inlineMath: [['$', '$'], ['\\(', '\\)']]
-                        },
-                        svg: {
-                            fontCache: 'global'
-                        }
-                    };
-
-                    (function () {
-                        var script = document.createElement('script');
-                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                        script.async = true;
-                        document.head.appendChild(script);
-                    })();
-                }
+                MathJax.typeset([mydiv]);
             } else {
                 console.log("MathJax not found");
             }
@@ -1535,8 +1473,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("HRjKXGPTNtMm")) {
-            show_questions(questionsHRjKXGPTNtMm,  HRjKXGPTNtMm); 
+          if(document.getElementById("kskUWsXCmREA")) {
+            show_questions(questionskskUWsXCmREA,  kskUWsXCmREA); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1551,10 +1489,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/questions/6-1-three_heads.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, HRjKXGPTNtMm))
+        .then(json => show_questions(json, kskUWsXCmREA))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsHRjKXGPTNtMm, HRjKXGPTNtMm);
+        show_questions(questionskskUWsXCmREA, kskUWsXCmREA);
         });
         }
         </script></div>
@@ -1562,13 +1500,13 @@ if (typeof version == 'undefined') {
 <p><em>Combinatorics Question Set 2</em></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="hcjjJBVSzrbZ" data-shufflequestions="False"
+<div class="output text_html"><div id="YXQcZusoSqkp" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="2"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#hcjjJBVSzrbZ {
+#YXQcZusoSqkp {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1607,35 +1545,12 @@ if (typeof version == 'undefined') {
     padding: 4px;
 }
 
-.Quiz code {
-    background-color: lightgray;
-    color: black;
-}
-
-.Quiz .QuizCode code {
-    background-color: inherit;
-    color: inherit;
-}
-
-
-.Quiz .MCButton code {
-    background-color: inherit;
-    color: inherit;
-}
-
-.MCButton .QuizCode {
-    text-align: left;
-}
-
-
-
-
 .Answer {
-    border-radius: inherit;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 1fr 1fr;
     margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    border-radius: inherit;
 }
 
 .Feedback {
@@ -1668,7 +1583,7 @@ if (typeof version == 'undefined') {
 }
 
 .Input-text:focus {
-    /*outline: none;*/
+    outline: none;
     background-color: var(--jq-numeric-input-bg);
     box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
 }
@@ -1677,7 +1592,6 @@ if (typeof version == 'undefined') {
     background: var(--jq-mc-button-bg);
     border: 1px solid var(--jq-mc-button-border);
     border-radius: inherit;
-    color: #333333;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
@@ -1706,10 +1620,10 @@ if (typeof version == 'undefined') {
 }
 
 .NumericQn {
-    background: var(--jq-numeric-bg);
-    border-radius: inherit;
-    color: var(--jq-text-color);
     padding: 10px;
+    background: var(--jq-numeric-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
 }
 
 .NumericQn p {
@@ -1717,11 +1631,11 @@ if (typeof version == 'undefined') {
 }
 
 .InpLabel {
-    color: var(--jq-numeric-input-label);
-    float: left;
-    font-size: 15pt;
     line-height: 34px;
+    float: left;
     margin-right: 10px;
+    color: var(--jq-numeric-input-label);
+    font-size: 15pt;
 }
 
 .incorrect {
@@ -1738,17 +1652,17 @@ if (typeof version == 'undefined') {
    */
     animation: correct-anim 0.6s ease;
     animation-fill-mode: forwards;
-    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    /*outline: none;*/
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
+    outline: none;
 }
 
 .incorrectButton {
     animation: incorrect-anim 0.8s ease;
     animation-fill-mode: forwards;
-    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    /*outline: none;*/
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
+    outline: none;
 }
 
 @keyframes incorrect-anim {
@@ -1762,7 +1676,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionshcjjJBVSzrbZ=[
+</style></div><script type="application/javascript">var questionsYXQcZusoSqkp=[
     {
         "question": "How many outcomes are in the event $H_4$ (there are 4 heads on 20 flips of a fair coin)?",
         "type": "numeric",
@@ -1981,7 +1895,7 @@ function check_mc() {
 
 
 
-    if (fb.dataset.numcorrect <= 1) {
+    if (fb.dataset.numcorrect == 1) {
         // What follows is for the saved responses stuff
         var outerContainer = fb.parentElement.parentElement;
         var responsesContainer = document.getElementById("responses" + outerContainer.id);
@@ -2003,7 +1917,7 @@ function check_mc() {
             printResponses(responsesContainer);
         }
         // End code to preserve responses
-
+        
         for (var i = 0; i < answers.length; i++) {
             var child = answers[i];
             //console.log(child);
@@ -2015,9 +1929,9 @@ function check_mc() {
         if (label.dataset.correct == "true") {
             // console.log("Correct action");
             if ("feedback" in label.dataset) {
-                fb.innerHTML = jaxify(label.dataset.feedback);
+                fb.textContent = jaxify(label.dataset.feedback);
             } else {
-                fb.innerHTML = "Correct!";
+                fb.textContent = "Correct!";
             }
             label.classList.add("correctButton");
 
@@ -2026,9 +1940,9 @@ function check_mc() {
 
         } else {
             if ("feedback" in label.dataset) {
-                fb.innerHTML = jaxify(label.dataset.feedback);
+                fb.textContent = jaxify(label.dataset.feedback);
             } else {
-                fb.innerHTML = "Incorrect -- try again.";
+                fb.textContent = "Incorrect -- try again.";
             }
             //console.log("Error action");
             label.classList.add("incorrectButton");
@@ -2243,7 +2157,9 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            submission = Number(Number(submission).toPrecision(precision));
+            // console.log("1:", submission)
+            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
+            // console.log("Rounded to ", submission, " precision=", precision  );
         }
 
 
@@ -2279,12 +2195,11 @@ function check_numeric(ths, event) {
                 }
                 // } else if (answer.type=="range") {
             } else if ('range' in answer) {
-                console.log(answer.range);
-                console.log(submission, submission >=answer.range[0], submission < answer.range[1])
+                //console.log(answer.range);
                 if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
                     fb.textContent = jaxify(answer.feedback);
                     correct = answer.correct;
-                    console.log(answer.correct);
+                    //console.log(answer.correct);
                     done = true;
                 }
             } else if (answer.type == "default") {
@@ -2296,7 +2211,6 @@ function check_numeric(ths, event) {
                 return true; // Keep looking for case that includes this as a correct answer
             }
         });
-        console.log("done:", done);
 
         if ((!done) && (defaultFB != "")) {
             fb.innerHTML = jaxify(defaultFB);
@@ -2638,26 +2552,7 @@ function show_questions(json, mydiv) {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                if (MathJax.hasOwnProperty('typeset') ) {
-                    MathJax.typeset([mydiv]);
-                } else {
-                    console.log('WARNING: Trying to force load MathJax 3');
-                    window.MathJax = {
-                        tex: {
-                            inlineMath: [['$', '$'], ['\\(', '\\)']]
-                        },
-                        svg: {
-                            fontCache: 'global'
-                        }
-                    };
-
-                    (function () {
-                        var script = document.createElement('script');
-                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                        script.async = true;
-                        document.head.appendChild(script);
-                    })();
-                }
+                MathJax.typeset([mydiv]);
             }
         }, 500);
 if (typeof version == 'undefined') {
@@ -2666,26 +2561,7 @@ if (typeof version == 'undefined') {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                if (MathJax.hasOwnProperty('typeset') ) {
-                    MathJax.typeset([mydiv]);
-                } else {
-                    console.log('WARNING: Trying to force load MathJax 3');
-                    window.MathJax = {
-                        tex: {
-                            inlineMath: [['$', '$'], ['\\(', '\\)']]
-                        },
-                        svg: {
-                            fontCache: 'global'
-                        }
-                    };
-
-                    (function () {
-                        var script = document.createElement('script');
-                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                        script.async = true;
-                        document.head.appendChild(script);
-                    })();
-                }
+                MathJax.typeset([mydiv]);
             } else {
                 console.log("MathJax not found");
             }
@@ -2701,8 +2577,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("hcjjJBVSzrbZ")) {
-            show_questions(questionshcjjJBVSzrbZ,  hcjjJBVSzrbZ); 
+          if(document.getElementById("YXQcZusoSqkp")) {
+            show_questions(questionsYXQcZusoSqkp,  YXQcZusoSqkp); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2717,10 +2593,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/questions/6-2-binom.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, hcjjJBVSzrbZ))
+        .then(json => show_questions(json, YXQcZusoSqkp))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionshcjjJBVSzrbZ, hcjjJBVSzrbZ);
+        show_questions(questionsYXQcZusoSqkp, YXQcZusoSqkp);
         });
         }
         </script></div>
@@ -2728,13 +2604,13 @@ if (typeof version == 'undefined') {
 <p><em>Combinatorics Question Set 3</em></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="ugPyVZzJrnRG" data-shufflequestions="False"
+<div class="output text_html"><div id="OHmWRVibVGlC" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="2"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#ugPyVZzJrnRG {
+#OHmWRVibVGlC {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -2773,35 +2649,12 @@ if (typeof version == 'undefined') {
     padding: 4px;
 }
 
-.Quiz code {
-    background-color: lightgray;
-    color: black;
-}
-
-.Quiz .QuizCode code {
-    background-color: inherit;
-    color: inherit;
-}
-
-
-.Quiz .MCButton code {
-    background-color: inherit;
-    color: inherit;
-}
-
-.MCButton .QuizCode {
-    text-align: left;
-}
-
-
-
-
 .Answer {
-    border-radius: inherit;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 1fr 1fr;
     margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    border-radius: inherit;
 }
 
 .Feedback {
@@ -2834,7 +2687,7 @@ if (typeof version == 'undefined') {
 }
 
 .Input-text:focus {
-    /*outline: none;*/
+    outline: none;
     background-color: var(--jq-numeric-input-bg);
     box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
 }
@@ -2843,7 +2696,6 @@ if (typeof version == 'undefined') {
     background: var(--jq-mc-button-bg);
     border: 1px solid var(--jq-mc-button-border);
     border-radius: inherit;
-    color: #333333;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
@@ -2872,10 +2724,10 @@ if (typeof version == 'undefined') {
 }
 
 .NumericQn {
-    background: var(--jq-numeric-bg);
-    border-radius: inherit;
-    color: var(--jq-text-color);
     padding: 10px;
+    background: var(--jq-numeric-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
 }
 
 .NumericQn p {
@@ -2883,11 +2735,11 @@ if (typeof version == 'undefined') {
 }
 
 .InpLabel {
-    color: var(--jq-numeric-input-label);
-    float: left;
-    font-size: 15pt;
     line-height: 34px;
+    float: left;
     margin-right: 10px;
+    color: var(--jq-numeric-input-label);
+    font-size: 15pt;
 }
 
 .incorrect {
@@ -2904,17 +2756,17 @@ if (typeof version == 'undefined') {
    */
     animation: correct-anim 0.6s ease;
     animation-fill-mode: forwards;
-    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    /*outline: none;*/
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
+    outline: none;
 }
 
 .incorrectButton {
     animation: incorrect-anim 0.8s ease;
     animation-fill-mode: forwards;
-    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    /*outline: none;*/
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
+    outline: none;
 }
 
 @keyframes incorrect-anim {
@@ -2928,7 +2780,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsugPyVZzJrnRG=[
+</style></div><script type="application/javascript">var questionsOHmWRVibVGlC=[
     {
         "question": "Find the probability of 4 heads on 20 flips of a fair coin, $P(H_4)$ to 2 significant digits.",
         "type": "numeric",
@@ -3148,7 +3000,7 @@ function check_mc() {
 
 
 
-    if (fb.dataset.numcorrect <= 1) {
+    if (fb.dataset.numcorrect == 1) {
         // What follows is for the saved responses stuff
         var outerContainer = fb.parentElement.parentElement;
         var responsesContainer = document.getElementById("responses" + outerContainer.id);
@@ -3170,7 +3022,7 @@ function check_mc() {
             printResponses(responsesContainer);
         }
         // End code to preserve responses
-
+        
         for (var i = 0; i < answers.length; i++) {
             var child = answers[i];
             //console.log(child);
@@ -3182,9 +3034,9 @@ function check_mc() {
         if (label.dataset.correct == "true") {
             // console.log("Correct action");
             if ("feedback" in label.dataset) {
-                fb.innerHTML = jaxify(label.dataset.feedback);
+                fb.textContent = jaxify(label.dataset.feedback);
             } else {
-                fb.innerHTML = "Correct!";
+                fb.textContent = "Correct!";
             }
             label.classList.add("correctButton");
 
@@ -3193,9 +3045,9 @@ function check_mc() {
 
         } else {
             if ("feedback" in label.dataset) {
-                fb.innerHTML = jaxify(label.dataset.feedback);
+                fb.textContent = jaxify(label.dataset.feedback);
             } else {
-                fb.innerHTML = "Incorrect -- try again.";
+                fb.textContent = "Incorrect -- try again.";
             }
             //console.log("Error action");
             label.classList.add("incorrectButton");
@@ -3410,7 +3262,9 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            submission = Number(Number(submission).toPrecision(precision));
+            // console.log("1:", submission)
+            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
+            // console.log("Rounded to ", submission, " precision=", precision  );
         }
 
 
@@ -3446,12 +3300,11 @@ function check_numeric(ths, event) {
                 }
                 // } else if (answer.type=="range") {
             } else if ('range' in answer) {
-                console.log(answer.range);
-                console.log(submission, submission >=answer.range[0], submission < answer.range[1])
+                //console.log(answer.range);
                 if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
                     fb.textContent = jaxify(answer.feedback);
                     correct = answer.correct;
-                    console.log(answer.correct);
+                    //console.log(answer.correct);
                     done = true;
                 }
             } else if (answer.type == "default") {
@@ -3463,7 +3316,6 @@ function check_numeric(ths, event) {
                 return true; // Keep looking for case that includes this as a correct answer
             }
         });
-        console.log("done:", done);
 
         if ((!done) && (defaultFB != "")) {
             fb.innerHTML = jaxify(defaultFB);
@@ -3805,26 +3657,7 @@ function show_questions(json, mydiv) {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                if (MathJax.hasOwnProperty('typeset') ) {
-                    MathJax.typeset([mydiv]);
-                } else {
-                    console.log('WARNING: Trying to force load MathJax 3');
-                    window.MathJax = {
-                        tex: {
-                            inlineMath: [['$', '$'], ['\\(', '\\)']]
-                        },
-                        svg: {
-                            fontCache: 'global'
-                        }
-                    };
-
-                    (function () {
-                        var script = document.createElement('script');
-                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                        script.async = true;
-                        document.head.appendChild(script);
-                    })();
-                }
+                MathJax.typeset([mydiv]);
             }
         }, 500);
 if (typeof version == 'undefined') {
@@ -3833,26 +3666,7 @@ if (typeof version == 'undefined') {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                if (MathJax.hasOwnProperty('typeset') ) {
-                    MathJax.typeset([mydiv]);
-                } else {
-                    console.log('WARNING: Trying to force load MathJax 3');
-                    window.MathJax = {
-                        tex: {
-                            inlineMath: [['$', '$'], ['\\(', '\\)']]
-                        },
-                        svg: {
-                            fontCache: 'global'
-                        }
-                    };
-
-                    (function () {
-                        var script = document.createElement('script');
-                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                        script.async = true;
-                        document.head.appendChild(script);
-                    })();
-                }
+                MathJax.typeset([mydiv]);
             } else {
                 console.log("MathJax not found");
             }
@@ -3868,8 +3682,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("ugPyVZzJrnRG")) {
-            show_questions(questionsugPyVZzJrnRG,  ugPyVZzJrnRG); 
+          if(document.getElementById("OHmWRVibVGlC")) {
+            show_questions(questionsOHmWRVibVGlC,  OHmWRVibVGlC); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -3884,10 +3698,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/questions/6-3-coin-flip-probs.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, ugPyVZzJrnRG))
+        .then(json => show_questions(json, OHmWRVibVGlC))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsugPyVZzJrnRG, ugPyVZzJrnRG);
+        show_questions(questionsOHmWRVibVGlC, OHmWRVibVGlC);
         });
         }
         </script></div>
@@ -3895,13 +3709,13 @@ if (typeof version == 'undefined') {
 <p><em>Additional Review Questions</em></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="wDuynvtGQUUv" data-shufflequestions="False"
+<div class="output text_html"><div id="kQxnVJUZnisp" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#wDuynvtGQUUv {
+#kQxnVJUZnisp {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -3940,35 +3754,12 @@ if (typeof version == 'undefined') {
     padding: 4px;
 }
 
-.Quiz code {
-    background-color: lightgray;
-    color: black;
-}
-
-.Quiz .QuizCode code {
-    background-color: inherit;
-    color: inherit;
-}
-
-
-.Quiz .MCButton code {
-    background-color: inherit;
-    color: inherit;
-}
-
-.MCButton .QuizCode {
-    text-align: left;
-}
-
-
-
-
 .Answer {
-    border-radius: inherit;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 1fr 1fr;
     margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    border-radius: inherit;
 }
 
 .Feedback {
@@ -4001,7 +3792,7 @@ if (typeof version == 'undefined') {
 }
 
 .Input-text:focus {
-    /*outline: none;*/
+    outline: none;
     background-color: var(--jq-numeric-input-bg);
     box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
 }
@@ -4010,7 +3801,6 @@ if (typeof version == 'undefined') {
     background: var(--jq-mc-button-bg);
     border: 1px solid var(--jq-mc-button-border);
     border-radius: inherit;
-    color: #333333;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
@@ -4039,10 +3829,10 @@ if (typeof version == 'undefined') {
 }
 
 .NumericQn {
-    background: var(--jq-numeric-bg);
-    border-radius: inherit;
-    color: var(--jq-text-color);
     padding: 10px;
+    background: var(--jq-numeric-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
 }
 
 .NumericQn p {
@@ -4050,11 +3840,11 @@ if (typeof version == 'undefined') {
 }
 
 .InpLabel {
-    color: var(--jq-numeric-input-label);
-    float: left;
-    font-size: 15pt;
     line-height: 34px;
+    float: left;
     margin-right: 10px;
+    color: var(--jq-numeric-input-label);
+    font-size: 15pt;
 }
 
 .incorrect {
@@ -4071,17 +3861,17 @@ if (typeof version == 'undefined') {
    */
     animation: correct-anim 0.6s ease;
     animation-fill-mode: forwards;
-    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    /*outline: none;*/
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
+    outline: none;
 }
 
 .incorrectButton {
     animation: incorrect-anim 0.8s ease;
     animation-fill-mode: forwards;
-    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    /*outline: none;*/
+    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
+    outline: none;
 }
 
 @keyframes incorrect-anim {
@@ -4095,7 +3885,7 @@ if (typeof version == 'undefined') {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionswDuynvtGQUUv=[
+</style></div><script type="application/javascript">var questionskQxnVJUZnisp=[
     {
         "question": "Poker dice is played by rolling five dice simultaneously.  How many ordered outcomes are there?",
         "type": "numeric",
@@ -4275,7 +4065,7 @@ function check_mc() {
 
 
 
-    if (fb.dataset.numcorrect <= 1) {
+    if (fb.dataset.numcorrect == 1) {
         // What follows is for the saved responses stuff
         var outerContainer = fb.parentElement.parentElement;
         var responsesContainer = document.getElementById("responses" + outerContainer.id);
@@ -4297,7 +4087,7 @@ function check_mc() {
             printResponses(responsesContainer);
         }
         // End code to preserve responses
-
+        
         for (var i = 0; i < answers.length; i++) {
             var child = answers[i];
             //console.log(child);
@@ -4309,9 +4099,9 @@ function check_mc() {
         if (label.dataset.correct == "true") {
             // console.log("Correct action");
             if ("feedback" in label.dataset) {
-                fb.innerHTML = jaxify(label.dataset.feedback);
+                fb.textContent = jaxify(label.dataset.feedback);
             } else {
-                fb.innerHTML = "Correct!";
+                fb.textContent = "Correct!";
             }
             label.classList.add("correctButton");
 
@@ -4320,9 +4110,9 @@ function check_mc() {
 
         } else {
             if ("feedback" in label.dataset) {
-                fb.innerHTML = jaxify(label.dataset.feedback);
+                fb.textContent = jaxify(label.dataset.feedback);
             } else {
-                fb.innerHTML = "Incorrect -- try again.";
+                fb.textContent = "Incorrect -- try again.";
             }
             //console.log("Error action");
             label.classList.add("incorrectButton");
@@ -4537,7 +4327,9 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            submission = Number(Number(submission).toPrecision(precision));
+            // console.log("1:", submission)
+            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
+            // console.log("Rounded to ", submission, " precision=", precision  );
         }
 
 
@@ -4573,12 +4365,11 @@ function check_numeric(ths, event) {
                 }
                 // } else if (answer.type=="range") {
             } else if ('range' in answer) {
-                console.log(answer.range);
-                console.log(submission, submission >=answer.range[0], submission < answer.range[1])
+                //console.log(answer.range);
                 if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
                     fb.textContent = jaxify(answer.feedback);
                     correct = answer.correct;
-                    console.log(answer.correct);
+                    //console.log(answer.correct);
                     done = true;
                 }
             } else if (answer.type == "default") {
@@ -4590,7 +4381,6 @@ function check_numeric(ths, event) {
                 return true; // Keep looking for case that includes this as a correct answer
             }
         });
-        console.log("done:", done);
 
         if ((!done) && (defaultFB != "")) {
             fb.innerHTML = jaxify(defaultFB);
@@ -4932,26 +4722,7 @@ function show_questions(json, mydiv) {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                if (MathJax.hasOwnProperty('typeset') ) {
-                    MathJax.typeset([mydiv]);
-                } else {
-                    console.log('WARNING: Trying to force load MathJax 3');
-                    window.MathJax = {
-                        tex: {
-                            inlineMath: [['$', '$'], ['\\(', '\\)']]
-                        },
-                        svg: {
-                            fontCache: 'global'
-                        }
-                    };
-
-                    (function () {
-                        var script = document.createElement('script');
-                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                        script.async = true;
-                        document.head.appendChild(script);
-                    })();
-                }
+                MathJax.typeset([mydiv]);
             }
         }, 500);
 if (typeof version == 'undefined') {
@@ -4960,26 +4731,7 @@ if (typeof version == 'undefined') {
             if (version[0] == "2") {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
-                if (MathJax.hasOwnProperty('typeset') ) {
-                    MathJax.typeset([mydiv]);
-                } else {
-                    console.log('WARNING: Trying to force load MathJax 3');
-                    window.MathJax = {
-                        tex: {
-                            inlineMath: [['$', '$'], ['\\(', '\\)']]
-                        },
-                        svg: {
-                            fontCache: 'global'
-                        }
-                    };
-
-                    (function () {
-                        var script = document.createElement('script');
-                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                        script.async = true;
-                        document.head.appendChild(script);
-                    })();
-                }
+                MathJax.typeset([mydiv]);
             } else {
                 console.log("MathJax not found");
             }
@@ -4995,8 +4747,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("wDuynvtGQUUv")) {
-            show_questions(questionswDuynvtGQUUv,  wDuynvtGQUUv); 
+          if(document.getElementById("kQxnVJUZnisp")) {
+            show_questions(questionskQxnVJUZnisp,  kQxnVJUZnisp); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -5011,10 +4763,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/questions/6-combinatorics.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, wDuynvtGQUUv))
+        .then(json => show_questions(json, kQxnVJUZnisp))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionswDuynvtGQUUv, wDuynvtGQUUv);
+        show_questions(questionskQxnVJUZnisp, kQxnVJUZnisp);
         });
         }
         </script></div>
@@ -5278,7 +5030,7 @@ if (typeof version == 'undefined') {
 
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="JDfMwTVzOMoo" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="JDfMwTVzOMoo-next" onclick="window.checkFlip('JDfMwTVzOMoo')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="zjuOPyMDvaRU" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="zjuOPyMDvaRU-next" onclick="window.checkFlip('zjuOPyMDvaRU')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -5585,26 +5337,6 @@ function createCards(id, keyControl, grabFocus) {
                     if (version[0] == "2") {
                         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                     } else if (version[0] == "3") {
-                        if (MathJax.hasOwnProperty('typeset') ) {
-                            MathJax.typeset([flipper]);
-                        } else {
-                            console.log('WARNING: Trying to force load MathJax 3');
-                            window.MathJax = {
-                                tex: {
-                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
-                                },
-                                svg: {
-                                    fontCache: 'global'
-                                }
-                            };
-
-                            (function () {
-                                var script = document.createElement('script');
-                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                                script.async = true;
-                                document.head.appendChild(script);
-                            })();
-                        }
                         MathJax.typeset([flipper]);
                     }
                 }, 500);
@@ -5613,31 +5345,7 @@ function createCards(id, keyControl, grabFocus) {
                 if (version[0] == "2") {
                     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
                 } else if (version[0] == "3") {
-                    if (version[0] == "2") {
-                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-                    } else if (version[0] == "3") {
-                        if (MathJax.hasOwnProperty('typeset') ) {
-                            MathJax.typeset([flipper]);
-                        } else {
-                            console.log('WARNING: Trying to force load MathJax 3');
-                            window.MathJax = {
-                                tex: {
-                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
-                                },
-                                svg: {
-                                    fontCache: 'global'
-                                }
-                            };
-
-                            (function () {
-                                var script = document.createElement('script');
-                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                                script.async = true;
-                                document.head.appendChild(script);
-                            })();
-                        }
-                        MathJax.typeset([flipper]);
-                    }
+                    MathJax.typeset([flipper]);
                 }
             }
         } else {
@@ -5669,14 +5377,14 @@ function createCards(id, keyControl, grabFocus) {
 
 
         function try_create() {
-          if(document.getElementById("JDfMwTVzOMoo")) {
-            createCards("JDfMwTVzOMoo", "True", "False");
+          if(document.getElementById("zjuOPyMDvaRU")) {
+            createCards("zjuOPyMDvaRU", "True", "False");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsJDfMwTVzOMoo=[
+var cardszjuOPyMDvaRU=[
     {
         "front": "combinatorics",
         "back": "the mathematics of counting"
@@ -5691,9 +5399,9 @@ var cardsJDfMwTVzOMoo=[
     }
 ]
 ;
-var frontColorsJDfMwTVzOMoo= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsJDfMwTVzOMoo= ["var(--dark-blue-gray)" ];
-var textColorsJDfMwTVzOMoo= ["var(--snow)" ];
+var frontColorszjuOPyMDvaRU= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorszjuOPyMDvaRU= ["var(--dark-blue-gray)" ];
+var textColorszjuOPyMDvaRU= ["var(--snow)" ];
 
 
         {
@@ -5704,7 +5412,7 @@ var textColorsJDfMwTVzOMoo= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/combinatorics.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("JDfMwTVzOMoo", "True", "False"))
+        .then(json => createCards("zjuOPyMDvaRU", "True", "False"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -5712,7 +5420,13 @@ var textColorsJDfMwTVzOMoo= ["var(--snow)" ];
         }
         </script></div>
 </div>
-<p><strong>Code for calculating probabilities and plotting</strong></p>
+<p><em>Code for calculating probabilities and plotting for <strong>Example 4.9: (A) Monopoly Dice</strong></em></p>
+<p>The following code finds the probabilities for the values that arise from rolling two dice and adding the values. For instance, this is the method used by each player to determine how many spaces to move in the classic game <em>Monopoly</em>. The probabilities are found in two ways, corresponding to how they are found in this portion of <a href="https://amzn.to/48PvKip" target="blank"><i>Foundations of Data Science with Python</i></a>:</p>
+<ol class="arabic simple">
+<li><p>They are found by enumerating all outcomes of the combined experimenbt and then counting the number of ways each sum can occur.</p></li>
+<li><p>The probabilities are estimated by the results of a simulation of 1 million rolls of the pairs of dice.</p></li>
+</ol>
+<p><em>Note that these probabilities can also be found using combinatorics; an example is given in Example 4.12 of the book.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate probs via combinatorics:</span>
@@ -5758,7 +5472,7 @@ var textColorsJDfMwTVzOMoo= ["var(--snow)" ];
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5654c6efca5e586b624198e88adfd262d97b89f319943a7a5f2d55648c677c1a.png" src="../_images/5654c6efca5e586b624198e88adfd262d97b89f319943a7a5f2d55648c677c1a.png" />
+<img alt="../_images/5a9c8a16b17246930871abf1a788512eaa622e5cde79fffe7d4fa7a6142ec767.png" src="../_images/5a9c8a16b17246930871abf1a788512eaa622e5cde79fffe7d4fa7a6142ec767.png" />
 </div>
 </div>
 </section>
