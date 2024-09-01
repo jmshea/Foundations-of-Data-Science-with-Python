@@ -1,0 +1,66 @@
+[
+    {
+        "question": "Let $\\Omega=\\{1,2,3\\}$, and define $X$ by $X(\\{1,2\\})=1$, $X(\\{2,3\\})=2$, and $X=0$ otherwise. Is $X$ a valid random variable?",
+    "type": "multiple_choice",
+    "answers": [
+        {
+            "answer": "Yes",
+            "correct": false,
+            "feedback": "Incorrect. A random variable is a function that maps from the outcomes to the real line. The arguments $\\{1,2\\}$ and $\\{2,3\\}$ are events, not outcomes."
+        },
+        {
+            "answer": "No",
+            "correct": true,
+            "feedback": "Correct. A random variable is a function that maps from the outcomes to the real line. The arguments $\\{1,2\\}$ and $\\{2,3\\}$ are events, not outcomes."
+        }
+    ]
+    },
+    {
+        "question": "Let $\\Omega=\\{1,2,3\\}$, and define $X$ by $X(1)=1$, $X(2)=1$, and $X(3)=2$. Is $X$ a valid random variable?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": true,
+                "feedback": "Correct. This is a function that maps outcomes to the real line."
+            },
+            {
+                "answer": "No",
+                "correct": false,
+                "feedback": "Incorrect. This is a function that maps outcomes to the real line."
+            }
+        ]
+    },
+    {
+        "question": "Let $\\Omega=\\{1,2,3\\}$, and define $X$ by $X(1)=\\pi/4$, $X(2)=\\sqrt{7}$, and $X(3)=2.\\overline{1}$. Is $X$ a valid random variable?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": true,
+                "feedback": "Correct. This is a function that maps outcomes to the real line."
+            },
+            {
+                "answer": "No",
+                "correct": false,
+                "feedback": "Incorrect. This is a function that maps outcomes to the real line."
+            }
+        ]
+    },
+    {
+        "question": "Let $\\Omega=\\{1,2,3\\}$, and define $X$ by $X(1)=1$, $X(1)=2$, $X(2)=2.5$, and $X(3)=2$. Is $X$ a valid random variable?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": false,
+                "feedback": "Incorrect. This is not a valid function because it specifies two different output values for the input value 1."
+            },
+            {
+                "answer": "No",
+                "correct": true,
+                "feedback": "Correct. This is not a valid function because it specifies two different output values for the input value 1."
+            }
+        ]
+    }
+]
