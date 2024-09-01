@@ -499,13 +499,13 @@ document.write(`
 <p><img alt="" src="../_images/transition.svg" /></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="HxIelUOXYQvn" data-shufflequestions="False"
+<div class="output text_html"><div id="dNfHkOzFsIpA" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#HxIelUOXYQvn {
+#dNfHkOzFsIpA {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -706,7 +706,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsHxIelUOXYQvn=[
+</style></div><script type="application/javascript">var questionsdNfHkOzFsIpA=[
     {
     "question": "For the binary communication system, what is the ML decision given that $B_0$ was received?",
     "type": "multiple_choice",
@@ -1282,8 +1282,7 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            // 1e-20 offset helps prevent some weird behavior when next digit is a 5
-            submission = Number((Number(submission) + 1e-20).toPrecision(precision));
+            submission = Number(Number(submission).toPrecision(precision));
         }
 
 
@@ -1297,16 +1296,19 @@ function check_numeric(ths, event) {
 
         var answers = JSON.parse(ths.dataset.answers);
         //console.log(answers);
+        console.log(submission);
 
         var defaultFB = "Incorrect. Try again.";
         var correct;
         var done = false;
         answers.every(answer => {
-            //console.log(answer.type);
+        //console.log(answer.type);
 
             correct = false;
             // if (answer.type=="value"){
             if ('value' in answer) {
+                console.log(answer.value);
+                console.log(submission == answer.value);
                 if (submission == answer.value) {
                     if ("feedback" in answer) {
                         fb.innerHTML = jaxify(answer.feedback);
@@ -1743,8 +1745,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("HxIelUOXYQvn")) {
-            show_questions(questionsHxIelUOXYQvn,  HxIelUOXYQvn); 
+          if(document.getElementById("dNfHkOzFsIpA")) {
+            show_questions(questionsdNfHkOzFsIpA,  dNfHkOzFsIpA); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1759,10 +1761,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/questions/3-binary-channel.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, HxIelUOXYQvn))
+        .then(json => show_questions(json, dNfHkOzFsIpA))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsHxIelUOXYQvn, HxIelUOXYQvn);
+        show_questions(questionsdNfHkOzFsIpA, dNfHkOzFsIpA);
         });
         }
         </script></div>
@@ -1790,15 +1792,23 @@ patient has</p>
 <li><p>probability 0.009 of having benign liver tumors,</p></li>
 <li><p>and probability 0.001 of having liver cancer.</p></li>
 </ul>
-<div class="cell tag_remove-input docutils container">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quiz</span> <span class="o">=</span> <span class="s1">&#39;3-liver-scan.json&#39;</span>
+
+<span class="n">display_quiz</span><span class="p">(</span><span class="n">github</span> <span class="o">+</span> <span class="nb">dir</span> <span class="o">+</span> <span class="n">quiz</span><span class="p">,</span>
+            <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;fdsp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="cktDpndJIuMT" data-shufflequestions="False"
+<div class="output text_html"><div id="ORAoEeujrwBK" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#cktDpndJIuMT {
+#ORAoEeujrwBK {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1999,7 +2009,7 @@ patient has</p>
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionscktDpndJIuMT=[
+</style></div><script type="application/javascript">var questionsORAoEeujrwBK=[
     {
     "question": "For a healthy patient, if the computerized scan indicates a tumor, what is the probability that the patient has liver cancer? Give your answer to 2 significant digits.",
         "type": "numeric",
@@ -2500,8 +2510,7 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            // 1e-20 offset helps prevent some weird behavior when next digit is a 5
-            submission = Number((Number(submission) + 1e-20).toPrecision(precision));
+            submission = Number(Number(submission).toPrecision(precision));
         }
 
 
@@ -2515,16 +2524,19 @@ function check_numeric(ths, event) {
 
         var answers = JSON.parse(ths.dataset.answers);
         //console.log(answers);
+        console.log(submission);
 
         var defaultFB = "Incorrect. Try again.";
         var correct;
         var done = false;
         answers.every(answer => {
-            //console.log(answer.type);
+        //console.log(answer.type);
 
             correct = false;
             // if (answer.type=="value"){
             if ('value' in answer) {
+                console.log(answer.value);
+                console.log(submission == answer.value);
                 if (submission == answer.value) {
                     if ("feedback" in answer) {
                         fb.innerHTML = jaxify(answer.feedback);
@@ -2961,8 +2973,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("cktDpndJIuMT")) {
-            show_questions(questionscktDpndJIuMT,  cktDpndJIuMT); 
+          if(document.getElementById("ORAoEeujrwBK")) {
+            show_questions(questionsORAoEeujrwBK,  ORAoEeujrwBK); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2977,10 +2989,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/questions/3-liver-scan.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, cktDpndJIuMT))
+        .then(json => show_questions(json, ORAoEeujrwBK))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionscktDpndJIuMT, cktDpndJIuMT);
+        show_questions(questionsORAoEeujrwBK, ORAoEeujrwBK);
         });
         }
         </script></div>
@@ -3251,7 +3263,7 @@ if (typeof version == 'undefined') {
     }
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="FDVRchqBYjxx" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="FDVRchqBYjxx-next" onclick="window.checkFlip('FDVRchqBYjxx')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="QQbRvLOeroMs" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="QQbRvLOeroMs-next" onclick="window.checkFlip('QQbRvLOeroMs')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -3725,14 +3737,14 @@ function createCards(id, keyControl, grabFocus, shuffleCards, title, subject) {
 
 
         function try_create() {
-          if(document.getElementById("FDVRchqBYjxx")) {
-            createCards("FDVRchqBYjxx", "True", "False", "False", "Decision Theory", "Probability");
+          if(document.getElementById("QQbRvLOeroMs")) {
+            createCards("QQbRvLOeroMs", "True", "False", "False", "Decision Theory", "Probability");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsFDVRchqBYjxx=[
+var cardsQQbRvLOeroMs=[
     {
         "front": "decision rule<br>(discrete stochastic system)",
         "back": "For a discrete stochastic system with inputs (or hidden states) $\\{A_i\\}$ and outputs $\\{B_j\\}$, a <I>decision rule</I> for an observation $B_j$ gives a choice of corresponding input event $A_i$.<br> The decision rule may be chosen to optimize some function of the inputs and outputs (e.g., likelihood or APP)."
@@ -3746,9 +3758,9 @@ var cardsFDVRchqBYjxx=[
         "back": "For a stochastic system with a discrete input events $\\{ A_0, A_i, \\ldots \\}$ and  discrete output events $\\{B_0, B_1, \\ldots\\}$,  the <I>maximum a posteriori (MAP)</I> decision rule given $B_j$ was received is <br> $$ \\hat{A}_i, \\mbox{ where } i = \\arg \\max_{i \\in \\{0,1\\}} P(A_i|B_j). $$ "}
 ]
 ;
-var frontColorsFDVRchqBYjxx= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsFDVRchqBYjxx= ["var(--dark-blue-gray)" ];
-var textColorsFDVRchqBYjxx= ["var(--snow)" ];
+var frontColorsQQbRvLOeroMs= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsQQbRvLOeroMs= ["var(--dark-blue-gray)" ];
+var textColorsQQbRvLOeroMs= ["var(--snow)" ];
 
 
         {
@@ -3757,9 +3769,9 @@ var textColorsFDVRchqBYjxx= ["var(--snow)" ];
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/flashcards/optimal-decisions.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/flashcards/3-optimal-decisions.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("FDVRchqBYjxx", "True", "False", "False", "Decision Theory", "Probability"))
+        .then(json => createCards("QQbRvLOeroMs", "True", "False", "False", "Decision Theory", "Probability"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

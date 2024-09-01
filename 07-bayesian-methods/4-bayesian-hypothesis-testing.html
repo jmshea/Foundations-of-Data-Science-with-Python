@@ -585,7 +585,7 @@ equally likely to take any value in <span class="math notranslate nohighlight">\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/18de1cceb5699a6ca0dfed7af51df3b5c1c2d7ea89bf340d4a60b937198bb320.png" src="../_images/18de1cceb5699a6ca0dfed7af51df3b5c1c2d7ea89bf340d4a60b937198bb320.png" />
+<img alt="../_images/e92aa0baa5e0841a511c98b7f9313a31338f821b42d93b52bfa4820ebbb5ec27.png" src="../_images/e92aa0baa5e0841a511c98b7f9313a31338f821b42d93b52bfa4820ebbb5ec27.png" />
 </div>
 </div>
 <p>These frequencies are approximately proportional to the <em>a posteriori</em> probabilities (APPs). As expected, the APPs are largest for those loadings that are closest to 1, since these loadings are most likely to result in getting all 1s on four rolls of a loaded die. By changing the weights, we can create a much more general <em>a priori</em> model than we had before. However, we have introduced a new problem:</p>
@@ -607,7 +607,7 @@ We also add some lines to delimit the credible interval and the tails. For a 95%
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9912a3fdfe4e43bb1719c1b5fc5e101b2ac6d1b3d8551ac12646eb8e16e56108.png" src="../_images/9912a3fdfe4e43bb1719c1b5fc5e101b2ac6d1b3d8551ac12646eb8e16e56108.png" />
+<img alt="../_images/12e59fa5ec0ce5d264adf0f3592c732ff9104cc3f565af1d84e8907bebdd13e4.png" src="../_images/12e59fa5ec0ce5d264adf0f3592c732ff9104cc3f565af1d84e8907bebdd13e4.png" />
 </div>
 </div>
 <p>By visual inspection, the 95% credible interval is approximately <span class="math notranslate nohighlight">\([0.4, 0.99]\)</span>.  We can more easily and accurately find the credible interval by finding the 2.5% and 97.5% percentiles of the <em>a posteriori</em> probabilities:</p>
@@ -631,7 +631,7 @@ We also add some lines to delimit the credible interval and the tails. For a 95%
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.39, 1.  ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.4, 1. ])
 </pre></div>
 </div>
 </div>
@@ -641,13 +641,13 @@ using this uninformative prior model, we would say that the case of this being a
 <p><strong>Self Assessment</strong></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="iEGeXugbPwaH" data-shufflequestions="False"
+<div class="output text_html"><div id="gfLtpMyqpwyY" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#iEGeXugbPwaH {
+#gfLtpMyqpwyY {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -848,9 +848,9 @@ using this uninformative prior model, we would say that the case of this being a
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsiEGeXugbPwaH=[
+</style></div><script type="application/javascript">var questionsgfLtpMyqpwyY=[
     {
-    "question": "Choose all of the following that are limitation of null hypothesis significance testing (NHST) when compared to Bayesian hypothesis testing.",
+    "question": "Choose all of the following that are limitations of null hypothesis significance testing (NHST) when compared to Bayesian hypothesis testing.",
     "type": "multiple_choice",
     "answers": [
         {
@@ -1359,8 +1359,7 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            // 1e-20 offset helps prevent some weird behavior when next digit is a 5
-            submission = Number((Number(submission) + 1e-20).toPrecision(precision));
+            submission = Number(Number(submission).toPrecision(precision));
         }
 
 
@@ -1374,16 +1373,19 @@ function check_numeric(ths, event) {
 
         var answers = JSON.parse(ths.dataset.answers);
         //console.log(answers);
+        console.log(submission);
 
         var defaultFB = "Incorrect. Try again.";
         var correct;
         var done = false;
         answers.every(answer => {
-            //console.log(answer.type);
+        //console.log(answer.type);
 
             correct = false;
             // if (answer.type=="value"){
             if ('value' in answer) {
+                console.log(answer.value);
+                console.log(submission == answer.value);
                 if (submission == answer.value) {
                     if ("feedback" in answer) {
                         fb.innerHTML = jaxify(answer.feedback);
@@ -1820,8 +1822,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("iEGeXugbPwaH")) {
-            show_questions(questionsiEGeXugbPwaH,  iEGeXugbPwaH); 
+          if(document.getElementById("gfLtpMyqpwyY")) {
+            show_questions(questionsgfLtpMyqpwyY,  gfLtpMyqpwyY); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1836,10 +1838,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/questions/4-bayesian-hypothesis-testing.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, iEGeXugbPwaH))
+        .then(json => show_questions(json, gfLtpMyqpwyY))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsiEGeXugbPwaH, iEGeXugbPwaH);
+        show_questions(questionsgfLtpMyqpwyY, gfLtpMyqpwyY);
         });
         }
         </script></div>
@@ -2110,7 +2112,7 @@ if (typeof version == 'undefined') {
     }
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="hqhxpwJOXHcc" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="hqhxpwJOXHcc-next" onclick="window.checkFlip('hqhxpwJOXHcc')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="RQPYGDyCFkAU" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="RQPYGDyCFkAU-next" onclick="window.checkFlip('RQPYGDyCFkAU')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2584,14 +2586,14 @@ function createCards(id, keyControl, grabFocus, shuffleCards, title, subject) {
 
 
         function try_create() {
-          if(document.getElementById("hqhxpwJOXHcc")) {
-            createCards("hqhxpwJOXHcc", "True", "False", "False", "Bayesian Hypothesis Testing", "Bayesian Statistics");
+          if(document.getElementById("RQPYGDyCFkAU")) {
+            createCards("RQPYGDyCFkAU", "True", "False", "False", "Bayesian Hypothesis Testing", "Bayesian Statistics");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardshqhxpwJOXHcc=[
+var cardsRQPYGDyCFkAU=[
     {
         "front": "uninformative prior",
         "back": "A collection of <i>a priori</i> probabilities that do not give preference to any of the outcomes; usually flat (constant) across the set of outcomes."
@@ -2606,9 +2608,9 @@ var cardshqhxpwJOXHcc=[
     }
 ]
 ;
-var frontColorshqhxpwJOXHcc= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorshqhxpwJOXHcc= ["var(--dark-blue-gray)" ];
-var textColorshqhxpwJOXHcc= ["var(--snow)" ];
+var frontColorsRQPYGDyCFkAU= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsRQPYGDyCFkAU= ["var(--dark-blue-gray)" ];
+var textColorsRQPYGDyCFkAU= ["var(--snow)" ];
 
 
         {
@@ -2619,7 +2621,7 @@ var textColorshqhxpwJOXHcc= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/flashcards//bayesian-hypothesis-testing.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("hqhxpwJOXHcc", "True", "False", "False", "Bayesian Hypothesis Testing", "Bayesian Statistics"))
+        .then(json => createCards("RQPYGDyCFkAU", "True", "False", "False", "Bayesian Hypothesis Testing", "Bayesian Statistics"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 

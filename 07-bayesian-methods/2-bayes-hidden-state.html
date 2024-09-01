@@ -495,13 +495,13 @@ document.write(`
 <p><strong>Self Assessment</strong></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="uhUqZkpGOdgz" data-shufflequestions="False"
+<div class="output text_html"><div id="ITSgZSsvBSbZ" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#uhUqZkpGOdgz {
+#ITSgZSsvBSbZ {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -702,7 +702,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsuhUqZkpGOdgz=[
+</style></div><script type="application/javascript">var questionsITSgZSsvBSbZ=[
     {
         "question": "Suppose a magician has a fair coin and a two-headed coin in their pocket. They choose one at random and flip it 3 times. If it came up heads every time, what is the probability that it is the two-headed coin? Give your answer as a fraction or a decimal accurate to at least 2 decimal places.",
         "type": "numeric",
@@ -1116,8 +1116,7 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            // 1e-20 offset helps prevent some weird behavior when next digit is a 5
-            submission = Number((Number(submission) + 1e-20).toPrecision(precision));
+            submission = Number(Number(submission).toPrecision(precision));
         }
 
 
@@ -1131,16 +1130,19 @@ function check_numeric(ths, event) {
 
         var answers = JSON.parse(ths.dataset.answers);
         //console.log(answers);
+        console.log(submission);
 
         var defaultFB = "Incorrect. Try again.";
         var correct;
         var done = false;
         answers.every(answer => {
-            //console.log(answer.type);
+        //console.log(answer.type);
 
             correct = false;
             // if (answer.type=="value"){
             if ('value' in answer) {
+                console.log(answer.value);
+                console.log(submission == answer.value);
                 if (submission == answer.value) {
                     if ("feedback" in answer) {
                         fb.innerHTML = jaxify(answer.feedback);
@@ -1577,8 +1579,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("uhUqZkpGOdgz")) {
-            show_questions(questionsuhUqZkpGOdgz,  uhUqZkpGOdgz); 
+          if(document.getElementById("ITSgZSsvBSbZ")) {
+            show_questions(questionsITSgZSsvBSbZ,  ITSgZSsvBSbZ); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1593,10 +1595,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/questions/2-bayes-hidden-state.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, uhUqZkpGOdgz))
+        .then(json => show_questions(json, ITSgZSsvBSbZ))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionsuhUqZkpGOdgz, uhUqZkpGOdgz);
+        show_questions(questionsITSgZSsvBSbZ, ITSgZSsvBSbZ);
         });
         }
         </script></div>
@@ -1867,7 +1869,7 @@ if (typeof version == 'undefined') {
     }
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="OCIyuiNrPGRf" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="OCIyuiNrPGRf-next" onclick="window.checkFlip('OCIyuiNrPGRf')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="sPxJoAOOLZNG" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="sPxJoAOOLZNG-next" onclick="window.checkFlip('sPxJoAOOLZNG')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2341,23 +2343,23 @@ function createCards(id, keyControl, grabFocus, shuffleCards, title, subject) {
 
 
         function try_create() {
-          if(document.getElementById("OCIyuiNrPGRf")) {
-            createCards("OCIyuiNrPGRf", "True", "False", "False", "Stochastic Systems", "Probability");
+          if(document.getElementById("sPxJoAOOLZNG")) {
+            createCards("sPxJoAOOLZNG", "True", "False", "False", "Stochastic Systems", "Probability");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsOCIyuiNrPGRf=[
+var cardssPxJoAOOLZNG=[
     {
         "front": "hidden state",
         "back": "An internal state (for example, memory contents) of a system that can affect outputs but that is not directly observable."
     }
 ]
 ;
-var frontColorsOCIyuiNrPGRf= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsOCIyuiNrPGRf= ["var(--dark-blue-gray)" ];
-var textColorsOCIyuiNrPGRf= ["var(--snow)" ];
+var frontColorssPxJoAOOLZNG= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorssPxJoAOOLZNG= ["var(--dark-blue-gray)" ];
+var textColorssPxJoAOOLZNG= ["var(--snow)" ];
 
 
         {
@@ -2366,9 +2368,9 @@ var textColorsOCIyuiNrPGRf= ["var(--snow)" ];
 
         setTimeout(() => jmscontroller.abort(), 5000);
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/flashcards/bayes-hidden-state.json", {signal})
+        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/07-bayesian-methods/flashcards/2-bayes-hidden-state.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("OCIyuiNrPGRf", "True", "False", "False", "Stochastic Systems", "Probability"))
+        .then(json => createCards("sPxJoAOOLZNG", "True", "False", "False", "Stochastic Systems", "Probability"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
