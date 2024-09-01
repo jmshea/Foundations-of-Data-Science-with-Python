@@ -1,1 +1,206 @@
-6 questions output to file summary.json
+[
+    {
+        "question": "For a 40 year-old woman whose mammogram does <b>not</b> detect cancer, what is the probability that she actually has cancer? Use the data from the Bayes' Rule section.",
+        "type": "numeric",
+        "precision": 5,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.0002,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.1
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative. Your work may contain a math error."
+            },
+            {
+                "type": "value",
+                "value": 0.99,
+                "correct": false,
+                "feedback": "Note that $P(C|\\overline{D}) \\ne 1 - P(C|D)$. These are two different probability measures (since they have different conditional information)."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.1,
+                    1000000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1. Your work may contain a math error."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Apply Bayes' rule to write $P(C|\\overline{D})$ in terms of likelihoods and <i>a priori</i> probabilities."
+            }
+        ]
+    },
+    {
+        "question": "<b>True or False:</b> For all events $A$ and $B$, $P(A \\mid B) + P( \\overline{A} \\mid B ) =1.$",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "True",
+                "correct": true,
+                "feedback": "Correct. $A$ and $\\overline{A}$ are complementary events evaluated using the same conditional probability measure, so their probabilities add to 1."
+            },
+            {
+                "answer": "False",
+                "correct": false,
+                "feedback": "Incorrect. $A$ and $\\overline{A}$ are complementary events evaluated using the same conditional probability measure, so their probabilities add to 1."
+            },
+            {
+                "answer": "There is not enough information to decide.",
+                "correct": false,
+                "feedback": "Incorrect. "
+            }
+        ]
+    },
+    {
+        "question": "<b>True or False:</b> For all events $A$ and $B$, $P(A \\mid B) + P( A \\mid \\overline{B} ) =1.$",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "True",
+                "correct": false,
+                "feedback": "Incorrect. This asks about the probability of the event $A$ using two <b>different conditional probability measures</b>. These generally will not add to 1."
+            },
+            {
+                "answer": "False",
+                "correct": true,
+                "feedback": "Correct. This asks about the probability of the event $A$ using two <b>different conditional probability measures</b>. These generally will not add to 1."
+            },
+            {
+                "answer": "There is not enough information to decide.",
+                "correct": false,
+                "feedback": "Incorrect. "
+            }
+        ]
+    },
+    {
+        "question": "A cybersecurity researcher has developed a \"fuzzing\" tool that automatically tests operating systems for vulnerabilities by sending random requests to the OS application programming interfaces (APIs) and checking whether the input produces unexpected behavior (crashing or leakage of information). Over a standard battery of one million fuzzing inputs, the tool is 80% successful at identifying a vulnerable API but has a 10% probability of reporting a vulerability when none exists. For a particular OS, 95% of the APIs have no vulnerability. What is the probability that an API of that OS is vulnerable if the fuzzing tool indicates a vulerability? Give your answer to 3 significant digits.",
+        "type": "numeric",
+        "precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.296,
+                "correct": true,
+                "feedback": "Correct! "
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use Bayes' Rule to solve this problem."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    -1e-12
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    },
+    {
+        "question": "Suppose a magician has a fair coin and a two-headed coin in their pocket. They choose one at random and flip it 3 times. If it came up heads every time, what is the probability that it is the two-headed coin? Give your answer as a fraction or a decimal accurate to at least 2 decimal places.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.89,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 0.5,
+                "correct": false,
+                "feedback": "Incorrect. If you believe that seeing 3 Heads doesn't change the chance that the magician is using the two-headed coin, what if you saw one million heads? Would you be willing to bet that the coin is fair?"
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.01
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative. Your work may contain a math error."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.01,
+                    1000000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1. Your work may contain a math error."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Apply Bayes' rule to write $P(\\overline{F}| H_1 \\cap H_2 \\cap H_3)$ in terms of likelihoods and <i>a priori</i> probabilities. "
+            }
+        ]
+    },
+    {
+        "question": "A nuclear engineer has put two samples of Uranium in identical containers. However, one is naturally occurring Uranium and the other is enriched Uranium. She wishes to perform measurements to determine which container has the enriched Uranium.<br> She uses a Geiger counter to detect the release of alpha particles from radioactive decay. Even enriched Uranium decays slowly, and during a 10 minute observation period, an alpha particle will be released with probability 1/6 if the sample is naturally occuring Uranium and with probability 1/2 if the sample is enriched Uranium. (Otherwise no alpha particle is released.)<br> Suppose a sample is chosen at random and observed over two separate 10-minute observation periods. If an alpha particle is detected in both observation periods, what is the probability that the sample is the enriched Uranium? Provide your answer to 3 significant digits.",
+        "type": "numeric",
+        "precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.9,
+                "correct": true,
+                "feedback": "Correct! "
+            },
+            {
+                "type": "value",
+                "value": 0.429,
+                "correct": false,
+                "feedback": "Incorrect. Note that we are asking about the probability that the sample is enriched Uraniaum if an alpha particle is observed in  <b>both</b> observation periods."
+            },
+            {
+                "type": "default",
+                "correct": false,
+                "feedback": "Incorrect. Use Total Probability and conditional statistical independence to solve this problem. "
+            },
+            {
+                "type": "range",
+                "range": [
+                    -100000000,
+                    -1e-12
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.0000001,
+                    100000000
+                ],
+                "correct": false,
+                "feedback": "Incorrect. Probabilties must be between 0 and 1."
+            }
+        ]
+    }
+]
