@@ -1,0 +1,66 @@
+[
+    {
+        "question": "<b>True or False:</b> A discrete random variable can have an infinite number of outcomes.",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "True",
+                "correct": true,
+                "feedback": "Correct. A discrete random variable may have nonzero probability at a finite or countably infinite number of values."
+            },
+            {
+                "answer": "False",
+                "correct": false,
+                "feedback": "Incorrect."
+            }
+        ]
+    },
+    {
+        "question": "Is the following a valid PMF for a discrete random variable?<br> \\begin{equation*} p_X(x) = \\begin{cases} 1/2, & x=0 \\\\ 1/4, & x=2 \\\\ 1/8, & x=4 \\\\ 0, & \\mbox{otherwise}\\\\ \\end{cases} \\end{equation*}",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": false,
+                "feedback": "Incorrect."
+            },
+            {
+                "answer": "No",
+                "correct": true,
+                "feedback": "Correct. The probabilities of the values of the random variable do not add to 1."
+            }
+        ]
+    },
+    {
+        "question": "Is the following a valid PMF for a discrete random variable?<br> \\begin{equation*} p_Y(y) = \\begin{cases} 1/4, & y=-2 \\\\ 1/2, & y=0 \\\\ 1/4, & y=2 \\\\ 0, & \\mbox{otherwise}\\\\ \\end{cases} \\end{equation*}",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": true,
+                "feedback": "Correct. The random variable takes on a finite number of values with probabilities that add to 1."
+            },
+            {
+                "answer": "No",
+                "correct": false,
+                "feedback": "Incorrect."
+            }
+        ]
+    },
+    {
+        "question": "Is the following a valid PMF for a discrete random variable?<br> \\begin{equation*} p_Z(z) = \\begin{cases} 1/4, & z=0 \\\\ 5/4, & z=1 \\\\ -1/2, & z=2 \\\\ 0, & \\mbox{otherwise}\\\\ \\end{cases} \\end{equation*}",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": false,
+                "feedback": "Incorrect."
+            },
+            {
+                "answer": "No",
+                "correct": true,
+                "feedback": "Correct. Two of the probabilities are not possible. The probability that $Z=1$ is 5/4, which is greater than 1. The probability that $Z=2$ is negative. "
+            }
+        ]
+    }
+]
