@@ -33,7 +33,7 @@
     ]
   },
     {
-      "question": "Consider a probability space $\\left( S, \\mathcal{F}, P\\right)$ and an event $C \\in \\mathcal{F}$ with $P(C)>0$.  Form a  conditional probability measure such that for any event $E \\in \\mathcal{F}$, $P(E \\mid C) = P(E \\cap C) / |(C)$.  Which of the following axioms axioms/properties hold if we apply $P(E|C)$ using the original sample space $S$ and event class $\\mathcal{F}$?",
+      "question": "Consider a probability space $\\left( S, \\mathcal{F}, P\\right)$ and an event $C \\in \\mathcal{F}$ with $P(C)>0$.  Form a  conditional probability measure such that for any event $E \\in \\mathcal{F}$, $P(E \\mid C) = P(E \\cap C) /P(C)$.  Which of the following axioms axioms/properties hold if we apply $P(E|C)$ using the original sample space $S$ and event class $\\mathcal{F}$?",
       "type": "many_choice",
       "answers": [
           {
