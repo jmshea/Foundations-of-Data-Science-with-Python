@@ -546,7 +546,7 @@
                 "correct": true
             },
             {
-                "answer": "If $A \\in \\mathcal{F}$ and $B \\in \\mathcal{F}$, then $P(A \\cup B \\mid C) = P(A \\mid C) + P(B \\mid C)$",
+              "answer": "If $A \\in \\mathcal{F}$, $B \\in \\mathcal{F}$, and $A \\cap B = \\emptyset$, then $P(A \\cup B \\mid C) = P(A \\mid C) + P(B \\mid C)$",
                 "correct": true
             },
             {
