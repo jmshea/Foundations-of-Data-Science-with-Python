@@ -49,7 +49,7 @@
           "correct": true
       },
           {
-          "answer": "If $E \\in \\mathcal{F}$ with $P(E)> 0$, then $P(E \\mid C) >0$",
+              "answer": "If $E \\in \\mathcal{F}$ with $P(E)> 0$, then $P(E \\mid C) >P(E)$",
           "correct": false,
           "feedback": "Incorrect. We will see that a conditional probability may be less than, equal to, or larger than the corresponding unconditioned probability."
       }
