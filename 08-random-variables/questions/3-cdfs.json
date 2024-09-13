@@ -1,0 +1,226 @@
+[
+    {
+        "question": "Let $X$ be an arbitrary random variable.  Which of the following are true about the cumulative distribution function, $F_X(x)$?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "$F_X(x) \\ge 0$",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "$F_X(x) \\le 1$",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "$F_X(x)$ is the probability that $X=x$",
+                "correct": false,
+                "feedback": "Incorrect. Recall that $F_X(x) = P(X \\le x)$."
+            },
+            {
+                "answer": "$F_X(x)$ is a monotonically non-decreasing function of $x$",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "$F_X(x)$ is a continuous function",
+                "correct": false,
+                "feedback": "Incorrect. For instance, the CDF for a discrete RV is a staircase function."
+            },
+            {
+                "answer": "$\\frac{d}{dx} F_X(x)$ exists for every $x$",
+                "correct": false,
+                "feedback": "Incorrect. Not only can there be discontinuities, but the derivatives on the left and right as some points can be different, even when there is not a discontinuity."
+            }
+]
+    },
+    {
+        "question": "A random variable has the CDF shown below \\[F_X(x) = \\begin{cases} 0 &  x < 0 \\\\ \\frac{1}{6}, &  0 \\leq x < 2, \\\\ \\frac{2}{3}, &  2 \\leq x < 4 \\\\ 1, &  x \\geq 4. \\end{cases} \\] How many values does the random variable take on?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 3,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.1
+                ],
+                "correct": false,
+                "feedback": "No. The number of values the random variable takes on must be a positive number."
+            },
+            {
+                "type": "value",
+                "value": 4,
+                "correct": false,
+                "feedback": "No. Although there are 4 regions, that does not mean that the random variable takes on 4 values. For a discrete random variable, the CDF has a vertical jump at each of the values of the random variable."
+            }
+        ]
+    },
+    {
+        "question": "A random variable has the CDF shown below \\[F_X(x) = \\begin{cases} 0 &  x < 0 \\\\ \\frac{1}{6}, &  0 \\leq x < 2, \\\\ \\frac{2}{3}, &  2 \\leq x < 4 \\\\ 1, &  x \\geq 4. \\end{cases} \\] What is the largest value that the random variable takes on?",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 4,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 1,
+                "correct": false,
+                "feedback": "No. The value 1 is the maximum value of $F_X(x)$; however, that is always 1 because it is the total of all probabilities assigned to the values of the random variable. "
+            },
+            {
+                "type": "value",
+                "value": 0.67,
+                "correct": false,
+                "feedback": "No. 2/3 is the probability that $X \\le 2$."
+            }
+        ]
+    },
+    {
+        "question": "A random variable has the CDF shown below \\[F_X(x) = \\begin{cases} 0 &  x < 0 \\\\ \\frac{1}{6}, &  0 \\leq x < 2, \\\\ \\frac{2}{3}, &  2 \\leq x < 4 \\\\ 1, &  x \\geq 4. \\end{cases} \\] What is the probability that $X=2$? (If answering with a decimal, give at least 2 significant digits.)",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.5,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 0.67,
+                "correct": false,
+                "feedback": "No. Recall that $F_X(2) = P(X \\le 2)$."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.1
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            }
+        ]
+    },
+    {
+        "question": "A random variable has the CDF shown below \\[F_X(x) = \\begin{cases} 0 &  x < 0 \\\\ \\frac{1}{6}, &  0 \\leq x < 2, \\\\ \\frac{2}{3}, &  2 \\leq x < 4 \\\\ 1, &  x \\geq 4. \\end{cases} \\] What is the probability that $X>1$? (If answering with a decimal, give at least 2 significant digits.)",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.83,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 0.17,
+                "correct": false,
+                "feedback": "No. Recall that $F_X(1) = P(X \\le 1)$."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.1
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            }
+        ]
+    },
+    {
+        "question": "A random variable has the CDF shown below \\[F_X(x) = \\begin{cases} 0 &  x < 0 \\\\ \\frac{1}{6}, &  0 \\leq x < 2, \\\\ \\frac{2}{3}, &  2 \\leq x < 4 \\\\ 1, &  x \\geq 4. \\end{cases} \\] What is $P(X <3)$? (If answering with a decimal, give at least 2 significant digits.)",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.67,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.1
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            }
+        ]
+    },
+    {
+        "question": "A random variable has the CDF shown below \\[F_X(x) = \\begin{cases} 0 &  x < 0 \\\\ \\frac{1}{6}, &  0 \\leq x < 2, \\\\ \\frac{2}{3}, &  2 \\leq x < 4 \\\\ 1, &  x \\geq 4. \\end{cases} What is the probability that $X$ takes a value between 1 and 3? (If answering with a decimal, give at least 2 significant digits.)",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.5,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.1
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            }
+        ]
+    }
+]
