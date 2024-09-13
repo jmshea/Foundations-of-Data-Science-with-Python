@@ -1224,56 +1224,42 @@ var textColorsbcNMrojdoXFl= ["var(--snow)" ];
 <p><strong>Point Conditioning</strong></p>
 <ul class="simple">
 <li><p>Point conditioning occurs when we condition on a continuous random variable taking on a particular value. This has to be handled differently than when the conditioning event has a nonzero probability.</p></li>
-<li><p>Given a continuous random variable <span class="math notranslate nohighlight">\(X\)</span>, the conditional probability of some event <span class="math notranslate nohighlight">\(A\)</span> given that <span class="math notranslate nohighlight">\(X=x\)</span> can be calculated as</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-P\left(A \vert X=1 \right) = \frac{f_X(x|A)}{f_X(x)} P(A), 
-\end{equation*}\]</div>
-<p>when <span class="math notranslate nohighlight">\(f_X(x|A)\)</span> and <span class="math notranslate nohighlight">\(f_X(x)\)</span> are defined and <span class="math notranslate nohighlight">\(f_X(x) \ne 0\)</span>.</p>
-<ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\(f_X(x)\)</span> is not known, it can be calculated using the Law of Total Probability as</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>Given a continuous random variable <span class="math notranslate nohighlight">\(X\)</span>, the conditional probability of some event <span class="math notranslate nohighlight">\(A\)</span> given that <span class="math notranslate nohighlight">\(X=x\)</span> can be calculated as
+\begin{equation*}
+P\left(A \vert X=1 \right) = \frac{f_X(x|A)}{f_X(x)} P(A),
+\end{equation*}
+when <span class="math notranslate nohighlight">\(f_X(x|A)\)</span> and <span class="math notranslate nohighlight">\(f_X(x)\)</span> are defined and <span class="math notranslate nohighlight">\(f_X(x) \ne 0\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(f_X(x)\)</span> is not known, it can be calculated using the Law of Total Probability as
+\begin{equation*}
 f_X(x) = \sum_i f_X(x |A_i) P(A_i).
-\end{equation*}\]</div>
-<ul class="simple">
-<li><p>Combining the two equations above gives a point-conditioning form of Bayes’ Rule:</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-   P(A_i|X \!=\! x)  = \frac{f_X(x|A_i) P(A_i)}{
-      \sum_{i=0}^{n-1}{f_X(x|A_i) P(A_i)}
-      }.
-\end{equation*}\]</div>
-<ul class="simple">
+\end{equation*}</p></li>
+<li><p>Combining the two equations above gives a point-conditioning form of Bayes’ Rule:
+\begin{equation*}
+P(A_i|X !=! x)  = \frac{f_X(x|A_i) P(A_i)}{
+\sum_{i=0}^{n-1}{f_X(x|A_i) P(A_i)}
+}.
+\end{equation*}</p></li>
 <li><p>For many applications, the probabilities and densities in the above form of Bayes’ Rule have the following interpretations: <span class="math notranslate nohighlight">\(P(A_i |X=x)\)</span> is an <em>a posteriori</em> probability, <span class="math notranslate nohighlight">\(f_X(x|A_i)\)</span> is a likelihood, and <span class="math notranslate nohighlight">\(P(A_i)\)</span> is an <em>a priori</em> probability.</p></li>
-<li><p>A Law of Total Probability with Point Conditioning is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>A Law of Total Probability with Point Conditioning is
+\begin{equation*}
 P(A) = \int_{-\infty}^{\infty} P\left( A |X=x\right) f_X(x) ~dx.
-\end{equation*}\]</div>
+\end{equation*}</p></li>
+</ul>
 <p><strong>Optimal Bayesian Decision Making with Continuous Random Variables</strong></p>
 <ul class="simple">
-<li><p>Given a finite collection of discrete input events <span class="math notranslate nohighlight">\(A_0, A_1, \ldots, A_{n-1}\)</span> and an observed value <span class="math notranslate nohighlight">\(X=x\)</span>, where the distribution of <span class="math notranslate nohighlight">\(X\)</span> depends on the input event <span class="math notranslate nohighlight">\(A_i\)</span>, then the MAP decision rule chooses the <span class="math notranslate nohighlight">\(A_i\)</span> that maximizes the <em>a posteriori</em> probability</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-\hat{A}_i  &amp; = \arg \max_{A_i }P(A_i |X=x)  \\
-&amp; = \arg \max_{A_i} \frac{ f_X(x|A_i) P(A_i)}{ f_X(x)}\\
+<li><p>Given a finite collection of discrete input events <span class="math notranslate nohighlight">\(A_0, A_1, \ldots, A_{n-1}\)</span> and an observed value <span class="math notranslate nohighlight">\(X=x\)</span>, where the distribution of <span class="math notranslate nohighlight">\(X\)</span> depends on the input event <span class="math notranslate nohighlight">\(A_i\)</span>, then the MAP decision rule chooses the <span class="math notranslate nohighlight">\(A_i\)</span> that maximizes the <em>a posteriori</em> probability
+\begin{align*}
+\hat{A}<em>i  &amp; = \arg \max</em>{A_i }P(A_i |X=x)  \
+&amp; = \arg \max_{A_i} \frac{ f_X(x|A_i) P(A_i)}{ f_X(x)}\
 &amp; = \arg \max_{A_i}  f_X(x|A_i) P(A_i).
-\end{align*}\]</div>
-<ul class="simple">
+\end{align*}</p></li>
 <li><p>The last expression shows that the MAP rule compares weighted likelihoods, where the weights are just the corresponding <em>a priori</em> probabilities.</p></li>
 <li><p>For a binary input system with likelihoods that are Normal with equal <span class="math notranslate nohighlight">\(\sigma\)</span> but different means, the MAP decision rule determines a single threshold <span class="math notranslate nohighlight">\(\gamma\)</span> such that we make one decision if <span class="math notranslate nohighlight">\(X&gt;\gamma\)</span> and the opposite decision if <span class="math notranslate nohighlight">\(X \le \gamma\)</span>.</p></li>
-<li><p>For a binary input system with likelihoods that are Normal with equal <span class="math notranslate nohighlight">\(\sigma\)</span> but different means <span class="math notranslate nohighlight">\(\mu_0\)</span> and <span class="math notranslate nohighlight">\(\mu_1\)</span>, the ML rule determines a single threshold, which is equal to the average of the conditional means,</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>For a binary input system with likelihoods that are Normal with equal <span class="math notranslate nohighlight">\(\sigma\)</span> but different means <span class="math notranslate nohighlight">\(\mu_0\)</span> and <span class="math notranslate nohighlight">\(\mu_1\)</span>, the ML rule determines a single threshold, which is equal to the average of the conditional means,
+\begin{equation*}
 \gamma = \frac{\mu_0 + \mu_1}{2}.
-\end{equation*}\]</div>
+\end{equation*}</p></li>
+</ul>
 </section>
 </section>
 

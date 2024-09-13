@@ -1296,24 +1296,18 @@ var textColorswXJdukPyOgFE= ["var(--snow)" ];
 <ul class="simple">
 <li><p>Jointly distributed random variables are functions on a common sample space, <span class="math notranslate nohighlight">\(S\)</span>. Each maps to the real line, so a collection of <span class="math notranslate nohighlight">\(n\)</span> jointly distributed random variables map from <span class="math notranslate nohighlight">\(S\)</span> to a point in  <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p></li>
 <li><p>For jointly distributed random variables, we can define joint PMFs, CDFs, and pdfs.</p></li>
-<li><p>The marginal pdf of a random variable is the individual pdf of that random variable. It  can be found by integrating out the other variable(s) in the joint pdf. For example, if <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are random variables with joint pdf <span class="math notranslate nohighlight">\(f_{XY}(x,y)\)</span>, then the marginal pdf of <span class="math notranslate nohighlight">\(X\)</span> is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>The marginal pdf of a random variable is the individual pdf of that random variable. It  can be found by integrating out the other variable(s) in the joint pdf. For example, if <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are random variables with joint pdf <span class="math notranslate nohighlight">\(f_{XY}(x,y)\)</span>, then the marginal pdf of <span class="math notranslate nohighlight">\(X\)</span> is
+\begin{equation*}
 f_X(x) = \int_{-\infty}^{\infty} f_{XY}(x,y)~dy.
-\end{equation*}\]</div>
-<ul class="simple">
+\end{equation*}o</p></li>
 <li><p>The mean vector for a vector of random variables <span class="math notranslate nohighlight">\(\mathbf{X} = \left[ X_0, X_1, \ldots, X_{n-1}\right]^T\)</span> is the vector of means,
 <span class="math notranslate nohighlight">\( \boldsymbol{\mu} = E\left[ \mathbf{X} \right] = \left[ \mu_0, \mu_1, \ldots, \mu_{n-1}\right]\)</span>, where <span class="math notranslate nohighlight">\(\mu_i = E[X_i]\)</span>.</p></li>
 <li><p>The covariance matrix is <span class="math notranslate nohighlight">\(\mathbf{K} = E \left[ \left(\mathbf{X} -\boldsymbol{\mu} \right)\left(\mathbf{X} -\boldsymbol{\mu} \right)^T \right]\)</span>.</p></li>
-<li><p>Jointly Normal random variables <span class="math notranslate nohighlight">\(\mathbf{X} = \left[ X_0, X_1, \ldots, X_{n-1}\right]^T\)</span> have joint density</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
+<li><p>Jointly Normal random variables <span class="math notranslate nohighlight">\(\mathbf{X} = \left[ X_0, X_1, \ldots, X_{n-1}\right]^T\)</span> have joint density
+\begin{align*}
 f_\mathbf{X}(\mathbf{x})=\frac{1}{\sqrt{(2 \pi)^k \operatorname{det} \mathbf{K}}} \exp \left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^T \mathbf{K}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right),
-\end{align*}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> is the mean vector and <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> is the covariance matrix</p>
-<ul class="simple">
+\end{align*}
+where <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> is the mean vector and <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> is the covariance matrix</p></li>
 <li><p>For a pair of jointly distributed random variables, the joint pdf can be visualized using a surface plot or contours of equal probability density, which illustrate the region of <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> where <span class="math notranslate nohighlight">\(f_{XY}(x,y)  =c \)</span> for different values of <span class="math notranslate nohighlight">\(c\)</span>.</p></li>
 <li><p>For pairs of jointly Normal random variables, the contours of equal probability density are ellipses centered on the random vector’s mean.</p></li>
 </ul>
@@ -1322,13 +1316,12 @@ f_\mathbf{X}(\mathbf{x})=\frac{1}{\sqrt{(2 \pi)^k \operatorname{det} \mathbf{K}}
 <li><p>Standardization changes numerical features to have mean 0 and variance 1.</p></li>
 <li><p>Without standardization, differences in how data is expressed, such as in terms of different units, can result in different features getting different levels of significance in later processing steps.</p></li>
 <li><p>Projecting pairwise data onto a basis that is rotated relative to the standard axes can reduce or eliminate correlation among the data.</p></li>
-<li><p>Consider a general linear transform <span class="math notranslate nohighlight">\(\mathbf{A} \mathbf{X} + \mathbf{b}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a constant matrix, <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is a random vector, and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is a constant vector. Then the output mean vector and covariance matrix are given by</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-\boldsymbol{\mu}_Y &amp;=  \mathbf{A} \boldsymbol{\mu}_X + \mathbf{c}, \mbox{ and}\\
+<li><p>Consider a general linear transform <span class="math notranslate nohighlight">\(\mathbf{A} \mathbf{X} + \mathbf{b}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a constant matrix, <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is a random vector, and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is a constant vector. Then the output mean vector and covariance matrix are given by
+\begin{align*}
+\boldsymbol{\mu}_Y &amp;=  \mathbf{A} \boldsymbol{\mu}_X + \mathbf{c}, \mbox{ and}\
 \mathbf{K}_Y &amp;= \mathbf{A} \mathbf{K}_X \mathbf{A}^T.
-\end{align*}\]</div>
+\end{align*}</p></li>
+</ul>
 <p><strong>Eigenvalues and Eigenvectors</strong></p>
 <ul class="simple">
 <li><p>A vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is an <em>eigenvector</em> of matrix <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> if <span class="math notranslate nohighlight">\(\mathbf{M}\mathbf{v} = \lambda \mathbf{v}\)</span> for some constant scalar <span class="math notranslate nohighlight">\(\lambda\)</span>. I.e., the effect of the linear transformation <span class="math notranslate nohighlight">\(\mathbf{M}\)</span> on <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> is only one of scaling. The value <span class="math notranslate nohighlight">\(\lambda\)</span> is the <em>eigenvalue</em> corresponding to <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p></li>

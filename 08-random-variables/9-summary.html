@@ -1251,13 +1251,10 @@ var textColorschsxoZWLEwJl= ["var(--snow)" ];
 </ul>
 <p><strong>Cumulative Distribution Functions</strong></p>
 <ul class="simple">
-<li><p>The cumulative distribution function (CDF) of a random variable <span class="math notranslate nohighlight">\(X\)</span> has the form</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-F_X(x) = \operatorname{Pr} \bigl( \left\{s \vert X(s) \le x\right\} \bigr).
-\end{equation*}\]</div>
-<ul class="simple">
+<li><p>The cumulative distribution function (CDF) of a random variable <span class="math notranslate nohighlight">\(X\)</span> has the form
+\begin{equation*}
+F_X(x) = \operatorname{Pr} \bigl( \left{s \vert X(s) \le x\right} \bigr).
+\end{equation*}</p></li>
 <li><p>We abbreviate the CDF as <span class="math notranslate nohighlight">\(F_X(x) = P(X \le x)\)</span>.</p></li>
 <li><p>CDFs are often piecewise functions. In Python, we can use <code class="docutils literal notranslate"><span class="pre">np.piecewise()</span></code> to define a piecewise function.</p></li>
 <li><p>The CDF for any discrete random variable is a staircase function, meaning that it is a piecewise-constant, nondecreasing function.</p></li>
@@ -1280,20 +1277,14 @@ F_X(x) = \operatorname{Pr} \bigl( \left\{s \vert X(s) \le x\right\} \bigr).
 <ul class="simple">
 <li><p>A continuous random variable has a CDF that is a continuous function.</p></li>
 <li><p>All of the values of a continuous RV have zero probability; instead, they have nonzero probability density. Zero probability does not mean that the values do not occur. Probabilities of the random variable taking a value in intervals are usually nonzero.</p></li>
-<li><p>The probability density function (pdf) is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>The probability density function (pdf) is
+\begin{equation*}
 f_X(x) = \frac{d}{dx} F_X(x).
-\end{equation*}\]</div>
-<ul class="simple">
-<li><p>The CDF can be computed from the pdf by integrating:</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+\end{equation*}</p></li>
+<li><p>The CDF can be computed from the pdf by integrating:
+\begin{equation*}
 F_X(x) = \int_{-\infty}^{x} f_X(u) ~du.
-\end{equation*}\]</div>
-<ul class="simple">
+\end{equation*}</p></li>
 <li><p>Be sure to use a variable of integration, or you will not be able to evaluate the integral correctly.</p></li>
 <li><p>SymPy is a Python library for performing symbol mathematics. In particular, it has <code class="docutils literal notranslate"><span class="pre">diff()</span></code> and <code class="docutils literal notranslate"><span class="pre">integrate()</span></code> functions for performing differentiation and integration, respectively.</p></li>
 <li><p>Some important properties of pdfs are:</p>
@@ -1309,13 +1300,10 @@ F_X(x) = \int_{-\infty}^{x} f_X(u) ~du.
 <ul class="simple">
 <li><p>A Uniform random variable models complete lack of knowledge on a fixed interval; i.e., the density is uniformly distributed across the interval, so every point in the interval is equally likely.</p></li>
 <li><p>Exponential random variables model the time between Poisson arrivals and the lifetime of devices. They are the only continuous RVs with the memoryless property.</p></li>
-<li><p>Normal random variables model aggregate phenomena and show up often in statistics and data science. The pdf depends on the mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> and is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>Normal random variables model aggregate phenomena and show up often in statistics and data science. The pdf depends on the mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> and is
+\begin{equation*}
 f_X(x) = \frac{1}{\sigma \sqrt{2 \pi}} \exp \left[ - \frac 1 2  \left( \frac{x- \mu}{\sigma} \right)^2 \right].
-\end{equation*}\]</div>
-<ul class="simple">
+\end{equation*}</p></li>
 <li><p>A standard Normal random variable us <span class="math notranslate nohighlight">\(\mu=0\)</span> and <span class="math notranslate nohighlight">\(\sigma=1\)</span>.</p></li>
 <li><p>The CDF of a Normal random variable can only be written as an integral. For a standard Normal random variable, the CDF is called <span class="math notranslate nohighlight">\(\Phi(x)\)</span>, and the survival function is called <span class="math notranslate nohighlight">\(Q(x)\)</span>.</p></li>
 <li><p>The  probability of a tail of a Normal random variable can always be expressed as <span class="math notranslate nohighlight">\(Q(d/\sigma)\)</span>, where <span class="math notranslate nohighlight">\(d\)</span> is the distance from the mean to the tail. The <span class="math notranslate nohighlight">\(Q()\)</span> function can be evaluated using SciPy.stat’s <code class="docutils literal notranslate"><span class="pre">norm.sf()</span></code> function.</p></li>

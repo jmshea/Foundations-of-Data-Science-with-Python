@@ -522,24 +522,20 @@ P(A_i|B_j) = \frac{P\left(B_j \left \vert A_i \right. \right) P\left( A_i \right
 <li><p>We showed that in the Magician’s Coin problem, the coin that was selected can be considered to be hidden state, and we showed that Bayes Rule can be used to determine how observations of the system output change the probabilities of the hidden state.</p></li>
 </ul>
 <p><strong>Optimal Decisions for Discrete Stochastic Systems</strong></p>
-<ul>
+<ul class="simple">
 <li><p>A common problem in stochastic systems is to estimate a system’s input based on an observation of the output. For example, almost all communication systems fit this model.</p></li>
 <li><p>We showed how to formulate the optimal decision problem for such systems in two common ways: maximum likelihood (ML) decisions and maximum <em>a posteriori</em> probability (MAP) decisions.</p></li>
 <li><p>Consider a system with inputs <span class="math notranslate nohighlight">\(A_i\)</span> and outputs <span class="math notranslate nohighlight">\(B_j\)</span>. If the output <span class="math notranslate nohighlight">\(B_j\)</span> is observed, then:</p>
-<ul class="simple">
-<li><p>The ML decision rule is</p></li>
+<ul>
+<li><p>The ML decision rule is
+\begin{equation*}
+\widehat{A}<em>i, \mbox{ where } i = \arg \max</em>{i \in {0,1}} P(B_j|A_i).
+\end{equation*}</p></li>
+<li><p>The MAP decision rule is
+\begin{equation*}
+\hat{A}<em>i, ~ \mbox{where }  i = \arg \max</em>{i \in {0,1} } P \left( A_i \vert B_j \right).
+\end{equation*}</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-    \widehat{A}_i, \mbox{ where } i = \arg \max_{i \in \{0,1\}} P(B_j|A_i).
-    \end{equation*}\]</div>
-<ul class="simple">
-<li><p>The MAP decision rule is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-    \hat{A}_i, ~ \mbox{where }  i = \arg \max_{i \in \{0,1\} } P \left( A_i \vert B_j \right).
-    \end{equation*}\]</div>
 </li>
 <li><p>The MAP decision rule usually offers the best performance but requires knowing the <em>a priori</em> probabilities. If the <em>a priori</em> probabilities are not known, the ML decision rule is usually used.</p></li>
 </ul>

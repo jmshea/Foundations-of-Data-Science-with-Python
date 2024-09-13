@@ -1230,20 +1230,14 @@ var textColorsjnAfIjfJpNTM= ["var(--snow)" ];
 <h2><span class="section-number">9.9.2. </span>Key take-aways<a class="headerlink" href="#key-take-aways" title="Link to this heading">#</a></h2>
 <p><strong>Expected Value</strong></p>
 <ul class="simple">
-<li><p>The <em>expected value</em>, or <em>mean</em>, of a <strong>discrete random variable</strong> <span class="math notranslate nohighlight">\(X\)</span> is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>The <em>expected value</em>, or <em>mean</em>, of a <strong>discrete random variable</strong> <span class="math notranslate nohighlight">\(X\)</span> is
+\begin{equation*}
 \mu_X = E[X] = \sum_{x \in \operatorname{Range}(x)} x p_X(x).
-\end{equation*}\]</div>
-<ul class="simple">
-<li><p>The <em>expected value</em>, or <em>mean</em>, of a <strong>continuous random variable</strong> <span class="math notranslate nohighlight">\(X\)</span> is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+\end{equation*}</p></li>
+<li><p>The <em>expected value</em>, or <em>mean</em>, of a <strong>continuous random variable</strong> <span class="math notranslate nohighlight">\(X\)</span> is
+\begin{equation*}
 \mu_X = E[X] = \int_{-\infty}^{\infty} x f_X(x)~dx.
-\end{equation*}\]</div>
-<ul class="simple">
+\end{equation*}</p></li>
 <li><p>The mean <span class="math notranslate nohighlight">\(\mu_X\)</span> is the value that minimizes the mean-squared error to the random variable, <span class="math notranslate nohighlight">\(E\left[ \left( X - \mu_X\right)^2 \right]\)</span>.</p></li>
 <li><p>The <em>mode</em> of a random variable <span class="math notranslate nohighlight">\(X\)</span> is the value with the highest probability (if <span class="math notranslate nohighlight">\(X\)</span> is discrete) or highest probability density (if <span class="math notranslate nohighlight">\(X\)</span> is continuous).</p></li>
 <li><p>The <em>median</em> of a random variable is a value that divides the probability into equal parts. I.e., the median is a value <span class="math notranslate nohighlight">\(m\)</span> such that <span class="math notranslate nohighlight">\(P(X \le m) = P(X&gt;m) = 1/2\)</span>. The median is not necessarily unique for discrete random variables.</p></li>
@@ -1259,42 +1253,30 @@ var textColorsjnAfIjfJpNTM= ["var(--snow)" ];
 <ul class="simple">
 <li><p>The Law of the Unconscious Statistician (LOTUS rule) says:</p>
 <ul>
-<li><p>If <span class="math notranslate nohighlight">\(X\)</span> is a discrete random variable and <span class="math notranslate nohighlight">\(g(x)\)</span> is a real function, then</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(X\)</span> is a discrete random variable and <span class="math notranslate nohighlight">\(g(x)\)</span> is a real function, then
+\begin{equation*}
+E\left[ g \left( X \right) \right] =  \sum_x g(x) p_X(x).
+\end{equation*}</p></li>
 </ul>
 </li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-E\left[ g \left( X \right) \right] =  \sum_x g(x) p_X(x).
-\end{equation*}\]</div>
-<ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mbox{ }\)</span></p>
 <ul>
-<li><p>If <span class="math notranslate nohighlight">\(X\)</span> is a continuous random variable and <span class="math notranslate nohighlight">\(g(x)\)</span> is a real function, then</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(X\)</span> is a continuous random variable and <span class="math notranslate nohighlight">\(g(x)\)</span> is a real function, then
+\begin{equation*}
+E\left[ g \left( X \right) \right] =  \int_{\infty}^{\infty} g(x) f_X(x)~ dx.
+\end{equation*}</p></li>
 </ul>
 </li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-E\left[ g \left( X \right) \right] =  \int_{\infty}^{\infty} g(x) f_X(x)~ dx.
-\end{equation*}\]</div>
-<ul class="simple">
-<li><p>The <span class="math notranslate nohighlight">\(n\)</span>th <em>moment</em> is <span class="math notranslate nohighlight">\(E[X^n]\)</span>. For continuous random variables, this is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>The <span class="math notranslate nohighlight">\(n\)</span>th <em>moment</em> is <span class="math notranslate nohighlight">\(E[X^n]\)</span>. For continuous random variables, this is
+\begin{equation*}
 E\left[ X^n  \right] =  \int_{\infty}^{\infty} x^n f_X(x)~ dx.
-\end{equation*}\]</div>
-<ul class="simple">
+\end{equation*}</p></li>
 <li><p>The <em>mean</em> is the first moment.</p></li>
 <li><p>The mean weights each value of the random variable by the probability or probability density for that value.</p></li>
-<li><p>The <span class="math notranslate nohighlight">\(n\)</span>th <em>central moment</em> is <span class="math notranslate nohighlight">\(E\left[\left(X - \mu_X\right) ^n\right ]\)</span>. For continuous random variables, this is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>The <span class="math notranslate nohighlight">\(n\)</span>th <em>central moment</em> is <span class="math notranslate nohighlight">\(E\left[\left(X - \mu_X\right) ^n\right ]\)</span>. For continuous random variables, this is
+\begin{equation*}
 E\left[ \left( X  - \mu_X \right)^n \right] =  \int_{\infty}^{\infty} \left(x - \mu_X \right)^n f_X(x)~ dx.
-\end{equation*}\]</div>
-<ul class="simple">
+\end{equation*}</p></li>
 <li><p>The <em>variance</em> is the second central moment, <span class="math notranslate nohighlight">\(\sigma_{X}^{2} = E \left[ \left(X - \mu_X \right)^2 \right]\)</span>.</p></li>
 <li><p>The variance weights each value of the random variable by its distance squared from the mean. Thus, the variance measures the spread of the distribution away from the mean.</p></li>
 <li><p>The <em>standard deviation</em> of a random variable is the square root of its variance, <span class="math notranslate nohighlight">\(\sigma_X = \sqrt{ E \left[ \left( X - \mu_X \right)^2 \right] }\)</span>.</p></li>
@@ -1303,15 +1285,14 @@ E\left[ \left( X  - \mu_X \right)^n \right] =  \int_{\infty}^{\infty} \left(x - 
 <li><p>Variance of a constant is 0: <span class="math notranslate nohighlight">\(\operatorname{Var}[c] = 0\)</span>.</p></li>
 <li><p>Variance is not affected by adding a constant: <span class="math notranslate nohighlight">\(\operatorname{Var}[X+c] = \operatorname{Var}[X]\)</span>.</p></li>
 <li><p>Scaling a random variable <span class="math notranslate nohighlight">\(X\)</span> by a deterministic constant <span class="math notranslate nohighlight">\(c\)</span> scales the variance by the  square of the constant: <span class="math notranslate nohighlight">\(\operatorname{Var}[cX] = c^2 \operatorname{Var}[X]\)</span>.</p></li>
-<li><p>The variance of the sum of independent random variables <span class="math notranslate nohighlight">\(X_0, X_1, \ldots, X_{n-1}\)</span> is the sum of the variances:</p></li>
+<li><p>The variance of the sum of independent random variables <span class="math notranslate nohighlight">\(X_0, X_1, \ldots, X_{n-1}\)</span> is the sum of the variances:
+\begin{equation*}
+\operatorname{Var}\left[ \sum_{i=0}^{n-1} X_i \right] =
+\sum_{i=0}^{n-1} \operatorname{Var}\left[X_i \right]  .
+\end{equation*}</p></li>
 </ul>
 </li>
 </ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-\operatorname{Var}\left[ \sum_{i=0}^{n-1} X_i \right] = 
- \sum_{i=0}^{n-1} \operatorname{Var}\left[X_i \right]  .
-\end{equation*}\]</div>
 <p><strong>Parameter Estimation</strong></p>
 <ul class="simple">
 <li><p>In the following, let <span class="math notranslate nohighlight">\(X\)</span> be a random variable that has a distribution with some parameter <span class="math notranslate nohighlight">\(\theta\)</span>. For instance, <span class="math notranslate nohighlight">\(\theta\)</span> could be the mean or variance of the distribution.</p></li>
@@ -1338,13 +1319,10 @@ E\left[ \left( X  - \mu_X \right)^n \right] =  \int_{\infty}^{\infty} \left(x - 
 <li><p>Confidence intervals can be estimated using bootstrap resampling by generating many sample point estimates and finding an interval that contains 95% of the sample point estimates.</p></li>
 <li><p>Confidence intervals created via bootstrapping are generally too narrow unless the data contains more than 100 values.</p></li>
 <li><p>The <em>standard error of the mean (SEM)</em> is the standard deviation of the mean estimator.</p></li>
-<li><p>For <span class="math notranslate nohighlight">\(n\)</span> independent samples from a random variable with known standard deviation <span class="math notranslate nohighlight">\(\sigma_X\)</span>, the SEM is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>For <span class="math notranslate nohighlight">\(n\)</span> independent samples from a random variable with known standard deviation <span class="math notranslate nohighlight">\(\sigma_X\)</span>, the SEM is
+\begin{equation*}
 \sigma_{\hat{X}} = \frac{ \sigma_X}{\sqrt{n}}.
-\end{equation*}\]</div>
-<ul class="simple">
+\end{equation*}</p></li>
 <li><p>Confidence intervals for the sample mean can be constructed using a Normal approximation when the variances of the groups are known.</p></li>
 <li><p>When the variances of the groups are not known, we have to use the variance estimate instead of the true variance. The result is that the confidence intervals are computed from a Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution instead of the Normal distribution.</p></li>
 <li><p>For small samples, both the bootstrap confidence intervals and the analytical confidence intervals using the Student’s <span class="math notranslate nohighlight">\(t\)</span> approximation are too narrow to achieve the specified confidence level.</p></li>
@@ -1370,14 +1348,11 @@ E\left[ \left( X  - \mu_X \right)^n \right] =  \int_{\infty}^{\infty} \left(x - 
 <li><p>Let <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> be the acceptable levels of Type-I and Type-II errors, respectively.</p></li>
 <li><p>The <em>power</em> is <span class="math notranslate nohighlight">\(1- \beta\)</span>.</p></li>
 <li><p><em>Effect size</em> is a measure of separation between distributions.</p></li>
-<li><p>Cohen’s <span class="math notranslate nohighlight">\(d\)</span> is a type of effect size for a difference of means. Cohen’s <span class="math notranslate nohighlight">\(d\)</span> is defined as</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>Cohen’s <span class="math notranslate nohighlight">\(d\)</span> is a type of effect size for a difference of means. Cohen’s <span class="math notranslate nohighlight">\(d\)</span> is defined as
+\begin{equation*}
 d = \frac{ \mu_X - \mu_Y}{\sigma},
-\end{equation*}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation for both groups, and <span class="math notranslate nohighlight">\(\sigma\)</span> is known.</p>
-<ul class="simple">
+\end{equation*}
+where <span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation for both groups, and <span class="math notranslate nohighlight">\(\sigma\)</span> is known.</p></li>
 <li><p>Effect sizes are sometimes mapped to text descriptors that vary from “very small” for <span class="math notranslate nohighlight">\(d=0.01\)</span> to “huge” for <span class="math notranslate nohighlight">\(d=2\)</span>.</p></li>
 <li><p>The required group sizes can be computed from <span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(1-\beta\)</span>, and <span class="math notranslate nohighlight">\(d\)</span>. There are generally multiple solutions.</p></li>
 <li><p>Under the Normal approximation, the group sizes can be computed using inverse <span class="math notranslate nohighlight">\(Q\)</span> functions.</p></li>

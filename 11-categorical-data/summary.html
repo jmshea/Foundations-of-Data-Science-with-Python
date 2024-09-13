@@ -1229,13 +1229,10 @@ var textColorsrCuaaYEoehUK= ["var(--snow)" ];
 keyword argument <code class="docutils literal notranslate"><span class="pre">margins</span> <span class="pre">=</span> <span class="pre">True</span></code>, it will include the marginal counts.</p></li>
 <li><p>The expected contingency table gives the expected value for each cell if there is no dependence between the two variables.  The expected value of a cell can be computed as the product of the marginal row sum times the marginal column sum, divided by the total number of entries in the table.</p></li>
 <li><p>Scipy.stats has a function <code class="docutils literal notranslate"><span class="pre">stats.contingency.expected_freq()</span></code> that returns the expected table when its argument is a contingency table (without marginal sums).</p></li>
-<li><p>The normalized squared differences between the observed and expected values in the table cells are of the form</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>The normalized squared differences between the observed and expected values in the table cells are of the form
+\begin{equation*}
 \frac{\left(O_i - E_i\right)^2}{E_i}.
-\end{equation*}\]</div>
-<ul class="simple">
+\end{equation*}</p></li>
 <li><p>In the above, <span class="math notranslate nohighlight">\(O_i\)</span> and <span class="math notranslate nohighlight">\(E_i\)</span> are the observed value and expected value, respectively, for cell <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
 <li><p>The chi-squared statistic is the sum of the normalized squared differences.</p></li>
 </ul>
@@ -1244,13 +1241,10 @@ keyword argument <code class="docutils literal notranslate"><span class="pre">ma
 <li><p>A NHST can be conducted via resampling or analysis.</p></li>
 <li><p>For resampling, the values of one of the variables should be shuffled at random to break up any dependence between the two variables. The relative frequency of seeing such a large value of the chi-squared statistic is estimated over many such shufflings.</p></li>
 <li><p>For analysis, the chi-squared statistic is modeled as a chi-squared random variable.</p></li>
-<li><p>The number of degrees of freedom of the chi-squared random variable is the number of degrees of freedom for the table. If the table has <span class="math notranslate nohighlight">\(r\)</span> rows and <span class="math notranslate nohighlight">\(c\)</span> columns, the number of dofs is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>The number of degrees of freedom of the chi-squared random variable is the number of degrees of freedom for the table. If the table has <span class="math notranslate nohighlight">\(r\)</span> rows and <span class="math notranslate nohighlight">\(c\)</span> columns, the number of dofs is
+\begin{equation*}
 n_{dof} = (r-1)(c-1).
-\end{equation*}\]</div>
-<ul class="simple">
+\end{equation*}</p></li>
 <li><p>Then the probability of seeing a value of the chi-squared statistic as large as that observed in the data is equal to the survival function of the chi-squared random variable evaluated at the observed value of the chi-squared statistic.</p></li>
 <li><p>Using Scipy.stats, we can create a chi-squared distribution with a specified number of degrees of freedom <code class="docutils literal notranslate"><span class="pre">dof</span></code> as: <code class="docutils literal notranslate"><span class="pre">chi_rv</span> <span class="pre">=</span> <span class="pre">stats.chi2(dof)</span></code>.</p></li>
 <li><p>Be careful to use <code class="docutils literal notranslate"><span class="pre">stats.chi2()</span></code> because <code class="docutils literal notranslate"><span class="pre">stats.chi()</span></code> is a different distribution.</p></li>

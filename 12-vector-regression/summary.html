@@ -1262,26 +1262,19 @@ var textColorsodaQNEtQyApg= ["var(--snow)" ];
 <li><p><em>Scalar-vector multiplication</em> is carried out via broadcasting: the scalar multiplies every element of the vector. Multiplication by a scalar changes the length of a vector, and a negative scalar can reverse the direction of the vector. Multiplication cannot otherwise change the direction of a vector.</p></li>
 <li><p>The <em>Hadamard product</em> is the component-wise multiplication of two vectors and is denoted using the symbol <span class="math notranslate nohighlight">\(\odot\)</span>. In NumPy, the Hadamard product is carried out using the standard multiplication operator <code class="docutils literal notranslate"><span class="pre">*</span></code>.</p></li>
 <li><p>The <em>inner product</em> or <em>dot product</em> of vectors is the sum of the elements in the Hadamard product. Dot product is denoted by <span class="math notranslate nohighlight">\(\mathbf{a} \cdot \mathbf{b}\)</span> or <span class="math notranslate nohighlight">\(\mathbf{a}^T \mathbf{b}\)</span>.</p></li>
-<li><p>The <em>length</em> or <em>magnitude</em> of a vector is denoted <span class="math notranslate nohighlight">\(\left \Vert \mathbf{a} \right \Vert\)</span> and defined by</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>The <em>length</em> or <em>magnitude</em> of a vector is denoted <span class="math notranslate nohighlight">\(\left \Vert \mathbf{a} \right \Vert\)</span> and defined by
+\begin{equation*}
 \left \Vert \mathbf{a} \right \Vert = \sqrt{ \sum_{i} a_{i}^{2} }
-\end{equation*}\]</div>
-<ul class="simple">
-<li><p>The length of a vector can be generalized to the <em>norm</em> of any object with an inner product operator, in which case the norm is defined as</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+\end{equation*}</p></li>
+<li><p>The length of a vector can be generalized to the <em>norm</em> of any object with an inner product operator, in which case the norm is defined as
+\begin{equation*}
 \left \Vert x \right \Vert = \sqrt{ \langle x,~x \rangle}
-\end{equation*}\]</div>
-<ul class="simple">
-<li><p>The <em>distance</em> between vectors is</p></li>
+\end{equation*}</p></li>
+<li><p>The <em>distance</em> between vectors is
+\begin{equation*}
+d(\mathbf{a}, \mathbf{b}) = | \mathbf{a} - \mathbf{b} | = |\mathbf{b} - \mathbf{a} |.
+\end{equation*}</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-d(\mathbf{a}, \mathbf{b}) = \| \mathbf{a} - \mathbf{b} \| = \|\mathbf{b} - \mathbf{a} \|.
-\end{equation*}\]</div>
 <p><strong>Summary Statistics for Vector Data</strong></p>
 <ul class="simple">
 <li><p>Vectors of data can be stored in Pandas dataframes or NumPy arrays.</p></li>
@@ -1290,27 +1283,20 @@ d(\mathbf{a}, \mathbf{b}) = \| \mathbf{a} - \mathbf{b} \| = \|\mathbf{b} - \math
 <li><p>The variance estimate computed by Pandas is the unbiased estimate <span class="math notranslate nohighlight">\(s_{n-1}^{2}\)</span>. The variance estimate computed using NumPy is the biased estimate <span class="math notranslate nohighlight">\(s_{n}^{2}\)</span>. To get the unbiased estimate in NumPy, use the keyword argument <code class="docutils literal notranslate"><span class="pre">ddof=1</span></code>.</p></li>
 <li><p>The <em>covariance</em> for random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is <span class="math notranslate nohighlight">\(E\left[\left(X- \mu_X\right)\left(Y-\mu_y \right)\right]\)</span>.</p></li>
 <li><p>Positive covariance indicates that the mean-centered values of the random variables tend to have the same sign.</p></li>
-<li><p>The <em>covariance for data vectors</em> <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>The <em>covariance for data vectors</em> <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is
+\begin{equation*}
 \operatorname{Cov}( \mathbf{x}, \mathbf{y}) = \frac{1}{n-1} \sum_{i=0}^{n-1} \left(x_i - \overline{x}\right) \left(y_i - \overline{y}\right) .
-\end{equation*}\]</div>
-<ul class="simple">
+\end{equation*}</p></li>
 <li><p>The <em>correlation coefficient</em> is a normalized covariance that takes values between -1 and 1.</p></li>
-<li><p>The correlation coefficient for random variables is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<li><p>The correlation coefficient for random variables is
+\begin{equation*}
 \rho = \frac{ \operatorname{Cov}(X, Y)}{\sigma_X \sigma_Y}.
-\end{equation*}\]</div>
-<ul class="simple">
-<li><p>The correlation coefficient (also called <em>Pearson’s correlation coefficient</em>) for data vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+\end{equation*}</p></li>
+<li><p>The correlation coefficient (also called <em>Pearson’s correlation coefficient</em>) for data vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is
+\begin{equation*}
 r = \frac{ \operatorname{Cov}(\mathbf{x}, \mathbf{y})}{\sigma_x \sigma_y}.
-\end{equation*}\]</div>
+\end{equation*}</p></li>
+</ul>
 <p><strong>Linear Regression</strong></p>
 <ul class="simple">
 <li><p>Variables are often classified as either explanatory or response:</p>
