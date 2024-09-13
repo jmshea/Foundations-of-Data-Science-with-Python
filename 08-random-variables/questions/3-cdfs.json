@@ -193,7 +193,7 @@
         ]
     },
     {
-        "question": "A random variable has the CDF shown below \\[F_X(x) = \\begin{cases} 0 &  x < 0 \\\\ \\frac{1}{6}, &  0 \\leq x < 2, \\\\ \\frac{2}{3}, &  2 \\leq x < 4 \\\\ 1, &  x \\geq 4. \\end{cases} What is the probability that $X$ takes a value between 1 and 3? (If answering with a decimal, give at least 2 significant digits.)",
+        "question": "A random variable has the CDF shown below \\[F_X(x) = \\begin{cases} 0 &  x < 0 \\\\ \\frac{1}{6}, &  0 \\leq x < 2, \\\\ \\frac{2}{3}, &  2 \\leq x < 4 \\\\ 1, &  x \\geq 4. \\end{cases} \\] What is the probability that $X$ takes a value between 1 and 3? (If answering with a decimal, give at least 2 significant digits.)",
         "type": "numeric",
         "precision": 2,
         "answers": [
