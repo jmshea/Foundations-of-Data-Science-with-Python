@@ -1,0 +1,112 @@
+[
+    {
+        "question": "$X$ is a random variable with distribution function \\begin{equation*}F_X(x) = \\begin{cases} 0, & x < 0 \\\\ \\frac{x^2}{4}, & 0 \\le x <  2 \\\\ 1, & x \\ge 2 . \\end{cases}\\end{equation*} Find $P(X=1)$.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 0.25,
+                "correct": true,
+                "feedback": "Incorrect. Note that $F_X(x) = P(X \\le x)$."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.1
+                ],
+                "correct": false,
+                "feedback": "No. The distribution  function calculates a probability, and probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. The distribution  function calculates a probability, and probabilities cannot be greater than 1."
+            }
+        ]
+    },
+    {
+        "question": "$X$ is a random variable with distribution function \\begin{equation*}F_X(x) = \\begin{cases} 0, & x < 0 \\\\ \\frac{x^2}{4}, & 0 \\le x <  2 \\\\ 1, & x \\ge 2 . \\end{cases}\\end{equation*} Find $P(X \\le 1)$.",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.25,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "value",
+                "value": 0,
+                "correct": true,
+                "feedback": "Incorrect. Note that $F_X(x) = P(X \\le x)$."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.1
+                ],
+                "correct": false,
+                "feedback": "No. The distribution  function calculates a probability, and probabilities cannot be negative."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. The distribution  function calculates a probability, and probabilities cannot be greater than 1."
+            }
+        ]
+    },
+    {
+        "question": "$X$ is a random variable with distribution function \\begin{equation*}F_X(x) = \\begin{cases} 0, & x < 0 \\\\ cx^2, & 0 \\le x < 2 \\\\ 1, &  x \\ge 2, \\end{cases} \\end{equation*} where $c$ is a constant.<br><p> What values of $c$ are possible for $F_X(x)$ to be a valid distribution function?",
+        "type": "many_choice",
+        "answers": [
+            {
+                "answer": "$c \\in ( - \\infty, \\infty)$",
+                "correct": false,
+                "feedback": "Incorrect. A CDF cannot take on negative values."
+            },
+            {
+                "answer": "$c \\in \\left[ 0, \\infty \\right)$",
+                "correct": false,
+                "feedback": "Incorrect. A CDF cannot take on values greater than 1."
+            },
+            {
+                "answer": "$c \\in \\left[ 0, \\frac 1 4 \\right]$",
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "answer": "$c \\in \\left[ 0, \\frac 1 2 \\right]$",
+                "correct": false,
+                "feedback": "Incorrect. This would result in the function exceeding 1 near $x=2$ for some large values of $c$." 
+            },
+            {
+                "answer": "$c = \\frac 1 4$",
+                "correct": false,
+                "feedback": "Incorrect. Although this does produce a valid CDF, there are other values of $c$ that also produce a valid CDF." 
+            },
+            {
+                "answer": "$c =  1 $",
+                "correct": false,
+                "feedback": "Incorrect. This would result in the CDF exceeding 1 near $x=2$." 
+            }
+        ]
+    }
+]
