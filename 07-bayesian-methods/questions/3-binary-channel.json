@@ -214,7 +214,7 @@
     ]
 },
     {
-    "question": "Suppose that in the binary communication system, the probability that a given bit at the transmitter is a zero is 2/5; i.e. $P(A_0) = 2/5$. If $B_1$ is received, what is the MAP decision for $A_i$?",
+    "question": "Suppose that in the binary communication system, the probability that a given bit at the transmitter is a zero is 9/10; i.e. $P(A_0) = 9/10$. If $B_1$ is received, what is the MAP decision for $A_i$?",
     "type": "multiple_choice",
     "answers": [
         {
