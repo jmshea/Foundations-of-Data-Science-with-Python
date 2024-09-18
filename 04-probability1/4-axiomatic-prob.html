@@ -465,9 +465,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -483,14 +481,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">4.4.1. Terminology Review</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -518,13 +508,13 @@ document.write(`
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="cMLRFotLMhGI" data-shufflequestions="False"
+<div class="output text_html"><div id="yRwMLWCTijAF" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#cMLRFotLMhGI {
+#yRwMLWCTijAF {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -725,7 +715,7 @@ document.write(`
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionscMLRFotLMhGI=[
+</style></div><script type="application/javascript">var questionsyRwMLWCTijAF=[
     {
     "question": "Choose all of the following that are members of a probability space.",
     "type": "many_choice",
@@ -774,7 +764,7 @@ document.write(`
         {
         "answer": "A set of functions",
         "correct": false,
-        "feedback": "Incorrect. The event class contains events. Events are not just numbers..."
+        "feedback": "Incorrect. The event class contains events. Events are not functions..."
     }
     ]
 },
@@ -1308,8 +1298,7 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            // 1e-20 offset helps prevent some weird behavior when next digit is a 5
-            submission = Number((Number(submission) + 1e-20).toPrecision(precision));
+            submission = Number(Number(submission).toPrecision(precision));
         }
 
 
@@ -1323,16 +1312,19 @@ function check_numeric(ths, event) {
 
         var answers = JSON.parse(ths.dataset.answers);
         //console.log(answers);
+        console.log(submission);
 
         var defaultFB = "Incorrect. Try again.";
         var correct;
         var done = false;
         answers.every(answer => {
-            //console.log(answer.type);
+        //console.log(answer.type);
 
             correct = false;
             // if (answer.type=="value"){
             if ('value' in answer) {
+                console.log(answer.value);
+                console.log(submission == answer.value);
                 if (submission == answer.value) {
                     if ("feedback" in answer) {
                         fb.innerHTML = jaxify(answer.feedback);
@@ -1769,8 +1761,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("cMLRFotLMhGI")) {
-            show_questions(questionscMLRFotLMhGI,  cMLRFotLMhGI); 
+          if(document.getElementById("yRwMLWCTijAF")) {
+            show_questions(questionsyRwMLWCTijAF,  yRwMLWCTijAF); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1785,10 +1777,10 @@ if (typeof version == 'undefined') {
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/questions/4-axiomatic-prob.json", {signal})
         .then(response => response.json())
-        .then(json => show_questions(json, cMLRFotLMhGI))
+        .then(json => show_questions(json, yRwMLWCTijAF))
         .catch(err => {
         console.log("Fetch error or timeout");
-        show_questions(questionscMLRFotLMhGI, cMLRFotLMhGI);
+        show_questions(questionsyRwMLWCTijAF, yRwMLWCTijAF);
         });
         }
         </script></div>
@@ -2059,7 +2051,7 @@ if (typeof version == 'undefined') {
     }
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="MJfRpSiAaCne" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="MJfRpSiAaCne-next" onclick="window.checkFlip('MJfRpSiAaCne')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="jEluQTHljpkg" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="jEluQTHljpkg-next" onclick="window.checkFlip('jEluQTHljpkg')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2533,17 +2525,17 @@ function createCards(id, keyControl, grabFocus, shuffleCards, title, subject) {
 
 
         function try_create() {
-          if(document.getElementById("MJfRpSiAaCne")) {
-            createCards("MJfRpSiAaCne", "True", "False", "False", "", "");
+          if(document.getElementById("jEluQTHljpkg")) {
+            createCards("jEluQTHljpkg", "True", "False", "False", "Axiomatic Probability", "Probability");
           } else {
              setTimeout(try_create, 200);
           }
         };
     
-var cardsMJfRpSiAaCne=[
+var cardsjEluQTHljpkg=[
     {
         "front": "probability space",
-        "back": "An tuple $ (S, \\mathcal{F}, P),$ consisting of the *sample space*, the *event class*, and the *probability measure*, respectively."
+        "back": "A tuple $ (S, \\mathcal{F}, P),$ consisting of the <I>sample space</I>, the <I>event class</I>, and the <I>probability measure</I>, respectively."
     },
     {
         "front": "event class",
@@ -2559,9 +2551,9 @@ var cardsMJfRpSiAaCne=[
     }
 ]
 ;
-var frontColorsMJfRpSiAaCne= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsMJfRpSiAaCne= ["var(--dark-blue-gray)" ];
-var textColorsMJfRpSiAaCne= ["var(--snow)" ];
+var frontColorsjEluQTHljpkg= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
+var backColorsjEluQTHljpkg= ["var(--dark-blue-gray)" ];
+var textColorsjEluQTHljpkg= ["var(--snow)" ];
 
 
         {
@@ -2572,7 +2564,7 @@ var textColorsMJfRpSiAaCne= ["var(--snow)" ];
 
         fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/axiomatic-prob.json", {signal})
         .then(response => response.json())
-        .then(json => createCards("MJfRpSiAaCne", "True", "False", "False", "", ""))
+        .then(json => createCards("jEluQTHljpkg", "True", "False", "False", "Axiomatic Probability", "Probability"))
         .catch(err => {
         console.log("Fetch error or timeout");
         try_create(); 
@@ -2581,7 +2573,15 @@ var textColorsMJfRpSiAaCne= ["var(--snow)" ];
         </script></div>
 </div>
 <p><strong>Code for Example of Rolling a Fair Die Twice</strong></p>
-<p>Here is the code to generate the tables of outcomes and events for the examples of rolling a fair die twice. This first table shows the event <span class="math notranslate nohighlight">\(E_1\)</span> in blue:</p>
+<p>Here is the code to generate the tables of outcomes and events for the examples of rolling a fair die twice.  This code relies on the <code class="docutils literal notranslate"><span class="pre">termcolor</span></code> module. If that is not installed, you can try to uncomment the line below and run it to install via <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install termcolor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This first table shows the event <span class="math notranslate nohighlight">\(E_1\)</span> in blue:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">termcolor</span> <span class="kn">import</span> <span class="n">colored</span>
@@ -2698,795 +2698,6 @@ Number of outcomes in E1 OR E2 is 20
 </div>
 </div>
 </div>
-<section id="terminology-review">
-<h2><span class="section-number">4.4.1. </span>Terminology Review<a class="headerlink" href="#terminology-review" title="Link to this heading">#</a></h2>
-<p>Use the flashcards below to help you review the terminology introduced in this chapter. <span class="math notranslate nohighlight">\(~~~~ ~~~~ ~~~~\)</span></p>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<div class="output text_html"><style>
-:root{
-  --asparagus: #87a878ff;
-  --terra-cotta: #e26d5aff;
-  --cyan-process: #5bc0ebff;
-  --dark-blue-gray: #666a86ff;
-  --snow: #fffafbff;
-  --rich-black-fogra-39: #090c08ff;
-}
-
-
-/* entire container, keeps perspective */
-.flip-container {
-	perspective: 1000px;
-  touch-action: pinch-zoom pan-y;
-}
-
-
-.flip-container.flip .flipper {
-    box-sizing: content-box;
-	  transform: rotateY(180deg);
-	/* transform: rotateY(180deg)  translateX(-6%);  */
-}
-
-
-.flip-container.slide .flipper.frontcard {
-    filter: brightness(90%);
-    position:absolute;
-    z-index: -20;
-    /* left: 20px; */
-}
-
-.flip-container.prepare .flipper.backcard {
-    opacity:1;
-    transition: display 0s;
-    transform:  translateX(20px); 
-}
-
-
-.flip-container.slide .flipper.backcard {
-    filter: brightness(115%);
-    /* height: 360px; */
-    opacity:1;
-	  transform:  rotateY(3deg)  translateX(700px) translateZ(20px) scale(1, 1.05) rotate(3deg);
-    z-index: 20;
-    /* left: -20px; */
-}
-
-
-
-
-.flip-container.slideback .flipper.backcard {
-    filter: brightness(100%);
-    opacity: 1;
-	  transform: translateX(0px) translateZ(20px) rotateY(0deg);
-    z-index: 10;
-}
-
-.flip-container.slideback .flipper.frontcard {
-    filter: brightness(90%);
-    transform: translateX(0px) translateZ(-20px);
-    z-index: -10;
-}
-
-
-.flip-container, .front, .back {
-	  height: 200px;
-	  width: 95%;
-}
-
-
-
-
-.flipper.frontcard {
-    position:absolute;
-	  transform: translateX(0px) rotateY(0deg) translateZ(20px);
-    z-index: 10;
-}
-
-.flipper.backcard {
-    filter: brightness(90%);
-    opacity:0;
-    position:absolute;
-    transform: translateX(0px) translateZ(-20px);
-    z-index: -10;
-}
-
-
-
-
-/* flip speed goes here */
-.flipper {
-    cursor:pointer;
-	  height: 200px;
-    margin-left:10px;
-	  position: absolute;
-    top: 0;
-	  transform-style: preserve-3d;
-	  transition: 0.6s;
-    /* width: 95%; */
-    width: 100%;
-}
-
-.flashcardtext{
-    color: var(--snow);
-    margin-left:3%;
-    position:absolute;
-    text-align:center;
-    top: 50%;
-    transform: translate(0, -50%);
-    width:90%;
-    font-size: 1.5em;
-}
-
-.back .flashcardtext{
-    font-size: 1.2em;
-}
-
-
-
-/* hide back of pane during swap */
-.front, .back {
-    -webkit-backface-visibility: hidden;
-	  backface-visibility: hidden;
-	  left: 0;
-	  position: absolute;
-	  top: 0;
-}
-
-/* front pane, placed above back */
-.front {
-	  backface-visibility: hidden;
-    background: var(--asparagus);
-    transform: rotateY(0deg);
-	  z-index: 2;
-}
-
-/* back, initially hidden pane */
-.back {
-	  backface-visibility: hidden;
-    background: var(--dark-blue-gray);
-	  transform: rotateY(180deg);
-    left: 8px;
-}
-
-.jp-OutputArea-output .back {
-	  transform: rotateY(180deg) translateZ(20px);
-}
-
-.next {
-    color: var(--rich-black-fogra-39);
-    cursor:pointer;
-    font-size: 1.5em;
-    /*left:90%; */
-    margin-left: 70%;
-    width: 55pt;
-    height: 22pt;
-    opacity:0.3;
-    position:relative; 
-    top:-1em;
-}
-
-.next svg {
-    height:16pt;
-    width:16pt;
-    position:relative;
-    top:-2pt;
-}
-
-.jp-OutputArea-output .next svg {
-    top: 1pt;
-}
-
-.next.flipped {
-    opacity:1;
-}
-
-.next.hide {
-    opacity:0;
-}
-
-
-.flashcard{
-    border-radius: 10px;
-    outline: none;
-    color: #fafafa;
-    display:block;
-    padding:10px;
-  
-}
-
-.flashcardtext li{
-    text-align: left;
-}
-
-@media only screen and (min-width:700px) {
-
-    .flip-container, .front, .back {
-	      height: 300px;
-	      width: min(95%, 640px);
-    }
-
-    .flipper {
-        margin-left:20px;
-	      height: 300px;
-    }
-
-    .flashcardtext{
-        font-size: 20pt;
-    }
-
-    .next {
-        font-size: 16pt;
-        left:min(80%, 450pt);
-        margin-left: 0;
-        width: 55pt;
-        height: 22pt;
-        top:-0.5em;
-    }
-
-    .back .flashcardtext{
-        font-size: 1.5em;
-    }
-
-}
-
-@media only screen and (min-width:660px) and (max-width:999px) {
-    .next {
-        left:0;
-        margin-left: 80%;
-    }
-
-}
-
-@media only screen and (max-width:680px) and (min-height:376px) {
-    .flip-container, .front, .back {
-	      height: 300px;
-    }
-
-    .flipper {
-	      height: 300px;
-    }
-    .back {
-        left: 4px;
-    }
-
-
-}
-
-@media only screen and (max-width:330px) and (max-height:600px) {
-
-    .back .flashcardtext{
-        font-size: 1em;
-    }
-    .next {
-        margin-left: 65%;
-    }
-    .back {
-        left: 4px;
-    }
-}
-
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="GzGwHWIIsRmJ" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="GzGwHWIIsRmJ-next" onclick="window.checkFlip('GzGwHWIIsRmJ')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
- * swiped-events.js - v1.1.4
- * Pure JavaScript swipe events
- * https://github.com/john-doherty/swiped-events
- * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
- * @author John Doherty <www.johndoherty.info>
- * @license MIT
- */
-!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
-
-function jaxify(string) {
-    var mystring = string;
-    //console.log(mystring);
-
-    var count = 0;
-    var loc = mystring.search(/([^\\]|^)(\$)/);
-
-    var count2 = 0;
-    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
-
-    //console.log(loc);
-
-    while ((loc >= 0) || (loc2 >= 0)) {
-
-        /* Have to replace all the double $$ first with current implementation */
-        if (loc2 >= 0) {
-            if (count2 % 2 == 0) {
-                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
-            } else {
-                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
-            }
-            count2++;
-        } else {
-            if (count % 2 == 0) {
-                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
-            } else {
-                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
-            }
-            count++;
-        }
-        loc = mystring.search(/([^\\]|^)(\$)/);
-        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
-        //console.log(mystring,", loc:",loc,", loc2:",loc2);
-    }
-
-    //console.log(mystring);
-    return mystring;
-}
-
-window.flipCard = function flipCard(ths) {
-    //console.log(ths);
-    //console.log(ths.id);
-    ths.classList.toggle("flip"); 
-    ths.focus();
-    var next=document.getElementById(ths.id+'-next');
-    next.style.pointerEvents='none';
-    /* ths.blur(); */
-    next.classList.add('flipped');
-    if (typeof MathJax != 'undefined') {
-        var version = MathJax.version;
-        //console.log('MathJax version', version);
-        if (version[0] == "2") {
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        } else if (version[0] == "3") {
-            MathJax.typeset([ths]);
-        }
-    } else {
-        //console.log('MathJax not detected');
-    }
-
-
-    setTimeout(reenableNext, 600, ths, next);
-}
-
-window.checkKey = function checkKey(container, event) {
-    event.stopPropagation();
-    /*
-    console.log(container);
-    console.log(event.key);
-    console.log(event.code);
-    */
-    /* JMS:  Working here*/
-    var next=document.getElementById(container.id+'-next');
-    /* Only react if not already sliding */
-    if (! next.classList.contains("hide")) {
-        if ((event.key == "j") || (event.key == "Enter") || (event.key == "ArrowRight")) {
-            window.checkFlip(container.id);
-        }
-        if (event.key == " ") {
-            window.flipCard(container);
-        }
-    }
-    event.preventDefault();
-}
-
-
-function reenableNext(ths, next) {
-    next.style.pointerEvents='auto';
-    /* ths.tabIndex= 0;*/
-    /* ths.focus(); */
-}
-
-
-
-function slide2(containerId) {
-    var container = document.getElementById(containerId);
-    var next=document.getElementById(containerId+'-next');
-    var frontcard = container.children[0];
-    var backcard = container.children[1];
-    container.style.pointerEvents='none';
-    /* container.removeAttribute("tabindex");*/
-    /* container.blur(); */
-    //backcard.style.pointerEvents='none';
-    next.style.pointerEvents='none';
-    next.classList.remove('flipped');
-    next.classList.add('hide');
-
-    //container.classList.add("prepare");
-    
-    container.className="flip-container slide";
-    backcard.parentElement.removeChild(frontcard);
-    backcard.parentElement.appendChild(frontcard);
-    setTimeout(slideback, 600, container, frontcard, backcard, next);
-    
-}
-
-
-window.checkFlip = function checkFlip(containerId) {
-    var container = document.getElementById(containerId);
-
-
-    if (container.classList.contains('flip')) {
-        container.classList.remove('flip');
-        setTimeout(slide2, 600, containerId);
-    } 
-    else {
-        slide2(containerId);
-    }
-}
-
-
-function slideback(container, frontcard, backcard, next) {
-    container.className="flip-container slideback";
-    setTimeout(cleanup, 550, container, frontcard, backcard, next);
-}
-
-function cleanup(container, frontcard, backcard, next) {
-    container.removeChild(frontcard);
-    backcard.className="flipper frontcard";
-    container.className="flip-container";
-
-    var cardnum=parseInt(container.dataset.cardnum);
-
-    let cardOrder = JSON.parse(container.dataset.cardOrder);
-
-    var cards=eval('cards'+container.id);
-
-    var flipper=createOneCard(container, false, cards, cardOrder[cardnum], cardnum);
-    container.append(flipper);
-    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
-    if ((cardnum == 0) && (container.dataset.shuffleCards == "True")) {
-        cardOrder = randomOrderArray(parseInt(container.dataset.numCards));
-        container.dataset.cardOrder = JSON.stringify(cardOrder);
-        console.log(cardOrder);
-    }
-
-    container.dataset.cardnum=cardnum;
-    if (cardnum != 1){
-        next.innerHTML="Next >";
-    } else {
-        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
-        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
-        if (typeof MathJax != 'undefined') {
-            var version = MathJax.version;
-            //console.log('MathJax version', version);
-            if (version[0] == "2") {
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-            } else if (version[0] == "3") {
-                MathJax.typeset([next]);
-            }
-        } else {
-            //console.log('MathJax not detected');
-        }
-
-
-    }
-
-    if (typeof MathJax != 'undefined') {
-        var version = MathJax.version;
-        //console.log('MathJax version', version);
-        if (version[0] == "2") {
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        } else if (version[0] == "3") {
-            MathJax.typeset();
-        }
-    } else {
-        //console.log('MathJax not detected');
-    }
-
-
-    next.style.pointerEvents='auto';
-    container.style.pointerEvents='auto';
-    /* container.tabIndex= 0; */
-    /* container.focus(); */
-    next.classList.remove('hide');
-    container.addEventListener('swiped-left', function(e) {
-        /*
-          console.log(e.detail);
-          console.log(id);
-        */
-        checkFlip(container.id);
-    }, {once: true });
-
-
-}
-
-
-function createOneCard  (mydiv, frontCard, cards, cardnum, seq) {
-    var colors=eval('frontColors'+mydiv.id);
-    var backColors=eval('backColors'+mydiv.id);
-    var textColors=eval('textColors'+mydiv.id);
-    //console.log(backColors)
-
-    var flipper = document.createElement('div');
-    if (frontCard){
-        flipper.className="flipper frontcard";    
-    }
-    else {
-        flipper.className="flipper backcard";   
-    }
-
-    var front = document.createElement('div');
-    front.className='front flashcard';
-
-    var frontSpan= document.createElement('span');
-    frontSpan.className='flashcardtext';
-    frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
-    frontSpan.style.color=textColors[seq % textColors.length];
-    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
-    //front.style.background='var(' + colors[cardnum % colors.length] + ')';
-    front.style.background=colors[seq % colors.length];
-
-    front.append(frontSpan);
-    flipper.append(front);
-
-    var back = document.createElement('div');
-    back.className='back flashcard';
-    back.style.background=backColors[seq % backColors.length];
-
-    var backSpan= document.createElement('span');
-    backSpan.className='flashcardtext';
-    backSpan.innerHTML=jaxify(cards[cardnum]['back']);
-    backSpan.style.color=textColors[seq % textColors.length];
-    back.append(backSpan);
-
-    flipper.append(back);
-
-    return flipper;
-
-}
-
-function randomOrderArray(N) {
-    // Create an array with numbers from 0 to N-1
-    let arr = Array.from({ length: N }, (_, index) => index);
-
-    // Shuffle the array using Fisher-Yates algorithm
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-
-    return arr;
-}
-
-function createStructuredData(mydiv, cards, title, subject) {
-    var structuredData = {
-        "@context": "https://schema.org/",
-        "@type": "Quiz",
-        "about": {
-            "@type": "Thing"
-        },
-        "educationalAlignment": [
-            {
-                "@type": "AlignmentObject",
-                "alignmentType": "educationalSubject"
-            }
-        ],
-        "hasPart": []
-    };
-
-    structuredData["about"]["name"] = title;
-    structuredData["educationalAlignment"][0]["targetName"] = subject;
-
-    for (var i=0; i<cards.length; i++) {
-        var newPart = {
-            "@context": "https://schema.org/",
-            "@type": "Question",
-            "eduQuestionType": "Flashcard",
-            "acceptedAnswer": {
-                "@type": "Answer",
-            }
-        };
-
-        newPart["text"] = cards[i]["front"];
-        newPart["acceptedAnswer"]["text"] = cards[i]["back"];
-
-        structuredData["hasPart"].push(newPart);
-    }
-    /*console.log(structuredData);*/
-
-    var el = document.createElement('script');
-    el.type = 'application/ld+json';
-    el.text = JSON.stringify(structuredData);
-
-    mydiv.parentElement.appendChild(el);
-
-}
-
-
-
-function createCards(id, keyControl, grabFocus, shuffleCards, title, subject) {
-    console.log(id);
-
-    var mydiv=document.getElementById(id);
-    /*mydiv.onclick = window.flipCard(mydiv);*/
-    /*
-    mydiv.addEventListener('click', function(){window.flipCard(mydiv);}, false);
-    mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
-    */
-    mydiv.onclick = function(){window.flipCard(mydiv);};
-    //console.log(keyControl);
-    if (keyControl == "True"){
-        mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
-    }
-    /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
-    /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
-
-    //console.log(mydiv);
-
-    var cards=eval('cards'+id);
-    mydiv.dataset.cardnum=0;
-    mydiv.dataset.numCards=cards.length;
-
-    mydiv.dataset.shuffleCards = shuffleCards;
-    var cardOrder;
-    if (shuffleCards == "True"){
-        cardOrder = randomOrderArray(cards.length);
-    } else {
-        cardOrder = Array.from({ length: cards.length }, (_, index) => index);
-    }
-    mydiv.dataset.cardOrder = JSON.stringify(cardOrder);
-    console.log(mydiv.dataset.cardOrder);
-
-
-    mydiv.addEventListener('swiped-left', function(e) {
-        /*
-          console.log(e.detail);
-          console.log(id);
-        */
-        checkFlip(id);
-    }, {once: true});
-
-    if ((title!="") || (subject != "")){
-        createStructuredData(mydiv, cards, title, subject);
-    }
-
-    var cardnum=0;
-
-    for (var i=0; i<2; i++) {
-
-
-
-        var flipper;
-        if (i==0){
-            flipper=createOneCard(mydiv, true, cards, cardOrder[cardnum], cardnum);
-        }
-        else {
-            flipper=createOneCard(mydiv, false, cards, cardOrder[cardnum], cardnum);
-        }
-
-        mydiv.append(flipper);
-        if (typeof MathJax != 'undefined') {
-            var version = MathJax.version;
-            if (typeof version == 'undefined') {
-                setTimeout(function(){
-                    var version = MathJax.version;
-                    console.log('After sleep, MathJax version', version);
-                    if (version[0] == "2") {
-                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-                    } else if (version[0] == "3") {
-                        if (MathJax.hasOwnProperty('typeset') ) {
-                            MathJax.typeset([flipper]);
-                        } else {
-                            console.log('WARNING: Trying to force load MathJax 3');
-                            window.MathJax = {
-                                tex: {
-                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
-                                },
-                                svg: {
-                                    fontCache: 'global'
-                                }
-                            };
-
-                            (function () {
-                                var script = document.createElement('script');
-                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                                script.async = true;
-                                document.head.appendChild(script);
-                            })();
-                        }
-                        MathJax.typeset([flipper]);
-                    }
-                }, 500);
-            } else{
-                console.log('MathJax version', version);
-                if (version[0] == "2") {
-                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-                } else if (version[0] == "3") {
-                    if (version[0] == "2") {
-                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-                    } else if (version[0] == "3") {
-                        if (MathJax.hasOwnProperty('typeset') ) {
-                            MathJax.typeset([flipper]);
-                        } else {
-                            console.log('WARNING: Trying to force load MathJax 3');
-                            window.MathJax = {
-                                tex: {
-                                    inlineMath: [['$', '$'], ['\\(', '\\)']]
-                                },
-                                svg: {
-                                    fontCache: 'global'
-                                }
-                            };
-
-                            (function () {
-                                var script = document.createElement('script');
-                                script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
-                                script.async = true;
-                                document.head.appendChild(script);
-                            })();
-                        }
-                        MathJax.typeset([flipper]);
-                    }
-                }
-            }
-        } else {
-            console.log('MathJax not detected');
-        }
-
-
-        cardnum = (cardnum + 1) % mydiv.dataset.numCards;
-    }
-    mydiv.dataset.cardnum = cardnum;
-
-    var next=document.getElementById(id+'-next');
-    if (cards.length==1) {
-        // Don't show next if no other cards!
-        next.style.pointerEvents='none';
-        next.classList.add('hide');
-    } else {
-        next.innerHTML="Next >";
-    }
-
-    if (grabFocus == "True" )
-        mydiv.focus();
-
-    return flipper;
-}
-
-
-
-
-
-        function try_create() {
-          if(document.getElementById("GzGwHWIIsRmJ")) {
-            createCards("GzGwHWIIsRmJ", "True", "False", "False", "", "");
-          } else {
-             setTimeout(try_create, 200);
-          }
-        };
-    
-var cardsGzGwHWIIsRmJ=[
-    {
-        "front": "probability space",
-        "back": "An tuple $ (S, \\mathcal{F}, P),$ consisting of the *sample space*, the *event class*, and the *probability measure*, respectively."
-    },
-    {
-        "front": "event class",
-        "back": "For a sample space $S$ and a probability measure $P$, the event class, denoted by $\\mathcal{F}$ is a collection of all subsets of $S$ to which we will assign probability (i.e., for which $P$ will be defined). The sets in $\\mathcal{F}$ are called events."
-    },
-    {
-        "front": "power set",
-        "back": "For a set $S$ with finite cardinality, $|S|=N < \\infty$, the power set is the set of all possible subsets. We will use the notation $2^S$ to denote the power set."
-    },
-    {
-        "front": "probability measure",
-        "back": "The probability measure, $P$, is a real-valued set function that maps every element of the event class to the real line."
-    }
-]
-;
-var frontColorsGzGwHWIIsRmJ= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsGzGwHWIIsRmJ= ["var(--dark-blue-gray)" ];
-var textColorsGzGwHWIIsRmJ= ["var(--snow)" ];
-
-
-        {
-        const jmscontroller = new AbortController();
-        const signal = jmscontroller.signal;
-
-        setTimeout(() => jmscontroller.abort(), 5000);
-
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/04-probability1/flashcards/axiomatic-prob.json", {signal})
-        .then(response => response.json())
-        .then(json => createCards("GzGwHWIIsRmJ", "True", "False", "False", "", ""))
-        .catch(err => {
-        console.log("Fetch error or timeout");
-        try_create(); 
-        });
-        }
-        </script></div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -3543,21 +2754,6 @@ var textColorsGzGwHWIIsRmJ= ["var(--snow)" ];
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-review">4.4.1. Terminology Review</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
