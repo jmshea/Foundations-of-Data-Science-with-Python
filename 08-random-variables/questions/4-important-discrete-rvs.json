@@ -1,0 +1,188 @@
+[
+    {
+        "question": "A packet consists of 100 bits. Each packet uses an error-correction code, and any errors will be corrected if there are 2 or fewer bit errors; otherwise, the packet will be in error. Find the probability of packet error if the probability of bit error is $1 \\times 10^{-2}$. (Give at least 2 significant digits.)  ",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.079,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.00000001
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be less than 0."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            }
+        ]
+    },
+    {
+        "question": "A packet consists of 100 bits. Each packet uses an error-correction code, and any errors will be corrected if there are 2 or fewer bit errors; otherwise, the packet will be in error. Find the probability of packet error if the probability of bit error is $1 \\times 10^{-3}$. (Give at least 2 significant digits.) ",
+        "type": "numeric",
+        "precision": 2,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.00015,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.00000001
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be less than 0."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            }
+        ]
+    },
+    {
+        "question": "A computer system transmits packets of data over a wireless link. Each packet consists of 100 bits, and  a packet is considered to be in error if any of its bits are received in error. If each bit is independently in error with some probability $p$, what value of $p$ results in a packet error probability of 0.5?",
+        "type": "numeric",
+        "precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.00691,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.00000001
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be less than 0."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            }
+        ]
+    },
+    {
+        "question": "A computer system transmits packets of data over a very noisy wireless link. Each packet has a probability of 0.8 of being received in error. If a packet is received in error, it will be retransmitted until it is received without error. <p><p> What is the probability that it takes more than 5 transmissions before the packet is received correctly? (Give your answer to 3 significant digits.)",
+        "type": "numeric",
+        "precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.328,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.00000001
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be less than 0."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            }
+        ]
+    },
+    {
+        "question": "Over a 10 year period, there were a total of 246 unprovoked shark bits in Florida. Assuming that shark bites occur at the same rate all year, what is the probability that there are less than 2 unprovoked shark bites in a month? (Give your answer to 3 significant digits.)",
+        "type": "numeric",
+        "precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.393,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.00000001
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be less than 0."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            }
+        ]
+    },
+    {
+        "question": "Over a 10 year period, there were a total of 246 unprovoked shark bits in Florida. Assuming that shark bites occur at the same rate all year and ignoring leap year, what is the probability that there will be at least one unprovoked shark bite on a given day? (Give your answer to 3 significant digits.)",
+        "type": "numeric",
+        "precision": 3,
+        "answers": [
+            {
+                "type": "value",
+                "value": 0.0652,
+                "correct": true,
+                "feedback": "Correct."
+            },
+            {
+                "type": "range",
+                "range": [
+                    -1000000,
+                    -0.00000001
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be less than 0."
+            },
+            {
+                "type": "range",
+                "range": [
+                    1.00000001,
+                    10000000
+                ],
+                "correct": false,
+                "feedback": "No. Probabilities cannot be greater than 1."
+            }
+        ]
+    }
+]
