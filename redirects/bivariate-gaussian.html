@@ -48,9 +48,23 @@
              grid-template-columns: 1fr 1fr;
              gap: 20px;
          }
+         @media screen and (max-width:1199px) {
+             .plots {
+                 display: grid;
+                 grid-template-columns: 1fr;
+                 gap: 20px;
+             }
+         }
+         @media screen and (min-width:1200px) {
+             .plots {
+                 display: grid;
+                 grid-template-columns: 1fr 1fr;
+                 gap: 20px;
+             }
+         }
          .plot {
              width: 100%;
-             height: 400px;
+             height: 100%;
          }
         </style>
     </head>
@@ -90,7 +104,7 @@
         </div>
 
         <H3 style="margin-left:100px;">Some Things to Try</H3>
-        <div style="margin-left:110px;width:800px;">
+        <div style="margin-left:110px;max-width:800px;">
             <ol>
                 <li style="margin-top:1em;"> Start with the default variances of 1 and note the effect of changing the correlation coefficient.  What are the possible angles of the major axis of the ellipses you create?</li>
                 <li style="margin-top:1em;"> Now set the correlation coefficient to a value close to +1.  Adjust the standard deviations for the two random variables.  What are the possible angles of the major axis of the ellipses you create?</li>
@@ -170,11 +184,17 @@
 
              const layout = {
                  margin: { l: 0, r: 0, b: 0, t: 0 },
+                 autosize: true,
+                 responsive: true,
+                 useResizeHandler: true,
+                 uirevision:true,
              };
 
              const layout_surface = {
                  margin: { l: 0, r: 0, b: 0, t: 0 },
-                 uirevision:true,
+                 autosize: true,
+                 responsive: true,
+                 useResizeHandler: true,
                  scene: {
                      camera: {
                          eye: { x: -0.5, y: -2, z: 1.5 },
