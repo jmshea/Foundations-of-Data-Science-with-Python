@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bivariate Gaussian Joint Density</title>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+        <style>
+         body {
+             font-family: 'Arial', sans-serif;
+             background-color: #f4f4f9;
+             margin: 0;
+             padding: 0;
+         }
+         .container {
+             max-width: 1200px;
+             margin: 0 auto;
+             padding: 20px;
+         }
+         .header {
+             text-align: center;
+             padding: 20px;
+         }
+         .controls {
+             display: flex;
+             justify-content: center;
+             flex-wrap: wrap;
+             margin-bottom: 20px;
+         }
+         .control-group {
+             margin: 10px;
+             padding: 10px;
+             background-color: #ffffff;
+             border: 1px solid #ddd;
+             border-radius: 5px;
+             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+         }
+         .control-group label {
+             display: block;
+             margin-bottom: 5px;
+         }
+         .control-group input[type="range"] {
+             width: 200px;
+         }
+         .plots {
+             display: grid;
+             grid-template-columns: 1fr 1fr;
+             gap: 20px;
+         }
+         @media screen and (max-width:1199px) {
+             .plots {
+                 display: grid;
+                 grid-template-columns: 1fr;
+                 gap: 20px;
+             }
+         }
+         @media screen and (min-width:1200px) {
+             .plots {
+                 display: grid;
+                 grid-template-columns: 1fr 1fr;
+                 gap: 20px;
+             }
+         }
+         .plot {
+             width: 100%;
+             height: 100%;
+         }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Joint Density of Bivariate Gaussian Random Variables</h1>
+            </div>
+
+            <div style="margin:0 20px 20px 20px;">This demonstration shows a 3D plot and a plot of a bivariate
+                Gaussian (Normal) density with zero means. The standard deviations
+                and correlation coefficient  for
+                the random variables can be adjusted by moving the sliders. Hold
+                down the mouse button on the 3D surface plot and drag around to
+                change the viewing perspective.
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="std_x">Standard Deviation of X: <span id="std_x_val">1</span></label>
+                    <input type="range" id="std_x" min="0.01" max="2" step="0.01" value="1">
+                </div>
+                <div class="control-group">
+                    <label for="std_y">Standard Deviation of Y: <span id="std_y_val">1</span></label>
+                    <input type="range" id="std_y" min="0.01" max="2" step="0.01" value="1">
+                </div>
+                <div class="control-group">
+                    <label for="rho">Correlation Coefficient: <span id="rho_val">0</span></label>
+                    <input type="range" id="rho" min="-0.99" max="0.99" step="0.01" value="0">
+                </div>
+            </div>
+
+            <div class="plots">
+                <div id="plot_surface" class="plot"></div>
+                <div id="plot_heatmap" class="plot"></div>
+            </div>
+        </div>
+
+        <H3 style="margin-left:100px;">Some Things to Try</H3>
+        <div style="margin-left:110px;max-width:800px;">
+            <ol>
+                <li style="margin-top:1em;"> Start with the default variances of 1 and note the effect of changing the correlation coefficient.  What are the possible angles of the major axis of the ellipses you create?</li>
+                <li style="margin-top:1em;"> Now set the correlation coefficient to a value close to +1.  Adjust the standard deviations for the two random variables.  What are the possible angles of the major axis of the ellipses you create?</li>
+                <li style="margin-top:1em;"> Now set the correlation coefficient to a value close to -1.  Then adjust the standard deviations for the two random variables.  What are the possible angles of the major axis of the ellipses you create?</li>
+            </ol>
+        </div>
+        <script>
+         const std_x_elem = document.getElementById('std_x');
+         const std_y_elem = document.getElementById('std_y');
+         const rho_elem = document.getElementById('rho');
+         
+         const std_x_val_elem = document.getElementById('std_x_val');
+         const std_y_val_elem = document.getElementById('std_y_val');
+         const rho_val_elem = document.getElementById('rho_val');
+         
+         std_x_elem.oninput = () => { std_x_val_elem.textContent = std_x_elem.value; updatePlots(); };
+         std_y_elem.oninput = () => { std_y_val_elem.textContent = std_y_elem.value; updatePlots(); };
+         rho_elem.oninput = () => { rho_val_elem.textContent = rho_elem.value; updatePlots(); };
+
+         var firstTime = true;
+         
+         function updatePlots() {
+             const std_x = parseFloat(std_x_elem.value);
+             const std_y = parseFloat(std_y_elem.value);
+             const rho = parseFloat(rho_elem.value);
+
+             const mean = [0, 0];
+             var rho2 = rho;
+             if (rho2==1) {
+                 rho2=0.999;
+             } else if (rho2==-1) {
+                 rho2=-0.999;
+             }
+             const cov = [[std_x ** 2, rho2 * std_x * std_y], [rho2 * std_x * std_y, std_y ** 2]];
+
+             const x_vals = numeric.linspace(-3, 3, 100);
+             const y_vals = numeric.linspace(-3, 3, 100);
+
+             const X = [];
+             const Y = [];
+             for (let i = 0; i < x_vals.length; i++) {
+                 for (let j = 0; j < y_vals.length; j++) {
+                     X.push([x_vals[i], y_vals[j]]);
+                 }
+             }
+
+             const inv_cov = numeric.inv(cov);
+             const det_cov = numeric.det(cov);
+             const norm_const = 1 / (2 * Math.PI * Math.sqrt(det_cov));
+
+             const mvn_pdf = (pos, mean, inv_cov) => {
+                 const exponent = numeric.dotVV(numeric.dot(pos, inv_cov), pos);
+                 return norm_const*Math.exp(-0.5*exponent);
+             };
+
+             const Z = numeric.rep([100, 100], 0);
+             for (let i = 0; i < x_vals.length; i++) {
+                 for (let j = 0; j < y_vals.length; j++) {
+                     Z[i][j] = mvn_pdf(X[i + x_vals.length * j], mean, inv_cov);
+                 }
+             }
+
+             const data_surface = [{
+                 z: Z,
+                 x: x_vals,
+                 y: y_vals,
+                 type: 'surface',
+                 showscale: false // Hide the colorbar
+             }];
+
+             const data_heatmap = [{
+                 z: Z,
+                 x: x_vals,
+                 y: y_vals,
+                 type: 'heatmap',
+             }];
+
+             const layout = {
+                 margin: { l: 0, r: 0, b: 0, t: 0 },
+                 autosize: true,
+                 responsive: true,
+                 useResizeHandler: true,
+                 uirevision:true,
+             };
+
+             const layout_surface = {
+                 margin: { l: 0, r: 0, b: 0, t: 0 },
+                 autosize: true,
+                 responsive: true,
+                 useResizeHandler: true,
+                 scene: {
+                     camera: {
+                         eye: { x: -0.5, y: -2, z: 1.5 },
+                         up: { x: 0, y: 0, z: 1 },
+                         center: { x: 0, y: 0, z: 0 },
+                     }
+                 }
+             };
+             var fig = Plotly.react('plot_surface', data_surface, layout_surface);
+             Plotly.react('plot_heatmap', data_heatmap, layout);
+         }
+
+         window.onload = updatePlots;
+        </script>
+
+
+
+    </body>
+</html>
