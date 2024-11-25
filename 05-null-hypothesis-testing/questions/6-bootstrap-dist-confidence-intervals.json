@@ -39,14 +39,21 @@
       "type": "multiple_choice",
       "answers": [
           {
-          "answer": "True",
-          "correct": false,
-          "feedback": "Incorrect. Always report the measured p-value along with the conclusion. It is not suﬀicient to just report p > 0.05 because the specific p value gives additional insight into the results of the statistical test."
+          "answer": "Non-cumulative, non-normalized",
+          "correct": false
+	},
+          {
+          "answer": "Cumulative, non-normalized",
+          "correct": false
       },
           {
-          "answer": "False",
+          "answer": "Non-cumulative, normalized",
+          "correct": false
+      },
+          {
+          "answer": "Cumulative, normalized",
           "correct": true,
-          "feedback": "Correct. Always report the measured p-value along with the conclusion. It is not suﬀicient to just report p > 0.05 because the specific p value gives additional insight into the results of the statistical test."
+          "feedback": "Correct. Normalizing makes determining proportions much easier. Using cumulative histograms makes it much easier to see the proportion of observations that are in each tail."
       }
       ]
   },
