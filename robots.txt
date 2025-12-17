@@ -1,8 +1,0 @@
-User-agent: GPTbot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
-
-
-Sitemap: https://fdsp.net/sitemap.xml
