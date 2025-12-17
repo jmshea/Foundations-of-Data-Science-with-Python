@@ -49,9 +49,9 @@ jobs:
         rm -rf _build/html/_sources
 
     # Update robots.txt
-    - name: Update robots.txt
-      run: |
-        echo -e "User-agent: GPTbot\nDisallow: /\n" > _build/html/robots.txt
+    #- name: Update robots.txt
+      #run: |
+        #echo -e "User-agent: GPTbot\nDisallow: /\n" > _build/html/robots.txt
         #echo -e "User-agent: Google-Extended\nDisallow: /\n" >> _build/html/robots.txt
         #echo -e "\nSitemap: https://fdsp.net/sitemap.xml" >> _build/html/robots.txt
 
