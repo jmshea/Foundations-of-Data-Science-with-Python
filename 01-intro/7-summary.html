@@ -524,13 +524,8 @@ document.write(`
 <p>The following questions can be used to check your understanding of the material covered in this chapter:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="XEnQYZiqaJkM" data-shufflequestions="False"
-               data-shuffleanswers="True"
-               data-preserveresponses="false"
-               data-numquestions="1000000"
-               data-maxwidth="600"
-               style="border-radius: 10px; text-align: left"> <style>
-#XEnQYZiqaJkM {
+<div class="output text_html"><div id="ajdzWruIMWem" data-shufflequestions="False" data-shuffleanswers="True" data-preserveresponses="false" data-numquestions="1000000" data-maxwidth="600" style="border-radius: 10px; text-align: left"><style>
+#ajdzWruIMWem {
    --jq-multiple-choice-bg: #345995;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -540,6 +535,7 @@ document.write(`
    --jq-numeric-input-bg: #c0c0c0;
    --jq-numeric-input-label: #101010;
    --jq-numeric-input-shadow: #999999;
+   --jq-string-bg: #861657;
    --jq-incorrect-color: #666666;
    --jq-correct-color: #87a878;
    --jq-text-color: #fafafa;
@@ -550,8 +546,8 @@ document.write(`
     margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 15px;
-    padding-bottom: 4px;
+/*    margin-bottom: 15px;*/
+/*    padding-bottom: 4px;*/
     padding-top: 4px;
     line-height: 1.1;
     font-size: 16pt;
@@ -569,18 +565,48 @@ document.write(`
     padding: 4px;
 }
 
+.Quiz code {
+    background-color: lightgray;
+    color: black;
+}
+
+.Quiz .QuizCode code {
+    background-color: inherit;
+    color: inherit;
+}
+
+
+.Quiz .MCButton code {
+    background-color: inherit;
+    color: inherit;
+}
+
+.MCButton .QuizCode {
+    text-align: left;
+}
+
+
+
+
 .Answer {
-    margin: 10px 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
     border-radius: inherit;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px 0;
+}
+
+@media only screen and (max-width:480px) {
+    .Answer {
+        grid-template-columns: 1fr;
+    }
+
 }
 
 .Feedback {
     font-size: 16pt;
     text-align: center;
-    min-height: 2em;
+/*    min-height: 2em;*/
 }
 
 .Input {
@@ -592,7 +618,10 @@ document.write(`
     display: block;
     margin: 10px;
     color: inherit;
-    width: 140px;
+    width: unset;
+    min-width: 140px;
+    max-width: 93%;
+    field-sizing: content;
     background-color: var(--jq-numeric-input-bg);
     color: var(--jq-text-color);
     padding: 5px;
@@ -603,11 +632,11 @@ document.write(`
     line-height: 20pt;
     border: none;
     border-radius: 0.2rem;
-    transition: box-shadow 0.1s);
+    transition: box-shadow 0.1s;
 }
 
 .Input-text:focus {
-    outline: none;
+    /*outline: none;*/
     background-color: var(--jq-numeric-input-bg);
     box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
 }
@@ -645,26 +674,42 @@ document.write(`
 }
 
 .NumericQn {
-    padding: 10px;
     background: var(--jq-numeric-bg);
-    color: var(--jq-text-color);
     border-radius: inherit;
+    color: var(--jq-text-color);
+    padding: 10px;
 }
 
 .NumericQn p {
     color: inherit;
 }
 
+.StringQn {
+    background: var(--jq-string-bg);
+    border-radius: inherit;
+    color: var(--jq-text-color);
+    padding: 10px;
+}
+
+.StringQn p {
+    color: inherit;
+}
+
+
 .InpLabel {
-    line-height: 34px;
-    float: left;
-    margin-right: 10px;
     color: var(--jq-numeric-input-label);
+    float: left;
     font-size: 15pt;
+    line-height: 34px;
+    margin-right: 10px;
 }
 
 .incorrect {
     color: var(--jq-incorrect-color);
+}
+
+.select {
+    color: var(--jq-select-color);
 }
 
 .correct {
@@ -677,17 +722,32 @@ document.write(`
    */
     animation: correct-anim 0.6s ease;
     animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
+    /*outline: none;*/
+}
+
+.selectedButton {
+    animation: select-anim 0.8s ease;
+    animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
+    color: var(--jq-text-color);
+    /*outline: none;*/
+}
+
+.deselectedButton {
+    animation: select-anim 0.4s ease;
+    animation-direction: reverse;
+    color: inherit;
+    /*outline: none;*/
 }
 
 .incorrectButton {
     animation: incorrect-anim 0.8s ease;
     animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
     color: var(--jq-text-color);
-    box-shadow: inset 0px 0px 5px var(--jq-mc-button-inset-shadow);
-    outline: none;
+    /*outline: none;*/
 }
 
 @keyframes incorrect-anim {
@@ -696,12 +756,18 @@ document.write(`
     }
 }
 
+@keyframes select-anim {
+    100% {
+        background-color: var(--jq-select-color);
+    }
+}
+
 @keyframes correct-anim {
     100% {
         background-color: var(--jq-correct-color);
     }
 }
-</style></div><script type="application/javascript">var questionsXEnQYZiqaJkM=[
+</style></div><script type="application/javascript">var questionsajdzWruIMWem=[
     {
         "question": "Choose all of the following that are <b>quantitative</b> variables.",
         "type": "many_choice",
@@ -734,7 +800,7 @@ document.write(`
         ]
     },
     {
-        "question": "Choose all of the following that are <b>quantitative</b> variables.",
+        "question": "Choose all of the following that are <b>qualitative</b> variables.",
         "type": "many_choice",
         "answers": [
             {
@@ -1207,7 +1273,9 @@ document.write(`
     }
 ]
 ;
-    // Make a random ID
+
+if (typeof Question === 'undefined') {
+// Make a random ID
 function makeid(length) {
     var result = [];
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -1216,6 +1284,118 @@ function makeid(length) {
         result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
     }
     return result.join('');
+}
+// Convert LaTeX delimiters and markdown links to HTML
+function jaxify(string) {
+    let mystring = string;
+    let count = 0, count2 = 0;
+    let loc = mystring.search(/([^\\]|^)(\$)/);
+    let loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+    while (loc >= 0 || loc2 >= 0) {
+        if (loc2 >= 0) {
+            mystring = mystring.replace(/([^\\]|^)(\$\$)/, count2 % 2 ? '$1\\]' : '$1\\[');
+            count2++;
+        } else {
+            mystring = mystring.replace(/([^\\]|^)(\$)/, count % 2 ? '$1\\)' : '$1\\(');
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+    }
+    // Replace markdown links
+    mystring = mystring.replace(/<http(.*?)>/g, '<a href="http$1" target="_blank" class="Link">http$1</a>');
+    mystring = mystring.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="Link">$1</a>');
+    return mystring;
+}
+
+// Base class for question types
+class Question {
+    static registry = {};
+    static register(type, cls) {
+        Question.registry[type] = cls;
+    }
+    static create(qa, id, index, options, rootDiv) {
+        const Cls = Question.registry[qa.type];
+        if (!Cls) {
+            console.error(`No question class registered for type "${qa.type}"`);
+            return;
+        }
+        const q = new Cls(qa, id, index, options, rootDiv);
+        q.render();
+    }
+
+    constructor(qa, id, index, options, rootDiv) {
+        this.qa = qa;
+        this.id = id;
+        this.index = index;
+        this.options = options;
+        this.rootDiv = rootDiv;
+        // wrapper
+        this.wrapper = document.createElement('div');
+        this.wrapper.id = `quizWrap${id}`;
+        this.wrapper.className = 'Quiz';
+        this.wrapper.dataset.qnum = index;
+        this.wrapper.style.maxWidth = `${options.maxWidth}px`;
+        rootDiv.appendChild(this.wrapper);
+        // question container
+        this.outerqDiv = document.createElement('div');
+        this.outerqDiv.id = `OuterquizQn${id}${index}`;
+        this.wrapper.appendChild(this.outerqDiv);
+        // question text
+        this.qDiv = document.createElement('div');
+        this.qDiv.id = `quizQn${id}${index}`;
+        if (qa.question) {
+            this.qDiv.innerHTML = jaxify(qa.question);
+            this.outerqDiv.appendChild(this.qDiv);
+        }
+        // code block
+        if (qa.code) {
+            const codeDiv = document.createElement('div');
+            codeDiv.id = `code${id}${index}`;
+            codeDiv.className = 'QuizCode';
+            const pre = document.createElement('pre');
+            const codeEl = document.createElement('code');
+            codeEl.innerHTML = qa.code;
+            pre.appendChild(codeEl);
+            codeDiv.appendChild(pre);
+            this.outerqDiv.appendChild(codeDiv);
+        }
+        // answer container
+        this.aDiv = document.createElement('div');
+        this.aDiv.id = `quizAns${id}${index}`;
+        this.aDiv.className = 'Answer';
+        this.wrapper.appendChild(this.aDiv);
+        // feedback container (append after answers)
+        this.fbDiv = document.createElement('div');
+        this.fbDiv.id = `fb${id}`;
+        this.fbDiv.className = 'Feedback';
+        this.fbDiv.dataset.answeredcorrect = 0;
+    }
+
+    render() {
+        throw new Error('render() not implemented');
+    }
+
+    preserveResponse(val) {
+        if (!this.options.preserveResponses) return;
+        const resp = document.getElementById(`responses${this.rootDiv.id}`);
+        if (!resp) return;
+        const arr = JSON.parse(resp.dataset.responses);
+        arr[this.index] = val;
+        resp.dataset.responses = JSON.stringify(arr);
+        printResponses(resp);
+    }
+
+    typeset(container) {
+        if (typeof MathJax !== 'undefined') {
+            const v = MathJax.version;
+            if (v[0] === '2') {
+                MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+            } else {
+                MathJax.typeset([container]);
+            }
+        }
+    }
 }
 
 // Choose a random subset of an array. Can also be used to shuffle the array
@@ -1242,6 +1422,9 @@ function printResponses(responsesContainer) {
     });
     responsesContainer.innerHTML=stringResponses;
 }
+/* Callback function to determine whether a selected multiple-choice
+   button corresponded to a correct answer and to provide feedback
+   based on the answer */
 function check_mc() {
     var id = this.id.split('-')[0];
     //var response = this.id.split('-')[1];
@@ -1249,6 +1432,7 @@ function check_mc() {
     //console.log("In check_mc(), id="+id);
     //console.log(event.srcElement.id)           
     //console.log(event.srcElement.dataset.correct)   
+    //console.log(event.srcElement.dataset.hide)
     //console.log(event.srcElement.dataset.feedback)
 
     var label = event.srcElement;
@@ -1263,17 +1447,16 @@ function check_mc() {
 
 
     var answers = label.parentElement.children;
-
     //console.log(answers);
-
 
     // Split behavior based on multiple choice vs many choice:
     var fb = document.getElementById("fb" + id);
 
 
 
-
-    if (fb.dataset.numcorrect == 1) {
+    /* Multiple choice (1 answer). Allow for 0 correct
+       answers as an edge case */
+    if (fb.dataset.numcorrect <= 1) {
         // What follows is for the saved responses stuff
         var outerContainer = fb.parentElement.parentElement;
         var responsesContainer = document.getElementById("responses" + outerContainer.id);
@@ -1290,96 +1473,193 @@ function check_mc() {
             //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
             var responses=JSON.parse(responsesContainer.dataset.responses);
             console.log(responses);
-            responses[qnum]= response;
+            if (label.dataset.selected == "true") {
+                // If it's already selected, it will be deselected now
+                responses[qnum] = null;
+            } else {
+                responses[qnum]= response;
+            }
             responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
             printResponses(responsesContainer);
         }
         // End code to preserve responses
-        
+
         for (var i = 0; i < answers.length; i++) {
+            // Deselect all other buttons
             var child = answers[i];
             //console.log(child);
-            child.className = "MCButton";
-        }
-
-
-
-        if (label.dataset.correct == "true") {
-            // console.log("Correct action");
-            if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
-            } else {
-                fb.textContent = "Correct!";
-            }
-            label.classList.add("correctButton");
-
-            fb.className = "Feedback";
-            fb.classList.add("correct");
-
-        } else {
-            if ("feedback" in label.dataset) {
-                fb.textContent = jaxify(label.dataset.feedback);
-            } else {
-                fb.textContent = "Incorrect -- try again.";
-            }
-            //console.log("Error action");
-            label.classList.add("incorrectButton");
-            fb.className = "Feedback";
-            fb.classList.add("incorrect");
-        }
-    }
-    else {
-        var reset = false;
-        var feedback;
-         if (label.dataset.correct == "true") {
-            if ("feedback" in label.dataset) {
-                feedback = jaxify(label.dataset.feedback);
-            } else {
-                feedback = "Correct!";
-            }
-            if (label.dataset.answered <= 0) {
-                if (fb.dataset.answeredcorrect < 0) {
-                    fb.dataset.answeredcorrect = 1;
-                    reset = true;
-                } else {
-                    fb.dataset.answeredcorrect++;
+            if (child.id != label.id) {
+                if (child.classList.contains("selectedButton")) {
+                    child.setAttribute('data-selected', "false")
+                    child.classList.remove("selectedButton");
+                    void child.offsetWidth;
+                    child.classList.add("deselectedButton");
                 }
-                if (reset) {
-                    for (var i = 0; i < answers.length; i++) {
-                        var child = answers[i];
-                        child.className = "MCButton";
-                        child.dataset.answered = 0;
-                    }
+                if (child.classList.contains("incorrectButton"))
+                    child.classList.remove("incorrectButton");
+                if (child.classList.contains("correctButton"))
+                    child.classList.remove("correctButton");
+            }
+        }
+
+
+        if (label.dataset.hide == "true") {
+            if (label.dataset.selected == "true") {
+                label.setAttribute('data-selected', "false");
+                label.classList.remove("selectedButton");
+                void label.offsetWidth;
+                label.classList.add("deselectedButton");
+                fb.innerHTML = "Deselected.";
+                fb.classList.remove("selected");
+                fb.classList.add("deselected");
+            } else {
+                label.setAttribute('data-selected', "true");
+                if ("feedback" in label.dataset) {
+                    fb.innerHTML = jaxify(label.dataset.feedback);
+                } else {
+                    fb.innerHTML = "Selected.";
+                }
+                if (label.classList.contains("deselectedButton")) {
+                    label.classList.remove("deselectedButton");
+                };
+                void label.offsetWidth;
+                label.classList.add("selectedButton");
+                fb.className = "Feedback";
+                if (fb.classList.contains("deselected")) {
+                    fb.classList.remove("deselected");
+                }
+                fb.classList.add("selected");
+            }
+        } else {
+            if (label.dataset.correct == "true") {
+                // console.log("Correct action");
+                if ("feedback" in label.dataset) {
+                    fb.innerHTML = jaxify(label.dataset.feedback);
+                } else {
+                    fb.innerHTML = "Correct!";
                 }
                 label.classList.add("correctButton");
-                label.dataset.answered = 1;
+
                 fb.className = "Feedback";
                 fb.classList.add("correct");
 
+            } else {
+                if ("feedback" in label.dataset) {
+                    fb.innerHTML = jaxify(label.dataset.feedback);
+                } else {
+                    fb.innerHTML = "Incorrect -- try again.";
+                }
+                //console.log("Error action");
+                label.classList.add("incorrectButton");
+                fb.className = "Feedback";
+                fb.classList.add("incorrect");
+            }
+        }
+    }
+    else { /* Many choice (more than 1 correct answer) */
+        var reset = false;
+        var feedback;
+
+        if (label.dataset.hide == "true") {
+            if (label.dataset.selected == "true") {
+                label.setAttribute('data-selected', "false");
+                label.classList.remove("selectedButton");
+                void label.offsetWidth;
+                label.classList.add("deselectedButton");
+                feedback = "Deselected.";
+                fb.classList.remove("selected");
+                fb.classList.add("deselected");
+            } else {
+                label.setAttribute('data-selected', "true");
+                if ("feedback" in label.dataset) {
+                    feedback = jaxify(label.dataset.feedback);
+                } else {
+                    feedback = "Selected.";
+                }
+                if (label.classList.contains("deselectedButton")) {
+                    label.classList.remove("deselectedButton");
+                };
+                void label.offsetWidth;
+                label.classList.add("selectedButton");
+                fb.className = "Feedback";
+                if (fb.classList.contains("deselected")) {
+                    fb.classList.remove("deselected");
+                }
+                fb.classList.add("selected");
             }
         } else {
-            if ("feedback" in label.dataset) {
-                feedback = jaxify(label.dataset.feedback);
-            } else {
-                feedback = "Incorrect -- try again.";
-            }
-            if (fb.dataset.answeredcorrect > 0) {
-                fb.dataset.answeredcorrect = -1;
-                reset = true;
-            } else {
-                fb.dataset.answeredcorrect--;
-            }
-
-            if (reset) {
-                for (var i = 0; i < answers.length; i++) {
-                    var child = answers[i];
-                    child.className = "MCButton";
-                    child.dataset.answered = 0;
+            if (label.dataset.correct == "true") {
+                if ("feedback" in label.dataset) {
+                    feedback = jaxify(label.dataset.feedback);
+                } else {
+                    feedback = "Correct!";
                 }
+                if (label.dataset.answered <= 0) {
+                    if (fb.dataset.answeredcorrect < 0) {
+                        fb.dataset.answeredcorrect = 1;
+                        reset = true;
+                    } else {
+                        fb.dataset.answeredcorrect++;
+                    }
+                    if (reset) {
+                        for (var i = 0; i < answers.length; i++) {
+                            var child = answers[i];
+                            if (child.id != label.id) {
+                                if (child.dataset.selected == "true") {
+                                    child.setAttribute('data-selected', "false");
+                                    child.classList.remove("selectedButton");
+                                    void child.offsetWidth;
+                                    child.classList.add("deselectedButton");
+                                }
+                                if (child.classList.contains("correctButton"))
+                                    child.classList.remove("correctButton");
+                                if (child.classList.contains("incorrectButton"))
+                                    child.classList.remove("incorrectButton");
+                                child.dataset.answered = 0;
+                            }
+                        }
+                    }
+                    label.classList.add("correctButton");
+                    label.dataset.answered = 1;
+                    fb.className = "Feedback";
+                    fb.classList.add("correct");
+
+                }
+            } else {
+                if ("feedback" in label.dataset) {
+                    feedback = jaxify(label.dataset.feedback);
+                } else {
+                    feedback = "Incorrect -- try again.";
+                }
+                if (fb.dataset.answeredcorrect > 0) {
+                    fb.dataset.answeredcorrect = -1;
+                    reset = true;
+                } else {
+                    fb.dataset.answeredcorrect--;
+                }
+
+                if (reset) {
+                    for (var i = 0; i < answers.length; i++) {
+                        var child = answers[i];
+                        if (child.id != label.id) {
+                            if (child.dataset.selected == "true") {
+                                child.setAttribute('data-selected', "false");
+                                child.classList.remove("selectedButton");
+                                void child.offsetWidth;
+                                child.classList.add("deselectedButton");
+                            }
+                            if (child.classList.contains("correctButton"))
+                                child.classList.remove("correctButton");
+                            if (child.classList.contains("incorrectButton"))
+                                child.classList.remove("incorrectButton");
+                            child.dataset.answered = 0;
+                        }
+                    }
+                }
+                label.classList.add("incorrectButton");
+                fb.className = "Feedback";
+                fb.classList.add("incorrect");
             }
-            label.classList.add("incorrectButton");
-            fb.className = "Feedback";
-            fb.classList.add("incorrect");
         }
         // What follows is for the saved responses stuff
         var outerContainer = fb.parentElement.parentElement;
@@ -1395,17 +1675,19 @@ function check_mc() {
             var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
             console.log("Question " + qnum);
             //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
-            var responses=JSON.parse(responsesContainer.dataset.responses);
-            if (label.dataset.correct == "true") {
-                if (typeof(responses[qnum]) == "object"){
-                    if (!responses[qnum].includes(response))
-                        responses[qnum].push(response);
-                } else{
-                    responses[qnum]= [ response ];
-                }
+            var responses = JSON.parse(responsesContainer.dataset.responses);
+            if (typeof(responses[qnum]) == "object") {
+                var these_responses = new Set(responses[qnum]);
             } else {
-                responses[qnum]= response;
+                var these_responses = new Set();
             }
+
+            if (label.dataset.selected == "true") {
+                these_responses.add(response);
+            } else {
+                these_responses.delete(response);
+            }
+            responses[qnum] = Array.from(these_responses);
             console.log(responses);
             responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
             printResponses(responsesContainer);
@@ -1417,9 +1699,9 @@ function check_mc() {
         var numcorrect = fb.dataset.numcorrect;
         var answeredcorrect = fb.dataset.answeredcorrect;
         if (answeredcorrect >= 0) {
-            fb.textContent = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
+            fb.innerHTML = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
         } else {
-            fb.textContent = feedback + " [" + 0 + "/" + numcorrect + "]";
+            fb.innerHTML = feedback + " [" + 0 + "/" + numcorrect + "]";
         }
 
 
@@ -1439,9 +1721,14 @@ function check_mc() {
 
 }
 
+
+/* Function to produce the HTML buttons for a multiple choice/
+   many choice question  and to update the CSS tags based on
+   the question type */
 function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
+
     var shuffled;
-    if (shuffle_answers == "True") {
+    if (shuffle_answers == true) {
         //console.log(shuffle_answers+" read as true");
         shuffled = getRandomSubarray(qa.answers, qa.answers.length);
     } else {
@@ -1451,8 +1738,6 @@ function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
 
 
     var num_correct = 0;
-
-
 
     shuffled.forEach((item, index, ans_array) => {
         //console.log(answer);
@@ -1496,6 +1781,12 @@ function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
         //lab.textContent=item.answer;
 
         // Set the data attributes for the answer
+        lab.setAttribute('data-selected', "false")
+        if ("hide" in item) {
+            lab.setAttribute('data-hide', item.hide);
+        } else {
+            lab.setAttribute('data-hide', "false");
+        }
         lab.setAttribute('data-correct', item.correct);
         if (item.correct) {
             num_correct++;
@@ -1518,6 +1809,29 @@ function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
     return num_correct;
 
 }
+// Object-oriented wrapper for MC/MANY choice
+class MCQuestion extends Question {
+    constructor(qa, id, idx, opts, rootDiv) { super(qa, id, idx, opts, rootDiv); }
+    render() {
+        //console.log("options.shuffleAnswers " + this.options.shuffleAnswers);
+        const numCorrect = make_mc(
+            this.qa,
+            this.options.shuffleAnswers,
+            this.outerqDiv,
+            this.qDiv,
+            this.aDiv,
+            this.id
+        );
+        if ('answer_cols' in this.qa) {
+            this.aDiv.style.gridTemplateColumns =
+                'repeat(' + this.qa.answer_cols + ', 1fr)';
+        }
+        this.fbDiv.dataset.numcorrect = numCorrect;
+        this.wrapper.appendChild(this.fbDiv);
+    }
+}
+Question.register('multiple_choice', MCQuestion);
+Question.register('many_choice', MCQuestion);
 function check_numeric(ths, event) {
 
     if (event.keyCode === 13) {
@@ -1535,9 +1849,7 @@ function check_numeric(ths, event) {
 
         if ("precision" in ths.dataset) {
             var precision = ths.dataset.precision;
-            // console.log("1:", submission)
-            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
-            // console.log("Rounded to ", submission, " precision=", precision  );
+            submission = Number(Number(submission).toPrecision(precision));
         }
 
 
@@ -1547,12 +1859,12 @@ function check_numeric(ths, event) {
 
         var fb = document.getElementById("fb" + id);
         fb.style.display = "none";
-        fb.textContent = "Incorrect -- try again.";
+        fb.innerHTML = "Incorrect -- try again.";
 
         var answers = JSON.parse(ths.dataset.answers);
         //console.log(answers);
 
-        var defaultFB = "";
+        var defaultFB = "Incorrect. Try again.";
         var correct;
         var done = false;
         answers.every(answer => {
@@ -1561,27 +1873,37 @@ function check_numeric(ths, event) {
             correct = false;
             // if (answer.type=="value"){
             if ('value' in answer) {
-                if (submission == answer.value) {
+                var value;
+                if ("precision" in ths.dataset) {
+                    value = answer.value.toPrecision(ths.dataset.precision);
+                } else {
+                    value = answer.value;
+                }
+                if (submission == value) {
                     if ("feedback" in answer) {
-                        fb.textContent = jaxify(answer.feedback);
+                        fb.innerHTML = jaxify(answer.feedback);
                     } else {
-                        fb.textContent = jaxify("Correct");
+                        fb.innerHTML = jaxify("Correct");
                     }
                     correct = answer.correct;
                     //console.log(answer.correct);
                     done = true;
                 }
+
                 // } else if (answer.type=="range") {
             } else if ('range' in answer) {
-                //console.log(answer.range);
+                console.log(answer.range);
+                console.log(submission, submission >=answer.range[0], submission < answer.range[1])
                 if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
-                    fb.textContent = jaxify(answer.feedback);
+                    fb.innerHTML = jaxify(answer.feedback);
                     correct = answer.correct;
-                    //console.log(answer.correct);
+                    console.log(answer.correct);
                     done = true;
                 }
             } else if (answer.type == "default") {
-                defaultFB = answer.feedback;
+                if ("feedback" in answer) {
+                    defaultFB = answer.feedback;
+                } 
             }
             if (done) {
                 return false; // Break out of loop if this has been marked correct
@@ -1589,6 +1911,7 @@ function check_numeric(ths, event) {
                 return true; // Keep looking for case that includes this as a correct answer
             }
         });
+        console.log("done:", done);
 
         if ((!done) && (defaultFB != "")) {
             fb.innerHTML = jaxify(defaultFB);
@@ -1639,10 +1962,37 @@ function check_numeric(ths, event) {
         } else {
             console.log('MathJax not detected');
         }
+        // After correct answer, if next JupyterQuiz question exists and has a text input, scroll by current question height
+        if (correct) {
+            // find the current question wrapper
+            var wrapper = ths.closest('.Quiz');
+            if (wrapper) {
+                var nextWrapper = wrapper.nextElementSibling;
+                if (nextWrapper && nextWrapper.classList.contains('Quiz')) {
+                    var nextInput = nextWrapper.querySelector('input.Input-text');
+                    if (nextInput) {
+                        var height = wrapper.getBoundingClientRect().height;
+                        console.log(height);
+                        nextInput.focus();
+                    }
+                }
+            }
+        }
         return false;
     }
 
 }
+// Object-oriented wrapper for numeric questions
+class NumericQuestion extends Question {
+    constructor(qa, id, idx, opts, rootDiv) {
+        super(qa, id, idx, opts, rootDiv);
+    }
+    render() {
+        make_numeric(this.qa, this.outerqDiv, this.qDiv, this.aDiv, this.id);
+        this.wrapper.appendChild(this.fbDiv);
+    }
+}
+Question.register('numeric', NumericQuestion);
 
 function isValid(el, charC) {
     //console.log("Input char: ", charC);
@@ -1727,7 +2077,7 @@ function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
 
     var lab = document.createElement("label");
     lab.className = "InpLabel";
-    lab.textContent = "Type numeric answer here:";
+    lab.innerHTML = "Type numeric answer here:";
     aDiv.append(lab);
 
     var inp = document.createElement("input");
@@ -1762,165 +2112,49 @@ function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
 
 
 }
-function jaxify(string) {
-    var mystring = string;
-
-    var count = 0;
-    var loc = mystring.search(/([^\\]|^)(\$)/);
-
-    var count2 = 0;
-    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
-
-    //console.log(loc);
-
-    while ((loc >= 0) || (loc2 >= 0)) {
-
-        /* Have to replace all the double $$ first with current implementation */
-        if (loc2 >= 0) {
-            if (count2 % 2 == 0) {
-                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
-            } else {
-                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
-            }
-            count2++;
-        } else {
-            if (count % 2 == 0) {
-                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
-            } else {
-                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
-            }
-            count++;
-        }
-        loc = mystring.search(/([^\\]|^)(\$)/);
-        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
-        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+// Override show_questions to use object-oriented Question API
+function show_questions(json, container) {
+    // Accept container element or element ID
+    if (typeof container === 'string') {
+        container = document.getElementById(container);
+    }
+    if (!container) {
+        console.error('show_questions: invalid container', container);
+        return;
     }
 
-    //console.log(mystring);
-    return mystring;
-}
+    const shuffleQuestions = container.dataset.shufflequestions === 'True';
+    const shuffleAnswers = container.dataset.shuffleanswers === 'True';
+    const preserveResponses = container.dataset.preserveresponses === 'true';
+    const maxWidth = parseInt(container.dataset.maxwidth, 10) || 0;
+    let numQuestions = parseInt(container.dataset.numquestions, 10) || json.length;
+    if (numQuestions > json.length) numQuestions = json.length;
 
-
-function show_questions(json, mydiv) {
-    console.log('show_questions');
-    //var mydiv=document.getElementById(myid);
-    var shuffle_questions = mydiv.dataset.shufflequestions;
-    var num_questions = mydiv.dataset.numquestions;
-    var shuffle_answers = mydiv.dataset.shuffleanswers;
-    var max_width = mydiv.dataset.maxwidth;
-
-    if (num_questions > json.length) {
-        num_questions = json.length;
+    let questions = json;
+    if (shuffleQuestions || numQuestions < json.length) {
+        questions = getRandomSubarray(json, numQuestions);
     }
 
-    var questions;
-    if ((num_questions < json.length) || (shuffle_questions == "True")) {
-        //console.log(num_questions+","+json.length);
-        questions = getRandomSubarray(json, num_questions);
-    } else {
-        questions = json;
-    }
-
-    //console.log("SQ: "+shuffle_questions+", NQ: " + num_questions + ", SA: ", shuffle_answers);
-
-    // Iterate over questions
-    questions.forEach((qa, index, array) => {
-        //console.log(qa.question); 
-
-        var id = makeid(8);
-        //console.log(id);
-
-
-        // Create Div to contain question and answers
-        var iDiv = document.createElement('div');
-        //iDiv.id = 'quizWrap' + id + index;
-        iDiv.id = 'quizWrap' + id;
-        iDiv.className = 'Quiz';
-        iDiv.setAttribute('data-qnum', index);
-        iDiv.style.maxWidth  =max_width+"px";
-        mydiv.appendChild(iDiv);
-        // iDiv.innerHTML=qa.question;
-        
-        var outerqDiv = document.createElement('div');
-        outerqDiv.id = "OuterquizQn" + id + index;
-        // Create div to contain question part
-        var qDiv = document.createElement('div');
-        qDiv.id = "quizQn" + id + index;
-        
-        if (qa.question) {
-            iDiv.append(outerqDiv);
-
-            //qDiv.textContent=qa.question;
-            qDiv.innerHTML = jaxify(qa.question);
-            outerqDiv.append(qDiv);
-        }
-
-        // Create div for code inside question
-        var codeDiv;
-        if ("code" in qa) {
-            codeDiv = document.createElement('div');
-            codeDiv.id = "code" + id + index;
-            codeDiv.className = "QuizCode";
-            var codePre = document.createElement('pre');
-            codeDiv.append(codePre);
-            var codeCode = document.createElement('code');
-            codePre.append(codeCode);
-            codeCode.innerHTML = qa.code;
-            outerqDiv.append(codeDiv);
-            //console.log(codeDiv);
-        }
-
-
-        // Create div to contain answer part
-        var aDiv = document.createElement('div');
-        aDiv.id = "quizAns" + id + index;
-        aDiv.className = 'Answer';
-        iDiv.append(aDiv);
-
-        //console.log(qa.type);
-
-        var num_correct;
-        if ((qa.type == "multiple_choice") || (qa.type == "many_choice") ) {
-            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
-            if ("answer_cols" in qa) {
-                //aDiv.style.gridTemplateColumns = 'auto '.repeat(qa.answer_cols);
-                aDiv.style.gridTemplateColumns = 'repeat(' + qa.answer_cols + ', 1fr)';
-            }
-        } else if (qa.type == "numeric") {
-            //console.log("numeric");
-            make_numeric(qa, outerqDiv, qDiv, aDiv, id);
-        }
-
-
-        //Make div for feedback
-        var fb = document.createElement("div");
-        fb.id = "fb" + id;
-        //fb.style="font-size: 20px;text-align:center;";
-        fb.className = "Feedback";
-        fb.setAttribute("data-answeredcorrect", 0);
-        fb.setAttribute("data-numcorrect", num_correct);
-        iDiv.append(fb);
-
-
+    questions.forEach((qa, index) => {
+        const id = makeid(8);
+        const options = {
+            shuffleAnswers: shuffleAnswers,
+            preserveResponses: preserveResponses,
+            maxWidth: maxWidth
+        };
+        Question.create(qa, id, index, options, container);
     });
-    var preserveResponses = mydiv.dataset.preserveresponses;
-    console.log(preserveResponses);
-    console.log(preserveResponses == "true");
-    if (preserveResponses == "true") {
-        console.log(preserveResponses);
-        // Create Div to contain record of answers
-        var iDiv = document.createElement('div');
-        iDiv.id = 'responses' + mydiv.id;
-        iDiv.className = 'JCResponses';
-        // Create a place to store responses as an empty array
-        iDiv.setAttribute('data-responses', '[]');
 
-        // Dummy Text
-        iDiv.innerHTML="<b>Select your answers and then follow the directions that will appear here.</b>"
-        //iDiv.className = 'Quiz';
-        mydiv.appendChild(iDiv);
+    if (preserveResponses) {
+        const respDiv = document.createElement('div');
+        respDiv.id = 'responses' + container.id;
+        respDiv.className = 'JCResponses';
+        respDiv.dataset.responses = JSON.stringify([]);
+        respDiv.innerHTML = '<b>Select your answers and then follow the directions that will appear here.</b>';
+        container.appendChild(respDiv);
     }
-//console.log("At end of show_questions");
+
+    // Trigger MathJax typesetting if available
     if (typeof MathJax != 'undefined') {
         console.log("MathJax version", MathJax.version);
         var version = MathJax.version;
@@ -1931,7 +2165,7 @@ function show_questions(json, mydiv) {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
                 if (MathJax.hasOwnProperty('typeset') ) {
-                    MathJax.typeset([mydiv]);
+                    MathJax.typeset([container]);
                 } else {
                     console.log('WARNING: Trying to force load MathJax 3');
                     window.MathJax = {
@@ -1959,7 +2193,7 @@ if (typeof version == 'undefined') {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             } else if (version[0] == "3") {
                 if (MathJax.hasOwnProperty('typeset') ) {
-                    MathJax.typeset([mydiv]);
+                    MathJax.typeset([container]);
                 } else {
                     console.log('WARNING: Trying to force load MathJax 3');
                     window.MathJax = {
@@ -1983,39 +2217,243 @@ if (typeof version == 'undefined') {
             }
         }
     }
-    return false;
+    // if (typeof MathJax !== 'undefined') {
+    //     const v = MathJax.version;
+    //     if (v[0] === '2') {
+    //         MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+    //     } else if (v[0] === '3') {
+    //         MathJax.typeset([container]);
+    //     }
+    // }
+
+    // Prevent link clicks from bubbling up
+    Array.from(container.getElementsByClassName('Link')).forEach(link => {
+        link.addEventListener('click', e => e.stopPropagation());
+    });
 }
-/* This is to handle asynchrony issues in loading Jupyter notebooks
-           where the quiz has been previously run. The Javascript was generally
-           being run before the div was added to the DOM. I tried to do this
-           more elegantly using Mutation Observer, but I didn't get it to work.
+function levenshteinDistance(a, b) {
+    if (a.length === 0) return b.length;
+    if (b.length === 0) return a.length;
 
-           Someone more knowledgeable could make this better ;-) */
+    const matrix = Array(b.length + 1).fill(null).map(() => Array(a.length + 1).fill(null));
 
-        function try_show() {
-          if(document.getElementById("XEnQYZiqaJkM")) {
-            show_questions(questionsXEnQYZiqaJkM,  XEnQYZiqaJkM); 
-          } else {
-             setTimeout(try_show, 200);
-          }
-        };
-    
-        //console.log(element);
-        {
-        const jmscontroller = new AbortController();
-        const signal = jmscontroller.signal;
+    for (let i = 0; i <= a.length; i++) {
+        matrix[0][i] = i;
+    }
 
-        setTimeout(() => jmscontroller.abort(), 5000);
+    for (let j = 0; j <= b.length; j++) {
+        matrix[j][0] = j;
+    }
 
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/questions/7-summary.json", {signal})
-        .then(response => response.json())
-        .then(json => show_questions(json, XEnQYZiqaJkM))
-        .catch(err => {
-        console.log("Fetch error or timeout");
-        show_questions(questionsXEnQYZiqaJkM, XEnQYZiqaJkM);
-        });
+    for (let j = 1; j <= b.length; j++) {
+        for (let i = 1; i <= a.length; i++) {
+            const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+            matrix[j][i] = Math.min(
+                matrix[j - 1][i] + 1, // Deletion
+                matrix[j][i - 1] + 1, // Insertion
+                matrix[j - 1][i - 1] + cost // Substitution
+            );
         }
-        </script></div>
+    }
+    return matrix[b.length][a.length];
+}
+// Object-oriented wrapper for string input questions
+class StringQuestion extends Question {
+    constructor(qa, id, idx, opts, rootDiv) {
+        super(qa, id, idx, opts, rootDiv);
+    }
+    render() {
+        make_string(this.qa, this.outerqDiv, this.qDiv, this.aDiv, this.id);
+        this.wrapper.appendChild(this.fbDiv);
+    }
+}
+Question.register('string', StringQuestion);
+
+function check_string(ths, event) {
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+        var submission = ths.value.trim();
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.innerHTML = "Incorrect -- try again.";
+
+        var answers = JSON.parse(ths.dataset.answers);
+        var defaultFB = "Incorrect. Try again.";
+        var correct;
+        var done = false;
+
+        // Handle default answer pattern: filter out and capture default feedback
+        var filteredAnswers = [];
+        answers.forEach(answer => {
+            if (answer.type === "default") {
+                defaultFB = answer.feedback;
+            } else {
+                filteredAnswers.push(answer);
+            }
+        });
+        answers = filteredAnswers;
+
+        answers.every(answer => {
+            correct = false;
+
+            let match = false;
+            if (answer.match_case) {
+                match = submission === answer.answer;
+            } else {
+                match = submission.toLowerCase() === answer.answer.toLowerCase();
+            }
+            console.log(submission);
+            console.log(answer.answer);
+            console.log(match);
+
+            if (match) {
+                if ("feedback" in answer) {
+                    fb.innerHTML = jaxify(answer.feedback);
+                } else {
+                    fb.innerHTML = jaxify("Correct");
+                }
+                correct = answer.correct;
+                done = true;
+            } else if (answer.fuzzy_threshold) {
+                var max_length = Math.max(submission.length, answer.answer.length);
+                var ratio;
+                if (answer.match_case) {
+                    ratio = 1- (levenshteinDistance(submission, answer.answer) / max_length);
+                } else {
+                    ratio = 1- (levenshteinDistance(submission.toLowerCase(),
+                                                    answer.answer.toLowerCase()) / max_length);
+                }
+                if (ratio >= answer.fuzzy_threshold) {
+                    if ("feedback" in answer) {
+                        fb.innerHTML = jaxify("(Fuzzy) " + answer.feedback);
+                    } else {
+                        fb.innerHTML = jaxify("Correct");
+                    }
+                    correct = answer.correct;
+                    done = true;
+                }
+
+            }
+
+            if (done) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            var qnum = document.getElementById("quizWrap" + id).dataset.qnum;
+            var responses = JSON.parse(responsesContainer.dataset.responses);
+            responses[qnum] = submission;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        // After correct answer, if next JupyterQuiz question exists and has a text input, scroll by current question height
+        if (correct) {
+            var wrapper = ths.closest('.Quiz');
+            if (wrapper) {
+                var nextWrapper = wrapper.nextElementSibling;
+                if (nextWrapper && nextWrapper.classList.contains('Quiz')) {
+                    var nextInput = nextWrapper.querySelector('input.Input-text');
+                    if (nextInput) {
+                        var height = wrapper.getBoundingClientRect().height;
+                        nextInput.focus();
+                    }
+                }
+            }
+        }
+        return false;
+    }
+}
+
+function string_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_string(this, evnt);
+    } 
+}
+
+
+function make_string(qa, outerqDiv, qDiv, aDiv, id) {
+    outerqDiv.className = "StringQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.innerHTML = "Type your answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    // Apply optional input width (approx. number of characters, in em units)
+    if (qa.input_width != null) {
+        inp.style['min-width'] = qa.input_width + 'em';
+    }
+    aDiv.append(inp);
+
+    inp.onkeypress = string_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    });
+}
+/*
+ * Attempt to fetch questions JSON, with timeout and fallback to embedded data.
+ */
+{
+  const controller = new AbortController();
+  const signal = controller.signal;
+  // Abort fetch after 5 seconds
+  setTimeout(() => controller.abort(), 5000);
+  fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/questions/7-summary.json", { signal })
+    .then(response => response.json())
+    .then(json => show_questions(json, ajdzWruIMWem))
+    .catch(err => {
+      console.log("Fetch error or timeout", err);
+      show_questions(questionsajdzWruIMWem, ajdzWruIMWem);
+    });
+}
+}
+</script></div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
@@ -2133,9 +2571,61 @@ if (typeof version == 'undefined') {
     font-size: 1.5em;
 }
 
+.flashcardtext.complete{
+    color: var(--rich-black-fogra-39);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.flashcardtext.storage{
+    color: var(--rich-black-fogra-39);
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flashcard.buttons{
+    display: flex;
+    justify-content: center;
+}
+
+.flashcard.button{
+    border-style: none;
+    margin: 10px;
+    font-size: 1.2em;
+    background-color: #00000000;
+    color: var(--rich-black-fogra-39);
+}
+
 .back .flashcardtext{
     font-size: 1.2em;
 }
+
+.flashcardKnown {
+    display: block;
+    position: absolute;
+    right: 64px;
+    bottom: 10px;
+    width: 2em;
+    height: auto;
+}
+
+.flashcardNotKnown {
+    display: block;
+    position: absolute;
+    right: 26px;
+    bottom: 15px;
+    width: 1.3em;
+    height: auto;
+}
+
+.flashcardNotKnown.hide {
+    display: none;
+}
+
+
 
 
 
@@ -2156,15 +2646,27 @@ if (typeof version == 'undefined') {
 	  z-index: 2;
 }
 
+.front.complete{
+	  backface-visibility: hidden;
+    background: var(--snow);
+    border-style: solid;
+    border-radius: 10px;
+    transform: rotateY(0deg);
+    color: 'black';
+	  z-index: 2;
+}
+
+
 /* back, initially hidden pane */
 .back {
 	  backface-visibility: hidden;
     background: var(--dark-blue-gray);
 	  transform: rotateY(180deg);
+    left: 8px;
 }
 
 .jp-OutputArea-output .back {
-	  transform: rotateY(180deg) translateX(7.5%);
+	  transform: rotateY(180deg) translateZ(20px);
 }
 
 .next {
@@ -2213,7 +2715,7 @@ if (typeof version == 'undefined') {
     text-align: left;
 }
 
-@media only screen and (min-width:1000px) {
+@media only screen and (min-width:700px) {
 
     .flip-container, .front, .back {
 	      height: 300px;
@@ -2260,6 +2762,9 @@ if (typeof version == 'undefined') {
     .flipper {
 	      height: 300px;
     }
+    .back {
+        left: 4px;
+    }
 
 }
 
@@ -2271,10 +2776,39 @@ if (typeof version == 'undefined') {
     .next {
         margin-left: 65%;
     }
-
+    .back {
+        left: 4px;
+   }
 }
 
-</style></div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="gnFdAIqSjBed" tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="gnFdAIqSjBed-next" onclick="window.checkFlip('gnFdAIqSjBed')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
+</style></div><div class="output text_html"><svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     style="display:none;">
+  <symbol id="reload-icon" viewBox="0 0 25 26">
+    <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px"/>
+    <line x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/>
+    <line x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/>
+  </symbol>
+  <symbol id="check-mark">
+    <path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z" style="fill:currentcolor;stroke:currentcolor;stroke-width:1px"/>
+  </symbol>
+  <symbol id="check-mark-thin">
+    <path d="M24 4.685l-16.327 17.315-7.673-9.054.761-.648 6.95 8.203 15.561-16.501.728.685z"/>
+  </symbol>
+  <symbol id="check-mark-circle-thin">
+    <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm7 7.457l-9.005 9.565-4.995-5.865.761-.649 4.271 5.016 8.24-8.752.728.685z"/>
+  </symbol>
+  <symbol id="x-mark">
+    <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z" style="fill:currentcolor;stroke:currentcolor;stroke-width:1px"/>
+  </symbol>
+  <symbol id="x-mark-thin">
+    <path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/>
+  </symbol>
+  <symbol id="x-mark-circle-thin">
+    <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm0 10.293l5.293-5.293.707.707-5.293 5.293 5.293 5.293-.707.707-5.293-5.293-5.293 5.293-.707-.707 5.293-5.293-5.293-5.293.707-.707 5.293 5.293z"/>
+  </symbol>
+</svg>
+</div><div class="output text_html"><div style="height:40px"></div><div class="flip-container" id="OkoZSEuSrkWR" data-topics='[]' data-known-widgets='true' data-local-storage='false' tabindex="0" style="outline:none;"></div><div style="height:40px"></div><div class="next" id="OkoZSEuSrkWR-next" onclick="window.checkFlip('OkoZSEuSrkWR')"> </div> <div style="height:40px"></div></div><script type="application/javascript">/*!
  * swiped-events.js - v1.1.4
  * Pure JavaScript swipe events
  * https://github.com/john-doherty/swiped-events
@@ -2323,29 +2857,76 @@ function jaxify(string) {
     return mystring;
 }
 
+/**
+ * Set active topics on a flashcard container and re-render cards.
+ * @param {string|Element} idOrElem - The container's id or the DOM element.
+ * @param {string|string[]} topics - Topic or array of topics to filter by.
+ */
+window.setTopics = function(idOrElem, topics) {
+    var mydiv = (typeof idOrElem === 'string') ? document.getElementById(idOrElem) : idOrElem;
+    if (!mydiv) return;
+    // Normalize topics to array
+    var topicsArr = Array.isArray(topics) ? topics : (typeof topics === 'string' ? [topics] : []);
+    mydiv.dataset.topics = JSON.stringify(topicsArr);
+    // Re-render cards
+    createCards(mydiv.id);
+};
+
+window.resetDeleteList = function(container) {
+    container.dataset.deleteList = JSON.stringify([]);
+    // Clear persisted deleteList in localStorage if consented
+    (function() {
+        var storageSuffix = container.dataset.localStorageKey;
+        if (!storageSuffix) {
+            try {
+                storageSuffix = JSON.parse(container.dataset.cards)[0]['front'] || 'flashcards';
+            } catch (e) {
+                storageSuffix = 'flashcards';
+            }
+        }
+        var allowKey = 'jc-allow-storage-' + storageSuffix;
+        var deleteKey = 'jc-deleteList-' + storageSuffix;
+        if (window.localStorage && window.localStorage.getItem(allowKey) === 'true') {
+            window.localStorage.removeItem(deleteKey);
+        }
+    })();
+
+}
+
 window.flipCard = function flipCard(ths) {
+
+    var container = ths;
     //console.log(ths);
     //console.log(ths.id);
-    ths.classList.toggle("flip"); 
-    ths.focus();
-    var next=document.getElementById(ths.id+'-next');
-    next.style.pointerEvents='none';
-    /* ths.blur(); */
-    next.classList.add('flipped');
-    if (typeof MathJax != 'undefined') {
-        var version = MathJax.version;
-        //console.log('MathJax version', version);
-        if (version[0] == "2") {
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-        } else if (version[0] == "3") {
-            MathJax.typeset([ths]);
-        }
+    if (container.firstChild.firstChild.classList.contains('complete')) {
+        //console.log("Restarting flashcards");
+        window.resetDeleteList(container);
+        container.dataset.cardnum = 0;
+
+        // Render cards
+        container.innerHTML = '';
+        createCards(container.id);
     } else {
-        //console.log('MathJax not detected');
+        ths.classList.toggle("flip"); 
+        ths.focus();
+        var next=document.getElementById(ths.id+'-next');
+        next.style.pointerEvents='none';
+        /* ths.blur(); */
+        next.classList.add('flipped');
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            //console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([ths]);
+            }
+        } else {
+            //console.log('MathJax not detected');
+        }
+
+        setTimeout(reenableNext, 600, ths, next);
     }
-
-
-    setTimeout(reenableNext, 600, ths, next);
 }
 
 window.checkKey = function checkKey(container, event) {
@@ -2378,79 +2959,132 @@ function reenableNext(ths, next) {
 
 
 
-function slide2(containerId) {
+function slide2(containerId, mode) {
+    //console.log("Sliding container:", containerId, "with mode:", mode);
     var container = document.getElementById(containerId);
     var next=document.getElementById(containerId+'-next');
     var frontcard = container.children[0];
     var backcard = container.children[1];
     container.style.pointerEvents='none';
-    /* container.removeAttribute("tabindex");*/
-    /* container.blur(); */
-    //backcard.style.pointerEvents='none';
-    next.style.pointerEvents='none';
-    next.classList.remove('flipped');
-    next.classList.add('hide');
+    var deleteList = JSON.parse(container.dataset.deleteList || '[]');
+    if (mode == "known") {
+        deleteList.push(JSON.parse(frontcard.dataset.seqNum));
+        container.dataset.deleteList = JSON.stringify(deleteList);
+        //console.log("deleteList", deleteList);
+        // Persist deleteList in localStorage if consented
+        (function() {
+            var storageSuffix = container.dataset.localStorageKey;
+            if (!storageSuffix) {
+                try {
+                    storageSuffix = JSON.parse(container.dataset.cards)[0]['front'] || 'flashcards';
+                } catch (e) {
+                    storageSuffix = 'flashcards';
+                }
+            }
+            var allowKey = 'jc-allow-storage-' + storageSuffix;
+            var deleteKey = 'jc-deleteList-' + storageSuffix;
+            if (window.localStorage && window.localStorage.getItem(allowKey) === 'true') {
+                window.localStorage.setItem(deleteKey, container.dataset.deleteList);
+            }
+        })();
+    } else if (mode == "notKnown") {
+        // Nothing to do for now
+    }
 
-    //container.classList.add("prepare");
-    
-    container.className="flip-container slide";
-    backcard.parentElement.removeChild(frontcard);
-    backcard.parentElement.appendChild(frontcard);
-    setTimeout(slideback, 600, container, frontcard, backcard, next);
-    
+    var numCards = container.dataset.numCards;
+
+
+    if (deleteList.length < numCards) {
+
+        // Hide the next button until done sliding
+        next.style.pointerEvents='none';
+        next.classList.remove('flipped');
+        next.classList.add('hide');
+
+        //container.classList.add("prepare");
+
+        container.className="flip-container slide";
+
+        backcard.parentElement.removeChild(frontcard);
+        backcard.parentElement.appendChild(frontcard);
+
+        setTimeout(slideback, 600, container, frontcard, backcard, next, mode);
+    } else {
+        frontcard.innerHTML = '';
+        frontcard.classname = 'front complete';
+        var msg = document.createElement('div');
+        //msg.className = 'front flashcard complete';
+        msg.className = 'front complete';
+        var span = document.createElement('span');
+        span.className = 'flashcardtext complete';
+        //span.style.color = 'black';
+        span.textContent = 'You have learned all of the flashcards! Click to start over.';
+        msg.appendChild(span);
+        frontcard.appendChild(msg);
+        container.style.pointerEvents='auto';
+
+    }
 }
 
 
 window.checkFlip = function checkFlip(containerId) {
     var container = document.getElementById(containerId);
 
-
-    if (container.classList.contains('flip')) {
+if (container.classList.contains('flip')) {
         container.classList.remove('flip');
-        setTimeout(slide2, 600, containerId);
-    } 
-    else {
-        slide2(containerId);
+            setTimeout(slide2, 600, containerId, 'next');
+    } else {
+        slide2(containerId, 'next');
     }
 }
 
 
-function slideback(container, frontcard, backcard, next) {
+function slideback(container, frontcard, backcard, next, mode) {
     container.className="flip-container slideback";
-    setTimeout(cleanup, 550, container, frontcard, backcard, next);
+    setTimeout(cleanup, 550, container, frontcard, backcard, next, mode);
 }
 
-function cleanup(container, frontcard, backcard, next) {
+function cleanup(container, frontcard, backcard, next, mode) {
+
+    var deleteList = JSON.parse(container.dataset.deleteList || '[]');
+
     container.removeChild(frontcard);
     backcard.className="flipper frontcard";
     container.className="flip-container";
 
+
+    // Track the current index before increment
     var cardnum=parseInt(container.dataset.cardnum);
-    var cards=eval('cards'+container.id);
-    var flipper=createOneCard(container, false, cards, cardnum);
-    container.append(flipper);
-    cardnum= (cardnum+1) % parseInt(container.dataset.numCards);
-    container.dataset.cardnum=cardnum;
-    if (cardnum != 1){
-        next.innerHTML="Next >";
-    } else {
-        //next.innerHTML="Reload \\(\\circlearrowleft\\) ";
-        next.innerHTML='Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 25 26"> <path d="M7,6a10,10,0,1,0,9,0" style="fill:none;stroke:black;stroke-width:2px" id="e2_circleArc"/> <line id="e3_line" x1="17" y1="6.5" x2="17.5" y2="15" style="stroke:black;fill:none;stroke-width:2px"/> <line id="e4_line" x1="16.5" y1="6.5" x2="26" y2="8" style="stroke:black;fill:none;stroke-width:2px"/> </svg> '
-        if (typeof MathJax != 'undefined') {
-            var version = MathJax.version;
-            //console.log('MathJax version', version);
-            if (version[0] == "2") {
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-            } else if (version[0] == "3") {
-                MathJax.typeset([next]);
-            }
-        } else {
-            //console.log('MathJax not detected');
-        }
 
+    let cardOrder = JSON.parse(container.dataset.cardOrder);
 
+    var cards=JSON.parse(container.dataset.cards);
+    var numCards = container.dataset.numCards;
+    var cardsLeft = parseInt(container.dataset.numCards, 10) - deleteList.length;
+    // check if this card's seqNum is in the deleteList
+    while ( deleteList.includes(cardOrder[cardnum]) ) {
+        cardnum = (cardnum + 1) % parseInt(numCards);
+        //console.log("Skipping card number:", cardnum, "of", numCards);
     }
 
+    var flipper=createOneCard(container, false, cards, cardOrder[cardnum], cardnum, cardsLeft);
+
+    container.append(flipper);
+    cardnum= (cardnum+1) % parseInt(numCards);
+    //console.log("Next card number:", cardnum, "of", numCards);
+
+    container.dataset.cardnum = cardnum;
+    // Determine button label based on position in cycle
+    if (cardsLeft > 1) {
+        // On last card of cycle, show Reload; otherwise Next
+        //if (currentIdx === cardsLeft - 1) {
+        // JMS: This is currently broken when using known cards
+        if (cardnum == 1 ) {
+            next.innerHTML = 'Reload <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 26"><use xlink:href="#reload-icon"/></svg>';
+        } else {
+            next.innerHTML = 'Next >';
+        }
+    }
     if (typeof MathJax != 'undefined') {
         var version = MathJax.version;
         //console.log('MathJax version', version);
@@ -2468,7 +3102,22 @@ function cleanup(container, frontcard, backcard, next) {
     container.style.pointerEvents='auto';
     /* container.tabIndex= 0; */
     /* container.focus(); */
-    next.classList.remove('hide');
+    // Hide Next when only one or no cards remain
+    if (cardsLeft > 1) {
+        next.classList.remove('hide');
+        next.style.pointerEvents = 'auto';
+    } else { // Hide the notKnown button if only one card left
+        var notKnown = backcard.querySelector('.flashcardNotKnown');
+        notKnown.classList.add('hide');
+        notKnown.pointerEvents = 'none';
+        //console.log(notKnown);
+        //console.log(backcard.querySelector('.flashcardNotKnown'));
+    }
+
+    if (parseInt(container.dataset.numCards, 10) <= 1) {
+        next.classList.add('hide');
+        next.style.pointerEvents = 'none';
+    }
     container.addEventListener('swiped-left', function(e) {
         /*
           console.log(e.detail);
@@ -2477,17 +3126,23 @@ function cleanup(container, frontcard, backcard, next) {
         checkFlip(container.id);
     }, {once: true });
 
-
 }
 
 
-function createOneCard  (mydiv, frontCard, cards, cardnum) {
-    var colors=eval('frontColors'+mydiv.id);
-    var backColors=eval('backColors'+mydiv.id);
-    var textColors=eval('textColors'+mydiv.id);
-    //console.log(backColors)
+function createOneCard  (mydiv, frontCard, cards, cardnum, seq) {
+
+    var colors = JSON.parse(mydiv.dataset.frontColors);
+    var backColors = JSON.parse(mydiv.dataset.backColors);
+    var textColors = JSON.parse(mydiv.dataset.textColors);
+
 
     var flipper = document.createElement('div');
+    flipper.dataset.seqNum = cards[cardnum]['seqNum'];
+
+    // JMS: Can this be removed now? Should colors only depend on seqNum, so they are consistent?
+    flipper.dataset.cardnum = cardnum;
+
+    //console.log('Creating card', cardnum, 'with sequence', seq);
     if (frontCard){
         flipper.className="flipper frontcard";    
     }
@@ -2498,59 +3153,296 @@ function createOneCard  (mydiv, frontCard, cards, cardnum) {
     var front = document.createElement('div');
     front.className='front flashcard';
 
+
     var frontSpan= document.createElement('span');
     frontSpan.className='flashcardtext';
     frontSpan.innerHTML=jaxify(cards[cardnum]['front']);
-    frontSpan.style.color=textColors[cardnum % textColors.length];
-    //frontSpan.textContent=jaxify(cards[cardnum]['front']);
-    //front.style.background='var(' + colors[cardnum % colors.length] + ')';
-    front.style.background=colors[cardnum % colors.length];
-
+    frontSpan.style.color=textColors[seq % textColors.length];
+    front.style.background=colors[seq % colors.length];
     front.append(frontSpan);
+
+    // Add check mark symbol for card known
+    var knownSpan= document.createElement('span');
+    knownSpan.className = 'flashcardKnown';
+    knownSpan.innerHTML= '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 26"><use xlink:href="#check-mark"/></svg>';
+    front.append(knownSpan);
+
+    // Add x mark symbol for card not known
+    var notKnownSpan= document.createElement('span');
+    notKnownSpan.className = 'flashcardNotKnown';
+    notKnownSpan.innerHTML= '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 26"><use xlink:href="#x-mark"/></svg>';
+    front.append(notKnownSpan);
+    // Hide known/not-known icons if disabled via known_widgets flag
+    if (mydiv.dataset.knownWidgets === 'false') {
+        knownSpan.style.display = 'none';
+        knownSpan.style.pointerEvents = 'none';
+        notKnownSpan.style.display = 'none';
+        notKnownSpan.style.pointerEvents = 'none';
+    }
+
+
+
+
     flipper.append(front);
 
     var back = document.createElement('div');
     back.className='back flashcard';
-    back.style.background=backColors[cardnum % backColors.length];
+    back.style.background=backColors[seq % backColors.length];
 
     var backSpan= document.createElement('span');
     backSpan.className='flashcardtext';
     backSpan.innerHTML=jaxify(cards[cardnum]['back']);
-    backSpan.style.color=textColors[cardnum % textColors.length];
+    backSpan.style.color=textColors[seq % textColors.length];
     back.append(backSpan);
 
     flipper.append(back);
 
+    // Handle known click: remove card and advance or restart when done
+    knownSpan.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // Starting point -- just slide and then start to port this stuff over
+        slide2(mydiv.id, 'known');
+
+    });
+
+
+    // Handle not-known click: just advance
+    notKnownSpan.addEventListener('click', function(e) {
+        e.stopPropagation();
+        //window.checkFlip(mydiv.id);
+        slide2(mydiv.id, 'notKnown');
+    });
+
     return flipper;
+}
+
+function randomOrderArray(N) {
+    // Create an array with numbers from 0 to N-1
+    let arr = Array.from({ length: N }, (_, index) => index);
+
+    // Shuffle the array using Fisher-Yates algorithm
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+
+    return arr;
+}
+
+function createStructuredData(mydiv, cards, title, subject) {
+    var structuredData = {
+        "@context": "https://schema.org/",
+        "@type": "Quiz",
+        "about": {
+            "@type": "Thing"
+        },
+        "educationalAlignment": [
+            {
+                "@type": "AlignmentObject",
+                "alignmentType": "educationalSubject"
+            }
+        ],
+        "hasPart": []
+    };
+
+    structuredData["about"]["name"] = title;
+    structuredData["educationalAlignment"][0]["targetName"] = subject;
+
+    for (var i=0; i<cards.length; i++) {
+        var newPart = {
+            "@context": "https://schema.org/",
+            "@type": "Question",
+            "eduQuestionType": "Flashcard",
+            "acceptedAnswer": {
+                "@type": "Answer",
+            }
+        };
+
+        newPart["text"] = cards[i]["front"];
+        newPart["acceptedAnswer"]["text"] = cards[i]["back"];
+
+        structuredData["hasPart"].push(newPart);
+    }
+    /*console.log(structuredData);*/
+
+    var el = document.createElement('script');
+    el.type = 'application/ld+json';
+    el.text = JSON.stringify(structuredData);
+
+    mydiv.parentElement.appendChild(el);
 
 }
 
 
 
+function createCards(id) {
+    var mydiv = document.getElementById(id);
+    if (!mydiv) return;
 
+    // Initialize cards array from dataset
+    var cards = JSON.parse(mydiv.dataset.cards || '[]');
 
-function createCards(id, keyControl, grabFocus) {
-    console.log(id);
-
-    var mydiv=document.getElementById(id);
-    /*mydiv.onclick = window.flipCard(mydiv);*/
-    /*
-    mydiv.addEventListener('click', function(){window.flipCard(mydiv);}, false);
-    mydiv.addEventListener('keydown', function(event){window.checkKey(mydiv,event);}, true);
-    */
-    mydiv.onclick = function(){window.flipCard(mydiv);};
-    //console.log(keyControl);
-    if (keyControl == "True"){
-        mydiv.onkeydown = function(event){window.checkKey(mydiv,event);};
+    // Preserve full set of cards in dataset.fullCards
+    var fullCards;
+    if (mydiv.dataset.fullCards) {
+        fullCards = JSON.parse(mydiv.dataset.fullCards);
+    } else {
+        fullCards = cards;
+        mydiv.dataset.fullCards = JSON.stringify(fullCards);
     }
-    /* mydiv.addEventListener('keydown', function(event){event.stopPropagation(); console.log(event); event.preventDefault();}, true); */
-    /*mydiv.onkeypress = function(event){console.log(event); event.preventDefault();};*/
 
-    //console.log(mydiv);
 
-    var cards=eval('cards'+id);
+    // Bootstrap topics: filter cards based on data-topics attribute
+    var topics = [];
+    if (mydiv.dataset.topics) {
+        try {
+            topics = JSON.parse(mydiv.dataset.topics);
+        } catch (e) {
+            topics = [mydiv.dataset.topics];
+        }
+    }
+
+    // Handle localStorage consent prompt
+    var localStorageEnabled = mydiv.dataset.localStorage === 'true';
+    if (localStorageEnabled) {
+        var lsKey = mydiv.dataset.url || ''
+        if (lsKey == '') {
+            lsKey = fullCards[0]['front'] || 'flashcards';
+        }
+
+        if (topics && topics != []) {
+            lsKey +='-' + mydiv.dataset.topics.replace(/[\[\]\"\'\s]/g, '');
+        }
+        console.log('LocalStorage key:', lsKey);
+        mydiv.dataset.localStorageKey = lsKey;
+
+        lsKey = 'jc-allow-storage-' + lsKey;
+        //console.log('LocalStorage key:', lsKey);
+        if (!window.localStorage.getItem(lsKey)) {
+            var flipper = document.createElement('div');
+
+            // JMS: Can this be removed now? Should colors only depend on seqNum, so they are consistent?
+            flipper.dataset.cardnum = cardnum;
+
+            flipper.className="flipper frontcard";    
+
+            var front = document.createElement('div');
+            front.className='front complete';
+
+
+            var frontSpan= document.createElement('span');
+            frontSpan.className='flashcardtext storage';
+            frontSpan.innerHTML= 'Do you want to store information on your progress in learning these flashcards on your local machine?<br><br>' +
+                '<div class="flashcard buttons">' + 
+                '<button id="' + id + '-ls-yes" class="flashcard button">Yes</button> ' +
+                '<button id="' + id + '-ls-no" class="flashcard button">No</button>' +
+                '</div>';
+
+
+            front.append(frontSpan);
+
+            flipper.append(front);
+            mydiv.append(flipper);
+
+            document.getElementById(id + '-ls-yes').onclick = function(event) {
+                window.localStorage.setItem(lsKey, 'true');
+                mydiv.dataset.localStorage = 'false';
+               
+                var frontcard = mydiv.children[0];
+                mydiv.removeChild(frontcard);
+
+                createCards(id);
+                event.preventDefault();
+                event.stopPropagation();
+            };
+            document.getElementById(id + '-ls-no').onclick = function(event) {
+                mydiv.dataset.localStorage = 'false';
+                var frontcard = mydiv.children[0];
+                mydiv.removeChild(frontcard);
+
+                createCards(id);
+                event.preventDefault();
+                event.stopPropagation();
+            };
+
+            return;
+        }
+    }
+
+    // Retrieve parameters from dataset
+    var keyControl = mydiv.dataset.keyControl === 'true';
+    var grabFocus = mydiv.dataset.grabFocus === 'true';
+    var shuffleCards = mydiv.dataset.shuffleCards === 'true';
+    var title = mydiv.dataset.title || '';
+    var subject = mydiv.dataset.subject || '';
+    var frontColors = JSON.parse(mydiv.dataset.frontColors || '[]');
+    var backColors = JSON.parse(mydiv.dataset.backColors || '[]');
+    var textColors = JSON.parse(mydiv.dataset.textColors || '[]');
+
+    //console.log('Active topics:', topics);
+
+    // Filter cards by topics if provided
+    if (topics.length > 0) {
+        cards = fullCards.filter(function(card) {
+            var t = card.topic;
+            if (Array.isArray(t)) {
+                return topics.some(function(topic) { return t.includes(topic); });
+            }
+            return topics.includes(t);
+        });
+    } else {
+        cards = fullCards;
+    }
+    // Need to store the filtered cards in the dataset
+    mydiv.dataset.cards = JSON.stringify(cards);
+
+    // Set up click and keyboard controls
+    mydiv.onclick = function(){ window.flipCard(mydiv); };
+    if (keyControl) {
+        mydiv.onkeydown = function(event){ window.checkKey(mydiv, event); };
+    }
+
+    // Initialize deleteList, possibly from localStorage
+    var deleteList = [];
+    (function() {
+        // Compute storage suffix for keys
+        var storageSuffix = mydiv.dataset.localStorageKey;
+        var allowKey = 'jc-allow-storage-' + storageSuffix;
+        var deleteKey = 'jc-deleteList-' + storageSuffix;
+        if (window.localStorage && window.localStorage.getItem(allowKey) === 'true') {
+            console.log('allowKey', window.localStorage.getItem(allowKey));
+            try {
+                deleteList = JSON.parse(window.localStorage.getItem(deleteKey) || '[]');
+                console.log('Loaded deleteList from localStorage:', deleteList);
+            } catch (e) {
+                deleteList = [];
+            }
+        }
+        mydiv.dataset.deleteList = JSON.stringify(deleteList);
+    })();
+    console.log('deleteList: ', deleteList);
+
+    // Store cards and color data in the container's dataset for later access in cleanup()
+    /*
+    mydiv.dataset.frontColors = JSON.stringify(frontColors);
+    mydiv.dataset.backColors = JSON.stringify(backColors);
+    mydiv.dataset.textColors = JSON.stringify(textColors);
+    */
+
     mydiv.dataset.cardnum=0;
     mydiv.dataset.numCards=cards.length;
+
+    mydiv.dataset.shuffleCards = shuffleCards;
+    var cardOrder;
+    if (shuffleCards == true){
+        cardOrder = randomOrderArray(cards.length);
+    } else {
+        cardOrder = Array.from({ length: cards.length }, (_, index) => index);
+    }
+    mydiv.dataset.cardOrder = JSON.stringify(cardOrder);
+    //console.log(mydiv.dataset.cardOrder);
+
+
     mydiv.addEventListener('swiped-left', function(e) {
         /*
           console.log(e.detail);
@@ -2559,17 +3451,50 @@ function createCards(id, keyControl, grabFocus) {
         checkFlip(id);
     }, {once: true});
 
+    if ((title!="") || (subject != "")){
+        createStructuredData(mydiv, cards, title, subject);
+    }
+
     var cardnum=0;
-    
-    for (var i=0; i<2; i++) {
-    
-        var flipper;
+    var numCards = cards.length;
+
+    var cardsLeft = numCards - deleteList.length;
+
+    if (cardsLeft == 0) {
+        window.resetDeleteList(mydiv);
+        deleteList =[];
+        cardsLeft = cards.length;
+    }
+
+
+
+    var flipper;
+    console.log('Creating cards for container:', mydiv.id, 'with', cardsLeft, 'cards left.');
+    for (var i=0; i<Math.min(cardsLeft,2); i++) {
+
         if (i==0){
-            flipper=createOneCard(mydiv, true, cards, cardnum);
+            while ( deleteList.includes(cardOrder[cardnum]) ) {
+                cardnum = (cardnum + 1) % parseInt(numCards);
+                //console.log("Skipping card number:", cardnum, "of", numCards);
+            }
+            flipper=createOneCard(mydiv, true, cards, cardOrder[cardnum], cardnum);
         }
         else {
-            flipper=createOneCard(mydiv, false, cards, cardnum);
+            while ( deleteList.includes(cardOrder[cardnum]) ) {
+                cardnum = (cardnum + 1) % parseInt(numCards);
+                //console.log("Skipping card number:", cardnum, "of", numCards);
+            }
+            flipper=createOneCard(mydiv, false, cards, cardOrder[cardnum], cardnum);
         }
+
+        if (cardsLeft == 1) {
+            var notKnown = flipper.querySelector('.flashcardNotKnown');
+            notKnown.classList.add('hide');
+            notKnown.pointerEvents = 'none';
+            //console.log(notKnown);
+            //console.log(backcard.querySelector('.flashcardNotKnown'));
+        }
+
 
         mydiv.append(flipper);
         if (typeof MathJax != 'undefined') {
@@ -2646,87 +3571,57 @@ function createCards(id, keyControl, grabFocus) {
     mydiv.dataset.cardnum = cardnum;
 
     var next=document.getElementById(id+'-next');
-    if (cards.length==1) {
-        // Don't show next if no other cards!
+    //console.log('cardsLeft = ', cardsLeft);
+    if (cardsLeft==1) {
         next.style.pointerEvents='none';
         next.classList.add('hide');
+        var notKnown = flipper.querySelector('.flashcardNotKnown');
+        notKnown.classList.add('hide');
+        notKnown.pointerEvents = 'none';
     } else {
         next.innerHTML="Next >";
+        next.style.pointerEvents='auto';
+        next.classList.remove('hide');
     }
 
-    if (grabFocus == "True" )
+    if (grabFocus == true )
         mydiv.focus();
 
     return flipper;
 }
 
+// Helper to change topics and re-render flashcards dynamically
+window.setTopics = function(idOrElem, topics) {
+    var mydiv = (typeof idOrElem === 'string') ? document.getElementById(idOrElem) : idOrElem;
+    if (!mydiv) return;
+    var topicsArr = Array.isArray(topics) ? topics : (typeof topics === 'string' ? [topics] : []);
+    mydiv.dataset.topics = JSON.stringify(topicsArr);
+    createCards(mydiv.id);
+};
 
 
 
 
-        function try_create() {
-          if(document.getElementById("gnFdAIqSjBed")) {
-            createCards("gnFdAIqSjBed", "True", "False");
-          } else {
-             setTimeout(try_create, 200);
-          }
-        };
-    
-var cardsgnFdAIqSjBed=[
-    {
-        "front": "data",
-        "back": "Collections of measurements, characteristics, or facts about a group."
-    },
-    {
-        "front": "data science",
-        "back": "The process of extracting meaning from data."
-    },
-    {
-        "front": "data point",
-        "back": "A collection of one or more pieces of information collected about a single individual or entity."
-    },
-    {
-        "front": "variables",
-        "back": "Particular characteristics, measurements, or facts that make up a data point."
-    },
-    {
-        "front": "features",
-        "back": "Individual piece of information in a data set. While a variable typically represents unprocessed or raw data, features can include both variables and processed versions of the variables."
-    },
-    {
-        "front": "quantitative data",
-        "back": "Numeric data."
-    },
-    {
-        "front": "qualitative data",
-        "back": "Non-numeric or categorical data."
-    },
-    {
-        "front": "research question",
-        "back": "A question that can be answered using research, including data collection and analysis."
-    }
-]
-;
-var frontColorsgnFdAIqSjBed= ["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)" ];
-var backColorsgnFdAIqSjBed= ["var(--dark-blue-gray)" ];
-var textColorsgnFdAIqSjBed= ["var(--snow)" ];
-
-
-        {
-        const jmscontroller = new AbortController();
-        const signal = jmscontroller.signal;
-
-        setTimeout(() => jmscontroller.abort(), 5000);
-
-        fetch("https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/flashcards/what-is-data-science.json", {signal})
-        .then(response => response.json())
-        .then(json => createCards("gnFdAIqSjBed", "True", "False"))
-        .catch(err => {
-        console.log("Fetch error or timeout");
-        try_create(); 
-        });
+(function() {
+    var observer = new MutationObserver(function(mutations, obs) {
+        var el = document.getElementById("OkoZSEuSrkWR");
+        if (el) {
+            el.dataset.url = "https://raw.githubusercontent.com/jmshea/Foundations-of-Data-Science-with-Python/main/01-intro/flashcards/what-is-data-science.json";
+            el.dataset.cards = JSON.stringify([{"front": "data", "back": "Collections of measurements, characteristics, or facts about a group.", "seqNum": 0}, {"front": "data science", "back": "The process of extracting meaning from data.", "seqNum": 1}, {"front": "data point", "back": "A collection of one or more pieces of information collected about a single individual or entity.", "seqNum": 2}, {"front": "variables", "back": "Particular characteristics, measurements, or facts that make up a data point.", "seqNum": 3}, {"front": "features", "back": "Individual piece of information in a data set. While a variable typically represents unprocessed or raw data, features can include both variables and processed versions of the variables.", "seqNum": 4}, {"front": "quantitative data", "back": "Numeric data.", "seqNum": 5}, {"front": "qualitative data", "back": "Non-numeric or categorical data.", "seqNum": 6}, {"front": "research question", "back": "A question that can be answered using research, including data collection and analysis.", "seqNum": 7}]);
+            el.dataset.frontColors = JSON.stringify(["var(--asparagus)", "var(--terra-cotta)", "var(--cyan-process)"]);
+            el.dataset.backColors = JSON.stringify(["var(--dark-blue-gray)"]);
+            el.dataset.textColors = JSON.stringify(["var(--snow)"]);
+            el.dataset.keyControl = true;
+            el.dataset.grabFocus = false;
+            el.dataset.shuffleCards = false;
+            el.dataset.title = "";
+            el.dataset.subject = "";
+            createCards("OkoZSEuSrkWR");
+            obs.disconnect();
         }
-        </script></div>
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+})();</script></div>
 </div>
 </section>
 </section>
