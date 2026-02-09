@@ -117,7 +117,7 @@
           {
           "answer": "It does not require the data to be a certain size in order for the model to be accurate",
           "correct": true,
-          "feedback": "Correct. Because there is not model, we do not need data to reach a certain size before we can accurately model the data. However, the data may still need to reach a certain size before the results will be accurate."
+          "feedback": "Correct. Because there is no model, we do not need data to reach a certain size before we can accurately model the data. However, the data may still need to reach a certain size before the results will be accurate."
       },
           {
           "answer": "It does not rely on mathematical formulas for determining factors such as statistical significance",
