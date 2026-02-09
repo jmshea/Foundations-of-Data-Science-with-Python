@@ -27,7 +27,7 @@
     "answer_cols": 1
   },
     {
-      "question": "Supposed the data used in Section 3.5 is partitioned using the <b>mean</b> of the normalized GDP. How many states have normalized GDP greater than or equal to the average?",
+      "question": "Suppose the data used in Section 3.5 is partitioned using the <b>mean</b> of the normalized GDP. How many states have normalized GDP greater than or equal to the average?",
     "type": "numeric",
     "answers": [
         {
