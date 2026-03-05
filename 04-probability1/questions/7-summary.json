@@ -961,7 +961,6 @@
     {
         "question": "How many outcomes are in the event $H_3$ (there are 3 heads on 20 flips of a fair coin)?",
         "type": "numeric",
-        "precision": 0,
         "answers": [
             {
                 "type": "value",
@@ -1015,7 +1014,6 @@
     {
         "question": "How many outcomes are in the event $H_4$ (there are 4 heads on 20 flips of a fair coin)?",
         "type": "numeric",
-        "precision": 0,
         "answers": [
             {
                 "type": "value",
@@ -1051,7 +1049,6 @@
     {
         "question": "How many outcomes are in the event $H_5$ (there are 5 heads on 20 flips of a fair coin)?",
         "type": "numeric",
-        "precision": 0,
         "answers": [
             {
                 "type": "value",
@@ -1087,7 +1084,6 @@
     {
         "question": "How many outcomes are in the event $H_6$ (there are 6 heads on 20 flips of a fair coin)?",
         "type": "numeric",
-        "precision": 0,
         "answers": [
             {
                 "type": "value",
@@ -1111,7 +1107,7 @@
                     1000000000
                 ],
                 "correct": false,
-                "feedback": "No. Recall that  the entire sample space only has 1048576 outcomes. $H_3$ cannot have more outcomes than $S$."
+                "feedback": "No. Recall that  the entire sample space only has 1048576 outcomes. $H_6$ cannot have more outcomes than $S$."
             },
             {
                 "type": "default",
@@ -1123,7 +1119,6 @@
     {
         "question": "How many outcomes are in the event $H_7$ (there are 7 heads on 20 flips of a fair coin)?",
         "type": "numeric",
-        "precision": 0,
         "answers": [
             {
                 "type": "value",
@@ -1159,7 +1154,6 @@
     {
         "question": "How many outcomes are in the event $H_8$ (there are 8 heads on 20 flips of a fair coin)?",
         "type": "numeric",
-        "precision": 0,
         "answers": [
             {
                 "type": "value",
