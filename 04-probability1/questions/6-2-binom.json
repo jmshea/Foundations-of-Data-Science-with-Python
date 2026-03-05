@@ -80,7 +80,7 @@
                 "type": "range",
                 "range": [ 1048577, 1000000000], 
                 "correct": false,
-                "feedback": "No. Recall that  the entire sample space only has 1048576 outcomes. $H_3$ cannot have more outcomes than $S$."
+                "feedback": "No. Recall that  the entire sample space only has 1048576 outcomes. $H_6$ cannot have more outcomes than $S$."
             },
             {
                 "type": "default",
