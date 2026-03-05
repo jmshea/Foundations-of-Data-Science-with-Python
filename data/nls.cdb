@@ -1,0 +1,143 @@
+R00001.00    [CASEID]                                       Survey Year: 1979
+  PRIMARY VARIABLE
+
+ 
+             IDENTIFICATION CODE
+ 
+ORIGINAL QUESTION NAME: CASEID
+ 
+NOTE: THIS NUMBER WAS ASSIGNED ACCORDING TO THE RECORD NUMBER OF EACH RESPONDENT
+ON THE TAPE. THE FIRST RESPONDENT WAS ASSIGNED ID#1, THE SECOND WAS ASSIGNED 
+ID#2, ETC.
+ 
+ACTUAL NUMBER
+ 
+UNIVERSE: All
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+TOTAL =========>   12686   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              1        Max:          12686        Mean:              6343.5
+ 
+Lead In: None.
+Default Next Question: R00001.49
+--------------------------------------------------------------------------------
+T55976.00    [Q11-GENHLTH_4B]                               Survey Year: 2016
+  PRIMARY VARIABLE
+
+ 
+             R GENDER
+ 
+[RESPONDENT GENDER]
+ 
+COMMENT: If R is unable or never does physical activities then skip question 
+about how long
+ 
+    3323           1: MALE   (Go To T55977.00)
+    3585           2: FEMALE
+  -------
+    6908
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)       2
+TOTAL =========>    6910   VALID SKIP(-4)       2     NON-INTERVIEW(-5)    5774
+ 
+Min:              1        Max:              2        Mean:                1.52
+ 
+Lead In: T55975.00[Default]
+Default Next Question: T55980.00
+--------------------------------------------------------------------------------
+T56845.00    [TNFW_TRUNC]                                   Survey Year: 2016
+  PRIMARY VARIABLE
+
+ 
+             FAMILY NET WEALTH (TRUNC) *KEY*
+ 
+ORIGINAL QUESTION NAME: *CREATED  Created Variable Total Net Family Wealth  
+Total Net Wealth for Family. Created by summing all asset values and subtracting
+all debts. Missing assets and debt values are imputed. Top 2% of all values are 
+topcoded. See NLS79 User's Guide Asset Section for more detail.
+ 
+UNIVERSE: All
+ 
+NOTE: 
+ 
+NOTE: This variable includes estimates provided by the respondent, but does not 
+include imputed values.
+ 
+     629  -999999999 TO -6: < 0
+     603           0
+     115           1 TO 999
+      94        1000 TO 1999
+      93        2000 TO 2999
+      73        3000 TO 3999
+      57        4000 TO 4999
+      64        5000 TO 5999
+      50        6000 TO 6999
+      44        7000 TO 7999
+      33        8000 TO 8999
+      23        9000 TO 9999
+     146       10000 TO 14999
+     102       15000 TO 19999
+      83       20000 TO 24999
+     387       25000 TO 49999
+    3412       50000 TO 99999999: 50000+
+  -------
+    6008
+ 
+Refusal(-1)            1
+Don't Know(-2)         0
+Invalid Skip(-3)     903
+TOTAL =========>    6912   VALID SKIP(-4)       0     NON-INTERVIEW(-5)    5774
+ 
+Min:        -715175        Max:        5526252        Mean:           376179.61
+ 
+Lead In: T56843.00[Default]
+Default Next Question: T56847.00
+--------------------------------------------------------------------------------
+T99000.00    [HGC_EVER]                                     Survey Year: XRND
+  PRIMARY VARIABLE
+
+ 
+             HIGHEST GRADE EVER COMPLETED
+ 
+HIGHEST GRADE RESPONDENT HAS EVER REPORTED COMPLETING AND GETTING CREDIT FOR
+ 
+       5       0 NONE
+       0      93 PRE-KINDERGARTEN
+       0      94 KINDERGARTEN
+       2       1 1ST GRADE
+       0       2 2ND GRADE
+      16       3 3RD GRADE
+      15       4 4TH GRADE
+      17       5 5TH GRADE
+      50       6 6TH GRADE
+      76       7 7TH GRADE
+     235       8 8TH GRADE
+     365       9 9TH GRADE
+     370      10 10TH GRADE
+     369      11 11TH GRADE
+    5641      12 12TH GRADE
+    1147      13 1ST YEAR COLLEGE
+    1194      14 2ND YEAR COLLEGE
+     571      15 3RD YEAR COLLEGE
+    1419      16 4TH YEAR COLLEGE
+     336      17 5TH YEAR COLLEGE
+     432      18 6TH YEAR COLLEGE
+     175      19 7TH YEAR COLLEGE
+     248      20 8TH YEAR COLLEGE OR MORE
+       0      95 UNGRADED
+  -------
+   12683
+ 
+Refusal(-1)            0
+Don't Know(-2)         0
+Invalid Skip(-3)       3
+TOTAL =========>   12686   VALID SKIP(-4)       0     NON-INTERVIEW(-5)       0
+ 
+Min:              0        Max:             20        Mean:               13.11
+ 
+Lead In: None.
+Default Next Question: R06483.01
