@@ -36,7 +36,7 @@
 ]
     },
     {
-        "question": "A random variable has the CDF shown below \\[F_X(x) = \\begin{cases} 0 &  x < 0 \\\\ \\frac{1}{6}, &  0 \\leq x < 2, \\\\ \\frac{2}{3}, &  2 \\leq x < 4 \\\\ 1, &  x \\geq 4. \\end{cases} \\] How many values does the random variable take on?",
+        "question": "A random variable has the CDF shown below \\\\[F_X(x) = \\begin{cases} 0 &  x < 0 \\\\ \\frac{1}{6}, &  0 \\leq x < 2, \\\\ \\frac{2}{3}, &  2 \\leq x < 4 \\\\ 1, &  x \\geq 4. \\end{cases} \\\\] How many values does the random variable take on?",
         "type": "numeric",
         "answers": [
             {
